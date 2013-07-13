@@ -1,13 +1,18 @@
 
- 
- 
+  
 CREATE TABLE sys_access(
         roleid bigint  NOT NULL,
         appid bigint NOT NULL,
         PRIMARY KEY (roleid, appid)
 );
 
+CREATE TABLE sys_permission (
+        roleid bigint NOT NULL,
+        funcid bigint NOT NULL,
+        PRIMARY KEY (roleid, funcid)
+ );
 
+ 
 CREATE TABLE sys_application(
         id bigint not null,
         name nvarchar(255),
@@ -42,7 +47,7 @@ CREATE TABLE sys_dept_role(
         grade int,
         code nvarchar(255),
         sort int,
-        sysroleid bigint NOT NULL,
+        roleid bigint NOT NULL,
         deptid bigint NOT NULL,
         PRIMARY KEY (id)
 );
@@ -68,21 +73,6 @@ CREATE TABLE sys_log(
         PRIMARY KEY (id)
 );
 
-CREATE TABLE sys_permission (
-        roleid bigint NOT NULL,
-        funcid bigint NOT NULL,
-        PRIMARY KEY (roleid, funcid)
- );
-
-CREATE TABLE sys_role(
-        id bigint not null,
-        name nvarchar(255),
-        roledesc nvarchar(255),
-        code nvarchar(255),
-        sort int,
-        PRIMARY KEY (id)
-);
-
 
 CREATE TABLE sys_tree (
         id bigint not null,
@@ -102,43 +92,6 @@ CREATE TABLE sys_tree (
         PRIMARY KEY (id)
 );
 
-CREATE TABLE sys_user (
-        id bigint not null,
-        account nvarchar(255),
-        password nvarchar(255),
-        code nvarchar(255),
-        name nvarchar(255),
-        blocked int,
-        createtime datetime,
-        lastlogintime datetime,
-        lastloginip nvarchar(255),
-        evection int,
-        mobile nvarchar(255),
-        email nvarchar(255),
-        telephone nvarchar(255),
-        gender int,
-        headship nvarchar(255),
-        usertype int,
-        fax nvarchar(255),
-        accounttype int,
-        dumpflag int,
-        deptid bigint,
-	adminFlag nvarchar(1),
-	superiorIds nvarchar(200),
-        PRIMARY KEY (id)
-);
-
-CREATE TABLE sys_user_role(
-        id bigint not null,
-        userid bigint default 0,
-        roleid bigint default 0,
-        authorized int default 0,
-        authorizefrom bigint default 0,
-        availdatestart datetime,
-        availdateend datetime,
-        processdescription nvarchar(255),
-        PRIMARY KEY (id)
-);
 
 CREATE TABLE sys_dictory (
         id bigint not null,
@@ -337,7 +290,7 @@ CREATE TABLE subjectcode(
     );
 
 
-CREATE TABLE  Attachment (
+CREATE TABLE  attachment (
 	id bigint  not null,
 	referId bigint  ,
 	referType int  ,
@@ -353,7 +306,7 @@ CREATE TABLE  Attachment (
 );
 
 
-  CREATE TABLE  MyAudit (
+  CREATE TABLE  myaudit (
 	id bigint not null,
 	referId bigint ,
 	referType int ,
@@ -538,17 +491,25 @@ create table sys_input_def (
         primary key (id_)
     );
 
-    create index IDX_USER_ACCOUNT on SYS_USER (ACCOUNT);
 
-    create index IDX_USER_NAME on SYS_USER (NAME);
+    alter table UserInfo add  accountType int;
+
+    alter table UserInfo add  userType int;
+
+    alter table net_role add  code varchar(200) null;
+
+    alter table userrole add AUTHORIZED int;
+
+    alter table userrole add AUTHORIZEFROM varchar(200) null;
+
+    alter table userrole add AVAILDATESTART datetime null;
+
+    alter table userrole add AVAILDATEEND datetime null;
+
 
     create index IDX_TREE_NAME on SYS_TREE (NAME);
 
     create index IDX_TREE_CODE on SYS_TREE (CODE);
-
-    create index IDX_ROLE_NAME on SYS_ROLE (NAME);
-
-    create index IDX_ROLE_CODE on SYS_ROLE (CODE);
 
     create index SYS_DEPT_NAME on SYS_DEPARTMENT (NAME);
 
@@ -564,21 +525,12 @@ create table sys_input_def (
 
     create index SYS_DEPTROLE_DEPT on SYS_DEPT_ROLE (DEPTID);
 
-    create index SYS_DEPTROLE_ROLE on SYS_DEPT_ROLE (SYSROLEID);
-
-    create index SYS_USERROLE_ROLE on SYS_USER_ROLE (ROLEID);
-
-    create index SYS_USERROLE_USER on SYS_USER_ROLE (USERID);
+    create index SYS_DEPTROLE_ROLE on SYS_DEPT_ROLE (ROLEID);
 
     alter table sys_access 
         add constraint FK_ACCESS_APP 
         foreign key (appId) 
         references sys_application;
-
-    alter table sys_access 
-        add constraint FK_ACCESS_DEPTROLE 
-        foreign key (roleId) 
-        references sys_dept_role;
 
     alter table sys_application 
         add constraint FK_APP_TREE 
@@ -595,32 +547,12 @@ create table sys_input_def (
         foreign key (deptId) 
         references sys_department;
 
-    alter table sys_dept_role 
-        add constraint FK_DEPTROLE_ROLE 
-        foreign key (sysRoleId) 
-        references sys_role;
-
     alter table sys_function 
         add constraint FK_FUN_APP 
         foreign key (appId) 
         references sys_application;
 
     alter table sys_permission 
-        add constraint FK_PERM_DEPTROLE 
-        foreign key (roleId) 
-        references sys_dept_role;
-
-    alter table sys_permission 
         add constraint FK_PERM_FUN
         foreign key (funcId) 
         references sys_function;
-
-    alter table sys_user_role 
-        add constraint FK_USERROLE_ROLE 
-        foreign key (roleId) 
-        references sys_dept_role;
-
-    alter table sys_user_role 
-        add constraint FK_USERROLE_USER 
-        foreign key (userId) 
-        references sys_user;

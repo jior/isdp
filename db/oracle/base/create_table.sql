@@ -42,7 +42,7 @@ CREATE TABLE SYS_DEPT_ROLE(
         GRADE INTEGER,
         CODE NVARCHAR2(255),
         SORT INTEGER,
-        SYSROLEID NUMBER(19) NOT NULL,
+        ROLEID NUMBER(19) NOT NULL,
         DEPTID NUMBER(19) NOT NULL,
         PRIMARY KEY (ID)
 );
@@ -74,15 +74,7 @@ CREATE TABLE SYS_PERMISSION (
         PRIMARY KEY (ROLEID, FUNCID)
  );
 
-CREATE TABLE SYS_ROLE(
-        ID NUMBER(19) NOT NULL,
-        NAME NVARCHAR2(255),
-        ROLEDESC NVARCHAR2(255),
-        CODE NVARCHAR2(255),
-        SORT INTEGER,
-        PRIMARY KEY (ID)
-);
-
+ 
 
 CREATE TABLE SYS_TREE (
         ID NUMBER(19) NOT NULL,
@@ -102,43 +94,7 @@ CREATE TABLE SYS_TREE (
         PRIMARY KEY (ID)
 );
 
-CREATE TABLE SYS_USER (
-        ID NUMBER(19) NOT NULL,
-        ACCOUNT NVARCHAR2(255),
-        PASSWORD NVARCHAR2(255),
-        CODE NVARCHAR2(255),
-        NAME NVARCHAR2(255),
-        BLOCKED INTEGER,
-        CREATETIME TIMESTAMP(6),
-        LASTLOGINTIME TIMESTAMP(6),
-        LASTLOGINIP NVARCHAR2(255),
-        EVECTION INTEGER,
-        MOBILE NVARCHAR2(255),
-        EMAIL NVARCHAR2(255),
-        TELEPHONE NVARCHAR2(255),
-        GENDER INTEGER,
-        HEADSHIP NVARCHAR2(255),
-        USERTYPE INTEGER,
-        FAX NVARCHAR2(255),
-        ACCOUNTTYPE INTEGER,
-        DUMPFLAG INTEGER,
-        DEPTID NUMBER(19),
-	ADMINFLAG NVARCHAR2(1),
-	SUPERIORIDS NVARCHAR2(200),
-        PRIMARY KEY (ID)
-);
-
-CREATE TABLE SYS_USER_ROLE(
-        ID NUMBER(19) NOT NULL,
-        USERID NUMBER(19) DEFAULT 0,
-        ROLEID NUMBER(19) DEFAULT 0,
-        AUTHORIZED INTEGER DEFAULT 0,
-        AUTHORIZEFROM NUMBER(19) DEFAULT 0,
-        AVAILDATESTART TIMESTAMP(6),
-        AVAILDATEEND TIMESTAMP(6),
-        PROCESSDESCRIPTION NVARCHAR2(255),
-        PRIMARY KEY (ID)
-);
+ 
 
 CREATE TABLE SYS_DICTORY (
         ID NUMBER(19) NOT NULL,
@@ -353,7 +309,7 @@ CREATE TABLE  ATTACHMENT (
 );
 
 
-  CREATE TABLE  MyAudit (
+  CREATE TABLE  Myaudit (
 	ID NUMBER(19) NOT NULL ,
 	REFERID NUMBER(19) ,
 	REFERTYPE INTEGER ,
@@ -565,17 +521,10 @@ CREATE TABLE SYS_INPUT_DEF (
         PRIMARY KEY (ID)
     );
 
-    create index IDX_USER_ACCOUNT on SYS_USER (ACCOUNT);
-
-    create index IDX_USER_NAME on SYS_USER (NAME);
 
     create index IDX_TREE_NAME on SYS_TREE (NAME);
 
     create index IDX_TREE_CODE on SYS_TREE (CODE);
-
-    create index IDX_ROLE_NAME on SYS_ROLE (NAME);
-
-    create index IDX_ROLE_CODE on SYS_ROLE (CODE);
 
     create index SYS_DEPT_NAME on SYS_DEPARTMENT (NAME);
 
@@ -591,21 +540,12 @@ CREATE TABLE SYS_INPUT_DEF (
 
     create index SYS_DEPTROLE_DEPT on SYS_DEPT_ROLE (DEPTID);
 
-    create index SYS_DEPTROLE_ROLE on SYS_DEPT_ROLE (SYSROLEID);
-
-    create index SYS_USERROLE_ROLE on SYS_USER_ROLE (ROLEID);
-
-    create index SYS_USERROLE_USER on SYS_USER_ROLE (USERID);
+    create index SYS_DEPTROLE_ROLE on SYS_DEPT_ROLE (ROLEID);
 
     alter table SYS_ACCESS 
         add constraint FK_ACCESS_APP 
         foreign key (APPID) 
         references SYS_APPLICATION;
-
-    alter table SYS_ACCESS 
-        add constraint FK_ACCESS_DEPTROLE 
-        foreign key (ROLEID) 
-        references SYS_DEPT_ROLE;
 
     alter table SYS_APPLICATION 
         add constraint FK_APP_TREE 
@@ -622,32 +562,14 @@ CREATE TABLE SYS_INPUT_DEF (
         foreign key (DEPTID) 
         references SYS_DEPARTMENT;
 
-    alter table SYS_DEPT_ROLE 
-        add constraint FK_DEPTROLE_ROLE 
-        foreign key (SYSROLEID) 
-        references SYS_ROLE;
-
     alter table SYS_FUNCTION 
         add constraint FK_FUN_APP 
         foreign key (APPID) 
         references SYS_APPLICATION;
 
     alter table SYS_PERMISSION 
-        add constraint FK_PERM_DEPTROLE 
-        foreign key (ROLEID) 
-        references SYS_DEPT_ROLE;
-
-    alter table SYS_PERMISSION 
         add constraint FK_PERM_FUN
         foreign key (FUNCID) 
         references SYS_FUNCTION;
 
-    alter table SYS_USER_ROLE 
-        add constraint FK_USERROLE_ROLE 
-        foreign key (ROLEID) 
-        references SYS_DEPT_ROLE;
-
-    alter table SYS_USER_ROLE 
-        add constraint FK_USERROLE_USER 
-        foreign key (USERID) 
-        references SYS_USER;
+ 

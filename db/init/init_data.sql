@@ -1,13 +1,10 @@
 /** 清空数据
 delete from sys_access;
 delete from sys_function;
-delete from sys_user_role;
 delete from sys_dept_role;
-delete from sys_user;
 delete from sys_department;
 delete from sys_application;
 delete from sys_tree;
-delete from sys_role;
 delete from sys_dictory;
 delete from sys_dictory_def;
 delete from sys_dbid;
@@ -21,19 +18,19 @@ delete from sys_input_def;
 
 
 /*初始化角色信息*/
-insert into sys_role (id, name, roleDesc, sort, code) values (1, '部长', '', 15, 'R001');
-insert into sys_role (id, name, roleDesc, sort, code) values (2, '科长', '', 14, 'R002');
-insert into sys_role (id, name, roleDesc, sort, code) values (3, 'CO', '', 12, 'R003');
-insert into sys_role (id, name, roleDesc, sort, code) values (4, '系长', '', 13, 'R004');
-insert into sys_role (id, name, roleDesc, sort, code) values (5, '预算员', '', 11, 'R005');
-insert into sys_role (id, name, roleDesc, sort, code) values (6, '部门管理员', '', 10, 'R006');
-insert into sys_role (id, name, roleDesc, sort, code) values (7, '采购联络员', '', 9, 'R007');
-insert into sys_role (id, name, roleDesc, sort, code) values (10, '采购担当', '', 6, 'R010');
-insert into sys_role (id, name, roleDesc, sort, code) values (11, '申请担当', '使用部门申请起票经办人', 5, 'R011');
-insert into sys_role (id, name, roleDesc, sort, code) values (12, '收单担当', '', 4, 'R012');
-insert into sys_role (id, name, roleDesc, sort, code) values (15, '系统管理员', '', 1, 'SystemAdministrator');
-insert into sys_role (id, name, roleDesc, sort, code) values (16, '分级管理员', '', 2, 'BranchAdmin');
-insert into sys_role (id, name, roleDesc, sort, code) values (18, '主任', '', 18, 'R017');
+insert into net_role (id, rolename, content, tasksort, code) values (1, '部长', '', 15, 'R001');
+insert into net_role (id, rolename, content, tasksort, code) values (2, '科长', '', 14, 'R002');
+insert into net_role (id, rolename, content, tasksort, code) values (3, 'CO', '', 12, 'R003');
+insert into net_role (id, rolename, content, tasksort, code) values (4, '系长', '', 13, 'R004');
+insert into net_role (id, rolename, content, tasksort, code) values (5, '预算员', '', 11, 'R005');
+insert into net_role (id, rolename, content, tasksort, code) values (6, '部门管理员', '', 10, 'R006');
+insert into net_role (id, rolename, content, tasksort, code) values (7, '采购联络员', '', 9, 'R007');
+insert into net_role (id, rolename, content, tasksort, code) values (10, '采购担当', '', 6, 'R010');
+insert into net_role (id, rolename, content, tasksort, code) values (11, '申请担当', '使用部门申请起票经办人', 5, 'R011');
+insert into net_role (id, rolename, content, tasksort, code) values (12, '收单担当', '', 4, 'R012');
+insert into net_role (id, rolename, content, tasksort, code) values (15, '系统管理员', '', 1, 'SystemAdministrator');
+insert into net_role (id, rolename, content, tasksort, code) values (16, '分级管理员', '', 2, 'BranchAdmin');
+insert into net_role (id, rolename, content, tasksort, code) values (18, '主任', '', 18, 'R017');
 
 
 /*初始系统树信息*/
@@ -107,7 +104,7 @@ insert into sys_tree (id, parent, name, nodedesc, sort, code) values (733, 731, 
 insert into sys_department (id, name, deptdesc, createtime, sort, deptno, code, code2, status, fincode, nodeid) values (6, '技术部', '技术部', null, 284, 'JS000', 'JS', 'J', 0, 'JS000', 6);
  
 /*初始化用户信息*/
-insert into sys_user (id, deptId, account, password, code, name, blocked, createTime, lastLoginTime, lastLoginIP, mobile, email, telephone, evection, gender, headship, userType, fax, accountType, dumpFlag, adminFlag) values (1, 6, 'root', 'lueSGJZetyySpUndWjMB', 'root', 'root', 0, null, null, '127.0.0.1', '111', 'root@127.0.0.1', '111', 0, 0, '管理员', 40, null, 0, 0, '1');
+insert into UserInfo (UserID,  UserName, password, depId, status, issystem ) values ('root', '系统管理员', '111111', 6, '0', '1');
 
 /*初始化应用信息*/
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (3, '应用模块', '应用模块', '', 3, 1, 3);
@@ -153,13 +150,12 @@ insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid, cod
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid, code) values (73, '公告管理', '', '/mx/cms/info?serviceKey=bulletin', 3, 1, 703, null);
 
 /*插入部门角色*/ 
-insert into sys_dept_role (id, grade, code, sort, sysroleid, deptid) values (1, 0, null, 0, 15, 6);
+insert into sys_dept_role (id, grade, code, sort, roleid, deptid) values (1, 0, null, 0, 15, 6);
 
 
 /*插入用户角色*/
-insert into sys_user_role (id, userid, roleid, authorized, authorizefrom, availdatestart, availdateend, processdescription) values (2, 1, 1, 0, 1, null, null, null);
+insert into userrole (id, userid, roleid, authorized, authorizefrom) values (2, 1, 1, 0, 1);
  
-   
  
 /*插入访问权限*/
 insert into sys_access (roleid, appid) values (1, 3);

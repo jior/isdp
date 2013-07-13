@@ -41,7 +41,7 @@ CREATE TABLE sys_dept_role(
         grade int,
         code varchar(255),
         sort int,
-        sysroleid bigint NOT NULL,
+        roleid bigint NOT NULL,
         deptid bigint NOT NULL,
         PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin;
@@ -73,15 +73,7 @@ CREATE TABLE sys_permission (
         PRIMARY KEY (roleid, funcid)
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin;
 
-CREATE TABLE sys_role(
-        id bigint NOT NULL,
-        name varchar(255),
-        roledesc varchar(255),
-        code varchar(255),
-        sort int,
-        PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin;
-
+ 
 
 CREATE TABLE sys_tree (
         id bigint NOT NULL,
@@ -101,43 +93,7 @@ CREATE TABLE sys_tree (
         PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin;
 
-CREATE TABLE sys_user (
-        id bigint NOT NULL,
-        account varchar(255),
-        password varchar(255),
-        code varchar(255),
-        name varchar(255),
-        blocked int,
-        createtime timestamp,
-        lastlogintime timestamp,
-        lastloginip varchar(255),
-        evection int,
-        mobile varchar(255),
-        email varchar(255),
-        telephone varchar(255),
-        gender int,
-        headship varchar(255),
-        usertype int,
-        fax varchar(255),
-        accounttype int,
-        dumpflag int,
-        deptid bigint,
-	adminFlag varchar(1),
-	superiorIds varchar(200),
-        PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin;
-
-CREATE TABLE sys_user_role(
-        id bigint not null,
-        userid bigint default 0,
-        roleid bigint default 0,
-        authorized int default 0,
-        authorizefrom bigint default 0,
-        availdatestart timestamp,
-        availdateend timestamp,
-        processdescription varchar(255),
-        PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin;
+ 
 
 CREATE TABLE sys_dictory (
         id bigint not null,
@@ -337,7 +293,7 @@ CREATE TABLE subjectcode(
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin;
 
 
-CREATE TABLE  Attachment (
+CREATE TABLE  attachment (
 	id bigint  not null,
 	referId bigint  ,
 	referType int  ,
@@ -353,7 +309,7 @@ CREATE TABLE  Attachment (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin;
 
 
-  CREATE TABLE  MyAudit (
+  CREATE TABLE  Myaudit (
 	id bigint not null,
 	referId bigint ,
 	referType int ,
@@ -544,17 +500,9 @@ create table sys_table (
     )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin;
 
 
-    create index IDX_USER_ACCOUNT on SYS_USER (ACCOUNT);
-
-    create index IDX_USER_NAME on SYS_USER (NAME);
-
     create index IDX_TREE_NAME on SYS_TREE (NAME);
 
     create index IDX_TREE_CODE on SYS_TREE (CODE);
-
-    create index IDX_ROLE_NAME on SYS_ROLE (NAME);
-
-    create index IDX_ROLE_CODE on SYS_ROLE (CODE);
 
     create index SYS_DEPT_NAME on SYS_DEPARTMENT (NAME);
 
@@ -570,11 +518,7 @@ create table sys_table (
 
     create index SYS_DEPTROLE_DEPT on SYS_DEPT_ROLE (DEPTID);
 
-    create index SYS_DEPTROLE_ROLE on SYS_DEPT_ROLE (SYSROLEID);
-
-    create index SYS_USERROLE_ROLE on SYS_USER_ROLE (ROLEID);
-
-    create index SYS_USERROLE_USER on SYS_USER_ROLE (USERID);
+    create index SYS_DEPTROLE_ROLE on SYS_DEPT_ROLE (ROLEID);
 
 
     alter table sys_access 
@@ -582,12 +526,6 @@ create table sys_table (
         add constraint FK_ACCESS_APP 
         foreign key (appId) 
         references sys_application (id);
-
-    alter table sys_access 
-        add index FK_ACCESS_DEPTROLE (roleId), 
-        add constraint FK_ACCESS_DEPTROLE 
-        foreign key (roleId) 
-        references sys_dept_role (id);
 
     alter table sys_application 
         add index FK_APP_TREE (nodeId), 
@@ -607,12 +545,6 @@ create table sys_table (
         foreign key (deptId) 
         references sys_department (id);
 
-    alter table sys_dept_role 
-        add index FK_DEPTROLE_ROLE (sysRoleId), 
-        add constraint FK_DEPTROLE_ROLE 
-        foreign key (sysRoleId) 
-        references sys_role (id);
-
     alter table sys_function 
         add index FK_FUN_APP (appId), 
         add constraint FK_FUN_APP 
@@ -620,25 +552,7 @@ create table sys_table (
         references sys_application (id);
 
     alter table sys_permission 
-        add index FK_PERM_DEPTROLE (roleId), 
-        add constraint FK_PERM_DEPTROLE 
-        foreign key (roleId) 
-        references sys_dept_role (id);
-
-    alter table sys_permission 
         add index FK_PERM_FUN (funcId), 
         add constraint FK_PERM_FUN 
         foreign key (funcId) 
         references sys_function (id);
-
-    alter table sys_user_role 
-        add index FK_USERROLE_ROLE (roleId), 
-        add constraint FK_USERROLE_ROLE 
-        foreign key (roleId) 
-        references sys_dept_role (id);
-
-    alter table sys_user_role 
-        add index FK_USERROLE_USER (userId), 
-        add constraint FK_USERROLE_USER 
-        foreign key (userId) 
-        references sys_user (id);

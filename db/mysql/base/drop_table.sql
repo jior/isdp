@@ -1,8 +1,5 @@
 DROP TABLE sys_access;
 DROP TABLE sys_log;
-DROP TABLE sys_user_role;
-DROP TABLE sys_role;
-DROP TABLE sys_user;
 DROP TABLE sys_application;
 DROP TABLE sys_dept_role;
 DROP TABLE sys_department;
