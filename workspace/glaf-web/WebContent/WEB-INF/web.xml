@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" >
+
+    <!--Spring配置文件位置-->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/conf/spring/spring-config.xml</param-value>
+	</context-param>
+
+	<!--由Spring载入的Log4j配置文件位置-->
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/conf/log4j.xml</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>com.glaf.core.context.StartupListener</listener-class>
+	</listener>
+
+	<!-- <listener>
+        <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+    </listener> -->
+ 
+	<listener> 
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class> 
+	</listener>
+
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+	</listener>
+
+
+	<!--转码过滤器-->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+  
+	<!--IE缓存清除过滤器-->
+	<filter>
+		<filter-name>Cache Filter</filter-name>
+		<filter-class>com.glaf.base.filter.ForbiddenCacheFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>Cache Filter</filter-name>
+		<url-pattern>/mx/*</url-pattern>
+	</filter-mapping>
+
+
+    <!--shiroFilter-->
+	<filter> 
+	   <filter-name>shiroFilter</filter-name> 
+	   <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> 
+	</filter> 
+
+	<filter-mapping> 
+	   <filter-name>shiroFilter</filter-name> 
+	   <url-pattern>/*</url-pattern> 
+	</filter-mapping> 
+
+  
+	<servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>com.glaf.base.servlet.SpringDispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>/mx/*</url-pattern>
+	</servlet-mapping> 
+
+	<servlet>
+		<servlet-name>resteasy</servlet-name>
+		<servlet-class>com.glaf.base.servlet.SpringDispatcherServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>resteasy</servlet-name>
+		<url-pattern>/rs/*</url-pattern>
+	</servlet-mapping>
+
+
+    <servlet>
+		<servlet-name>InitBaseData</servlet-name>
+		<servlet-class>com.glaf.base.modules.InitBaseDataServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+	<servlet>
+        <servlet-name>FileUploadServlet</servlet-name>
+        <servlet-class>com.glaf.core.web.servlet.FileUploadServlet</servlet-class>
+    </servlet>
+
+	<servlet-mapping>
+        <servlet-name>FileUploadServlet</servlet-name>
+        <url-pattern>/myupload</url-pattern>
+    </servlet-mapping>
+
+	<servlet>
+		<servlet-name>FileUploadBackGroundServlet</servlet-name>
+		<servlet-class>com.glaf.base.utils.upload.FileUploadBackGroundServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+		<servlet-name>FileUploadBackGroundServlet</servlet-name>
+		<url-pattern>/fileUploadService</url-pattern>
+    </servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- Session timeout on  60 * 8  (in minutes) -->
+	<session-config>
+		<session-timeout>480</session-timeout>
+	</session-config>
+ 
+	<error-page> 
+		<exception-type>com.glaf.base.modules.sys.interceptor.AuthorizeException</exception-type> 
+		<location>/unauthorized.jsp</location>
+	</error-page> 
+  
+</web-app>
