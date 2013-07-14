@@ -18,19 +18,19 @@ delete from sys_input_def;
 
 
 /*初始化角色信息*/
-insert into net_role (id, rolename, content, tasksort, code) values (1, '部长', '', 15, 'R001');
-insert into net_role (id, rolename, content, tasksort, code) values (2, '科长', '', 14, 'R002');
-insert into net_role (id, rolename, content, tasksort, code) values (3, 'CO', '', 12, 'R003');
-insert into net_role (id, rolename, content, tasksort, code) values (4, '系长', '', 13, 'R004');
-insert into net_role (id, rolename, content, tasksort, code) values (5, '预算员', '', 11, 'R005');
-insert into net_role (id, rolename, content, tasksort, code) values (6, '部门管理员', '', 10, 'R006');
-insert into net_role (id, rolename, content, tasksort, code) values (7, '采购联络员', '', 9, 'R007');
-insert into net_role (id, rolename, content, tasksort, code) values (10, '采购担当', '', 6, 'R010');
-insert into net_role (id, rolename, content, tasksort, code) values (11, '申请担当', '使用部门申请起票经办人', 5, 'R011');
-insert into net_role (id, rolename, content, tasksort, code) values (12, '收单担当', '', 4, 'R012');
-insert into net_role (id, rolename, content, tasksort, code) values (15, '系统管理员', '', 1, 'SystemAdministrator');
-insert into net_role (id, rolename, content, tasksort, code) values (16, '分级管理员', '', 2, 'BranchAdmin');
-insert into net_role (id, rolename, content, tasksort, code) values (18, '主任', '', 18, 'R017');
+insert into net_role (rolename, content, tasksort, code) values ('部长', '', 15, 'R001');
+insert into net_role (rolename, content, tasksort, code) values ('科长', '', 14, 'R002');
+insert into net_role (rolename, content, tasksort, code) values ('CO', '', 12, 'R003');
+insert into net_role (rolename, content, tasksort, code) values ('系长', '', 13, 'R004');
+insert into net_role (rolename, content, tasksort, code) values ('预算员', '', 11, 'R005');
+insert into net_role (rolename, content, tasksort, code) values ('部门管理员', '', 10, 'R006');
+insert into net_role (rolename, content, tasksort, code) values ('采购联络员', '', 9, 'R007');
+insert into net_role (rolename, content, tasksort, code) values ('采购担当', '', 6, 'R010');
+insert into net_role (rolename, content, tasksort, code) values ('申请担当', '使用部门申请起票经办人', 5, 'R011');
+insert into net_role (rolename, content, tasksort, code) values ('收单担当', '', 4, 'R012');
+insert into net_role (rolename, content, tasksort, code) values ('系统管理员', '', 1, 'SystemAdministrator');
+insert into net_role (rolename, content, tasksort, code) values ('分级管理员', '', 2, 'BranchAdmin');
+insert into net_role (rolename, content, tasksort, code) values ('主任', '', 18, 'R017');
 
 
 /*初始系统树信息*/
@@ -46,11 +46,13 @@ insert into sys_tree (id, parent, name, nodedesc, sort, code) values (11, 8, '系
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (12, 10, '部门管理', '部门管理', 20, '');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (14, 10, '角色管理', '角色管理', 15, '');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (15, 10, '模块管理', '模块管理', 12, '');
-insert into sys_tree (id, parent, name, nodedesc, sort, code) values (16, 8, '字典管理', '字典管理', 20, '');
-insert into sys_tree (id, parent, name, nodedesc, sort, code) values (17, 8, '缓存管理', '缓存管理', 20, '');
-insert into sys_tree (id, parent, name, nodedesc, sort, code) values (18, 8, '主键管理', '主键管理', 20, '');
-insert into sys_tree (id, parent, name, nodedesc, sort, code) values (19, 8, '模板管理', '模板管理', 20, '');
-insert into sys_tree (id, parent, name, nodedesc, sort, code) values (26, 8, '数据重载', '数据重载', 26, '');
+insert into sys_tree (id, parent, name, nodedesc, sort, code) values (16, 8, '字典管理', '字典管理', 16, '');
+insert into sys_tree (id, parent, name, nodedesc, sort, code) values (17, 8, '缓存管理', '缓存管理', 17, '');
+insert into sys_tree (id, parent, name, nodedesc, sort, code) values (18, 8, '主键管理', '主键管理', 18, '');
+insert into sys_tree (id, parent, name, nodedesc, sort, code) values (19, 8, '模板管理', '模板管理', 19, '');
+insert into sys_tree (id, parent, name, nodedesc, sort, code) values (20, 8, '数据管理', '数据管理', 20, '');
+insert into sys_tree (id, parent, name, nodedesc, sort, code) values (21, 8, '数据重载', '数据重载', 21, '');
+insert into sys_tree (id, parent, name, nodedesc, sort, code) values (30, 8, '文件管理', '文件管理', 30, '');
 
 
 insert into sys_tree (id, parent, name, nodeDesc, sort, code) values (42, 3, '统计报表', '统计报表', 42, '');
@@ -101,6 +103,7 @@ insert into sys_tree (id, parent, name, nodedesc, sort, code) values (733, 731, 
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (801, 3, 'UI管理', 'UI管理', 0, '');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (802, 801, '布局管理', '布局管理', 0, '');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (803, 801, '板块设置', '板块设置', 0, '');
+insert into sys_tree (id, parent, name, nodedesc, sort, code) values (804, 801, 'portal设置', 'portal设置', 0, '');
 
 
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (901, 3, '个人设置', '个人设置', 30, '');
@@ -109,6 +112,12 @@ insert into sys_tree (id, parent, name, nodedesc, sort, code) values (903, 901, 
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (904, 901, '首页板块', '首页板块', 30, '');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (905, 901, '首页布局', '首页布局', 30, '');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (906, 901, 'portal设置', 'portal设置', 30, '');
+insert into sys_tree (id, parent, name, nodedesc, sort, code) values (907, 901, '收发消息', '收发消息', 30, '');
+
+insert into sys_tree (id, parent, name, nodedesc, sort, code) values (941, 3, '演示模块', '演示模块', 30, '');
+insert into sys_tree (id, parent, name, nodedesc, sort, code) values (942, 941, '分级管理', '分级管理', 30, '');
+insert into sys_tree (id, parent, name, nodedesc, sort, code) values (943, 942, '用户设置', '用户设置', 30, '');
+
 
 /*初始化部门信息*/
 insert into sys_department (id, name, deptdesc, createtime, sort, deptno, code, code2, status, fincode, nodeid) values (6, '技术部', '技术部', null, 284, 'JS000', 'JS', 'J', 0, 'JS000', 6);
@@ -128,8 +137,10 @@ insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) val
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (16, '字典管理', '', '/mx/sys/dictory/showFrame', 15, 2, 16);
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (17, '缓存管理', '', '/mx/sys/cacheMgr', 15, 2, 17);
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (18, '主键管理', '', '/mx/sys/sequence', 15, 2, 18);
-insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (19, '模版管理', '', '/mx/sys/template/showFrame', 15, 2, 19);
-insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (26, '数据重载', '', '/mx/sys/dictory/loadDictory', 10, 2, 26);
+insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (19, '模板管理', '', '/mx/sys/template/showFrame', 15, 2, 19);
+insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (20, '数据管理', '', '/mx/sys/table', 10, 2, 20);
+insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (21, '数据重载', '', '/mx/sys/dictory/loadDictory', 10, 2, 21);
+insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (30, '文件管理', '', '/webfile/jsp/main.jsp', 10, 2, 30);
 
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (449, '工作日历', '工作日历', '/mx/sys/workCalendar/showList', 449, 1, 449);
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (450, '系统参数', '系统参数', '/mx/sys/property/edit?category=SYS', 450, 1, 450);
@@ -162,9 +173,10 @@ insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid, cod
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid, code) values (73, '公告管理', '', '/mx/cms/info?serviceKey=bulletin', 3, 1, 703, null);
 
 
-insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid, code) values (81, 'UI管理', '', '', 1, 1, 801, null);
-insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid, code) values (82, '布局管理', '', '/mx/layout', 2, 1, 802, null);
-insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid, code) values (83, '板块设置', '', '/mx/panel?isSystem=true', 3, 1, 803, null);
+insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid, code) values (801, 'UI管理', '', '', 1, 1, 801, null);
+insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid, code) values (802, '布局管理', '', '/mx/layout', 2, 1, 802, null);
+insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid, code) values (803, '板块设置', '', '/mx/panel?isSystem=true', 3, 1, 803, null);
+insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid, code) values (804, 'portal设置', '', '/mx/user/portal?edit=true', 3, 1, 804, null);
 
 
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (901, '个人设置', '', '', 15, 2, 901);
@@ -173,6 +185,13 @@ insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) val
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (904, '首页板块', '', '/mx/panel', 15, 2, 904);
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (905, '首页布局', '', '/mx/layout', 15, 2, 905);
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (906, 'portal设置', '', '/mx/user/portal?edit=true', 15, 2, 906);
+insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (907, '收发消息', '', '/mx/workspace/message/showReceiveList', 15, 2, 907);
+
+
+insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (941, '演示模块', '', '', 15, 2, 941);
+insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (942, '分级管理', '', '/mx/branch/department', 15, 2, 942);
+insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (943, '用户设置', '', '/mx/sys/user/deptUsers', 15, 2, 943);
+
 
 /*插入部门角色*/ 
 insert into sys_dept_role (id, grade, code, sort, roleid, deptid) values (1, 0, null, 0, 15, 6);
