@@ -116,7 +116,7 @@ insert into sys_tree (id, parent, name, nodedesc, sort, code) values (907, 901, 
 
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (941, 3, '演示模块', '演示模块', 30, '');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (942, 941, '分级管理', '分级管理', 30, '');
-insert into sys_tree (id, parent, name, nodedesc, sort, code) values (943, 942, '用户设置', '用户设置', 30, '');
+insert into sys_tree (id, parent, name, nodedesc, sort, code) values (943, 941, '用户设置', '用户设置', 30, '');
 
 
 /*初始化部门信息*/
