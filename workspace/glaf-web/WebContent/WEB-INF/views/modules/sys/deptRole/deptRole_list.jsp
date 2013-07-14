@@ -5,15 +5,17 @@
 <%@ page import="com.glaf.base.modules.sys.model.*"%>
 <%@ page import="com.glaf.base.utils.*"%>
 <%
-String context = request.getContextPath();
-SysDepartment department = (SysDepartment)request.getAttribute("department");
-List list = (List)request.getAttribute("list");
-Set roleId=new HashSet();
-Iterator roles = department.getRoles().iterator();
-while(roles.hasNext()){
-  SysDeptRole deptRole=(SysDeptRole)roles.next();    
-  roleId.add(new Long(deptRole.getRole().getId()));  
-}
+	String context = request.getContextPath();
+	SysDepartment department = (SysDepartment)request.getAttribute("department");
+	List list = (List)request.getAttribute("list");
+	Set roleId=new HashSet();
+	Iterator roles = department.getRoles().iterator();
+	while(roles.hasNext()){
+	  SysDeptRole deptRole=(SysDeptRole)roles.next();   
+	  if(deptRole.getRole() != null){
+		  roleId.add(deptRole.getRole().getId());  
+	  }
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -23,7 +25,7 @@ while(roles.hasNext()){
 <link href="<%=context%>/css/site.css" type="text/css" rel="stylesheet">
 <script language="javascript" src='<%=context%>/scripts/verify.js'></script>
 <script language="javascript" src='<%=context%>/scripts/main.js'></script>
-<script language="JavaScript">
+<script language="javascript">
 function privilege(roleId){
   var url="<%=request.getContextPath()%>/mx/sys/deptRole/showPrivilege?deptId=<%=department.getId()%>&roleId="+roleId;
   var width=650;
@@ -42,7 +44,8 @@ function users(roleId){
 </head>
 <body>
 <div class="nav-title"><span class="Title">部门管理</span>&gt;&gt;<%=department.getName()%>-角色列表</div>
-<html:form action="${contextPath}/mx/sys/deptRole/setRole" method="post" target="_self" onsubmit="return confirm('确认要重新设置吗？')"> 
+<html:form action="${contextPath}/mx/sys/deptRole/setRole" method="post" target="_self" 
+           onsubmit="return confirm('确认要重新设置吗？')"> 
 <input type="hidden" name="deptId" value="<%=department.getId()%>"> 
 <input type="hidden" name="id" value="0"> 
 <div style="width:100%; height:350px;overflow-x:auto; overflow-y:auto;">
@@ -61,7 +64,9 @@ if(list!=null){
     SysRole bean=(SysRole)iter.next();
 %>  
   <tr <%=i%2==0?"":"class='list-back'"%>> 
-    <td class="td-cb"> <input type="checkbox" name="id" value="<%=bean.getId()%>" <%=roleId.contains(new Long(bean.getId()))?"checked":""%>>    </td>
+    <td class="td-cb"> 
+	<input type="checkbox" name="id" value="<%=bean.getId()%>" <%=roleId.contains(bean.getId())?"checked":""%>>  
+	</td>
     <td class="td-no"><%=i+1%></td>
     <td class="td-text"> <%=bean.getName()%>&nbsp; </td>
     <td class="td-text"><a href="javascript:privilege(<%=bean.getId()%>)">设置权限</a> <a href="javascript:users(<%=bean.getId()%>)">用户列表</a></td>
