@@ -29,7 +29,7 @@
 				nowrap: false,
 				striped: true,
 				collapsible:true,
-				url:'<%=request.getContextPath()%>/sys/role/json',
+				url:'<%=request.getContextPath()%>/mx/sys/role/json',
 				sortName: 'id',
 				sortOrder: 'desc',
 				remoteSort: false,
@@ -61,7 +61,7 @@
 
 		 
 	function addNew(){
-		var url="role/prepareAdd";
+		var url="<%=request.getContextPath()%>/mx/sys/role/prepareAdd";
 	    var width=450;
 	    var height=280;
 	    var scroll="no";
@@ -70,7 +70,7 @@
 
 	function onMyRowClick(rowIndex, row){
 		//alert(row.id+"  "+row.name);
-		var url="role/prepareModify?id="+row.id;
+		var url="<%=request.getContextPath()%>/mx/sys/role/prepareModify?id="+row.id;
 	    var width=450;
 	    var height=280;
 	    var scroll="no";
@@ -123,7 +123,7 @@
 		}
 		var selected = jQuery('#mydatagrid').datagrid('getSelected');
 		if (selected ){
-			 var url='<%=request.getContextPath()%>/sys/role/roleUsers?id='+selected.id;
+			 var url='<%=request.getContextPath()%>/mx/sys/role/roleUsers?id='+selected.id;
 			 openWindow(url, 480, 580, "yes");
 		}
 	}
@@ -137,7 +137,7 @@
 		}
 		var selected = jQuery('#mydatagrid').datagrid('getSelected');
 		if (selected ){
-			var url="role/prepareModify?id="+selected.id;
+			var url="<%=request.getContextPath()%>/mx/sys/role/prepareModify?id="+selected.id;
 			var width=450;
 			var height=280;
 			var scroll="no";
@@ -154,7 +154,7 @@
 		}
 		var selected = jQuery('#mydatagrid').datagrid('getSelected');
 		if (selected ){
-		    var url="role/prepareModify?id="+selected.id;
+		    var url="<%=request.getContextPath()%>/mx/sys/role/prepareModify?id="+selected.id;
 			var width=450;
 			var height=280;
 			var scroll="no";
@@ -310,7 +310,7 @@
 		  </tr>
 		  <tr>
 			<td width="20%" align="left" class="input-box2" valign="top">描　　述</td>
-			<td><textarea id="desc" name="desc" cols="28" rows="5" class="easyui-textbox" datatype="string" nullable="yes" maxsize="100" chname="角色描述"></textarea>        
+			<td><textarea id="content" name="content" cols="28" rows="5" class="easyui-textbox" datatype="string" nullable="yes" maxsize="100" chname="角色描述"></textarea>        
 			</td>
 		  </tr>
 		  <tr>
