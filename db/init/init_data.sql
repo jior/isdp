@@ -117,7 +117,11 @@ insert into sys_tree (id, parent, name, nodedesc, sort, code) values (907, 901, 
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (941, 3, '演示模块', '演示模块', 30, '');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (942, 941, '分级管理', '分级管理', 30, '');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (943, 941, '用户设置', '用户设置', 30, '');
-
+insert into sys_tree (id, parent, name, nodedesc, sort, code) values (944, 941, '角色设置', '角色设置', 30, '');
+insert into sys_tree (id, parent, name, nodedesc, sort, code) values (945, 941, '部门设置', '部门设置', 30, '');
+insert into sys_tree (id, parent, name, nodedesc, sort, code) values (946, 941, '模块设置', '模块设置', 30, '');
+insert into sys_tree (id, parent, name, nodedesc, sort, code) values (947, 941, '字典设置', '字典设置', 30, '');
+insert into sys_tree (id, parent, name, nodedesc, sort, code) values (948, 941, '分类设置', '分类设置', 30, '');
 
 /*初始化部门信息*/
 insert into sys_department (id, name, deptdesc, createtime, sort, deptno, code, code2, status, fincode, nodeid) values (6, '技术部', '技术部', null, 284, 'JS000', 'JS', 'J', 0, 'JS000', 6);
@@ -191,6 +195,11 @@ insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) val
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (941, '演示模块', '', '', 15, 2, 941);
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (942, '分级管理', '', '/mx/branch/department', 15, 2, 942);
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (943, '用户设置', '', '/mx/sys/user/deptUsers', 15, 2, 943);
+insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (944, '角色设置', '', '/mx/sys/role', 15, 2, 944);
+insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (945, '部门设置', '', '/mx/sys/department', 15, 2, 945);
+insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (946, '模块设置', '', '/mx/sys/application', 15, 2, 946);
+insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (947, '字典设置', '', '/mx/sys/dictory', 15, 2, 947);
+insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (948, '分类设置', '', '/mx/sys/tree', 15, 2, 948);
 
 
 /*插入部门角色*/ 
