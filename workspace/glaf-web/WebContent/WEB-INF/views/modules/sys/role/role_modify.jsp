@@ -41,12 +41,12 @@ List  list = (List)request.getAttribute("parent");
       <tr>
         <td class="input-box2" valign="top">描　　述</td>
         <td>
-		<textarea name="desc" cols="35" rows="3" class="input-multi" datatype="string" nullable="yes" maxsize="100" chname="描述"><%=bean.getDesc() != null ? bean.getDesc() : ""%></textarea>        
+		<textarea name="content" cols="35" rows="3" class="input-multi" datatype="string" nullable="yes" maxsize="100" chname="描述"><%=bean.getContent() != null ? bean.getContent() : ""%></textarea>        
 		</td>
       </tr>
       <tr>
         <td class="input-box2" valign="top">代码*</td>
-        <td><input name="code" type="text" size="35" value="<%=bean.getCode()%>" class="input" datatype="string" nullable="no" maxsize="20" chname="代码"></td>
+        <td><input name="code" type="text" size="35" value="<%=bean.getCode() != null ? bean.getCode() : ""%>" class="input" datatype="string" nullable="no" maxsize="20" chname="代码"></td>
       </tr>
       <tr>
         <td colspan="2" align="center" valign="bottom" height="30">&nbsp;

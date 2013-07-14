@@ -12,7 +12,7 @@
 	int pageSize= 15;
 	com.glaf.core.util.PageResult pager=(com.glaf.core.util.PageResult)request.getAttribute("pager");
 	List list = pager.getResults();
-	Map userMap = IdentityFactory.getLongUserMap();
+	Map userMap = IdentityFactory.getUserMap();
 %>
 <!DOCTYPE html>
 <html>
@@ -62,7 +62,7 @@ function auth(form){
   //art.dialog.open(url, { height: 580, width: 600, title: "用户授权", lock: true, scrollbars:"no" }, false);
 }
 function doSearch(form){
-  var url="sysUserRole/showUsers&" + getSearchElement(form);
+  var url=context + "/mx/sys/sysUserRole/showUsers?" + getSearchElement(form);
   window.location = url;
 }
 
@@ -153,7 +153,7 @@ if(list!=null){
 	</td>
     <td class="td-no"><%=(pager.getCurrentPageNo()-1)*10 + i+1%></td>
     <td class="td-text"><%=bean.getName()%></td>
-    <td class="td-no"><%=bean.getDepartment().getName()%></td>
+    <td class="td-no"><%=bean.getDepartment() != null ? bean.getDepartment().getName() : ""%></td>
     <td class="td-text" title="<%=contentTitle%>"><%=contentBuffer%></td>
   </tr>
 <%

@@ -39,7 +39,7 @@ int parent=ParamUtil.getIntParameter(request, "parent", 0);
       </tr>
       <tr>
         <td class="input-box2" valign="top">描　　述</td>
-        <td><textarea name="desc" cols="35" rows="3" class="input-multi" datatype="string" nullable="yes" maxsize="100" chname="描述"></textarea>        </td>
+        <td><textarea name="content" cols="35" rows="3" class="input-multi" datatype="string" nullable="yes" maxsize="100" chname="描述"></textarea>        </td>
       </tr>
       <tr>
         <td class="input-box2" valign="top">代码*</td>

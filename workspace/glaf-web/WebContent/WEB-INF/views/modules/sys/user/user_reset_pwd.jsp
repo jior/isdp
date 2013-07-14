@@ -37,7 +37,7 @@ function setValue(obj){
 <body>
 <div class="nav-title"><span class="Title">重置密码</span></div>
 <html:form action="${contextPath}/mx/sys/user/resetPwd" method="post"  onsubmit="return checkForm(this);"> 
-<input type="hidden" name="id" value="<%=bean.getId()%>"> 
+<input type="hidden" name="id" value="<%=bean.getActorId()%>"> 
 <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="box">
   <tr>
     <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -51,8 +51,8 @@ function setValue(obj){
   <tr>
     <td class="box-mm"><table width="95%" align="center" border="0" cellspacing="0" cellpadding="5">
 	  <tr>
-        <td width="20%" class="input-box">员工编码</td>
-        <td width="80%"><%=bean.getCode()%></td>
+        <td width="20%" class="input-box">用户名</td>
+        <td width="80%"><%=bean.getActorId()%></td>
       </tr>
       <tr>
         <td class="input-box2" valign="top">姓　　名</td>

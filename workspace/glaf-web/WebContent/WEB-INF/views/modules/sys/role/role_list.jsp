@@ -117,8 +117,8 @@ if(list!=null){
     <td class="td-cb"> <input type="checkbox" name="id" value="<%=bean.getId()%>" onClick="checkOperation(this.form)">    </td>
     <td class="td-no"><%=((pager.getCurrentPageNo()-1)*pageSize + i+1)%></td>
     <td class="td-text"><%=bean.getName()%>&nbsp; </td>
-    <td class="td-text"><%=bean.getCode()%></td>
-    <td class="td-text"><%=bean.getDesc() != null ? bean.getDesc():""%>&nbsp;</td>
+    <td class="td-text"><%=bean.getCode() != null ? bean.getCode() : "" %></td>
+    <td class="td-text"><%=bean.getContent() != null ? bean.getContent() : ""%>&nbsp;</td>
     <td class="td-no"><a href="javascript:sort(<%=bean.getId()%>, 0);" title="上移"><img src="<%=context%>/images/up.gif" border="0" height="13" width="13"></a> <a href="javascript:sort(<%=bean.getId()%>, 1);" title="下移"><img src="<%=context%>/images/down.gif" border="0" height="13" width="13"></a></td>
   </tr>
   <%

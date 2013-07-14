@@ -61,7 +61,7 @@
       <tr>
         <td width="20%" class="input-box">用户名*</td>
         <td width="80%">
-		<input name="code" type="text" size="30" class="input" datatype="string" nullable="no" maxsize="20" chname="员工编码">
+		<input name="id" type="text" size="30" class="input" datatype="string" nullable="no" maxsize="20" chname="员工编码">
 		</td>
       </tr>
       <tr>
@@ -133,8 +133,8 @@
       <tr>
         <td class="input-box2" valign="top">是否有效</td>
         <td>
-          <input type="radio" name="blocked" value="0" checked>是
-          <input type="radio" name="blocked" value="1">否</td>
+          <input type="radio" name="status" value="0" checked>是
+          <input type="radio" name="status" value="1">否</td>
       </tr>
        
       <tr>

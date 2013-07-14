@@ -67,7 +67,7 @@ if(list!=null){
     </td>
     <td class="td-no"><%= i+1%></td>
     <td class="td-text"><%=bean.getRole().getName()%>&nbsp;</td>
-    <td class="td-text"><%=bean.getRole().getDesc()%>&nbsp;</td>
+    <td class="td-text"><%=bean.getRole().getContent()%>&nbsp;</td>
   </tr>
   <%
     i++;

@@ -52,7 +52,7 @@ function setValue(obj){
     <td class="box-mm"><table width="95%" align="center" border="0" cellspacing="0" cellpadding="5">
       <tr>
         <td width="20%" class="input-box">用户名</td>
-        <td width="80%"><%=bean.getCode()%></td>
+        <td width="80%"><%=bean.getActorId()%></td>
       </tr>
       <tr>
         <td class="input-box2" valign="top">姓　　名</td>

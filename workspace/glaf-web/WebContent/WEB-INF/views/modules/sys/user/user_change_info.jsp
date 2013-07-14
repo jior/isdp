@@ -49,8 +49,8 @@ function setValue(obj){
   <tr>
     <td class="box-mm"><table width="95%" align="center" border="0" cellspacing="0" cellpadding="5">
       <tr>
-        <td width="20%" class="input-box">员工编码</td>
-        <td width="80%"><%=bean.getCode()%></td>
+        <td width="20%" class="input-box">用户名</td>
+        <td width="80%"><%=bean.getActorId()%></td>
       </tr>
       <tr>
         <td class="input-box2" valign="top">姓　　名</td>
@@ -81,7 +81,8 @@ function setValue(obj){
       </tr>
       <tr>
         <td colspan="2" align="center" valign="bottom" height="30">&nbsp;
-              <input name="btn_save2" type="submit" value="保存" class="button"></td>
+            <input name="btn_save2" type="submit" value="保存" class="button">
+		</td>
       </tr>
     </table></td>
   </tr>

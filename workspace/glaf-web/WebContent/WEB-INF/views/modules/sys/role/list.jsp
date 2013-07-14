@@ -39,7 +39,7 @@
 	                {title:'序号',field:'startIndex',width:80,sortable:true},
 					{title:'角色名称',field:'name', width:120},
 					{title:'编码',field:'code', width:120},
-					{title:'描述',field:'desc', width:120},
+					{title:'描述',field:'content', width:120},
 					{title:'创建人',field:'createBy', width:120},
 					{title:'创建日期',field:'createDate', width:120},
 					{field:'functionKey',title:'功能键',width:120}

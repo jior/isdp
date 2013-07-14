@@ -4,22 +4,6 @@
 
 <mapper namespace="com.glaf.core.mapper.IdentityMgmtMapper">
 
-	<resultMap id="roleResultMap" type="com.glaf.core.identity.impl.RoleImpl">
-		<id property="roleId" column="id" jdbcType="INTEGER" />
-		<result property="name" column="rolename" jdbcType="VARCHAR" />
-	</resultMap>
-
-
-	<resultMap id="userResultMap" type="com.glaf.core.identity.impl.UserImpl">
-		<id property="actorId" column="account" jdbcType="VARCHAR" />
-		<result property="activationCode" column="account" jdbcType="VARCHAR" />
-		<result property="name" column="name" jdbcType="VARCHAR" />
-		<result property="deptId" column="deptId" jdbcType="BIGINT" />
-		<result property="mail" column="email" jdbcType="VARCHAR" />
-		<result property="mobile" column="mobile" jdbcType="VARCHAR" />
-		<result property="adminFlag" column="adminFlag" jdbcType="VARCHAR" />
-	</resultMap>
-
 
 	<resultMap id="sysRoleResultMap" type="com.glaf.core.identity.impl.RoleImpl">
 		<id property="roleId" column="id" jdbcType="INTEGER" />
@@ -37,7 +21,7 @@
 		<result property="mail" column="email" jdbcType="VARCHAR" />
 		<result property="mobile" column="Mobile" jdbcType="VARCHAR" />
 		<result property="password" column="Password" jdbcType="VARCHAR" />
-		<result property="isSystem" column="issystem" jdbcType="VARCHAR" />
+		<result property="adminFlag" column="issystem" jdbcType="VARCHAR" />
 		<result property="domainIndex" column="domain_index" jdbcType="INTEGER" />
 	</resultMap>
 
@@ -336,14 +320,14 @@
 		FROM UserInfo x
 
 		<if test="roleId != null">
-			INNER JOIN userrole m
-			ON x.UserID = m.userid
+			INNER JOIN userrole r
+			ON x.UserID = r.USERID
 		</if>
 
 		WHERE 1=1
 
 		<if test="roleId != null">
-			AND m.roleid= #{roleId} 
+			AND r.roleid= #{roleId} 
 		</if>
  
  		<if test="nodeId != null">
@@ -368,14 +352,14 @@
 		FROM UserInfo x
 
 		<if test="roleId != null">
-			INNER JOIN userrole m
-			ON x.UserID = m.userid
+			INNER JOIN userrole r
+			ON x.USERID = r.USERID
 		</if>
 
 		WHERE 1=1
 
 		<if test="roleId != null">
-			AND m.roleid = #{roleId} 
+			AND r.roleid = #{roleId} 
 		</if>
 
 		<if test="nodeId != null">
@@ -407,7 +391,7 @@
 		SELECT x.UserID, x.UserName, x.email, x.Mobile, x.depid, x.issystem, x.domain_index
 		FROM UserInfo x
 		INNER JOIN userrole r
-		ON x.UserID = r.userid
+		ON x.USERID = r.USERID
 		WHERE r.roleid = #{roleId}
 		ORDER BY x.UserID ASC
 
@@ -535,5 +519,120 @@
 
 	</select>
 
+    <select id="getUserRoleCodes" resultType="string"
+		parameterType="com.glaf.core.query.MembershipQuery">
+
+		select distinct r.CODE from net_role r
+		inner join userrole ur
+		on r.ID = ur.ROLEID
+		inner join UserInfo u
+		on ur.USERID = u.USERID
+		where r.CODE is not null
+
+		<choose>
+			<when test="actorId != null">
+				and u.UserID = #{actorId} 
+			</when>
+			<when test="actorIds != null and actorIds.size !=0">
+				and u.UserID IN
+				<foreach item="x_actorId" index="index" collection="actorIds"
+					open="(" separator="," close=")">
+					#{x_actorId}
+                </foreach>
+			</when>
+			<when test="nodeId != null">
+				and ( u.depid = #{nodeId} ) 
+			</when>
+			<when test="nodeIds != null and nodeIds.size !=0">
+				and u.depid IN
+				<foreach item="x_nodeId" index="index" collection="nodeIds"
+					open="(" separator="," close=")">
+					#{x_nodeId}
+				</foreach>
+			</when>
+			<otherwise>
+			  and 1=0
+			</otherwise>
+		</choose>
+
+		union 
+
+		select E.code from sys_application E
+		inner join sys_access A
+		on E.id = A.appId
+		where E.code is not null 
+		and A.roleId in (
+			select ur.id from userrole ur
+			inner join UserInfo u
+			on ur.USERID = u.USERID
+			where 1=1
+
+			 <choose>
+				<when test="actorId != null">
+					and u.UserID = #{actorId} 
+				</when>
+				<when test="actorIds != null and actorIds.size !=0">
+					and u.UserID IN
+					<foreach item="x_actorId" index="index" collection="actorIds"
+						open="(" separator="," close=")">
+						#{x_actorId}
+					</foreach>
+				</when>
+				<when test="nodeId != null">
+					and ( u.depid = #{nodeId} ) 
+				</when>
+				<when test="nodeIds != null and nodeIds.size !=0">
+					and u.depid IN
+					<foreach item="x_nodeId" index="index" collection="nodeIds"
+						open="(" separator="," close=")">
+						#{x_nodeId}
+					</foreach>
+				</when>
+				<otherwise>
+				  and 1=0
+				</otherwise>
+			</choose>
+		) 
+
+        union 
+
+		select E.CODE from sys_function E
+		inner join sys_permission A
+		on E.id = A.funcId
+		where E.CODE is not null
+		and A.roleId in (
+			select ur.id from userrole ur
+			inner join UserInfo u
+			on ur.USERID = u.USERID
+			where 1=1
+
+			 <choose>
+				<when test="actorId != null">
+					and u.UserID = #{actorId} 
+				</when>
+				<when test="actorIds != null and actorIds.size !=0">
+					and u.UserID IN
+					<foreach item="x_actorId" index="index" collection="actorIds"
+						open="(" separator="," close=")">
+						#{x_actorId}
+					</foreach>
+				</when>
+				<when test="nodeId != null">
+					and ( u.depid = #{nodeId} ) 
+				</when>
+				<when test="nodeIds != null and nodeIds.size !=0">
+					and u.depid IN
+					<foreach item="x_nodeId" index="index" collection="nodeIds"
+						open="(" separator="," close=")">
+						#{x_nodeId}
+					</foreach>
+				</when>
+				<otherwise>
+				  and 1=0
+				</otherwise>
+			</choose>
+		)
+ 
+	</select>
 
 </mapper>

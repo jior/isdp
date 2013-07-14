@@ -44,7 +44,7 @@ function setValue(obj){
 <div class="nav-title"><span class="Title">用户管理</span>&gt;&gt;修改用户</div>
 <html:form id="iForm" name="iForm" action="${contextPath}/mx/sys/user/saveModify" 
       method="post"  onsubmit="return checkForm(this);"> 
-<input type="hidden" name="id" value="<%=bean.getId()%>">
+<input type="hidden" name="id" value="<%=bean.getActorId()%>">
 <input type="hidden" name="nodeId" value="<%=nodeId%>">
 <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="box">
   <tr>
@@ -60,7 +60,7 @@ function setValue(obj){
     <td class="box-mm"><table width="95%" align="center" border="0" cellspacing="0" cellpadding="5">
       <tr>
         <td width="20%" class="input-box">用户名*</td>
-        <td width="80%"><%=bean.getCode()%></td>
+        <td width="80%"><%=bean.getActorId()%></td>
       </tr>
       <tr>
         <td class="input-box2" valign="top">部　门</td>
@@ -153,8 +153,8 @@ function setValue(obj){
       <tr>
         <td class="input-box2" valign="top">是否有效</td>
         <td>
-          <input type="radio" name="blocked" value="0" <%=bean.getBlocked()==0?"checked":""%>>是
-          <input type="radio" name="blocked" value="1" <%=bean.getBlocked()==1?"checked":""%>>否
+          <input type="radio" name="status" value="0" <%=bean.getLocked()==0?"checked":""%>>是
+          <input type="radio" name="status" value="1" <%=bean.getLocked()==1?"checked":""%>>否
 		</td>
       </tr>
  

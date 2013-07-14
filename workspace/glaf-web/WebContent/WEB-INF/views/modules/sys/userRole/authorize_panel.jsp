@@ -262,7 +262,7 @@ while(iter.hasNext()){
 %>
   <tr>
     <td class="td-cb" height="20" ><input type="checkbox" name="id" value="<%=user2.getId()%>" onClick="checkOperation(this.form)"></td>
-    <td class="td-text" title="<%=user2.getName()%>[<%=user2.getCode()%>]"><%=user2.getName()%>[<%=user2.getCode()%>]</td>
+    <td class="td-text" title="<%=user2.getName()%>[<%=user2.getActorId()%>]"><%=user2.getName()%>[<%=user2.getActorId()%>]</td>
     <td class="td-date" ><%=DateUtils.getDateTime(startDate)%> - <%=DateUtils.getDateTime(endDate)%></td>
     <td class="td-date" title="<%=processDescription%>"><%=processDescription%></td>
   </tr>	

@@ -141,7 +141,6 @@ while(navIter.hasNext()){
     <td width="8%" align="center" >帐号</td>
     <td width="10%" align="center" >姓名</td>
     <td width="15%" align="center" >部门</td>
-    <!-- <td width="25%" align="center" >角色</td> -->
     <td width="8%" align="center" >是否有效</td>
     <td width="12%" align="center" >创建日期</td>
     <td width="12%" align="center" >上次登陆时间</td>
@@ -177,7 +176,7 @@ if(list!=null){
     <td width="10%" class="td-text"><%=bean.getName()%>&nbsp;</td>
     <td width="15%" class="td-c"><%=bean.getDepartment().getName()%>&nbsp;</td>
     <!-- <td width="25%" class="td-text" title="<%=roleName%>"><%=roleName%></td> -->
-    <td width="8%" class="td-no"><%=bean.getBlocked()==1?"否":"是"%>&nbsp;</td>
+    <td width="8%" class="td-no"><%=bean.getLocked()==1?"否":"是"%>&nbsp;</td>
     <td width="12%" class="td-time">
 	    <%=DateUtils.getDate(bean.getCreateTime())%>&nbsp;
 	</td>
