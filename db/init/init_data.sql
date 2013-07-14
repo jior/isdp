@@ -34,10 +34,10 @@ insert into net_role (rolename, content, tasksort, code) values ('主任', '', 18,
 
 
 /*初始系统树信息*/
-insert into sys_tree (id, parent, name, nodedesc, sort, code) values (1, 0, '/', '根目录', 1, '0');
-insert into sys_tree (id, parent, name, nodedesc, sort, code) values (2, 1, '数据结构', '', 20, '01');
-insert into sys_tree (id, parent, name, nodedesc, sort, code) values (3, 1, '应用模块', '', 10, '02');
-insert into sys_tree (id, parent, name, nodedesc, sort, code) values (4, 2, '基础数据', '', 50, '011');
+insert into sys_tree (id, parent, name, nodedesc, sort, code, treeId) values (1, 0, '/', '根目录', 1, '0', '1|');
+insert into sys_tree (id, parent, name, nodedesc, sort, code, treeId) values (2, 1, '数据结构', '', 20, '01', '1|2|');
+insert into sys_tree (id, parent, name, nodedesc, sort, code, treeId) values (3, 1, '应用模块', '', 10, '02', '1|3|');
+insert into sys_tree (id, parent, name, nodedesc, sort, code, treeId) values (4, 2, '基础数据', '', 50, '011', '1|2|4|');
 insert into sys_tree (id, parent, name, nodedesc, sort, code, discriminator) values (5, 2, '部门结构', '部门结构', 40, '012','D');
 insert into sys_tree (id, parent, name, nodedesc, sort, code, discriminator) values (6, 5, '技术部', '技术部', 284, 'JS000','D');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (8, 3, '系统管理', '系统管理', 5, '');
@@ -91,7 +91,7 @@ insert into sys_tree (id, parent, name, nodedesc, sort, code) values (512, 10, '
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (701, 3, '内容管理', '内容管理', 0, '');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (702, 701, '新闻管理', '新闻管理', 0, '');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (703, 701, '公告管理', '公告管理', 0, '');
-insert into sys_tree (id, parent, name, nodedesc, sort, code) values (720, 1, '内容管理分类', '', 0, '');
+insert into sys_tree (id, parent, name, nodedesc, sort, code, treeId) values (720, 1, '内容管理分类', '', 0, '', '1|720|');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (721, 720, '新闻', '新闻', 0, 'news');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (722, 721, '公司新闻', '公司新闻', 0, 'news_01');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (723, 721, '业界新闻', '业界新闻', 0, 'news_02');

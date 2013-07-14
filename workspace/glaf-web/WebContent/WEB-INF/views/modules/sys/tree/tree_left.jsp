@@ -8,7 +8,7 @@
 SysTree parent= (SysTree)request.getAttribute("parent");
 String url = ParamUtil.getParameter(request, "url", request.getContextPath()+"/mx/sys/tree/showList?parent=");
 //System.out.println("########"+url);
-int showCode = ParamUtil.getIntParameter(request, "showCode",0);
+int showCode = ParamUtil.getIntParameter(request, "showCode", 0);
 %>
 <html>
 <head>
