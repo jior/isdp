@@ -21,6 +21,26 @@
 	</resultMap>
 
 
+	<resultMap id="sysRoleResultMap" type="com.glaf.core.identity.impl.RoleImpl">
+		<id property="roleId" column="id" jdbcType="INTEGER" />
+		<result property="name" column="rolename" jdbcType="VARCHAR" />
+		<result property="busiessId" column="busiess_id" jdbcType="VARCHAR" />
+        <result property="domainIndex" column="domain_index" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<resultMap id="sysUserResultMap" type="com.glaf.core.identity.impl.UserImpl">
+		<id property="actorId" column="UserID" jdbcType="VARCHAR" />
+		<result property="activationCode" column="UserID" jdbcType="VARCHAR" />
+		<result property="name" column="UserName" jdbcType="VARCHAR" />
+		<result property="deptId" column="depid" jdbcType="INTEGER" />
+		<result property="mail" column="email" jdbcType="VARCHAR" />
+		<result property="mobile" column="Mobile" jdbcType="VARCHAR" />
+		<result property="password" column="Password" jdbcType="VARCHAR" />
+		<result property="isSystem" column="issystem" jdbcType="VARCHAR" />
+		<result property="domainIndex" column="domain_index" jdbcType="INTEGER" />
+	</resultMap>
+
 	<resultMap id="baseTreeResultMap" type="com.glaf.core.base.BaseTree">
         <id property="id" column="id" jdbcType="BIGINT" />
         <result property="parentId" column="parent" jdbcType="BIGINT"/>
@@ -308,309 +328,138 @@
 
 	</select>
 
-
-	<select id="getMembershipActorIds" resultType="string" parameterType="com.glaf.core.query.MembershipQuery">
-
-		 SELECT u.account as actorId
-		   FROM sys_user u
-		   WHERE u.blocked = 0 AND u.id IN
-				 ( SELECT r.userId  FROM sys_user_role r
-			       WHERE r.authorized = 0 AND r.roleId IN
-						 ( SELECT a.id
-					       FROM sys_dept_role a, sys_role b
-					       WHERE a.sysRoleId = b.id
-
-						   <if test="nodeId != null">
-			                 AND a.deptId = #{nodeId} 
-		                   </if>
-
-						   <if test="roleId != null">
-			                 AND b.code = #{roleId} 
-		                   </if>
-
-						   <if test="roleIds != null and roleIds.size !=0">
-							AND b.code IN
-							<foreach item="x_roleId" index="index" collection="roleIds"
-								open="(" separator="," close=")">
-								#{x_roleId}
-							</foreach>
-						  </if>
-
-						 )
-				)
-
-	</select>
-
-
-	<select id="getMembershipUsers" resultMap="userResultMap"
+  
+	<select id="getMembershipUsers" resultMap="sysUserResultMap"
 		    parameterType="com.glaf.core.query.MembershipQuery">
 
-		   SELECT u.*
-		   FROM sys_user u
-		   WHERE u.blocked = 0 AND u.id IN
-				 ( SELECT r.userId  FROM sys_user_role r
-			       WHERE r.authorized = 0 AND r.roleId IN
-						 ( SELECT a.id
-					       FROM sys_dept_role a, sys_role b
-					       WHERE 1=1
-						   AND  a.sysRoleId = b.id
+		SELECT DISTINCT x.UserID, x.UserName, x.email, x.Mobile, x.depid, x.issystem, x.domain_index
+		FROM UserInfo x
+
+		<if test="roleId != null">
+			INNER JOIN userrole m
+			ON x.UserID = m.userid
+		</if>
+
+		WHERE 1=1
+
+		<if test="roleId != null">
+			AND m.roleid= #{roleId} 
+		</if>
  
-						<if test="roleId != null">
-							AND b.code= #{roleId} 
-						</if>
+ 		<if test="nodeId != null">
+			AND ( x.depid = #{nodeId} ) 
+		</if>
 
-						<if test="roleIds != null and roleIds.size !=0">
-							AND b.code IN
-							<foreach item="x_roleId" index="index" collection="roleIds"
-									open="(" separator="," close=")">
-								#{x_roleId}
-							</foreach>
-						</if>
-				 
-						<if test="nodeId != null">
-							AND ( a.deptId = #{nodeId} ) 
-						</if>
+		<if test="nodeIds != null and nodeIds.size !=0">
+			AND x.depid IN
+			<foreach item="x_deptId" index="index" collection="nodeIds"
+				open="(" separator="," close=")">
+				#{x_deptId}
+            </foreach>
+		</if>
 
-						<if test="nodeIds != null and nodeIds.size !=0">
-							AND a.deptId IN
-							<foreach item="x_deptId" index="index" collection="nodeIds"
-								open="(" separator="," close=")">
-								#{x_deptId}
-							</foreach>
-						</if>
-                       )
-				)
 	</select>
 
 
-	<select id="getXYDeptRoleUsers" resultMap="userResultMap"
+	<select id="getXYDeptRoleUsers" resultMap="sysUserResultMap"
 		    parameterType="com.glaf.core.query.MembershipQuery">
 
-           SELECT u.*
-		   FROM sys_user u
-		   WHERE u.blocked = 0 AND u.id IN
-				 ( SELECT r.userId  FROM sys_user_role r
-			       WHERE r.authorized = 0 AND r.roleId IN
-						 ( SELECT a.id
-					       FROM sys_dept_role a, sys_role b
-					       WHERE 1=1
-						   AND  a.sysRoleId = b.id
- 
-						<if test="roleId != null">
-							AND b.code= #{roleId} 
-						</if>
+		SELECT DISTINCT x.UserID, x.UserName, x.email, x.Mobile, x.depid, x.issystem, x.domain_index
+		FROM UserInfo x
 
-						<if test="roleIds != null and roleIds.size !=0">
-							AND b.code IN
-							<foreach item="x_roleId" index="index" collection="roleIds"
-									open="(" separator="," close=")">
-								#{x_roleId}
-							</foreach>
-						</if>
-				 
-						<if test="nodeId != null">
-							AND ( a.deptId = #{nodeId} ) 
-						</if>
+		<if test="roleId != null">
+			INNER JOIN userrole m
+			ON x.UserID = m.userid
+		</if>
 
-						<if test="nodeIds != null and nodeIds.size !=0">
-							AND a.deptId IN
-							<foreach item="x_deptId" index="index" collection="nodeIds"
-								open="(" separator="," close=")">
-								#{x_deptId}
-							</foreach>
-						</if>
-                       )
-				)
+		WHERE 1=1
+
+		<if test="roleId != null">
+			AND m.roleid = #{roleId} 
+		</if>
+
+		<if test="nodeId != null">
+			AND ( x.depid = #{nodeId} ) 
+		</if>
+
+		<if test="nodeIds != null and nodeIds.size !=0">
+			AND x.depid IN
+			<foreach item="x_deptId" index="index" collection="nodeIds"
+				open="(" separator="," close=")">
+				#{x_deptId}
+            </foreach>
+		</if>
+
 	</select>
 
 
-	<select id="getRoleById" resultMap="roleResultMap" parameterType="int">
+	<select id="getRoleById" resultMap="sysRoleResultMap" parameterType="int">
 
-		SELECT r.*
-		FROM sys_role r
+		SELECT r.id, r.rolename, r.busiess_id, r.domain_index
+		FROM net_role r
 		WHERE r.id = #{roleId} 
 
 	</select>
 
-	<select id="getRoleByCode" resultMap="roleResultMap" parameterType="string">
 
-		SELECT r.*
-		FROM sys_role r
-		WHERE r.code = #{code} 
+	<select id="getRoleUsers" resultMap="sysUserResultMap" parameterType="int">
+
+		SELECT x.UserID, x.UserName, x.email, x.Mobile, x.depid, x.issystem, x.domain_index
+		FROM UserInfo x
+		INNER JOIN userrole r
+		ON x.UserID = r.userid
+		WHERE r.roleid = #{roleId}
+		ORDER BY x.UserID ASC
 
 	</select>
 
 
-	<select id="searchUsers" resultMap="userResultMap" parameterType="string">
+	<select id="searchUsers" resultMap="sysUserResultMap" parameterType="string">
 
-		SELECT u.* 
-		FROM sys_user u
+		SELECT x.UserID, x.UserName, x.email, x.Mobile, x.depid, x.issystem, x.domain_index 
+		FROM UserInfo x
 		WHERE 1=1 
 		AND (
-		   u.account LIKE #{searchWord}
+		   x.UserID LIKE #{searchWord}
 		   OR 
-		   u.name LIKE #{searchWord}
+		   x.UserName LIKE #{searchWord}
 		   OR
-		   u.email LIKE #{searchWord}
+		   x.email LIKE #{searchWord}
 		   OR
-		   u.mobile LIKE #{searchWord}
+		   x.Mobile LIKE #{searchWord}
 		)
 		 
-		ORDER BY u.name ASC
+		ORDER BY x.UserID ASC
 
 	</select>
 
- 
-    <select id="getUserRoleCodes" resultType="string"
-		parameterType="com.glaf.core.query.MembershipQuery">
 
-		select distinct r.CODE from SYS_ROLE r
-		inner join SYS_DEPT_ROLE dr
-		on r.ID = dr.SYSROLEID
-		inner join SYS_USER_ROLE ur
-		on dr.ID = ur.ROLEID
-		inner join SYS_USER u
-		on ur.USERID = u.ID
-		where r.CODE is not null
-
-		<choose>
-			<when test="actorId != null">
-				and u.account = #{actorId} 
-			</when>
-			<when test="actorIds != null and actorIds.size !=0">
-				and u.account IN
-				<foreach item="x_actorId" index="index" collection="actorIds"
-					open="(" separator="," close=")">
-					#{x_actorId}
-                </foreach>
-			</when>
-			<when test="nodeId != null">
-				and ( u.deptid = #{nodeId} ) 
-			</when>
-			<when test="nodeIds != null and nodeIds.size !=0">
-				and u.deptid IN
-				<foreach item="x_nodeId" index="index" collection="nodeIds"
-					open="(" separator="," close=")">
-					#{x_nodeId}
-				</foreach>
-			</when>
-			<otherwise>
-			  and 1=0
-			</otherwise>
-		</choose>
-
-		union 
-
-		select E.code from sys_application E
-		inner join sys_access A
-		on
-		E.id = A.appId
-		where E.code is not null 
-		and A.roleId in (
-			select dr.id from sys_dept_role dr
-			inner join sys_user_role ur
-			on dr.id = ur.roleid
-			inner join sys_user u
-			on ur.userid = u.id
-			where ur.authorized = 0
-
-			 <choose>
-				<when test="actorId != null">
-					and u.account = #{actorId} 
-				</when>
-				<when test="actorIds != null and actorIds.size !=0">
-					and u.account IN
-					<foreach item="x_actorId" index="index" collection="actorIds"
-						open="(" separator="," close=")">
-						#{x_actorId}
-					</foreach>
-				</when>
-				<when test="nodeId != null">
-					and ( u.deptid = #{nodeId} ) 
-				</when>
-				<when test="nodeIds != null and nodeIds.size !=0">
-					and u.deptid IN
-					<foreach item="x_nodeId" index="index" collection="nodeIds"
-						open="(" separator="," close=")">
-						#{x_nodeId}
-					</foreach>
-				</when>
-				<otherwise>
-				  and 1=0
-				</otherwise>
-			</choose>
-		) 
-
-        union 
-
-		select E.CODE from sys_function E
-		inner join sys_permission A
-		on E.id = A.funcId
-		where E.CODE is not null
-		and A.roleId in (
-			select dr.id from sys_dept_role dr
-			inner join sys_user_role ur
-			on dr.id = ur.roleid
-			inner join sys_user u
-			on u.id = ur.userid
-			where ur.authorized = 0
-
-			 <choose>
-				<when test="actorId != null">
-					and u.account = #{actorId} 
-				</when>
-				<when test="actorIds != null and actorIds.size !=0">
-					and u.account IN
-					<foreach item="x_actorId" index="index" collection="actorIds"
-						open="(" separator="," close=")">
-						#{x_actorId}
-					</foreach>
-				</when>
-				<when test="nodeId != null">
-					and ( u.deptid = #{nodeId} ) 
-				</when>
-				<when test="nodeIds != null and nodeIds.size !=0">
-					and u.deptid IN
-					<foreach item="x_nodeId" index="index" collection="nodeIds"
-						open="(" separator="," close=")">
-						#{x_nodeId}
-					</foreach>
-				</when>
-				<otherwise>
-				  and 1=0
-				</otherwise>
-			</choose>
-		)
- 
-	</select>
-
-
-	<select id="getUsers" resultMap="userResultMap"
+	<select id="getUsers" resultMap="sysUserResultMap"
 		parameterType="com.glaf.core.query.UserQuery">
 
-		SELECT u.*
-		FROM sys_user u
+		SELECT x.UserID, x.UserName, x.email, x.Mobile, x.depid, x.Password, x.issystem, x.domain_index
+		FROM UserInfo x
 		WHERE 1=1 
 
 		<choose>
 			<when test="activationCode != null">
-				and u.account = #{activationCode} 
+				and x.UserID = #{activationCode} 
 			</when>
 			<when test="actorId != null">
-				and u.account = #{actorId} 
+				and x.UserID = #{actorId} 
 			</when>
 			<when test="actorIds != null and actorIds.size !=0">
-				and u.account IN
+				and x.UserID IN
 				<foreach item="x_actorId" index="index" collection="actorIds"
 					open="(" separator="," close=")">
 					#{x_actorId}
                 </foreach>
 			</when>
 			<when test="deptId != null">
-				AND ( u.deptid = #{deptId} ) 
+				AND ( x.depid = #{deptId} ) 
 			</when>
 			<when test="deptIds != null and deptIds.size !=0">
-				AND u.deptid IN
+				AND x.depid IN
 				<foreach item="x_deptId" index="index" collection="deptIds"
 					open="(" separator="," close=")">
 					#{x_deptId}
@@ -620,33 +469,30 @@
 			</otherwise>
 		</choose>
 
-		ORDER BY u.name ASC
+		ORDER BY x.UserID ASC
 
 	</select>
 
 
-	<select id="getUserById" resultMap="userResultMap" parameterType="string">
+	<select id="getUserById" resultMap="sysUserResultMap" parameterType="string">
 
-		SELECT u.*
-		FROM sys_user u 
-		WHERE u.account = #{actorId}
+		SELECT x.UserID, x.UserName, x.email, x.Mobile, x.depid, x.Password, x.issystem, x.domain_index
+		FROM UserInfo x 
+		WHERE x.UserID = #{actorId}
+		ORDER BY x.UserID ASC
 
 	</select>
 
 
-	<select id="getRoles" resultMap="roleResultMap"
+	<select id="getRoles" resultMap="sysRoleResultMap"
 		parameterType="com.glaf.core.query.RoleQuery">
 
-		SELECT *
-		FROM sys_role r 
+		SELECT r.id, r.rolename
+		FROM net_role r 
 		WHERE 1=1
 
 		<if test="roleId != null">
 			and ( r.id = #{roleId} )
-		</if>
-
-		<if test="code != null">
-			and ( r.code = #{code} )
 		</if>
 
 		<if test="roleIds != null and roleIds.size !=0">
@@ -664,7 +510,7 @@
 		parameterType="com.glaf.core.query.TreeModelQuery">
 
 		select D.ID as id, D.NAME as name, D.CODE as code, D.DEPTDESC as description, D.SORT as sortNo,
-        D.CREATETIME as createDate, D.CREATEBY as createBy, D.DEPTLEVEL as deep, D.STATUS as locked
+        D.CREATETIME as createDate, D.CREATEBY as createBy, D.DEPTLEVEL as level, D.STATUS as locked
 		from SYS_DEPARTMENT D
 		inner join SYS_TREE T
 		on D.NODEID = T.ID
