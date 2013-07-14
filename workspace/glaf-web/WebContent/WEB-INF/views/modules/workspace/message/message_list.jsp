@@ -22,21 +22,21 @@ String flag = (String)request.getAttribute("flag");
 <script type='text/javascript' src="<%= request.getContextPath() %>/scripts/verify.js"></script>
 <script type="text/javascript">
 function openMsg(id) {
-  openWindow('message/showMessage?id=' + id, 680, 580);
+  openWindow('<%=request.getContextPath()%>/mx/workspace/message/showMessage?id=' + id, 680, 580);
 }
 function sendMsg() {
-  openWindow('message/prepareSend', 680, 580);
+  openWindow('<%=request.getContextPath()%>/mx/workspace/message/prepareSend', 680, 580);
 }
 function replyMsg() {
   var id = getCheckboxValue('id');
 	if (id.length == 0) {
 	  return;
 	}
-	openWindow('message/prepareSend?id=' + id, 680, 580);
+	openWindow('<%=request.getContextPath()%>/mx/workspace/message/prepareSend?id=' + id, 680, 580);
 }
 function del(form) {
   if(confirmDelete(form)) {
-	  form.action = 'message/batchDelete';
+	  form.action = '<%=request.getContextPath()%>/mx/workspace/message/batchDelete';
 	  form.target = '_blank';
 	  form.submit();
 	}
@@ -163,9 +163,10 @@ function checkOperation(){
 					}
 					%>
                       <input name="btn_del" id="btn_del" type="button" class="button" onClick="javascript:del(this.form);" value="删除" disabled="disabled">
-                      <input name="btn_reply" id="btn_reply" type="button" value="回复消息" class="button" onClick="javascript:replyMsg();" disabled="disabled"></td>
+                      <input name="btn_reply" id="btn_reply" type="button" value="回复消息" class="button" onClick="javascript:replyMsg();" disabled="disabled">
+					  </td>
                       <td align="right" valign="bottom">
-					    <%String params = "method=showReceiveList";%>
+					    <%String params = "";%>
                         <jsp:include page="/WEB-INF/views/inc/show_page.jsp" flush="true">
                         <jsp:param name="total" value="<%=pager.getTotalRecordCount()%>"/>            
                         <jsp:param name="page_count" value="<%=pager.getTotalPageCount()%>"/>            

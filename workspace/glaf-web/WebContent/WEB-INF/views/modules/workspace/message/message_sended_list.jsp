@@ -22,21 +22,21 @@ String flag = (String)request.getAttribute("flag");
 <script type='text/javascript' src="<%= request.getContextPath() %>/scripts/verify.js"></script>
 <script type="text/javascript">
 function openMsg(id) {
-  openWindow('message/showMessage?sended=1&id=' + id, 600, 450);
+  openWindow('<%=request.getContextPath()%>/mx/workspace/message/showMessage?sended=1&id=' + id, 600, 450);
 }
 function sendMsg() {
-  openWindow('message/prepareSend', 660, 450);
+  openWindow('<%=request.getContextPath()%>/mx/workspace/message/prepareSend', 660, 450);
 }
 function replyMsg() {
   var id = getCheckboxValue('id');
 	if (id.length == 0) {
 	  return;
 	}
-	openWindow('message/prepareSend?id=' + id, 660, 450);
+	openWindow('<%=request.getContextPath()%>/mx/workspace/message/prepareSend?id=' + id, 660, 450);
 }
 function del(form) {
   if(confirmDelete(form)) {
-	  form.action = 'message/batchDelete';
+	  form.action = '<%=request.getContextPath()%>/mx/workspace/message/batchDelete';
 	  form.target = '_blank';
 	  form.submit();
 	}
@@ -139,8 +139,8 @@ function checkOperation(){
                       <input name="btn_del" id="btn_del" type="button" class="button" onClick="javascript:del(this.form);" value="删除" disabled="disabled">
 					</td>
                     <td align="right" valign="bottom">
-					<% String params = "method=showSendedList";%>
-                        <jsp:include page="/WEB-INF/views/inc/show_page.jsp" flush="true">
+					<% String params = "";%>
+                      <jsp:include page="/WEB-INF/views/inc/show_page.jsp" flush="true">
                         <jsp:param name="total" value="<%=pager.getTotalRecordCount()%>"/>            
                         <jsp:param name="page_count" value="<%=pager.getTotalPageCount()%>"/>            
                         <jsp:param name="page_size" value="<%=pageSize%>"/>            
