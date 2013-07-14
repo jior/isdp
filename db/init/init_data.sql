@@ -49,7 +49,7 @@ insert into sys_tree (id, parent, name, nodedesc, sort, code) values (15, 10, 'Ä
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (16, 8, '×Öµä¹ÜÀí', '×Öµä¹ÜÀí', 16, '');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (17, 8, '»º´æ¹ÜÀí', '»º´æ¹ÜÀí', 17, '');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (18, 8, 'Ö÷¼ü¹ÜÀí', 'Ö÷¼ü¹ÜÀí', 18, '');
-insert into sys_tree (id, parent, name, nodedesc, sort, code) values (19, 8, 'Ä£°å¹ÜÀí', 'Ä£°å¹ÜÀí', 19, '');
+insert into sys_tree (id, parent, name, nodedesc, sort, code) values (19, 8, 'Ä£°å¹ÜÀí', 'Ä£°å¹ÜÀí', 19, 'template');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (20, 8, 'Êı¾İ¹ÜÀí', 'Êı¾İ¹ÜÀí', 20, '');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (21, 8, 'Êı¾İÖØÔØ', 'Êı¾İÖØÔØ', 21, '');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (30, 8, 'ÎÄ¼ş¹ÜÀí', 'ÎÄ¼ş¹ÜÀí', 30, '');
