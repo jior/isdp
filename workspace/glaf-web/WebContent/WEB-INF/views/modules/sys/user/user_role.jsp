@@ -13,7 +13,7 @@ Set roleId=new HashSet();
 Iterator roles = user.getRoles().iterator();
 while(roles.hasNext()){  
   SysDeptRole role=(SysDeptRole)roles.next();
-  roleId.add(new Long(role.getId()));
+  roleId.add(role.getRoleId());
 }
 %>
 
@@ -61,13 +61,18 @@ if(list!=null){
   Iterator iter=list.iterator();   
   while(iter.hasNext()){
     SysDeptRole bean=(SysDeptRole)iter.next();	
+	if(bean.getRole() == null){
+		continue;
+	}
 %>
   <tr <%=i%2==0?"":"class='list-back'"%>>
-    <td class="td-cb"><input type="checkbox" name="id" value="<%=bean.getId()%>" <%=roleId.contains(new Long(bean.getId()))?"checked":""%>>
+    <td class="td-cb">
+	<input type="checkbox" name="id" value="<%=bean.getId()%>" 
+	       <%=roleId.contains(bean.getRoleId())?"checked":""%>>
     </td>
     <td class="td-no"><%= i+1%></td>
-    <td class="td-text"><%=bean.getRole().getName()%>&nbsp;</td>
-    <td class="td-text"><%=bean.getRole().getContent()%>&nbsp;</td>
+    <td class="td-text"><%=bean.getRole() != null ? bean.getRole().getName() : ""%>&nbsp;</td>
+    <td class="td-text"><%=bean.getRole() !=null ? bean.getRole().getContent() : ""%>&nbsp;</td>
   </tr>
   <%
     i++;
