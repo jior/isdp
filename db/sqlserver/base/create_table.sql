@@ -31,7 +31,7 @@ CREATE TABLE sys_department(
         id bigint not null,
         name nvarchar(255),
         deptdesc nvarchar(255),
-        createtime datetime,
+        createtime timestamp,
         sort int,
         deptno nvarchar(255),
         code nvarchar(255),
@@ -67,7 +67,7 @@ CREATE TABLE sys_log(
         id bigint not null,
         account nvarchar(255),
         ip nvarchar(255),
-        createtime datetime,
+        createtime timestamp,
         operate nvarchar(255),
         flag int,
         PRIMARY KEY (id)
@@ -106,12 +106,12 @@ CREATE TABLE sys_dictory (
         ext2 nvarchar(200),
         ext3 nvarchar(200),
         ext4 nvarchar(200),
-        ext5 datetime,
-        ext6 datetime,
-        ext7 datetime,
-        ext8 datetime,
-        ext9 datetime,
-        ext10 datetime,
+        ext5 timestamp,
+        ext6 timestamp,
+        ext7 timestamp,
+        ext8 timestamp,
+        ext9 timestamp,
+        ext10 timestamp,
         ext11 bigint,
         ext12 bigint,
         ext13 bigint,
@@ -189,11 +189,11 @@ CREATE TABLE sys_todo_instance(
         provider nvarchar(255),
         link_ nvarchar(255),
         linktype nvarchar(255),
-        createdate datetime,
-        startdate datetime,
-        enddate datetime,
-        alarmdate datetime,
-        pastduedate datetime,
+        createdate timestamp,
+        startdate timestamp,
+        enddate timestamp,
+        alarmdate timestamp,
+        pastduedate timestamp,
         taskinstanceid nvarchar(255),
         processinstanceid nvarchar(255),
         deptid bigint,
@@ -214,11 +214,11 @@ CREATE TABLE sys_todo_instance(
         id nvarchar(50) not null,
 	autoStartup int,
         createBy nvarchar(255),
-        createDate datetime,
+        createDate timestamp,
 	title nvarchar(200),
         content nvarchar(500),
-	startDate datetime,
-        endDate datetime,
+	startDate timestamp,
+        endDate timestamp,
         expression_ nvarchar(500),
         jobClass nvarchar(200),
         locked_ int,
@@ -243,13 +243,13 @@ CREATE TABLE message(
         recverList nvarchar(2000) ,
         title nvarchar(500) ,
         content nvarchar(2000) ,
-        createDate datetime,
+        createDate timestamp,
         readed int,
         category int,
         crUser nvarchar(20),
-        crDate datetime,
+        crDate timestamp,
         edUser nvarchar(20),
-        edDate datetime,
+        edDate timestamp,
         PRIMARY KEY (id)
   );
 
@@ -260,9 +260,9 @@ CREATE TABLE mymenu(
         url nvarchar(200),
         sort int,
         crUser nvarchar(20),
-        crDate datetime,
+        crDate timestamp,
         edUser nvarchar(20),
-        edDate datetime,
+        edDate timestamp,
         PRIMARY KEY (id)
 );
 
@@ -296,12 +296,12 @@ CREATE TABLE  attachment (
 	referType int  ,
 	name nvarchar (100)   ,
 	url nvarchar (200)   ,
-	createDate datetime  ,
+	createDate timestamp  ,
 	createId bigint  ,
 	crUser nvarchar (20)   ,
-	crDate datetime  ,
+	crDate timestamp  ,
 	edUser nvarchar (20)   ,
-	edDate datetime ,
+	edDate timestamp ,
 	PRIMARY KEY (id)
 );
 
@@ -315,13 +315,13 @@ CREATE TABLE  attachment (
 	headship nvarchar (100) ,
 	leaderName nvarchar (100) ,
 	leaderId bigint ,
-	createDate datetime ,
+	createDate timestamp ,
 	memo nvarchar(max) ,
 	flag int ,
 	crUser nvarchar (20) ,
-	crDate datetime ,
+	crDate timestamp ,
 	edUser nvarchar (20) ,
-	edDate datetime , 
+	edDate timestamp , 
 	PRIMARY KEY (id)
 );
 
@@ -338,14 +338,14 @@ create table sys_agent (
         AGENTTYPE_ int,
         ASSIGNFROM_ nvarchar(255) ,
         ASSIGNTO_ nvarchar(255) ,
-        CREATEDATE_ datetime,
-        ENDDATE_ datetime,
+        CREATEDATE_ timestamp,
+        ENDDATE_ timestamp,
         LOCKED_ int,
         OBJECTID_ nvarchar(255) ,
         OBJECTVALUE_ nvarchar(255) ,
         PROCESSNAME_ nvarchar(255) ,
         SERVICEKEY_ nvarchar(50) ,
-        STARTDATE_ datetime,
+        STARTDATE_ timestamp,
         TASKNAME_ nvarchar(255) ,
         PRIMARY KEY (ID_)
  );
@@ -366,7 +366,7 @@ CREATE TABLE sys_property (
 create table sys_params(
         id nvarchar(50) not null,
         business_key nvarchar(200) not null,
-        date_val datetime,
+        date_val timestamp,
         double_val double precision,
         int_val int,
         java_type nvarchar(20) not null,
@@ -417,7 +417,7 @@ create table sys_input_def (
         queryids_ varchar(500),
         temporaryflag_ varchar(1),
         deletefetch_ varchar(1),
-        createtime_ datetime,
+        createtime_ timestamp,
         createby_ varchar(50),
         description_ varchar(500),
         type_ varchar(50),
@@ -502,9 +502,9 @@ create table sys_input_def (
 
     alter table userrole add AUTHORIZEFROM varchar(200) null;
 
-    alter table userrole add AVAILDATESTART datetime null;
+    alter table userrole add AVAILDATESTART timestamp null;
 
-    alter table userrole add AVAILDATEEND datetime null;
+    alter table userrole add AVAILDATEEND timestamp null;
 
 
     create index IDX_TREE_NAME on SYS_TREE (NAME);

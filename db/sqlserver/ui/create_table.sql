@@ -4,7 +4,7 @@ CREATE TABLE UI_LAYOUT(
         ACTORID_ nvarchar(255),
         COLUMNSTYLE_ nvarchar(255),
         COLUMNS_ int,
-        CREATEDATE_ datetime,
+        CREATEDATE_ timestamp,
         DATAINDEX_ int,
         NAME_ nvarchar(50) NOT NULL,
         PANELS_ nvarchar(255),
@@ -23,7 +23,7 @@ CREATE TABLE UI_LAYOUT(
         COLOR_ nvarchar(50),
         COLUMNINDEX_ int,
         CONTENT_ nvarchar(max),
-        CREATEDATE_ datetime,
+        CREATEDATE_ timestamp,
         HEIGHT_ int,
         ICON_ nvarchar(255),
         LINK_ nvarchar(200),
@@ -52,7 +52,7 @@ CREATE TABLE UI_PANELINSTANCE (
 
 CREATE TABLE UI_SKIN (
         ID_ nvarchar(50) NOT NULL,
-        CREATEDATE_ datetime,
+        CREATEDATE_ timestamp,
         DESCRIPTION_ nvarchar(500),
         IMAGE_ nvarchar(255),
         LOCKED_ int NOT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE UI_SKININSTANCE (
 CREATE TABLE UI_USERPANEL (
         ID_ nvarchar(50) NOT NULL,
         ACTORID_ nvarchar(50),
-        CREATEDATE_ datetime,
+        CREATEDATE_ timestamp,
         LAYOUTNAME_ nvarchar(20),
         REFRESHSECONDS_ int,
         LAYOUT_ nvarchar(50),
@@ -83,7 +83,7 @@ CREATE TABLE UI_USERPORTAL (
         ID_ nvarchar(50) NOT NULL,
         ACTORID_ nvarchar(50),
         COLUMNINDEX_ int,
-        CREATEDATE_ datetime,
+        CREATEDATE_ timestamp,
         PANELID_ nvarchar(50),
         POSITION_ int,
         PRIMARY KEY (ID_)
