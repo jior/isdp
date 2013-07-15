@@ -174,7 +174,7 @@ CREATE TABLE sys_todo(
         title nvarchar(255),
         type nvarchar(50),
 	provider varchar(50),
-        sql_ text,
+        sql_ nvarchar(max),
 	sortno int,
         versionno bigint,
         PRIMARY KEY (id)
@@ -316,7 +316,7 @@ CREATE TABLE  attachment (
 	leaderName nvarchar (100) ,
 	leaderId bigint ,
 	createDate datetime ,
-	memo text ,
+	memo nvarchar(max) ,
 	flag int ,
 	crUser nvarchar (20) ,
 	crDate datetime ,
@@ -374,7 +374,7 @@ create table sys_params(
         long_val bigint,
         service_key nvarchar(50) not null,
         string_val nvarchar(2000),
-        text_val text,
+        text_val nvarchar(max),
         title nvarchar(200),
         type_cd nvarchar(20) not null,
         primary key (id)

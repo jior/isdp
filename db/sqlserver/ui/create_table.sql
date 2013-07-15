@@ -22,7 +22,7 @@ CREATE TABLE UI_LAYOUT(
         COLLAPSIBLE_ int,
         COLOR_ nvarchar(50),
         COLUMNINDEX_ int,
-        CONTENT_ text,
+        CONTENT_ nvarchar(max),
         CREATEDATE_ datetime,
         HEIGHT_ int,
         ICON_ nvarchar(255),
