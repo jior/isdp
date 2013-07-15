@@ -83,7 +83,7 @@ var setting = {
 					{title:'姓名',field:'name', width:120},
 					{title:'部门',field:'deptName', width:180},
 					{title:'最近登录日期',field:'lastLoginTime', width:120},
-					{title:'是否有效',field:'blocked', width:90, formatter:formatterStatus}
+					{title:'是否有效',field:'status', width:90, formatter:formatterStatus}
 				]],
 				rownumbers:false,
 				pagination:true,
@@ -102,7 +102,7 @@ var setting = {
 
 
 	function formatterStatus(val, row){
-       if(val == 0){
+       if(val == "0"){
 			return '<span style="color:green; font: bold 13px 宋体;">是</span>';
 	   } else  {
 			return '<span style="color:red; font: bold 13px 宋体;">否</span>';

@@ -87,7 +87,7 @@ function setValue(obj){
 			%>
         </select>
 		<script language="javascript">								
-          document.all.parent.value="<%=bean.getDepartment().getId()%>";	
+          document.all.parent.value="<%=bean.getDepartment() != null ? bean.getDepartment().getId() : ""%>";	
 	    </script>		
 	   </td>
       </tr>
