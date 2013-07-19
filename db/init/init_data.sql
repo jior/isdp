@@ -401,6 +401,26 @@ insert into sys_input_def (id, init_value, input_type, java_type, key_name, requ
 insert into sys_input_def (id, init_value, input_type, java_type, key_name, required, service_key, text_field, title, type_cd, type_title, url, valid_type, value_field) values ('8', '/rs/jbpm/definition/json', 'combobox', 'String', 'processName', null, 'bulletin', 'text', '流程名称', 'bulletin', '公告发布', '/rs/jbpm/definition/json', null, 'name');
 
 
+insert into ui_panel (id_,actorid_,close_,collapsible_,columnindex_,height_,link_,locked_,name_,resize_,title_,type_,width_) values ( '1010','root',0,0,0,250,'/mx/isdp/todo/todoList',0,'todo',0,'待办事项','L',0);
+insert into ui_panel (id_,actorid_,close_,collapsible_,columnindex_,height_,link_,locked_,name_,resize_,title_,type_,width_) values ( '1016','root',0,0,0,250,'/mx/public/info/indexList?serviceKey=news',0,'news',0,'新闻','L',0);
+insert into ui_panel (id_,actorid_,close_,collapsible_,columnindex_,height_,link_,locked_,name_,resize_,title_,type_,width_) values ( '1018','root',0,0,0,250,'/mx/public/info/indexList?serviceKey=bulletin',0,'bulletin',0,'公告','L',0);
+insert into ui_panel (id_,actorid_,close_,collapsible_,columnindex_,content_,height_,locked_,name_,resize_,title_,type_,width_) values ( '1020','root',0,0,0,'<p>&nbsp;</p><p>&nbsp;&nbsp;&nbsp;&nbspGLAF1.0准备发布！</p>',250,0,'notice',0,'通知','T',0);
+
+
+insert into ui_userpanel (id_,actorid_,layoutname_,refreshseconds_) values ( '1023','root','P2',0);
+
+
+insert into ui_panelinstance (id_,name_,panel_,userpanel_) values ( '1024','2','1020','1023');
+insert into ui_panelinstance (id_,name_,panel_,userpanel_) values ( '1025','1','1010','1023');
+insert into ui_panelinstance (id_,name_,panel_,userpanel_) values ( '1026','4','1018','1023');
+insert into ui_panelinstance (id_,name_,panel_,userpanel_) values ( '1027','3','1016','1023');
+
+
+insert into ui_userportal (id_,actorid_,columnindex_,panelid_,position_) values ( '1028','root',0,'1010',1);
+insert into ui_userportal (id_,actorid_,columnindex_,panelid_,position_) values ( '1029','root',0,'1016',3);
+insert into ui_userportal (id_,actorid_,columnindex_,panelid_,position_) values ( '1030','root',1,'1018',4);
+insert into ui_userportal (id_,actorid_,columnindex_,panelid_,position_) values ( '1031','root',1,'1020',2);
+
 update sys_application set locked = 0 where locked is null;
 
 update sys_tree set locked = 0 where locked is null;
