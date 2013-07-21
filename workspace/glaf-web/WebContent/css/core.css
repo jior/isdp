@@ -150,3 +150,27 @@ img {
 
 a:link,a:visited,a:active{color:#656565; text-decoration:none}
 a:hover{color:#F3A36E; text-decoration:none}
+
+.sys_name {
+	margin-top: 15px;
+	font-size: 24px;
+	color: #ffffff;
+}
+
+.sys_version {
+	margin-top: 25px;
+	font-size: 14px;
+	color: #ffffff;
+}
+
+.user_name {
+	margin-top: 15px;
+	font-size: 14px;
+	color: #ffffff;
+}
+
+.curr_date {
+	margin-top: 15px;
+	font-size: 12px;
+	color: #ffffff;
+}

@@ -23,13 +23,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${cellMenu.name}</title>
-<link href="${contextPath}/styles/default.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="${contextPath}/scripts/easyui/themes/${theme}/easyui.css">
-<link rel="stylesheet" type="text/css" href="${contextPath}/icons/styles.css">
+<link href="<%=request.getContextPath()%>/css/core.css" rel="stylesheet" type="text/css" >
+<link href="<%=request.getContextPath()%>/icons/styles.css" rel="stylesheet" type="text/css" >
+<link href="<%=request.getContextPath()%>/layout/css/styles.css" rel="stylesheet" type="text/css" />
+<link href="<%=request.getContextPath()%>/scripts/easyui/themes/${theme}/easyui.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="${contextPath}/scripts/jquery.min.js"></script>
 <script type="text/javascript" src="${contextPath}/scripts/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="${contextPath}/scripts/easyui/locale/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src="${contextPath}/scripts/easyui.simple.extend.js"></script> 
+<script type="text/javascript" src="${contextPath}/scripts/easyui.simple.extend.js"></script>
 <script type="text/javascript">
 var _menus = { "menus":<%=result!=null ? result.toString() : "[]"%> };
 
@@ -46,21 +47,14 @@ var _menus = { "menus":<%=result!=null ? result.toString() : "[]"%> };
     <img src="${contextPath}/images/loading.gif" align="absmiddle" /> 正在加载中,请稍候...</div>
 </div>
 
-    <!-- <div region="north" split="true" border="false" style="overflow: hidden; height: 52px;
-        background: url(${contextPath}/images/top2.jpg) #7f99be left ;
-        line-height: 50px;color: #fff; font-size:16px; font-family: Verdana, 微软雅黑,黑体">
-        <span style="float:right; padding-right:20px;font-size:16px;" class="head">欢迎 admin </span>
-        <span style="padding-left:10px; font-size: 16px; "><img src="${contextPath}/images/blocks.gif" width="20" height="20" align="absmiddle" />
-		${cellMenu.name}</span>
-    </div> -->
-
+ 
 	<div region="north" split="false" border="false"
 		style="overflow: hidden; height: 65px;">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tr
-				style="overflow: hidden; height: 63px; background: url(${contextPath}/skins/<%=theme%>/images/top_bar_bg.jpg)">
+				style="overflow: hidden; height: 63px; background: url(${contextPath}/themes/<%=theme%>/images/top_bar_bg.jpg)">
 				<td width="5%" align="right" valign="top"><img
-					src="${contextPath}/skins/<%=theme%>/images/logo.jpg"
+					src="${contextPath}/themes/<%=theme%>/images/logo.jpg"
 					border="0"></td>
 				<td width="25%" align="left" valign="middle"><span
 					class="sys_name">${cellMenu.name}</td>

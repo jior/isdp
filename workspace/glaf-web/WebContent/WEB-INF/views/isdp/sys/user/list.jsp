@@ -189,12 +189,12 @@ request.setAttribute("theme", theme);
 					data-options="url:'${contextPath}/rs/isdp/sys/user/list',fitColumns:true,nowrap:false,rownumbers:false,striped:true,onClickRow:onMyClickRow,onDblClickRow:onMyDblClickRow,singleSelect:true">
 				<thead>
 					<tr>
-						<th data-options="field:'sortNo',width:60, frozen:true, sortable:true">序号</th>
-						<th data-options="field:'userId',width:90, frozen:true, sortable:true">帐号</th>
-						<th data-options="field:'userName',width:90, align:'left', sortable:true">用户名</th>
-						<th data-options="field:'ctime',width:90,align:'left'">创建日期</th>
+						<th data-options="field:'startIndex',width:60, frozen:true, sortable:true">序号</th>
+						<th data-options="field:'actorId',width:90, frozen:true, sortable:true">帐号</th>
+						<th data-options="field:'name',width:90, align:'left', sortable:true">用户名</th>
+						<th data-options="field:'createDate',width:90,align:'left'">创建日期</th>
 						<th data-options="field:'etime',width:90">失效日期</th>
-						<th data-options="field:'issystem',width:90, formatter:formatter1,styler:styler1">系统管理员</th>
+						<th data-options="field:'isSystem',width:90, formatter:formatter1,styler:styler1">系统管理员</th>
 						<!-- <th data-options="field:'status',width:90,align:'center',formatter:formatter2">状态</th> -->
 					</tr>
 				</thead>

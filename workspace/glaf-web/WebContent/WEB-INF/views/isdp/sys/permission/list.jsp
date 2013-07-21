@@ -146,7 +146,7 @@ request.setAttribute("theme", theme);
 				data-options="url:'${contextPath}/rs/isdp/sys/permission/list',fitColumns:true,nowrap:false,rownumbers:false,striped:true,onClickRow:onMyClickRow,onDblClickRow:onMyDblClickRow,singleSelect:true">
 			<thead>
 				<tr>
-					<th data-options="field:'sortNo',width:60, frozen:true, sortable:true">序号</th>
+					<th data-options="field:'startIndex',width:60, frozen:true, sortable:true">序号</th>
 					<th data-options="field:'rolename',width:90, frozen:true, sortable:true">岗位</th>
 					<th data-options="field:'tasksort',width:150, align:'left', formatter:formatter1">分配角色任务</th>
 					<th data-options="field:'content',width:180,align:'left'">描述</th>				
