@@ -39,6 +39,7 @@
 <link href="<%=request.getContextPath()%>/icons/styles.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/easyui/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src='<%=request.getContextPath()%>/layout/js/outlook3.js'> </script>
 <script type="text/javascript">
 

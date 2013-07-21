@@ -117,6 +117,7 @@ function addTab(subtitle, url, icon){
 function createFrame(url)
 {
 	var link = contextPath+url;
+	//alert(link);
 	var s = '<iframe scrolling="auto" frameborder="0"  src="'+link+'" style="width:100%;height:100%;"></iframe>';
 	return s;
 }

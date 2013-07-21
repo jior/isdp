@@ -28,6 +28,7 @@
 <link href="<%=request.getContextPath()%>/icons/styles.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/easyui/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src='${contextPath}/scripts/easyui.simple.extend.js'></script> 
 <script type="text/javascript">
 
