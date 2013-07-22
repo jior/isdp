@@ -123,12 +123,14 @@ function roles(form){
 <div class="nav-title"><span class="Title">部门管理</span>&gt;&gt;
 <%
 List nav = (List)request.getAttribute("nav");
+if(nav != null){
 Iterator navIter = nav.iterator();
 while(navIter.hasNext()){
   SysDepartment bean = (SysDepartment)navIter.next();
 %>  
   <a href="department/showList?parent=<%=bean.getNode().getId()%>"><%=bean.getName()%></a>&gt;&gt; 
 <%
+}
 }
 %>
 </div>
