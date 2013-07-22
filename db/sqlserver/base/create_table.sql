@@ -496,6 +496,20 @@ create table sys_input_def (
 
     alter table UserInfo add  userType int;
 
+    alter table UserInfo add  lastlogintime datetime;
+
+    alter table UserInfo add  lastLoginIP varchar(50);
+
+    alter table UserInfo add  evection int;
+
+    alter table UserInfo add  dumpFlag int;
+
+    alter table UserInfo add  superiorIds varchar(200);
+
+    alter table UserInfo add  telephone varchar(200);
+
+ 
+
     alter table net_role add  code varchar(200) null;
 
     alter table userrole add AUTHORIZED int;
