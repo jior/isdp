@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="html"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.glaf.base.modules.sys.*"%>
@@ -9,11 +8,11 @@
 String context = request.getContextPath();
 List list = (List)request.getAttribute("list");
 SysUser user = (SysUser)request.getAttribute("user");
-Set roleId=new HashSet();
+Set roleIds=new HashSet();
 Iterator roles = user.getRoles().iterator();
 while(roles.hasNext()){  
   SysDeptRole role=(SysDeptRole)roles.next();
-  roleId.add(role.getRoleId());
+  roleIds.add(role.getRoleId());
 }
 %>
 
@@ -44,7 +43,7 @@ function checkForm(form){
 
 <body>
 <div class="nav-title"><span class="Title">用户管理</span>&gt;&gt;设置用户 <b><%=user.getName()%></b> 的权限</div>
-<html:form action="${contextPath}/mx/sys/user/setRole" method="post" target="_self" onsubmit="return checkForm(this);"> 
+<html:form action="${contextPath}/mx/sys/user/setUserRole" method="post" target="_self" onsubmit="return checkForm(this);"> 
 <input type="hidden" name="user_id" value="<%=user.getId()%>">
 <table width="95%" border="0" align="center" cellspacing="1" cellpadding="0" class="list-box">
   <tr class="list-title"> 
@@ -67,8 +66,8 @@ if(list!=null){
 %>
   <tr <%=i%2==0?"":"class='list-back'"%>>
     <td class="td-cb">
-	<input type="checkbox" name="id" value="<%=bean.getId()%>" 
-	       <%=roleId.contains(bean.getRoleId())?"checked":""%>>
+	<input type="checkbox" name="id" value="<%=bean.getRoleId()%>" 
+	       <%=roleIds.contains(bean.getRoleId())?"checked":""%>>
     </td>
     <td class="td-no"><%= i+1%></td>
     <td class="td-text"><%=bean.getRole() != null ? bean.getRole().getName() : ""%>&nbsp;</td>
