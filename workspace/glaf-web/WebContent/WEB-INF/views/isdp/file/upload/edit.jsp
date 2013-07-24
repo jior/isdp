@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css" href="${contextPath}/scripts/easyui/themes/${theme}/easyui.css">
 <link rel="stylesheet" type="text/css" href="${contextPath}/icons/styles.css">
 <script type="text/javascript" src="${contextPath}/scripts/jquery.min.js"></script>
-<script type="text/javascript" src="${contextPath}/scripts/jquery/jquery.form.js"></script>
+<script type="text/javascript" src="${contextPath}/scripts/jquery.form.js"></script>
 <script type="text/javascript" src="${contextPath}/scripts/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="${contextPath}/scripts/easyui/locale/easyui-lang-zh_CN.js"></script>       
  

@@ -13,7 +13,7 @@ request.setAttribute("theme", theme);
 <link rel="stylesheet" type="text/css" href="${contextPath}/scripts/ztree/css/zTreeStyle/zTreeStyle.css">
 <link rel="stylesheet" type="text/css" href="${contextPath}/icons/styles.css">
 <script type="text/javascript" src="${contextPath}/scripts/jquery.min.js"></script>
-<script type="text/javascript" src="${contextPath}/scripts/jquery/jquery.form.js"></script>
+<script type="text/javascript" src="${contextPath}/scripts/jquery.form.js"></script>
 <script type="text/javascript" src="${contextPath}/scripts/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="${contextPath}/scripts/easyui/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="${contextPath}/scripts/ztree/js/jquery.ztree.all.min.js"></script>
@@ -90,11 +90,12 @@ request.setAttribute("theme", theme);
 	  }
 
     function onMyDblClickRow(rowIndex, row){
-            window.open('${contextPath}/mx/isdp/sys/user/edit?userId='+row.userId);  
+            window.open('${contextPath}/mx/isdp/sys/user/edit?userId_enc='+row.userId_enc);  
 	  }
 
     function onMyClickRow(rowIndex, row){
-		  $('#userId').val(row.userId);
+		  $('#userId_enc').val(row.userId_enc);
+		  //alert($('#userId_enc').val());
 		  var params = jQuery("#iForm").formSerialize();
           var url = "${contextPath}/rs/isdp/sys/user/info";
 		  jQuery.ajax({
@@ -131,22 +132,22 @@ request.setAttribute("theme", theme);
 					   }
 				 });
 
-          //alert(row.userId);
+          //alert(row.userId_enc);
 		  var zTree1 = $.fn.zTree.getZTreeObj("functionPermsTree");
-		  zTree1.setting.async.url='${contextPath}/rs/isdp/sys/user/functionPerms?userId='+row.userId;
+		  zTree1.setting.async.url='${contextPath}/rs/isdp/sys/user/functionPerms?userId_enc='+row.userId_enc;
 		  //alert(zTree.setting.async.url);
 		  //$.fn.zTree.init($("#functionPermsTree"), setting);
           zTree1.reAsyncChildNodes(null, "refresh"); 
 
 		  var zTree2 = $.fn.zTree.getZTreeObj("dataPermsTree");
-		  zTree2.setting.async.url='${contextPath}/rs/isdp/sys/user/dataPerms?userId='+row.userId;
+		  zTree2.setting.async.url='${contextPath}/rs/isdp/sys/user/dataPerms?userId_enc='+row.userId_enc;
 		  //alert(zTree.setting.async.url);
 		  //$.fn.zTree.init($("#dataPermsTree"), setting2);
           zTree2.reAsyncChildNodes(null, "refresh"); 
 	  }
 
-		function addUser(userId){
-			window.open('${contextPath}/mx/isdp/sys/user/edit?userId='+userId);
+		function addUser(userId_enc){
+			window.open('${contextPath}/mx/isdp/sys/user/edit?userId_enc='+userId_enc);
 		}
 
 		function editUser(){
@@ -157,7 +158,7 @@ request.setAttribute("theme", theme);
 			}
 			var row = jQuery('#myGridData').datagrid('getSelected');
 			if (row ){
-			    window.open('${contextPath}/mx/isdp/sys/user/edit?userId='+row.userId);
+			    window.open('${contextPath}/mx/isdp/sys/user/edit?userId_enc='+row.userId_enc);
 			}
 		}
 
@@ -208,14 +209,14 @@ request.setAttribute("theme", theme);
 			    <div class="easyui-tabs" data-options="fit:true,border:false,plain:true">
 				    <div style="padding:10px" title="基本信息">
 					 <form id="iForm" name="iForm">
-					  <input type="hidden" id="userId" name="userId">
+					  <input type="hidden" id="userId_enc" name="userId_enc">
 					  <table>
 					     <tr>
 						   <td width="50%"  valign="top">
 						       <table>
 							    <tr>
 								<td width="30%">帐号:</td>
-								<td width="70%"><input type="text" id="userId" name="userId" class="x-text"></td>
+								<td width="70%"><input type="text" id="actorId" name="actorId" class="x-text"></td>
 						       </tr>
 						       <tr>
 								<td width="30%">用户名:</td>
