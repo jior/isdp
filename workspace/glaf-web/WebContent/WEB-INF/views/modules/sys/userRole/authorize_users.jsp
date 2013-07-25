@@ -48,7 +48,7 @@ function checkOperation(form){
   }
 }
 function auth(form){
-  var id =0;
+  var id = "0";
   for (var i=0;i<form.id.length;i++) {
     var e = form.id[i];
     if (e.checked){
@@ -56,6 +56,7 @@ function auth(form){
 	}     
   }
   var url = context + "/mx/sys/sysUserRole/showSysAuth?id="+id;
+  //alert(url);
   var features="dialogHeight:580px; dialogWidth:600px; center: yes; resizable: no; status: no; help:no";
   window.showModalDialog(url, window, features);
   //window.open(url);
@@ -149,7 +150,8 @@ if(list!=null){
 %>  
   <tr> 
     <td class="td-cb" height="20"> 
-	  <input type="checkbox" name="id" value="<%=bean.getId()%>" onclick="checkOperation(this.form)">    
+	  <input type="checkbox" name="id" value="<%=RequestUtils.encodeString(bean.getId())%>" 
+	         onclick="javascript:checkOperation(this.form)">    
 	</td>
     <td class="td-no"><%=(pager.getCurrentPageNo()-1)*10 + i+1%></td>
     <td class="td-text"><%=bean.getName()%></td>

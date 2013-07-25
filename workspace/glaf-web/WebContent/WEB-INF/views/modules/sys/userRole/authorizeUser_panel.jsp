@@ -4,6 +4,7 @@
 <%@ page import="com.glaf.base.modules.*"%>
 <%@ page import="com.glaf.base.modules.sys.model.*"%>
 <%@ page import="com.glaf.base.utils.*"%>
+<%@ page import="com.glaf.core.util.*"%>
 <%
 String context = request.getContextPath();
 SysUser user = (SysUser)request.getAttribute("user");
@@ -25,7 +26,7 @@ List list = (List)request.getAttribute("authorizedUser");
 <script src="<%=context%>/scripts/calendar/lang/calendar-setup.js" language="javascript"></script>
 </head>
 <script language="javascript">
-var fromUserId=<%=user.getId()%>;
+var fromUserId="<%=RequestUtils.encodeString(user.getId())%>";
 var num=0;
 var userRole = "";
 
@@ -263,10 +264,10 @@ while(iter.hasNext()){
 	outStr[0]='';
 	outStr[1]='<input type="checkbox" id="id" name="id" value="<%=user2.getId() %>" onClick="checkOperation(this.form)">'+
 				'<input type="hidden" name="userIds" value="<%=user2.getId() %>">'+
-				'<input type="hidden" name="startDate_<%=user2.getId() %>" value="<%=glafUtil.dateToString(startDate) %>">'+
-				'<input type="hidden" name="endDate_<%=user2.getId() %>" value="<%=glafUtil.dateToString(endDate) %>">';
+				'<input type="hidden" name="startDate_<%=user2.getId() %>" value="<%=DateUtils.getDateTime(startDate) %>">'+
+				'<input type="hidden" name="endDate_<%=user2.getId() %>" value="<%=DateUtils.getDateTime(endDate) %>">';
 	outStr[2]='<%=user2.getName() %>[<%=user2.getAccount() %>]';
-	outStr[3]='<%=glafUtil.dateToString(startDate) %> - <%=glafUtil.dateToString(endDate) %>';
+	outStr[3]='<%=DateUtils.getDateTime(startDate) %> - <%=DateUtils.getDateTime(endDate) %>';
 	
 	addRow('listTable',outStr,'<%=user2.getId() %>');
 	

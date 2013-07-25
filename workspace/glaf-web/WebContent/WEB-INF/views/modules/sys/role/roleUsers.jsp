@@ -14,13 +14,14 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/scripts/ztree/css/zTreeStyle/zTreeStyle.css"/>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/icons/styles.css"/>
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/jquery.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/jquery.form.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/ztree/js/jquery.ztree.all.min.js"></script>
 <script type="text/javascript">
 
 	 var setting = {
 			async: {
 				enable: true,
-				url: "<%=request.getContextPath()%>/rs/sys/role/roleUsersJson?roleCode=${sysRole.code}",
+				url: "<%=request.getContextPath()%>/rs/sys/role/roleUsersJson?roleId=${sysRole.id}",
 				dataFilter: filter
 			},
 			check: {
@@ -52,15 +53,56 @@
 			jQuery.fn.zTree.init(jQuery("#myTree"), setting);
 	});
 
+	function saveRoleUsers(){
+		var zTree = $.fn.zTree.getZTreeObj("myTree");
+        var selectedNodes  = zTree.getCheckedNodes(true);
+
+        var sx = '';  
+		var code='';
+        for(var i=0; i<selectedNodes.length; i++){  
+            if (sx != ''){ 
+				sx += ','; 
+			}
+			code = selectedNodes[i].name;
+			code = code.substring(0, code.indexOf(" "));
+            sx += code;  
+        }  
+        $("#userIds").val(sx);
+		//alert(sx);
+		var params = jQuery("#iForm").formSerialize();
+		jQuery.ajax({
+				   type: "POST",
+				   url: '<%=request.getContextPath()%>/rs/sys/role/saveRoleUsers?roleId=${sysRole.id}',
+				   dataType:  'json',
+				   data: params,
+				   error: function(data){
+					   alert('服务器处理错误！');
+				   },
+				   success: function(data){
+					   if(data != null && data.message != null){
+						   alert(data.message);
+					   } else {
+						 alert('操作成功完成！');
+					   }
+					   jQuery('#mydatagrid').datagrid('reload');
+				   }
+			 });
+	}
+
 </script>
 </head>
 
 <body style="margin:0;"> 
+<form id="iForm" name="iForm" method="post">
+<input type="hidden" id="userIds" name="userIds">
 <div style="background:#fafafa;padding:2px;border:1px solid #ddd;font-size:12px"> 
 <span class="x_content_title">查看角色【${sysRole.name}】的用户</span>
+&nbsp;
+<input type="button" name="save" value=" 保 存 " class="button" onclick="javascript:saveRoleUsers();"> 
 </div> 
 <div>
 	<ul id="myTree" class="ztree"></ul> 
 </div>
+</form>
 </body>
 </html>

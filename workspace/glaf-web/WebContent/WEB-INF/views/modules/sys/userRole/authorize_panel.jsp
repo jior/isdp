@@ -25,9 +25,8 @@ List processList = (List)request.getAttribute("processList");
 <script src="<%=context%>/scripts/calendar/calendar.js" language="javascript"></script>
 <script src="<%=context%>/scripts/calendar/lang/calendar-en.js" language="javascript"></script>
 <script src="<%=context%>/scripts/calendar/lang/calendar-setup.js" language="javascript"></script>
-</head>
 <script language="javascript">
-var fromUserId=<%=user.getId()%>;
+var fromUserId="<%=RequestUtils.encodeString(user.getId())%>";
 var num=0;
 var num2=0;
 var mark=0;
@@ -79,21 +78,16 @@ function checkAll_2(form, obj) {
 }
 function selectSysUser(referId,referTitle){
   var url = '<%=context%>/mx/sys/user/selectSysUser?multDate=1';
-  return ShowDialog(url,430,450,false,false,referId, referTitle, false);
+  return ShowDialog(url, 430, 450, false, false, referId, referTitle, false);
 }
 
-function cancel(form){
+function removeRoleUser(form){
   if(confirm("真的要取消授权吗？")){
     var ids="";	
     for (var i=0; i<form.id.length; i++) {
       var e = form.id[i];
       if (e.checked) ids = ids + e.value + ",";
 	}
-	//SysUserRoleAjaxService.removeRoleUser(fromUserId, ids, function(reply){
-    //  if(reply){
-    //    $("link").click();
-    //  }
-   // });
 	jQuery.ajax({
 			type: "POST",
 			url: '<%=request.getContextPath()%>/mx/sys/sysUserRole/removeRoleUser?fromUserId='+fromUserId+'&toUserIds='+ids,
@@ -107,7 +101,7 @@ function cancel(form){
 		});
   }
 }
-function add(){
+function addRole(){
   var list = document.getElementsByName("processId");
   var processNames = "";
   var processDescriptions = "";
@@ -135,14 +129,6 @@ function add(){
 	return;
   }
   if(confirm("确认要授权吗？")){
-	/*
-    SysUserRoleAjaxService.addRole(fromUserId, $("userId").value,$("startDate").value,$("endDate").value,mark,processNames,processDescriptions, function(reply){
-      if(reply){	    
-        $("link").click();
-      }else{
-	    alert($("userName").value + "不能重复授权!");
-	  }
-    });*/
 		jQuery.ajax({
 			type: "POST",
 			url: '<%=request.getContextPath()%>/mx/sys/sysUserRole/addRole?fromUserId='+fromUserId+'&toUserId='+$("userId").value+'&startDate='+$("startDate").value+'&endDate='+$("endDate").value+'&mark='+mark+'&processNames='+processNames+'&processDescriptions='+processDescriptions,
@@ -157,8 +143,9 @@ function add(){
   }
 }
 </script>
+</head>
 <body>
-<a href="<%=context%>/mx/sys/sysUserRole/showSysAuth?id=<%=user.getId()%>" id="link"></a>
+<a href="<%=context%>/mx/sys/sysUserRole/showSysAuth?id=<%=RequestUtils.encodeString(user.getId())%>" id="link"></a>
 <html:form method="post" action="${contextPath}/mx/sys/sysUserRole/showSysAuth" target="_self">
 <input type="hidden" name="id" value="0">
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -215,7 +202,7 @@ if(null!=processList && processList.size()>0){
   <tr>
     <td height="22">&nbsp;</td>
     <td height="22">用　户:
-      <input name="userName" type="text" class="input" size="30" title="点击选择用户" readonly onClick="selectSysUser( $('userId'), $('userName'))">
+      <input name="userName" type="text" class="input" size="30" title="点击选择用户" readonly onClick="javascript:selectSysUser( $('userId'), $('userName'))">
 	<input type="hidden" name="userId" value="">  
 	</td>
   </tr>
@@ -229,7 +216,7 @@ if(null!=processList && processList.size()>0){
   </tr>
   <tr>
     <td height="22">&nbsp;</td>
-    <td height="22"><input type="button" name="btn_save" value="确定" onClick="add()" disabled></td>
+    <td height="22"><input type="button" name="btn_save" value="确定" onClick="javascript:addRole()" disabled></td>
   </tr>
 </table>
 <br/>
@@ -246,7 +233,10 @@ if(null!=processList && processList.size()>0){
 <div id="listDiv" style="width:595px; height:120px;overflow-x:auto; overflow-y:auto;">
 <table width="100%" border="0" cellspacing="1" cellpadding="0" class="list-box">
   <tr class="list-title" style="position:relative; top:expression(this.offsetParent.scrollTop-2);">
-    <td width="10%" align="center"><input type="checkbox" name="chkall" value="checkbox" onClick="checkAll_1(this.form, this);checkOperation(this.form)"></td>
+    <td width="10%" align="center">
+	<input type="checkbox" name="chkall" value="checkbox" 
+	       onClick="javascript:checkAll_1(this.form, this);checkOperation(this.form)">
+	</td>
     <td width="20%" align="center">用户</td>
     <td width="25%" align="center">有效期</td>
     <td width="45%" align="center">授权内容</td>
@@ -261,7 +251,10 @@ while(iter.hasNext()){
   String processDescription = null==bean[3]?"":bean[3].toString();
 %>
   <tr>
-    <td class="td-cb" height="20" ><input type="checkbox" name="id" value="<%=user2.getId()%>" onClick="checkOperation(this.form)"></td>
+    <td class="td-cb" height="20" >
+	<input type="checkbox" name="id" value="<%=RequestUtils.encodeString(user2.getId())%>"    
+	       onClick="javascript:checkOperation(this.form)">
+	</td>
     <td class="td-text" title="<%=user2.getName()%>[<%=user2.getActorId()%>]"><%=user2.getName()%>[<%=user2.getActorId()%>]</td>
     <td class="td-date" ><%=DateUtils.getDateTime(startDate)%> - <%=DateUtils.getDateTime(endDate)%></td>
     <td class="td-date" title="<%=processDescription%>"><%=processDescription%></td>
@@ -273,7 +266,9 @@ while(iter.hasNext()){
 </div>
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td height="22">&nbsp;&nbsp;<input type="button" name="btn_cancel" value="取消授权" onClick="cancel(this.form)" disabled></td>
+    <td height="22">&nbsp;&nbsp;
+	<input type="button" name="btn_cancel" value="取消授权" onClick="javascript:removeRoleUser(this.form)" disabled>
+	</td>
   </tr>
 </table>
 </html:form>

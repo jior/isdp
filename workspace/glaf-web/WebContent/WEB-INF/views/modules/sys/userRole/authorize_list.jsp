@@ -4,6 +4,7 @@
 <%@ page import="com.glaf.base.modules.sys.*"%>
 <%@ page import="com.glaf.base.modules.sys.model.*"%>
 <%@ page import="com.glaf.base.utils.*"%>
+<%@ page import="com.glaf.core.util.*"%>
 <%
 String context = request.getContextPath();
 List available = (List)request.getAttribute("available");
@@ -30,7 +31,7 @@ SysUser user = com.glaf.base.utils.RequestUtil.getLoginUser(request);
 }
 </style>
 <script language="javascript">
-var fromUserId=<%=user.getId()%>;
+var fromUserId="<%=RequestUtils.encodeString(user.getId())%>";
 function add(){
   if($("available").selectedIndex==-1){
     alert("请选择要授权的用户");

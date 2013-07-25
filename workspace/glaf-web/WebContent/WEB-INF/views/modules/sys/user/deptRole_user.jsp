@@ -79,7 +79,7 @@ while(navIter.hasNext()){
     <td class="td-cb"> <input type="checkbox" name="id" value="<%=bean.getId()%>" onClick="checkOperation(this.form)"></td>
     <td class="td-no"><%=i+1%></td>
     <td class="td-text"> <%=bean.getName()%></td>
-    <td class="td-c"><%=bean.getDepartment().getName()%></td>
+    <td class="td-c"><%=bean.getDepartment() != null ? bean.getDepartment().getName() : ""%></td>
   </tr>
   <%
     i++;
