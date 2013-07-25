@@ -32,12 +32,15 @@ function checkOperation(form){
     document.all.btn_del.disabled=false;
 	if(num==1){
 	  document.all.btn_modify.disabled=false;
+	  document.all.btn_ru.disabled=false;
 	}else{
 	  document.all.btn_modify.disabled=true;
+	  document.all.btn_ru.disabled=true;
 	}
   }else{
     document.all.btn_del.disabled=true;
 	document.all.btn_modify.disabled=true;
+	document.all.btn_ru.disabled=true;
   }
 }
 function add(){
@@ -64,6 +67,22 @@ function modify(form){
   var scroll="no";
   //openWindow(url, width, height, scroll);
   art.dialog.open(link, { height: height, width: width, title: "修改角色", scrollbars:"no" , lock: false });
+}
+
+function roleUsers(form){
+  var id =0;
+  for (var i=0;i<form.id.length;i++) {
+    var e = form.id[i];
+    if (e.checked){
+	  id=e.value;
+	}     
+  }
+  var link = "<%=request.getContextPath()%>/mx/sys/role/roleUsers?id="+id;
+  var width=520;
+  var height=420;
+  var scroll="no";
+  //openWindow(url, width, height, scroll);
+  art.dialog.open(link, { height: height, width: width, title: "角色用户", scrollbars:"no" , lock: false });
 }
 
 function del(){
@@ -143,7 +162,9 @@ for(; i<pageSize; i++){
   <tr> 
     <td width="50%"> <input name="btn_add" type="button" value="增加" class="button" onClick="javascript:add();"> 
       <input name="btn_del" type="button" value="删除" class="button" onClick="javascript:del();" disabled>
-      <input name="btn_modify" type="button" value="修改" class="button" onClick="javascript:modify(this.form);" disabled></td>
+      <input name="btn_modify" type="button" value="修改" class="button" onClick="javascript:modify(this.form);" disabled>
+	  <input name="btn_ru" type="button" value="角色用户" class="button" onClick="javascript:roleUsers(this.form);" disabled>
+	  </td>
     <td width="50%"> 
       <%
         String params = WebUtil.getQueryString(request);
