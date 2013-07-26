@@ -77,7 +77,7 @@
 
 	function onRowClick(rowIndex, row){
             //window.open('<%=request.getContextPath()%>/mx/sys/user/edit&id='+row.id);
-	    var link = '<%=request.getContextPath()%>/mx/sys/user/prepareModify?parent=${parent}&deptId=${deptId}&id='+row.id;
+	    var link = '<%=request.getContextPath()%>/mx/sys/user/prepareModify?parent=${parent}&deptId=${deptId}&id='+row.actorId_enc;
 	    art.dialog.open(link, { height: 450, width: 620, title: "修改用户", lock: true, scrollbars:"no" }, false);
 	}
 
@@ -102,7 +102,7 @@
 	    var selected = jQuery('#mydatagrid').datagrid('getSelected');
 	    if (selected ){
 		  //location.href="<%=request.getContextPath()%>/mx/sys/user/edit&id="+selected.id;
-		  var link = "<%=request.getContextPath()%>/mx/sys/user/prepareModify?parent=${parent}&deptId=${deptId}&id="+selected.id;
+		  var link = "<%=request.getContextPath()%>/mx/sys/user/prepareModify?parent=${parent}&deptId=${deptId}&id="+selected.actorId_enc;
 		  art.dialog.open(link, { height: 450, width: 620, title: "修改用户", lock: true, scrollbars:"no" }, false);
 	    }
 	}
@@ -117,7 +117,7 @@
 	    var selected = jQuery('#mydatagrid').datagrid('getSelected');
 	    if (selected ){
 		  //location.href="<%=request.getContextPath()%>/mx/sys/user/edit&id="+selected.id;
-		  var link = "<%=request.getContextPath()%>/mx/sys/user/prepareResetPwd?parent=${parent}&deptId=${deptId}&id="+selected.id;
+		  var link = "<%=request.getContextPath()%>/mx/sys/user/prepareResetPwd?parent=${parent}&deptId=${deptId}&id="+selected.actorId_enc;
 		  art.dialog.open(link, { height: 300, width: 465, title: "重置用户密码", lock: true, scrollbars:"no" }, false);
 	    }
 	}
@@ -131,7 +131,7 @@
 	    var selected = jQuery('#mydatagrid').datagrid('getSelected');
 	    if (selected ){
 		  //location.href="<%=request.getContextPath()%>/mx/sys/user/edit&id="+selected.id;
-		  var link = "<%=request.getContextPath()%>/mx/sys/user/showRole?parent=${parent}&deptId=${deptId}&user_id="+selected.id;
+		  var link = "<%=request.getContextPath()%>/mx/sys/user/showRole?parent=${parent}&deptId=${deptId}&user_id="+selected.actorId_enc;
 		  art.dialog.open(link, { height: 420, width: 620, title: "用户角色设置", lock: true, scrollbars:"no" }, false);
 	    }
 	}
@@ -144,7 +144,7 @@
 		}
 		var selected = jQuery('#mydatagrid').datagrid('getSelected');
 		if (selected ){
-		    location.href="<%=request.getContextPath()%>/mx/sys/user/prepareModify?parent=${parent}&deptId=${deptId}&id="+selected.id;
+		    location.href="<%=request.getContextPath()%>/mx/sys/user/prepareModify?parent=${parent}&deptId=${deptId}&id="+selected.actorId_enc;
 		}
 	}
 

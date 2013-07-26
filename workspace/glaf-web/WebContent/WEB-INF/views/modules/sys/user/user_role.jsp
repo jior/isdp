@@ -9,9 +9,9 @@ String context = request.getContextPath();
 List list = (List)request.getAttribute("list");
 SysUser user = (SysUser)request.getAttribute("user");
 Set roleIds=new HashSet();
-Iterator roles = user.getRoles().iterator();
-while(roles.hasNext()){  
-  SysDeptRole role=(SysDeptRole)roles.next();
+Iterator deptRoles = user.getDeptRoles().iterator();
+while(deptRoles.hasNext()){  
+  SysDeptRole role=(SysDeptRole)deptRoles.next();
   roleIds.add(role.getRoleId());
 }
 %>
