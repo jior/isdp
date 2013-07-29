@@ -94,7 +94,9 @@
 		if(ids.length > 0 ){
 		    var ids = ids.join(',');
 			var dbType = jQuery('#dbType').val();
-			window.open('<%=request.getContextPath()%>/mx/sys/table/genCreateScripts?tables='+ids+'&dbType='+dbType);
+			jQuery("#tables").val(ids);
+			document.iForm.action="<%=request.getContextPath()%>/mx/sys/table/genCreateScripts?dbType="+dbType;
+			document.iForm.submit();
 		} else {
 			alert("请选择至少一条记录。");
 		}
@@ -109,7 +111,9 @@
 		if(ids.length > 0 ){
 		    var ids = ids.join(',');
 			var dbType = jQuery('#dbType').val();
-			window.open('<%=request.getContextPath()%>/mx/sys/table/genMappings?tables='+ids+'&dbType='+dbType);
+			jQuery("#tables").val(ids);
+			document.iForm.action="<%=request.getContextPath()%>/mx/sys/table/genMappings?dbType="+dbType;
+			document.iForm.submit();
 		} else {
 			alert("请选择至少一条记录。");
 		}
@@ -214,5 +218,8 @@
 	 <table id="mydatagrid"></table>
   </div>  
 </div>
+<form id="iForm" name="iForm" method="post" action="">
+	<input type="hidden" id="tables" name="tables">
+</form>
 </body>
 </html>
