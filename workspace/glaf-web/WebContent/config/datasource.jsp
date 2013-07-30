@@ -1,13 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.glaf.core.config.admin.*"%>
 <%@ page import="com.glaf.setup.conf.*"%>
 <%
        String contextPath = request.getContextPath();
        String appPath = com.glaf.core.context.ApplicationContext.getAppPath();
        DatabaseConfig cfg = new DatabaseConfig();
 	   List<Database> rows = cfg.getDatabases(appPath);
-
 %>
 <html>
 <head>
