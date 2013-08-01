@@ -60,8 +60,8 @@
     -->
 
 
-	<Executor name="tomcatThreadPool" namePrefix="catalina-exec-"
-        maxThreads="500" minSpareThreads="4"/>
+	<Executor name="tomcatThreadPool" namePrefix="thread-"
+        maxThreads="500" minSpareThreads="50"/>
 
 
     <!-- A "Connector" represents an endpoint by which requests are received
