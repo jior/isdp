@@ -224,7 +224,7 @@
 			  <td valign="middle">上传附件</td>
 			  <td valign="middle">
 			    <br>
-			    <iframe src="<%=request.getContextPath()%>/myupload.do?method=showUpload&serviceKey=${serviceKey}&view=operamasksUpload"
+			    <iframe src="<%=request.getContextPath()%>/mx/myupload/showUpload?serviceKey=${serviceKey}&view=operamasksUpload"
 				border="0" frameborder="0" width="680" height="240"></iframe>
 			  </td>
 		    </tr>

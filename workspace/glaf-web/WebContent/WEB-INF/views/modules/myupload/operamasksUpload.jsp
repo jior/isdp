@@ -17,7 +17,7 @@
 
     $(document).ready(function() {
 	  $('#file_upload').omFileUpload({
-	    action : '<%=request.getContextPath()%>/mx/myupload?method=upload&responseType=json&serviceKey=${serviceKey}',
+	    action : '<%=request.getContextPath()%>/mx/myupload/upload?responseType=json&serviceKey=${serviceKey}',
 	    swf : '<%=request.getContextPath()%>/scripts/operamasksui/swf/om-fileupload.swf',
 		//buttonImg : '<%=request.getContextPath()%>/images/upload.png',
 	    multi  : true,

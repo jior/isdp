@@ -266,7 +266,7 @@
 		}
 		var selected = jQuery('#mydatagrid').datagrid('getSelected');
 		if (selected &&  selected.processInstanceId && selected.processInstanceId != null){
-		    window.open('<%=request.getContextPath()%>/mx/jbpm/task/task?processInstanceId='+selected.processInstanceId);
+		    window.open('<%=request.getContextPath()%>/mx/activiti/task?processInstanceId='+selected.processInstanceId);
 		} else {
             alert("该记录没有启动工作流，不能查看流程进度。");
 		}

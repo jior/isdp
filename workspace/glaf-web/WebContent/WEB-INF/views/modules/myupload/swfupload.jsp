@@ -18,7 +18,7 @@
 	var swfu;
 	window.onload = function () {
 		swfu = new SWFUpload({
-					upload_url: "<%=request.getContextPath()%>/mx/myupload?method=upload&serviceKey=${serviceKey}",
+					upload_url: "<%=request.getContextPath()%>/mx/myupload/upload?serviceKey=${serviceKey}",
 					
 					// File Upload Settings
 					file_size_limit : "5000 MB",	// 20MB

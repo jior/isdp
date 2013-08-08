@@ -76,7 +76,7 @@
 	<input id="testFileInput" type="file" name="image" 
 		uploaderOption="{
 			swf:'<%=request.getContextPath()%>/scripts/uploadify/uploadify.swf',
-			uploader:'<%=request.getContextPath()%>/mx/myupload?method=upload&serviceKey=${serviceKey}',
+			uploader:'<%=request.getContextPath()%>/mx/myupload/upload?serviceKey=${serviceKey}',
 			formData:{aa:'xxx', bb:1},
 			buttonText:'请选择文件',
 			fileSizeLimit:'2000KB',
@@ -95,7 +95,7 @@
 	<input id="testFileInput2" type="file" name="image2" 
 		uploaderOption="{
 			swf:'<%=request.getContextPath()%>/scripts/uploadify/uploadify.swf',
-			uploader:'<%=request.getContextPath()%>/mx/myupload?method=upload&serviceKey=${serviceKey}',
+			uploader:'<%=request.getContextPath()%>/mx/myupload/upload?serviceKey=${serviceKey}',
 			formData:{aa:'xxx', bb:1},
 			queueID:'fileQueue',
 			buttonImage:'<%=request.getContextPath()%>/scripts/uploadify/img/add.jpg',
