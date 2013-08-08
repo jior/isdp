@@ -23,7 +23,7 @@
 <html>
 <head id="Head1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>GLAF基础应用框架-系统登录</title>
+<title>系统登录</title>
 <link href="${contextPath}/scripts/easyui/themes/gray/easyui.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="${contextPath}/icons/styles.css">
 <style type="text/css">
