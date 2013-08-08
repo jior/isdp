@@ -1,3 +1,4 @@
+<%@page import="com.glaf.core.config.Environment"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="http://github.com/jior/glaf/tags" prefix="glaf"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="html"%>
@@ -24,6 +25,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>GLAF基础应用框架-系统登录</title>
 <link href="${contextPath}/scripts/easyui/themes/gray/easyui.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="${contextPath}/icons/styles.css">
 <style type="text/css">
 .default {
 	font-weight:normal;
@@ -72,7 +74,7 @@
 	 
     $(function() {
         $("#loginWindow").window({
-                title: 'GLAF基础应用框架',
+                title: '登录',
                 width: 290,
                 height: 190,
                 modal: true,
@@ -144,7 +146,7 @@
                     </td>
                     <td>
                         <input id="x" name="x" class="easyui-validatebox input" required="true" validtype="length[3,20]"
-                            style="width: 150px;" datatype="string" nullable="no" maxsize="20" chname="用户名" value="admin" />
+                            style="width: 150px;" datatype="string" nullable="no" maxsize="20" chname="用户名" value="" />
                     </td>
                 </tr>
                 <tr>
@@ -153,7 +155,7 @@
                     </td>
                     <td>
                         <input type="password" id="y" name="y" style="width: 150px;" class="easyui-validatebox input"
-                            required="true" validtype="length[6,20]" datatype="string" nullable="no" maxsize="20" chname="密码" value="1"/>
+                            required="true" validtype="length[6,20]" datatype="string" nullable="no" maxsize="20" chname="密码" value=""/>
                     </td>
                 </tr>
             </table>
@@ -161,7 +163,7 @@
         </div>
              
         <div class="toolbar" style="text-align: center; margin-top: 20px;">
-             <a href="#" class="easyui-linkbutton" iconcls="icon-ok" id="btnLogin" style="margin-left: 2px;" 
+             <a href="#" class="easyui-linkbutton" iconCls="icon-ok" id="btnLogin" style="margin-left: 2px;" 
 			    onclick="javascript:doLogin();"> 登 录 </a>
         </div>
     </div>
