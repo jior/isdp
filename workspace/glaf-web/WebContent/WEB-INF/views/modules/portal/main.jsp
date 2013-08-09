@@ -228,6 +228,9 @@
 							<option value="metro">metro</option>
 							<!-- <option value="metro-blue">metro-blue</option> -->
 						</select>
+						<script type="text/javascript">
+							document.getElementById("theme").value="${theme}";
+					    </script>
 						</td>
 						<td>&nbsp;<a id="btnEp" class="easyui-linkbutton"
 							icon="icon-ok" href="javascript:changeTheme();">确定</a>
