@@ -84,7 +84,6 @@
 	<classpathentry kind="lib" path="/glaf-core/lib/junit.jar"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/fastjson.jar"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/guava.jar"/>
-	<classpathentry kind="lib" path="/glaf-core/lib/jackson-all-1.9.10.jar"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/javax.activation.jar"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/javax.jms.jar"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/javax.validation.jar"/>
