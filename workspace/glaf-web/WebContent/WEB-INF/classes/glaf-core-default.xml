@@ -6,6 +6,11 @@
 		<name>i18n.messages_key</name>
 		<value>ApplicationStrings</value>
 	</property>
+
+	<property>
+		<name>password.enc</name>
+		<value>false</value>
+	</property>
  
 
 </configuration>
