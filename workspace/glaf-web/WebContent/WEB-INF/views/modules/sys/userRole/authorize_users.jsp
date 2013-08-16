@@ -150,7 +150,7 @@ if(list!=null){
 %>  
   <tr> 
     <td class="td-cb" height="20"> 
-	  <input type="checkbox" name="id" value="<%=RequestUtils.encodeString(bean.getId())%>" 
+	  <input type="checkbox" name="id" value="<%=RequestUtils.encodeString(bean.getActorId())%>" 
 	         onclick="javascript:checkOperation(this.form)">    
 	</td>
     <td class="td-no"><%=(pager.getCurrentPageNo()-1)*10 + i+1%></td>
