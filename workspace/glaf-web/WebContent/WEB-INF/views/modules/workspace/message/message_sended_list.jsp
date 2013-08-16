@@ -22,17 +22,17 @@ String flag = (String)request.getAttribute("flag");
 <script type='text/javascript' src="<%= request.getContextPath() %>/scripts/verify.js"></script>
 <script type="text/javascript">
 function openMsg(id) {
-  openWindow('<%=request.getContextPath()%>/mx/workspace/message/showMessage?sended=1&id=' + id, 600, 450);
+  openWindow('<%=request.getContextPath()%>/mx/workspace/message/showMessage?sended=1&id=' + id, 620, 450);
 }
 function sendMsg() {
-  openWindow('<%=request.getContextPath()%>/mx/workspace/message/prepareSend', 660, 450);
+  openWindow('<%=request.getContextPath()%>/mx/workspace/message/prepareSend', 680, 450);
 }
 function replyMsg() {
   var id = getCheckboxValue('id');
 	if (id.length == 0) {
 	  return;
 	}
-	openWindow('<%=request.getContextPath()%>/mx/workspace/message/prepareSend?id=' + id, 660, 450);
+	openWindow('<%=request.getContextPath()%>/mx/workspace/message/prepareSend?id=' + id, 680, 450);
 }
 function del(form) {
   if(confirmDelete(form)) {
@@ -77,7 +77,7 @@ function checkOperation(){
             <td colspan="20"><table border="0" cellspacing="0" cellpadding="0" class="x-tabs-box">
               <tr>
                     <td class="x-tab-l">&nbsp;</td>
-                    <td width="60" class="x-tab-m"><a href="?method=showReceiveList">收件箱</a></td>
+                    <td width="60" class="x-tab-m"><a href="<%=request.getContextPath()%>/mx/workspace/message/showReceiveList">收件箱</a></td>
                     <td class="x-tab-r">&nbsp;</td>
 
                     <td class="x-tab-lc">&nbsp;</td>

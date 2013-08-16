@@ -26,7 +26,7 @@ List processList = (List)request.getAttribute("processList");
 <script src="<%=context%>/scripts/calendar/lang/calendar-en.js" language="javascript"></script>
 <script src="<%=context%>/scripts/calendar/lang/calendar-setup.js" language="javascript"></script>
 <script language="javascript">
-var fromUserId="<%=RequestUtils.encodeString(user.getId())%>";
+var fromUserId="<%=RequestUtils.encodeString(user.getActorId())%>";
 var num=0;
 var num2=0;
 var mark=0;
@@ -145,7 +145,7 @@ function addRole(){
 </script>
 </head>
 <body>
-<a href="<%=context%>/mx/sys/sysUserRole/showSysAuth?id=<%=RequestUtils.encodeString(user.getId())%>" id="link"></a>
+<a href="<%=context%>/mx/sys/sysUserRole/showSysAuth?id=<%=RequestUtils.encodeString(user.getActorId())%>" id="link"></a>
 <html:form method="post" action="${contextPath}/mx/sys/sysUserRole/showSysAuth" target="_self">
 <input type="hidden" name="id" value="0">
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -252,7 +252,7 @@ while(iter.hasNext()){
 %>
   <tr>
     <td class="td-cb" height="20" >
-	<input type="checkbox" name="id" value="<%=RequestUtils.encodeString(user2.getId())%>"    
+	<input type="checkbox" name="id" value="<%=RequestUtils.encodeString(user2.getActorId())%>"    
 	       onClick="javascript:checkOperation(this.form)">
 	</td>
     <td class="td-text" title="<%=user2.getName()%>[<%=user2.getActorId()%>]"><%=user2.getName()%>[<%=user2.getActorId()%>]</td>

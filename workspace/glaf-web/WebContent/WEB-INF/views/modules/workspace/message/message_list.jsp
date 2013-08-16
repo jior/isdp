@@ -21,19 +21,23 @@ String flag = (String)request.getAttribute("flag");
 <script type='text/javascript' src='<%= request.getContextPath() %>/scripts/main.js'></script>
 <script type='text/javascript' src="<%= request.getContextPath() %>/scripts/verify.js"></script>
 <script type="text/javascript">
+
 function openMsg(id) {
-  openWindow('<%=request.getContextPath()%>/mx/workspace/message/showMessage?id=' + id, 680, 580);
+    openWindow('<%=request.getContextPath()%>/mx/workspace/message/showMessage?id=' + id, 690, 580);
 }
+
 function sendMsg() {
-  openWindow('<%=request.getContextPath()%>/mx/workspace/message/prepareSend', 680, 580);
+    openWindow('<%=request.getContextPath()%>/mx/workspace/message/prepareSend', 690, 580);
 }
+
 function replyMsg() {
-  var id = getCheckboxValue('id');
+    var id = getCheckboxValue('id');
 	if (id.length == 0) {
 	  return;
 	}
-	openWindow('<%=request.getContextPath()%>/mx/workspace/message/prepareSend?id=' + id, 680, 580);
+	openWindow('<%=request.getContextPath()%>/mx/workspace/message/prepareSend?id=' + id, 690, 580);
 }
+
 function del(form) {
   if(confirmDelete(form)) {
 	  form.action = '<%=request.getContextPath()%>/mx/workspace/message/batchDelete';
@@ -41,6 +45,7 @@ function del(form) {
 	  form.submit();
 	}
 }
+
 function checkOperation(){
   var num = getCheckedboxNums("id");
   if (num > 0) {
