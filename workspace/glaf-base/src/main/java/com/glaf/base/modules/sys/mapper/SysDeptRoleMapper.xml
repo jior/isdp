@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.modules.sys.mapper.SysDeptRoleMapper">
+
+	<resultMap id="sysDeptRoleResultMap"	type="com.glaf.base.modules.sys.model.SysDeptRole">
+		<id property="id" column="ID" jdbcType="BIGINT" />
+		<result property="grade" column="GRADE" jdbcType="INTEGER"/>
+		<result property="code" column="CODE" jdbcType="VARCHAR"/>
+		<result property="sort" column="SORT" jdbcType="INTEGER"/>
+		<result property="roleId" column="ROLEID" jdbcType="BIGINT"/>
+		<result property="deptId" column="DEPTID" jdbcType="BIGINT"/>
+		<result property="createDate" column="CREATEDATE" jdbcType="TIMESTAMP"/>
+        <result property="createBy" column="CREATEBY" jdbcType="VARCHAR"/>
+		<association property="role" column="ROLEID" select="com.glaf.base.modules.sys.mapper.SysRoleMapper.getSysRoleById"/>
+	</resultMap>
+
+ 
+	<insert id="insertSysDeptRole" parameterType="com.glaf.base.modules.sys.model.SysDeptRole">
+		insert into sys_dept_role 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID
+			<if test="grade != null">
+				,GRADE 
+			</if>
+			<if test="code != null">
+				,CODE 
+			</if>
+			<if test="sort != null">
+				,SORT 
+			</if>
+			<if test="roleId != null">
+				,ROLEID 
+			</if>
+			<if test="deptId != null">
+				,DEPTID 
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE 
+			</if>
+			<if test="createBy != null">
+				,CREATEBY 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=BIGINT}
+	     
+			<if test="grade != null">
+				,#{grade, jdbcType=INTEGER}
+			</if>
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="sort != null">
+				,#{sort, jdbcType=INTEGER}
+			</if>
+			<if test="roleId != null">
+				,#{roleId, jdbcType=BIGINT}
+			</if>
+			<if test="deptId != null">
+				,#{deptId, jdbcType=BIGINT}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateSysDeptRole" parameterType="com.glaf.base.modules.sys.model.SysDeptRole">
+		update sys_dept_role
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="grade != null">
+				GRADE = #{grade, jdbcType=INTEGER},
+			</if>
+			<if test="code != null">
+				CODE = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				SORT = #{sort, jdbcType=INTEGER},
+			</if>
+			<if test="roleId != null">
+				ROLEID = #{roleId, jdbcType=BIGINT},
+			</if>
+			<if test="deptId != null">
+				DEPTID = #{deptId, jdbcType=BIGINT},
+			</if>
+		</trim>
+		where
+          ID = #{id, jdbcType=BIGINT}
+		
+	</update>
+
+ 
+	<delete id="deleteSysDeptRoleById" parameterType="long"> 
+        delete from sys_dept_role
+        where ID =	#{id}
+	</delete>
+	
+	
+	<delete id="deleteSysDeptRoleByDeptId" parameterType="long"> 
+        delete from sys_dept_role
+        where DEPTID =	#{deptId}
+	</delete>
+	
+	
+	<delete id="deleteSysDeptRoles" parameterType="com.glaf.base.modules.sys.query.SysDeptRoleQuery">
+		delete from sys_dept_role
+		where ( 
+ 			  ID IN
+		<foreach item="x_rowId" index="index" collection="rowIds" 
+			open="(" separator="," close=")">
+                  #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+	<select id="getSysDeptRoleById" parameterType="long" resultMap="sysDeptRoleResultMap">
+		select * from sys_dept_role where ID = #{id}
+	</select>
+	
+	
+	<select id="getSysDeptRolesByUserId" parameterType="string" resultMap="sysDeptRoleResultMap">
+		
+		select DR.* from sys_dept_role DR
+		inner join userrole UR 
+		on DR.ROLEID = UR.ROLEID
+		where UR.USERID = #{userId}
+
+	</select>
+
+
+	<select id="getSysDeptRoles" 
+		parameterType="com.glaf.base.modules.sys.query.SysDeptRoleQuery"
+		resultMap="sysDeptRoleResultMap">
+		select E.*
+		<include refid="selectSysDeptRolesSql" />
+		<choose>
+			<when test="orderBy != null">
+		     order by ${orderBy}
+			</when>
+			<otherwise>
+		      order by E.SORT asc
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="getSysDeptRoleCount" 
+		parameterType="com.glaf.base.modules.sys.query.SysDeptRoleQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectSysDeptRolesSql" />
+	</select>
+
+	<sql id="selectSysDeptRolesSql">
+
+		from sys_dept_role E
+		 
+		<where>
+		       1 = 1  
+
+			<if test="grade != null">
+				and E.GRADE = #{grade}
+			</if>
+
+			<if test="gradeGreaterThanOrEqual != null">
+				and E.GRADE &gt;= #{gradeGreaterThanOrEqual}
+			</if>
+
+			<if test="gradeLessThanOrEqual != null">
+				and E.GRADE &lt;= #{gradeLessThanOrEqual}
+			</if>
+	        
+			<if test="code != null and code != '' ">
+				and E.CODE = #{code}
+			</if>
+
+			<if test="codeLike != null and codeLike != '' ">
+				and E.CODE like #{codeLike}
+			</if>
+
+			<if test="codes != null and codes.size() &gt; 0">
+			    and E.CODE IN
+				<foreach item="x_code" index="index" collection="codes" 
+					open="(" separator="," close=")">
+                  #{x_code}
+				</foreach>
+			</if>
+
+			<if test="sortGreaterThanOrEqual != null">
+				and E.SORT &gt;= #{sortGreaterThanOrEqual}
+			</if>
+
+			<if test="sortLessThanOrEqual != null">
+				and E.SORT &lt;= #{sortLessThanOrEqual}
+			</if>
+
+			<if test="roleId != null">
+				and E.ROLEID = #{roleId}
+			</if>
+
+			<if test="roleIds != null and roleIds.size() &gt; 0">
+			    and E.ROLEID IN
+				<foreach item="x_roleId" index="index" collection="roleIds" 
+					open="(" separator="," close=")">
+                  #{x_roleId}
+				</foreach>
+			</if>
+
+			<if test="deptId != null">
+				and E.DEPTID = #{deptId}
+			</if>
+
+			<if test="deptIds != null and deptIds.size() &gt; 0">
+			    and E.DEPTID IN
+				<foreach item="x_deptId" index="index" collection="deptIds" 
+					open="(" separator="," close=")">
+                  #{x_deptId}
+				</foreach>
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

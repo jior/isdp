@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.modules.sys.mapper.SysPermissionMapper">
+
+
+	<insert id="insertSysPermission" parameterType="com.glaf.base.modules.sys.model.SysPermission">
+		insert into sys_permission (
+		    FUNCID, ROLEID 
+		  ) values ( 
+			   #{funcId, jdbcType=BIGINT}		 
+			  ,#{roleId, jdbcType=BIGINT}
+		 )
+	</insert>
+
+
+	<delete id="deleteSysPermissionByFunctionId" parameterType="long"> 
+        delete from sys_permission
+        where FUNCID =	#{functionId}
+	</delete>
+	
+	
+	<delete id="deleteSysPermissionByRoleId" parameterType="long"> 
+        delete from sys_permission
+        where ROLEID =	#{roleId}
+	</delete>
+	 
+
+	<select id="getSysPermissionByFunctionId" parameterType="long" resultType="com.glaf.base.modules.sys.model.SysPermission">
+		 
+		  select E.FUNCID as funcId, E.ROLEID as roleId  
+		  from sys_permission E
+		  where FUNCID = #{functionId}
+		  
+	</select>
+
+
+	<select id="getSysPermissionByRoleId" parameterType="long" resultType="com.glaf.base.modules.sys.model.SysPermission">
+		 
+		  select E.FUNCID as funcId, E.ROLEID as roleId  
+		  from sys_permission E
+		  where E.ROLEID = #{roleId}
+		  
+	</select>
+
+	 
+</mapper>

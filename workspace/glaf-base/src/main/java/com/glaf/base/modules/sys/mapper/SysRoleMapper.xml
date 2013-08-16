@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.modules.sys.mapper.SysRoleMapper">
+
+	<resultMap id="sysRoleResultMap" type="com.glaf.base.modules.sys.model.SysRole">
+		<id property="id" column="ID" jdbcType="BIGINT" />
+		<result property="name" column="ROLENAME" jdbcType="VARCHAR" />
+		<result property="content" column="CONTENT" jdbcType="VARCHAR" />
+		<result property="code" column="CODE" jdbcType="VARCHAR" />
+		<result property="sort" column="TASKSORT" jdbcType="INTEGER" />
+		<result property="createDate" column="CREATEDATE" jdbcType="TIMESTAMP" />
+		<result property="createBy" column="CREATEBY" jdbcType="VARCHAR" />
+		<result property="updateBy" column="UPDATEBY" jdbcType="VARCHAR" />
+		<result property="updateDate" column="UPDATEDATE" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertSysRole" parameterType="com.glaf.base.modules.sys.model.SysRole">
+		insert into net_role
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID
+			<if test="name != null">
+				,ROLENAME
+			</if>
+			<if test="content != null">
+				,CONTENT
+			</if>
+			<if test="code != null">
+				,CODE
+			</if>
+			<if test="sort != null">
+				,TASKSORT
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE
+			</if>
+			<if test="createBy != null">
+				,CREATEBY
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY
+			</if>
+			<if test="updateDate != null">
+				,UPDATEDATE
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="sort != null">
+				,#{sort, jdbcType=INTEGER}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateSysRole" parameterType="com.glaf.base.modules.sys.model.SysRole">
+		update net_role
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="name != null">
+				ROLENAME = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				CONTENT = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				CODE = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				TASKSORT = #{sort, jdbcType=INTEGER},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		where
+		ID = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteSysRoleById" parameterType="long">
+		delete from
+		net_role
+		where ID = #{id}
+	</delete>
+
+
+	<delete id="deleteSysRoles" parameterType="com.glaf.base.modules.sys.query.SysRoleQuery">
+		delete from net_role
+		where (
+		ID IN
+		<foreach item="x_rowId" index="index" collection="rowIds"
+			open="(" separator="," close=")">
+			#{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getSysRoleById" parameterType="long" resultMap="sysRoleResultMap">
+		select * from net_role where ID = #{id}
+	</select>
+
+
+	<select id="getSysRolesOfDepts" parameterType="com.glaf.base.modules.sys.query.SysDepartmentQuery"
+		resultMap="sysRoleResultMap">
+
+		select R.* from net_role R
+		inner join sys_dept_role DR
+		on DR.ROLEID = R.ID
+		inner join sys_department D
+		on DR.DEPTID = D.ID
+		where 1=1
+
+		<choose>
+			<when test="nodeIds != null and nodeIds.size !=0 ">
+				and D.NODEID IN
+				<foreach item="x_nodeId" index="index" collection="nodeIds"
+					open="(" separator="," close=")">
+					#{x_nodeId}
+				</foreach>
+			</when>
+			<otherwise>
+				and D.NODEID = #{nodeId}
+			</otherwise>
+		</choose>
+
+	</select>
+
+
+	<select id="getSysRolesOfDeptRole" parameterType="long"
+		resultMap="sysRoleResultMap">
+
+		select * from net_role R
+		inner join sys_dept_role DR
+		on R.ID = DR.ROLEID
+		where R.ID = #{roleId}
+
+	</select>
+
+	<select id="getSysRolesOfUser" parameterType="string" resultMap="sysRoleResultMap">
+
+		select R.* from net_role R
+		inner join userrole UR
+		on R.ID = UR.ROLEID
+		where UR.USERID = #{userId}
+
+	</select>
+
+
+	<select id="getSysRoles" parameterType="com.glaf.base.modules.sys.query.SysRoleQuery"
+		resultMap="sysRoleResultMap">
+		select E.*
+		<include refid="selectSysRolesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.TASKSORT asc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getSysRoleCount" parameterType="com.glaf.base.modules.sys.query.SysRoleQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectSysRolesSql" />
+	</select>
+
+
+	<sql id="selectSysRolesSql">
+
+		from net_role E
+
+		<where>
+			1 = 1
+
+			<if test="name != null and name != '' ">
+				and E.ROLENAME = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.ROLENAME like #{nameLike}
+			</if>
+
+			<if test="names != null and names.size() &gt; 0">
+				and E.ROLENAME IN
+				<foreach item="x_name" index="index" collection="names"
+					open="(" separator="," close=")">
+					#{x_name}
+				</foreach>
+			</if>
+
+			<if test="code != null and code != '' ">
+				and E.CODE = #{code}
+			</if>
+
+			<if test="codeLike != null and codeLike != '' ">
+				and E.CODE like #{codeLike}
+			</if>
+
+			<if test="codes != null and codes.size() &gt; 0">
+				and E.CODE IN
+				<foreach item="x_code" index="index" collection="codes"
+					open="(" separator="," close=")">
+					#{x_code}
+				</foreach>
+			</if>
+
+			<if test="sortGreaterThanOrEqual != null">
+				and E.TASKSORT &gt;= #{sortGreaterThanOrEqual}
+			</if>
+
+			<if test="sortGreaterThan  != null">
+				and E.TASKSORT &gt; #{sortGreaterThan}
+			</if>
+
+			<if test="sortLessThanOrEqual != null">
+				and E.TASKSORT &lt;= #{sortLessThanOrEqual}
+			</if>
+
+			<if test="sortLessThan != null">
+				and E.TASKSORT &lt; #{sortLessThan}
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

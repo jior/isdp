@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.modules.sys.mapper.DictoryMapper">
+
+	<resultMap id="dictoryResultMap" type="com.glaf.base.modules.sys.model.Dictory">
+		<id property="id" column="ID" jdbcType="BIGINT" />
+		<result property="nodeId" column="TYPEID" jdbcType="BIGINT" />
+		<result property="name" column="NAME" jdbcType="VARCHAR" />
+		<result property="desc" column="DICTDESC" jdbcType="VARCHAR" />
+		<result property="code" column="CODE" jdbcType="VARCHAR" />
+		<result property="value" column="VALUE_" jdbcType="VARCHAR" />
+		<result property="sort" column="SORT" jdbcType="INTEGER" />
+		<result property="blocked" column="BLOCKED" jdbcType="INTEGER" />
+		<result property="createDate" column="CREATEDATE" jdbcType="TIMESTAMP" />
+		<result property="createBy" column="CREATEBY" jdbcType="VARCHAR" />
+		<result property="updateBy" column="UPDATEBY" jdbcType="VARCHAR" />
+		<result property="updateDate" column="UPDATEDATE" jdbcType="TIMESTAMP" />
+		<result property="ext1" column="EXT1" jdbcType="VARCHAR" />
+		<result property="ext2" column="EXT2" jdbcType="VARCHAR" />
+		<result property="ext3" column="EXT3" jdbcType="VARCHAR" />
+		<result property="ext4" column="EXT4" jdbcType="VARCHAR" />
+		<result property="ext5" column="EXT5" jdbcType="TIMESTAMP" />
+		<result property="ext6" column="EXT6" jdbcType="TIMESTAMP" />
+		<result property="ext7" column="ext7" jdbcType="TIMESTAMP" />
+		<result property="ext8" column="ext8" jdbcType="TIMESTAMP" />
+		<result property="ext9" column="ext9" jdbcType="TIMESTAMP" />
+		<result property="ext10" column="ext10" jdbcType="TIMESTAMP" />
+		<result property="ext11" column="ext11" jdbcType="BIGINT" />
+		<result property="ext12" column="ext12" jdbcType="BIGINT" />
+		<result property="ext13" column="ext13" jdbcType="BIGINT" />
+		<result property="ext14" column="ext14" jdbcType="BIGINT" />
+		<result property="ext15" column="ext15" jdbcType="BIGINT" />
+		<result property="ext16" column="ext16" jdbcType="DOUBLE" />
+		<result property="ext17" column="ext17" jdbcType="DOUBLE" />
+		<result property="ext18" column="ext18" jdbcType="DOUBLE" />
+		<result property="ext19" column="ext19" jdbcType="DOUBLE" />
+		<result property="ext20" column="ext20" jdbcType="DOUBLE" />
+	</resultMap>
+
+
+	<insert id="insertDictory" parameterType="com.glaf.base.modules.sys.model.Dictory">
+		insert into sys_dictory
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID
+			<if test="nodeId != null">
+				,TYPEID
+			</if>
+			<if test="name != null">
+				,NAME
+			</if>
+			<if test="desc != null">
+				,DICTDESC
+			</if>
+			<if test="code != null">
+				,CODE
+			</if>
+			<if test="value != null">
+				,VALUE_
+			</if>
+			<if test="sort != null">
+				,SORT
+			</if>
+			<if test="blocked != null">
+				,BLOCKED
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE
+			</if>
+			<if test="createBy != null">
+				,CREATEBY
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY
+			</if>
+			<if test="updateDate != null">
+				,UPDATEDATE
+			</if>
+			<if test="ext1 != null">
+				,EXT1
+			</if>
+			<if test="ext2 != null">
+				,EXT2
+			</if>
+			<if test="ext3 != null">
+				,EXT3
+			</if>
+			<if test="ext4 != null">
+				,EXT4
+			</if>
+			<if test="ext5 != null">
+				,EXT5
+			</if>
+			<if test="ext6 != null">
+				,EXT6
+			</if>
+			<if test="ext7 != null">
+				,ext7
+			</if>
+			<if test="ext8 != null">
+				,ext8
+			</if>
+			<if test="ext9 != null">
+				,ext9
+			</if>
+			<if test="ext10 != null">
+				,ext10
+			</if>
+			<if test="ext11 != null">
+				,ext11
+			</if>
+			<if test="ext12 != null">
+				,ext12
+			</if>
+			<if test="ext13 != null">
+				,ext13
+			</if>
+			<if test="ext14 != null">
+				,ext14
+			</if>
+			<if test="ext15 != null">
+				,ext15
+			</if>
+			<if test="ext16 != null">
+				,ext16
+			</if>
+			<if test="ext17 != null">
+				,ext17
+			</if>
+			<if test="ext18 != null">
+				,ext18
+			</if>
+			<if test="ext19 != null">
+				,ext19
+			</if>
+			<if test="ext20 != null">
+				,ext20
+			</if>
+			<if test="extendedColumns != null and  extendedColumns.size() &gt; 0">
+	          <foreach collection="extendedColumns" item="column">
+			    <if test="column.value != null">
+				,${column.columnName}
+				</if>
+			  </foreach>
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="nodeId != null">
+				,#{nodeId, jdbcType=BIGINT}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="desc != null">
+				,#{desc, jdbcType=VARCHAR}
+			</if>
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="value != null">
+				,#{value, jdbcType=VARCHAR}
+			</if>
+			<if test="sort != null">
+				,#{sort, jdbcType=INTEGER}
+			</if>
+			<if test="blocked != null">
+				,#{blocked, jdbcType=INTEGER}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="ext1 != null">
+				,#{ext1, jdbcType=VARCHAR}
+			</if>
+			<if test="ext2 != null">
+				,#{ext2, jdbcType=VARCHAR}
+			</if>
+			<if test="ext3 != null">
+				,#{ext3, jdbcType=VARCHAR}
+			</if>
+			<if test="ext4 != null">
+				,#{ext4, jdbcType=VARCHAR}
+			</if>
+			<if test="ext5 != null">
+				,#{ext5, jdbcType=TIMESTAMP}
+			</if>
+			<if test="ext6 != null">
+				,#{ext6, jdbcType=TIMESTAMP}
+			</if>
+			<if test="ext7 != null">
+				,#{ext7, jdbcType=TIMESTAMP}
+			</if>
+			<if test="ext8 != null">
+				,#{ext8, jdbcType=TIMESTAMP}
+			</if>
+			<if test="ext9 != null">
+				,#{ext9, jdbcType=TIMESTAMP}
+			</if>
+			<if test="ext10 != null">
+				,#{ext10, jdbcType=TIMESTAMP}
+			</if>
+			<if test="ext11 != null">
+				,#{ext11, jdbcType=BIGINT}
+			</if>
+			<if test="ext12 != null">
+				,#{ext12, jdbcType=BIGINT}
+			</if>
+			<if test="ext13 != null">
+				,#{ext13, jdbcType=BIGINT}
+			</if>
+			<if test="ext14 != null">
+				,#{ext14, jdbcType=BIGINT}
+			</if>
+			<if test="ext15 != null">
+				,#{ext15, jdbcType=BIGINT}
+			</if>
+			<if test="ext16 != null">
+				,#{ext16, jdbcType=DOUBLE}
+			</if>
+			<if test="ext17 != null">
+				,#{ext17, jdbcType=DOUBLE}
+			</if>
+			<if test="ext18 != null">
+				,#{ext18, jdbcType=DOUBLE}
+			</if>
+			<if test="ext19 != null">
+				,#{ext19, jdbcType=DOUBLE}
+			</if>
+			<if test="ext20 != null">
+				,#{ext20, jdbcType=DOUBLE}
+			</if>
+			<include refid="com.glaf.core.mapper.TableDataMapper.insertExtendedTableDataSql" />
+		</trim>
+	</insert>
+
+
+	<update id="updateDictory" parameterType="com.glaf.base.modules.sys.model.Dictory">
+		update sys_dictory
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="nodeId != null">
+				TYPEID = #{nodeId, jdbcType=BIGINT},
+			</if>
+			<if test="name != null">
+				NAME = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="desc != null">
+				DICTDESC = #{desc, jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				CODE = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="value != null">
+				VALUE_ = #{value, jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				SORT = #{sort, jdbcType=INTEGER},
+			</if>
+			<if test="blocked != null">
+				BLOCKED = #{blocked, jdbcType=INTEGER},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="ext1 != null">
+				EXT1 = #{ext1, jdbcType=VARCHAR},
+			</if>
+			<if test="ext2 != null">
+				EXT2 = #{ext2, jdbcType=VARCHAR},
+			</if>
+			<if test="ext3 != null">
+				EXT3 = #{ext3, jdbcType=VARCHAR},
+			</if>
+			<if test="ext4 != null">
+				EXT4 = #{ext4, jdbcType=VARCHAR},
+			</if>
+			<if test="ext5 != null">
+				EXT5 = #{ext5, jdbcType=TIMESTAMP},
+			</if>
+			<if test="ext6 != null">
+				EXT6 = #{ext6, jdbcType=TIMESTAMP},
+			</if>
+			<if test="ext7 != null">
+				ext7 = #{ext7, jdbcType=TIMESTAMP},
+			</if>
+			<if test="ext8 != null">
+				ext8 = #{ext8, jdbcType=TIMESTAMP},
+			</if>
+			<if test="ext9 != null">
+				ext9 = #{ext9, jdbcType=TIMESTAMP},
+			</if>
+			<if test="ext10 != null">
+				ext10 = #{ext10, jdbcType=TIMESTAMP},
+			</if>
+			<if test="ext11 != null">
+				ext11 = #{ext11, jdbcType=BIGINT},
+			</if>
+			<if test="ext12 != null">
+				ext12 = #{ext12, jdbcType=BIGINT},
+			</if>
+			<if test="ext13 != null">
+				ext13 = #{ext13, jdbcType=BIGINT},
+			</if>
+			<if test="ext14 != null">
+				ext14 = #{ext14, jdbcType=BIGINT},
+			</if>
+			<if test="ext15 != null">
+				ext15 = #{ext15, jdbcType=BIGINT},
+			</if>
+			<if test="ext16 != null">
+				ext16 = #{ext16, jdbcType=DOUBLE},
+			</if>
+			<if test="ext17 != null">
+				ext17 = #{ext17, jdbcType=DOUBLE},
+			</if>
+			<if test="ext18 != null">
+				ext18 = #{ext18, jdbcType=DOUBLE},
+			</if>
+			<if test="ext19 != null">
+				ext19 = #{ext19, jdbcType=DOUBLE},
+			</if>
+			<if test="ext20 != null">
+				ext20 = #{ext20, jdbcType=DOUBLE},
+			</if>
+
+			<include refid="com.glaf.core.mapper.TableDataMapper.updateExtendedTableDataSql" />
+
+		</trim>
+		where
+		ID = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteDictoryById" parameterType="long">
+		delete from
+		sys_dictory
+		where ID = #{id}
+	</delete>
+
+
+	<delete id="deleteDictorys" parameterType="com.glaf.base.modules.sys.query.DictoryQuery">
+		delete from sys_dictory
+		where (
+		ID IN
+		<foreach item="x_rowId" index="index" collection="rowIds"
+			open="(" separator="," close=")">
+			#{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getDictoryById" parameterType="long" resultMap="dictoryResultMap">
+		select * from sys_dictory where ID = #{id}
+	</select>
+
+
+	<select id="getDictorys" parameterType="com.glaf.base.modules.sys.query.DictoryQuery"
+		resultMap="dictoryResultMap">
+		select E.*
+		<include refid="selectDictorysSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.SORT asc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getDictoryCount" parameterType="com.glaf.base.modules.sys.query.DictoryQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDictorysSql" />
+	</select>
+
+
+	<sql id="selectDictorysSql">
+
+		from sys_dictory E
+
+		<where>
+			1 = 1
+
+			<if test="nodeId != null">
+				and E.TYPEID = #{nodeId}
+			</if>
+
+			<if test="nodeIds != null and nodeIds.size() &gt; 0">
+				and E.TYPEID IN
+				<foreach item="x_nodeId" index="index" collection="nodeIds"
+					open="(" separator="," close=")">
+					#{x_nodeId}
+				</foreach>
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.NAME = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME like #{nameLike}
+			</if>
+
+			<if test="names != null and names.size() &gt; 0">
+				and E.NAME IN
+				<foreach item="x_name" index="index" collection="names"
+					open="(" separator="," close=")">
+					#{x_name}
+				</foreach>
+			</if>
+
+			<if test="descLike != null and descLike != '' ">
+				and E.DICTDESC like #{descLike}
+			</if>
+
+			<if test="code != null and code != '' ">
+				and E.CODE = #{code}
+			</if>
+
+			<if test="codeLike != null and codeLike != '' ">
+				and E.CODE like #{codeLike}
+			</if>
+
+			<if test="codes != null and codes.size() &gt; 0">
+				and E.CODE IN
+				<foreach item="x_code" index="index" collection="codes"
+					open="(" separator="," close=")">
+					#{x_code}
+				</foreach>
+			</if>
+
+			<if test="sortGreaterThan != null">
+				and E.SORT &gt; #{sortGreaterThan}
+			</if>
+
+			<if test="sortGreaterThanOrEqual != null">
+				and E.SORT &gt;= #{sortGreaterThanOrEqual}
+			</if>
+
+			<if test="sortLessThan != null">
+				and E.SORT &lt; #{sortLessThan}
+			</if>
+
+			<if test="sortLessThanOrEqual != null">
+				and E.SORT &lt;= #{sortLessThanOrEqual}
+			</if>
+
+			<if test="blocked != null">
+				and E.BLOCKED = #{blocked}
+			</if>
+			
+			<if test="idNotEqual != null">
+				and E.id != #{idNotEqual}
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

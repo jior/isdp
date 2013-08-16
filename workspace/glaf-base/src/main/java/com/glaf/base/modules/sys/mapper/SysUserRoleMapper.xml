@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.modules.sys.mapper.SysUserRoleMapper">
+
+	<resultMap id="sysUserRoleResultMap" type="com.glaf.base.modules.sys.model.SysUserRole">
+		<id property="id" column="ID" jdbcType="BIGINT" />
+		<result property="userId" column="USERID" jdbcType="BIGINT" />
+		<result property="roleId" column="ROLEID" jdbcType="BIGINT" />
+		<result property="authorized" column="AUTHORIZED" jdbcType="INTEGER" />
+		<result property="authorizeFrom" column="AUTHORIZEFROM"
+			jdbcType="BIGINT" />
+		<result property="availDateStart" column="AVAILDATESTART"
+			jdbcType="TIMESTAMP" />
+		<result property="availDateEnd" column="AVAILDATEEND" jdbcType="TIMESTAMP" />
+		<result property="processDescription" column="PROCESSDESCRIPTION"
+			jdbcType="VARCHAR" />
+		<result property="createDate" column="CREATEDATE" jdbcType="TIMESTAMP" />
+		<result property="createBy" column="CREATEBY" jdbcType="VARCHAR" />
+		<association property="role" column="ROLEID" select="com.glaf.base.modules.sys.mapper.SysRoleMapper.getSysRoleById"/>
+	</resultMap>
+
+
+	<insert id="insertSysUserRole" parameterType="com.glaf.base.modules.sys.model.SysUserRole">
+		insert into userrole
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID
+			<if test="userId != null">
+				,USERID
+			</if>
+			<if test="roleId != null">
+				,ROLEID
+			</if>
+			<if test="authorized != null">
+				,AUTHORIZED
+			</if>
+			<if test="authorizeFrom != null">
+				,AUTHORIZEFROM
+			</if>
+			<if test="availDateStart != null">
+				,AVAILDATESTART
+			</if>
+			<if test="availDateEnd != null">
+				,AVAILDATEEND
+			</if>
+			<if test="processDescription != null">
+				,PROCESSDESCRIPTION
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE
+			</if>
+			<if test="createBy != null">
+				,CREATEBY
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="userId != null">
+				,#{userId, jdbcType=BIGINT}
+			</if>
+			<if test="roleId != null">
+				,#{roleId, jdbcType=BIGINT}
+			</if>
+			<if test="authorized != null">
+				,#{authorized, jdbcType=INTEGER}
+			</if>
+			<if test="authorizeFrom != null">
+				,#{authorizeFrom, jdbcType=BIGINT}
+			</if>
+			<if test="availDateStart != null">
+				,#{availDateStart, jdbcType=TIMESTAMP}
+			</if>
+			<if test="availDateEnd != null">
+				,#{availDateEnd, jdbcType=TIMESTAMP}
+			</if>
+			<if test="processDescription != null">
+				,#{processDescription, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateSysUserRole" parameterType="com.glaf.base.modules.sys.model.SysUserRole">
+		update userrole
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="userId != null">
+				USERID = #{userId, jdbcType=BIGINT},
+			</if>
+			<if test="roleId != null">
+				ROLEID = #{roleId, jdbcType=BIGINT},
+			</if>
+			<if test="authorized != null">
+				AUTHORIZED = #{authorized, jdbcType=INTEGER},
+			</if>
+			<if test="authorizeFrom != null">
+				AUTHORIZEFROM = #{authorizeFrom, jdbcType=BIGINT},
+			</if>
+			<if test="availDateStart != null">
+				AVAILDATESTART = #{availDateStart, jdbcType=TIMESTAMP},
+			</if>
+			<if test="availDateEnd != null">
+				AVAILDATEEND = #{availDateEnd, jdbcType=TIMESTAMP},
+			</if>
+			<if test="processDescription != null">
+				PROCESSDESCRIPTION = #{processDescription,
+				jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+		ID = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteSysUserRoleById" parameterType="long">
+		delete from
+		userrole
+		where ID = #{id}
+	</delete>
+
+
+	<delete id="deleteSysUserRoles" parameterType="com.glaf.base.modules.sys.query.SysUserRoleQuery">
+		delete from userrole
+		where (
+		ID IN
+		<foreach item="x_rowId" index="index" collection="rowIds"
+			open="(" separator="," close=")">
+			#{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getSysUserRoleById" parameterType="long"
+		resultMap="sysUserRoleResultMap">
+		select * from userrole where ID = #{id}
+	</select>
+
+
+	<select id="getSysUserRolesByUserId" parameterType="String"
+		resultMap="sysUserRoleResultMap">
+		select * from userrole where USERID = #{userId}
+	</select>
+
+
+	<select id="getProcessByUser" parameterType="String" resultType="map">
+		select distinct t.MODULENAME as moduleName, t.PROCESSNAME as
+		processName, t.OBJECTVALUE as objectValue
+		from sys_todo t
+		where
+		t.TYPE='1'
+		and t.ROLEID in
+		(
+		select r.ID from sys_dept_role sdr, net_role
+		r where r.ID=sdr.ROLEID and
+		sdr.id in
+		( select dr.ID from
+		userrole ur, sys_dept_role dr where
+		ur.ROLEID = dr.ID and
+		ur.userid=#{userId} )
+		)
+	</select>
+
+
+	<select id="getSysUserRoles" parameterType="com.glaf.base.modules.sys.query.SysUserRoleQuery"
+		resultMap="sysUserRoleResultMap">
+		select E.*
+		<include refid="selectSysUserRolesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getSysUserRoleCount" parameterType="com.glaf.base.modules.sys.query.SysUserRoleQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectSysUserRolesSql" />
+	</select>
+
+
+	<sql id="selectSysUserRolesSql">
+
+		from userrole E
+
+		<where>
+			1 = 1
+
+			<if test="userId != null">
+				and E.USERID = #{userId}
+			</if>
+
+			<if test="userIds != null and userIds.size() &gt; 0">
+				and E.USERID IN
+				<foreach item="x_userId" index="index" collection="userIds"
+					open="(" separator="," close=")">
+					#{x_userId}
+				</foreach>
+			</if>
+
+			<if test="roleId != null">
+				and E.ROLEID = #{roleId}
+			</if>
+
+			<if test="roleIds != null and roleIds.size() &gt; 0">
+				and E.ROLEID IN
+				<foreach item="x_roleId" index="index" collection="roleIds"
+					open="(" separator="," close=")">
+					#{x_roleId}
+				</foreach>
+			</if>
+
+			<if test="authorized != null">
+				and E.AUTHORIZED = #{authorized}
+			</if>
+
+			<if test="authorizeFrom != null">
+				and E.AUTHORIZEFROM = #{authorizeFrom}
+			</if>
+
+			<if test="authorizeFroms != null and authorizeFroms.size() &gt; 0">
+				and E.AUTHORIZEFROM IN
+				<foreach item="x_authorizeFrom" index="index" collection="authorizeFroms"
+					open="(" separator="," close=")">
+					#{x_authorizeFrom}
+				</foreach>
+			</if>
+
+			<if test="availDateStartGreaterThanOrEqual != null">
+				and E.AVAILDATESTART &gt;=
+				#{availDateStartGreaterThanOrEqual}
+			</if>
+
+			<if test="availDateStartLessThanOrEqual != null">
+				and E.AVAILDATESTART &lt;=
+				#{availDateStartLessThanOrEqual}
+			</if>
+
+			<if test="availDateEndGreaterThanOrEqual != null">
+				and E.AVAILDATEEND &gt;=
+				#{availDateEndGreaterThanOrEqual}
+			</if>
+
+			<if test="availDateEndLessThanOrEqual != null">
+				and E.AVAILDATEEND &lt;= #{availDateEndLessThanOrEqual}
+			</if>
+
+			<if
+				test="processDescriptionLike != null and processDescriptionLike != '' ">
+				and E.PROCESSDESCRIPTION like #{processDescriptionLike}
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>
