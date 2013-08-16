@@ -170,7 +170,7 @@ if(list!=null){
 %>
   <tr <%=i%2==0?"":"class='list-back'"%>> 
     <td width="5%" class="td-cb"> 
-	<input type="checkbox" name="id" value="<%= RequestUtils.encodeString(bean.getId())%>" onClick="checkOperation(this.form)"> 
+	<input type="checkbox" name="id" value="<%= RequestUtils.encodeString(bean.getActorId())%>" onClick="checkOperation(this.form)"> 
 	</td>
     <td width="5%" class="td-no"><%=((pager.getCurrentPageNo()-1)*pageSize + i+1)%></td>
     <td width="8%" class="td-text"><%=bean.getAccount()%>&nbsp;</td>
