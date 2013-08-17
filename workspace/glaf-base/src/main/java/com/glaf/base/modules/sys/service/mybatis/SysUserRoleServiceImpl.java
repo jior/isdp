@@ -80,12 +80,14 @@ public class SysUserRoleServiceImpl implements SysUserRoleService {
 			String startDate, String endDate, int mark, String processNames,
 			String processDescriptions) {
 		boolean ret = false;
-		if (null != processNames && processNames.length() > 0)
+		if (null != processNames && processNames.length() > 0){
 			processNames = processNames.substring(0,
 					processNames.lastIndexOf(","));
-		if (null != processDescriptions && processDescriptions.length() > 0)
+		}
+		if (null != processDescriptions && processDescriptions.length() > 0){
 			processDescriptions = processDescriptions.substring(0,
 					processDescriptions.lastIndexOf(","));
+		}
 		SysUser fromUser = sysUserService.findById(fromUserId);
 		SysUser toUser = sysUserService.findById(toUserId);
 		if (fromUser == null || toUser == null
@@ -95,7 +97,8 @@ public class SysUserRoleServiceImpl implements SysUserRoleService {
 		// 取出授权人fromUser的角色集合
 		SysUserRoleQuery query = new SysUserRoleQuery();
 		query.userId(fromUserId);
-		query.authorized(0);
+		query.authorized(0);//0-角色用户
+		//找到授权人的角色，把TA授给代理人 
 		List<SysUserRole> userRoles = this.list(query);
 		Iterator<SysUserRole> iter = userRoles.iterator();
 		while (iter.hasNext()) {
@@ -243,6 +246,7 @@ public class SysUserRoleServiceImpl implements SysUserRoleService {
 
 		SysUserRoleQuery query = new SysUserRoleQuery();
 		query.authorizeFrom(user.getActorId());
+		query.authorized(1);
 
 		List<SysUserRole> roles = this.list(query);
 		if (roles != null && !roles.isEmpty()) {

@@ -161,13 +161,11 @@
 		t.TYPE='1'
 		and t.ROLEID in
 		(
-		select r.ID from sys_dept_role sdr, net_role
-		r where r.ID=sdr.ROLEID and
-		sdr.id in
-		( select dr.ID from
-		userrole ur, sys_dept_role dr where
-		ur.ROLEID = dr.ID and
-		ur.userid=#{userId} )
+		  select r.code from net_role r
+		  inner join userrole ur
+		  on ur.ROLEID = r.ID 
+		  and ur.userid=#{userId} 
+		  and ur.AUTHORIZED=1
 		)
 	</select>
 

@@ -74,11 +74,14 @@ public class SysUserRoleController {
 		String processNames = request.getParameter("processNames");
 		String processDescriptions = request
 				.getParameter("processDescriptions");
+		logger.debug("fromUserId:"+fromUserId);
+		logger.debug("toUserId:"+toUserId);
 		if (!sysUserRoleService.isAuthorized(fromUserId, toUserId)) {// ÒÑÊÚÈ¨
 			sysUserRoleService.addRole(fromUserId, toUserId, startDate,
 					endDate, mark, processNames, processDescriptions);
+			return ResponseUtils.responseJsonResult(true);
 		}
-		return ResponseUtils.responseJsonResult(true);
+		return ResponseUtils.responseJsonResult(false);
 	}
 
 	@ResponseBody
