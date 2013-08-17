@@ -18,7 +18,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title></title>
+<title>用户授权</title>
 <link href="<%=request.getContextPath()%>/css/site.css" type="text/css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/scripts/artDialog/skins/default.css" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/scripts/calendar/skins/aqua/theme.css" type="text/css" rel="stylesheet"/>
@@ -47,6 +47,7 @@ function checkOperation(form){
     document.all.btn_auth.disabled=true;
   }
 }
+
 function auth(form){
   var id = "0";
   for (var i=0;i<form.id.length;i++) {
@@ -62,6 +63,7 @@ function auth(form){
   //window.open(url);
   //art.dialog.open(url, { height: 580, width: 600, title: "用户授权", lock: true, scrollbars:"no" }, false);
 }
+
 function doSearch(form){
   var url=context + "/mx/sys/sysUserRole/showUsers?" + getSearchElement(form);
   window.location = url;

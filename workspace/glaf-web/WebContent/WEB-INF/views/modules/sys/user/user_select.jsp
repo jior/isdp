@@ -87,9 +87,9 @@ while(iter.hasNext()){
 %>        		
 		<tr class="<%= i % 2 == 0 ? "" : "list-back" %>">
 		  <%if(multDate==0){%>
-          <td width="7%" class="td-cb"><input type="checkbox" name="id" value="<%=user.getId()%>" title="<%=user.getName()%>" code="<%=user.getEmail()%>" account="<%=user.getAccount()%>" ></td>
+          <td width="7%" class="td-cb"><input type="checkbox" name="id" value="<%=user.getActorId()%>" title="<%=user.getName()%>" code="<%=user.getEmail()%>" account="<%=user.getAccount()%>" ></td>
           <%}else{ %>
-          <td width="7%" class="td-cb"><input type="radio" name="id" value="<%=user.getId()%>" title="<%=user.getName()%>" code="<%=user.getEmail()%>" account="<%=user.getAccount()%>" ></td>
+          <td width="7%" class="td-cb"><input type="radio" name="id" value="<%=user.getActorId()%>" title="<%=user.getName()%>" code="<%=user.getEmail()%>" account="<%=user.getAccount()%>" ></td>
           <%} %>
           <td width="5%" class="td-no"><%=((pager.getCurrentPageNo()-1)*pageSize + i)%></td>
           <td width="55%" class="td-text"><%= user.getName() %>[<%=user.getAccount()%>]</td>
@@ -104,7 +104,7 @@ while(iter.hasNext()){
 	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
           <td height="30" align="center"><%
-String params = WebUtil.getQueryString(request);
+          String params = WebUtil.getQueryString(request);
 %>
                 <jsp:include page="/WEB-INF/views/inc/show_page.jsp" flush="true">
                 <jsp:param name="total" value="<%=pager.getTotalRecordCount()%>"/>    

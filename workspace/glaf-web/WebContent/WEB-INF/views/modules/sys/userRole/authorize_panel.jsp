@@ -30,6 +30,7 @@ var fromUserId="<%=RequestUtils.encodeString(user.getActorId())%>";
 var num=0;
 var num2=0;
 var mark=0;
+
 function checkOperation(form){
   num = getCheckedBoxNum(form,"id");
   if(num>0){
@@ -38,6 +39,7 @@ function checkOperation(form){
     document.all.btn_cancel.disabled=true;
   }
 }
+
 function checkOperation2(form){
   num2 = getCheckedBoxNum(form,"processId");
   if(num2>0){
@@ -46,6 +48,7 @@ function checkOperation2(form){
     document.all.btn_save.disabled=true;
   }
 }
+
 function checkAll_1(form, obj) {
   for (var i=0;i<form.elements.length;i++) {
     var e = form.elements[i];
@@ -54,6 +57,7 @@ function checkAll_1(form, obj) {
 	}
   }
 }
+
 function checkAll_2(form, obj) {
   if(obj.checked){
 		mark=1;//表示全局代理
@@ -76,6 +80,7 @@ function checkAll_2(form, obj) {
 	}
   }
 }
+
 function selectSysUser(referId,referTitle){
   var url = '<%=context%>/mx/sys/user/selectSysUser?multDate=1';
   return ShowDialog(url, 430, 450, false, false, referId, referTitle, false);
@@ -101,6 +106,7 @@ function removeRoleUser(form){
 		});
   }
 }
+
 function addRole(){
   var list = document.getElementsByName("processId");
   var processNames = "";
