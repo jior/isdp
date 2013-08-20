@@ -57,6 +57,8 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 
 	protected SysApplicationMapper sysApplicationMapper;
 
+	protected SysAccessMapper sysAccessMapper;
+
 	protected SysTreeService sysTreeService;
 
 	public SysApplicationServiceImpl() {
@@ -110,18 +112,19 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	}
 
 	@Transactional
-	public void deleteById(Long id) {
-		if (id != null) {
-			sysApplicationMapper.deleteSysApplicationById(id);
+	public void deleteById(Long appId) {
+		if (appId != null && appId > 0) {
+			sysAccessMapper.deleteSysAccessByAppId(appId);
+			sysApplicationMapper.deleteSysApplicationById(appId);
 		}
 	}
 
 	@Transactional
 	public void deleteByIds(List<Long> rowIds) {
 		if (rowIds != null && !rowIds.isEmpty()) {
-			SysApplicationQuery query = new SysApplicationQuery();
-			query.rowIds(rowIds);
-			sysApplicationMapper.deleteSysApplications(query);
+			for (Long appId : rowIds) {
+				this.deleteById(appId);
+			}
 		}
 	}
 
@@ -365,7 +368,56 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 					}
 					if (childrenNodes != null && childrenNodes.size() > 0) {// 有子菜单
 						JSONArray children = this.getUserMenu(bean.getId(),
-								userId);
+								user);
+						item.put("children", children);
+					}
+
+					array.put(item);
+
+				}
+			}
+		}
+		return array;
+	}
+
+	protected JSONArray getUserMenu(long parent, SysUser user) {
+		JSONArray array = new JSONArray();
+		if (user != null) {
+			List<SysApplication> list = null;
+			if (user.isSystemAdmin()) {
+				logger.debug("#admin user=" + user.getName());
+				list = getApplicationList((int) parent);
+			} else {
+				logger.debug("#user=" + user.getName());
+				list = getAccessAppList(parent, user);
+				logger.debug("#app list=" + list);
+			}
+			if (list != null && list.size() > 0) {
+				Iterator<SysApplication> iter = list.iterator();
+				while (iter.hasNext()) {
+					SysApplication bean = (SysApplication) iter.next();
+					if (bean.getLocked() == 1) {
+						continue;
+					}
+					JSONObject item = new JSONObject();
+					item.put("id", String.valueOf(bean.getId()));
+					item.put("nodeId", bean.getNodeId());
+					item.put("showMenu", bean.getShowMenu());
+					item.put("sort", bean.getSort());
+					item.put("description", bean.getDesc());
+					item.put("name", bean.getName());
+					item.put("icon", "icon-sys");
+					item.put("url", bean.getUrl());
+
+					List<SysApplication> childrenNodes = null;
+					if (user.isSystemAdmin()) {
+						childrenNodes = getApplicationList((int) bean.getId());
+					} else {
+						childrenNodes = getAccessAppList(bean.getId(), user);
+					}
+					if (childrenNodes != null && childrenNodes.size() > 0) {// 有子菜单
+						JSONArray children = this.getUserMenu(bean.getId(),
+								user);
 						item.put("children", children);
 					}
 
@@ -440,6 +492,11 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	@Resource
 	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
 		this.sqlSessionTemplate = sqlSessionTemplate;
+	}
+
+	@Resource
+	public void setSysAccessMapper(SysAccessMapper sysAccessMapper) {
+		this.sysAccessMapper = sysAccessMapper;
 	}
 
 	@Resource
