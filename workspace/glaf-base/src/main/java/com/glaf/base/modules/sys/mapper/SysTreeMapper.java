@@ -46,6 +46,10 @@ public interface SysTreeMapper {
 
 	List<SysTree> getSysTrees(SysTreeQuery query);
 
+	List<SysTree> getTreeList(SysTreeQuery query);
+
+	List<SysTree> getTreeListByUsers(SysTreeQuery query);
+
 	void insertSysTree(SysTree model);
 
 	void updateSysTree(SysTree model);

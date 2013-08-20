@@ -223,7 +223,8 @@
 
 		select distinct E.* from sys_tree E
 		inner join sys_dictory D
-		on E.ID = D.TYPEID
+		on E.ID =
+		D.TYPEID
 		where 1=1
 
 		<include refid="getSysTreesSql" />
@@ -235,7 +236,8 @@
 
 		select distinct E.* from sys_tree E
 		inner join sys_department D
-		on E.ID = D.NODEID
+		on E.ID
+		= D.NODEID
 		where 1=1
 
 		<include refid="getSysTreesSql" />
@@ -250,7 +252,8 @@
 
 		select distinct E.* from sys_tree E
 		inner join sys_application D
-		on E.ID = D.NODEID
+		on E.ID
+		= D.NODEID
 		where 1=1
 
 		<include refid="getSysTreesSql" />
@@ -265,7 +268,8 @@
 
 		select distinct E.* from sys_tree E
 		inner join ${relationTable} R
-		on E.ID = R.${relationColumn}
+		on
+		E.ID = R.${relationColumn}
 		where 1=1
 
 		<include refid="getSysTreesSql" />
@@ -279,19 +283,79 @@
 	<select id="getRoleUserTrees" parameterType="com.glaf.base.modules.sys.query.SysUserQuery"
 		resultMap="sysTreeResultMap">
 
-        select distinct E.* from sys_tree E
-		inner join sys_department D
-		on E.ID = D.NODEID
+		select distinct E.* from sys_tree E
+		inner join sys_department
+		D
+		on E.ID =
+		D.NODEID
 		inner join UserInfo U
 		on D.ID = U.DEPID
-		inner join userrole UR
+		inner join
+		userrole UR
 		on U.USERID = UR.USERID
 		inner join net_role R
-		on UR.ROLEID = R.ID
-		where UR.USERID = #{account}
+		on UR.ROLEID =
+		R.ID
+		where
+		UR.USERID = #{account}
 		and R.CODE = #{roleCode}
-		order by E.PARENT asc,
+		order by
+		E.PARENT asc,
 		E.SORT asc
+
+	</select>
+
+
+	<select id="getTreeList" parameterType="com.glaf.base.modules.sys.query.SysTreeQuery"
+		resultType="com.glaf.base.modules.sys.model.SysTree">
+
+		select a.name, a.url, t.id, t.parent as parentId, t.sort as
+		sortNo, t.treeid as treeId, t.code, t.locked
+		from sys_tree t
+		inner join sys_application a
+		on t.id = a.nodeid
+		where t.treeid like #{treeIdLike}
+		and t.treeid != #{treeId}
+		order by t.treeid, t.sort
+
+	</select>
+
+
+	<select id="getTreeListByUsers" parameterType="com.glaf.base.modules.sys.query.SysTreeQuery"
+		resultType="com.glaf.base.modules.sys.model.SysTree">
+
+		select a.name as name, a.url as url, t.id as id, t.parent as parentId,
+		t.sort as sortNo,
+		t.treeid as treeId, t.code as code, t.locked as locked
+		from sys_tree t
+		inner join sys_application a
+		on t.id = a.nodeid
+		inner join sys_access c
+		on a.id = c.appId
+		where t.treeid like #{treeIdLike}
+		and c.roleId in (
+		  select ur.roleid from userrole ur
+		  inner join UserInfo u
+		  on u.UserID = ur.userid
+		  where 1=1
+		<choose>
+			<when test="actorId != null">
+				and u.UserID = #{actorId}
+			</when>
+			<when test="actorIds != null and actorIds.size !=0">
+				and u.UserID IN
+				<foreach item="x_actorId" index="index" collection="actorIds"
+					open="(" separator="," close=")">
+					#{x_actorId}
+				</foreach>
+			</when>
+			<otherwise>
+				and 1=0
+			</otherwise>
+		</choose>
+
+		)
+		order by t.treeid, t.sort
 
 	</select>
 
