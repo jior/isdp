@@ -66,7 +66,7 @@ request.setAttribute("theme", theme);
              //alert(treeNode.id);
 			 $("#treepInfoIndexId").val(treeNode.indexId);
 			 //updateNode(treeId, treeNode);
-			 loadData('${contextPath}/rs/isdp/cellFillform/json?indexId=${cellTreedot.indexId}&treepInfoIndexId='+treeNode.indexId);
+			 loadData('${contextPath}/rs/isdp/cellFillForm/json?indexId=${cellTreedot.indexId}&treepInfoIndexId='+treeNode.indexId);
 		}
 
 		function loadData(url){
@@ -82,7 +82,7 @@ request.setAttribute("theme", theme);
 		  if(treepInfoIndexId != ''){
 			 //var pager = $('#myGridData').datagrid('getPager');
 			 //alert(pager.pageNumber);
-             var link = '${contextPath}/rs/isdp/cellFillform/json?indexId=${cellTreedot.indexId}&treepInfoIndexId='+treepInfoIndexId+"&page="+pager.pageNumber;
+             var link = '${contextPath}/rs/isdp/cellFillForm/json?indexId=${cellTreedot.indexId}&treepInfoIndexId='+treepInfoIndexId+"&page="+pager.pageNumber;
             loadData(link);
 		  }
 	  }
@@ -102,7 +102,7 @@ request.setAttribute("theme", theme);
 			 var pageNo = param.page;
 			 var rows = param.rows;
 			 var treepInfoIndexId = $("#treepInfoIndexId").val();
-			 var link = '${contextPath}/rs/isdp/cellFillform/json?indexId=${cellTreedot.indexId}&treepInfoIndexId='+treepInfoIndexId+"&page="+pageNo+"&rows="+rows;
+			 var link = '${contextPath}/rs/isdp/cellFillForm/json?indexId=${cellTreedot.indexId}&treepInfoIndexId='+treepInfoIndexId+"&page="+pageNo+"&rows="+rows;
 			 //alert(link);
              //dg.url=link;
 			 $.post(link,{name:'mike'},function(data){
