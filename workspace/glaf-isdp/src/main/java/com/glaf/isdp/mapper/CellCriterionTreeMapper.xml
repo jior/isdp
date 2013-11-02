@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.CellCriterionTreeMapper">
+
+	<resultMap id="cellCriterionTreeResultMap"	type="com.glaf.isdp.domain.CellCriterionTree">
+		<id property="indexId" column="index_id" jdbcType="INTEGER" />
+		<result property="treeprojIndex" column="treeproj_index" jdbcType="INTEGER"/>
+		<result property="num" column="num" jdbcType="VARCHAR"/>
+		<result property="indexName" column="index_name" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="isuse" column="isuse" jdbcType="INTEGER"/>
+		<result property="nodeico" column="nodeico" jdbcType="INTEGER"/>
+		<result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+		<result property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="inttype" column="inttype" jdbcType="INTEGER"/>
+	</resultMap>
+
+
+	<resultMap id="cellCriterionTreeHashMap"	type="java.util.HashMap">
+		<id property="indexId" column="index_id" jdbcType="INTEGER" />
+		<result property="treeprojIndex" column="treeproj_index" jdbcType="INTEGER"/>
+		<result property="num" column="num" jdbcType="VARCHAR"/>
+		<result property="indexName" column="index_name" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="isuse" column="isuse" jdbcType="INTEGER"/>
+		<result property="nodeico" column="nodeico" jdbcType="INTEGER"/>
+		<result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+		<result property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="inttype" column="inttype" jdbcType="INTEGER"/>
+	</resultMap>
+ 
+	<insert id="insertCellCriterionTree" parameterType="com.glaf.isdp.domain.CellCriterionTree">
+		insert into cell_criterion_tree 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    index_id
+			<if test="treeprojIndex != null">
+				,treeproj_index 
+			</if>
+			<if test="num != null">
+				,num 
+			</if>
+			<if test="indexName != null">
+				,index_name 
+			</if>
+			<if test="content != null">
+				,content 
+			</if>
+			<if test="isuse != null">
+				,isuse 
+			</if>
+			<if test="nodeico != null">
+				,nodeico 
+			</if>
+			<if test="parentId != null">
+				,parent_id 
+			</if>
+			<if test="listno != null">
+				,listno 
+			</if>
+			<if test="id != null">
+				,id 
+			</if>
+			<if test="inttype != null">
+				,inttype 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{indexId, jdbcType=INTEGER}
+	     
+			<if test="treeprojIndex != null">
+				,#{treeprojIndex, jdbcType=INTEGER}
+			</if>
+			<if test="num != null">
+				,#{num, jdbcType=VARCHAR}
+			</if>
+			<if test="indexName != null">
+				,#{indexName, jdbcType=VARCHAR}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="isuse != null">
+				,#{isuse, jdbcType=INTEGER}
+			</if>
+			<if test="nodeico != null">
+				,#{nodeico, jdbcType=INTEGER}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=INTEGER}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+			<if test="id != null">
+				,#{id, jdbcType=VARCHAR}
+			</if>
+			<if test="inttype != null">
+				,#{inttype, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateCellCriterionTree" parameterType="com.glaf.isdp.domain.CellCriterionTree">
+		update
+		cell_criterion_tree
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="treeprojIndex != null">
+				treeproj_index = #{treeprojIndex, jdbcType=INTEGER},
+			</if>
+			<if test="num != null">
+				num = #{num, jdbcType=VARCHAR},
+			</if>
+			<if test="indexName != null">
+				index_name = #{indexName, jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="isuse != null">
+				isuse = #{isuse, jdbcType=INTEGER},
+			</if>
+			<if test="nodeico != null">
+				nodeico = #{nodeico, jdbcType=INTEGER},
+			</if>
+			<if test="parentId != null">
+				parent_id = #{parentId, jdbcType=INTEGER},
+			</if>
+			<if test="listno != null">
+				listno = #{listno, jdbcType=INTEGER},
+			</if>
+			<if test="id != null">
+				id = #{id, jdbcType=VARCHAR},
+			</if>
+			<if test="inttype != null">
+				inttype = #{inttype, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+          index_id = #{indexId, jdbcType=INTEGER}
+		
+	</update>
+
+ 
+	<delete id="deleteCellCriterionTreeById" parameterType="string"> 
+        delete from cell_criterion_tree
+        where id = #{id}
+	</delete>
+
+	<delete id="deleteCellCriterionTreeByIndexId" parameterType="int"> 
+        delete from cell_criterion_tree
+        where index_id = #{indexId}
+	</delete>
+	
+
+	<delete id="deleteCellCriterionTrees" parameterType="com.glaf.isdp.query.CellCriterionTreeQuery">
+		delete from cell_criterion_tree
+		where ( index_id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getCellCriterionTreeById" parameterType="string" resultMap="cellCriterionTreeResultMap">
+		select * from cell_criterion_tree where id = #{id}
+	</select>
+
+	<select id="getCellCriterionTreeByIndexId" parameterType="int" resultMap="cellCriterionTreeResultMap">
+		select * from cell_criterion_tree where index_id = #{indexId}
+	</select>
+	
+	<select id="getCellCriterionTreesByTasksIndexId" parameterType="map" resultMap="cellCriterionTreeResultMap">
+		
+		select * from cell_criterion_tree where index_id in(
+    		select order_index from cell_repinfo where filedot_fileid in 
+        		( select filedot_fileid from mycell_tasks_sub where index_id=#{indexId} and intistasks=#{intistasks})
+            and order_index is not null
+           )
+
+	</select>
+
+
+	<select id="getCellCriterionTreeCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellCriterionTreesSql" />
+	</select>
+
+
+	<select id="getCellCriterionTreeCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellCriterionTreeQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellCriterionTreesSql" />
+	</select>
+
+
+	<select id="getCellCriterionTrees" 
+		parameterType="map"
+		resultMap="cellCriterionTreeResultMap">
+		select E.*
+		<include refid="selectCellCriterionTreesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getCellCriterionTreesByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellCriterionTreeQuery"
+		resultMap="cellCriterionTreeResultMap">
+		select E.*
+		<include refid="selectCellCriterionTreesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectCellCriterionTreesSql">
+
+		from cell_criterion_tree E
+		 
+		<where>
+
+		       1 = 1  
+
+
+			<if test="treeprojIndex != null">
+				and E.treeproj_index = #{treeprojIndex}
+			</if>
+
+			<if test="treeprojIndexGreaterThanOrEqual != null">
+				and E.treeproj_index &gt;= #{treeprojIndexGreaterThanOrEqual}
+			</if>
+
+			<if test="treeprojIndexLessThanOrEqual != null">
+				and E.treeproj_index &lt;= #{treeprojIndexLessThanOrEqual}
+			</if>
+
+			<if test="treeprojIndexs != null and treeprojIndexs.size() &gt; 0">
+			    and E.treeproj_index IN
+				<foreach item="x_treeprojIndex" index="index" collection="treeprojIndexs" 
+					open="(" separator="," close=")">
+                  #{x_treeprojIndex}
+				</foreach>
+			</if>
+
+			<if test="numLike != null and numLike != '' ">
+				and E.num like #{numLike}
+			</if>
+
+			<if test="indexNameLike != null and indexNameLike != '' ">
+				and E.index_name like #{indexNameLike}
+			</if>
+
+			<if test="contentLike != null and contentLike != '' ">
+				and E.content like #{contentLike}
+			</if>
+
+			<if test="isuse != null">
+				and E.isuse = #{isuse}
+			</if>
+
+			<if test="isuseGreaterThanOrEqual != null">
+				and E.isuse &gt;= #{isuseGreaterThanOrEqual}
+			</if>
+
+			<if test="isuseLessThanOrEqual != null">
+				and E.isuse &lt;= #{isuseLessThanOrEqual}
+			</if>
+
+			<if test="isuses != null and isuses.size() &gt; 0">
+			    and E.isuse IN
+				<foreach item="x_isuse" index="index" collection="isuses" 
+					open="(" separator="," close=")">
+                  #{x_isuse}
+				</foreach>
+			</if>
+
+			<if test="idLike != null and idLike != '' ">
+				and E.id like #{idLike}
+			</if>
+			
+			<if test="ids != null and ids.size() &gt; 0">
+			    and E.id IN
+				<foreach item="x_id" index="index" collection="ids" 
+					open="(" separator="," close=")">
+                  #{x_id}
+				</foreach>
+			</if>
+			
+			<if test="parentId != null">
+				and E.parent_id = #{parentId}
+			</if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+			    and E.parent_id IN
+				<foreach item="x_parentId" index="index" collection="parentIds" 
+					open="(" separator="," close=")">
+                  #{x_parentId}
+				</foreach>
+			</if>
+
+			<if test="inttype != null">
+				and E.inttype = #{inttype}
+			</if>
+
+			<if test="inttypeGreaterThanOrEqual != null">
+				and E.inttype &gt;= #{inttypeGreaterThanOrEqual}
+			</if>
+
+			<if test="inttypeLessThanOrEqual != null">
+				and E.inttype &lt;= #{inttypeLessThanOrEqual}
+			</if>
+
+			<if test="inttypes != null and inttypes.size() &gt; 0">
+			    and E.inttype IN
+				<foreach item="x_inttype" index="index" collection="inttypes" 
+					open="(" separator="," close=")">
+                  #{x_inttype}
+				</foreach>
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

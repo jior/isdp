@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.CellTableTreeMapper">
+
+	<resultMap id="cellTableTreeResultMap"	type="com.glaf.isdp.domain.CellTableTree">
+		<id property="indexId" column="index_id" jdbcType="INTEGER" />
+		<result property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+		<result property="indexName" column="index_name" jdbcType="VARCHAR"/>
+		<result property="nlevel" column="nlevel" jdbcType="INTEGER"/>
+		<result property="nodeico" column="nodeico" jdbcType="INTEGER"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+		<result property="tabletype" column="tabletype" jdbcType="INTEGER"/>
+		<result property="intdel" column="intdel" jdbcType="INTEGER"/>
+		<result property="busiessId" column="busiess_id" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="num" column="num" jdbcType="VARCHAR"/>
+		<result property="menuindex" column="menuindex" jdbcType="INTEGER"/>
+		<result property="domainIndex" column="domain_index" jdbcType="INTEGER"/>
+		<result property="winWidth" column="win_width" jdbcType="INTEGER"/>
+		<result property="winHeight" column="win_height" jdbcType="INTEGER"/>
+	</resultMap>
+
+
+	<resultMap id="cellTableTreeHashMap"	type="java.util.HashMap">
+		<id property="indexId" column="index_id" jdbcType="INTEGER" />
+		<result property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+		<result property="indexName" column="index_name" jdbcType="VARCHAR"/>
+		<result property="nlevel" column="nlevel" jdbcType="INTEGER"/>
+		<result property="nodeico" column="nodeico" jdbcType="INTEGER"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+		<result property="tabletype" column="tabletype" jdbcType="INTEGER"/>
+		<result property="intdel" column="intdel" jdbcType="INTEGER"/>
+		<result property="busiessId" column="busiess_id" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="num" column="num" jdbcType="VARCHAR"/>
+		<result property="menuindex" column="menuindex" jdbcType="INTEGER"/>
+		<result property="domainIndex" column="domain_index" jdbcType="INTEGER"/>
+		<result property="winWidth" column="win_width" jdbcType="INTEGER"/>
+		<result property="winHeight" column="win_height" jdbcType="INTEGER"/>
+	</resultMap>
+ 
+	<insert id="insertCellTableTree" parameterType="com.glaf.isdp.domain.CellTableTree">
+		insert into cell_utabletree 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    index_id
+			<if test="id != null">
+				,id 
+			</if>
+			<if test="parentId != null">
+				,parent_id 
+			</if>
+			<if test="indexName != null">
+				,index_name 
+			</if>
+			<if test="nlevel != null">
+				,nlevel 
+			</if>
+			<if test="nodeico != null">
+				,nodeico 
+			</if>
+			<if test="listno != null">
+				,listno 
+			</if>
+			<if test="tabletype != null">
+				,tabletype 
+			</if>
+			<if test="intdel != null">
+				,intdel 
+			</if>
+			<if test="busiessId != null">
+				,busiess_id 
+			</if>
+			<if test="content != null">
+				,content 
+			</if>
+			<if test="num != null">
+				,num 
+			</if>
+			<if test="menuindex != null">
+				,menuindex 
+			</if>
+			<if test="domainIndex != null">
+				,domain_index 
+			</if>
+			<if test="winWidth != null">
+				,win_width 
+			</if>
+			<if test="winHeight != null">
+				,win_height 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{indexId, jdbcType=INTEGER}
+	     
+			<if test="id != null">
+				,#{id, jdbcType=VARCHAR}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=INTEGER}
+			</if>
+			<if test="indexName != null">
+				,#{indexName, jdbcType=VARCHAR}
+			</if>
+			<if test="nlevel != null">
+				,#{nlevel, jdbcType=INTEGER}
+			</if>
+			<if test="nodeico != null">
+				,#{nodeico, jdbcType=INTEGER}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+			<if test="tabletype != null">
+				,#{tabletype, jdbcType=INTEGER}
+			</if>
+			<if test="intdel != null">
+				,#{intdel, jdbcType=INTEGER}
+			</if>
+			<if test="busiessId != null">
+				,#{busiessId, jdbcType=VARCHAR}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="num != null">
+				,#{num, jdbcType=VARCHAR}
+			</if>
+			<if test="menuindex != null">
+				,#{menuindex, jdbcType=INTEGER}
+			</if>
+			<if test="domainIndex != null">
+				,#{domainIndex, jdbcType=INTEGER}
+			</if>
+			<if test="winWidth != null">
+				,#{winWidth, jdbcType=INTEGER}
+			</if>
+			<if test="winHeight != null">
+				,#{winHeight, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateCellTableTree" parameterType="com.glaf.isdp.domain.CellTableTree">
+		update cell_utabletree
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="id != null">
+				id = #{id, jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				parent_id = #{parentId, jdbcType=INTEGER},
+			</if>
+			<if test="indexName != null">
+				index_name = #{indexName, jdbcType=VARCHAR},
+			</if>
+			<if test="nlevel != null">
+				nlevel = #{nlevel, jdbcType=INTEGER},
+			</if>
+			<if test="nodeico != null">
+				nodeico = #{nodeico, jdbcType=INTEGER},
+			</if>
+			<if test="listno != null">
+				listno = #{listno, jdbcType=INTEGER},
+			</if>
+			<if test="tabletype != null">
+				tabletype = #{tabletype, jdbcType=INTEGER},
+			</if>
+			<if test="intdel != null">
+				intdel = #{intdel, jdbcType=INTEGER},
+			</if>
+			<if test="busiessId != null">
+				busiess_id = #{busiessId, jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="num != null">
+				num = #{num, jdbcType=VARCHAR},
+			</if>
+			<if test="menuindex != null">
+				menuindex = #{menuindex, jdbcType=INTEGER},
+			</if>
+			<if test="domainIndex != null">
+				domain_index = #{domainIndex, jdbcType=INTEGER},
+			</if>
+			<if test="winWidth != null">
+				win_width = #{winWidth, jdbcType=INTEGER},
+			</if>
+			<if test="winHeight != null">
+				win_height = #{winHeight, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+          index_id = #{indexId, jdbcType=INTEGER}
+		
+	</update> 
+
+ 
+	<delete id="deleteCellTableTreeById" parameterType="string"> 
+        delete from cell_utabletree
+        where index_id = #{id}
+	</delete>
+	
+
+	<delete id="deleteCellTableTrees" parameterType="com.glaf.isdp.query.CellTableTreeQuery">
+		delete from cell_utabletree
+		where ( index_id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getCellTableTreeById" parameterType="string" resultMap="cellTableTreeResultMap">
+		select * from cell_utabletree where index_id = #{id}
+	</select>
+
+
+	<select id="getCellTableTreeCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellTableTreesSql" />
+	</select>
+
+
+	<select id="getCellTableTreeCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellTableTreeQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellTableTreesSql" />
+	</select>
+
+
+	<select id="getCellTableTrees" 
+		parameterType="map"
+		resultMap="cellTableTreeResultMap">
+		select E.*
+		<include refid="selectCellTableTreesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getCellTableTreeMapList" parameterType="map" resultType="map">
+		select E.*
+		<include refid="selectCellTableTreesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getCellTableTreesByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellTableTreeQuery"
+		resultMap="cellTableTreeResultMap">
+		select E.*
+		<include refid="selectCellTableTreesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectCellTableTreesSql">
+
+		from cell_utabletree E
+		 
+		<where>
+
+		       1 = 1  
+
+	        
+			<if test="id != null and id != '' ">
+				and E.id = #{id}
+			</if>
+
+			<if test="idLike != null and idLike != '' ">
+				and E.id like #{idLike}
+			</if>
+
+			<if test="ids != null and ids.size() &gt; 0">
+			    and E.id IN
+				<foreach item="x_id" index="index" collection="ids" 
+					open="(" separator="," close=")">
+                  #{x_id}
+				</foreach>
+			</if>
+
+
+			<if test="parentId != null">
+				and E.parent_id = #{parentId}
+			</if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+			    and E.parent_id IN
+				<foreach item="x_parentId" index="index" collection="parentIds" 
+					open="(" separator="," close=")">
+                  #{x_parentId}
+				</foreach>
+			</if>
+
+			<if test="indexNameLike != null and indexNameLike != '' ">
+				and E.index_name like #{indexNameLike}
+			</if>
+
+			<if test="tabletype != null">
+				and E.tabletype = #{tabletype}
+			</if>
+
+			<if test="tabletypes != null and tabletypes.size() &gt; 0">
+			    and E.tabletype IN
+				<foreach item="x_tabletype" index="index" collection="tabletypes" 
+					open="(" separator="," close=")">
+                  #{x_tabletype}
+				</foreach>
+			</if>
+
+
+			<if test="intdel != null">
+				and E.intdel = #{intdel}
+			</if>
+	        
+			<if test="busiessId != null and busiessId != '' ">
+				and E.busiess_id = #{busiessId}
+			</if>
+
+			<if test="busiessIds != null and busiessIds.size() &gt; 0">
+			    and E.busiess_id IN
+				<foreach item="x_busiessId" index="index" collection="busiessIds" 
+					open="(" separator="," close=")">
+                  #{x_busiessId}
+				</foreach>
+			</if>
+
+			<if test="contentLike != null and contentLike != '' ">
+				and E.content like #{contentLike}
+			</if>
+
+			<if test="numLike != null and numLike != '' ">
+				and E.num like #{numLike}
+			</if>
+
+			<if test="menuindex != null">
+				and E.menuindex = #{menuindex}
+			</if>
+
+			<if test="menuindexs != null and menuindexs.size() &gt; 0">
+			    and E.menuindex IN
+				<foreach item="x_menuindex" index="index" collection="menuindexs" 
+					open="(" separator="," close=")">
+                  #{x_menuindex}
+				</foreach>
+			</if>
+
+			<if test="domainIndex != null">
+				and E.domain_index = #{domainIndex}
+			</if>
+
+			<if test="domainIndexs != null and domainIndexs.size() &gt; 0">
+			    and E.domain_index IN
+				<foreach item="x_domainIndex" index="index" collection="domainIndexs" 
+					open="(" separator="," close=")">
+                  #{x_domainIndex}
+				</foreach>
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.NetRoleMapper">
+
+	<resultMap id="netRoleResultMap"	type="com.glaf.isdp.domain.NetRole">
+		<id property="id" column="id" jdbcType="INTEGER" />
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+		<result property="rolename" column="rolename" jdbcType="VARCHAR"/>
+		<result property="roleuse" column="roleuse" jdbcType="INTEGER"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="roletype" column="roletype" jdbcType="INTEGER"/>
+		<result property="busiessId" column="busiess_id" jdbcType="VARCHAR"/>
+		<result property="tasksort" column="tasksort" jdbcType="INTEGER"/>
+		<result property="domainIndex" column="domain_index" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertNetRole" parameterType="com.glaf.isdp.domain.NetRole">
+		insert into net_role 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="listno != null">
+				,listno 
+			</if>
+			<if test="rolename != null">
+				,rolename 
+			</if>
+			<if test="roleuse != null">
+				,roleuse 
+			</if>
+			<if test="content != null">
+				,content 
+			</if>
+			<if test="roletype != null">
+				,roletype 
+			</if>
+			<if test="busiessId != null">
+				,busiess_id 
+			</if>
+			<if test="tasksort != null">
+				,tasksort 
+			</if>
+			<if test="domainIndex != null">
+				,domain_index 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=INTEGER}
+	     
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+			<if test="rolename != null">
+				,#{rolename, jdbcType=VARCHAR}
+			</if>
+			<if test="roleuse != null">
+				,#{roleuse, jdbcType=INTEGER}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="roletype != null">
+				,#{roletype, jdbcType=INTEGER}
+			</if>
+			<if test="busiessId != null">
+				,#{busiessId, jdbcType=VARCHAR}
+			</if>
+			<if test="tasksort != null">
+				,#{tasksort, jdbcType=INTEGER}
+			</if>
+			<if test="domainIndex != null">
+				,#{domainIndex, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateNetRole" parameterType="com.glaf.isdp.domain.NetRole">
+		update
+		    net_role
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="listno != null">
+				listno = #{listno, jdbcType=INTEGER},
+			</if>
+			<if test="rolename != null">
+				rolename = #{rolename, jdbcType=VARCHAR},
+			</if>
+			<if test="roleuse != null">
+				roleuse = #{roleuse, jdbcType=INTEGER},
+			</if>
+			<if test="content != null">
+				content = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="roletype != null">
+				roletype = #{roletype, jdbcType=INTEGER},
+			</if>
+			<if test="busiessId != null">
+				busiess_id = #{busiessId, jdbcType=VARCHAR},
+			</if>
+			<if test="tasksort != null">
+				tasksort = #{tasksort, jdbcType=INTEGER},
+			</if>
+			<if test="domainIndex != null">
+				domain_index = #{domainIndex, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          id = #{id, jdbcType=INTEGER}
+		
+    </update>
+
+ 
+	<delete id="deleteNetRoleById" parameterType="int"> 
+        delete from net_role
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteNetRoles" parameterType="com.glaf.isdp.query.NetRoleQuery">
+		delete from net_role
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getNetRoleById" parameterType="int" resultMap="netRoleResultMap">
+		select * from net_role where id = #{id}
+	</select>
+	
+	
+	<select id="getNetRolesByUserId" parameterType="string" resultMap="netRoleResultMap">
+		
+     select * from net_role where exists (
+         select * from userrole where  userid = #{userId} and roleid=net_role.id
+     )
+
+	</select>
+
+
+	<select id="getNetRoleCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectNetRolesSql" />
+	</select>
+
+
+	<select id="getNetRoleCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.NetRoleQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectNetRolesSql" />
+	</select>
+
+
+	<select id="getNetRoles" 
+		parameterType="map"
+		resultMap="netRoleResultMap">
+		select E.*
+		<include refid="selectNetRolesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getNetRolesByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.NetRoleQuery"
+		resultMap="netRoleResultMap">
+		select E.*
+		<include refid="selectNetRolesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectNetRolesSql">
+
+		from net_role E
+		 
+		<where>
+
+		       1 = 1  
+
+			<if test="rolename != null and rolename != '' ">
+				and E.rolename = #{rolename}
+			</if>
+
+			<if test="rolenameLike != null and rolenameLike != '' ">
+				and E.rolename like #{rolenameLike}
+			</if>
+
+			<if test="roleuse != null">
+				and E.roleuse = #{roleuse}
+			</if>
+
+			<if test="roleuseGreaterThanOrEqual != null">
+				and E.roleuse &gt;= #{roleuseGreaterThanOrEqual}
+			</if>
+
+			<if test="roleuseLessThanOrEqual != null">
+				and E.roleuse &lt;= #{roleuseLessThanOrEqual}
+			</if>
+
+			<if test="contentLike != null and contentLike != '' ">
+				and E.content like #{contentLike}
+			</if>
+
+			<if test="roletype != null">
+				and E.roletype = #{roletype}
+			</if>
+
+			<if test="roletypeGreaterThanOrEqual != null">
+				and E.roletype &gt;= #{roletypeGreaterThanOrEqual}
+			</if>
+
+			<if test="roletypeLessThanOrEqual != null">
+				and E.roletype &lt;= #{roletypeLessThanOrEqual}
+			</if>
+
+			<if test="roletypes != null and roletypes.size() &gt; 0">
+			    and E.roletype IN
+				<foreach item="x_roletype" index="index" collection="roletypes" 
+					open="(" separator="," close=")">
+                  #{x_roletype}
+				</foreach>
+			</if>
+       
+			<if test="busiessId != null and busiessId != '' ">
+				and E.busiess_id = #{busiessId}
+			</if>
+
+			<if test="busiessIdLike != null and busiessIdLike != '' ">
+				and E.busiess_id like #{busiessIdLike}
+			</if>
+
+			<if test="busiessIds != null and busiessIds.size() &gt; 0">
+			    and E.busiess_id IN
+				<foreach item="x_busiessId" index="index" collection="busiessIds" 
+					open="(" separator="," close=")">
+                  #{x_busiessId}
+				</foreach>
+			</if>
+
+			<if test="tasksort != null">
+				and E.tasksort = #{tasksort}
+			</if>
+
+			<if test="tasksortGreaterThanOrEqual != null">
+				and E.tasksort &gt;= #{tasksortGreaterThanOrEqual}
+			</if>
+
+			<if test="tasksortLessThanOrEqual != null">
+				and E.tasksort &lt;= #{tasksortLessThanOrEqual}
+			</if>
+
+			<if test="domainIndex != null">
+				and E.domain_index = #{domainIndex}
+			</if>
+
+			<if test="domainIndexGreaterThanOrEqual != null">
+				and E.domain_index &gt;= #{domainIndexGreaterThanOrEqual}
+			</if>
+
+			<if test="domainIndexLessThanOrEqual != null">
+				and E.domain_index &lt;= #{domainIndexLessThanOrEqual}
+			</if>
+
+			<if test="domainIndexs != null and domainIndexs.size() &gt; 0">
+			    and E.domain_index IN
+				<foreach item="x_domainIndex" index="index" collection="domainIndexs" 
+					open="(" separator="," close=")">
+                  #{x_domainIndex}
+				</foreach>
+			</if>
+		 
+		</where>
+	</sql>
+
+</mapper>

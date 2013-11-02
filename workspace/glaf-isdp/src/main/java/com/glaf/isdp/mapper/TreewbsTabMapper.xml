@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.TreewbsTabMapper">
+
+	<resultMap id="treewbsTabResultMap"	type="com.glaf.isdp.domain.TreewbsTab">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="indexId" column="index_id" jdbcType="INTEGER"/>
+		<result property="tabIndex" column="tab_index" jdbcType="INTEGER"/>
+		<result property="name" column="name" jdbcType="VARCHAR"/>
+		<result property="oname" column="oname" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertTreewbsTab" parameterType="com.glaf.isdp.domain.TreewbsTab">
+		insert into s_treewbs_tabs 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="indexId != null">
+				,index_id 
+			</if>
+			<if test="tabIndex != null">
+				,tab_index 
+			</if>
+			<if test="name != null">
+				,name 
+			</if>
+			<if test="oname != null">
+				,oname 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="tabIndex != null">
+				,#{tabIndex, jdbcType=INTEGER}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="oname != null">
+				,#{oname, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateTreewbsTab" parameterType="com.glaf.isdp.domain.TreewbsTab">
+		update
+		s_treewbs_tabs
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="indexId != null">
+				index_id = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="tabIndex != null">
+				Tab_index = #{tabIndex, jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				name = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="oname != null">
+				oname = #{oname, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteTreewbsTabById" parameterType="string"> 
+        delete from s_treewbs_tabs
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteTreewbsTabs" parameterType="com.glaf.isdp.query.TreewbsTabQuery">
+		delete from s_treewbs_tabs
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getTreewbsTabById" parameterType="string" resultMap="treewbsTabResultMap">
+		select * from s_treewbs_tabs where id = #{id}
+	</select>
+
+
+	<select id="getTreewbsTabCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreewbsTabSql" />
+	</select>
+
+
+	<select id="getTreewbsTabCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.TreewbsTabQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreewbsTabSql" />
+	</select>
+
+
+	<select id="getTreewbsTabs" 
+		parameterType="map"
+		resultMap="treewbsTabResultMap">
+		select E.*
+		<include refid="selectTreewbsTabSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getTreewbsTabsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.TreewbsTabQuery"
+		resultMap="treewbsTabResultMap">
+		select E.*
+		<include refid="selectTreewbsTabSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectTreewbsTabSql">
+
+		from s_treewbs_tabs E
+		 
+		<where>
+
+		       1 = 1  
+
+			<if test="indexId != null">
+				and E.index_id = #{indexId}
+			</if>
+
+			<if test="indexIdGreaterThanOrEqual != null">
+				and E.index_id &gt;= #{indexIdGreaterThanOrEqual}
+			</if>
+
+			<if test="indexIdLessThanOrEqual != null">
+				and E.index_id &lt;= #{indexIdLessThanOrEqual}
+			</if>
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+			    and E.index_id IN
+				<foreach item="x_indexId" index="index" collection="indexIds" 
+					open="(" separator="," close=")">
+                  #{x_indexId}
+				</foreach>
+			</if>
+
+			<if test="tabIndex != null">
+				and E.tab_index = #{tabIndex}
+			</if>
+
+			<if test="tabIndexGreaterThanOrEqual != null">
+				and E.tab_index &gt;= #{tabIndexGreaterThanOrEqual}
+			</if>
+
+			<if test="tabIndexLessThanOrEqual != null">
+				and E.tab_index &lt;= #{tabIndexLessThanOrEqual}
+			</if>
+
+			<if test="tabIndexs != null and tabIndexs.size() &gt; 0">
+			    and E.tab_index IN
+				<foreach item="x_tabIndex" index="index" collection="tabIndexs" 
+					open="(" separator="," close=")">
+                  #{x_tabIndex}
+				</foreach>
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.name like #{nameLike}
+			</if>
+
+			<if test="onameLike != null and onameLike != '' ">
+				and E.oname like #{onameLike}
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

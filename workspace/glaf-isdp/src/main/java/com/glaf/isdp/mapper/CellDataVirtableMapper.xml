@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.CellDataVirtableMapper">
+
+	<resultMap id="cellDataVirtableResultMap"	type="com.glaf.isdp.domain.CellDataVirtable">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="tableid" column="tableid" jdbcType="VARCHAR"/>
+		<result property="desid" column="desid" jdbcType="VARCHAR"/>
+		<result property="inttype" column="inttype" jdbcType="INTEGER"/>
+		<result property="lstname" column="lstname" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="intsave" column="intsave" jdbcType="INTEGER"/>
+	</resultMap>
+
+
+	<resultMap id="cellDataVirtableHashMap"	type="java.util.HashMap">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="tableid" column="tableid" jdbcType="VARCHAR"/>
+		<result property="desid" column="desid" jdbcType="VARCHAR"/>
+		<result property="inttype" column="inttype" jdbcType="INTEGER"/>
+		<result property="lstname" column="lstname" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="intsave" column="intsave" jdbcType="INTEGER"/>
+	</resultMap>
+ 
+	<insert id="insertCellDataVirtable" parameterType="com.glaf.isdp.domain.CellDataVirtable">
+		insert into cell_data_virtables 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="tableid != null">
+				,tableid 
+			</if>
+			<if test="desid != null">
+				,desid 
+			</if>
+			<if test="inttype != null">
+				,inttype 
+			</if>
+			<if test="lstname != null">
+				,lstname 
+			</if>
+			<if test="content != null">
+				,content 
+			</if>
+			<if test="intsave != null">
+				,intsave 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="tableid != null">
+				,#{tableid, jdbcType=VARCHAR}
+			</if>
+			<if test="desid != null">
+				,#{desid, jdbcType=VARCHAR}
+			</if>
+			<if test="inttype != null">
+				,#{inttype, jdbcType=INTEGER}
+			</if>
+			<if test="lstname != null">
+				,#{lstname, jdbcType=VARCHAR}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="intsave != null">
+				,#{intsave, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateCellDataVirtable" parameterType="com.glaf.isdp.domain.CellDataVirtable">
+		update
+		cell_data_virtables
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="tableid != null">
+				tableid = #{tableid, jdbcType=VARCHAR},
+			</if>
+			<if test="desid != null">
+				desid = #{desid, jdbcType=VARCHAR},
+			</if>
+			<if test="inttype != null">
+				inttype = #{inttype, jdbcType=INTEGER},
+			</if>
+			<if test="lstname != null">
+				lstname = #{lstname, jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="intsave != null">
+				intsave = #{intsave, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+	</update>
+
+ 
+	<delete id="deleteCellDataVirtableById" parameterType="string"> 
+        delete from cell_data_virtables
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteCellDataVirtables" parameterType="com.glaf.isdp.query.CellDataVirtableQuery">
+		delete from cell_data_virtables
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getCellDataVirtableById" parameterType="string" resultMap="cellDataVirtableResultMap">
+		select * from cell_data_virtables where id = #{id}
+	</select>
+
+
+	<select id="getCellDataVirtableCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*) from cell_data_virtables E
+		<include refid="selectCellDataVirtableSql" />
+	</select>
+
+
+	<select id="getCellDataVirtableCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellDataVirtableQuery"
+		resultType="int">
+		select count(*) from cell_data_virtables E
+		<include refid="selectCellDataVirtableSql" />
+	</select>
+
+
+	<select id="getCellDataVirtables" 
+		parameterType="map"
+		resultMap="cellDataVirtableResultMap">
+		select E.* from cell_data_virtables E
+		<include refid="selectCellDataVirtableSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getCellDataVirtableMapList" parameterType="map" resultType="map">
+		select E.* from cell_data_virtables E 
+		<include refid="selectCellDataVirtableSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getCellDataVirtablesByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellDataVirtableQuery"
+		resultMap="cellDataVirtableResultMap">
+		select E.* from cell_data_virtables E
+		<include refid="selectCellDataVirtableSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectCellDataVirtableSql">
+		 
+		<where>
+
+		   1 = 1  
+
+	        
+			<if test="tableid != null and tableid != '' ">
+				and E.tableid = #{tableid}
+			</if>
+
+			<if test="tableidLike != null and tableidLike != '' ">
+				and E.tableid like #{tableidLike}
+			</if>
+
+			<if test="tableids != null and tableids.size() &gt; 0">
+			    and E.tableid IN
+				<foreach item="x_tableid" index="index" collection="tableids" 
+					open="(" separator="," close=")">
+                  #{x_tableid}
+				</foreach>
+			</if>
+
+	        
+			<if test="desid != null and desid != '' ">
+				and E.desid = #{desid}
+			</if>
+
+			<if test="desidLike != null and desidLike != '' ">
+				and E.desid like #{desidLike}
+			</if>
+
+			<if test="desids != null and desids.size() &gt; 0">
+			    and E.desid IN
+				<foreach item="x_desid" index="index" collection="desids" 
+					open="(" separator="," close=")">
+                  #{x_desid}
+				</foreach>
+			</if>
+
+
+			<if test="inttype != null">
+				and E.inttype = #{inttype}
+			</if>
+
+			<if test="inttypeGreaterThanOrEqual != null">
+				and E.inttype &gt;= #{inttypeGreaterThanOrEqual}
+			</if>
+
+			<if test="inttypeLessThanOrEqual != null">
+				and E.inttype &lt;= #{inttypeLessThanOrEqual}
+			</if>
+
+			<if test="inttypes != null and inttypes.size() &gt; 0">
+			    and E.inttype IN
+				<foreach item="x_inttype" index="index" collection="inttypes" 
+					open="(" separator="," close=")">
+                  #{x_inttype}
+				</foreach>
+			</if>
+
+			<if test="lstnameLike != null and lstnameLike != '' ">
+				and E.lstname like #{lstnameLike}
+			</if>
+	        
+			<if test="contentLike != null and contentLike != '' ">
+				and E.content like #{contentLike}
+			</if>
+
+			<if test="intsave != null">
+				and E.intsave = #{intsave}
+			</if>
+
+			<if test="intsaveGreaterThanOrEqual != null">
+				and E.intsave &gt;= #{intsaveGreaterThanOrEqual}
+			</if>
+
+			<if test="intsaveLessThanOrEqual != null">
+				and E.intsave &lt;= #{intsaveLessThanOrEqual}
+			</if>
+
+			<if test="intsaves != null and intsaves.size() &gt; 0">
+			    and E.intsave IN
+				<foreach item="x_intsave" index="index" collection="intsaves" 
+					open="(" separator="," close=")">
+                  #{x_intsave}
+				</foreach>
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.IsdpPfileAttMapper">
+
+ 	<resultMap id="pfileAttResultMap"	type="com.glaf.isdp.domain.IsdpPfileAtt">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="listId" column="list_id" jdbcType="BIGINT"/>
+        <result property="topid" column="topid" jdbcType="VARCHAR"/>
+        <result property="tname" column="tname" jdbcType="VARCHAR"/>
+        <result property="duty" column="duty" jdbcType="VARCHAR"/>
+        <result property="tagnum" column="tagnum" jdbcType="VARCHAR"/>
+        <result property="ctime" column="ctime" jdbcType="TIMESTAMP"/>
+        <result property="pageno" column="pageno" jdbcType="VARCHAR"/>
+        <result property="page" column="page" jdbcType="INTEGER"/>
+        <result property="filetype" column="filetype" jdbcType="VARCHAR"/>
+        <result property="savetime" column="savetime" jdbcType="VARCHAR"/>
+        <result property="annotations" column="annotations" jdbcType="VARCHAR"/>
+        <result property="carriertype" column="carriertype" jdbcType="VARCHAR"/>
+        <result property="summary" column="summary" jdbcType="VARCHAR"/>
+        <result property="ptext" column="ptext" jdbcType="VARCHAR"/>
+        <result property="carrieru" column="carrieru" jdbcType="VARCHAR"/>
+        <result property="glidenum" column="glidenum" jdbcType="VARCHAR"/>
+        <result property="pagetype" column="pagetype" jdbcType="VARCHAR"/>
+        <result property="clistno" column="clistno" jdbcType="INTEGER"/>
+        <result property="cpageno" column="cpageno" jdbcType="VARCHAR"/>
+        <result property="vnum" column="vnum" jdbcType="VARCHAR"/>
+        <result property="cvnum" column="cvnum" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertPfileAtt" parameterType="com.glaf.isdp.domain.IsdpPfileAtt">
+		insert into pfile_att 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="listId != null">
+				,list_id 
+			</if>
+			<if test="topid != null">
+				,topid 
+			</if>
+			<if test="tname != null">
+				,tname 
+			</if>
+			<if test="duty != null">
+				,duty 
+			</if>
+			<if test="tagnum != null">
+				,tagnum 
+			</if>
+			<if test="ctime != null">
+				,ctime 
+			</if>
+			<if test="pageno != null">
+				,pageno 
+			</if>
+			<if test="page != null">
+				,page 
+			</if>
+			<if test="filetype != null">
+				,filetype 
+			</if>
+			<if test="savetime != null">
+				,savetime 
+			</if>
+			<if test="annotations != null">
+				,annotations 
+			</if>
+			<if test="carriertype != null">
+				,carriertype 
+			</if>
+			<if test="summary != null">
+				,summary 
+			</if>
+			<if test="ptext != null">
+				,ptext 
+			</if>
+			<if test="carrieru != null">
+				,carrieru 
+			</if>
+			<if test="glidenum != null">
+				,glidenum 
+			</if>
+			<if test="pagetype != null">
+				,pagetype 
+			</if>
+			<if test="clistno != null">
+				,clistno 
+			</if>
+			<if test="cpageno != null">
+				,cpageno 
+			</if>
+			<if test="vnum != null">
+				,vnum 
+			</if>
+			<if test="cvnum != null">
+				,cvnum 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="listId != null">
+				,#{listId, jdbcType=BIGINT}
+			</if>
+			<if test="topid != null">
+				,#{topid, jdbcType=VARCHAR}
+			</if>
+			<if test="tname != null">
+				,#{tname, jdbcType=VARCHAR}
+			</if>
+			<if test="duty != null">
+				,#{duty, jdbcType=VARCHAR}
+			</if>
+			<if test="tagnum != null">
+				,#{tagnum, jdbcType=VARCHAR}
+			</if>
+			<if test="ctime != null">
+				,#{ctime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="pageno != null">
+				,#{pageno, jdbcType=VARCHAR}
+			</if>
+			<if test="page != null">
+				,#{page, jdbcType=INTEGER}
+			</if>
+			<if test="filetype != null">
+				,#{filetype, jdbcType=VARCHAR}
+			</if>
+			<if test="savetime != null">
+				,#{savetime, jdbcType=VARCHAR}
+			</if>
+			<if test="annotations != null">
+				,#{annotations, jdbcType=VARCHAR}
+			</if>
+			<if test="carriertype != null">
+				,#{carriertype, jdbcType=VARCHAR}
+			</if>
+			<if test="summary != null">
+				,#{summary, jdbcType=VARCHAR}
+			</if>
+			<if test="ptext != null">
+				,#{ptext, jdbcType=VARCHAR}
+			</if>
+			<if test="carrieru != null">
+				,#{carrieru, jdbcType=VARCHAR}
+			</if>
+			<if test="glidenum != null">
+				,#{glidenum, jdbcType=VARCHAR}
+			</if>
+			<if test="pagetype != null">
+				,#{pagetype, jdbcType=VARCHAR}
+			</if>
+			<if test="clistno != null">
+				,#{clistno, jdbcType=INTEGER}
+			</if>
+			<if test="cpageno != null">
+				,#{cpageno, jdbcType=VARCHAR}
+			</if>
+			<if test="vnum != null">
+				,#{vnum, jdbcType=VARCHAR}
+			</if>
+			<if test="cvnum != null">
+				,#{cvnum, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updatePfileAtt" parameterType="com.glaf.isdp.domain.IsdpPfileAtt">
+		update
+		    pfile_att
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="listId != null">
+				list_id = #{listId, jdbcType=BIGINT},
+			</if>
+			<if test="topid != null">
+				topid = #{topid, jdbcType=VARCHAR},
+			</if>
+			<if test="tname != null">
+				tname = #{tname, jdbcType=VARCHAR},
+			</if>
+			<if test="duty != null">
+				duty = #{duty, jdbcType=VARCHAR},
+			</if>
+			<if test="tagnum != null">
+				tagnum = #{tagnum, jdbcType=VARCHAR},
+			</if>
+			<if test="ctime != null">
+				ctime = #{ctime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="pageno != null">
+				pageno = #{pageno, jdbcType=VARCHAR},
+			</if>
+			<if test="page != null">
+				page = #{page, jdbcType=INTEGER},
+			</if>
+			<if test="filetype != null">
+				filetype = #{filetype, jdbcType=VARCHAR},
+			</if>
+			<if test="savetime != null">
+				savetime = #{savetime, jdbcType=VARCHAR},
+			</if>
+			<if test="annotations != null">
+				annotations = #{annotations, jdbcType=VARCHAR},
+			</if>
+			<if test="carriertype != null">
+				carriertype = #{carriertype, jdbcType=VARCHAR},
+			</if>
+			<if test="summary != null">
+				summary = #{summary, jdbcType=VARCHAR},
+			</if>
+			<if test="ptext != null">
+				ptext = #{ptext, jdbcType=VARCHAR},
+			</if>
+			<if test="carrieru != null">
+				carrieru = #{carrieru, jdbcType=VARCHAR},
+			</if>
+			<if test="glidenum != null">
+				glidenum = #{glidenum, jdbcType=VARCHAR},
+			</if>
+			<if test="pagetype != null">
+				pagetype = #{pagetype, jdbcType=VARCHAR},
+			</if>
+			<if test="clistno != null">
+				clistno = #{clistno, jdbcType=INTEGER},
+			</if>
+			<if test="cpageno != null">
+				cpageno = #{cpageno, jdbcType=VARCHAR},
+			</if>
+			<if test="vnum != null">
+				vnum = #{vnum, jdbcType=VARCHAR},
+			</if>
+			<if test="cvnum != null">
+				cvnum = #{cvnum, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deletePfileAttById" parameterType="string"> 
+        delete from pfile_att
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deletePfileAtts" parameterType="com.glaf.isdp.query.PfileAttQuery">
+		delete from pfile_att
+		where ( id IN
+          <foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+          </foreach>
+		)
+	</delete>
+
+
+	<select id="getPfileAttById" parameterType="string" resultMap="pfileAttResultMap">
+		select * from pfile_att where id = #{id}
+	</select>
+
+
+	<select id="getPfileAttCount" 
+	    parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectPfileAttsSql" />
+	</select>
+
+
+	<select id="getPfileAttCountByQueryCriteria" 
+	    parameterType="com.glaf.isdp.query.PfileAttQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectPfileAttsSql" />
+	</select>
+
+
+	<select id="getPfileAtts" 
+	    parameterType="map"
+		resultMap="pfileAttResultMap">
+		select E.*
+		<include refid="selectPfileAttsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+	<select id="getPfileAttsByQueryCriteria" 
+	    parameterType="com.glaf.isdp.query.PfileAttQuery"
+		resultMap="pfileAttResultMap">
+		select E.*
+		<include refid="selectPfileAttsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+
+	<sql id="selectPfileAttsSql">
+
+		from pfile_att E
+		 
+		<where>
+
+		       1 = 1  
+
+
+			<if test="listId != null">
+				and E.list_id = #{listId}
+            </if>
+
+			<if test="listIdGreaterThanOrEqual != null">
+				and E.list_id &gt;= #{listIdGreaterThanOrEqual}
+            </if>
+
+			<if test="listIdLessThanOrEqual != null">
+				and E.list_id &lt;= #{listIdLessThanOrEqual}
+            </if>
+
+			<if test="listIds != null and listIds.size() &gt; 0">
+			    and E.list_id IN
+                <foreach item="x_listId" index="index" collection="listIds" 
+                     open="(" separator="," close=")">
+                  #{x_listId}
+                </foreach>
+			</if>
+
+	        
+			<if test="topid != null and topid != '' ">
+				and E.topid = #{topid}
+            </if>
+
+			<if test="topidLike != null and topidLike != '' ">
+				and E.topid like #{topidLike}
+            </if>
+
+			<if test="topids != null and topids.size() &gt; 0">
+			    and E.topid IN
+                <foreach item="x_topid" index="index" collection="topids" 
+                     open="(" separator="," close=")">
+                  #{x_topid}
+                </foreach>
+			</if>
+
+	        
+			<if test="tname != null and tname != '' ">
+				and E.tname = #{tname}
+            </if>
+
+			<if test="tnameLike != null and tnameLike != '' ">
+				and E.tname like #{tnameLike}
+            </if>
+
+			<if test="tnames != null and tnames.size() &gt; 0">
+			    and E.tname IN
+                <foreach item="x_tname" index="index" collection="tnames" 
+                     open="(" separator="," close=")">
+                  #{x_tname}
+                </foreach>
+			</if>
+
+	        
+			<if test="duty != null and duty != '' ">
+				and E.duty = #{duty}
+            </if>
+
+			<if test="dutyLike != null and dutyLike != '' ">
+				and E.duty like #{dutyLike}
+            </if>
+
+			<if test="dutys != null and dutys.size() &gt; 0">
+			    and E.duty IN
+                <foreach item="x_duty" index="index" collection="dutys" 
+                     open="(" separator="," close=")">
+                  #{x_duty}
+                </foreach>
+			</if>
+
+	        
+			<if test="tagnum != null and tagnum != '' ">
+				and E.tagnum = #{tagnum}
+            </if>
+
+			<if test="tagnumLike != null and tagnumLike != '' ">
+				and E.tagnum like #{tagnumLike}
+            </if>
+
+			<if test="tagnums != null and tagnums.size() &gt; 0">
+			    and E.tagnum IN
+                <foreach item="x_tagnum" index="index" collection="tagnums" 
+                     open="(" separator="," close=")">
+                  #{x_tagnum}
+                </foreach>
+			</if>
+
+
+			<if test="ctime != null">
+				and E.ctime = #{ctime}
+            </if>
+
+			<if test="ctimeGreaterThanOrEqual != null">
+				and E.ctime &gt;= #{ctimeGreaterThanOrEqual}
+            </if>
+
+			<if test="ctimeLessThanOrEqual != null">
+				and E.ctime &lt;= #{ctimeLessThanOrEqual}
+            </if>
+
+			<if test="ctimes != null and ctimes.size() &gt; 0">
+			    and E.ctime IN
+                <foreach item="x_ctime" index="index" collection="ctimes" 
+                     open="(" separator="," close=")">
+                  #{x_ctime}
+                </foreach>
+			</if>
+
+	        
+			<if test="pageno != null and pageno != '' ">
+				and E.pageno = #{pageno}
+            </if>
+
+			<if test="pagenoLike != null and pagenoLike != '' ">
+				and E.pageno like #{pagenoLike}
+            </if>
+
+			<if test="pagenos != null and pagenos.size() &gt; 0">
+			    and E.pageno IN
+                <foreach item="x_pageno" index="index" collection="pagenos" 
+                     open="(" separator="," close=")">
+                  #{x_pageno}
+                </foreach>
+			</if>
+
+
+			<if test="page != null">
+				and E.page = #{page}
+            </if>
+
+			<if test="pageGreaterThanOrEqual != null">
+				and E.page &gt;= #{pageGreaterThanOrEqual}
+            </if>
+
+			<if test="pageLessThanOrEqual != null">
+				and E.page &lt;= #{pageLessThanOrEqual}
+            </if>
+
+			<if test="pages != null and pages.size() &gt; 0">
+			    and E.page IN
+                <foreach item="x_page" index="index" collection="pages" 
+                     open="(" separator="," close=")">
+                  #{x_page}
+                </foreach>
+			</if>
+
+	        
+			<if test="filetype != null and filetype != '' ">
+				and E.filetype = #{filetype}
+            </if>
+
+			<if test="filetypeLike != null and filetypeLike != '' ">
+				and E.filetype like #{filetypeLike}
+            </if>
+
+			<if test="filetypes != null and filetypes.size() &gt; 0">
+			    and E.filetype IN
+                <foreach item="x_filetype" index="index" collection="filetypes" 
+                     open="(" separator="," close=")">
+                  #{x_filetype}
+                </foreach>
+			</if>
+
+	        
+			<if test="savetime != null and savetime != '' ">
+				and E.savetime = #{savetime}
+            </if>
+
+			<if test="savetimeLike != null and savetimeLike != '' ">
+				and E.savetime like #{savetimeLike}
+            </if>
+
+			<if test="savetimes != null and savetimes.size() &gt; 0">
+			    and E.savetime IN
+                <foreach item="x_savetime" index="index" collection="savetimes" 
+                     open="(" separator="," close=")">
+                  #{x_savetime}
+                </foreach>
+			</if>
+
+	        
+			<if test="annotations != null and annotations != '' ">
+				and E.annotations = #{annotations}
+            </if>
+
+			<if test="annotationsLike != null and annotationsLike != '' ">
+				and E.annotations like #{annotationsLike}
+            </if>
+
+			<if test="annotationss != null and annotationss.size() &gt; 0">
+			    and E.annotations IN
+                <foreach item="x_annotations" index="index" collection="annotationss" 
+                     open="(" separator="," close=")">
+                  #{x_annotations}
+                </foreach>
+			</if>
+
+	        
+			<if test="carriertype != null and carriertype != '' ">
+				and E.carriertype = #{carriertype}
+            </if>
+
+			<if test="carriertypeLike != null and carriertypeLike != '' ">
+				and E.carriertype like #{carriertypeLike}
+            </if>
+
+			<if test="carriertypes != null and carriertypes.size() &gt; 0">
+			    and E.carriertype IN
+                <foreach item="x_carriertype" index="index" collection="carriertypes" 
+                     open="(" separator="," close=")">
+                  #{x_carriertype}
+                </foreach>
+			</if>
+
+	        
+			<if test="summary != null and summary != '' ">
+				and E.summary = #{summary}
+            </if>
+
+			<if test="summaryLike != null and summaryLike != '' ">
+				and E.summary like #{summaryLike}
+            </if>
+
+			<if test="summarys != null and summarys.size() &gt; 0">
+			    and E.summary IN
+                <foreach item="x_summary" index="index" collection="summarys" 
+                     open="(" separator="," close=")">
+                  #{x_summary}
+                </foreach>
+			</if>
+
+	        
+			<if test="ptext != null and ptext != '' ">
+				and E.ptext = #{ptext}
+            </if>
+
+			<if test="ptextLike != null and ptextLike != '' ">
+				and E.ptext like #{ptextLike}
+            </if>
+
+			<if test="ptexts != null and ptexts.size() &gt; 0">
+			    and E.ptext IN
+                <foreach item="x_ptext" index="index" collection="ptexts" 
+                     open="(" separator="," close=")">
+                  #{x_ptext}
+                </foreach>
+			</if>
+
+	        
+			<if test="carrieru != null and carrieru != '' ">
+				and E.carrieru = #{carrieru}
+            </if>
+
+			<if test="carrieruLike != null and carrieruLike != '' ">
+				and E.carrieru like #{carrieruLike}
+            </if>
+
+			<if test="carrierus != null and carrierus.size() &gt; 0">
+			    and E.carrieru IN
+                <foreach item="x_carrieru" index="index" collection="carrierus" 
+                     open="(" separator="," close=")">
+                  #{x_carrieru}
+                </foreach>
+			</if>
+
+	        
+			<if test="glidenum != null and glidenum != '' ">
+				and E.glidenum = #{glidenum}
+            </if>
+
+			<if test="glidenumLike != null and glidenumLike != '' ">
+				and E.glidenum like #{glidenumLike}
+            </if>
+
+			<if test="glidenums != null and glidenums.size() &gt; 0">
+			    and E.glidenum IN
+                <foreach item="x_glidenum" index="index" collection="glidenums" 
+                     open="(" separator="," close=")">
+                  #{x_glidenum}
+                </foreach>
+			</if>
+
+	        
+			<if test="pagetype != null and pagetype != '' ">
+				and E.pagetype = #{pagetype}
+            </if>
+
+			<if test="pagetypeLike != null and pagetypeLike != '' ">
+				and E.pagetype like #{pagetypeLike}
+            </if>
+
+			<if test="pagetypes != null and pagetypes.size() &gt; 0">
+			    and E.pagetype IN
+                <foreach item="x_pagetype" index="index" collection="pagetypes" 
+                     open="(" separator="," close=")">
+                  #{x_pagetype}
+                </foreach>
+			</if>
+
+
+			<if test="clistno != null">
+				and E.clistno = #{clistno}
+            </if>
+
+			<if test="clistnoGreaterThanOrEqual != null">
+				and E.clistno &gt;= #{clistnoGreaterThanOrEqual}
+            </if>
+
+			<if test="clistnoLessThanOrEqual != null">
+				and E.clistno &lt;= #{clistnoLessThanOrEqual}
+            </if>
+
+			<if test="clistnos != null and clistnos.size() &gt; 0">
+			    and E.clistno IN
+                <foreach item="x_clistno" index="index" collection="clistnos" 
+                     open="(" separator="," close=")">
+                  #{x_clistno}
+                </foreach>
+			</if>
+
+	        
+			<if test="cpageno != null and cpageno != '' ">
+				and E.cpageno = #{cpageno}
+            </if>
+
+			<if test="cpagenoLike != null and cpagenoLike != '' ">
+				and E.cpageno like #{cpagenoLike}
+            </if>
+
+			<if test="cpagenos != null and cpagenos.size() &gt; 0">
+			    and E.cpageno IN
+                <foreach item="x_cpageno" index="index" collection="cpagenos" 
+                     open="(" separator="," close=")">
+                  #{x_cpageno}
+                </foreach>
+			</if>
+
+	        
+			<if test="vnum != null and vnum != '' ">
+				and E.vnum = #{vnum}
+            </if>
+
+			<if test="vnumLike != null and vnumLike != '' ">
+				and E.vnum like #{vnumLike}
+            </if>
+
+			<if test="vnums != null and vnums.size() &gt; 0">
+			    and E.vnum IN
+                <foreach item="x_vnum" index="index" collection="vnums" 
+                     open="(" separator="," close=")">
+                  #{x_vnum}
+                </foreach>
+			</if>
+
+	        
+			<if test="cvnum != null and cvnum != '' ">
+				and E.cvnum = #{cvnum}
+            </if>
+
+			<if test="cvnumLike != null and cvnumLike != '' ">
+				and E.cvnum like #{cvnumLike}
+            </if>
+
+			<if test="cvnums != null and cvnums.size() &gt; 0">
+			    and E.cvnum IN
+                <foreach item="x_cvnum" index="index" collection="cvnums" 
+                     open="(" separator="," close=")">
+                  #{x_cvnum}
+                </foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

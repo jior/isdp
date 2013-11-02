@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.CellTcadbmpMapper">
+
+	<resultMap id="cellTcadbmpResultMap"	type="com.glaf.isdp.domain.CellTcadbmp">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="filetype" column="filetype" jdbcType="INTEGER"/>
+		<result property="fileid" column="fileid" jdbcType="VARCHAR"/>
+		<result property="ostTablename" column="ost_tablename" jdbcType="VARCHAR"/>
+		<result property="ostRow" column="ost_row" jdbcType="INTEGER"/>
+		<result property="ostCol" column="ost_col" jdbcType="INTEGER"/>
+		<result property="ostCellid" column="ost_cellid" jdbcType="VARCHAR"/>
+		<result property="fileName" column="file_name" jdbcType="VARCHAR"/>
+		<result property="fileContent" column="file_content" jdbcType="BLOB"/>
+		<result property="oldContent" column="old_content" jdbcType="BLOB"/>
+	</resultMap>
+
+
+	<resultMap id="cellTcadbmpHashMap"	type="java.util.HashMap">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="filetype" column="filetype" jdbcType="INTEGER"/>
+		<result property="fileid" column="fileid" jdbcType="VARCHAR"/>
+		<result property="ostTablename" column="ost_tablename" jdbcType="VARCHAR"/>
+		<result property="ostRow" column="ost_row" jdbcType="INTEGER"/>
+		<result property="ostCol" column="ost_col" jdbcType="INTEGER"/>
+		<result property="ostCellid" column="ost_cellid" jdbcType="VARCHAR"/>
+		<result property="fileName" column="file_name" jdbcType="VARCHAR"/>
+	</resultMap>
+ 
+	<insert id="insertCellTcadbmp" parameterType="com.glaf.isdp.domain.CellTcadbmp">
+		insert into cell_tcadbmp 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="filetype != null">
+				,filetype 
+			</if>
+			<if test="fileid != null">
+				,fileid 
+			</if>
+			<if test="ostTablename != null">
+				,ost_tablename 
+			</if>
+			<if test="ostRow != null">
+				,ost_row 
+			</if>
+			<if test="ostCol != null">
+				,ost_col 
+			</if>
+			<if test="ostCellid != null">
+				,ost_cellid 
+			</if>
+			<if test="fileName != null">
+				,file_name 
+			</if>
+			<if test="fileContent != null">
+				,file_content
+			</if>
+			<if test="oldContent != null">
+				,old_content
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="filetype != null">
+				,#{filetype, jdbcType=INTEGER}
+			</if>
+			<if test="fileid != null">
+				,#{fileid, jdbcType=VARCHAR}
+			</if>
+			<if test="ostTablename != null">
+				,#{ostTablename, jdbcType=VARCHAR}
+			</if>
+			<if test="ostRow != null">
+				,#{ostRow, jdbcType=INTEGER}
+			</if>
+			<if test="ostCol != null">
+				,#{ostCol, jdbcType=INTEGER}
+			</if>
+			<if test="ostCellid != null">
+				,#{ostCellid, jdbcType=VARCHAR}
+			</if>
+			<if test="fileName != null">
+				,#{fileName, jdbcType=VARCHAR}
+			</if>
+			<if test="fileContent != null">
+				,#{fileContent, jdbcType=BLOB}
+			</if>
+			<if test="oldContent != null">
+				,#{oldContent, jdbcType=BLOB}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateCellTcadbmp" parameterType="com.glaf.isdp.domain.CellTcadbmp">
+		update
+		cell_tcadbmp
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="filetype != null">
+				filetype = #{filetype, jdbcType=INTEGER},
+			</if>
+			<if test="fileid != null">
+				fileid = #{fileid, jdbcType=VARCHAR},
+			</if>
+			<if test="ostTablename != null">
+				ost_tablename = #{ostTablename, jdbcType=VARCHAR},
+			</if>
+			<if test="ostRow != null">
+				ost_row = #{ostRow, jdbcType=INTEGER},
+			</if>
+			<if test="ostCol != null">
+				ost_col = #{ostCol, jdbcType=INTEGER},
+			</if>
+			<if test="ostCellid != null">
+				ost_cellid = #{ostCellid, jdbcType=VARCHAR},
+			</if>
+			<if test="fileName != null">
+				file_name = #{fileName, jdbcType=VARCHAR},
+			</if>
+			<if test="fileContent != null">
+				file_content = #{fileContent, jdbcType=BLOB},
+			</if>
+			<if test="oldContent != null">
+				old_content = #{oldContent, jdbcType=BLOB},
+			</if>
+		</trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+	</update>
+
+ 
+	<delete id="deleteCellTcadbmpById" parameterType="string"> 
+        delete from cell_tcadbmp
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteCellTcadbmps" parameterType="com.glaf.isdp.query.CellTcadbmpQuery">
+		delete from cell_tcadbmp
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getCellTcadbmpById" parameterType="string" resultMap="cellTcadbmpResultMap">
+		select * from cell_tcadbmp where id = #{id}
+	</select>
+
+
+	<select id="getCellTcadbmpCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*) from cell_tcadbmp E
+		<include refid="selectCellTcadbmpSql" />
+	</select>
+
+
+	<select id="getCellTcadbmpCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellTcadbmpQuery"
+		resultType="int">
+		select count(*) from cell_tcadbmp E
+		<include refid="selectCellTcadbmpSql" />
+	</select>
+
+
+	<select id="getCellTcadbmps" 
+		parameterType="map"
+		resultMap="cellTcadbmpResultMap">
+		select E.* from cell_tcadbmp E
+		<include refid="selectCellTcadbmpSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getCellTcadbmpMapList" parameterType="map" resultType="map">
+		select E.* from cell_tcadbmp E 
+		<include refid="selectCellTcadbmpSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getCellTcadbmpsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellTcadbmpQuery"
+		resultMap="cellTcadbmpResultMap">
+		select E.* from cell_tcadbmp E
+		<include refid="selectCellTcadbmpSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectCellTcadbmpSql">
+		 
+		<where>
+
+		   1 = 1  
+
+
+			<if test="filetype != null">
+				and E.filetype = #{filetype}
+			</if>
+
+			<if test="filetypeGreaterThanOrEqual != null">
+				and E.filetype &gt;= #{filetypeGreaterThanOrEqual}
+			</if>
+
+			<if test="filetypeLessThanOrEqual != null">
+				and E.filetype &lt;= #{filetypeLessThanOrEqual}
+			</if>
+
+			<if test="filetypes != null and filetypes.size() &gt; 0">
+			    and E.filetype IN
+				<foreach item="x_filetype" index="index" collection="filetypes" 
+					open="(" separator="," close=")">
+                  #{x_filetype}
+				</foreach>
+			</if>
+
+	        
+			<if test="fileid != null and fileid != '' ">
+				and E.fileid = #{fileid}
+			</if>
+
+			<if test="fileidLike != null and fileidLike != '' ">
+				and E.fileid like #{fileidLike}
+			</if>
+
+			<if test="fileids != null and fileids.size() &gt; 0">
+			    and E.fileid IN
+				<foreach item="x_fileid" index="index" collection="fileids" 
+					open="(" separator="," close=")">
+                  #{x_fileid}
+				</foreach>
+			</if>
+
+	        
+			<if test="ostTablename != null and ostTablename != '' ">
+				and E.ost_tablename = #{ostTablename}
+			</if>
+
+			<if test="ostTablenameLike != null and ostTablenameLike != '' ">
+				and E.ost_tablename like #{ostTablenameLike}
+			</if>
+
+			<if test="ostTablenames != null and ostTablenames.size() &gt; 0">
+			    and E.ost_tablename IN
+				<foreach item="x_ostTablename" index="index" collection="ostTablenames" 
+					open="(" separator="," close=")">
+                  #{x_ostTablename}
+				</foreach>
+			</if>
+
+
+			<if test="ostRow != null">
+				and E.ost_row = #{ostRow}
+			</if>
+
+			<if test="ostRowGreaterThanOrEqual != null">
+				and E.ost_row &gt;= #{ostRowGreaterThanOrEqual}
+			</if>
+
+			<if test="ostRowLessThanOrEqual != null">
+				and E.ost_row &lt;= #{ostRowLessThanOrEqual}
+			</if>
+
+			<if test="ostRows != null and ostRows.size() &gt; 0">
+			    and E.ost_row IN
+				<foreach item="x_ostRow" index="index" collection="ostRows" 
+					open="(" separator="," close=")">
+                  #{x_ostRow}
+				</foreach>
+			</if>
+
+
+			<if test="ostCol != null">
+				and E.ost_col = #{ostCol}
+			</if>
+
+			<if test="ostColGreaterThanOrEqual != null">
+				and E.ost_col &gt;= #{ostColGreaterThanOrEqual}
+			</if>
+
+			<if test="ostColLessThanOrEqual != null">
+				and E.ost_col &lt;= #{ostColLessThanOrEqual}
+			</if>
+
+			<if test="ostCols != null and ostCols.size() &gt; 0">
+			    and E.ost_col IN
+				<foreach item="x_ostCol" index="index" collection="ostCols" 
+					open="(" separator="," close=")">
+                  #{x_ostCol}
+				</foreach>
+			</if>
+
+	        
+			<if test="ostCellid != null and ostCellid != '' ">
+				and E.ost_cellid = #{ostCellid}
+			</if>
+
+			<if test="ostCellidLike != null and ostCellidLike != '' ">
+				and E.ost_cellid like #{ostCellidLike}
+			</if>
+
+			<if test="ostCellids != null and ostCellids.size() &gt; 0">
+			    and E.ost_cellid IN
+				<foreach item="x_ostCellid" index="index" collection="ostCellids" 
+					open="(" separator="," close=")">
+                  #{x_ostCellid}
+				</foreach>
+			</if>
+
+	        
+			<if test="fileName != null and fileName != '' ">
+				and E.file_name = #{fileName}
+			</if>
+
+			<if test="fileNameLike != null and fileNameLike != '' ">
+				and E.file_name like #{fileNameLike}
+			</if>
+
+			<if test="fileNames != null and fileNames.size() &gt; 0">
+			    and E.file_name IN
+				<foreach item="x_fileName" index="index" collection="fileNames" 
+					open="(" separator="," close=")">
+                  #{x_fileName}
+				</foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

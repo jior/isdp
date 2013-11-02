@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.CellRepInfoChartMapper">
+
+	<resultMap id="cellRepInfoChartResultMap"	type="com.glaf.isdp.domain.CellRepInfoChart">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="topid" column="topid" jdbcType="VARCHAR"/>
+		<result property="nameLine" column="name_line" jdbcType="VARCHAR"/>
+		<result property="dnameX" column="dname_x" jdbcType="VARCHAR"/>
+		<result property="dnameY" column="dname_y" jdbcType="VARCHAR"/>
+	</resultMap>
+
+
+	<resultMap id="cellRepInfoChartHashMap"	type="java.util.HashMap">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="topid" column="topid" jdbcType="VARCHAR"/>
+		<result property="nameLine" column="name_line" jdbcType="VARCHAR"/>
+		<result property="dnameX" column="dname_x" jdbcType="VARCHAR"/>
+		<result property="dnameY" column="dname_y" jdbcType="VARCHAR"/>
+	</resultMap>
+ 
+	<insert id="insertCellRepInfoChart" parameterType="com.glaf.isdp.domain.CellRepInfoChart">
+		insert into cell_repinfo_chart 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="topid != null">
+				,topid 
+			</if>
+			<if test="nameLine != null">
+				,name_line 
+			</if>
+			<if test="dnameX != null">
+				,dname_x 
+			</if>
+			<if test="dnameY != null">
+				,dname_y 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="topid != null">
+				,#{topid, jdbcType=VARCHAR}
+			</if>
+			<if test="nameLine != null">
+				,#{nameLine, jdbcType=VARCHAR}
+			</if>
+			<if test="dnameX != null">
+				,#{dnameX, jdbcType=VARCHAR}
+			</if>
+			<if test="dnameY != null">
+				,#{dnameY, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateCellRepInfoChart" parameterType="com.glaf.isdp.domain.CellRepInfoChart">
+		update
+		cell_repinfo_chart
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="topid != null">
+				topid = #{topid, jdbcType=VARCHAR},
+			</if>
+			<if test="nameLine != null">
+				name_line = #{nameLine, jdbcType=VARCHAR},
+			</if>
+			<if test="dnameX != null">
+				dname_x = #{dnameX, jdbcType=VARCHAR},
+			</if>
+			<if test="dnameY != null">
+				dname_y = #{dnameY, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+	</update>
+
+ 
+	<delete id="deleteCellRepInfoChartById" parameterType="string"> 
+        delete from cell_repinfo_chart
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteCellRepInfoCharts" parameterType="com.glaf.isdp.query.CellRepInfoChartQuery">
+		delete from cell_repinfo_chart
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getCellRepInfoChartById" parameterType="string" resultMap="cellRepInfoChartResultMap">
+		select * from cell_repinfo_chart where id = #{id}
+	</select>
+
+
+	<select id="getCellRepInfoChartCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*) from cell_repinfo_chart E
+		<include refid="selectCellRepInfoChartSql" />
+	</select>
+
+
+	<select id="getCellRepInfoChartCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellRepInfoChartQuery"
+		resultType="int">
+		select count(*) from cell_repinfo_chart E
+		<include refid="selectCellRepInfoChartSql" />
+	</select>
+
+
+	<select id="getCellRepInfoCharts" 
+		parameterType="map"
+		resultMap="cellRepInfoChartResultMap">
+		select E.* from cell_repinfo_chart E
+		<include refid="selectCellRepInfoChartSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getCellRepInfoChartMapList" parameterType="map" resultType="map">
+		select E.* from cell_repinfo_chart E 
+		<include refid="selectCellRepInfoChartSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getCellRepInfoChartsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellRepInfoChartQuery"
+		resultMap="cellRepInfoChartResultMap">
+		select E.* from cell_repinfo_chart E
+		<include refid="selectCellRepInfoChartSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectCellRepInfoChartSql">
+		 
+		<where>
+
+		   1 = 1  
+
+	        
+			<if test="topid != null and topid != '' ">
+				and E.topid = #{topid}
+			</if>
+
+			<if test="topidLike != null and topidLike != '' ">
+				and E.topid like #{topidLike}
+			</if>
+
+			<if test="topids != null and topids.size() &gt; 0">
+			    and E.topid IN
+				<foreach item="x_topid" index="index" collection="topids" 
+					open="(" separator="," close=")">
+                  #{x_topid}
+				</foreach>
+			</if>
+
+	        
+			<if test="nameLine != null and nameLine != '' ">
+				and E.name_line = #{nameLine}
+			</if>
+
+			<if test="nameLineLike != null and nameLineLike != '' ">
+				and E.name_line like #{nameLineLike}
+			</if>
+
+			<if test="nameLines != null and nameLines.size() &gt; 0">
+			    and E.name_line IN
+				<foreach item="x_nameLine" index="index" collection="nameLines" 
+					open="(" separator="," close=")">
+                  #{x_nameLine}
+				</foreach>
+			</if>
+
+	        
+			<if test="dnameX != null and dnameX != '' ">
+				and E.dname_x = #{dnameX}
+			</if>
+
+			<if test="dnameXLike != null and dnameXLike != '' ">
+				and E.dname_x like #{dnameXLike}
+			</if>
+
+			<if test="dnameXs != null and dnameXs.size() &gt; 0">
+			    and E.dname_x IN
+				<foreach item="x_dnameX" index="index" collection="dnameXs" 
+					open="(" separator="," close=")">
+                  #{x_dnameX}
+				</foreach>
+			</if>
+
+	        
+			<if test="dnameY != null and dnameY != '' ">
+				and E.dname_y = #{dnameY}
+			</if>
+
+			<if test="dnameYLike != null and dnameYLike != '' ">
+				and E.dname_y like #{dnameYLike}
+			</if>
+
+			<if test="dnameYs != null and dnameYs.size() &gt; 0">
+			    and E.dname_y IN
+				<foreach item="x_dnameY" index="index" collection="dnameYs" 
+					open="(" separator="," close=")">
+                  #{x_dnameY}
+				</foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

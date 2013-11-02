@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="GBK"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<bean id="f-1" class="com.glaf.isdp.render.impl.F1Renderer" /> 
+	
+	<bean id="cell_setr_userfolder" class="com.glaf.isdp.render.impl.CellUpicInfoRenderer" />
+
+	<bean id="cell_setr_folder" class="com.glaf.isdp.render.impl.CellSetrFolderRenderer" />
+
+	<bean id="cell_setf_type" class="com.glaf.isdp.render.impl.CellSetfTypeRenderer" />
+
+	<bean id="cell_setp_datatype" class="com.glaf.isdp.render.impl.CellSetpDataTypeRenderer" />
+
+	<bean id="proj_Inspection" class="com.glaf.isdp.render.impl.ProjectInspectionRenderer" /> 
+
+	<bean id="planproj" class="com.glaf.isdp.render.impl.PlanProjRenderer" /> 
+
+</beans>

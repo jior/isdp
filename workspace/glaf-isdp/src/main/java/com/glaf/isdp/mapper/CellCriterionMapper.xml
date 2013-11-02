@@ -1,0 +1,1208 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.CellCriterionMapper">
+
+	<resultMap id="cellCriterionResultMap"	type="com.glaf.isdp.domain.CellCriterion">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="indexId" column="index_id" jdbcType="INTEGER"/>
+		<result property="typeint" column="typeint" jdbcType="INTEGER"/>
+		<result property="type" column="type" jdbcType="VARCHAR"/>
+		<result property="num" column="num" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="unit" column="unit" jdbcType="VARCHAR"/>
+		<result property="alltext" column="alltext" jdbcType="VARCHAR"/>
+		<result property="chkway" column="chkway" jdbcType="VARCHAR"/>
+		<result property="scale" column="scale" jdbcType="INTEGER"/>
+		<result property="point" column="point" jdbcType="DOUBLE"/>
+		<result property="usetypeint" column="usetypeint" jdbcType="INTEGER"/>
+		<result property="checktype" column="checktype" jdbcType="INTEGER"/>
+		<result property="keytext" column="keytext" jdbcType="VARCHAR"/>
+		<result property="minallow" column="minallow" jdbcType="VARCHAR"/>
+		<result property="minallowS" column="minallow_s" jdbcType="VARCHAR"/>
+		<result property="maxallow" column="maxallow" jdbcType="VARCHAR"/>
+		<result property="maxallowS" column="maxallow_s" jdbcType="VARCHAR"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+		<result property="conint" column="conint" jdbcType="INTEGER"/>
+		<result property="conmin" column="conmin" jdbcType="VARCHAR"/>
+		<result property="conminS" column="conmin_s" jdbcType="VARCHAR"/>
+		<result property="conmax" column="conmax" jdbcType="VARCHAR"/>
+		<result property="conmaxS" column="conmax_s" jdbcType="VARCHAR"/>
+		<result property="constr" column="constr" jdbcType="VARCHAR"/>
+		<result property="usingstr" column="usingstr" jdbcType="VARCHAR"/>
+		<result property="subnum" column="subnum" jdbcType="VARCHAR"/>
+		<result property="chkvalueint" column="chkvalueint" jdbcType="INTEGER"/>
+		<result property="strposc" column="strposc" jdbcType="VARCHAR"/>
+		<result property="strposc2" column="strposc2" jdbcType="VARCHAR"/>
+		<result property="strpos" column="strpos" jdbcType="VARCHAR"/>
+		<result property="strpos2" column="strpos2" jdbcType="VARCHAR"/>
+		<result property="chkfield" column="chkfield" jdbcType="VARCHAR"/>
+		<result property="chkunit" column="chkunit" jdbcType="VARCHAR"/>
+		<result property="chkfieldId" column="chkfield_id" jdbcType="VARCHAR"/>
+		<result property="chkformual" column="chkformual" jdbcType="VARCHAR"/>
+		<result property="chkformualD" column="chkformualD" jdbcType="VARCHAR"/>
+		<result property="ichecknum" column="ichecknum" jdbcType="DOUBLE"/>
+		<result property="toolsname" column="toolsname" jdbcType="VARCHAR"/>
+		<result property="constr1" column="constr1" jdbcType="VARCHAR"/>
+		<result property="constr2" column="constr2" jdbcType="VARCHAR"/>
+		<result property="ichecknumLess" column="ichecknum_less" jdbcType="VARCHAR"/>
+		<result property="clevel" column="clevel" jdbcType="VARCHAR"/>
+	</resultMap>
+
+
+	<resultMap id="cellCriterionHashMap"	type="java.util.HashMap">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="indexId" column="index_id" jdbcType="INTEGER"/>
+		<result property="typeint" column="typeint" jdbcType="INTEGER"/>
+		<result property="type" column="type" jdbcType="VARCHAR"/>
+		<result property="num" column="num" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="unit" column="unit" jdbcType="VARCHAR"/>
+		<result property="alltext" column="alltext" jdbcType="VARCHAR"/>
+		<result property="chkway" column="chkway" jdbcType="VARCHAR"/>
+		<result property="scale" column="scale" jdbcType="INTEGER"/>
+		<result property="point" column="point" jdbcType="DOUBLE"/>
+		<result property="usetypeint" column="usetypeint" jdbcType="INTEGER"/>
+		<result property="checktype" column="checktype" jdbcType="INTEGER"/>
+		<result property="keytext" column="keytext" jdbcType="VARCHAR"/>
+		<result property="minallow" column="minallow" jdbcType="VARCHAR"/>
+		<result property="minallowS" column="minallow_s" jdbcType="VARCHAR"/>
+		<result property="maxallow" column="maxallow" jdbcType="VARCHAR"/>
+		<result property="maxallowS" column="maxallow_s" jdbcType="VARCHAR"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+		<result property="conint" column="conint" jdbcType="INTEGER"/>
+		<result property="conmin" column="conmin" jdbcType="VARCHAR"/>
+		<result property="conminS" column="conmin_s" jdbcType="VARCHAR"/>
+		<result property="conmax" column="conmax" jdbcType="VARCHAR"/>
+		<result property="conmaxS" column="conmax_s" jdbcType="VARCHAR"/>
+		<result property="constr" column="constr" jdbcType="VARCHAR"/>
+		<result property="usingstr" column="usingstr" jdbcType="VARCHAR"/>
+		<result property="subnum" column="subnum" jdbcType="VARCHAR"/>
+		<result property="chkvalueint" column="chkvalueint" jdbcType="INTEGER"/>
+		<result property="strposc" column="strposc" jdbcType="VARCHAR"/>
+		<result property="strposc2" column="strposc2" jdbcType="VARCHAR"/>
+		<result property="strpos" column="strpos" jdbcType="VARCHAR"/>
+		<result property="strpos2" column="strpos2" jdbcType="VARCHAR"/>
+		<result property="chkfield" column="chkfield" jdbcType="VARCHAR"/>
+		<result property="chkunit" column="chkunit" jdbcType="VARCHAR"/>
+		<result property="chkfieldId" column="chkfield_id" jdbcType="VARCHAR"/>
+		<result property="chkformual" column="chkformual" jdbcType="VARCHAR"/>
+		<result property="chkformualD" column="chkformualD" jdbcType="VARCHAR"/>
+		<result property="ichecknum" column="ichecknum" jdbcType="DOUBLE"/>
+		<result property="toolsname" column="toolsname" jdbcType="VARCHAR"/>
+		<result property="constr1" column="constr1" jdbcType="VARCHAR"/>
+		<result property="constr2" column="constr2" jdbcType="VARCHAR"/>
+		<result property="ichecknumLess" column="ichecknum_less" jdbcType="VARCHAR"/>
+		<result property="clevel" column="clevel" jdbcType="VARCHAR"/>
+	</resultMap>
+ 
+	<insert id="insertCellCriterion" parameterType="com.glaf.isdp.domain.CellCriterion">
+		insert into cell_criterion 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="indexId != null">
+				,index_id 
+			</if>
+			<if test="typeint != null">
+				,typeint 
+			</if>
+			<if test="type != null">
+				,type 
+			</if>
+			<if test="num != null">
+				,num 
+			</if>
+			<if test="content != null">
+				,content 
+			</if>
+			<if test="unit != null">
+				,unit 
+			</if>
+			<if test="alltext != null">
+				,alltext 
+			</if>
+			<if test="chkway != null">
+				,chkway 
+			</if>
+			<if test="scale != null">
+				,scale 
+			</if>
+			<if test="point != null">
+				,point 
+			</if>
+			<if test="usetypeint != null">
+				,usetypeint 
+			</if>
+			<if test="checktype != null">
+				,checktype 
+			</if>
+			<if test="keytext != null">
+				,keytext 
+			</if>
+			<if test="minallow != null">
+				,minallow 
+			</if>
+			<if test="minallowS != null">
+				,minallow_s 
+			</if>
+			<if test="maxallow != null">
+				,maxallow 
+			</if>
+			<if test="maxallowS != null">
+				,maxallow_s 
+			</if>
+			<if test="listno != null">
+				,listno 
+			</if>
+			<if test="conint != null">
+				,conint 
+			</if>
+			<if test="conmin != null">
+				,conmin 
+			</if>
+			<if test="conminS != null">
+				,conmin_s 
+			</if>
+			<if test="conmax != null">
+				,conmax 
+			</if>
+			<if test="conmaxS != null">
+				,conmax_s 
+			</if>
+			<if test="constr != null">
+				,constr 
+			</if>
+			<if test="usingstr != null">
+				,usingstr 
+			</if>
+			<if test="subnum != null">
+				,subnum 
+			</if>
+			<if test="chkvalueint != null">
+				,chkvalueint 
+			</if>
+			<if test="strposc != null">
+				,strposc 
+			</if>
+			<if test="strposc2 != null">
+				,strposc2 
+			</if>
+			<if test="strpos != null">
+				,strpos 
+			</if>
+			<if test="strpos2 != null">
+				,strpos2 
+			</if>
+			<if test="chkfield != null">
+				,chkfield 
+			</if>
+			<if test="chkunit != null">
+				,chkunit 
+			</if>
+			<if test="chkfieldId != null">
+				,chkfield_id 
+			</if>
+			<if test="chkformual != null">
+				,chkformual 
+			</if>
+			<if test="chkformualD != null">
+				,chkformualD 
+			</if>
+			<if test="ichecknum != null">
+				,ichecknum 
+			</if>
+			<if test="toolsname != null">
+				,toolsname 
+			</if>
+			<if test="constr1 != null">
+				,constr1 
+			</if>
+			<if test="constr2 != null">
+				,constr2 
+			</if>
+			<if test="ichecknumLess != null">
+				,ichecknum_less 
+			</if>
+			<if test="clevel != null">
+				,clevel 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="typeint != null">
+				,#{typeint, jdbcType=INTEGER}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="num != null">
+				,#{num, jdbcType=VARCHAR}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="unit != null">
+				,#{unit, jdbcType=VARCHAR}
+			</if>
+			<if test="alltext != null">
+				,#{alltext, jdbcType=VARCHAR}
+			</if>
+			<if test="chkway != null">
+				,#{chkway, jdbcType=VARCHAR}
+			</if>
+			<if test="scale != null">
+				,#{scale, jdbcType=INTEGER}
+			</if>
+			<if test="point != null">
+				,#{point, jdbcType=DOUBLE}
+			</if>
+			<if test="usetypeint != null">
+				,#{usetypeint, jdbcType=INTEGER}
+			</if>
+			<if test="checktype != null">
+				,#{checktype, jdbcType=INTEGER}
+			</if>
+			<if test="keytext != null">
+				,#{keytext, jdbcType=VARCHAR}
+			</if>
+			<if test="minallow != null">
+				,#{minallow, jdbcType=VARCHAR}
+			</if>
+			<if test="minallowS != null">
+				,#{minallowS, jdbcType=VARCHAR}
+			</if>
+			<if test="maxallow != null">
+				,#{maxallow, jdbcType=VARCHAR}
+			</if>
+			<if test="maxallowS != null">
+				,#{maxallowS, jdbcType=VARCHAR}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+			<if test="conint != null">
+				,#{conint, jdbcType=INTEGER}
+			</if>
+			<if test="conmin != null">
+				,#{conmin, jdbcType=VARCHAR}
+			</if>
+			<if test="conminS != null">
+				,#{conminS, jdbcType=VARCHAR}
+			</if>
+			<if test="conmax != null">
+				,#{conmax, jdbcType=VARCHAR}
+			</if>
+			<if test="conmaxS != null">
+				,#{conmaxS, jdbcType=VARCHAR}
+			</if>
+			<if test="constr != null">
+				,#{constr, jdbcType=VARCHAR}
+			</if>
+			<if test="usingstr != null">
+				,#{usingstr, jdbcType=VARCHAR}
+			</if>
+			<if test="subnum != null">
+				,#{subnum, jdbcType=VARCHAR}
+			</if>
+			<if test="chkvalueint != null">
+				,#{chkvalueint, jdbcType=INTEGER}
+			</if>
+			<if test="strposc != null">
+				,#{strposc, jdbcType=VARCHAR}
+			</if>
+			<if test="strposc2 != null">
+				,#{strposc2, jdbcType=VARCHAR}
+			</if>
+			<if test="strpos != null">
+				,#{strpos, jdbcType=VARCHAR}
+			</if>
+			<if test="strpos2 != null">
+				,#{strpos2, jdbcType=VARCHAR}
+			</if>
+			<if test="chkfield != null">
+				,#{chkfield, jdbcType=VARCHAR}
+			</if>
+			<if test="chkunit != null">
+				,#{chkunit, jdbcType=VARCHAR}
+			</if>
+			<if test="chkfieldId != null">
+				,#{chkfieldId, jdbcType=VARCHAR}
+			</if>
+			<if test="chkformual != null">
+				,#{chkformual, jdbcType=VARCHAR}
+			</if>
+			<if test="chkformualD != null">
+				,#{chkformualD, jdbcType=VARCHAR}
+			</if>
+			<if test="ichecknum != null">
+				,#{ichecknum, jdbcType=DOUBLE}
+			</if>
+			<if test="toolsname != null">
+				,#{toolsname, jdbcType=VARCHAR}
+			</if>
+			<if test="constr1 != null">
+				,#{constr1, jdbcType=VARCHAR}
+			</if>
+			<if test="constr2 != null">
+				,#{constr2, jdbcType=VARCHAR}
+			</if>
+			<if test="ichecknumLess != null">
+				,#{ichecknumLess, jdbcType=VARCHAR}
+			</if>
+			<if test="clevel != null">
+				,#{clevel, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateCellCriterion" parameterType="com.glaf.isdp.domain.CellCriterion">
+		update
+		cell_criterion
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="indexId != null">
+				index_id = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="typeint != null">
+				typeint = #{typeint, jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				type = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="num != null">
+				num = #{num, jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="unit != null">
+				unit = #{unit, jdbcType=VARCHAR},
+			</if>
+			<if test="alltext != null">
+				alltext = #{alltext, jdbcType=VARCHAR},
+			</if>
+			<if test="chkway != null">
+				chkway = #{chkway, jdbcType=VARCHAR},
+			</if>
+			<if test="scale != null">
+				scale = #{scale, jdbcType=INTEGER},
+			</if>
+			<if test="point != null">
+				point = #{point, jdbcType=DOUBLE},
+			</if>
+			<if test="usetypeint != null">
+				usetypeint = #{usetypeint, jdbcType=INTEGER},
+			</if>
+			<if test="checktype != null">
+				checktype = #{checktype, jdbcType=INTEGER},
+			</if>
+			<if test="keytext != null">
+				keytext = #{keytext, jdbcType=VARCHAR},
+			</if>
+			<if test="minallow != null">
+				minallow = #{minallow, jdbcType=VARCHAR},
+			</if>
+			<if test="minallowS != null">
+				minallow_s = #{minallowS, jdbcType=VARCHAR},
+			</if>
+			<if test="maxallow != null">
+				maxallow = #{maxallow, jdbcType=VARCHAR},
+			</if>
+			<if test="maxallowS != null">
+				maxallow_s = #{maxallowS, jdbcType=VARCHAR},
+			</if>
+			<if test="listno != null">
+				listno = #{listno, jdbcType=INTEGER},
+			</if>
+			<if test="conint != null">
+				conint = #{conint, jdbcType=INTEGER},
+			</if>
+			<if test="conmin != null">
+				conmin = #{conmin, jdbcType=VARCHAR},
+			</if>
+			<if test="conminS != null">
+				conmin_s = #{conminS, jdbcType=VARCHAR},
+			</if>
+			<if test="conmax != null">
+				conmax = #{conmax, jdbcType=VARCHAR},
+			</if>
+			<if test="conmaxS != null">
+				conmax_s = #{conmaxS, jdbcType=VARCHAR},
+			</if>
+			<if test="constr != null">
+				constr = #{constr, jdbcType=VARCHAR},
+			</if>
+			<if test="usingstr != null">
+				usingstr = #{usingstr, jdbcType=VARCHAR},
+			</if>
+			<if test="subnum != null">
+				subnum = #{subnum, jdbcType=VARCHAR},
+			</if>
+			<if test="chkvalueint != null">
+				chkvalueint = #{chkvalueint, jdbcType=INTEGER},
+			</if>
+			<if test="strposc != null">
+				strposc = #{strposc, jdbcType=VARCHAR},
+			</if>
+			<if test="strposc2 != null">
+				strposc2 = #{strposc2, jdbcType=VARCHAR},
+			</if>
+			<if test="strpos != null">
+				strpos = #{strpos, jdbcType=VARCHAR},
+			</if>
+			<if test="strpos2 != null">
+				strpos2 = #{strpos2, jdbcType=VARCHAR},
+			</if>
+			<if test="chkfield != null">
+				chkfield = #{chkfield, jdbcType=VARCHAR},
+			</if>
+			<if test="chkunit != null">
+				chkunit = #{chkunit, jdbcType=VARCHAR},
+			</if>
+			<if test="chkfieldId != null">
+				chkfield_id = #{chkfieldId, jdbcType=VARCHAR},
+			</if>
+			<if test="chkformual != null">
+				chkformual = #{chkformual, jdbcType=VARCHAR},
+			</if>
+			<if test="chkformualD != null">
+				chkformualD = #{chkformualD, jdbcType=VARCHAR},
+			</if>
+			<if test="ichecknum != null">
+				ichecknum = #{ichecknum, jdbcType=DOUBLE},
+			</if>
+			<if test="toolsname != null">
+				toolsname = #{toolsname, jdbcType=VARCHAR},
+			</if>
+			<if test="constr1 != null">
+				constr1 = #{constr1, jdbcType=VARCHAR},
+			</if>
+			<if test="constr2 != null">
+				constr2 = #{constr2, jdbcType=VARCHAR},
+			</if>
+			<if test="ichecknumLess != null">
+				ichecknum_less = #{ichecknumLess, jdbcType=VARCHAR},
+			</if>
+			<if test="clevel != null">
+				clevel = #{clevel, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+	</update>
+
+ 
+	<delete id="deleteCellCriterionById" parameterType="string"> 
+        delete from cell_criterion
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteCellCriterions" parameterType="com.glaf.isdp.query.CellCriterionQuery">
+		delete from cell_criterion
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getCellCriterionById" parameterType="string" resultMap="cellCriterionResultMap">
+		select * from cell_criterion where id = #{id}
+	</select>
+	
+	
+	<select id="getCellCriterionByWBS" parameterType="map" resultMap="cellCriterionResultMap">
+		 select * from cell_criterion where id in(
+		   select proj_chkitem_id from cell_chkbatch_chkitem where chkbatch_id in(
+		     select filedot_fileid from mycell_tasks_sub where index_id = #{index_id} and intistasks = #{intistasks}
+		   )
+		 )
+	</select>
+
+
+	<select id="getCellCriterionCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellCriterionsSql" />
+	</select>
+
+
+	<select id="getCellCriterionCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellCriterionQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellCriterionsSql" />
+	</select>
+
+
+	<select id="getCellCriterions" 
+		parameterType="map"
+		resultMap="cellCriterionResultMap">
+		select E.*
+		<include refid="selectCellCriterionsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getCellCriterionsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellCriterionQuery"
+		resultMap="cellCriterionResultMap">
+		select E.*
+		<include refid="selectCellCriterionsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectCellCriterionsSql">
+
+		from cell_criterion E
+		 
+		<where>
+
+		       1 = 1  
+
+
+			<if test="indexId != null">
+				and E.index_id = #{indexId}
+			</if>
+
+			<if test="indexIdGreaterThanOrEqual != null">
+				and E.index_id &gt;= #{indexIdGreaterThanOrEqual}
+			</if>
+
+			<if test="indexIdLessThanOrEqual != null">
+				and E.index_id &lt;= #{indexIdLessThanOrEqual}
+			</if>
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+			    and E.index_id IN
+				<foreach item="x_indexId" index="index" collection="indexIds" 
+					open="(" separator="," close=")">
+                  #{x_indexId}
+				</foreach>
+			</if>
+
+
+			<if test="typeint != null">
+				and E.typeint = #{typeint}
+			</if>
+
+			<if test="typeintGreaterThanOrEqual != null">
+				and E.typeint &gt;= #{typeintGreaterThanOrEqual}
+			</if>
+
+			<if test="typeintLessThanOrEqual != null">
+				and E.typeint &lt;= #{typeintLessThanOrEqual}
+			</if>
+
+			<if test="typeints != null and typeints.size() &gt; 0">
+			    and E.typeint IN
+				<foreach item="x_typeint" index="index" collection="typeints" 
+					open="(" separator="," close=")">
+                  #{x_typeint}
+				</foreach>
+			</if>
+
+	        
+			<if test="type != null and type != '' ">
+				and E.type = #{type}
+			</if>
+
+			<if test="typeLike != null and typeLike != '' ">
+				and E.type like #{typeLike}
+			</if>
+
+			<if test="types != null and types.size() &gt; 0">
+			    and E.type IN
+				<foreach item="x_type" index="index" collection="types" 
+					open="(" separator="," close=")">
+                  #{x_type}
+				</foreach>
+			</if>
+
+			<if test="numLike != null and numLike != '' ">
+				and E.num like #{numLike}
+			</if> 
+
+			<if test="contentLike != null and contentLike != '' ">
+				and E.content like #{contentLike}
+			</if>
+		  
+			<if test="alltextLike != null and alltextLike != '' ">
+				and E.alltext like #{alltextLike}
+			</if>
+ 
+			<if test="chkwayLike != null and chkwayLike != '' ">
+				and E.chkway like #{chkwayLike}
+			</if>
+		
+			<if test="scale != null">
+				and E.scale = #{scale}
+			</if>
+
+			<if test="scaleGreaterThanOrEqual != null">
+				and E.scale &gt;= #{scaleGreaterThanOrEqual}
+			</if>
+
+			<if test="scaleLessThanOrEqual != null">
+				and E.scale &lt;= #{scaleLessThanOrEqual}
+			</if>
+
+			<if test="scales != null and scales.size() &gt; 0">
+			    and E.scale IN
+				<foreach item="x_scale" index="index" collection="scales" 
+					open="(" separator="," close=")">
+                  #{x_scale}
+				</foreach>
+			</if>
+
+			<if test="point != null">
+				and E.point = #{point}
+			</if>
+
+			<if test="pointGreaterThanOrEqual != null">
+				and E.point &gt;= #{pointGreaterThanOrEqual}
+			</if>
+
+			<if test="pointLessThanOrEqual != null">
+				and E.point &lt;= #{pointLessThanOrEqual}
+			</if>
+
+			<if test="points != null and points.size() &gt; 0">
+			    and E.point IN
+				<foreach item="x_point" index="index" collection="points" 
+					open="(" separator="," close=")">
+                  #{x_point}
+				</foreach>
+			</if>
+
+			<if test="usetypeint != null">
+				and E.usetypeint = #{usetypeint}
+			</if>
+
+			<if test="usetypeintGreaterThanOrEqual != null">
+				and E.usetypeint &gt;= #{usetypeintGreaterThanOrEqual}
+			</if>
+
+			<if test="usetypeintLessThanOrEqual != null">
+				and E.usetypeint &lt;= #{usetypeintLessThanOrEqual}
+			</if>
+
+			<if test="usetypeints != null and usetypeints.size() &gt; 0">
+			    and E.usetypeint IN
+				<foreach item="x_usetypeint" index="index" collection="usetypeints" 
+					open="(" separator="," close=")">
+                  #{x_usetypeint}
+				</foreach>
+			</if>
+
+			<if test="checktype != null">
+				and E.checktype = #{checktype}
+			</if>
+
+			<if test="checktypeGreaterThanOrEqual != null">
+				and E.checktype &gt;= #{checktypeGreaterThanOrEqual}
+			</if>
+
+			<if test="checktypeLessThanOrEqual != null">
+				and E.checktype &lt;= #{checktypeLessThanOrEqual}
+			</if>
+
+			<if test="checktypes != null and checktypes.size() &gt; 0">
+			    and E.checktype IN
+				<foreach item="x_checktype" index="index" collection="checktypes" 
+					open="(" separator="," close=")">
+                  #{x_checktype}
+				</foreach>
+			</if>
+
+			<if test="keytextLike != null and keytextLike != '' ">
+				and E.keytext like #{keytextLike}
+			</if>
+	        
+			<if test="minallow != null and minallow != '' ">
+				and E.minallow = #{minallow}
+			</if>
+
+			<if test="minallowLike != null and minallowLike != '' ">
+				and E.minallow like #{minallowLike}
+			</if>
+
+			<if test="minallows != null and minallows.size() &gt; 0">
+			    and E.minallow IN
+				<foreach item="x_minallow" index="index" collection="minallows" 
+					open="(" separator="," close=")">
+                  #{x_minallow}
+				</foreach>
+			</if>
+	        
+			<if test="minallowS != null and minallowS != '' ">
+				and E.minallow_s = #{minallowS}
+			</if>
+
+			<if test="minallowSLike != null and minallowSLike != '' ">
+				and E.minallow_s like #{minallowSLike}
+			</if>
+
+			<if test="minallowSs != null and minallowSs.size() &gt; 0">
+			    and E.minallow_s IN
+				<foreach item="x_minallowS" index="index" collection="minallowSs" 
+					open="(" separator="," close=")">
+                  #{x_minallowS}
+				</foreach>
+			</if>
+   
+			<if test="maxallow != null and maxallow != '' ">
+				and E.maxallow = #{maxallow}
+			</if>
+
+			<if test="maxallowLike != null and maxallowLike != '' ">
+				and E.maxallow like #{maxallowLike}
+			</if>
+
+			<if test="maxallows != null and maxallows.size() &gt; 0">
+			    and E.maxallow IN
+				<foreach item="x_maxallow" index="index" collection="maxallows" 
+					open="(" separator="," close=")">
+                  #{x_maxallow}
+				</foreach>
+			</if>
+       
+			<if test="maxallowS != null and maxallowS != '' ">
+				and E.maxallow_s = #{maxallowS}
+			</if>
+
+			<if test="maxallowSLike != null and maxallowSLike != '' ">
+				and E.maxallow_s like #{maxallowSLike}
+			</if>
+
+			<if test="maxallowSs != null and maxallowSs.size() &gt; 0">
+			    and E.maxallow_s IN
+				<foreach item="x_maxallowS" index="index" collection="maxallowSs" 
+					open="(" separator="," close=")">
+                  #{x_maxallowS}
+				</foreach>
+			</if>
+
+			<if test="conint != null">
+				and E.conint = #{conint}
+			</if>
+
+			<if test="conintGreaterThanOrEqual != null">
+				and E.conint &gt;= #{conintGreaterThanOrEqual}
+			</if>
+
+			<if test="conintLessThanOrEqual != null">
+				and E.conint &lt;= #{conintLessThanOrEqual}
+			</if>
+
+			<if test="conints != null and conints.size() &gt; 0">
+			    and E.conint IN
+				<foreach item="x_conint" index="index" collection="conints" 
+					open="(" separator="," close=")">
+                  #{x_conint}
+				</foreach>
+			</if>
+
+	        
+			<if test="conmin != null and conmin != '' ">
+				and E.conmin = #{conmin}
+			</if>
+
+			<if test="conminLike != null and conminLike != '' ">
+				and E.conmin like #{conminLike}
+			</if>
+
+			<if test="conmins != null and conmins.size() &gt; 0">
+			    and E.conmin IN
+				<foreach item="x_conmin" index="index" collection="conmins" 
+					open="(" separator="," close=")">
+                  #{x_conmin}
+				</foreach>
+			</if>
+
+	        
+			<if test="conminS != null and conminS != '' ">
+				and E.conmin_s = #{conminS}
+			</if>
+
+			<if test="conminSLike != null and conminSLike != '' ">
+				and E.conmin_s like #{conminSLike}
+			</if>
+
+			<if test="conminSs != null and conminSs.size() &gt; 0">
+			    and E.conmin_s IN
+				<foreach item="x_conminS" index="index" collection="conminSs" 
+					open="(" separator="," close=")">
+                  #{x_conminS}
+				</foreach>
+			</if>
+
+	        
+			<if test="conmax != null and conmax != '' ">
+				and E.conmax = #{conmax}
+			</if>
+
+			<if test="conmaxLike != null and conmaxLike != '' ">
+				and E.conmax like #{conmaxLike}
+			</if>
+
+			<if test="conmaxs != null and conmaxs.size() &gt; 0">
+			    and E.conmax IN
+				<foreach item="x_conmax" index="index" collection="conmaxs" 
+					open="(" separator="," close=")">
+                  #{x_conmax}
+				</foreach>
+			</if>
+
+	        
+			<if test="conmaxS != null and conmaxS != '' ">
+				and E.conmax_s = #{conmaxS}
+			</if>
+
+			<if test="conmaxSLike != null and conmaxSLike != '' ">
+				and E.conmax_s like #{conmaxSLike}
+			</if>
+
+			<if test="conmaxSs != null and conmaxSs.size() &gt; 0">
+			    and E.conmax_s IN
+				<foreach item="x_conmaxS" index="index" collection="conmaxSs" 
+					open="(" separator="," close=")">
+                  #{x_conmaxS}
+				</foreach>
+			</if>
+	        
+			<if test="constr != null and constr != '' ">
+				and E.constr = #{constr}
+			</if>
+
+			<if test="constrLike != null and constrLike != '' ">
+				and E.constr like #{constrLike}
+			</if>
+
+			<if test="constrs != null and constrs.size() &gt; 0">
+			    and E.constr IN
+				<foreach item="x_constr" index="index" collection="constrs" 
+					open="(" separator="," close=")">
+                  #{x_constr}
+				</foreach>
+			</if>
+	        
+			<if test="usingstr != null and usingstr != '' ">
+				and E.usingstr = #{usingstr}
+			</if>
+
+			<if test="usingstrLike != null and usingstrLike != '' ">
+				and E.usingstr like #{usingstrLike}
+			</if>
+
+			<if test="usingstrs != null and usingstrs.size() &gt; 0">
+			    and E.usingstr IN
+				<foreach item="x_usingstr" index="index" collection="usingstrs" 
+					open="(" separator="," close=")">
+                  #{x_usingstr}
+				</foreach>
+			</if>
+
+	        
+			<if test="subnum != null and subnum != '' ">
+				and E.subnum = #{subnum}
+			</if>
+
+			<if test="subnumLike != null and subnumLike != '' ">
+				and E.subnum like #{subnumLike}
+			</if>
+
+			<if test="subnums != null and subnums.size() &gt; 0">
+			    and E.subnum IN
+				<foreach item="x_subnum" index="index" collection="subnums" 
+					open="(" separator="," close=")">
+                  #{x_subnum}
+				</foreach>
+			</if>
+
+
+			<if test="chkvalueint != null">
+				and E.chkvalueint = #{chkvalueint}
+			</if>
+
+			<if test="chkvalueintGreaterThanOrEqual != null">
+				and E.chkvalueint &gt;= #{chkvalueintGreaterThanOrEqual}
+			</if>
+
+			<if test="chkvalueintLessThanOrEqual != null">
+				and E.chkvalueint &lt;= #{chkvalueintLessThanOrEqual}
+			</if>
+
+			<if test="chkvalueints != null and chkvalueints.size() &gt; 0">
+			    and E.chkvalueint IN
+				<foreach item="x_chkvalueint" index="index" collection="chkvalueints" 
+					open="(" separator="," close=")">
+                  #{x_chkvalueint}
+				</foreach>
+			</if>
+
+	        
+			<if test="strposc != null and strposc != '' ">
+				and E.strposc = #{strposc}
+			</if>
+
+			<if test="strposcLike != null and strposcLike != '' ">
+				and E.strposc like #{strposcLike}
+			</if>
+
+			<if test="strposcs != null and strposcs.size() &gt; 0">
+			    and E.strposc IN
+				<foreach item="x_strposc" index="index" collection="strposcs" 
+					open="(" separator="," close=")">
+                  #{x_strposc}
+				</foreach>
+			</if>
+
+	        
+			<if test="strposc2 != null and strposc2 != '' ">
+				and E.strposc2 = #{strposc2}
+			</if>
+
+			<if test="strposc2Like != null and strposc2Like != '' ">
+				and E.strposc2 like #{strposc2Like}
+			</if>
+
+			<if test="strposc2s != null and strposc2s.size() &gt; 0">
+			    and E.strposc2 IN
+				<foreach item="x_strposc2" index="index" collection="strposc2s" 
+					open="(" separator="," close=")">
+                  #{x_strposc2}
+				</foreach>
+			</if>
+
+	        
+			<if test="strpos != null and strpos != '' ">
+				and E.strpos = #{strpos}
+			</if>
+
+			<if test="strposLike != null and strposLike != '' ">
+				and E.strpos like #{strposLike}
+			</if>
+
+			<if test="strposs != null and strposs.size() &gt; 0">
+			    and E.strpos IN
+				<foreach item="x_strpos" index="index" collection="strposs" 
+					open="(" separator="," close=")">
+                  #{x_strpos}
+				</foreach>
+			</if>
+
+	        
+			<if test="strpos2 != null and strpos2 != '' ">
+				and E.strpos2 = #{strpos2}
+			</if>
+
+			<if test="strpos2Like != null and strpos2Like != '' ">
+				and E.strpos2 like #{strpos2Like}
+			</if>
+
+			<if test="strpos2s != null and strpos2s.size() &gt; 0">
+			    and E.strpos2 IN
+				<foreach item="x_strpos2" index="index" collection="strpos2s" 
+					open="(" separator="," close=")">
+                  #{x_strpos2}
+				</foreach>
+			</if>
+
+	        
+			<if test="chkfield != null and chkfield != '' ">
+				and E.chkfield = #{chkfield}
+			</if>
+
+			<if test="chkfieldLike != null and chkfieldLike != '' ">
+				and E.chkfield like #{chkfieldLike}
+			</if>
+
+			<if test="chkfields != null and chkfields.size() &gt; 0">
+			    and E.chkfield IN
+				<foreach item="x_chkfield" index="index" collection="chkfields" 
+					open="(" separator="," close=")">
+                  #{x_chkfield}
+				</foreach>
+			</if>
+
+	        
+			<if test="chkunit != null and chkunit != '' ">
+				and E.chkunit = #{chkunit}
+			</if>
+
+			<if test="chkunitLike != null and chkunitLike != '' ">
+				and E.chkunit like #{chkunitLike}
+			</if>
+
+			<if test="chkunits != null and chkunits.size() &gt; 0">
+			    and E.chkunit IN
+				<foreach item="x_chkunit" index="index" collection="chkunits" 
+					open="(" separator="," close=")">
+                  #{x_chkunit}
+				</foreach>
+			</if>
+
+	        
+			<if test="chkfieldId != null and chkfieldId != '' ">
+				and E.chkfield_id = #{chkfieldId}
+			</if>
+
+			<if test="chkfieldIdLike != null and chkfieldIdLike != '' ">
+				and E.chkfield_id like #{chkfieldIdLike}
+			</if>
+
+			<if test="chkfieldIds != null and chkfieldIds.size() &gt; 0">
+			    and E.chkfield_id IN
+				<foreach item="x_chkfieldId" index="index" collection="chkfieldIds" 
+					open="(" separator="," close=")">
+                  #{x_chkfieldId}
+				</foreach>
+			</if>
+
+	        
+			<if test="chkformual != null and chkformual != '' ">
+				and E.chkformual = #{chkformual}
+			</if>
+
+			<if test="chkformualLike != null and chkformualLike != '' ">
+				and E.chkformual like #{chkformualLike}
+			</if>
+
+			<if test="chkformuals != null and chkformuals.size() &gt; 0">
+			    and E.chkformual IN
+				<foreach item="x_chkformual" index="index" collection="chkformuals" 
+					open="(" separator="," close=")">
+                  #{x_chkformual}
+				</foreach>
+			</if>
+
+	        
+			<if test="chkformualD != null and chkformualD != '' ">
+				and E.chkformualD = #{chkformualD}
+			</if>
+
+			<if test="chkformualDLike != null and chkformualDLike != '' ">
+				and E.chkformualD like #{chkformualDLike}
+			</if>
+
+			<if test="chkformualDs != null and chkformualDs.size() &gt; 0">
+			    and E.chkformualD IN
+				<foreach item="x_chkformualD" index="index" collection="chkformualDs" 
+					open="(" separator="," close=")">
+                  #{x_chkformualD}
+				</foreach>
+			</if>
+
+
+			<if test="ichecknum != null">
+				and E.ichecknum = #{ichecknum}
+			</if>
+
+			<if test="ichecknumGreaterThanOrEqual != null">
+				and E.ichecknum &gt;= #{ichecknumGreaterThanOrEqual}
+			</if>
+
+			<if test="ichecknumLessThanOrEqual != null">
+				and E.ichecknum &lt;= #{ichecknumLessThanOrEqual}
+			</if>
+
+			<if test="ichecknums != null and ichecknums.size() &gt; 0">
+			    and E.ichecknum IN
+				<foreach item="x_ichecknum" index="index" collection="ichecknums" 
+					open="(" separator="," close=")">
+                  #{x_ichecknum}
+				</foreach>
+			</if>
+ 
+			<if test="toolsnameLike != null and toolsnameLike != '' ">
+				and E.toolsname like #{toolsnameLike}
+			</if>
+ 
+			<if test="constr1 != null and constr1 != '' ">
+				and E.constr1 = #{constr1}
+			</if>
+
+			<if test="constr1Like != null and constr1Like != '' ">
+				and E.constr1 like #{constr1Like}
+			</if>
+
+			<if test="constr1s != null and constr1s.size() &gt; 0">
+			    and E.constr1 IN
+				<foreach item="x_constr1" index="index" collection="constr1s" 
+					open="(" separator="," close=")">
+                  #{x_constr1}
+				</foreach>
+			</if>
+
+	        
+			<if test="constr2 != null and constr2 != '' ">
+				and E.constr2 = #{constr2}
+			</if>
+
+			<if test="constr2Like != null and constr2Like != '' ">
+				and E.constr2 like #{constr2Like}
+			</if>
+
+			<if test="constr2s != null and constr2s.size() &gt; 0">
+			    and E.constr2 IN
+				<foreach item="x_constr2" index="index" collection="constr2s" 
+					open="(" separator="," close=")">
+                  #{x_constr2}
+				</foreach>
+			</if>
+
+	        
+			<if test="ichecknumLess != null and ichecknumLess != '' ">
+				and E.ichecknum_less = #{ichecknumLess}
+			</if>
+
+			<if test="ichecknumLessLike != null and ichecknumLessLike != '' ">
+				and E.ichecknum_less like #{ichecknumLessLike}
+			</if>
+
+			<if test="ichecknumLesss != null and ichecknumLesss.size() &gt; 0">
+			    and E.ichecknum_less IN
+				<foreach item="x_ichecknumLess" index="index" collection="ichecknumLesss" 
+					open="(" separator="," close=")">
+                  #{x_ichecknumLess}
+				</foreach>
+			</if>
+
+	        
+			<if test="clevel != null and clevel != '' ">
+				and E.clevel = #{clevel}
+			</if>
+
+			<if test="clevelLike != null and clevelLike != '' ">
+				and E.clevel like #{clevelLike}
+			</if>
+
+			<if test="clevels != null and clevels.size() &gt; 0">
+			    and E.clevel IN
+				<foreach item="x_clevel" index="index" collection="clevels" 
+					open="(" separator="," close=")">
+                  #{x_clevel}
+				</foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.TreepurMapper">
+
+ 	<resultMap id="treepurResultMap"	type="com.glaf.isdp.domain.Treepur">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+        <result property="indexId" column="index_id" jdbcType="INTEGER"/>
+        <result property="indexName" column="index_name" jdbcType="VARCHAR"/>
+        <result property="modulenum" column="modulenum" jdbcType="INTEGER"/>
+        <result property="content" column="content" jdbcType="VARCHAR"/>
+        <result property="listno" column="listno" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertTreepur" parameterType="com.glaf.isdp.domain.Treepur">
+		insert into treepur 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="indexId != null">
+				,index_id 
+			</if>
+			<if test="parentId != null">
+				,parent_id 
+			</if>
+			<if test="indexName != null">
+				,index_name 
+			</if>
+			<if test="modulenum != null">
+				,modulenum 
+			</if>
+			<if test="content != null">
+				,content 
+			</if>
+			<if test="listno != null">
+				,listno 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=INTEGER}
+			</if>
+			<if test="indexName != null">
+				,#{indexName, jdbcType=VARCHAR}
+			</if>
+			<if test="modulenum != null">
+				,#{modulenum, jdbcType=INTEGER}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateTreepur" parameterType="com.glaf.isdp.domain.Treepur">
+		update
+		    treepur
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="indexId != null">
+				index_id = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="parentId != null">
+				parent_id = #{parentId, jdbcType=INTEGER},
+			</if>
+			<if test="indexName != null">
+				index_name = #{indexName, jdbcType=VARCHAR},
+			</if>
+			<if test="modulenum != null">
+				modulenum = #{modulenum, jdbcType=INTEGER},
+			</if>
+			<if test="content != null">
+				content = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="listno != null">
+				listno = #{listno, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteTreepurById" parameterType="string"> 
+        delete from treepur
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteTreepurs" parameterType="com.glaf.isdp.query.TreepurQuery">
+		delete from treepur
+		where ( id IN
+          <foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+          </foreach>
+		)
+	</delete>
+
+
+	<select id="getTreepurById" parameterType="string" resultMap="treepurResultMap">
+		select * from treepur where id = #{id}
+	</select>
+
+
+	<select id="getTreepurCount" 
+	    parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreepursSql" />
+	</select>
+
+
+	<select id="getTreepurCountByQueryCriteria" 
+	    parameterType="com.glaf.isdp.query.TreepurQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreepursSql" />
+	</select>
+
+
+	<select id="getTreepurs" 
+	    parameterType="map"
+		resultMap="treepurResultMap">
+		select E.*
+		<include refid="selectTreepursSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+	<select id="getTreepursByQueryCriteria" 
+	    parameterType="com.glaf.isdp.query.TreepurQuery"
+		resultMap="treepurResultMap">
+		select E.*
+		<include refid="selectTreepursSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+
+	<sql id="selectTreepursSql">
+
+		from treepur E
+		 
+		<where>
+
+		       1 = 1  
+
+
+			<if test="indexId != null">
+				and E.index_id = #{indexId}
+            </if>
+
+			<if test="indexIdGreaterThanOrEqual != null">
+				and E.index_id &gt;= #{indexIdGreaterThanOrEqual}
+            </if>
+
+			<if test="indexIdLessThanOrEqual != null">
+				and E.index_id &lt;= #{indexIdLessThanOrEqual}
+            </if>
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+			    and E.index_id IN
+                <foreach item="x_indexId" index="index" collection="indexIds" 
+                     open="(" separator="," close=")">
+                  #{x_indexId}
+                </foreach>
+			</if>
+
+	        <if test="parentId != null">
+				and E.parent_id = #{parentId}
+			</if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+			    and E.parent_id IN
+				<foreach item="x_parentId" index="index" collection="parentIds" 
+					open="(" separator="," close=")">
+                  #{x_parentId}
+				</foreach>
+			</if>
+ 
+			<if test="indexNameLike != null and indexNameLike != '' ">
+				and E.index_name like #{indexNameLike}
+            </if>
+ 
+			<if test="modulenum != null">
+				and E.modulenum = #{modulenum}
+            </if>
+
+			<if test="modulenumGreaterThanOrEqual != null">
+				and E.modulenum &gt;= #{modulenumGreaterThanOrEqual}
+            </if>
+
+			<if test="modulenumLessThanOrEqual != null">
+				and E.modulenum &lt;= #{modulenumLessThanOrEqual}
+            </if>
+
+			<if test="modulenums != null and modulenums.size() &gt; 0">
+			    and E.modulenum IN
+                <foreach item="x_modulenum" index="index" collection="modulenums" 
+                     open="(" separator="," close=")">
+                  #{x_modulenum}
+                </foreach>
+			</if>
+ 
+			<if test="contentLike != null and contentLike != '' ">
+				and E.content like #{contentLike}
+            </if>
+
+		</where>
+	</sql>
+
+</mapper>

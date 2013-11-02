@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.TreeProjectParMapper">
+
+ 	<resultMap id="treeProjectParResultMap"	type="com.glaf.isdp.domain.TreeProjectPar">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="indexId" column="index_id" jdbcType="INTEGER"/>
+        <result property="treeProjectParUser1" column="treeproj_par_user1" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertTreeProjectPar" parameterType="com.glaf.isdp.domain.TreeProjectPar">
+		insert into treeproj_par 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="indexId != null">
+				,index_id 
+			</if>
+			<if test="treeProjectParUser1 != null">
+				,treeproj_par_user1 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="treeProjectParUser1 != null">
+				,#{treeProjectParUser1, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateTreeProjectPar" parameterType="com.glaf.isdp.domain.TreeProjectPar">
+		update
+		    treeproj_par
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="indexId != null">
+				index_id = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="treeprojParUser1 != null">
+				treeproj_par_user1 = #{treeprojParUser1, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteTreeProjectParById" parameterType="string"> 
+        delete from treeproj_par
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteTreeProjectPars" parameterType="com.glaf.isdp.query.TreeProjectParQuery">
+		delete from treeproj_par
+		where ( id IN
+          <foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+          </foreach>
+		)
+	</delete>
+
+
+	<select id="getTreeProjectParById" parameterType="string" resultMap="treeProjectParResultMap">
+		select * from treeproj_par where id = #{id}
+	</select>
+
+
+	<select id="getTreeProjectParCount" 
+	    parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreeProjectParsSql" />
+	</select>
+
+
+	<select id="getTreeProjectParCountByQueryCriteria" 
+	    parameterType="com.glaf.isdp.query.TreeProjectParQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreeProjectParsSql" />
+	</select>
+
+
+	<select id="getTreeProjectPars" 
+	    parameterType="map"
+		resultMap="treeProjectParResultMap">
+		select E.*
+		<include refid="selectTreeProjectParsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+	<select id="getTreeProjectParsByQueryCriteria" 
+	    parameterType="com.glaf.isdp.query.TreeProjectParQuery"
+		resultMap="treeProjectParResultMap">
+		select E.*
+		<include refid="selectTreeProjectParsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+
+	<sql id="selectTreeProjectParsSql">
+
+		from treeproj_par E
+		 
+		<where>
+
+		       1 = 1  
+
+
+			<if test="indexId != null">
+				and E.index_id = #{indexId}
+            </if>
+
+			<if test="indexIdGreaterThanOrEqual != null">
+				and E.index_id &gt;= #{indexIdGreaterThanOrEqual}
+            </if>
+
+			<if test="indexIdLessThanOrEqual != null">
+				and E.index_id &lt;= #{indexIdLessThanOrEqual}
+            </if>
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+			    and E.index_id IN
+                <foreach item="x_indexId" index="index" collection="indexIds" 
+                     open="(" separator="," close=")">
+                  #{x_indexId}
+                </foreach>
+			</if>
+
+
+			<if test="treeProjectParUser1 != null">
+				and E.treeproj_par_user1 = #{treeProjectParUser1}
+            </if>
+
+			<if test="treeProjectParUser1GreaterThanOrEqual != null">
+				and E.treeproj_par_user1 &gt;= #{treeProjectParUser1GreaterThanOrEqual}
+            </if>
+
+			<if test="treeProjectParUser1LessThanOrEqual != null">
+				and E.treeproj_par_user1 &lt;= #{treeProjectParUser1LessThanOrEqual}
+            </if>
+
+			<if test="treeProjectParUser1s != null and treeProjectParUser1s.size() &gt; 0">
+			    and E.treeproj_par_user1 IN
+                <foreach item="x_treeProjectParUser1" index="index" collection="treeProjectParUser1s" 
+                     open="(" separator="," close=")">
+                  #{x_treeProjectParUser1}
+                </foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

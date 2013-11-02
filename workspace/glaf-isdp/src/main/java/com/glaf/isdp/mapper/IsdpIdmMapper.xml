@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.IsdpIdmMapper">
+	
+	<resultMap id="userNetRoleResultMap" type="com.glaf.isdp.domain.NetRole">
+		<id property="id" column="id" jdbcType="INTEGER" />
+		<result property="listno" column="listno" jdbcType="INTEGER" />
+		<result property="name" column="rolename" jdbcType="VARCHAR" />
+		<result property="roleuse" column="roleuse" jdbcType="INTEGER" />
+		<result property="roletype" column="roletype" jdbcType="INTEGER" />
+		<result property="content" column="content" jdbcType="VARCHAR" />
+		<result property="busiessId" column="busiess_id" jdbcType="VARCHAR" />
+		<result property="tasksort" column="tasksort" jdbcType="INTEGER" />
+		<result property="domainIndex" column="domain_index" jdbcType="INTEGER" />
+	</resultMap>
+  
+	<select id="getUserNetRoleList" parameterType="string" resultMap="userNetRoleResultMap">
+		select * from net_role a 
+        where exists ( select * from userrole b where  b.userid = #{actorId} and b.roleid=a.id )    
+	</select>
+	
+</mapper>	

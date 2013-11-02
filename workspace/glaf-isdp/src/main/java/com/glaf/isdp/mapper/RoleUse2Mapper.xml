@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.RoleUse2Mapper">
+
+ 	<resultMap id="roleUse2ResultMap"	type="com.glaf.isdp.domain.RoleUse2">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="roleId" column="roleID" jdbcType="VARCHAR"/>
+        <result property="useType" column="usetype" jdbcType="VARCHAR"/>
+        <result property="pid" column="pid" jdbcType="INTEGER"/>
+        <result property="treeType" column="treetype" jdbcType="INTEGER"/>
+        <result property="userchk" column="userchk" jdbcType="VARCHAR"/>
+        <result property="treeId" column="treeid" jdbcType="VARCHAR"/>
+	</resultMap>
+
+
+ 	<resultMap id="roleUse2HashMap"	type="java.util.HashMap">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="roleId" column="roleID" jdbcType="VARCHAR"/>
+        <result property="useType" column="usetype" jdbcType="VARCHAR"/>
+        <result property="pid" column="pid" jdbcType="INTEGER"/>
+        <result property="treeType" column="treetype" jdbcType="INTEGER"/>
+        <result property="userchk" column="userchk" jdbcType="VARCHAR"/>
+        <result property="treeId" column="treeid" jdbcType="VARCHAR"/>
+	</resultMap>
+ 
+	<insert id="insertRoleUse2" parameterType="com.glaf.isdp.domain.RoleUse2">
+		insert into roleuse2 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="roleId != null">
+				,roleID 
+			</if>
+			<if test="useType != null">
+				,usetype 
+			</if>
+			<if test="pid != null">
+				,pid 
+			</if>
+			<if test="treeType != null">
+				,treetype 
+			</if>
+			<if test="userchk != null">
+				,userchk 
+			</if>
+			<if test="treeId != null">
+				,treeid 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="roleId != null">
+				,#{roleId, jdbcType=VARCHAR}
+			</if>
+			<if test="useType != null">
+				,#{useType, jdbcType=VARCHAR}
+			</if>
+			<if test="pid != null">
+				,#{pid, jdbcType=INTEGER}
+			</if>
+			<if test="treeType != null">
+				,#{treeType, jdbcType=INTEGER}
+			</if>
+			<if test="userchk != null">
+				,#{userchk, jdbcType=VARCHAR}
+			</if>
+			<if test="treeId != null">
+				,#{treeId, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateRoleUse2" parameterType="com.glaf.isdp.domain.RoleUse2">
+		update roleuse2
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="roleId != null">
+				roleId = #{roleId, jdbcType=VARCHAR},
+			</if>
+			<if test="useType != null">
+				usetype = #{useType, jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				pid = #{pid, jdbcType=INTEGER},
+			</if>
+			<if test="treeType != null">
+				treetype = #{treeType, jdbcType=INTEGER},
+			</if>
+			<if test="userchk != null">
+				userchk = #{userchk, jdbcType=VARCHAR},
+			</if>
+			<if test="treeId != null">
+				treeid = #{treeId, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteRoleUse2ById" parameterType="string"> 
+        delete from roleuse2
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteRoleUse2s" parameterType="com.glaf.isdp.query.RoleUse2Query">
+		delete from roleuse2
+		where ( id IN
+          <foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+          </foreach>
+		)
+	</delete>
+
+
+	<select id="getRoleUse2ById" parameterType="string" resultMap="roleUse2ResultMap">
+		select * from roleuse2 where id = #{id}
+	</select>
+
+
+	<select id="getRoleUse2Count" 
+	    parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectRoleUse2sSql" />
+	</select>
+
+
+	<select id="getRoleUse2CountByQueryCriteria" 
+	    parameterType="com.glaf.isdp.query.RoleUse2Query"
+		resultType="int">
+		select count(*)
+		<include refid="selectRoleUse2sSql" />
+	</select>
+
+
+	<select id="getRoleUse2s" 
+	    parameterType="map"
+		resultMap="roleUse2ResultMap">
+		select E.*
+		<include refid="selectRoleUse2sSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+
+    <select id="getRoleUse2MapList" parameterType="map" resultType="map">
+		select E.*
+		<include refid="selectRoleUse2sSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+
+	<select id="getRoleUse2sByQueryCriteria" 
+	    parameterType="com.glaf.isdp.query.RoleUse2Query"
+		resultMap="roleUse2ResultMap">
+		select E.*
+		<include refid="selectRoleUse2sSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+
+	<sql id="selectRoleUse2sSql">
+
+		from roleuse2 E
+		 
+		<where>
+
+		       1 = 1  
+	     
+			<if test="roleId != null and roleId != '' ">
+				and E.roleID = #{roleId}
+            </if>
+
+			<if test="roleIds != null and roleIds.size() &gt; 0">
+			    and E.roleID IN
+                <foreach item="x_roleId" index="index" collection="roleIds" 
+                     open="(" separator="," close=")">
+                  #{x_roleId}
+                </foreach>
+			</if>
+
+	        
+			<if test="useType != null and useType != '' ">
+				and E.usetype = #{useType}
+            </if>
+
+			<if test="useTypeLike != null and useTypeLike != '' ">
+				and E.usetype like #{useTypeLike}
+            </if>
+
+			<if test="useTypes != null and useTypes.size() &gt; 0">
+			    and E.usetype IN
+                <foreach item="x_useType" index="index" collection="useTypes" 
+                     open="(" separator="," close=")">
+                  #{x_useType}
+                </foreach>
+			</if>
+
+			<if test="treeType != null">
+				and E.treetype = #{treeType}
+            </if>
+
+			<if test="treeTypeGreaterThanOrEqual != null">
+				and E.treetype &gt;= #{treeTypeGreaterThanOrEqual}
+            </if>
+
+			<if test="treeTypeLessThanOrEqual != null">
+				and E.treetype &lt;= #{treeTypeLessThanOrEqual}
+            </if>
+
+			<if test="treeTypes != null and treeTypes.size() &gt; 0">
+			    and E.treetype IN
+                <foreach item="x_treeType" index="index" collection="treeTypes" 
+                     open="(" separator="," close=")">
+                  #{x_treeType}
+                </foreach>
+			</if>
+	        
+	        <if test="pid != null and pid != '' ">
+				and E.pid = #{pid}
+            </if>
+            
+			<if test="userchk != null and userchk != '' ">
+				and E.userchk = #{userchk}
+            </if>
+
+			<if test="treeId != null and treeId != '' ">
+				and E.treeid = #{treeId}
+            </if>
+
+			<if test="treeIdLike != null and treeIdLike != '' ">
+				and E.treeid like #{treeIdLike}
+            </if>
+
+			<if test="treeIds != null and treeIds.size() &gt; 0">
+			    and E.treeid IN
+                <foreach item="x_treeId" index="index" collection="treeIds" 
+                     open="(" separator="," close=")">
+                  #{x_treeId}
+                </foreach>
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

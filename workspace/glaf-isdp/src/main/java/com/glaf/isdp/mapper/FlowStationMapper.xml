@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.FlowStationMapper">
+
+	<resultMap id="flowStationResultMap"	type="com.glaf.isdp.domain.FlowStation">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="processId" column="process_id" jdbcType="VARCHAR"/>
+		<result property="activDefId" column="activ_d_id" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertFlowStation" parameterType="com.glaf.isdp.domain.FlowStation">
+		insert into flow_station 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="processId != null">
+				,process_id 
+			</if>
+			<if test="activDefId != null">
+				,activ_d_id 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="processId != null">
+				,#{processId, jdbcType=VARCHAR}
+			</if>
+			<if test="activDefId != null">
+				,#{activDefId, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateFlowStation" parameterType="com.glaf.isdp.domain.FlowStation">
+		update
+		    flow_station
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="processId != null">
+				process_id = #{processId, jdbcType=VARCHAR},
+			</if>
+			<if test="activDefId != null">
+				activ_d_id = #{activDefId, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteFlowStationById" parameterType="string"> 
+        delete from flow_station
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteFlowStations" parameterType="com.glaf.isdp.query.FlowStationQuery">
+		delete from flow_station
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getFlowStationById" parameterType="string" resultMap="flowStationResultMap">
+		select * from flow_station where id = #{id}
+	</select>
+
+
+	<select id="getFlowStationCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectFlowStationsSql" />
+	</select>
+
+
+	<select id="getFlowStationCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.FlowStationQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFlowStationsSql" />
+	</select>
+
+
+	<select id="getFlowStations" 
+		parameterType="map"
+		resultMap="flowStationResultMap">
+		select E.*
+		<include refid="selectFlowStationsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getFlowStationsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.FlowStationQuery"
+		resultMap="flowStationResultMap">
+		select E.*
+		<include refid="selectFlowStationsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectFlowStationsSql">
+
+		from flow_station E
+		 
+		<where>
+
+		       1 = 1  
+
+	        
+			<if test="processId != null and processId != '' ">
+				and E.process_id = #{processId}
+			</if>
+
+			<if test="processIdLike != null and processIdLike != '' ">
+				and E.process_id like #{processIdLike}
+			</if>
+
+			<if test="processIds != null and processIds.size() &gt; 0">
+			    and E.process_id IN
+				<foreach item="x_processId" index="index" collection="processIds" 
+					open="(" separator="," close=")">
+                  #{x_processId}
+				</foreach>
+			</if>
+
+	        
+			<if test="activDefId != null and activDefId != '' ">
+				and E.activ_d_id = #{activDefId}
+			</if>
+
+		 
+			<if test="activDefIds != null and activDefIds.size() &gt; 0">
+			    and E.activ_d_id IN
+				<foreach item="x_activDefId" index="index" collection="activDefIds" 
+					open="(" separator="," close=")">
+                  #{x_activDefId}
+				</foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

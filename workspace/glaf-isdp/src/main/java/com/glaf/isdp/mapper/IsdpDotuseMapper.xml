@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.IsdpDotuseMapper">
+
+	<resultMap id="dotuseResultMap"	type="com.glaf.isdp.domain.IsdpDotuse">
+		<id property="fileID" column="fileID" jdbcType="VARCHAR"/>
+		<result property="indexId" column="index_id" jdbcType="INTEGER"/>
+		<result property="projid" column="projid" jdbcType="INTEGER"/>
+		<result property="pid" column="pid" jdbcType="INTEGER"/>
+		<result property="dotid" column="dotid" jdbcType="VARCHAR"/>
+		<result property="num" column="num" jdbcType="VARCHAR"/>
+		<result property="name" column="name" jdbcType="VARCHAR"/>
+		<result property="cman" column="cman" jdbcType="VARCHAR"/>
+		<result property="ctime" column="ctime" jdbcType="TIMESTAMP"/>
+		<result property="fileName" column="file_name" jdbcType="VARCHAR"/>
+		<result property="filesize" column="filesize" jdbcType="INTEGER"/>
+		<result property="vision" column="vision" jdbcType="VARCHAR"/>
+		<result property="savetime" column="savetime" jdbcType="VARCHAR"/>
+		<result property="remark" column="remark" jdbcType="VARCHAR"/>
+		<result property="dwid" column="dwid" jdbcType="INTEGER"/>
+		<result property="fbid" column="fbid" jdbcType="INTEGER"/>
+		<result property="fxid" column="fxid" jdbcType="INTEGER"/>
+		<result property="jid" column="jid" jdbcType="VARCHAR"/>
+		<result property="flid" column="flid" jdbcType="VARCHAR"/>
+		<result property="topnode" column="topnode" jdbcType="VARCHAR"/>
+		<result property="topid" column="topid" jdbcType="VARCHAR"/>
+		<result property="type" column="type" jdbcType="INTEGER"/>
+		<result property="fname" column="fname" jdbcType="VARCHAR"/>
+		<result property="isink" column="isink" jdbcType="VARCHAR"/>
+		<result property="oldId" column="old_id" jdbcType="VARCHAR"/>
+		<result property="taskId" column="task_id" jdbcType="VARCHAR"/>
+		<result property="ischeck" column="ischeck" jdbcType="INTEGER"/>
+		<result property="fileContent" column="file_content" jdbcType="BLOB"/>
+	</resultMap>
+
+    <resultMap id="dotuseResultMap_postgres"	type="com.glaf.isdp.domain.IsdpDotuse">
+		<id property="fileID" column="fileID" jdbcType="VARCHAR"/>
+		<result property="indexId" column="index_id" jdbcType="INTEGER"/>
+		<result property="projid" column="projid" jdbcType="INTEGER"/>
+		<result property="pid" column="pid" jdbcType="INTEGER"/>
+		<result property="dotid" column="dotid" jdbcType="VARCHAR"/>
+		<result property="num" column="num" jdbcType="VARCHAR"/>
+		<result property="name" column="name" jdbcType="VARCHAR"/>
+		<result property="cman" column="cman" jdbcType="VARCHAR"/>
+		<result property="ctime" column="ctime" jdbcType="TIMESTAMP"/>
+		<result property="fileName" column="file_name" jdbcType="VARCHAR"/>
+		<result property="filesize" column="filesize" jdbcType="INTEGER"/>
+		<result property="vision" column="vision" jdbcType="VARCHAR"/>
+		<result property="savetime" column="savetime" jdbcType="VARCHAR"/>
+		<result property="remark" column="remark" jdbcType="VARCHAR"/>
+		<result property="dwid" column="dwid" jdbcType="INTEGER"/>
+		<result property="fbid" column="fbid" jdbcType="INTEGER"/>
+		<result property="fxid" column="fxid" jdbcType="INTEGER"/>
+		<result property="jid" column="jid" jdbcType="VARCHAR"/>
+		<result property="flid" column="flid" jdbcType="VARCHAR"/>
+		<result property="topnode" column="topnode" jdbcType="VARCHAR"/>
+		<result property="topid" column="topid" jdbcType="VARCHAR"/>
+		<result property="type" column="type" jdbcType="INTEGER"/>
+		<result property="fname" column="fname" jdbcType="VARCHAR"/>
+		<result property="isink" column="isink" jdbcType="VARCHAR"/>
+		<result property="oldId" column="old_id" jdbcType="VARCHAR"/>
+		<result property="taskId" column="task_id" jdbcType="VARCHAR"/>
+		<result property="ischeck" column="ischeck" jdbcType="INTEGER"/>
+		<result property="fileContent" column="file_content" jdbcType="BINARY"/>
+	</resultMap>
+ 
+	<insert id="insertDotuse" parameterType="com.glaf.isdp.domain.IsdpDotuse">
+		insert into dotuse 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    fileID
+			<if test="indexId != null">
+				,index_id 
+			</if>
+			<if test="projid != null">
+				,projid 
+			</if>
+			<if test="pid != null">
+				,pid 
+			</if>
+			<if test="dotid != null">
+				,dotid 
+			</if>
+			<if test="num != null">
+				,num 
+			</if>
+			<if test="name != null">
+				,name 
+			</if>
+			<if test="cman != null">
+				,cman 
+			</if>
+			<if test="ctime != null">
+				,ctime 
+			</if>
+			<if test="fileName != null">
+				,file_name 
+			</if>
+			<if test="fileContent != null">
+			    ,file_content
+			</if>
+			<if test="filesize != null">
+				,filesize 
+			</if>
+			<if test="vision != null">
+				,vision 
+			</if>
+			<if test="savetime != null">
+				,savetime 
+			</if>
+			<if test="remark != null">
+				,remark 
+			</if>
+			<if test="dwid != null">
+				,dwid 
+			</if>
+			<if test="fbid != null">
+				,fbid 
+			</if>
+			<if test="fxid != null">
+				,fxid 
+			</if>
+			<if test="jid != null">
+				,jid 
+			</if>
+			<if test="flid != null">
+				,flid 
+			</if>
+			<if test="topnode != null">
+				,topnode 
+			</if>
+			<if test="topid != null">
+				,topid 
+			</if>
+			<if test="type != null">
+				,type 
+			</if>
+			<if test="fname != null">
+				,fname 
+			</if>
+			<if test="isink != null">
+				,isink 
+			</if>
+			<if test="oldId != null">
+				,old_id 
+			</if>
+			<if test="taskId != null">
+				,task_id 
+			</if>
+			<if test="ischeck != null">
+				,ischeck 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{fileID, jdbcType=VARCHAR}
+	     
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="projid != null">
+				,#{projid, jdbcType=INTEGER}
+			</if>
+			<if test="pid != null">
+				,#{pid, jdbcType=INTEGER}
+			</if>
+			<if test="dotid != null">
+				,#{dotid, jdbcType=VARCHAR}
+			</if>
+			<if test="num != null">
+				,#{num, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="cman != null">
+				,#{cman, jdbcType=VARCHAR}
+			</if>
+			<if test="ctime != null">
+				,#{ctime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="fileName != null">
+				,#{fileName, jdbcType=VARCHAR}
+			</if>
+			<if test="fileContent != null">
+			    ,#{fileContent, jdbcType=BLOB}
+			</if>
+			<if test="filesize != null">
+				,#{filesize, jdbcType=INTEGER}
+			</if>
+			<if test="vision != null">
+				,#{vision, jdbcType=VARCHAR}
+			</if>
+			<if test="savetime != null">
+				,#{savetime, jdbcType=VARCHAR}
+			</if>
+			<if test="remark != null">
+				,#{remark, jdbcType=VARCHAR}
+			</if>
+			<if test="dwid != null">
+				,#{dwid, jdbcType=INTEGER}
+			</if>
+			<if test="fbid != null">
+				,#{fbid, jdbcType=INTEGER}
+			</if>
+			<if test="fxid != null">
+				,#{fxid, jdbcType=INTEGER}
+			</if>
+			<if test="jid != null">
+				,#{jid, jdbcType=VARCHAR}
+			</if>
+			<if test="flid != null">
+				,#{flid, jdbcType=VARCHAR}
+			</if>
+			<if test="topnode != null">
+				,#{topnode, jdbcType=VARCHAR}
+			</if>
+			<if test="topid != null">
+				,#{topid, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=INTEGER}
+			</if>
+			<if test="fname != null">
+				,#{fname, jdbcType=VARCHAR}
+			</if>
+			<if test="isink != null">
+				,#{isink, jdbcType=VARCHAR}
+			</if>
+			<if test="oldId != null">
+				,#{oldId, jdbcType=VARCHAR}
+			</if>
+			<if test="taskId != null">
+				,#{taskId, jdbcType=VARCHAR}
+			</if>
+			<if test="ischeck != null">
+				,#{ischeck, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateDotuse" parameterType="com.glaf.isdp.domain.IsdpDotuse">
+		update dotuse
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="indexId != null">
+				index_id = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="projid != null">
+				projid = #{projid, jdbcType=INTEGER},
+			</if>
+			<if test="pid != null">
+				pid = #{pid, jdbcType=INTEGER},
+			</if>
+			<if test="dotid != null">
+				dotid = #{dotid, jdbcType=VARCHAR},
+			</if>
+			<if test="num != null">
+				num = #{num, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="cman != null">
+				cman = #{cman, jdbcType=VARCHAR},
+			</if>
+			<if test="ctime != null">
+				Ctime = #{ctime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="fileName != null">
+				file_name = #{fileName, jdbcType=VARCHAR},
+			</if>
+			<if test="fileContent != null">
+				file_content = #{fileContent, jdbcType=BLOB},
+			</if>
+			<if test="filesize != null">
+				filesize = #{filesize, jdbcType=INTEGER},
+			</if>
+			<if test="vision != null">
+				vision = #{vision, jdbcType=VARCHAR},
+			</if>
+			<if test="savetime != null">
+				savetime = #{savetime, jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark, jdbcType=VARCHAR},
+			</if>
+			<if test="dwid != null">
+				dwid = #{dwid, jdbcType=INTEGER},
+			</if>
+			<if test="fbid != null">
+				fbid = #{fbid, jdbcType=INTEGER},
+			</if>
+			<if test="fxid != null">
+				fxid = #{fxid, jdbcType=INTEGER},
+			</if>
+			<if test="jid != null">
+				jid = #{jid, jdbcType=VARCHAR},
+			</if>
+			<if test="flid != null">
+				flid = #{flid, jdbcType=VARCHAR},
+			</if>
+			<if test="topnode != null">
+				topnode = #{topnode, jdbcType=VARCHAR},
+			</if>
+			<if test="topid != null">
+				topid = #{topid, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type, jdbcType=INTEGER},
+			</if>
+			<if test="fname != null">
+				fname = #{fname, jdbcType=VARCHAR},
+			</if>
+			<if test="isink != null">
+				isink = #{isink, jdbcType=VARCHAR},
+			</if>
+			<if test="oldId != null">
+				old_id = #{oldId, jdbcType=VARCHAR},
+			</if>
+			<if test="taskId != null">
+				task_id = #{taskId, jdbcType=VARCHAR},
+			</if>
+			<if test="ischeck != null">
+				ischeck = #{ischeck, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          fileID = #{fileID, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteDotuseById" parameterType="string"> 
+        delete from dotuse
+        where fileID = #{id}
+	</delete>
+	
+
+	<delete id="deleteDotuses" parameterType="com.glaf.isdp.query.DotuseQuery">
+		delete from dotuse
+		where ( fileID IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getDotuseById" parameterType="string" resultMap="dotuseResultMap">
+		select * from dotuse where fileID = #{id}
+	</select>
+
+
+	<select id="getDotuseById_postgres" parameterType="string" resultMap="dotuseResultMap_postgres">
+		select * from dotuse where fileID = #{id}
+	</select>
+
+
+	<select id="getDotuseCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectDotusesSql" />
+	</select>
+
+
+	<select id="getDotuseCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.DotuseQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDotusesSql" />
+	</select>
+
+
+	<select id="getDotuses" 
+		parameterType="map"
+		resultMap="dotuseResultMap">
+		
+		select E.index_id,E.projid,E.pid,E.dotid,E.fileID,E.num,E.name,E.cman,
+			   E.ctime,E.file_name,E.filesize,E.vision,E.savetime,E.remark,
+			   E.dwid,E.fbid,E.fxid,E.jid,E.flid,E.topnode,E.topid,E.type,E.fname,
+			   E.isink,E.old_id,E.task_id,E.ischeck
+
+		<include refid="selectDotusesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getDotusesByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.DotuseQuery"
+		resultMap="dotuseResultMap">
+		
+		select E.index_id,E.projid,E.pid,E.dotid,E.fileID,E.num,E.name,E.cman,
+			   E.ctime,E.file_name,E.filesize,E.vision,E.savetime,E.remark,
+			   E.dwid,E.fbid,E.fxid,E.jid,E.flid,E.topnode,E.topid,E.type,E.fname,
+			   E.isink,E.old_id,E.task_id,E.ischeck
+			 
+		<include refid="selectDotusesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectDotusesSql">
+
+		from dotuse E
+		 
+		<where>
+
+		       1 = 1  
+
+			<if test="indexId != null">
+				and E.index_id = #{indexId}
+			</if>
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+			    and E.index_id IN
+				<foreach item="x_indexId" index="index" collection="indexIds" 
+					open="(" separator="," close=")">
+                  #{x_indexId}
+				</foreach>
+			</if>
+
+			<if test="projid != null">
+				and E.projid = #{projid}
+			</if>
+
+			<if test="projids != null and projids.size() &gt; 0">
+			    and E.projid IN
+				<foreach item="x_projid" index="index" collection="projids" 
+					open="(" separator="," close=")">
+                  #{x_projid}
+				</foreach>
+			</if>
+
+			<if test="pid != null">
+				and E.pid = #{pid}
+			</if>
+
+			<if test="pids != null and pids.size() &gt; 0">
+			    and E.pid IN
+				<foreach item="x_pid" index="index" collection="pids" 
+					open="(" separator="," close=")">
+                  #{x_pid}
+				</foreach>
+			</if>
+	        
+			<if test="dotid != null and dotid != '' ">
+				and E.dotid = #{dotid}
+			</if>
+
+			<if test="dotidLike != null and dotidLike != '' ">
+				and E.dotid like #{dotidLike}
+			</if>
+
+			<if test="dotids != null and dotids.size() &gt; 0">
+			    and E.dotid IN
+				<foreach item="x_dotid" index="index" collection="dotids" 
+					open="(" separator="," close=")">
+                  #{x_dotid}
+				</foreach>
+			</if>
+ 
+			<if test="numLike != null and numLike != '' ">
+				and E.num like #{numLike}
+			</if>
+ 
+			<if test="nameLike != null and nameLike != '' ">
+				and E.name like #{nameLike}
+			</if>
+
+			<if test="cmanLike != null and cmanLike != '' ">
+				and E.cman like #{cmanLike}
+			</if>
+
+			<if test="ctimeGreaterThanOrEqual != null">
+				and E.ctime &gt;= #{ctimeGreaterThanOrEqual}
+			</if>
+
+			<if test="ctimeLessThanOrEqual != null">
+				and E.ctime &lt;= #{ctimeLessThanOrEqual}
+			</if>
+
+			<if test="fileNameLike != null and fileNameLike != '' ">
+				and E.file_name like #{fileNameLike}
+			</if>
+
+			<if test="filesizeGreaterThanOrEqual != null">
+				and E.filesize &gt;= #{filesizeGreaterThanOrEqual}
+			</if>
+
+			<if test="filesizeLessThanOrEqual != null">
+				and E.filesize &lt;= #{filesizeLessThanOrEqual}
+			</if>
+
+			<if test="vision != null and vision != '' ">
+				and E.vision = #{vision}
+			</if>
+
+			<if test="visionLike != null and visionLike != '' ">
+				and E.vision like #{visionLike}
+			</if>
+
+			<if test="visions != null and visions.size() &gt; 0">
+			    and E.vision IN
+				<foreach item="x_vision" index="index" collection="visions" 
+					open="(" separator="," close=")">
+                  #{x_vision}
+				</foreach>
+			</if>
+
+			<if test="savetimeLike != null and savetimeLike != '' ">
+				and E.savetime like #{savetimeLike}
+			</if>
+	
+			<if test="remarkLike != null and remarkLike != '' ">
+				and E.remark like #{remarkLike}
+			</if>
+
+			<if test="dwid != null">
+				and dwid = #{dwid}
+			</if>
+
+			<if test="dwids != null and dwids.size() &gt; 0">
+			    and E.dwid IN
+				<foreach item="x_dwid" index="index" collection="dwids" 
+					open="(" separator="," close=")">
+                  #{x_dwid}
+				</foreach>
+			</if>
+
+			<if test="fbid != null">
+				and E.fbid = #{fbid}
+			</if>
+
+			<if test="fbids != null and fbids.size() &gt; 0">
+			    and E.fbid IN
+				<foreach item="x_fbid" index="index" collection="fbids" 
+					open="(" separator="," close=")">
+                  #{x_fbid}
+				</foreach>
+			</if>
+
+			<if test="fxid != null">
+				and E.fxid = #{fxid}
+			</if>
+
+			<if test="fxids != null and fxids.size() &gt; 0">
+			    and E.fxid IN
+				<foreach item="x_fxid" index="index" collection="fxids" 
+					open="(" separator="," close=")">
+                  #{x_fxid}
+				</foreach>
+			</if>
+        
+			<if test="jid != null and jid != '' ">
+				and E.jid = #{jid}
+			</if>
+
+			<if test="jidLike != null and jidLike != '' ">
+				and E.jid like #{jidLike}
+			</if>
+
+			<if test="jids != null and jids.size() &gt; 0">
+			    and E.jid IN
+				<foreach item="x_jid" index="index" collection="jids" 
+					open="(" separator="," close=")">
+                  #{x_jid}
+				</foreach>
+			</if>
+
+			<if test="flid != null and flid != '' ">
+				and E.flid = #{flid}
+			</if>
+
+			<if test="flidLike != null and flidLike != '' ">
+				and E.flid like #{flidLike}
+			</if>
+
+			<if test="flids != null and flids.size() &gt; 0">
+			    and E.flid IN
+				<foreach item="x_flid" index="index" collection="flids" 
+					open="(" separator="," close=")">
+                  #{x_flid}
+				</foreach>
+			</if>
+
+	        
+			<if test="topnode != null and topnode != '' ">
+				and E.topnode = #{topnode}
+			</if>
+
+			<if test="topnodeLike != null and topnodeLike != '' ">
+				and E.topnode like #{topnodeLike}
+			</if>
+
+			<if test="topnodes != null and topnodes.size() &gt; 0">
+			    and E.topnode IN
+				<foreach item="x_topnode" index="index" collection="topnodes" 
+					open="(" separator="," close=")">
+                  #{x_topnode}
+				</foreach>
+			</if>
+
+	        
+			<if test="topid != null and topid != '' ">
+				and E.topid = #{topid}
+			</if>
+
+			<if test="topidLike != null and topidLike != '' ">
+				and E.topid like #{topidLike}
+			</if>
+
+			<if test="topids != null and topids.size() &gt; 0">
+			    and E.topid IN
+				<foreach item="x_topid" index="index" collection="topids" 
+					open="(" separator="," close=")">
+                  #{x_topid}
+				</foreach>
+			</if>
+
+			<if test="type != null">
+				and E.type = #{type}
+			</if>
+
+			<if test="types != null and types.size() &gt; 0">
+			    and E.type IN
+				<foreach item="x_type" index="index" collection="types" 
+					open="(" separator="," close=")">
+                  #{x_type}
+				</foreach>
+			</if>
+
+			<if test="fnameLike != null and fnameLike != '' ">
+				and E.fname like #{fnameLike}
+			</if>
+	        
+			<if test="isink != null and isink != '' ">
+				and E.isink = #{isink}
+			</if>
+
+			<if test="isinkLike != null and isinkLike != '' ">
+				and E.isink like #{isinkLike}
+			</if>
+
+			<if test="isinks != null and isinks.size() &gt; 0">
+			    and E.isink IN
+				<foreach item="x_isink" index="index" collection="isinks" 
+					open="(" separator="," close=")">
+                  #{x_isink}
+				</foreach>
+			</if>
+	        
+			<if test="oldId != null and oldId != '' ">
+				and E.old_id = #{oldId}
+			</if>
+
+			<if test="oldIdLike != null and oldIdLike != '' ">
+				and E.old_id like #{oldIdLike}
+			</if>
+
+			<if test="oldIds != null and oldIds.size() &gt; 0">
+			    and E.old_id IN
+				<foreach item="x_oldId" index="index" collection="oldIds" 
+					open="(" separator="," close=")">
+                  #{x_oldId}
+				</foreach>
+			</if>
+
+			<if test="taskId != null and taskId != '' ">
+				and E.task_id = #{taskId}
+			</if>
+
+			<if test="taskIdLike != null and taskIdLike != '' ">
+				and E.task_id like #{taskIdLike}
+			</if>
+
+			<if test="taskIds != null and taskIds.size() &gt; 0">
+			    and E.task_id IN
+				<foreach item="x_taskId" index="index" collection="taskIds" 
+					open="(" separator="," close=")">
+                  #{x_taskId}
+				</foreach>
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.MailNewMapper">
+
+	<resultMap id="mailNewResultMap"	type="com.glaf.isdp.domain.MailNew">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="email" column="email" jdbcType="VARCHAR"/>
+		<result property="emailId" column="email_Id" jdbcType="VARCHAR"/>
+		<result property="intrec" column="intrec" jdbcType="INTEGER"/>
+	</resultMap>
+
+
+	<resultMap id="mailNewHashMap"	type="java.util.HashMap">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="email" column="email" jdbcType="VARCHAR"/>
+		<result property="emailId" column="email_Id" jdbcType="VARCHAR"/>
+		<result property="intrec" column="intrec" jdbcType="INTEGER"/>
+	</resultMap>
+ 
+	<insert id="insertMailNew" parameterType="com.glaf.isdp.domain.MailNew">
+		insert into email_news 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="email != null">
+				,email 
+			</if>
+			<if test="emailId != null">
+				,email_Id 
+			</if>
+			<if test="intrec != null">
+				,intrec 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="email != null">
+				,#{email, jdbcType=VARCHAR}
+			</if>
+			<if test="emailId != null">
+				,#{emailId, jdbcType=VARCHAR}
+			</if>
+			<if test="intrec != null">
+				,#{intrec, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateMailNew" parameterType="com.glaf.isdp.domain.MailNew">
+		update email_news
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="email != null">
+				email = #{email, jdbcType=VARCHAR},
+			</if>
+			<if test="emailId != null">
+				email_Id = #{emailId, jdbcType=VARCHAR},
+			</if>
+			<if test="intrec != null">
+				intrec = #{intrec, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+	</update>
+
+ 
+	<delete id="deleteMailNewById" parameterType="string"> 
+        delete from email_news
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteMailNews" parameterType="com.glaf.isdp.query.MailNewQuery">
+		delete from email_news
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getMailNewById" parameterType="string" resultMap="mailNewResultMap">
+		select * from email_news where id = #{id}
+	</select>
+
+
+	<select id="getMailNewCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*) from email_news E
+		<include refid="selectMailNewSql" />
+	</select>
+
+
+	<select id="getMailNewCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.MailNewQuery"
+		resultType="int">
+		select count(*) from email_news E
+		<include refid="selectMailNewSql" />
+	</select>
+
+
+	<select id="getMailNews" 
+		parameterType="map"
+		resultMap="mailNewResultMap">
+		select E.* from email_news E
+		<include refid="selectMailNewSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getMailNewMapList" parameterType="map" resultType="map">
+		select E.* from email_news E 
+		<include refid="selectMailNewSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getMailNewsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.MailNewQuery"
+		resultMap="mailNewResultMap">
+		select E.* from email_news E
+		<include refid="selectMailNewSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectMailNewSql">
+		 
+		<where>
+
+		   1 = 1  
+
+	        
+			<if test="email != null and email != '' ">
+				and E.email = #{email}
+			</if>
+
+			<if test="emailLike != null and emailLike != '' ">
+				and E.email like #{emailLike}
+			</if>
+
+			<if test="emails != null and emails.size() &gt; 0">
+			    and E.email IN
+				<foreach item="x_email" index="index" collection="emails" 
+					open="(" separator="," close=")">
+                  #{x_email}
+				</foreach>
+			</if>
+
+	        
+			<if test="emailId != null and emailId != '' ">
+				and E.email_Id = #{emailId}
+			</if>
+
+			<if test="emailIdLike != null and emailIdLike != '' ">
+				and E.email_Id like #{emailIdLike}
+			</if>
+
+			<if test="emailIds != null and emailIds.size() &gt; 0">
+			    and E.email_Id IN
+				<foreach item="x_emailId" index="index" collection="emailIds" 
+					open="(" separator="," close=")">
+                  #{x_emailId}
+				</foreach>
+			</if>
+
+
+			<if test="intrec != null">
+				and E.intrec = #{intrec}
+			</if>
+
+			<if test="intrecGreaterThanOrEqual != null">
+				and E.intrec &gt;= #{intrecGreaterThanOrEqual}
+			</if>
+
+			<if test="intrecLessThanOrEqual != null">
+				and E.intrec &lt;= #{intrecLessThanOrEqual}
+			</if>
+
+			<if test="intrecs != null and intrecs.size() &gt; 0">
+			    and E.intrec IN
+				<foreach item="x_intrec" index="index" collection="intrecs" 
+					open="(" separator="," close=")">
+                  #{x_intrec}
+				</foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

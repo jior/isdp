@@ -1,0 +1,1358 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.CellRepInfoMapper">
+
+	<resultMap id="cellRepInfoResultMap"	type="com.glaf.isdp.domain.CellRepInfo">
+		<id property="listId" column="listId" jdbcType="VARCHAR"/>
+		<result property="indexId" column="index_id" jdbcType="VARCHAR"/>
+		<result property="frmtype" column="frmtype" jdbcType="VARCHAR"/>
+		<result property="issystem" column="issystem" jdbcType="VARCHAR"/>
+		<result property="fname" column="fname" jdbcType="VARCHAR"/>
+		<result property="dname" column="dname" jdbcType="VARCHAR"/>
+		<result property="dtype" column="dtype" jdbcType="VARCHAR"/>
+		<result property="showtype" column="showtype" jdbcType="VARCHAR"/>
+		<result property="strlen" column="strlen" jdbcType="INTEGER"/>
+		<result property="form" column="form" jdbcType="VARCHAR"/>
+		<result property="intype" column="intype" jdbcType="VARCHAR"/>
+		<result property="hintID" column="hintID" jdbcType="VARCHAR"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+		<result property="ztype" column="ztype" jdbcType="VARCHAR"/>
+		<result property="ismustfill" column="ismustfill" jdbcType="VARCHAR"/>
+		<result property="isListShow" column="isListShow" jdbcType="VARCHAR"/>
+		<result property="listweigth" column="listweigth" jdbcType="INTEGER"/>
+		<result property="panid" column="panid" jdbcType="VARCHAR"/>
+		<result property="isallwidth" column="isallwidth" jdbcType="VARCHAR"/>
+		<result property="istname" column="istname" jdbcType="VARCHAR"/>
+		<result property="filedotFileid" column="filedot_fileid" jdbcType="VARCHAR"/>
+		<result property="datapoint" column="datapoint" jdbcType="INTEGER"/>
+		<result property="defaultvalue" column="defaultvalue" jdbcType="VARCHAR"/>
+		<result property="issubtable" column="issubtable" jdbcType="VARCHAR"/>
+		<result property="isdataonly" column="isdataonly" jdbcType="VARCHAR"/>
+		<result property="checktype" column="checktype" jdbcType="INTEGER"/>
+		<result property="orderid" column="orderid" jdbcType="VARCHAR"/>
+		<result property="celltype" column="celltype" jdbcType="INTEGER"/>
+		<result property="ostTablename" column="ost_tablename" jdbcType="VARCHAR"/>
+		<result property="ostRow" column="ost_row" jdbcType="INTEGER"/>
+		<result property="ostCol" column="ost_col" jdbcType="INTEGER"/>
+		<result property="hintlist" column="hintlist" jdbcType="VARCHAR"/>
+		<result property="ostCellid" column="ost_cellid" jdbcType="VARCHAR"/>
+		<result property="olddname" column="olddname" jdbcType="VARCHAR"/>
+		<result property="ostCellname" column="ost_cellname" jdbcType="VARCHAR"/>
+		<result property="ostColor" column="ost_color" jdbcType="INTEGER"/>
+		<result property="ostSumtype" column="ost_sumtype" jdbcType="INTEGER"/>
+		<result property="dataTablename" column="data_tablename" jdbcType="VARCHAR"/>
+		<result property="dataFieldname" column="data_fieldname" jdbcType="VARCHAR"/>
+		<result property="orderCon" column="order_con" jdbcType="INTEGER"/>
+		<result property="connum" column="connum" jdbcType="INTEGER"/>
+		<result property="nodeIndex" column="node_index" jdbcType="INTEGER"/>
+		<result property="typeId" column="type_id" jdbcType="VARCHAR"/>
+		<result property="userindex" column="userindex" jdbcType="VARCHAR"/>
+		<result property="orderIndex" column="order_index" jdbcType="INTEGER"/>
+		<result property="parentDname" column="parent_dname" jdbcType="VARCHAR"/>
+		<result property="sysauto" column="sysauto" jdbcType="INTEGER"/>
+		<result property="orderIndexF" column="order_index_F" jdbcType="INTEGER"/>
+		<result property="orderidF" column="orderid_F" jdbcType="VARCHAR"/>
+		<result property="orderConF" column="order_con_F" jdbcType="INTEGER"/>
+		<result property="isprintvalue" column="isprintvalue" jdbcType="INTEGER"/>
+		<result property="isshowvalueonlast" column="isshowvalueonlast" jdbcType="INTEGER"/>
+		<result property="isBankRoundType" column="isbankroundtype" jdbcType="INTEGER"/>
+	</resultMap>
+
+
+	<resultMap id="cellRepInfoHashMap"	type="java.util.HashMap">
+		<id property="listId" column="listId" jdbcType="VARCHAR"/>
+		<result property="indexId" column="index_id" jdbcType="VARCHAR"/>
+		<result property="frmtype" column="frmtype" jdbcType="VARCHAR"/>
+		<result property="issystem" column="issystem" jdbcType="VARCHAR"/>
+		<result property="fname" column="fname" jdbcType="VARCHAR"/>
+		<result property="dname" column="dname" jdbcType="VARCHAR"/>
+		<result property="dtype" column="dtype" jdbcType="VARCHAR"/>
+		<result property="showtype" column="showtype" jdbcType="VARCHAR"/>
+		<result property="strlen" column="strlen" jdbcType="INTEGER"/>
+		<result property="form" column="form" jdbcType="VARCHAR"/>
+		<result property="intype" column="intype" jdbcType="VARCHAR"/>
+		<result property="hintID" column="hintID" jdbcType="VARCHAR"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+		<result property="ztype" column="ztype" jdbcType="VARCHAR"/>
+		<result property="ismustfill" column="ismustfill" jdbcType="VARCHAR"/>
+		<result property="isListShow" column="isListShow" jdbcType="VARCHAR"/>
+		<result property="listweigth" column="listweigth" jdbcType="INTEGER"/>
+		<result property="panid" column="panid" jdbcType="VARCHAR"/>
+		<result property="isallwidth" column="isallwidth" jdbcType="VARCHAR"/>
+		<result property="istname" column="istname" jdbcType="VARCHAR"/>
+		<result property="filedotFileid" column="filedot_fileid" jdbcType="VARCHAR"/>
+		<result property="datapoint" column="datapoint" jdbcType="INTEGER"/>
+		<result property="defaultvalue" column="defaultvalue" jdbcType="VARCHAR"/>
+		<result property="issubtable" column="issubtable" jdbcType="VARCHAR"/>
+		<result property="isdataonly" column="isdataonly" jdbcType="VARCHAR"/>
+		<result property="checktype" column="checktype" jdbcType="INTEGER"/>
+		<result property="orderid" column="orderid" jdbcType="VARCHAR"/>
+		<result property="celltype" column="celltype" jdbcType="INTEGER"/>
+		<result property="ostTablename" column="ost_tablename" jdbcType="VARCHAR"/>
+		<result property="ostRow" column="ost_row" jdbcType="INTEGER"/>
+		<result property="ostCol" column="ost_col" jdbcType="INTEGER"/>
+		<result property="hintlist" column="hintlist" jdbcType="VARCHAR"/>
+		<result property="ostCellid" column="ost_cellid" jdbcType="VARCHAR"/>
+		<result property="olddname" column="olddname" jdbcType="VARCHAR"/>
+		<result property="ostCellname" column="ost_cellname" jdbcType="VARCHAR"/>
+		<result property="ostColor" column="ost_color" jdbcType="INTEGER"/>
+		<result property="ostSumtype" column="ost_sumtype" jdbcType="INTEGER"/>
+		<result property="dataTablename" column="data_tablename" jdbcType="VARCHAR"/>
+		<result property="dataFieldname" column="data_fieldname" jdbcType="VARCHAR"/>
+		<result property="orderCon" column="order_con" jdbcType="INTEGER"/>
+		<result property="connum" column="connum" jdbcType="INTEGER"/>
+		<result property="nodeIndex" column="node_index" jdbcType="INTEGER"/>
+		<result property="typeId" column="type_id" jdbcType="VARCHAR"/>
+		<result property="userindex" column="userindex" jdbcType="VARCHAR"/>
+		<result property="orderIndex" column="order_index" jdbcType="INTEGER"/>
+		<result property="parentDname" column="parent_dname" jdbcType="VARCHAR"/>
+		<result property="sysauto" column="sysauto" jdbcType="INTEGER"/>
+		<result property="orderIndexF" column="order_index_F" jdbcType="INTEGER"/>
+		<result property="orderidF" column="orderid_F" jdbcType="VARCHAR"/>
+		<result property="orderConF" column="order_con_F" jdbcType="INTEGER"/>
+		<result property="isprintvalue" column="isprintvalue" jdbcType="INTEGER"/>
+		<result property="isshowvalueonlast" column="isshowvalueonlast" jdbcType="INTEGER"/>
+		<result property="isBankRoundType" column="isbankroundtype" jdbcType="INTEGER"/>
+	</resultMap>
+ 
+	<insert id="insertCellRepInfo" parameterType="com.glaf.isdp.domain.CellRepInfo">
+		insert into cell_repinfo 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    listId
+			<if test="indexId != null">
+				,index_id 
+			</if>
+			<if test="frmtype != null">
+				,frmtype 
+			</if>
+			<if test="issystem != null">
+				,issystem 
+			</if>
+			<if test="fname != null">
+				,fname 
+			</if>
+			<if test="dname != null">
+				,dname 
+			</if>
+			<if test="dtype != null">
+				,dtype 
+			</if>
+			<if test="showtype != null">
+				,showtype 
+			</if>
+			<if test="strlen != null">
+				,strlen 
+			</if>
+			<if test="form != null">
+				,form 
+			</if>
+			<if test="intype != null">
+				,intype 
+			</if>
+			<if test="hintID != null">
+				,hintID 
+			</if>
+			<if test="listno != null">
+				,listno 
+			</if>
+			<if test="ztype != null">
+				,ztype 
+			</if>
+			<if test="ismustfill != null">
+				,ismustfill 
+			</if>
+			<if test="isListShow != null">
+				,isListShow 
+			</if>
+			<if test="listweigth != null">
+				,listweigth 
+			</if>
+			<if test="panid != null">
+				,panid 
+			</if>
+			<if test="isallwidth != null">
+				,isallwidth 
+			</if>
+			<if test="istname != null">
+				,istname 
+			</if>
+			<if test="filedotFileid != null">
+				,filedot_fileid 
+			</if>
+			<if test="datapoint != null">
+				,datapoint 
+			</if>
+			<if test="defaultvalue != null">
+				,defaultvalue 
+			</if>
+			<if test="issubtable != null">
+				,issubtable 
+			</if>
+			<if test="isdataonly != null">
+				,isdataonly 
+			</if>
+			<if test="checktype != null">
+				,checktype 
+			</if>
+			<if test="orderid != null">
+				,orderid 
+			</if>
+			<if test="celltype != null">
+				,celltype 
+			</if>
+			<if test="ostTablename != null">
+				,ost_tablename 
+			</if>
+			<if test="ostRow != null">
+				,ost_row 
+			</if>
+			<if test="ostCol != null">
+				,ost_col 
+			</if>
+			<if test="hintlist != null">
+				,hintlist 
+			</if>
+			<if test="ostCellid != null">
+				,ost_cellid 
+			</if>
+			<if test="olddname != null">
+				,olddname 
+			</if>
+			<if test="ostCellname != null">
+				,ost_cellname 
+			</if>
+			<if test="ostFormula != null">
+			</if>
+			<if test="ostColor != null">
+				,ost_color 
+			</if>
+			<if test="ostSumtype != null">
+				,ost_sumtype 
+			</if>
+			<if test="dataTablename != null">
+				,data_tablename 
+			</if>
+			<if test="dataFieldname != null">
+				,data_fieldname 
+			</if>
+			<if test="orderCon != null">
+				,order_con 
+			</if>
+			<if test="connum != null">
+				,connum 
+			</if>
+			<if test="nodeIndex != null">
+				,node_index 
+			</if>
+			<if test="typeId != null">
+				,type_id 
+			</if>
+			<if test="userindex != null">
+				,userindex 
+			</if>
+			<if test="orderIndex != null">
+				,order_index 
+			</if>
+			<if test="parentDname != null">
+				,parent_dname 
+			</if>
+			<if test="sysauto != null">
+				,sysauto 
+			</if>
+			<if test="orderIndexF != null">
+				,order_index_F 
+			</if>
+			<if test="orderidF != null">
+				,orderid_F 
+			</if>
+			<if test="orderConF != null">
+				,order_con_F 
+			</if>
+			<if test="isprintvalue != null">
+				,isprintvalue 
+			</if>
+			<if test="isshowvalueonlast != null">
+				,isshowvalueonlast 
+			</if>
+			<if test="isBankRoundType != null">
+				,isbankroundtype 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{listId, jdbcType=VARCHAR}
+	     
+			<if test="indexId != null">
+				,#{indexId, jdbcType=VARCHAR}
+			</if>
+			<if test="frmtype != null">
+				,#{frmtype, jdbcType=VARCHAR}
+			</if>
+			<if test="issystem != null">
+				,#{issystem, jdbcType=VARCHAR}
+			</if>
+			<if test="fname != null">
+				,#{fname, jdbcType=VARCHAR}
+			</if>
+			<if test="dname != null">
+				,#{dname, jdbcType=VARCHAR}
+			</if>
+			<if test="dtype != null">
+				,#{dtype, jdbcType=VARCHAR}
+			</if>
+			<if test="showtype != null">
+				,#{showtype, jdbcType=VARCHAR}
+			</if>
+			<if test="strlen != null">
+				,#{strlen, jdbcType=INTEGER}
+			</if>
+			<if test="form != null">
+				,#{form, jdbcType=VARCHAR}
+			</if>
+			<if test="intype != null">
+				,#{intype, jdbcType=VARCHAR}
+			</if>
+			<if test="hintID != null">
+				,#{hintID, jdbcType=VARCHAR}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+			<if test="ztype != null">
+				,#{ztype, jdbcType=VARCHAR}
+			</if>
+			<if test="ismustfill != null">
+				,#{ismustfill, jdbcType=VARCHAR}
+			</if>
+			<if test="isListShow != null">
+				,#{isListShow, jdbcType=VARCHAR}
+			</if>
+			<if test="listweigth != null">
+				,#{listweigth, jdbcType=INTEGER}
+			</if>
+			<if test="panid != null">
+				,#{panid, jdbcType=VARCHAR}
+			</if>
+			<if test="isallwidth != null">
+				,#{isallwidth, jdbcType=VARCHAR}
+			</if>
+			<if test="istname != null">
+				,#{istname, jdbcType=VARCHAR}
+			</if>
+			<if test="filedotFileid != null">
+				,#{filedotFileid, jdbcType=VARCHAR}
+			</if>
+			<if test="datapoint != null">
+				,#{datapoint, jdbcType=INTEGER}
+			</if>
+			<if test="defaultvalue != null">
+				,#{defaultvalue, jdbcType=VARCHAR}
+			</if>
+			<if test="issubtable != null">
+				,#{issubtable, jdbcType=VARCHAR}
+			</if>
+			<if test="isdataonly != null">
+				,#{isdataonly, jdbcType=VARCHAR}
+			</if>
+			<if test="checktype != null">
+				,#{checktype, jdbcType=INTEGER}
+			</if>
+			<if test="orderid != null">
+				,#{orderid, jdbcType=VARCHAR}
+			</if>
+			<if test="celltype != null">
+				,#{celltype, jdbcType=INTEGER}
+			</if>
+			<if test="ostTablename != null">
+				,#{ostTablename, jdbcType=VARCHAR}
+			</if>
+			<if test="ostRow != null">
+				,#{ostRow, jdbcType=INTEGER}
+			</if>
+			<if test="ostCol != null">
+				,#{ostCol, jdbcType=INTEGER}
+			</if>
+			<if test="hintlist != null">
+				,#{hintlist, jdbcType=VARCHAR}
+			</if>
+			<if test="ostCellid != null">
+				,#{ostCellid, jdbcType=VARCHAR}
+			</if>
+			<if test="olddname != null">
+				,#{olddname, jdbcType=VARCHAR}
+			</if>
+			<if test="ostCellname != null">
+				,#{ostCellname, jdbcType=VARCHAR}
+			</if>
+			<if test="ostFormula != null">
+			</if>
+			<if test="ostColor != null">
+				,#{ostColor, jdbcType=INTEGER}
+			</if>
+			<if test="ostSumtype != null">
+				,#{ostSumtype, jdbcType=INTEGER}
+			</if>
+			<if test="dataTablename != null">
+				,#{dataTablename, jdbcType=VARCHAR}
+			</if>
+			<if test="dataFieldname != null">
+				,#{dataFieldname, jdbcType=VARCHAR}
+			</if>
+			<if test="orderCon != null">
+				,#{orderCon, jdbcType=INTEGER}
+			</if>
+			<if test="connum != null">
+				,#{connum, jdbcType=INTEGER}
+			</if>
+			<if test="nodeIndex != null">
+				,#{nodeIndex, jdbcType=INTEGER}
+			</if>
+			<if test="typeId != null">
+				,#{typeId, jdbcType=VARCHAR}
+			</if>
+			<if test="userindex != null">
+				,#{userindex, jdbcType=VARCHAR}
+			</if>
+			<if test="orderIndex != null">
+				,#{orderIndex, jdbcType=INTEGER}
+			</if>
+			<if test="parentDname != null">
+				,#{parentDname, jdbcType=VARCHAR}
+			</if>
+			<if test="sysauto != null">
+				,#{sysauto, jdbcType=INTEGER}
+			</if>
+			<if test="orderIndexF != null">
+				,#{orderIndexF, jdbcType=INTEGER}
+			</if>
+			<if test="orderidF != null">
+				,#{orderidF, jdbcType=VARCHAR}
+			</if>
+			<if test="orderConF != null">
+				,#{orderConF, jdbcType=INTEGER}
+			</if>
+			<if test="isprintvalue != null">
+				,#{isprintvalue, jdbcType=INTEGER}
+			</if>
+			<if test="isshowvalueonlast != null">
+				,#{isshowvalueonlast, jdbcType=INTEGER}
+			</if>
+			<if test="isBankRoundType != null">
+				,#{isBankRoundType, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateCellRepInfo" parameterType="com.glaf.isdp.domain.CellRepInfo">
+		update
+		cell_repinfo
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="indexId != null">
+				index_id = #{indexId, jdbcType=VARCHAR},
+			</if>
+			<if test="frmtype != null">
+				frmtype = #{frmtype, jdbcType=VARCHAR},
+			</if>
+			<if test="issystem != null">
+				issystem = #{issystem, jdbcType=VARCHAR},
+			</if>
+			<if test="fname != null">
+				fname = #{fname, jdbcType=VARCHAR},
+			</if>
+			<if test="dname != null">
+				dname = #{dname, jdbcType=VARCHAR},
+			</if>
+			<if test="dtype != null">
+				dtype = #{dtype, jdbcType=VARCHAR},
+			</if>
+			<if test="showtype != null">
+				showtype = #{showtype, jdbcType=VARCHAR},
+			</if>
+			<if test="strlen != null">
+				strlen = #{strlen, jdbcType=INTEGER},
+			</if>
+			<if test="form != null">
+				form = #{form, jdbcType=VARCHAR},
+			</if>
+			<if test="intype != null">
+				intype = #{intype, jdbcType=VARCHAR},
+			</if>
+			<if test="hintID != null">
+				hintID = #{hintID, jdbcType=VARCHAR},
+			</if>
+			<if test="listno != null">
+				listno = #{listno, jdbcType=INTEGER},
+			</if>
+			<if test="ztype != null">
+				ztype = #{ztype, jdbcType=VARCHAR},
+			</if>
+			<if test="ismustfill != null">
+				ismustfill = #{ismustfill, jdbcType=VARCHAR},
+			</if>
+			<if test="isListShow != null">
+				isListShow = #{isListShow, jdbcType=VARCHAR},
+			</if>
+			<if test="listweigth != null">
+				listweigth = #{listweigth, jdbcType=INTEGER},
+			</if>
+			<if test="panid != null">
+				panid = #{panid, jdbcType=VARCHAR},
+			</if>
+			<if test="isallwidth != null">
+				isallwidth = #{isallwidth, jdbcType=VARCHAR},
+			</if>
+			<if test="istname != null">
+				istname = #{istname, jdbcType=VARCHAR},
+			</if>
+			<if test="filedotFileid != null">
+				filedot_fileid = #{filedotFileid, jdbcType=VARCHAR},
+			</if>
+			<if test="datapoint != null">
+				datapoint = #{datapoint, jdbcType=INTEGER},
+			</if>
+			<if test="defaultvalue != null">
+				defaultvalue = #{defaultvalue, jdbcType=VARCHAR},
+			</if>
+			<if test="issubtable != null">
+				issubtable = #{issubtable, jdbcType=VARCHAR},
+			</if>
+			<if test="isdataonly != null">
+				isdataonly = #{isdataonly, jdbcType=VARCHAR},
+			</if>
+			<if test="checktype != null">
+				checktype = #{checktype, jdbcType=INTEGER},
+			</if>
+			<if test="orderid != null">
+				orderid = #{orderid, jdbcType=VARCHAR},
+			</if>
+			<if test="celltype != null">
+				celltype = #{celltype, jdbcType=INTEGER},
+			</if>
+			<if test="ostTablename != null">
+				ost_tablename = #{ostTablename, jdbcType=VARCHAR},
+			</if>
+			<if test="ostRow != null">
+				ost_row = #{ostRow, jdbcType=INTEGER},
+			</if>
+			<if test="ostCol != null">
+				ost_col = #{ostCol, jdbcType=INTEGER},
+			</if>
+			<if test="hintlist != null">
+				hintlist = #{hintlist, jdbcType=VARCHAR},
+			</if>
+			<if test="ostCellid != null">
+				ost_cellid = #{ostCellid, jdbcType=VARCHAR},
+			</if>
+			<if test="olddname != null">
+				olddname = #{olddname, jdbcType=VARCHAR},
+			</if>
+			<if test="ostCellname != null">
+				ost_cellname = #{ostCellname, jdbcType=VARCHAR},
+			</if>
+			<if test="ostFormula != null">
+			</if>
+			<if test="ostColor != null">
+				ost_color = #{ostColor, jdbcType=INTEGER},
+			</if>
+			<if test="ostSumtype != null">
+				ost_sumtype = #{ostSumtype, jdbcType=INTEGER},
+			</if>
+			<if test="dataTablename != null">
+				data_tablename = #{dataTablename, jdbcType=VARCHAR},
+			</if>
+			<if test="dataFieldname != null">
+				data_fieldname = #{dataFieldname, jdbcType=VARCHAR},
+			</if>
+			<if test="orderCon != null">
+				order_con = #{orderCon, jdbcType=INTEGER},
+			</if>
+			<if test="connum != null">
+				connum = #{connum, jdbcType=INTEGER},
+			</if>
+			<if test="nodeIndex != null">
+				node_index = #{nodeIndex, jdbcType=INTEGER},
+			</if>
+			<if test="typeId != null">
+				type_id = #{typeId, jdbcType=VARCHAR},
+			</if>
+			<if test="userindex != null">
+				userindex = #{userindex, jdbcType=VARCHAR},
+			</if>
+			<if test="orderIndex != null">
+				order_index = #{orderIndex, jdbcType=INTEGER},
+			</if>
+			<if test="parentDname != null">
+				parent_dname = #{parentDname, jdbcType=VARCHAR},
+			</if>
+			<if test="sysauto != null">
+				sysauto = #{sysauto, jdbcType=INTEGER},
+			</if>
+			<if test="orderIndexF != null">
+				order_index_F = #{orderIndexF, jdbcType=INTEGER},
+			</if>
+			<if test="orderidF != null">
+				orderid_F = #{orderidF, jdbcType=VARCHAR},
+			</if>
+			<if test="orderConF != null">
+				order_con_F = #{orderConF, jdbcType=INTEGER},
+			</if>
+			<if test="isprintvalue != null">
+				isprintvalue = #{isprintvalue, jdbcType=INTEGER},
+			</if>
+			<if test="isshowvalueonlast != null">
+				isshowvalueonlast = #{isshowvalueonlast, jdbcType=INTEGER},
+			</if>
+			<if test="isBankRoundType != null">
+				isbankroundtype = #{isBankRoundType, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+          listId = #{listId, jdbcType=VARCHAR}
+		
+	</update>
+
+ 
+	<delete id="deleteCellRepInfoById" parameterType="string"> 
+        delete from cell_repinfo
+        where listId = #{id}
+	</delete>
+	
+
+	<delete id="deleteCellRepInfos" parameterType="com.glaf.isdp.query.CellRepInfoQuery">
+		delete from cell_repinfo
+		where ( listId IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getCellRepInfoById" parameterType="string" resultMap="cellRepInfoResultMap">
+		select * from cell_repinfo where listId = #{id}
+	</select>
+
+
+	<select id="getCellRepInfosByFiledotId" parameterType="string" resultMap="cellRepInfoResultMap">
+		select * from cell_repinfo where filedot_fileid = #{filedotId}
+	</select>
+	
+	
+	<select id="getRoleUseExistsCellRepInfos" parameterType="map" resultMap="cellRepInfoResultMap">
+		select * from cell_repinfo where filedot_fileid=#{filedotId} 
+		and exists(
+			select * from net_roleuse2 
+			where roleid=#{roleid}
+			and filedot_fileid=cell_repinfo.filedot_fileid 
+			and dname=cell_repinfo.dname 
+			and celltreedot_index=#{celltreedot_index}
+		)
+	</select>
+	
+	
+	<select id="getRoleUseNotExistsCellRepInfos" parameterType="map" resultMap="cellRepInfoResultMap">
+		select * from cell_repinfo where filedot_fileid=#{filedotId} 
+		and not exists(
+			select * from net_roleuse2 
+			where roleid=#{roleid}
+			and filedot_fileid=cell_repinfo.filedot_fileid 
+			and dname=cell_repinfo.dname 
+			and celltreedot_index=#{celltreedot_index}
+		)
+	</select>
+	
+	
+	<select id="getCellRepInfoCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellRepInfosSql" />
+	</select>
+
+
+	<select id="getCellRepInfoCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellRepInfoQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellRepInfosSql" />
+	</select>
+
+
+	<select id="getCellRepInfos" 
+		parameterType="map"
+		resultMap="cellRepInfoResultMap">
+		select E.*
+		<include refid="selectCellRepInfosSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getCellRepInfosByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellRepInfoQuery"
+		resultMap="cellRepInfoResultMap">
+		select E.*
+		<include refid="selectCellRepInfosSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectCellRepInfosSql">
+
+		from cell_repinfo E
+		 
+		<where>
+
+		       1 = 1  
+
+	        
+			<if test="indexId != null and indexId != '' ">
+				and E.index_id = #{indexId}
+			</if>
+
+			<if test="indexIdLike != null and indexIdLike != '' ">
+				and E.index_id like #{indexIdLike}
+			</if>
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+			    and E.index_id IN
+				<foreach item="x_indexId" index="index" collection="indexIds" 
+					open="(" separator="," close=")">
+                  #{x_indexId}
+				</foreach>
+			</if>
+
+	        
+			<if test="frmtype != null and frmtype != '' ">
+				and E.frmtype = #{frmtype}
+			</if>
+
+			<if test="frmtypeLike != null and frmtypeLike != '' ">
+				and E.frmtype like #{frmtypeLike}
+			</if>
+
+			<if test="frmtypes != null and frmtypes.size() &gt; 0">
+			    and E.frmtype IN
+				<foreach item="x_frmtype" index="index" collection="frmtypes" 
+					open="(" separator="," close=")">
+                  #{x_frmtype}
+				</foreach>
+			</if>
+
+	        
+			<if test="issystem != null and issystem != '' ">
+				and E.issystem = #{issystem}
+			</if>
+
+			<if test="issystemLike != null and issystemLike != '' ">
+				and E.issystem like #{issystemLike}
+			</if>
+
+			<if test="issystems != null and issystems.size() &gt; 0">
+			    and E.issystem IN
+				<foreach item="x_issystem" index="index" collection="issystems" 
+					open="(" separator="," close=")">
+                  #{x_issystem}
+				</foreach>
+			</if>
+
+			<if test="fnameLike != null and fnameLike != '' ">
+				and E.fname like #{fnameLike}
+			</if>
+
+			<if test="dnameLike != null and dnameLike != '' ">
+				and E.dname like #{dnameLike}
+			</if>
+	        
+			<if test="dtype != null and dtype != '' ">
+				and E.dtype = #{dtype}
+			</if>
+
+			<if test="dtypeLike != null and dtypeLike != '' ">
+				and E.dtype like #{dtypeLike}
+			</if>
+
+			<if test="dtypes != null and dtypes.size() &gt; 0">
+			    and E.dtype IN
+				<foreach item="x_dtype" index="index" collection="dtypes" 
+					open="(" separator="," close=")">
+                  #{x_dtype}
+				</foreach>
+			</if>
+
+	        
+			<if test="showtype != null and showtype != '' ">
+				and E.showtype = #{showtype}
+			</if>
+
+			<if test="showtypeLike != null and showtypeLike != '' ">
+				and E.showtype like #{showtypeLike}
+			</if>
+
+			<if test="showtypes != null and showtypes.size() &gt; 0">
+			    and E.showtype IN
+				<foreach item="x_showtype" index="index" collection="showtypes" 
+					open="(" separator="," close=")">
+                  #{x_showtype}
+				</foreach>
+			</if>
+
+
+	        
+			<if test="form != null and form != '' ">
+				and E.form = #{form}
+			</if>
+
+			<if test="formLike != null and formLike != '' ">
+				and E.form like #{formLike}
+			</if>
+
+			<if test="forms != null and forms.size() &gt; 0">
+			    and E.form IN
+				<foreach item="x_form" index="index" collection="forms" 
+					open="(" separator="," close=")">
+                  #{x_form}
+				</foreach>
+			</if>
+
+	        
+			<if test="intype != null and intype != '' ">
+				and E.intype = #{intype}
+			</if>
+
+			<if test="intypeLike != null and intypeLike != '' ">
+				and E.intype like #{intypeLike}
+			</if>
+
+			<if test="intypes != null and intypes.size() &gt; 0">
+			    and E.intype IN
+				<foreach item="x_intype" index="index" collection="intypes" 
+					open="(" separator="," close=")">
+                  #{x_intype}
+				</foreach>
+			</if>
+
+	        
+			<if test="hintID != null and hintID != '' ">
+				and E.hintID = #{hintID}
+			</if>
+
+			<if test="hintIDLike != null and hintIDLike != '' ">
+				and E.hintID like #{hintIDLike}
+			</if>
+
+			<if test="hintIDs != null and hintIDs.size() &gt; 0">
+			    and E.hintID IN
+				<foreach item="x_hintID" index="index" collection="hintIDs" 
+					open="(" separator="," close=")">
+                  #{x_hintID}
+				</foreach>
+			</if>
+			
+			<if test="ztype != null and ztype != '' ">
+				and E.ztype = #{ztype}
+			</if>
+
+			<if test="ztypeLike != null and ztypeLike != '' ">
+				and E.ztype like #{ztypeLike}
+			</if>
+
+			<if test="ztypes != null and ztypes.size() &gt; 0">
+			    and E.ztype IN
+				<foreach item="x_ztype" index="index" collection="ztypes" 
+					open="(" separator="," close=")">
+                  #{x_ztype}
+				</foreach>
+			</if>
+
+	        
+			<if test="ismustfill != null and ismustfill != '' ">
+				and E.ismustfill = #{ismustfill}
+			</if>
+
+			<if test="ismustfillLike != null and ismustfillLike != '' ">
+				and E.ismustfill like #{ismustfillLike}
+			</if>
+
+			<if test="ismustfills != null and ismustfills.size() &gt; 0">
+			    and E.ismustfill IN
+				<foreach item="x_ismustfill" index="index" collection="ismustfills" 
+					open="(" separator="," close=")">
+                  #{x_ismustfill}
+				</foreach>
+			</if>
+
+	        
+			<if test="isListShow != null and isListShow != '' ">
+				and E.isListShow = #{isListShow}
+			</if>
+
+			<if test="isListShowLike != null and isListShowLike != '' ">
+				and E.isListShow like #{isListShowLike}
+			</if>
+
+			<if test="isListShows != null and isListShows.size() &gt; 0">
+			    and E.isListShow IN
+				<foreach item="x_isListShow" index="index" collection="isListShows" 
+					open="(" separator="," close=")">
+                  #{x_isListShow}
+				</foreach>
+			</if>
+	        
+			<if test="panid != null and panid != '' ">
+				and E.panid = #{panid}
+			</if>
+
+			<if test="panidLike != null and panidLike != '' ">
+				and E.panid like #{panidLike}
+			</if>
+
+			<if test="panids != null and panids.size() &gt; 0">
+			    and E.panid IN
+				<foreach item="x_panid" index="index" collection="panids" 
+					open="(" separator="," close=")">
+                  #{x_panid}
+				</foreach>
+			</if>
+
+			<if test="isallwidth != null and isallwidth != '' ">
+				and E.isallwidth = #{isallwidth}
+			</if>
+
+			<if test="istname != null and istname != '' ">
+				and E.istname = #{istname}
+			</if>
+
+			<if test="istnames != null and istnames.size() &gt; 0">
+			    and E.istname IN
+				<foreach item="x_istname" index="index" collection="istnames" 
+					open="(" separator="," close=")">
+                  #{x_istname}
+				</foreach>
+			</if>
+	        
+			<if test="filedotFileid != null and filedotFileid != '' ">
+				and E.filedot_fileid = #{filedotFileid}
+			</if>
+
+			<if test="filedotFileidLike != null and filedotFileidLike != '' ">
+				and E.filedot_fileid like #{filedotFileidLike}
+			</if>
+
+			<if test="filedotFileids != null and filedotFileids.size() &gt; 0">
+			    and E.filedot_fileid IN
+				<foreach item="x_filedotFileid" index="index" collection="filedotFileids" 
+					open="(" separator="," close=")">
+                  #{x_filedotFileid}
+				</foreach>
+			</if>
+
+			<if test="datapoint != null">
+				and E.datapoint = #{datapoint}
+			</if>
+
+			<if test="datapointGreaterThanOrEqual != null">
+				and E.datapoint &gt;= #{datapointGreaterThanOrEqual}
+			</if>
+
+			<if test="datapointLessThanOrEqual != null">
+				and E.datapoint &lt;= #{datapointLessThanOrEqual}
+			</if>
+
+			<if test="datapoints != null and datapoints.size() &gt; 0">
+			    and E.datapoint IN
+				<foreach item="x_datapoint" index="index" collection="datapoints" 
+					open="(" separator="," close=")">
+                  #{x_datapoint}
+				</foreach>
+			</if>
+	        
+			<if test="issubtable != null and issubtable != '' ">
+				and E.issubtable = #{issubtable}
+			</if>
+
+			<if test="isdataonly != null and isdataonly != '' ">
+				and E.isdataonly = #{isdataonly}
+			</if>
+
+			<if test="isdataonlyLike != null and isdataonlyLike != '' ">
+				and E.isdataonly like #{isdataonlyLike}
+			</if>
+
+			<if test="isdataonlys != null and isdataonlys.size() &gt; 0">
+			    and E.isdataonly IN
+				<foreach item="x_isdataonly" index="index" collection="isdataonlys" 
+					open="(" separator="," close=")">
+                  #{x_isdataonly}
+				</foreach>
+			</if>
+
+
+			<if test="checktype != null">
+				and E.checktype = #{checktype}
+			</if>
+
+			<if test="checktypeGreaterThanOrEqual != null">
+				and E.checktype &gt;= #{checktypeGreaterThanOrEqual}
+			</if>
+
+			<if test="checktypeLessThanOrEqual != null">
+				and E.checktype &lt;= #{checktypeLessThanOrEqual}
+			</if>
+
+			<if test="checktypes != null and checktypes.size() &gt; 0">
+			    and E.checktype IN
+				<foreach item="x_checktype" index="index" collection="checktypes" 
+					open="(" separator="," close=")">
+                  #{x_checktype}
+				</foreach>
+			</if>
+
+	        
+			<if test="orderid != null and orderid != '' ">
+				and E.orderid = #{orderid}
+			</if>
+
+			<if test="orderidLike != null and orderidLike != '' ">
+				and E.orderid like #{orderidLike}
+			</if>
+
+			<if test="orderids != null and orderids.size() &gt; 0">
+			    and E.orderid IN
+				<foreach item="x_orderid" index="index" collection="orderids" 
+					open="(" separator="," close=")">
+                  #{x_orderid}
+				</foreach>
+			</if>
+
+
+			<if test="celltype != null">
+				and E.celltype = #{celltype}
+			</if>
+
+			<if test="celltypeGreaterThanOrEqual != null">
+				and E.celltype &gt;= #{celltypeGreaterThanOrEqual}
+			</if>
+
+			<if test="celltypeLessThanOrEqual != null">
+				and E.celltype &lt;= #{celltypeLessThanOrEqual}
+			</if>
+
+			<if test="celltypes != null and celltypes.size() &gt; 0">
+			    and E.celltype IN
+				<foreach item="x_celltype" index="index" collection="celltypes" 
+					open="(" separator="," close=")">
+                  #{x_celltype}
+				</foreach>
+			</if>
+	        
+			<if test="hintlist != null and hintlist != '' ">
+				and E.hintlist = #{hintlist}
+			</if>
+
+			<if test="hintlistLike != null and hintlistLike != '' ">
+				and E.hintlist like #{hintlistLike}
+			</if>
+
+			<if test="hintlists != null and hintlists.size() &gt; 0">
+			    and E.hintlist IN
+				<foreach item="x_hintlist" index="index" collection="hintlists" 
+					open="(" separator="," close=")">
+                  #{x_hintlist}
+				</foreach>
+			</if>
+	        
+			<if test="olddname != null and olddname != '' ">
+				and E.olddname = #{olddname}
+			</if>
+
+			<if test="olddnameLike != null and olddnameLike != '' ">
+				and E.olddname like #{olddnameLike}
+			</if>
+
+			<if test="olddnames != null and olddnames.size() &gt; 0">
+			    and E.olddname IN
+				<foreach item="x_olddname" index="index" collection="olddnames" 
+					open="(" separator="," close=")">
+                  #{x_olddname}
+				</foreach>
+			</if>
+	        
+			<if test="dataTablename != null and dataTablename != '' ">
+				and E.data_tablename = #{dataTablename}
+			</if>
+
+			<if test="dataTablenameLike != null and dataTablenameLike != '' ">
+				and E.data_tablename like #{dataTablenameLike}
+			</if>
+
+			<if test="dataTablenames != null and dataTablenames.size() &gt; 0">
+			    and E.data_tablename IN
+				<foreach item="x_dataTablename" index="index" collection="dataTablenames" 
+					open="(" separator="," close=")">
+                  #{x_dataTablename}
+				</foreach>
+			</if>
+
+	        
+			<if test="dataFieldname != null and dataFieldname != '' ">
+				and E.data_fieldname = #{dataFieldname}
+			</if>
+
+			<if test="dataFieldnameLike != null and dataFieldnameLike != '' ">
+				and E.data_fieldname like #{dataFieldnameLike}
+			</if>
+
+			<if test="dataFieldnames != null and dataFieldnames.size() &gt; 0">
+			    and E.data_fieldname IN
+				<foreach item="x_dataFieldname" index="index" collection="dataFieldnames" 
+					open="(" separator="," close=")">
+                  #{x_dataFieldname}
+				</foreach>
+			</if>
+
+
+			<if test="orderCon != null">
+				and E.order_con = #{orderCon}
+			</if>
+
+			<if test="orderConGreaterThanOrEqual != null">
+				and E.order_con &gt;= #{orderConGreaterThanOrEqual}
+			</if>
+
+			<if test="orderConLessThanOrEqual != null">
+				and E.order_con &lt;= #{orderConLessThanOrEqual}
+			</if>
+
+			<if test="orderCons != null and orderCons.size() &gt; 0">
+			    and E.order_con IN
+				<foreach item="x_orderCon" index="index" collection="orderCons" 
+					open="(" separator="," close=")">
+                  #{x_orderCon}
+				</foreach>
+			</if>
+
+			<if test="connum != null">
+				and E.connum = #{connum}
+			</if>
+
+			<if test="connumGreaterThanOrEqual != null">
+				and E.connum &gt;= #{connumGreaterThanOrEqual}
+			</if>
+
+			<if test="connumLessThanOrEqual != null">
+				and E.connum &lt;= #{connumLessThanOrEqual}
+			</if>
+
+			<if test="connums != null and connums.size() &gt; 0">
+			    and E.connum IN
+				<foreach item="x_connum" index="index" collection="connums" 
+					open="(" separator="," close=")">
+                  #{x_connum}
+				</foreach>
+			</if>
+
+			<if test="nodeIndex != null">
+				and E.node_index = #{nodeIndex}
+			</if>
+
+			<if test="nodeIndexGreaterThanOrEqual != null">
+				and E.node_index &gt;= #{nodeIndexGreaterThanOrEqual}
+			</if>
+
+			<if test="nodeIndexLessThanOrEqual != null">
+				and E.node_index &lt;= #{nodeIndexLessThanOrEqual}
+			</if>
+
+			<if test="nodeIndexs != null and nodeIndexs.size() &gt; 0">
+			    and E.node_index IN
+				<foreach item="x_nodeIndex" index="index" collection="nodeIndexs" 
+					open="(" separator="," close=")">
+                  #{x_nodeIndex}
+				</foreach>
+			</if>
+
+	        
+			<if test="typeId != null and typeId != '' ">
+				and E.type_id = #{typeId}
+			</if>
+
+			<if test="typeIdLike != null and typeIdLike != '' ">
+				and E.type_id like #{typeIdLike}
+			</if>
+
+			<if test="typeIds != null and typeIds.size() &gt; 0">
+			    and E.type_id IN
+				<foreach item="x_typeId" index="index" collection="typeIds" 
+					open="(" separator="," close=")">
+                  #{x_typeId}
+				</foreach>
+			</if>
+
+	        
+			<if test="userindex != null and userindex != '' ">
+				and E.userindex = #{userindex}
+			</if>
+
+			<if test="userindexLike != null and userindexLike != '' ">
+				and E.userindex like #{userindexLike}
+			</if>
+
+			<if test="userindexs != null and userindexs.size() &gt; 0">
+			    and E.userindex IN
+				<foreach item="x_userindex" index="index" collection="userindexs" 
+					open="(" separator="," close=")">
+                  #{x_userindex}
+				</foreach>
+			</if>
+
+
+			<if test="orderIndex != null">
+				and E.order_index = #{orderIndex}
+			</if>
+
+			<if test="orderIndexGreaterThanOrEqual != null">
+				and E.order_index &gt;= #{orderIndexGreaterThanOrEqual}
+			</if>
+
+			<if test="orderIndexLessThanOrEqual != null">
+				and E.order_index &lt;= #{orderIndexLessThanOrEqual}
+			</if>
+
+			<if test="orderIndexs != null and orderIndexs.size() &gt; 0">
+			    and E.order_index IN
+				<foreach item="x_orderIndex" index="index" collection="orderIndexs" 
+					open="(" separator="," close=")">
+                  #{x_orderIndex}
+				</foreach>
+			</if>
+
+	        
+			<if test="parentDname != null and parentDname != '' ">
+				and E.parent_dname = #{parentDname}
+			</if>
+
+			<if test="parentDnameLike != null and parentDnameLike != '' ">
+				and E.parent_dname like #{parentDnameLike}
+			</if>
+
+			<if test="parentDnames != null and parentDnames.size() &gt; 0">
+			    and E.parent_dname IN
+				<foreach item="x_parentDname" index="index" collection="parentDnames" 
+					open="(" separator="," close=")">
+                  #{x_parentDname}
+				</foreach>
+			</if>
+
+
+			<if test="sysauto != null">
+				and E.sysauto = #{sysauto}
+			</if>
+
+			<if test="sysautoGreaterThanOrEqual != null">
+				and E.sysauto &gt;= #{sysautoGreaterThanOrEqual}
+			</if>
+
+			<if test="sysautoLessThanOrEqual != null">
+				and E.sysauto &lt;= #{sysautoLessThanOrEqual}
+			</if>
+
+			<if test="sysautos != null and sysautos.size() &gt; 0">
+			    and E.sysauto IN
+				<foreach item="x_sysauto" index="index" collection="sysautos" 
+					open="(" separator="," close=")">
+                  #{x_sysauto}
+				</foreach>
+			</if>
+
+
+			<if test="orderIndexF != null">
+				and E.order_index_F = #{orderIndexF}
+			</if>
+
+			<if test="orderIndexFGreaterThanOrEqual != null">
+				and E.order_index_F &gt;= #{orderIndexFGreaterThanOrEqual}
+			</if>
+
+			<if test="orderIndexFLessThanOrEqual != null">
+				and E.order_index_F &lt;= #{orderIndexFLessThanOrEqual}
+			</if>
+
+			<if test="orderIndexFs != null and orderIndexFs.size() &gt; 0">
+			    and E.order_index_F IN
+				<foreach item="x_orderIndexF" index="index" collection="orderIndexFs" 
+					open="(" separator="," close=")">
+                  #{x_orderIndexF}
+				</foreach>
+			</if>
+
+	        
+			<if test="orderidF != null and orderidF != '' ">
+				and E.orderid_F = #{orderidF}
+			</if>
+
+			<if test="orderidFLike != null and orderidFLike != '' ">
+				and E.orderid_F like #{orderidFLike}
+			</if>
+
+			<if test="orderidFs != null and orderidFs.size() &gt; 0">
+			    and E.orderid_F IN
+				<foreach item="x_orderidF" index="index" collection="orderidFs" 
+					open="(" separator="," close=")">
+                  #{x_orderidF}
+				</foreach>
+			</if>
+
+
+			<if test="orderConF != null">
+				and E.order_con_F = #{orderConF}
+			</if>
+
+			<if test="orderConFGreaterThanOrEqual != null">
+				and E.order_con_F &gt;= #{orderConFGreaterThanOrEqual}
+			</if>
+
+			<if test="orderConFLessThanOrEqual != null">
+				and E.order_con_F &lt;= #{orderConFLessThanOrEqual}
+			</if>
+
+			<if test="orderConFs != null and orderConFs.size() &gt; 0">
+			    and E.order_con_F IN
+				<foreach item="x_orderConF" index="index" collection="orderConFs" 
+					open="(" separator="," close=")">
+                  #{x_orderConF}
+				</foreach>
+			</if>
+
+
+			<if test="isprintvalue != null">
+				and E.isprintvalue = #{isprintvalue}
+			</if>
+
+			<if test="isprintvalueGreaterThanOrEqual != null">
+				and E.isprintvalue &gt;= #{isprintvalueGreaterThanOrEqual}
+			</if>
+
+			<if test="isprintvalueLessThanOrEqual != null">
+				and E.isprintvalue &lt;= #{isprintvalueLessThanOrEqual}
+			</if>
+
+			<if test="isprintvalues != null and isprintvalues.size() &gt; 0">
+			    and E.isprintvalue IN
+				<foreach item="x_isprintvalue" index="index" collection="isprintvalues" 
+					open="(" separator="," close=")">
+                  #{x_isprintvalue}
+				</foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

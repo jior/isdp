@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.IsdpTaskMapper">
+   
+	<select id="getAllTaskList" parameterType="map" resultType="map">
+		
+        SELECT c.id as activityId, a.id as taskMainId, a.ctime as createTime, a.index_id as indexId, 
+		a.task_id as taskId, a.name as subject, a.projname as projectName, a.listno as listno, 
+	    a.type_index_id as typeIndexId, a.flagint as flagint, a.mycell_tasks_id as mycellTasksId,
+		a.fromtasksid as fromTasksId, a.totaskid as toTaskId, a.intfinish as intfinish, 
+		a.type_tablename as typeTablename, a.type_id as typeId, a.userid as actorId, 
+		a.netroleid as netRoleId, a.intisflow as intisflow, a.intStop as intStop, 
+	    a.filetype_index filetypeIndex, c.state as state,c.ctime_start as startTime,
+		c.ctime_end as endTime, c.timelimit as timelimit
+		FROM cell_mytaskmain a INNER JOIN
+			 flow_process b ON a.id = b.Main_id INNER JOIN
+			 flow_activ c ON b.id = c.process_id
+		WHERE (c.id IN
+				 (SELECT id
+			   FROM flow_activ
+			   WHERE (userid = #{actorId} 
+		<if test="roleIds != null and roleIds.size != 0">
+			   OR
+					 (userid IS NULL AND netroleid IN 
+			<foreach item="x_roleId" index="index" collection="roleIds" open="(" separator="," close=")">
+				       #{x_roleId}
+			</foreach>
+                      )
+		</if>
+                     )
+			    )
+			)
+		<if test="name != null">
+		  and a.name like #{name} 
+		</if>	
+		order by a.id desc
+	</select>
+
+	<select id="getAllTaskListCount" parameterType="map" resultType="int">
+		SELECT count(*)
+		FROM cell_mytaskmain a INNER JOIN
+			 flow_process b ON a.id = b.Main_id INNER JOIN
+			 flow_activ c ON b.id = c.process_id
+		WHERE (c.id IN
+				 (SELECT id
+			   FROM flow_activ
+			   WHERE (userid = #{actorId} 
+		<if test="roleIds != null and roleIds.size != 0">
+			   OR
+					 (userid IS NULL AND netroleid IN 
+			<foreach item="x_roleId" index="index" collection="roleIds" open="(" separator="," close=")">
+				       #{x_roleId}
+			</foreach>
+                     )
+		</if>
+                     )
+			    )
+			)
+		<if test="name != null">
+		  and a.name like #{name} 
+		</if>	
+	</select>
+
+
+	<select id="getFallbackTaskList" parameterType="map" resultType="map">
+		
+        SELECT c.id as activityId, a.id as taskMainId, a.ctime as createTime, a.index_id as indexId, 
+		a.task_id as taskId, a.name as subject, a.projname as projectName, a.listno as listno, 
+	    a.type_index_id as typeIndexId, a.flagint as flagint, a.mycell_tasks_id as mycellTasksId,
+		a.fromtasksid as fromTasksId, a.totaskid as toTaskId, a.intfinish as intfinish, 
+		a.type_tablename as typeTablename, a.type_id as typeId, a.userid as actorId, 
+		a.netroleid as netRoleId, a.intisflow as intisflow, a.intStop as intStop, 
+	    a.filetype_index filetypeIndex, c.state as state,c.ctime_start as startTime,
+		c.ctime_end as endTime, c.timelimit as timelimit
+		FROM cell_mytaskmain a INNER JOIN
+			 flow_process b ON a.id = b.Main_id INNER JOIN
+			 flow_activ c ON b.id = c.process_id
+		WHERE (c.id IN
+				 (SELECT id
+			   FROM flow_activ
+			   WHERE (userid = #{actorId} 
+		<if test="roleIds != null and roleIds.size != 0">
+			   OR
+					 (userid IS NULL AND netroleid IN 
+			<foreach item="x_roleId" index="index" collection="roleIds" open="(" separator="," close=")">
+				       #{x_roleId}
+			</foreach>
+                       )
+		</if>
+                     )
+				AND state = 0 
+				AND intback = 1
+			    )
+			)
+		<if test="name != null">
+		  and a.name like #{name} 
+		</if>	
+		order by a.id desc	
+	</select>
+
+	<select id="getFallbackTaskListCount" parameterType="map" resultType="int">
+		SELECT count(*)
+		FROM cell_mytaskmain a INNER JOIN
+			 flow_process b ON a.id = b.Main_id INNER JOIN
+			 flow_activ c ON b.id = c.process_id
+		WHERE (c.id IN
+				 (SELECT id
+			   FROM flow_activ
+			   WHERE (userid = #{actorId} 
+		<if test="roleIds != null and roleIds.size != 0">
+			   OR
+					 (userid IS NULL AND netroleid IN 
+			<foreach item="x_roleId" index="index" collection="roleIds" open="(" separator="," close=")">
+				       #{x_roleId}
+			</foreach>
+                     )
+		</if>
+                     )
+				AND state = 0 
+				AND intback = 1
+			    )
+			)
+		<if test="name != null">
+		  and a.name like #{name} 
+		</if>	
+	</select>
+
+
+	<select id="getTodoTaskList" parameterType="map" resultType="map">
+		
+        SELECT c.id as activityId, a.id as taskMainId, a.ctime as createTime, a.index_id as indexId, 
+		a.task_id as taskId, a.name as subject, a.projname as projectName, a.listno as listno, 
+	    a.type_index_id as typeIndexId, a.flagint as flagint, a.mycell_tasks_id as mycellTasksId,
+		a.fromtasksid as fromTasksId, a.totaskid as toTaskId, a.intfinish as intfinish, 
+		a.type_tablename as typeTablename, a.type_id as typeId, a.userid as actorId, 
+		a.netroleid as netRoleId, a.intisflow as intisflow, a.intStop as intStop, 
+	    a.filetype_index filetypeIndex, c.state as state,c.ctime_start as startTime,
+		c.ctime_end as endTime, c.timelimit as timelimit
+		FROM cell_mytaskmain a INNER JOIN
+			 flow_process b ON a.id = b.Main_id INNER JOIN
+			 flow_activ c ON b.id = c.process_id
+		WHERE (c.id IN
+				 (SELECT id
+			   FROM flow_activ
+			   WHERE (userid = #{actorId}
+		<if test="roleIds != null and roleIds.size != 0">
+			    OR
+					 (userid IS NULL AND netroleid IN 
+			<foreach item="x_roleId" index="index" collection="roleIds" open="(" separator="," close=")">
+				       #{x_roleId}
+			</foreach>
+                       )
+		</if>
+                     )
+				AND state = 0 
+			    )
+			)
+		<if test="name != null">
+		  and a.name like #{name} 
+		</if>	
+		order by a.id desc	
+	</select>
+
+	<select id="getTodoTaskListCount" parameterType="map" resultType="int">
+		SELECT count(*)
+		FROM cell_mytaskmain a INNER JOIN
+			 flow_process b ON a.id = b.Main_id INNER JOIN
+			 flow_activ c ON b.id = c.process_id
+		WHERE (c.id IN
+				 (SELECT id
+			   FROM flow_activ
+			   WHERE (userid = #{actorId}
+		<if test="roleIds != null and roleIds.size != 0">
+			    OR
+					 (userid IS NULL AND netroleid IN 
+			<foreach item="x_roleId" index="index" collection="roleIds" open="(" separator="," close=")">
+				       #{x_roleId}
+			</foreach>
+                     )
+		</if>
+                     )
+				AND state = 0 
+			    )
+			)
+		<if test="name != null">
+		  and a.name like #{name} 
+		</if>	
+	</select>
+
+
+	<select id="getWorkedTaskList" parameterType="map" resultType="map">
+		
+        SELECT c.id as activityId, a.id as taskMainId, a.ctime as createTime, a.index_id as indexId, 
+		a.task_id as taskId, a.name as subject, a.projname as projectName, a.listno as listno, 
+	    a.type_index_id as typeIndexId, a.flagint as flagint, a.mycell_tasks_id as mycellTasksId,
+		a.fromtasksid as fromTasksId, a.totaskid as toTaskId, a.intfinish as intfinish, 
+		a.type_tablename as typeTablename, a.type_id as typeId, a.userid as actorId, 
+		a.netroleid as netRoleId, a.intisflow as intisflow, a.intStop as intStop, 
+	    a.filetype_index filetypeIndex, c.state as state,c.ctime_start as startTime,
+		c.ctime_end as endTime, c.timelimit as timelimit
+		FROM cell_mytaskmain a INNER JOIN
+			 flow_process b ON a.id = b.Main_id INNER JOIN
+			 flow_activ c ON b.id = c.process_id
+		WHERE (c.id IN
+				 (SELECT id
+			   FROM flow_activ
+			   WHERE (userid = #{actorId} 
+		<if test="roleIds != null and roleIds.size != 0">
+			   OR
+					 (userid IS NULL AND netroleid IN 
+			<foreach item="x_roleId" index="index" collection="roleIds" open="(" separator="," close=")">
+				       #{x_roleId}
+			</foreach>
+                       )
+		</if>
+                     )
+				AND state = 1
+			    )
+			)
+		<if test="name != null">
+		  and a.name like #{name} 
+		</if>	
+		order by a.id desc	
+	</select>
+
+	<select id="getWorkedTaskListCount" parameterType="map" resultType="int">
+		SELECT count(*)
+		FROM cell_mytaskmain a INNER JOIN
+			 flow_process b ON a.id = b.Main_id INNER JOIN
+			 flow_activ c ON b.id = c.process_id
+		WHERE (c.id IN
+				 (SELECT id
+			   FROM flow_activ
+			   WHERE (userid = #{actorId} 
+		<if test="roleIds != null and roleIds.size != 0">
+			   OR
+					 (userid IS NULL AND netroleid IN 
+			<foreach item="x_roleId" index="index" collection="roleIds" open="(" separator="," close=")">
+				       #{x_roleId}
+			</foreach>
+                      )
+		</if>
+                     )
+				AND state = 1
+			    )
+			)
+		<if test="name != null">
+		  and a.name like #{name} 
+		</if>	
+	</select>
+
+</mapper>

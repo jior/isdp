@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.CellTreehintMapper">
+
+	<resultMap id="cellTreehintResultMap"	type="com.glaf.isdp.domain.CellTreehint">
+		<id property="indexId" column="index_id" jdbcType="INTEGER" />
+		<result property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+		<result property="indexName" column="index_name" jdbcType="VARCHAR"/>
+		<result property="nlevel" column="nlevel" jdbcType="INTEGER"/>
+		<result property="num" column="num" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="nodeico" column="nodeico" jdbcType="INTEGER"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+	</resultMap>
+
+	<resultMap id="cellTreehintHashMap"	type="java.util.HashMap">
+		<id property="indexId" column="index_id" jdbcType="INTEGER" />
+		<result property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+		<result property="indexName" column="index_name" jdbcType="VARCHAR"/>
+		<result property="nlevel" column="nlevel" jdbcType="INTEGER"/>
+		<result property="num" column="num" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="nodeico" column="nodeico" jdbcType="INTEGER"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+	</resultMap>
+ 
+ 
+	<insert id="insertCellTreehint" parameterType="com.glaf.isdp.domain.CellTreehint">
+		insert into cell_treehint 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    index_id
+			<if test="id != null">
+				,id 
+			</if>
+			<if test="parentId != null">
+				,parent_id 
+			</if>
+			<if test="indexName != null">
+				,index_name 
+			</if>
+			<if test="nlevel != null">
+				,nlevel 
+			</if>
+			<if test="num != null">
+				,num 
+			</if>
+			<if test="content != null">
+				,content 
+			</if>
+			<if test="nodeico != null">
+				,nodeico 
+			</if>
+			<if test="listno != null">
+				,listno 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{indexId, jdbcType=INTEGER}
+	     
+			<if test="id != null">
+				,#{id, jdbcType=VARCHAR}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=INTEGER}
+			</if>
+			<if test="indexName != null">
+				,#{indexName, jdbcType=VARCHAR}
+			</if>
+			<if test="nlevel != null">
+				,#{nlevel, jdbcType=INTEGER}
+			</if>
+			<if test="num != null">
+				,#{num, jdbcType=VARCHAR}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="nodeico != null">
+				,#{nodeico, jdbcType=INTEGER}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateCellTreehint" parameterType="com.glaf.isdp.domain.CellTreehint">
+		update
+		    cell_treehint
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="id != null">
+				id = #{id, jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				parent_id = #{parentId, jdbcType=INTEGER},
+			</if>
+			<if test="indexName != null">
+				index_name = #{indexName, jdbcType=VARCHAR},
+			</if>
+			<if test="nlevel != null">
+				nlevel = #{nlevel, jdbcType=INTEGER},
+			</if>
+			<if test="num != null">
+				num = #{num, jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="nodeico != null">
+				nodeico = #{nodeico, jdbcType=INTEGER},
+			</if>
+			<if test="listno != null">
+				listno = #{listno, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+          index_id = #{indexId, jdbcType=INTEGER}
+		
+	</update>
+
+ 
+	<delete id="deleteCellTreehintById" parameterType="string"> 
+        delete from cell_treehint
+        where id = #{id}
+	</delete>
+
+	<delete id="deleteCellTreehintByIndexId" parameterType="int"> 
+        delete from cell_treehint
+        where index_id = #{indexId}
+	</delete>
+	
+
+	<delete id="deleteCellTreehints" parameterType="com.glaf.isdp.query.CellTreehintQuery">
+		delete from cell_treehint
+		where ( index_id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getCellTreehintById" parameterType="string" resultMap="cellTreehintResultMap">
+		select * from cell_treehint where id = #{id}
+	</select>
+
+	<select id="getCellTreehintByIndexId" parameterType="string" resultMap="cellTreehintResultMap">
+		select * from cell_treehint where index_id = #{indexId}
+	</select>
+
+
+	<select id="getCellTreehintCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellTreehintsSql" />
+	</select>
+
+
+	<select id="getCellTreehintCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellTreehintQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellTreehintsSql" />
+	</select>
+
+
+	<select id="getCellTreehints" 
+		parameterType="map"
+		resultMap="cellTreehintResultMap">
+		select E.*
+		<include refid="selectCellTreehintsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getCellTreehintsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellTreehintQuery"
+		resultMap="cellTreehintResultMap">
+		select E.*
+		<include refid="selectCellTreehintsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectCellTreehintsSql">
+
+		from cell_treehint E
+		 
+		<where>
+
+		       1 = 1  
+
+			<if test="idLike != null and idLike != '' ">
+				and E.id like #{idLike}
+			</if>
+			
+			<if test="ids != null and ids.size() &gt; 0">
+			    and E.id IN
+				<foreach item="x_id" index="index" collection="ids" 
+					open="(" separator="," close=")">
+                  #{x_id}
+				</foreach>
+			</if>
+
+			<if test="parentId != null">
+				and E.parent_id = #{parentId}
+			</if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+			    and E.parent_id IN
+				<foreach item="x_parentId" index="index" collection="parentIds" 
+					open="(" separator="," close=")">
+                  #{x_parentId}
+				</foreach>
+			</if>
+ 
+			<if test="indexNameLike != null and indexNameLike != '' ">
+				and E.index_name like #{indexNameLike}
+			</if>
+ 
+			<if test="nlevel != null">
+				and E.nlevel = #{nlevel}
+			</if>
+
+			<if test="nlevelGreaterThanOrEqual != null">
+				and E.nlevel &gt;= #{nlevelGreaterThanOrEqual}
+			</if>
+
+			<if test="nlevelLessThanOrEqual != null">
+				and E.nlevel &lt;= #{nlevelLessThanOrEqual}
+			</if>
+
+			<if test="nlevels != null and nlevels.size() &gt; 0">
+			    and E.nlevel IN
+				<foreach item="x_nlevel" index="index" collection="nlevels" 
+					open="(" separator="," close=")">
+                  #{x_nlevel}
+				</foreach>
+			</if>
+ 
+			<if test="numLike != null and numLike != '' ">
+				and E.num like #{numLike}
+			</if>
+ 
+			<if test="contentLike != null and contentLike != '' ">
+				and E.content like #{contentLike}
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

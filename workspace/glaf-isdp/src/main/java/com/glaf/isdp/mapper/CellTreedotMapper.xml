@@ -1,0 +1,767 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.CellTreedotMapper">
+
+	<resultMap id="cellTreedotResultMap"	type="com.glaf.isdp.domain.CellTreedot">
+		<id property="indexId" column="index_id" jdbcType="INTEGER" />
+		<result property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+		<result property="indexName" column="index_name" jdbcType="VARCHAR"/>
+		<result property="nlevel" column="nlevel" jdbcType="INTEGER"/>
+		<result property="num" column="num" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="nodeico" column="nodeico" jdbcType="INTEGER"/>
+		<result property="sindexName" column="sindex_name" jdbcType="VARCHAR"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+		<result property="viewtype" column="viewtype" jdbcType="INTEGER"/>
+		<result property="ismode" column="ismode" jdbcType="VARCHAR"/>
+		<result property="modetableId" column="modetable_id" jdbcType="VARCHAR"/>
+		<result property="issystem" column="issystem" jdbcType="INTEGER"/>
+		<result property="customData" column="customData" jdbcType="VARCHAR"/>
+		<result property="intsystemselect" column="intsystemselect" jdbcType="INTEGER"/>
+		<result property="intused" column="intused" jdbcType="INTEGER"/>
+		<result property="intdel" column="intdel" jdbcType="INTEGER"/>
+		<result property="typeTablename" column="type_tablename" jdbcType="VARCHAR"/>
+		<result property="intoperation" column="intoperation" jdbcType="INTEGER"/>
+		<result property="picfile" column="picfile" jdbcType="VARCHAR"/>
+		<result property="intMuiFrm" column="intMuiFrm" jdbcType="INTEGER"/>
+		<result property="intnoshow" column="intnoshow" jdbcType="INTEGER"/>
+		<result property="typeBasetable" column="type_basetable" jdbcType="VARCHAR"/>
+		<result property="typeIndex" column="type_index" jdbcType="INTEGER"/>
+		<result property="gid" column="gid" jdbcType="VARCHAR"/>
+	</resultMap>
+
+
+	<resultMap id="cellTreedotHashMap"	type="java.util.HashMap">
+		<id property="indexId" column="index_id" jdbcType="INTEGER" />
+		<result property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+		<result property="indexName" column="index_name" jdbcType="VARCHAR"/>
+		<result property="nlevel" column="nlevel" jdbcType="INTEGER"/>
+		<result property="num" column="num" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="nodeico" column="nodeico" jdbcType="INTEGER"/>
+		<result property="sindexName" column="sindex_name" jdbcType="VARCHAR"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+		<result property="viewtype" column="viewtype" jdbcType="INTEGER"/>
+		<result property="ismode" column="ismode" jdbcType="VARCHAR"/>
+		<result property="modetableId" column="modetable_id" jdbcType="VARCHAR"/>
+		<result property="issystem" column="issystem" jdbcType="INTEGER"/>
+		<result property="customData" column="customData" jdbcType="VARCHAR"/>
+		<result property="intsystemselect" column="intsystemselect" jdbcType="INTEGER"/>
+		<result property="intused" column="intused" jdbcType="INTEGER"/>
+		<result property="intdel" column="intdel" jdbcType="INTEGER"/>
+		<result property="typeTablename" column="type_tablename" jdbcType="VARCHAR"/>
+		<result property="intoperation" column="intoperation" jdbcType="INTEGER"/>
+		<result property="picfile" column="picfile" jdbcType="VARCHAR"/>
+		<result property="intMuiFrm" column="intMuiFrm" jdbcType="INTEGER"/>
+		<result property="intnoshow" column="intnoshow" jdbcType="INTEGER"/>
+		<result property="typeBasetable" column="type_basetable" jdbcType="VARCHAR"/>
+		<result property="typeIndex" column="type_index" jdbcType="INTEGER"/>
+		<result property="gid" column="gid" jdbcType="VARCHAR"/>
+		<result property="fileContent" column="file_content" jdbcType="BLOB"/>
+	</resultMap>
+ 
+	<insert id="insertCellTreedot" parameterType="com.glaf.isdp.domain.CellTreedot">
+		insert into cell_treedot 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    index_id
+			<if test="id != null">
+				,id 
+			</if>
+			<if test="parentId != null">
+				,parent_id 
+			</if>
+			<if test="indexName != null">
+				,index_name 
+			</if>
+			<if test="nlevel != null">
+				,nlevel 
+			</if>
+			<if test="num != null">
+				,num 
+			</if>
+			<if test="content != null">
+				,content 
+			</if>
+			<if test="nodeico != null">
+				,nodeico 
+			</if>
+			<if test="sindexName != null">
+				,sindex_name 
+			</if>
+			<if test="listno != null">
+				,listno 
+			</if>
+			<if test="viewtype != null">
+				,viewtype 
+			</if>
+			<if test="ismode != null">
+				,ismode 
+			</if>
+			<if test="modetableId != null">
+				,modetable_id 
+			</if>
+			<if test="issystem != null">
+				,issystem 
+			</if>
+			<if test="customData != null">
+				,customData 
+			</if>
+			<if test="intsystemselect != null">
+				,intsystemselect 
+			</if>
+			<if test="intused != null">
+				,intused 
+			</if>
+			<if test="intdel != null">
+				,intdel 
+			</if>
+			<if test="typeTablename != null">
+				,type_tablename 
+			</if>
+			<if test="intoperation != null">
+				,intoperation 
+			</if>
+			<if test="picfile != null">
+				,picfile 
+			</if>
+			<if test="fileContent != null">
+				,file_content
+			</if>
+			<if test="intMuiFrm != null">
+				,intMuiFrm 
+			</if>
+			<if test="intnoshow != null">
+				,intnoshow 
+			</if>
+			<if test="typeBasetable != null">
+				,type_basetable 
+			</if>
+			<if test="typeIndex != null">
+				,type_index 
+			</if>
+			<if test="gid != null">
+				,gid 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{indexId, jdbcType=INTEGER}
+	     
+			<if test="id != null">
+				,#{id, jdbcType=VARCHAR}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=INTEGER}
+			</if>
+			<if test="indexName != null">
+				,#{indexName, jdbcType=VARCHAR}
+			</if>
+			<if test="nlevel != null">
+				,#{nlevel, jdbcType=INTEGER}
+			</if>
+			<if test="num != null">
+				,#{num, jdbcType=VARCHAR}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="nodeico != null">
+				,#{nodeico, jdbcType=INTEGER}
+			</if>
+			<if test="sindexName != null">
+				,#{sindexName, jdbcType=VARCHAR}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+			<if test="viewtype != null">
+				,#{viewtype, jdbcType=INTEGER}
+			</if>
+			<if test="ismode != null">
+				,#{ismode, jdbcType=VARCHAR}
+			</if>
+			<if test="modetableId != null">
+				,#{modetableId, jdbcType=VARCHAR}
+			</if>
+			<if test="issystem != null">
+				,#{issystem, jdbcType=INTEGER}
+			</if>
+			<if test="customData != null">
+				,#{customData, jdbcType=VARCHAR}
+			</if>
+			<if test="intsystemselect != null">
+				,#{intsystemselect, jdbcType=INTEGER}
+			</if>
+			<if test="intused != null">
+				,#{intused, jdbcType=INTEGER}
+			</if>
+			<if test="intdel != null">
+				,#{intdel, jdbcType=INTEGER}
+			</if>
+			<if test="typeTablename != null">
+				,#{typeTablename, jdbcType=VARCHAR}
+			</if>
+			<if test="intoperation != null">
+				,#{intoperation, jdbcType=INTEGER}
+			</if>
+			<if test="picfile != null">
+				,#{picfile, jdbcType=VARCHAR}
+			</if>
+			<if test="fileContent != null">
+				,#{fileContent, jdbcType=BLOB}
+			</if>
+			<if test="intMuiFrm != null">
+				,#{intMuiFrm, jdbcType=INTEGER}
+			</if>
+			<if test="intnoshow != null">
+				,#{intnoshow, jdbcType=INTEGER}
+			</if>
+			<if test="typeBasetable != null">
+				,#{typeBasetable, jdbcType=VARCHAR}
+			</if>
+			<if test="typeIndex != null">
+				,#{typeIndex, jdbcType=INTEGER}
+			</if>
+			<if test="gid != null">
+				,#{gid, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateCellTreedot" parameterType="com.glaf.isdp.domain.CellTreedot">
+		update
+		    cell_treedot
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="id != null">
+				id = #{id, jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				parent_id = #{parentId, jdbcType=INTEGER},
+			</if>
+			<if test="indexName != null">
+				index_name = #{indexName, jdbcType=VARCHAR},
+			</if>
+			<if test="nlevel != null">
+				nlevel = #{nlevel, jdbcType=INTEGER},
+			</if>
+			<if test="num != null">
+				num = #{num, jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="nodeico != null">
+				nodeico = #{nodeico, jdbcType=INTEGER},
+			</if>
+			<if test="sindexName != null">
+				sindex_name = #{sindexName, jdbcType=VARCHAR},
+			</if>
+			<if test="listno != null">
+				listno = #{listno, jdbcType=INTEGER},
+			</if>
+			<if test="viewtype != null">
+				viewtype = #{viewtype, jdbcType=INTEGER},
+			</if>
+			<if test="ismode != null">
+				ismode = #{ismode, jdbcType=VARCHAR},
+			</if>
+			<if test="modetableId != null">
+				modetable_id = #{modetableId, jdbcType=VARCHAR},
+			</if>
+			<if test="issystem != null">
+				issystem = #{issystem, jdbcType=INTEGER},
+			</if>
+			<if test="customData != null">
+				customData = #{customData, jdbcType=VARCHAR},
+			</if>
+			<if test="intsystemselect != null">
+				intsystemselect = #{intsystemselect, jdbcType=INTEGER},
+			</if>
+			<if test="intused != null">
+				intused = #{intused, jdbcType=INTEGER},
+			</if>
+			<if test="intdel != null">
+				intdel = #{intdel, jdbcType=INTEGER},
+			</if>
+			<if test="typeTablename != null">
+				type_tablename = #{typeTablename, jdbcType=VARCHAR},
+			</if>
+			<if test="intoperation != null">
+				intoperation = #{intoperation, jdbcType=INTEGER},
+			</if>
+			<if test="picfile != null">
+				picfile = #{picfile, jdbcType=VARCHAR},
+			</if>
+			<if test="fileContent != null">
+				file_content = #{fileContent, jdbcType=BLOB},
+			</if>
+			<if test="intMuiFrm != null">
+				intMuiFrm = #{intMuiFrm, jdbcType=INTEGER},
+			</if>
+			<if test="intnoshow != null">
+				intnoshow = #{intnoshow, jdbcType=INTEGER},
+			</if>
+			<if test="typeBasetable != null">
+				type_basetable = #{typeBasetable, jdbcType=VARCHAR},
+			</if>
+			<if test="typeIndex != null">
+				type_index = #{typeIndex, jdbcType=INTEGER},
+			</if>
+			<if test="gid != null">
+				gid = #{gid, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+          index_id = #{indexId, jdbcType=INTEGER}
+		
+	</update>
+
+ 
+	<delete id="deleteCellTreedotById" parameterType="string"> 
+        delete from cell_treedot
+        where  id = #{id}
+	</delete>
+
+	<delete id="deleteCellTreedotByIndexId" parameterType="int"> 
+        delete from cell_treedot
+        where index_id = #{indexId}
+	</delete>
+	
+
+	<delete id="deleteCellTreedots" parameterType="com.glaf.isdp.query.CellTreedotQuery">
+		delete from cell_treedot
+		where ( index_id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getCellTreedotById" parameterType="string" resultMap="cellTreedotResultMap">
+		select * from cell_treedot where id = #{id}
+	</select>
+
+	<select id="getCellTreedotByIndexId" parameterType="int" resultMap="cellTreedotResultMap">
+		select * from cell_treedot where index_id = #{indexId}
+	</select>
+
+
+	<select id="getCellTreedotsByTopId" parameterType="string" resultMap="cellTreedotResultMap">
+		
+		select * from cell_treedot 
+		where ( 
+		    index_id in ( select index_id from cell_setmymenulst where topid=#{topid} ) 
+		    or parent_id in ( select index_id from cell_setmymenulst where topid=#{topid} )
+		) 
+		order by parent_id,listno
+
+	</select>
+	
+	<select id="getTopLevelCellTreedotsByTopId" parameterType="string" resultMap="cellTreedotResultMap">
+		
+		select * from cell_treedot 
+		where index_id in ( select index_id from cell_setmymenulst where topid=#{topid} ) 
+		and ( parent_id=-1 or parent_id=index_id ) 
+		order by listno
+
+	</select>
+	
+	<select id="getChildrenCellTreedots" parameterType="int" resultMap="cellTreedotResultMap">
+		
+	    select * from cell_treedot 
+	    where parent_id=#{parentId} 
+	    and index_id != parent_id 
+	    and (num in('0','1','9') or issystem=0 or issystem=1) 
+	    order by listno
+
+	</select>
+	
+
+	<select id="getCellTreedotCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellTreedotsSql" />
+	</select>
+
+
+	<select id="getCellTreedotCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellTreedotQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellTreedotsSql" />
+	</select>
+
+
+	<select id="getCellTreedots" 
+		parameterType="map"
+		resultMap="cellTreedotResultMap">
+		select E.*
+		<include refid="selectCellTreedotsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getCellTreedotsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellTreedotQuery"
+		resultMap="cellTreedotResultMap">
+		select E.*
+		<include refid="selectCellTreedotsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectCellTreedotsSql">
+
+		from cell_treedot E
+		 
+		<where>
+
+		       1 = 1  
+
+			<if test="idLike != null and idLike != '' ">
+				and E.id like #{idLike}
+			</if>
+			
+			<if test="ids != null and ids.size() &gt; 0">
+			    and E.id IN
+				<foreach item="x_id" index="index" collection="ids" 
+					open="(" separator="," close=")">
+                  #{x_id}
+				</foreach>
+			</if>
+
+			<if test="parentId != null">
+				and E.parent_id = #{parentId}
+			</if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+			    and E.parent_id IN
+				<foreach item="x_parentId" index="index" collection="parentIds" 
+					open="(" separator="," close=")">
+                  #{x_parentId}
+				</foreach>
+			</if>
+
+			<if test="indexNameLike != null and indexNameLike != '' ">
+				and E.index_name like #{indexNameLike}
+			</if>
+ 
+			<if test="nlevel != null">
+				and E.nlevel = #{nlevel}
+			</if>
+
+			<if test="nlevelGreaterThanOrEqual != null">
+				and E.nlevel &gt;= #{nlevelGreaterThanOrEqual}
+			</if>
+
+			<if test="nlevelLessThanOrEqual != null">
+				and E.nlevel &lt;= #{nlevelLessThanOrEqual}
+			</if>
+
+			<if test="nlevels != null and nlevels.size() &gt; 0">
+			    and E.nlevel IN
+				<foreach item="x_nlevel" index="index" collection="nlevels" 
+					open="(" separator="," close=")">
+                  #{x_nlevel}
+				</foreach>
+			</if>
+ 
+
+			<if test="numLike != null and numLike != '' ">
+				and E.num like #{numLike}
+			</if>
+ 
+
+			<if test="contentLike != null and contentLike != '' ">
+				and E.content like #{contentLike}
+			</if>
+  
+			<if test="sindexNameLike != null and sindexNameLike != '' ">
+				and E.sindex_name like #{sindexNameLike}
+			</if>
+
+		 
+			<if test="viewtype != null">
+				and E.viewtype = #{viewtype}
+			</if>
+
+			<if test="viewtypeGreaterThanOrEqual != null">
+				and E.viewtype &gt;= #{viewtypeGreaterThanOrEqual}
+			</if>
+
+			<if test="viewtypeLessThanOrEqual != null">
+				and E.viewtype &lt;= #{viewtypeLessThanOrEqual}
+			</if>
+
+			<if test="viewtypes != null and viewtypes.size() &gt; 0">
+			    and E.viewtype IN
+				<foreach item="x_viewtype" index="index" collection="viewtypes" 
+					open="(" separator="," close=")">
+                  #{x_viewtype}
+				</foreach>
+			</if>
+
+	        
+			<if test="ismode != null and ismode != '' ">
+				and E.ismode = #{ismode}
+			</if>
+
+			<if test="ismodeLike != null and ismodeLike != '' ">
+				and E.ismode like #{ismodeLike}
+			</if>
+
+			<if test="ismodes != null and ismodes.size() &gt; 0">
+			    and E.ismode IN
+				<foreach item="x_ismode" index="index" collection="ismodes" 
+					open="(" separator="," close=")">
+                  #{x_ismode}
+				</foreach>
+			</if>
+
+	        
+			<if test="modetableId != null and modetableId != '' ">
+				and E.modetable_id = #{modetableId}
+			</if>
+
+			<if test="modetableIdLike != null and modetableIdLike != '' ">
+				and E.modetable_id like #{modetableIdLike}
+			</if>
+
+			<if test="modetableIds != null and modetableIds.size() &gt; 0">
+			    and E.modetable_id IN
+				<foreach item="x_modetableId" index="index" collection="modetableIds" 
+					open="(" separator="," close=")">
+                  #{x_modetableId}
+				</foreach>
+			</if>
+
+
+			<if test="issystem != null">
+				and E.issystem = #{issystem}
+			</if>
+
+			<if test="issystemGreaterThanOrEqual != null">
+				and E.issystem &gt;= #{issystemGreaterThanOrEqual}
+			</if>
+
+			<if test="issystemLessThanOrEqual != null">
+				and E.issystem &lt;= #{issystemLessThanOrEqual}
+			</if>
+
+			<if test="issystems != null and issystems.size() &gt; 0">
+			    and E.issystem IN
+				<foreach item="x_issystem" index="index" collection="issystems" 
+					open="(" separator="," close=")">
+                  #{x_issystem}
+				</foreach>
+			</if>
+
+			<if test="intsystemselect != null">
+				and E.intsystemselect = #{intsystemselect}
+			</if>
+
+			<if test="intsystemselectGreaterThanOrEqual != null">
+				and E.intsystemselect &gt;= #{intsystemselectGreaterThanOrEqual}
+			</if>
+
+			<if test="intsystemselectLessThanOrEqual != null">
+				and E.intsystemselect &lt;= #{intsystemselectLessThanOrEqual}
+			</if>
+
+			<if test="intsystemselects != null and intsystemselects.size() &gt; 0">
+			    and E.intsystemselect IN
+				<foreach item="x_intsystemselect" index="index" collection="intsystemselects" 
+					open="(" separator="," close=")">
+                  #{x_intsystemselect}
+				</foreach>
+			</if>
+
+
+			<if test="intused != null">
+				and E.intused = #{intused}
+			</if>
+
+			<if test="intusedGreaterThanOrEqual != null">
+				and E.intused &gt;= #{intusedGreaterThanOrEqual}
+			</if>
+
+			<if test="intusedLessThanOrEqual != null">
+				and E.intused &lt;= #{intusedLessThanOrEqual}
+			</if>
+
+			<if test="intuseds != null and intuseds.size() &gt; 0">
+			    and E.intused IN
+				<foreach item="x_intused" index="index" collection="intuseds" 
+					open="(" separator="," close=")">
+                  #{x_intused}
+				</foreach>
+			</if>
+
+
+			<if test="intdel != null">
+				and E.intdel = #{intdel}
+			</if>
+
+			<if test="intdelGreaterThanOrEqual != null">
+				and E.intdel &gt;= #{intdelGreaterThanOrEqual}
+			</if>
+
+			<if test="intdelLessThanOrEqual != null">
+				and E.intdel &lt;= #{intdelLessThanOrEqual}
+			</if>
+
+			<if test="intdels != null and intdels.size() &gt; 0">
+			    and E.intdel IN
+				<foreach item="x_intdel" index="index" collection="intdels" 
+					open="(" separator="," close=")">
+                  #{x_intdel}
+				</foreach>
+			</if>
+
+	        
+			<if test="typeTablename != null and typeTablename != '' ">
+				and E.type_tablename = #{typeTablename}
+			</if>
+
+			<if test="typeTablenameLike != null and typeTablenameLike != '' ">
+				and E.type_tablename like #{typeTablenameLike}
+			</if>
+
+			<if test="typeTablenames != null and typeTablenames.size() &gt; 0">
+			    and E.type_tablename IN
+				<foreach item="x_typeTablename" index="index" collection="typeTablenames" 
+					open="(" separator="," close=")">
+                  #{x_typeTablename}
+				</foreach>
+			</if>
+
+
+			<if test="intoperation != null">
+				and E.intoperation = #{intoperation}
+			</if>
+
+			<if test="intoperationGreaterThanOrEqual != null">
+				and E.intoperation &gt;= #{intoperationGreaterThanOrEqual}
+			</if>
+
+			<if test="intoperationLessThanOrEqual != null">
+				and E.intoperation &lt;= #{intoperationLessThanOrEqual}
+			</if>
+
+			<if test="intoperations != null and intoperations.size() &gt; 0">
+			    and E.intoperation IN
+				<foreach item="x_intoperation" index="index" collection="intoperations" 
+					open="(" separator="," close=")">
+                  #{x_intoperation}
+				</foreach>
+			</if>
+ 
+
+			<if test="intMuiFrm != null">
+				and E.intMuiFrm = #{intMuiFrm}
+			</if>
+
+			<if test="intMuiFrmGreaterThanOrEqual != null">
+				and E.intMuiFrm &gt;= #{intMuiFrmGreaterThanOrEqual}
+			</if>
+
+			<if test="intMuiFrmLessThanOrEqual != null">
+				and E.intMuiFrm &lt;= #{intMuiFrmLessThanOrEqual}
+			</if>
+
+			<if test="intMuiFrms != null and intMuiFrms.size() &gt; 0">
+			    and E.intMuiFrm IN
+				<foreach item="x_intMuiFrm" index="index" collection="intMuiFrms" 
+					open="(" separator="," close=")">
+                  #{x_intMuiFrm}
+				</foreach>
+			</if>
+
+
+			<if test="intnoshow != null">
+				and E.intnoshow = #{intnoshow}
+			</if>
+
+			<if test="intnoshowGreaterThanOrEqual != null">
+				and E.intnoshow &gt;= #{intnoshowGreaterThanOrEqual}
+			</if>
+
+			<if test="intnoshowLessThanOrEqual != null">
+				and E.intnoshow &lt;= #{intnoshowLessThanOrEqual}
+			</if>
+
+			<if test="intnoshows != null and intnoshows.size() &gt; 0">
+			    and E.intnoshow IN
+				<foreach item="x_intnoshow" index="index" collection="intnoshows" 
+					open="(" separator="," close=")">
+                  #{x_intnoshow}
+				</foreach>
+			</if>
+
+	        
+			<if test="typeBasetable != null and typeBasetable != '' ">
+				and E.type_basetable = #{typeBasetable}
+			</if>
+
+			<if test="typeBasetableLike != null and typeBasetableLike != '' ">
+				and E.type_basetable like #{typeBasetableLike}
+			</if>
+
+			<if test="typeBasetables != null and typeBasetables.size() &gt; 0">
+			    and E.type_basetable IN
+				<foreach item="x_typeBasetable" index="index" collection="typeBasetables" 
+					open="(" separator="," close=")">
+                  #{x_typeBasetable}
+				</foreach>
+			</if>
+
+
+			<if test="typeIndex != null">
+				and E.type_index = #{typeIndex}
+			</if>
+
+			<if test="typeIndexGreaterThanOrEqual != null">
+				and E.type_index &gt;= #{typeIndexGreaterThanOrEqual}
+			</if>
+
+			<if test="typeIndexLessThanOrEqual != null">
+				and E.type_index &lt;= #{typeIndexLessThanOrEqual}
+			</if>
+
+			<if test="typeIndexs != null and typeIndexs.size() &gt; 0">
+			    and E.type_index IN
+				<foreach item="x_typeIndex" index="index" collection="typeIndexs" 
+					open="(" separator="," close=")">
+                  #{x_typeIndex}
+				</foreach>
+			</if>
+ 
+
+			<if test="gidLike != null and gidLike != '' ">
+				and E.gid like #{gidLike}
+			</if>
+
+			<if test="gids != null and gids.size() &gt; 0">
+			    and E.gid IN
+				<foreach item="x_gid" index="index" collection="gids" 
+					open="(" separator="," close=")">
+                  #{x_gid}
+				</foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

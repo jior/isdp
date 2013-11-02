@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.CellTreedotDotMapper">
+
+	<resultMap id="cellTreedotDotResultMap"	type="com.glaf.isdp.domain.CellTreedotDot">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="indexId" column="index_id" jdbcType="INTEGER"/>
+		<result property="filedotFileid" column="filedot_fileid" jdbcType="VARCHAR"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+	</resultMap>
+
+
+	<resultMap id="cellTreedotDotHashMap"	type="java.util.HashMap">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="indexId" column="index_id" jdbcType="INTEGER"/>
+		<result property="filedotFileid" column="filedot_fileid" jdbcType="VARCHAR"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+	</resultMap>
+ 
+	<insert id="insertCellTreedotDot" parameterType="com.glaf.isdp.domain.CellTreedotDot">
+		insert into cell_treedot_dot 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="indexId != null">
+				,index_id 
+			</if>
+			<if test="filedotFileid != null">
+				,filedot_fileid 
+			</if>
+			<if test="listno != null">
+				,listno 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="filedotFileid != null">
+				,#{filedotFileid, jdbcType=VARCHAR}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateCellTreedotDot" parameterType="com.glaf.isdp.domain.CellTreedotDot">
+		update
+		    cell_treedot_dot
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="indexId != null">
+				index_id = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="filedotFileid != null">
+				filedot_fileid = #{filedotFileid, jdbcType=VARCHAR},
+			</if>
+			<if test="listno != null">
+				listno = #{listno, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+	</update>
+
+ 
+	<delete id="deleteCellTreedotDotById" parameterType="string"> 
+        delete from cell_treedot_dot
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteCellTreedotDots" parameterType="com.glaf.isdp.query.CellTreedotDotQuery">
+		delete from cell_treedot_dot
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getCellTreedotDotById" parameterType="string" resultMap="cellTreedotDotResultMap">
+		select * from cell_treedot_dot where id = #{id}
+	</select>
+
+
+	<select id="getCellTreedotDotCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellTreedotDotsSql" />
+	</select>
+
+
+	<select id="getCellTreedotDotCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellTreedotDotQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellTreedotDotsSql" />
+	</select>
+
+
+	<select id="getCellTreedotDots" 
+		parameterType="map"
+		resultMap="cellTreedotDotResultMap">
+		select E.*
+		<include refid="selectCellTreedotDotsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getCellTreedotDotsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellTreedotDotQuery"
+		resultMap="cellTreedotDotResultMap">
+		select E.*
+		<include refid="selectCellTreedotDotsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectCellTreedotDotsSql">
+
+		from cell_treedot_dot E
+		 
+		<where>
+
+		       1 = 1  
+
+			<if test="indexId != null">
+				and E.index_id = #{indexId}
+			</if>
+
+			<if test="indexIdGreaterThanOrEqual != null">
+				and E.index_id &gt;= #{indexIdGreaterThanOrEqual}
+			</if>
+
+			<if test="indexIdLessThanOrEqual != null">
+				and E.index_id &lt;= #{indexIdLessThanOrEqual}
+			</if>
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+			    and E.index_id IN
+				<foreach item="x_indexId" index="index" collection="indexIds" 
+					open="(" separator="," close=")">
+                  #{x_indexId}
+				</foreach>
+			</if>
+	        
+			<if test="filedotFileid != null and filedotFileid != '' ">
+				and E.filedot_fileid = #{filedotFileid}
+			</if>
+
+			<if test="filedotFileidLike != null and filedotFileidLike != '' ">
+				and E.filedot_fileid like #{filedotFileidLike}
+			</if>
+
+			<if test="filedotFileids != null and filedotFileids.size() &gt; 0">
+			    and E.filedot_fileid IN
+				<foreach item="x_filedotFileid" index="index" collection="filedotFileids" 
+					open="(" separator="," close=")">
+                  #{x_filedotFileid}
+				</foreach>
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.TreepInfoUserDomainMapper">
+
+	<resultMap id="treepInfoUserDomainResultMap"	type="com.glaf.isdp.domain.TreepInfoUserDomain">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="domainindex" column="domainindex" jdbcType="INTEGER"/>
+		<result property="uindexId" column="uindex_id" jdbcType="INTEGER"/>
+	</resultMap>
+
+
+	<resultMap id="treepInfoUserDomainHashMap"	type="java.util.HashMap">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="domainindex" column="domainindex" jdbcType="INTEGER"/>
+		<result property="uindexId" column="uindex_id" jdbcType="INTEGER"/>
+	</resultMap>
+ 
+	<insert id="insertTreepInfoUserDomain" parameterType="com.glaf.isdp.domain.TreepInfoUserDomain">
+		insert into treepinfo_u_domain 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="domainindex != null">
+				,domainindex 
+			</if>
+			<if test="uindexId != null">
+				,uindex_id 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="domainindex != null">
+				,#{domainindex, jdbcType=INTEGER}
+			</if>
+			<if test="uindexId != null">
+				,#{uindexId, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateTreepInfoUserDomain" parameterType="com.glaf.isdp.domain.TreepInfoUserDomain">
+		update treepinfo_u_domain
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="domainindex != null">
+				domainindex = #{domainindex, jdbcType=INTEGER},
+			</if>
+			<if test="uindexId != null">
+				uindex_id = #{uindexId, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+	</update>
+
+ 
+	<delete id="deleteTreepInfoUserDomainById" parameterType="string"> 
+        delete from treepinfo_u_domain
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteTreepInfoUserDomains" parameterType="com.glaf.isdp.query.TreepInfoUserDomainQuery">
+		delete from treepinfo_u_domain
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getTreepInfoUserDomainById" parameterType="string" resultMap="treepInfoUserDomainResultMap">
+		select * from treepinfo_u_domain where id = #{id}
+	</select>
+
+
+	<select id="getTreepInfoUserDomainCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*) from treepinfo_u_domain E
+		<include refid="selectTreepInfoUserDomainSql" />
+	</select>
+
+
+	<select id="getTreepInfoUserDomainCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.TreepInfoUserDomainQuery"
+		resultType="int">
+		select count(*) from treepinfo_u_domain E
+		<include refid="selectTreepInfoUserDomainSql" />
+	</select>
+
+
+	<select id="getTreepInfoUserDomains" 
+		parameterType="map"
+		resultMap="treepInfoUserDomainResultMap">
+		select E.* from treepinfo_u_domain E
+		<include refid="selectTreepInfoUserDomainSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getTreepInfoUserDomainMapList" parameterType="map" resultType="map">
+		select E.* from treepinfo_u_domain E 
+		<include refid="selectTreepInfoUserDomainSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getTreepInfoUserDomainsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.TreepInfoUserDomainQuery"
+		resultMap="treepInfoUserDomainResultMap">
+		select E.* from treepinfo_u_domain E
+		<include refid="selectTreepInfoUserDomainSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectTreepInfoUserDomainSql">
+		 
+		<where>
+
+		   1 = 1  
+
+			<if test="domainindex != null">
+				and E.domainindex = #{domainindex}
+			</if>
+
+			<if test="domainindexGreaterThanOrEqual != null">
+				and E.domainindex &gt;= #{domainindexGreaterThanOrEqual}
+			</if>
+
+			<if test="domainindexLessThanOrEqual != null">
+				and E.domainindex &lt;= #{domainindexLessThanOrEqual}
+			</if>
+
+			<if test="domainindexs != null and domainindexs.size() &gt; 0">
+			    and E.domainindex IN
+				<foreach item="x_domainindex" index="index" collection="domainindexs" 
+					open="(" separator="," close=")">
+                  #{x_domainindex}
+				</foreach>
+			</if>
+
+			<if test="uindexId != null">
+				and E.uindex_id = #{uindexId}
+			</if>
+
+			<if test="uindexIdGreaterThanOrEqual != null">
+				and E.uindex_id &gt;= #{uindexIdGreaterThanOrEqual}
+			</if>
+
+			<if test="uindexIdLessThanOrEqual != null">
+				and E.uindex_id &lt;= #{uindexIdLessThanOrEqual}
+			</if>
+
+			<if test="uindexIds != null and uindexIds.size() &gt; 0">
+			    and E.uindex_id IN
+				<foreach item="x_uindexId" index="index" collection="uindexIds" 
+					open="(" separator="," close=")">
+                  #{x_uindexId}
+				</foreach>
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

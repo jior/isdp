@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.CellMenuMapper">
+
+ 	<resultMap id="cellMenuResultMap"	type="com.glaf.isdp.domain.CellMenu">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="userid" column="userid" jdbcType="VARCHAR"/>
+        <result property="isuselect" column="isuselect" jdbcType="VARCHAR"/>
+        <result property="issystem" column="issystem" jdbcType="INTEGER"/>
+        <result property="intused" column="intused" jdbcType="INTEGER"/>
+        <result property="busiessId" column="busiess_id" jdbcType="VARCHAR"/>
+        <result property="intdel" column="intdel" jdbcType="INTEGER"/>
+	</resultMap>
+
+
+ 	<resultMap id="cellMenuHashMap"	type="java.util.HashMap">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="userid" column="userid" jdbcType="VARCHAR"/>
+        <result property="isuselect" column="isuselect" jdbcType="VARCHAR"/>
+        <result property="issystem" column="issystem" jdbcType="INTEGER"/>
+        <result property="intused" column="intused" jdbcType="INTEGER"/>
+        <result property="busiessId" column="busiess_id" jdbcType="VARCHAR"/>
+        <result property="intdel" column="intdel" jdbcType="INTEGER"/>
+	</resultMap>
+ 
+	<insert id="insertCellMenu" parameterType="com.glaf.isdp.domain.CellMenu">
+		insert into cell_setmymenu 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="name != null">
+				,name 
+			</if>
+			<if test="userid != null">
+				,userid 
+			</if>
+			<if test="isuselect != null">
+				,isuselect 
+			</if>
+			<if test="issystem != null">
+				,issystem 
+			</if>
+			<if test="intused != null">
+				,intused 
+			</if>
+			<if test="busiessId != null">
+				,busiess_id 
+			</if>
+			<if test="intdel != null">
+				,intdel 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="userid != null">
+				,#{userid, jdbcType=VARCHAR}
+			</if>
+			<if test="isuselect != null">
+				,#{isuselect, jdbcType=VARCHAR}
+			</if>
+			<if test="issystem != null">
+				,#{issystem, jdbcType=INTEGER}
+			</if>
+			<if test="intused != null">
+				,#{intused, jdbcType=INTEGER}
+			</if>
+			<if test="busiessId != null">
+				,#{busiessId, jdbcType=VARCHAR}
+			</if>
+			<if test="intdel != null">
+				,#{intdel, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateCellMenu" parameterType="com.glaf.isdp.domain.CellMenu">
+		update
+		cell_setmymenu
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="name != null">
+				name = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="userid != null">
+				userid = #{userid, jdbcType=VARCHAR},
+			</if>
+			<if test="isuselect != null">
+				isuselect = #{isuselect, jdbcType=VARCHAR},
+			</if>
+			<if test="issystem != null">
+				issystem = #{issystem, jdbcType=INTEGER},
+			</if>
+			<if test="intused != null">
+				intused = #{intused, jdbcType=INTEGER},
+			</if>
+			<if test="busiessId != null">
+				busiess_id = #{busiessId, jdbcType=VARCHAR},
+			</if>
+			<if test="intdel != null">
+				intdel = #{intdel, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteCellMenuById" parameterType="string"> 
+        delete from cell_setmymenu
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteCellMenus" parameterType="com.glaf.isdp.query.CellMenuQuery">
+		delete from cell_setmymenu
+		where ( id IN
+          <foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+          </foreach>
+		)
+	</delete>
+
+
+	<select id="getCellMenuById" parameterType="string" resultMap="cellMenuResultMap">
+		select * from cell_setmymenu where id = #{id}
+	</select>
+
+
+	<select id="getCellMenuCount" 
+	    parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellMenusSql" />
+	</select>
+
+
+	<select id="getCellMenuCountByQueryCriteria" 
+	    parameterType="com.glaf.isdp.query.CellMenuQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellMenusSql" />
+	</select>
+
+
+	<select id="getCellMenus" 
+	    parameterType="map"
+		resultMap="cellMenuResultMap">
+		select E.*
+		<include refid="selectCellMenusSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+
+    <select id="getCellMenuMapList" parameterType="map" resultType="map">
+		select E.*
+		<include refid="selectCellMenusSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+
+	<select id="getCellMenusByQueryCriteria" 
+	    parameterType="com.glaf.isdp.query.CellMenuQuery"
+		resultMap="cellMenuResultMap">
+		select E.*
+		<include refid="selectCellMenusSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+
+	<sql id="selectCellMenusSql">
+
+		from cell_setmymenu E
+		 
+		<where>
+
+		       1 = 1  
+
+			<if test="name != null and name != '' ">
+				and E.name = #{name}
+            </if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.name like #{nameLike}
+            </if>
+
+			<if test="names != null and names.size() &gt; 0">
+			    and E.name IN
+                <foreach item="x_name" index="index" collection="names" 
+                     open="(" separator="," close=")">
+                  #{x_name}
+                </foreach>
+			</if>
+	        
+			<if test="userid != null and userid != '' ">
+				and E.userid = #{userid}
+            </if>
+
+			<if test="userids != null and userids.size() &gt; 0">
+			    and E.userid IN
+                <foreach item="x_userid" index="index" collection="userids" 
+                     open="(" separator="," close=")">
+                  #{x_userid}
+                </foreach>
+			</if>
+	        
+			<if test="isuselect != null and isuselect != '' ">
+				and E.isuselect = #{isuselect}
+            </if>
+
+			<if test="isuselects != null and isuselects.size() &gt; 0">
+			    and E.isuselect IN
+                <foreach item="x_isuselect" index="index" collection="isuselects" 
+                     open="(" separator="," close=")">
+                  #{x_isuselect}
+                </foreach>
+			</if>
+
+			<if test="issystem != null">
+				and E.issystem = #{issystem}
+            </if>
+
+			<if test="issystems != null and issystems.size() &gt; 0">
+			    and E.issystem IN
+                <foreach item="x_issystem" index="index" collection="issystems" 
+                     open="(" separator="," close=")">
+                  #{x_issystem}
+                </foreach>
+			</if>
+
+			<if test="intused != null">
+				and E.intused = #{intused}
+            </if>
+
+			<if test="intuseds != null and intuseds.size() &gt; 0">
+			    and E.intused IN
+                <foreach item="x_intused" index="index" collection="intuseds" 
+                     open="(" separator="," close=")">
+                  #{x_intused}
+                </foreach>
+			</if>
+	        
+			<if test="busiessId != null and busiessId != '' ">
+				and E.busiess_id = #{busiessId}
+            </if>
+
+			<if test="busiessIds != null and busiessIds.size() &gt; 0">
+			    and E.busiess_id IN
+                <foreach item="x_busiessId" index="index" collection="busiessIds" 
+                     open="(" separator="," close=")">
+                  #{x_busiessId}
+                </foreach>
+			</if>
+
+			<if test="intdel != null">
+				and E.intdel = #{intdel}
+            </if>
+
+			<if test="intdels != null and intdels.size() &gt; 0">
+			    and E.intdel IN
+                <foreach item="x_intdel" index="index" collection="intdels" 
+                     open="(" separator="," close=")">
+                  #{x_intdel}
+                </foreach>
+			</if>
+ 
+		</where>
+	</sql>
+
+</mapper>

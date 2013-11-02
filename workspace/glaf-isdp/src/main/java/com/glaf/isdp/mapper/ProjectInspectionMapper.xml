@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.ProjectInspectionMapper">
+
+ 	<resultMap id="projectInspectionResultMap"	type="com.glaf.isdp.domain.ProjectInspection">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="indexId" column="index_id" jdbcType="INTEGER"/>
+        <result property="intflag" column="intflag" jdbcType="INTEGER"/>
+        <result property="cellTmpfiletypeId" column="cell_tmpfiletype_id" jdbcType="VARCHAR"/>
+        <result property="listno" column="listno" jdbcType="INTEGER"/>
+        <result property="chkresult" column="chkresult" jdbcType="INTEGER"/>
+        <result property="pfileId" column="pfile_id" jdbcType="VARCHAR"/>
+        <result property="refillflag" column="refillflag" jdbcType="INTEGER"/>
+        <result property="groupid" column="groupid" jdbcType="INTEGER"/>
+        <result property="oldId" column="old_id" jdbcType="VARCHAR"/>
+        <result property="emailId" column="email_id" jdbcType="VARCHAR"/>
+        <result property="recemailId" column="recemail_id" jdbcType="VARCHAR"/>
+        <result property="mainId" column="main_id" jdbcType="VARCHAR"/>
+        <result property="tagnum" column="tagnum" jdbcType="VARCHAR"/>
+        <result property="ctime" column="ctime" jdbcType="TIMESTAMP"/>
+        <result property="tname" column="tname" jdbcType="VARCHAR"/>
+        <result property="page" column="page" jdbcType="INTEGER"/>
+        <result property="duty" column="duty" jdbcType="VARCHAR"/>
+        <result property="thematic" column="thematic" jdbcType="VARCHAR"/>
+        <result property="annotations" column="annotations" jdbcType="VARCHAR"/>
+	</resultMap>
+
+
+ 	<resultMap id="projectInspectionHashMap"	type="java.util.HashMap">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="indexId" column="index_id" jdbcType="INTEGER"/>
+        <result property="intflag" column="intflag" jdbcType="INTEGER"/>
+        <result property="cellTmpfiletypeId" column="cell_tmpfiletype_id" jdbcType="VARCHAR"/>
+        <result property="listno" column="listno" jdbcType="INTEGER"/>
+        <result property="chkresult" column="chkresult" jdbcType="INTEGER"/>
+        <result property="pfileId" column="pfile_id" jdbcType="VARCHAR"/>
+        <result property="refillflag" column="refillflag" jdbcType="INTEGER"/>
+        <result property="groupid" column="groupid" jdbcType="INTEGER"/>
+        <result property="oldId" column="old_id" jdbcType="VARCHAR"/>
+        <result property="emailId" column="email_id" jdbcType="VARCHAR"/>
+        <result property="recemailId" column="recemail_id" jdbcType="VARCHAR"/>
+        <result property="mainId" column="main_id" jdbcType="VARCHAR"/>
+        <result property="tagnum" column="tagnum" jdbcType="VARCHAR"/>
+        <result property="ctime" column="ctime" jdbcType="TIMESTAMP"/>
+        <result property="tname" column="tname" jdbcType="VARCHAR"/>
+        <result property="page" column="page" jdbcType="INTEGER"/>
+        <result property="duty" column="duty" jdbcType="VARCHAR"/>
+        <result property="thematic" column="thematic" jdbcType="VARCHAR"/>
+        <result property="annotations" column="annotations" jdbcType="VARCHAR"/>
+	</resultMap>
+ 
+	<insert id="insertProjectInspection" parameterType="com.glaf.isdp.domain.ProjectInspection">
+		insert into proj_inspection 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="indexId != null">
+				,index_id 
+			</if>
+			<if test="intflag != null">
+				,intflag 
+			</if>
+			<if test="cellTmpfiletypeId != null">
+				,cell_tmpfiletype_id 
+			</if>
+			<if test="listno != null">
+				,listno 
+			</if>
+			<if test="chkresult != null">
+				,chkresult 
+			</if>
+			<if test="pfileId != null">
+				,pfile_id 
+			</if>
+			<if test="refillflag != null">
+				,refillflag 
+			</if>
+			<if test="groupid != null">
+				,groupid 
+			</if>
+			<if test="oldId != null">
+				,old_id 
+			</if>
+			<if test="emailId != null">
+				,email_id 
+			</if>
+			<if test="recemailId != null">
+				,recemail_id 
+			</if>
+			<if test="mainId != null">
+				,main_id 
+			</if>
+			<if test="tagnum != null">
+				,tagnum 
+			</if>
+			<if test="ctime != null">
+				,ctime 
+			</if>
+			<if test="tname != null">
+				,tname 
+			</if>
+			<if test="page != null">
+				,page 
+			</if>
+			<if test="duty != null">
+				,duty 
+			</if>
+			<if test="thematic != null">
+				,thematic 
+			</if>
+			<if test="annotations != null">
+				,annotations 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="intflag != null">
+				,#{intflag, jdbcType=INTEGER}
+			</if>
+			<if test="cellTmpfiletypeId != null">
+				,#{cellTmpfiletypeId, jdbcType=VARCHAR}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+			<if test="chkresult != null">
+				,#{chkresult, jdbcType=INTEGER}
+			</if>
+			<if test="pfileId != null">
+				,#{pfileId, jdbcType=VARCHAR}
+			</if>
+			<if test="refillflag != null">
+				,#{refillflag, jdbcType=INTEGER}
+			</if>
+			<if test="groupid != null">
+				,#{groupid, jdbcType=INTEGER}
+			</if>
+			<if test="oldId != null">
+				,#{oldId, jdbcType=VARCHAR}
+			</if>
+			<if test="emailId != null">
+				,#{emailId, jdbcType=VARCHAR}
+			</if>
+			<if test="recemailId != null">
+				,#{recemailId, jdbcType=VARCHAR}
+			</if>
+			<if test="mainId != null">
+				,#{mainId, jdbcType=VARCHAR}
+			</if>
+			<if test="tagnum != null">
+				,#{tagnum, jdbcType=VARCHAR}
+			</if>
+			<if test="ctime != null">
+				,#{ctime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="tname != null">
+				,#{tname, jdbcType=VARCHAR}
+			</if>
+			<if test="page != null">
+				,#{page, jdbcType=INTEGER}
+			</if>
+			<if test="duty != null">
+				,#{duty, jdbcType=VARCHAR}
+			</if>
+			<if test="thematic != null">
+				,#{thematic, jdbcType=VARCHAR}
+			</if>
+			<if test="annotations != null">
+				,#{annotations, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateProjectInspection" parameterType="com.glaf.isdp.domain.ProjectInspection">
+		update
+		proj_inspection
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="indexId != null">
+				index_id = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="intflag != null">
+				intflag = #{intflag, jdbcType=INTEGER},
+			</if>
+			<if test="cellTmpfiletypeId != null">
+				cell_tmpfiletype_id = #{cellTmpfiletypeId, jdbcType=VARCHAR},
+			</if>
+			<if test="listno != null">
+				listno = #{listno, jdbcType=INTEGER},
+			</if>
+			<if test="chkresult != null">
+				chkresult = #{chkresult, jdbcType=INTEGER},
+			</if>
+			<if test="pfileId != null">
+				pfile_id = #{pfileId, jdbcType=VARCHAR},
+			</if>
+			<if test="refillflag != null">
+				refillflag = #{refillflag, jdbcType=INTEGER},
+			</if>
+			<if test="groupid != null">
+				groupid = #{groupid, jdbcType=INTEGER},
+			</if>
+			<if test="oldId != null">
+				old_id = #{oldId, jdbcType=VARCHAR},
+			</if>
+			<if test="emailId != null">
+				email_id = #{emailId, jdbcType=VARCHAR},
+			</if>
+			<if test="recemailId != null">
+				recemail_id = #{recemailId, jdbcType=VARCHAR},
+			</if>
+			<if test="mainId != null">
+				main_id = #{mainId, jdbcType=VARCHAR},
+			</if>
+			<if test="tagnum != null">
+				tagnum = #{tagnum, jdbcType=VARCHAR},
+			</if>
+			<if test="ctime != null">
+				ctime = #{ctime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="tname != null">
+				tname = #{tname, jdbcType=VARCHAR},
+			</if>
+			<if test="page != null">
+				page = #{page, jdbcType=INTEGER},
+			</if>
+			<if test="duty != null">
+				duty = #{duty, jdbcType=VARCHAR},
+			</if>
+			<if test="thematic != null">
+				thematic = #{thematic, jdbcType=VARCHAR},
+			</if>
+			<if test="annotations != null">
+				annotations = #{annotations, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteProjectInspectionById" parameterType="string"> 
+        delete from proj_inspection
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteProjectInspections" parameterType="com.glaf.isdp.query.ProjectInspectionQuery">
+		delete from proj_inspection
+		where ( id IN
+          <foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+          </foreach>
+		)
+	</delete>
+
+
+	<select id="getProjectInspectionById" parameterType="string" resultMap="projectInspectionResultMap">
+		select * from proj_inspection where id = #{id}
+	</select>
+
+
+	<select id="getProjectInspectionCount" 
+	    parameterType="map"
+		resultType="int">
+		select count(*) from proj_inspection E
+		<include refid="selectProjectInspectionSql" />
+	</select>
+
+
+	<select id="getProjectInspectionCountByQueryCriteria" 
+	    parameterType="com.glaf.isdp.query.ProjectInspectionQuery"
+		resultType="int">
+		select count(*) from proj_inspection E
+		<include refid="selectProjectInspectionSql" />
+	</select>
+
+
+	<select id="getProjectInspections" 
+	    parameterType="map"
+		resultMap="projectInspectionResultMap">
+		select E.* from proj_inspection E
+		<include refid="selectProjectInspectionSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+
+    <select id="getProjectInspectionMapList" parameterType="map" resultType="map">
+		select E.* from proj_inspection E 
+		<include refid="selectProjectInspectionSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+
+	<select id="getProjectInspectionsByQueryCriteria" 
+	    parameterType="com.glaf.isdp.query.ProjectInspectionQuery"
+		resultMap="projectInspectionResultMap">
+		select E.* from proj_inspection E
+		<include refid="selectProjectInspectionSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+
+	<sql id="selectProjectInspectionSql">
+		 
+		<where>
+
+		   1 = 1  
+
+
+			<if test="indexId != null">
+				and E.index_id = #{indexId}
+            </if>
+
+			<if test="indexIdGreaterThanOrEqual != null">
+				and E.index_id &gt;= #{indexIdGreaterThanOrEqual}
+            </if>
+
+			<if test="indexIdLessThanOrEqual != null">
+				and E.index_id &lt;= #{indexIdLessThanOrEqual}
+            </if>
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+			    and E.index_id IN
+                <foreach item="x_indexId" index="index" collection="indexIds" 
+                     open="(" separator="," close=")">
+                  #{x_indexId}
+                </foreach>
+			</if>
+
+
+			<if test="intflag != null">
+				and E.intflag = #{intflag}
+            </if>
+
+			<if test="intflagGreaterThanOrEqual != null">
+				and E.intflag &gt;= #{intflagGreaterThanOrEqual}
+            </if>
+
+			<if test="intflagLessThanOrEqual != null">
+				and E.intflag &lt;= #{intflagLessThanOrEqual}
+            </if>
+
+			<if test="intflags != null and intflags.size() &gt; 0">
+			    and E.intflag IN
+                <foreach item="x_intflag" index="index" collection="intflags" 
+                     open="(" separator="," close=")">
+                  #{x_intflag}
+                </foreach>
+			</if>
+
+	        
+			<if test="cellTmpfiletypeId != null and cellTmpfiletypeId != '' ">
+				and E.cell_tmpfiletype_id = #{cellTmpfiletypeId}
+            </if>
+
+			<if test="cellTmpfiletypeIdLike != null and cellTmpfiletypeIdLike != '' ">
+				and E.cell_tmpfiletype_id like #{cellTmpfiletypeIdLike}
+            </if>
+
+			<if test="cellTmpfiletypeIds != null and cellTmpfiletypeIds.size() &gt; 0">
+			    and E.cell_tmpfiletype_id IN
+                <foreach item="x_cellTmpfiletypeId" index="index" collection="cellTmpfiletypeIds" 
+                     open="(" separator="," close=")">
+                  #{x_cellTmpfiletypeId}
+                </foreach>
+			</if>
+
+
+			<if test="listno != null">
+				and E.listno = #{listno}
+            </if>
+
+			<if test="listnoGreaterThanOrEqual != null">
+				and E.listno &gt;= #{listnoGreaterThanOrEqual}
+            </if>
+
+			<if test="listnoLessThanOrEqual != null">
+				and E.listno &lt;= #{listnoLessThanOrEqual}
+            </if>
+
+			<if test="listnos != null and listnos.size() &gt; 0">
+			    and E.listno IN
+                <foreach item="x_listno" index="index" collection="listnos" 
+                     open="(" separator="," close=")">
+                  #{x_listno}
+                </foreach>
+			</if>
+
+
+			<if test="chkresult != null">
+				and E.chkresult = #{chkresult}
+            </if>
+
+			<if test="chkresultGreaterThanOrEqual != null">
+				and E.chkresult &gt;= #{chkresultGreaterThanOrEqual}
+            </if>
+
+			<if test="chkresultLessThanOrEqual != null">
+				and E.chkresult &lt;= #{chkresultLessThanOrEqual}
+            </if>
+
+			<if test="chkresults != null and chkresults.size() &gt; 0">
+			    and E.chkresult IN
+                <foreach item="x_chkresult" index="index" collection="chkresults" 
+                     open="(" separator="," close=")">
+                  #{x_chkresult}
+                </foreach>
+			</if>
+
+	        
+			<if test="pfileId != null and pfileId != '' ">
+				and E.pfile_id = #{pfileId}
+            </if>
+
+			<if test="pfileIdLike != null and pfileIdLike != '' ">
+				and E.pfile_id like #{pfileIdLike}
+            </if>
+
+			<if test="pfileIds != null and pfileIds.size() &gt; 0">
+			    and E.pfile_id IN
+                <foreach item="x_pfileId" index="index" collection="pfileIds" 
+                     open="(" separator="," close=")">
+                  #{x_pfileId}
+                </foreach>
+			</if>
+
+
+			<if test="refillflag != null">
+				and E.refillflag = #{refillflag}
+            </if>
+
+			<if test="refillflagGreaterThanOrEqual != null">
+				and E.refillflag &gt;= #{refillflagGreaterThanOrEqual}
+            </if>
+
+			<if test="refillflagLessThanOrEqual != null">
+				and E.refillflag &lt;= #{refillflagLessThanOrEqual}
+            </if>
+
+			<if test="refillflags != null and refillflags.size() &gt; 0">
+			    and E.refillflag IN
+                <foreach item="x_refillflag" index="index" collection="refillflags" 
+                     open="(" separator="," close=")">
+                  #{x_refillflag}
+                </foreach>
+			</if>
+
+
+			<if test="groupid != null">
+				and E.groupid = #{groupid}
+            </if>
+
+			<if test="groupidGreaterThanOrEqual != null">
+				and E.groupid &gt;= #{groupidGreaterThanOrEqual}
+            </if>
+
+			<if test="groupidLessThanOrEqual != null">
+				and E.groupid &lt;= #{groupidLessThanOrEqual}
+            </if>
+
+			<if test="groupids != null and groupids.size() &gt; 0">
+			    and E.groupid IN
+                <foreach item="x_groupid" index="index" collection="groupids" 
+                     open="(" separator="," close=")">
+                  #{x_groupid}
+                </foreach>
+			</if>
+
+	        
+			<if test="oldId != null and oldId != '' ">
+				and E.old_id = #{oldId}
+            </if>
+
+			<if test="oldIdLike != null and oldIdLike != '' ">
+				and E.old_id like #{oldIdLike}
+            </if>
+
+			<if test="oldIds != null and oldIds.size() &gt; 0">
+			    and E.old_id IN
+                <foreach item="x_oldId" index="index" collection="oldIds" 
+                     open="(" separator="," close=")">
+                  #{x_oldId}
+                </foreach>
+			</if>
+
+	        
+			<if test="emailId != null and emailId != '' ">
+				and E.email_id = #{emailId}
+            </if>
+
+			<if test="emailIdLike != null and emailIdLike != '' ">
+				and E.email_id like #{emailIdLike}
+            </if>
+
+			<if test="emailIds != null and emailIds.size() &gt; 0">
+			    and E.email_id IN
+                <foreach item="x_emailId" index="index" collection="emailIds" 
+                     open="(" separator="," close=")">
+                  #{x_emailId}
+                </foreach>
+			</if>
+
+	        
+			<if test="recemailId != null and recemailId != '' ">
+				and E.recemail_id = #{recemailId}
+            </if>
+
+			<if test="recemailIdLike != null and recemailIdLike != '' ">
+				and E.recemail_id like #{recemailIdLike}
+            </if>
+
+			<if test="recemailIds != null and recemailIds.size() &gt; 0">
+			    and E.recemail_id IN
+                <foreach item="x_recemailId" index="index" collection="recemailIds" 
+                     open="(" separator="," close=")">
+                  #{x_recemailId}
+                </foreach>
+			</if>
+
+	        
+			<if test="mainId != null and mainId != '' ">
+				and E.main_id = #{mainId}
+            </if>
+
+			<if test="mainIdLike != null and mainIdLike != '' ">
+				and E.main_id like #{mainIdLike}
+            </if>
+
+			<if test="mainIds != null and mainIds.size() &gt; 0">
+			    and E.main_id IN
+                <foreach item="x_mainId" index="index" collection="mainIds" 
+                     open="(" separator="," close=")">
+                  #{x_mainId}
+                </foreach>
+			</if>
+
+	        
+			<if test="tagnum != null and tagnum != '' ">
+				and E.tagnum = #{tagnum}
+            </if>
+
+			<if test="tagnumLike != null and tagnumLike != '' ">
+				and E.tagnum like #{tagnumLike}
+            </if>
+
+			<if test="tagnums != null and tagnums.size() &gt; 0">
+			    and E.tagnum IN
+                <foreach item="x_tagnum" index="index" collection="tagnums" 
+                     open="(" separator="," close=")">
+                  #{x_tagnum}
+                </foreach>
+			</if>
+
+
+			<if test="ctime != null">
+				and E.ctime = #{ctime}
+            </if>
+
+			<if test="ctimeGreaterThanOrEqual != null">
+				and E.ctime &gt;= #{ctimeGreaterThanOrEqual}
+            </if>
+
+			<if test="ctimeLessThanOrEqual != null">
+				and E.ctime &lt;= #{ctimeLessThanOrEqual}
+            </if>
+
+			<if test="ctimes != null and ctimes.size() &gt; 0">
+			    and E.ctime IN
+                <foreach item="x_ctime" index="index" collection="ctimes" 
+                     open="(" separator="," close=")">
+                  #{x_ctime}
+                </foreach>
+			</if>
+
+	        
+			<if test="tname != null and tname != '' ">
+				and E.tname = #{tname}
+            </if>
+
+			<if test="tnameLike != null and tnameLike != '' ">
+				and E.tname like #{tnameLike}
+            </if>
+
+			<if test="tnames != null and tnames.size() &gt; 0">
+			    and E.tname IN
+                <foreach item="x_tname" index="index" collection="tnames" 
+                     open="(" separator="," close=")">
+                  #{x_tname}
+                </foreach>
+			</if>
+
+
+			<if test="page != null">
+				and E.page = #{page}
+            </if>
+
+			<if test="pageGreaterThanOrEqual != null">
+				and E.page &gt;= #{pageGreaterThanOrEqual}
+            </if>
+
+			<if test="pageLessThanOrEqual != null">
+				and E.page &lt;= #{pageLessThanOrEqual}
+            </if>
+
+			<if test="pages != null and pages.size() &gt; 0">
+			    and E.page IN
+                <foreach item="x_page" index="index" collection="pages" 
+                     open="(" separator="," close=")">
+                  #{x_page}
+                </foreach>
+			</if>
+
+	        
+			<if test="duty != null and duty != '' ">
+				and E.duty = #{duty}
+            </if>
+
+			<if test="dutyLike != null and dutyLike != '' ">
+				and E.duty like #{dutyLike}
+            </if>
+
+			<if test="dutys != null and dutys.size() &gt; 0">
+			    and E.duty IN
+                <foreach item="x_duty" index="index" collection="dutys" 
+                     open="(" separator="," close=")">
+                  #{x_duty}
+                </foreach>
+			</if>
+
+	        
+			<if test="thematic != null and thematic != '' ">
+				and E.thematic = #{thematic}
+            </if>
+
+			<if test="thematicLike != null and thematicLike != '' ">
+				and E.thematic like #{thematicLike}
+            </if>
+
+			<if test="thematics != null and thematics.size() &gt; 0">
+			    and E.thematic IN
+                <foreach item="x_thematic" index="index" collection="thematics" 
+                     open="(" separator="," close=")">
+                  #{x_thematic}
+                </foreach>
+			</if>
+
+	        
+			<if test="annotations != null and annotations != '' ">
+				and E.annotations = #{annotations}
+            </if>
+
+			<if test="annotationsLike != null and annotationsLike != '' ">
+				and E.annotations like #{annotationsLike}
+            </if>
+
+			<if test="annotationss != null and annotationss.size() &gt; 0">
+			    and E.annotations IN
+                <foreach item="x_annotations" index="index" collection="annotationss" 
+                     open="(" separator="," close=")">
+                  #{x_annotations}
+                </foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.CellRepInfo2Mapper">
+
+	<resultMap id="cellRepInfo2ResultMap"	type="com.glaf.isdp.domain.CellRepInfo2">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="frmtype" column="frmtype" jdbcType="VARCHAR"/>
+		<result property="type" column="type" jdbcType="INTEGER"/>
+		<result property="ostTablename" column="ost_tablename" jdbcType="VARCHAR"/>
+		<result property="ostRow" column="ost_row" jdbcType="INTEGER"/>
+		<result property="ostCol" column="ost_col" jdbcType="INTEGER"/>
+		<result property="ostRowend" column="ost_rowend" jdbcType="INTEGER"/>
+		<result property="ostColend" column="ost_colend" jdbcType="INTEGER"/>
+		<result property="ostCellid" column="ost_cellid" jdbcType="VARCHAR"/>
+		<result property="filedotFileid" column="filedot_fileid" jdbcType="VARCHAR"/>
+		<result property="ostColor" column="ost_color" jdbcType="INTEGER"/>
+		<result property="ostWay" column="ost_way" jdbcType="INTEGER"/>
+		<result property="roleId" column="role_id" jdbcType="INTEGER"/>
+		<result property="tablename" column="tablename" jdbcType="VARCHAR"/>
+		<result property="fname" column="fname" jdbcType="VARCHAR"/>
+		<result property="dname" column="dname" jdbcType="VARCHAR"/>
+		<result property="issubtable" column="issubtable" jdbcType="VARCHAR"/>
+		<result property="tablename2" column="tablename2" jdbcType="VARCHAR"/>
+		<result property="intautoinvalue" column="intautoinvalue" jdbcType="INTEGER"/>
+	</resultMap>
+
+
+	<resultMap id="cellRepInfo2HashMap"	type="java.util.HashMap">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="frmtype" column="frmtype" jdbcType="VARCHAR"/>
+		<result property="type" column="type" jdbcType="INTEGER"/>
+		<result property="ostTablename" column="ost_tablename" jdbcType="VARCHAR"/>
+		<result property="ostRow" column="ost_row" jdbcType="INTEGER"/>
+		<result property="ostCol" column="ost_col" jdbcType="INTEGER"/>
+		<result property="ostRowend" column="ost_rowend" jdbcType="INTEGER"/>
+		<result property="ostColend" column="ost_colend" jdbcType="INTEGER"/>
+		<result property="ostCellid" column="ost_cellid" jdbcType="VARCHAR"/>
+		<result property="filedotFileid" column="filedot_fileid" jdbcType="VARCHAR"/>
+		<result property="ostColor" column="ost_color" jdbcType="INTEGER"/>
+		<result property="ostWay" column="ost_way" jdbcType="INTEGER"/>
+		<result property="roleId" column="role_id" jdbcType="INTEGER"/>
+		<result property="tablename" column="tablename" jdbcType="VARCHAR"/>
+		<result property="fname" column="fname" jdbcType="VARCHAR"/>
+		<result property="dname" column="dname" jdbcType="VARCHAR"/>
+		<result property="issubtable" column="issubtable" jdbcType="VARCHAR"/>
+		<result property="tablename2" column="tablename2" jdbcType="VARCHAR"/>
+		<result property="intautoinvalue" column="intautoinvalue" jdbcType="INTEGER"/>
+	</resultMap>
+ 
+	<insert id="insertCellRepInfo2" parameterType="com.glaf.isdp.domain.CellRepInfo2">
+		insert into cell_repinfo2 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="frmtype != null">
+				,frmtype 
+			</if>
+			<if test="type != null">
+				,type 
+			</if>
+			<if test="content != null">
+			</if>
+			<if test="formula != null">
+			</if>
+			<if test="ostTablename != null">
+				,ost_tablename 
+			</if>
+			<if test="ostRow != null">
+				,ost_row 
+			</if>
+			<if test="ostCol != null">
+				,ost_col 
+			</if>
+			<if test="ostRowend != null">
+				,ost_rowend 
+			</if>
+			<if test="ostColend != null">
+				,ost_colend 
+			</if>
+			<if test="ostCellid != null">
+				,ost_cellid 
+			</if>
+			<if test="filedotFileid != null">
+				,filedot_fileid 
+			</if>
+			<if test="ostColor != null">
+				,ost_color 
+			</if>
+			<if test="ostWay != null">
+				,ost_way 
+			</if>
+			<if test="roleId != null">
+				,role_id 
+			</if>
+			<if test="tablename != null">
+				,tablename 
+			</if>
+			<if test="fname != null">
+				,fname 
+			</if>
+			<if test="dname != null">
+				,dname 
+			</if>
+			<if test="issubtable != null">
+				,issubtable 
+			</if>
+			<if test="tablename2 != null">
+				,tablename2 
+			</if>
+			<if test="intautoinvalue != null">
+				,intautoinvalue 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="frmtype != null">
+				,#{frmtype, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=INTEGER}
+			</if>
+			<if test="content != null">
+			</if>
+			<if test="formula != null">
+			</if>
+			<if test="ostTablename != null">
+				,#{ostTablename, jdbcType=VARCHAR}
+			</if>
+			<if test="ostRow != null">
+				,#{ostRow, jdbcType=INTEGER}
+			</if>
+			<if test="ostCol != null">
+				,#{ostCol, jdbcType=INTEGER}
+			</if>
+			<if test="ostRowend != null">
+				,#{ostRowend, jdbcType=INTEGER}
+			</if>
+			<if test="ostColend != null">
+				,#{ostColend, jdbcType=INTEGER}
+			</if>
+			<if test="ostCellid != null">
+				,#{ostCellid, jdbcType=VARCHAR}
+			</if>
+			<if test="filedotFileid != null">
+				,#{filedotFileid, jdbcType=VARCHAR}
+			</if>
+			<if test="ostColor != null">
+				,#{ostColor, jdbcType=INTEGER}
+			</if>
+			<if test="ostWay != null">
+				,#{ostWay, jdbcType=INTEGER}
+			</if>
+			<if test="roleId != null">
+				,#{roleId, jdbcType=INTEGER}
+			</if>
+			<if test="tablename != null">
+				,#{tablename, jdbcType=VARCHAR}
+			</if>
+			<if test="fname != null">
+				,#{fname, jdbcType=VARCHAR}
+			</if>
+			<if test="dname != null">
+				,#{dname, jdbcType=VARCHAR}
+			</if>
+			<if test="issubtable != null">
+				,#{issubtable, jdbcType=VARCHAR}
+			</if>
+			<if test="tablename2 != null">
+				,#{tablename2, jdbcType=VARCHAR}
+			</if>
+			<if test="intautoinvalue != null">
+				,#{intautoinvalue, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateCellRepInfo2" parameterType="com.glaf.isdp.domain.CellRepInfo2">
+		update
+		cell_repinfo2
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="frmtype != null">
+				frmtype = #{frmtype, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type, jdbcType=INTEGER},
+			</if>
+			<if test="content != null">
+			</if>
+			<if test="formula != null">
+			</if>
+			<if test="ostTablename != null">
+				ost_tablename = #{ostTablename, jdbcType=VARCHAR},
+			</if>
+			<if test="ostRow != null">
+				ost_row = #{ostRow, jdbcType=INTEGER},
+			</if>
+			<if test="ostCol != null">
+				ost_col = #{ostCol, jdbcType=INTEGER},
+			</if>
+			<if test="ostRowend != null">
+				ost_rowend = #{ostRowend, jdbcType=INTEGER},
+			</if>
+			<if test="ostColend != null">
+				ost_colend = #{ostColend, jdbcType=INTEGER},
+			</if>
+			<if test="ostCellid != null">
+				ost_cellid = #{ostCellid, jdbcType=VARCHAR},
+			</if>
+			<if test="filedotFileid != null">
+				filedot_fileid = #{filedotFileid, jdbcType=VARCHAR},
+			</if>
+			<if test="ostColor != null">
+				ost_color = #{ostColor, jdbcType=INTEGER},
+			</if>
+			<if test="ostWay != null">
+				ost_way = #{ostWay, jdbcType=INTEGER},
+			</if>
+			<if test="roleId != null">
+				role_id = #{roleId, jdbcType=INTEGER},
+			</if>
+			<if test="tablename != null">
+				tablename = #{tablename, jdbcType=VARCHAR},
+			</if>
+			<if test="fname != null">
+				fname = #{fname, jdbcType=VARCHAR},
+			</if>
+			<if test="dname != null">
+				dname = #{dname, jdbcType=VARCHAR},
+			</if>
+			<if test="issubtable != null">
+				issubtable = #{issubtable, jdbcType=VARCHAR},
+			</if>
+			<if test="tablename2 != null">
+				tablename2 = #{tablename2, jdbcType=VARCHAR},
+			</if>
+			<if test="intautoinvalue != null">
+				intautoinvalue = #{intautoinvalue, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+	</update>
+
+ 
+	<delete id="deleteCellRepInfo2ById" parameterType="string"> 
+        delete from cell_repinfo2
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteCellRepInfo2s" parameterType="com.glaf.isdp.query.CellRepInfo2Query">
+		delete from cell_repinfo2
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getCellRepInfo2ById" parameterType="string" resultMap="cellRepInfo2ResultMap">
+		select * from cell_repinfo2 where id = #{id}
+	</select>
+
+
+	<select id="getCellRepInfo2Count" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellRepInfo2sSql" />
+	</select>
+
+
+	<select id="getCellRepInfo2CountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellRepInfo2Query"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellRepInfo2sSql" />
+	</select>
+
+
+	<select id="getCellRepInfo2s" 
+		parameterType="map"
+		resultMap="cellRepInfo2ResultMap">
+		select E.*
+		<include refid="selectCellRepInfo2sSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getCellRepInfo2sByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellRepInfo2Query"
+		resultMap="cellRepInfo2ResultMap">
+		select E.*
+		<include refid="selectCellRepInfo2sSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectCellRepInfo2sSql">
+
+		from cell_repinfo2 E
+		 
+		<where>
+
+		       1 = 1  
+
+	        
+			<if test="frmtype != null and frmtype != '' ">
+				and E.frmtype = #{frmtype}
+			</if>
+
+			<if test="frmtypeLike != null and frmtypeLike != '' ">
+				and E.frmtype like #{frmtypeLike}
+			</if>
+
+			<if test="frmtypes != null and frmtypes.size() &gt; 0">
+			    and E.frmtype IN
+				<foreach item="x_frmtype" index="index" collection="frmtypes" 
+					open="(" separator="," close=")">
+                  #{x_frmtype}
+				</foreach>
+			</if>
+
+
+			<if test="type != null">
+				and E.type = #{type}
+			</if>
+
+			<if test="typeGreaterThanOrEqual != null">
+				and E.type &gt;= #{typeGreaterThanOrEqual}
+			</if>
+
+			<if test="typeLessThanOrEqual != null">
+				and E.type &lt;= #{typeLessThanOrEqual}
+			</if>
+
+			<if test="types != null and types.size() &gt; 0">
+			    and E.type IN
+				<foreach item="x_type" index="index" collection="types" 
+					open="(" separator="," close=")">
+                  #{x_type}
+				</foreach>
+			</if>
+
+			<if test="contentLike != null and contentLike != '' ">
+				and E.content like #{contentLike}
+			</if>
+
+			<if test="formulaLike != null and formulaLike != '' ">
+				and E.formula like #{formulaLike}
+			</if>
+
+	        
+			<if test="filedotFileid != null and filedotFileid != '' ">
+				and E.filedot_fileid = #{filedotFileid}
+			</if>
+
+			<if test="filedotFileidLike != null and filedotFileidLike != '' ">
+				and E.filedot_fileid like #{filedotFileidLike}
+			</if>
+
+			<if test="filedotFileids != null and filedotFileids.size() &gt; 0">
+			    and E.filedot_fileid IN
+				<foreach item="x_filedotFileid" index="index" collection="filedotFileids" 
+					open="(" separator="," close=")">
+                  #{x_filedotFileid}
+				</foreach>
+			</if>
+
+			<if test="roleId != null">
+				and E.role_id = #{roleId}
+			</if>
+
+			<if test="roleIdGreaterThanOrEqual != null">
+				and E.role_id &gt;= #{roleIdGreaterThanOrEqual}
+			</if>
+
+			<if test="roleIdLessThanOrEqual != null">
+				and E.role_id &lt;= #{roleIdLessThanOrEqual}
+			</if>
+
+			<if test="roleIds != null and roleIds.size() &gt; 0">
+			    and E.role_id IN
+				<foreach item="x_roleId" index="index" collection="roleIds" 
+					open="(" separator="," close=")">
+                  #{x_roleId}
+				</foreach>
+			</if>
+
+	        
+			<if test="tablename != null and tablename != '' ">
+				and E.tablename = #{tablename}
+			</if>
+
+			<if test="tablenameLike != null and tablenameLike != '' ">
+				and E.tablename like #{tablenameLike}
+			</if>
+
+			<if test="tablenames != null and tablenames.size() &gt; 0">
+			    and E.tablename IN
+				<foreach item="x_tablename" index="index" collection="tablenames" 
+					open="(" separator="," close=")">
+                  #{x_tablename}
+				</foreach>
+			</if>
+
+	        
+			<if test="fname != null and fname != '' ">
+				and E.fname = #{fname}
+			</if>
+
+			<if test="fnameLike != null and fnameLike != '' ">
+				and E.fname like #{fnameLike}
+			</if>
+
+			<if test="fnames != null and fnames.size() &gt; 0">
+			    and E.fname IN
+				<foreach item="x_fname" index="index" collection="fnames" 
+					open="(" separator="," close=")">
+                  #{x_fname}
+				</foreach>
+			</if>
+
+	        
+			<if test="dname != null and dname != '' ">
+				and E.dname = #{dname}
+			</if>
+
+			<if test="dnameLike != null and dnameLike != '' ">
+				and E.dname like #{dnameLike}
+			</if>
+
+			<if test="dnames != null and dnames.size() &gt; 0">
+			    and E.dname IN
+				<foreach item="x_dname" index="index" collection="dnames" 
+					open="(" separator="," close=")">
+                  #{x_dname}
+				</foreach>
+			</if>
+
+	        
+			<if test="issubtable != null and issubtable != '' ">
+				and E.issubtable = #{issubtable}
+			</if>
+
+			<if test="issubtableLike != null and issubtableLike != '' ">
+				and E.issubtable like #{issubtableLike}
+			</if>
+
+			<if test="issubtables != null and issubtables.size() &gt; 0">
+			    and E.issubtable IN
+				<foreach item="x_issubtable" index="index" collection="issubtables" 
+					open="(" separator="," close=")">
+                  #{x_issubtable}
+				</foreach>
+			</if>
+
+	        
+			<if test="tablename2 != null and tablename2 != '' ">
+				and E.tablename2 = #{tablename2}
+			</if>
+
+			<if test="tablename2Like != null and tablename2Like != '' ">
+				and E.tablename2 like #{tablename2Like}
+			</if>
+
+			<if test="tablename2s != null and tablename2s.size() &gt; 0">
+			    and E.tablename2 IN
+				<foreach item="x_tablename2" index="index" collection="tablename2s" 
+					open="(" separator="," close=")">
+                  #{x_tablename2}
+				</foreach>
+			</if>
+
+
+			<if test="intautoinvalue != null">
+				and E.intautoinvalue = #{intautoinvalue}
+			</if>
+
+			<if test="intautoinvalueGreaterThanOrEqual != null">
+				and E.intautoinvalue &gt;= #{intautoinvalueGreaterThanOrEqual}
+			</if>
+
+			<if test="intautoinvalueLessThanOrEqual != null">
+				and E.intautoinvalue &lt;= #{intautoinvalueLessThanOrEqual}
+			</if>
+
+			<if test="intautoinvalues != null and intautoinvalues.size() &gt; 0">
+			    and E.intautoinvalue IN
+				<foreach item="x_intautoinvalue" index="index" collection="intautoinvalues" 
+					open="(" separator="," close=")">
+                  #{x_intautoinvalue}
+				</foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

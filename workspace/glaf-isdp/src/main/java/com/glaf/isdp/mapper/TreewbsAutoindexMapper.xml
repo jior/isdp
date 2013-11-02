@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.TreewbsAutoindexMapper">
+
+ 	<resultMap id="treewbsAutoindexResultMap"	type="com.glaf.isdp.domain.TreewbsAutoindex">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="indexId" column="index_id" jdbcType="INTEGER"/>
+        <result property="autoindex" column="autoindex" jdbcType="INTEGER"/>
+        <result property="inttype" column="inttype" jdbcType="INTEGER"/>
+        <result property="indexRule" column="index_rule" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertTreewbsAutoindex" parameterType="com.glaf.isdp.domain.TreewbsAutoindex">
+		insert into s_treewbs_autoindex 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="indexId != null">
+				,index_id 
+			</if>
+			<if test="autoindex != null">
+				,autoindex 
+			</if>
+			<if test="inttype != null">
+				,inttype 
+			</if>
+			<if test="indexRule != null">
+				,index_rule 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="autoindex != null">
+				,#{autoindex, jdbcType=INTEGER}
+			</if>
+			<if test="inttype != null">
+				,#{inttype, jdbcType=INTEGER}
+			</if>
+			<if test="indexRule != null">
+				,#{indexRule, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateTreewbsAutoindex" parameterType="com.glaf.isdp.domain.TreewbsAutoindex">
+		update
+		    s_treewbs_autoindex
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="indexId != null">
+				index_id = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="autoindex != null">
+				autoindex = #{autoindex, jdbcType=INTEGER},
+			</if>
+			<if test="inttype != null">
+				inttype = #{inttype, jdbcType=INTEGER},
+			</if>
+			<if test="indexRule != null">
+				index_rule = #{indexRule, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteTreewbsAutoindexById" parameterType="string"> 
+        delete from s_treewbs_autoindex
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteTreewbsAutoindexs" parameterType="com.glaf.isdp.query.TreewbsAutoindexQuery">
+		delete from s_treewbs_autoindex
+		where ( id IN
+          <foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+          </foreach>
+		)
+	</delete>
+
+
+	<select id="getTreewbsAutoindexById" parameterType="string" resultMap="treewbsAutoindexResultMap">
+		select * from s_treewbs_autoindex where id = #{id}
+	</select>
+
+
+	<select id="getTreewbsAutoindexCount" 
+	    parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreewbsAutoindexsSql" />
+	</select>
+
+
+	<select id="getTreewbsAutoindexCountByQueryCriteria" 
+	    parameterType="com.glaf.isdp.query.TreewbsAutoindexQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreewbsAutoindexsSql" />
+	</select>
+
+
+	<select id="getTreewbsAutoindexs" 
+	    parameterType="map"
+		resultMap="treewbsAutoindexResultMap">
+		select E.*
+		<include refid="selectTreewbsAutoindexsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+	<select id="getTreewbsAutoindexsByQueryCriteria" 
+	    parameterType="com.glaf.isdp.query.TreewbsAutoindexQuery"
+		resultMap="treewbsAutoindexResultMap">
+		select E.*
+		<include refid="selectTreewbsAutoindexsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+
+	<sql id="selectTreewbsAutoindexsSql">
+
+		from s_treewbs_autoindex E
+		 
+		<where>
+
+		       1 = 1  
+
+
+			<if test="indexId != null">
+				and E.index_id = #{indexId}
+            </if>
+
+			<if test="indexIdGreaterThanOrEqual != null">
+				and E.index_id &gt;= #{indexIdGreaterThanOrEqual}
+            </if>
+
+			<if test="indexIdLessThanOrEqual != null">
+				and E.index_id &lt;= #{indexIdLessThanOrEqual}
+            </if>
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+			    and E.index_id IN
+                <foreach item="x_indexId" index="index" collection="indexIds" 
+                     open="(" separator="," close=")">
+                  #{x_indexId}
+                </foreach>
+			</if>
+
+
+			<if test="autoindex != null">
+				and E.autoindex = #{autoindex}
+            </if>
+
+			<if test="autoindexGreaterThanOrEqual != null">
+				and E.autoindex &gt;= #{autoindexGreaterThanOrEqual}
+            </if>
+
+			<if test="autoindexLessThanOrEqual != null">
+				and E.autoindex &lt;= #{autoindexLessThanOrEqual}
+            </if>
+
+			<if test="autoindexs != null and autoindexs.size() &gt; 0">
+			    and E.autoindex IN
+                <foreach item="x_autoindex" index="index" collection="autoindexs" 
+                     open="(" separator="," close=")">
+                  #{x_autoindex}
+                </foreach>
+			</if>
+
+
+			<if test="inttype != null">
+				and E.inttype = #{inttype}
+            </if>
+
+			<if test="inttypeGreaterThanOrEqual != null">
+				and E.inttype &gt;= #{inttypeGreaterThanOrEqual}
+            </if>
+
+			<if test="inttypeLessThanOrEqual != null">
+				and E.inttype &lt;= #{inttypeLessThanOrEqual}
+            </if>
+
+			<if test="inttypes != null and inttypes.size() &gt; 0">
+			    and E.inttype IN
+                <foreach item="x_inttype" index="index" collection="inttypes" 
+                     open="(" separator="," close=")">
+                  #{x_inttype}
+                </foreach>
+			</if>
+
+
+			<if test="indexRule != null">
+				and E.index_rule = #{indexRule}
+            </if>
+
+			<if test="indexRuleGreaterThanOrEqual != null">
+				and E.index_rule &gt;= #{indexRuleGreaterThanOrEqual}
+            </if>
+
+			<if test="indexRuleLessThanOrEqual != null">
+				and E.index_rule &lt;= #{indexRuleLessThanOrEqual}
+            </if>
+
+			<if test="indexRules != null and indexRules.size() &gt; 0">
+			    and E.index_rule IN
+                <foreach item="x_indexRule" index="index" collection="indexRules" 
+                     open="(" separator="," close=")">
+                  #{x_indexRule}
+                </foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

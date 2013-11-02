@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.TreeFolderMapper">
+
+	<resultMap id="treeFolderResultMap"	type="com.glaf.isdp.domain.TreeFolder">
+		<id property="indexId" column="index_id" jdbcType="INTEGER" />
+		<result property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+		<result property="indexName" column="index_name" jdbcType="VARCHAR"/>
+		<result property="nlevel" column="nlevel" jdbcType="INTEGER"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="nodeico" column="nodeico" jdbcType="INTEGER"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+		<result property="inttype" column="inttype" jdbcType="INTEGER"/>
+		<result property="sindexName" column="sindex_name" jdbcType="VARCHAR"/>
+		<result property="num" column="num" jdbcType="VARCHAR"/>
+		<result property="filenum" column="filenum" jdbcType="VARCHAR"/>
+		<result property="ftype" column="ftype" jdbcType="VARCHAR"/>
+		<result property="ztype" column="ztype" jdbcType="INTEGER"/>
+		<result property="slevel" column="slevel" jdbcType="VARCHAR"/>
+		<result property="savetime" column="savetime" jdbcType="VARCHAR"/>
+		<result property="domainIndex" column="domain_index" jdbcType="INTEGER"/>
+		<result property="menuindex" column="menuindex" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertTreeFolder" parameterType="com.glaf.isdp.domain.TreeFolder">
+		insert into s_treefolder 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    index_id
+			<if test="id != null">
+				,id 
+			</if>
+			<if test="parentId != null">
+				,parent_id 
+			</if>
+			<if test="indexName != null">
+				,index_name 
+			</if>
+			<if test="nlevel != null">
+				,nlevel 
+			</if>
+			<if test="content != null">
+				,content 
+			</if>
+			<if test="nodeico != null">
+				,nodeico 
+			</if>
+			<if test="listno != null">
+				,listno 
+			</if>
+			<if test="inttype != null">
+				,inttype 
+			</if>
+			<if test="sindexName != null">
+				,sindex_name 
+			</if>
+			<if test="num != null">
+				,num 
+			</if>
+			<if test="filenum != null">
+				,filenum 
+			</if>
+			<if test="ftype != null">
+				,ftype 
+			</if>
+			<if test="ztype != null">
+				,ztype 
+			</if>
+			<if test="slevel != null">
+				,slevel 
+			</if>
+			<if test="savetime != null">
+				,savetime 
+			</if>
+			<if test="domainIndex != null">
+				,domain_index 
+			</if>
+			<if test="menuindex != null">
+				,menuindex 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{indexId, jdbcType=INTEGER}
+	     
+			<if test="id != null">
+				,#{id, jdbcType=VARCHAR}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=INTEGER}
+			</if>
+			<if test="indexName != null">
+				,#{indexName, jdbcType=VARCHAR}
+			</if>
+			<if test="nlevel != null">
+				,#{nlevel, jdbcType=INTEGER}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="nodeico != null">
+				,#{nodeico, jdbcType=INTEGER}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+			<if test="inttype != null">
+				,#{inttype, jdbcType=INTEGER}
+			</if>
+			<if test="sindexName != null">
+				,#{sindexName, jdbcType=VARCHAR}
+			</if>
+			<if test="num != null">
+				,#{num, jdbcType=VARCHAR}
+			</if>
+			<if test="filenum != null">
+				,#{filenum, jdbcType=VARCHAR}
+			</if>
+			<if test="ftype != null">
+				,#{ftype, jdbcType=VARCHAR}
+			</if>
+			<if test="ztype != null">
+				,#{ztype, jdbcType=INTEGER}
+			</if>
+			<if test="slevel != null">
+				,#{slevel, jdbcType=VARCHAR}
+			</if>
+			<if test="savetime != null">
+				,#{savetime, jdbcType=VARCHAR}
+			</if>
+			<if test="domainIndex != null">
+				,#{domainIndex, jdbcType=INTEGER}
+			</if>
+			<if test="menuindex != null">
+				,#{menuindex, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateTreeFolder" parameterType="com.glaf.isdp.domain.TreeFolder">
+		update
+		    s_treefolder
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="id != null">
+				id = #{id, jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				parent_id = #{parentId, jdbcType=INTEGER},
+			</if>
+			<if test="indexName != null">
+				index_name = #{indexName, jdbcType=VARCHAR},
+			</if>
+			<if test="nlevel != null">
+				nlevel = #{nlevel, jdbcType=INTEGER},
+			</if>
+			<if test="content != null">
+				content = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="nodeico != null">
+				nodeico = #{nodeico, jdbcType=INTEGER},
+			</if>
+			<if test="listno != null">
+				listno = #{listno, jdbcType=INTEGER},
+			</if>
+			<if test="inttype != null">
+				inttype = #{inttype, jdbcType=INTEGER},
+			</if>
+			<if test="sindexName != null">
+				sindex_name = #{sindexName, jdbcType=VARCHAR},
+			</if>
+			<if test="num != null">
+				num = #{num, jdbcType=VARCHAR},
+			</if>
+			<if test="filenum != null">
+				filenum = #{filenum, jdbcType=VARCHAR},
+			</if>
+			<if test="ftype != null">
+				ftype = #{ftype, jdbcType=VARCHAR},
+			</if>
+			<if test="ztype != null">
+				ztype = #{ztype, jdbcType=INTEGER},
+			</if>
+			<if test="slevel != null">
+				slevel = #{slevel, jdbcType=VARCHAR},
+			</if>
+			<if test="savetime != null">
+				savetime = #{savetime, jdbcType=VARCHAR},
+			</if>
+			<if test="domainIndex != null">
+				domain_index = #{domainIndex, jdbcType=INTEGER},
+			</if>
+			<if test="menuindex != null">
+				menuindex = #{menuindex, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          index_id = #{indexId, jdbcType=INTEGER}
+		
+    </update>
+
+ 
+	<delete id="deleteTreeFolderById" parameterType="string"> 
+        delete from s_treefolder
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteTreeFolderByIndexId" parameterType="int"> 
+        delete from s_treefolder
+        where index_id = #{indexId}
+	</delete>
+
+
+	<delete id="deleteTreeFolders" parameterType="com.glaf.isdp.query.TreeFolderQuery">
+		delete from s_treefolder
+		where ( index_id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getTreeFolderById" parameterType="string" resultMap="treeFolderResultMap">
+		select * from s_treefolder where id = #{id}
+	</select>
+
+
+	<select id="getTreeFolderByIndexId" parameterType="int" resultMap="treeFolderResultMap">
+		select * from s_treefolder where index_id = #{indexId}
+	</select>
+
+
+	<select id="getTreeFolderCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreeFoldersSql" />
+	</select>
+
+
+	<select id="getTreeFolderCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.TreeFolderQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreeFoldersSql" />
+	</select>
+
+
+	<select id="getTreeFolders" 
+		parameterType="map"
+		resultMap="treeFolderResultMap">
+		select E.*
+		<include refid="selectTreeFoldersSql" />
+		<choose>
+			<when test="orderBy != null">
+		     order by ${orderBy}
+			</when>
+			<otherwise>
+		  	order by E.parent_id asc, E.listno asc, E.index_id asc 
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="getTreeFoldersByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.TreeFolderQuery"
+		resultMap="treeFolderResultMap">
+		select E.*
+		<include refid="selectTreeFoldersSql" />
+		<choose>
+			<when test="orderBy != null">
+		     order by ${orderBy}
+			</when>
+			<otherwise>
+		  	order by E.parent_id asc, E.listno asc, E.index_id asc 
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<sql id="selectTreeFoldersSql">
+
+		from s_treefolder E
+		 
+		<where>
+
+		       1 = 1  
+
+			<if test="idLike != null and idLike != '' ">
+				and E.id like #{idLike}
+			</if>
+
+			<if test="ids != null and ids.size() &gt; 0">
+			    and E.id IN
+				<foreach item="x_id" index="index" collection="ids" 
+					open="(" separator="," close=")">
+                  #{x_id}
+				</foreach>
+			</if>
+
+			<if test="parentId != null">
+				and E.parent_id = #{parentId}
+			</if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+			    and E.parent_id IN
+				<foreach item="x_parentId" index="index" collection="parentIds" 
+					open="(" separator="," close=")">
+                  #{x_parentId}
+				</foreach>
+			</if>
+ 
+			<if test="indexNameLike != null and indexNameLike != '' ">
+				and E.index_name like #{indexNameLike}
+			</if>
+
+			<if test="nlevel != null">
+				and E.nlevel = #{nlevel}
+			</if>
+
+			<if test="nlevelGreaterThanOrEqual != null">
+				and E.nlevel &gt;= #{nlevelGreaterThanOrEqual}
+			</if>
+
+			<if test="nlevelLessThanOrEqual != null">
+				and E.nlevel &lt;= #{nlevelLessThanOrEqual}
+			</if>
+
+			<if test="nlevels != null and nlevels.size() &gt; 0">
+			    and E.nlevel IN
+				<foreach item="x_nlevel" index="index" collection="nlevels" 
+					open="(" separator="," close=")">
+                  #{x_nlevel}
+				</foreach>
+			</if>
+ 
+			<if test="contentLike != null and contentLike != '' ">
+				and E.content like #{contentLike}
+			</if>
+
+		 
+
+			<if test="inttype != null">
+				and E.inttype = #{inttype}
+			</if>
+
+			<if test="inttypeGreaterThanOrEqual != null">
+				and E.inttype &gt;= #{inttypeGreaterThanOrEqual}
+			</if>
+
+			<if test="inttypeLessThanOrEqual != null">
+				and E.inttype &lt;= #{inttypeLessThanOrEqual}
+			</if>
+
+			<if test="inttypes != null and inttypes.size() &gt; 0">
+			    and E.inttype IN
+				<foreach item="x_inttype" index="index" collection="inttypes" 
+					open="(" separator="," close=")">
+                  #{x_inttype}
+				</foreach>
+			</if>
+ 
+			<if test="sindexNameLike != null and sindexNameLike != '' ">
+				and E.sindex_name like #{sindexNameLike}
+			</if>
+
+		 
+
+			<if test="numLike != null and numLike != '' ">
+				and E.num like #{numLike}
+			</if>
+
+		 
+	        
+			<if test="filenum != null and filenum != '' ">
+				and E.filenum = #{filenum}
+			</if>
+
+			<if test="filenumLike != null and filenumLike != '' ">
+				and E.filenum like #{filenumLike}
+			</if>
+
+			<if test="filenums != null and filenums.size() &gt; 0">
+			    and E.filenum IN
+				<foreach item="x_filenum" index="index" collection="filenums" 
+					open="(" separator="," close=")">
+                  #{x_filenum}
+				</foreach>
+			</if>
+
+	        
+			<if test="ftype != null and ftype != '' ">
+				and E.ftype = #{ftype}
+			</if>
+
+			<if test="ftypeLike != null and ftypeLike != '' ">
+				and E.ftype like #{ftypeLike}
+			</if>
+
+			<if test="ftypes != null and ftypes.size() &gt; 0">
+			    and E.ftype IN
+				<foreach item="x_ftype" index="index" collection="ftypes" 
+					open="(" separator="," close=")">
+                  #{x_ftype}
+				</foreach>
+			</if>
+
+
+			<if test="ztype != null">
+				and E.ztype = #{ztype}
+			</if>
+
+			<if test="ztypeGreaterThanOrEqual != null">
+				and E.ztype &gt;= #{ztypeGreaterThanOrEqual}
+			</if>
+
+			<if test="ztypeLessThanOrEqual != null">
+				and E.ztype &lt;= #{ztypeLessThanOrEqual}
+			</if>
+
+			<if test="ztypes != null and ztypes.size() &gt; 0">
+			    and E.ztype IN
+				<foreach item="x_ztype" index="index" collection="ztypes" 
+					open="(" separator="," close=")">
+                  #{x_ztype}
+				</foreach>
+			</if>
+
+	        
+			<if test="slevel != null and slevel != '' ">
+				and E.slevel = #{slevel}
+			</if>
+
+			<if test="slevelLike != null and slevelLike != '' ">
+				and E.slevel like #{slevelLike}
+			</if>
+
+			<if test="slevels != null and slevels.size() &gt; 0">
+			    and E.slevel IN
+				<foreach item="x_slevel" index="index" collection="slevels" 
+					open="(" separator="," close=")">
+                  #{x_slevel}
+				</foreach>
+			</if>
+
+	        
+			<if test="savetime != null and savetime != '' ">
+				and E.savetime = #{savetime}
+			</if>
+
+			<if test="savetimeLike != null and savetimeLike != '' ">
+				and E.savetime like #{savetimeLike}
+			</if>
+
+			<if test="savetimes != null and savetimes.size() &gt; 0">
+			    and E.savetime IN
+				<foreach item="x_savetime" index="index" collection="savetimes" 
+					open="(" separator="," close=")">
+                  #{x_savetime}
+				</foreach>
+			</if>
+
+
+			<if test="domainIndex != null">
+				and E.domain_index = #{domainIndex}
+			</if>
+
+			<if test="domainIndexGreaterThanOrEqual != null">
+				and E.domain_index &gt;= #{domainIndexGreaterThanOrEqual}
+			</if>
+
+			<if test="domainIndexLessThanOrEqual != null">
+				and E.domain_index &lt;= #{domainIndexLessThanOrEqual}
+			</if>
+
+			<if test="domainIndexs != null and domainIndexs.size() &gt; 0">
+			    and E.domain_index IN
+				<foreach item="x_domainIndex" index="index" collection="domainIndexs" 
+					open="(" separator="," close=")">
+                  #{x_domainIndex}
+				</foreach>
+			</if>
+
+
+			<if test="menuindex != null">
+				and E.menuindex = #{menuindex}
+			</if>
+
+			<if test="menuindexGreaterThanOrEqual != null">
+				and E.menuindex &gt;= #{menuindexGreaterThanOrEqual}
+			</if>
+
+			<if test="menuindexLessThanOrEqual != null">
+				and E.menuindex &lt;= #{menuindexLessThanOrEqual}
+			</if>
+
+			<if test="menuindexs != null and menuindexs.size() &gt; 0">
+			    and E.menuindex IN
+				<foreach item="x_menuindex" index="index" collection="menuindexs" 
+					open="(" separator="," close=")">
+                  #{x_menuindex}
+				</foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

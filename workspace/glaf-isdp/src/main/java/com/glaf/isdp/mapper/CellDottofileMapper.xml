@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.CellDottofileMapper">
+
+ 	<resultMap id="cellDottofileResultMap"	type="com.glaf.isdp.domain.CellDottofile">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="treetopIndexid" column="treetop_indexid" jdbcType="INTEGER"/>
+        <result property="num" column="num" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="listno" column="listno" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertCellDottofile" parameterType="com.glaf.isdp.domain.CellDottofile">
+		insert into cell_dottofile 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="treetopIndexid != null">
+				,treetop_indexid 
+			</if>
+			<if test="num != null">
+				,num 
+			</if>
+			<if test="name != null">
+				,name 
+			</if>
+			<if test="listno != null">
+				,listno 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="treetopIndexid != null">
+				,#{treetopIndexid, jdbcType=INTEGER}
+			</if>
+			<if test="num != null">
+				,#{num, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateCellDottofile" parameterType="com.glaf.isdp.domain.CellDottofile">
+		update
+		cell_dottofile
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+        </trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteCellDottofileById" parameterType="string"> 
+        delete from cell_dottofile
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteCellDottofiles" parameterType="com.glaf.isdp.query.CellDottofileQuery">
+		delete from cell_dottofile
+		where ( id IN
+          <foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+          </foreach>
+		)
+	</delete>
+
+
+	<select id="getCellDottofileById" parameterType="string" resultMap="cellDottofileResultMap">
+		select * from cell_dottofile where id = #{id}
+	</select>
+
+
+	<select id="getCellDottofileCount" 
+	    parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellDottofilesSql" />
+	</select>
+
+
+	<select id="getCellDottofileCountByQueryCriteria" 
+	    parameterType="com.glaf.isdp.query.CellDottofileQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellDottofilesSql" />
+	</select>
+
+
+	<select id="getCellDottofiles" 
+	    parameterType="map"
+		resultMap="cellDottofileResultMap">
+		select E.*
+		<include refid="selectCellDottofilesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+	<select id="getCellDottofilesByQueryCriteria" 
+	    parameterType="com.glaf.isdp.query.CellDottofileQuery"
+		resultMap="cellDottofileResultMap">
+		select E.*
+		<include refid="selectCellDottofilesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+
+	<sql id="selectCellDottofilesSql">
+
+		from cell_dottofile E
+		 
+		<where>
+
+		       1 = 1  
+
+
+			<if test="treetopIndexid != null">
+				and E.treetop_indexid = #{treetopIndexid}
+            </if>
+
+			<if test="treetopIndexidGreaterThanOrEqual != null">
+				and E.treetop_indexid &gt;= #{treetopIndexidGreaterThanOrEqual}
+            </if>
+
+			<if test="treetopIndexidLessThanOrEqual != null">
+				and E.treetop_indexid &lt;= #{treetopIndexidLessThanOrEqual}
+            </if>
+
+			<if test="treetopIndexids != null and treetopIndexids.size() &gt; 0">
+			    and E.treetop_indexid IN
+                <foreach item="x_treetopIndexid" index="index" collection="treetopIndexids" 
+                     open="(" separator="," close=")">
+                  #{x_treetopIndexid}
+                </foreach>
+			</if>
+
+			<if test="numLike != null and numLike != '' ">
+				and E.num like #{numLike}
+            </if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.name like #{nameLike}
+            </if>
+
+		</where>
+	</sql>
+
+</mapper>

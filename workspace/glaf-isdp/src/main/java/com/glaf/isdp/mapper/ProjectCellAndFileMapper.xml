@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.ProjectCellAndFileMapper">
+
+	<resultMap id="projectCellAndFileResultMap"	type="com.glaf.isdp.domain.ProjectCellAndFile">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="indexId" column="index_id" jdbcType="INTEGER"/>
+		<result property="inttype" column="inttype" jdbcType="INTEGER"/>
+		<result property="name" column="name" jdbcType="VARCHAR"/>
+		<result property="defId" column="defId" jdbcType="VARCHAR"/>
+		<result property="useId" column="useId" jdbcType="VARCHAR"/>
+		<result property="intPage0" column="intPage0" jdbcType="INTEGER"/>
+		<result property="intPage1" column="intPage1" jdbcType="INTEGER"/>
+		<result property="intPage2" column="intPage2" jdbcType="INTEGER"/>
+		<result property="intfinish" column="intfinish" jdbcType="INTEGER"/>
+		<result property="num" column="num" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertProjectCellAndFile" parameterType="com.glaf.isdp.domain.ProjectCellAndFile">
+		insert into proj_cellandfiles 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="indexId != null">
+				,index_id 
+			</if>
+			<if test="inttype != null">
+				,inttype 
+			</if>
+			<if test="name != null">
+				,name 
+			</if>
+			<if test="defId != null">
+				,defId 
+			</if>
+			<if test="useId != null">
+				,useId 
+			</if>
+			<if test="intPage0 != null">
+				,intPage0 
+			</if>
+			<if test="intPage1 != null">
+				,intPage1 
+			</if>
+			<if test="intPage2 != null">
+				,intPage2 
+			</if>
+			<if test="intfinish != null">
+				,intfinish 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="inttype != null">
+				,#{inttype, jdbcType=INTEGER}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="defId != null">
+				,#{defId, jdbcType=VARCHAR}
+			</if>
+			<if test="useId != null">
+				,#{useId, jdbcType=VARCHAR}
+			</if>
+			<if test="intPage0 != null">
+				,#{intPage0, jdbcType=INTEGER}
+			</if>
+			<if test="intPage1 != null">
+				,#{intPage1, jdbcType=INTEGER}
+			</if>
+			<if test="intPage2 != null">
+				,#{intPage2, jdbcType=INTEGER}
+			</if>
+			<if test="intfinish != null">
+				,#{intfinish, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateProjectCellAndFile" parameterType="com.glaf.isdp.domain.ProjectCellAndFile">
+		update
+		    proj_cellandfiles
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="indexId != null">
+				index_id = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="inttype != null">
+				inttype = #{inttype, jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				name = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="defId != null">
+				defId = #{defId, jdbcType=VARCHAR},
+			</if>
+			<if test="useId != null">
+				useId = #{useId, jdbcType=VARCHAR},
+			</if>
+			<if test="intPage0 != null">
+				intPage0 = #{intPage0, jdbcType=INTEGER},
+			</if>
+			<if test="intPage1 != null">
+				intPage1 = #{intPage1, jdbcType=INTEGER},
+			</if>
+			<if test="intPage2 != null">
+				intPage2 = #{intPage2, jdbcType=INTEGER},
+			</if>
+			<if test="intfinish != null">
+				intfinish = #{intfinish, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteProjectCellAndFileById" parameterType="string"> 
+        delete from proj_cellandfiles
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteProjectCellAndFiles" parameterType="com.glaf.isdp.query.ProjectCellAndFileQuery">
+		delete from proj_cellandfiles
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getProjectCellAndFileById" parameterType="string" resultMap="projectCellAndFileResultMap">
+		select * from proj_cellandfiles where id = #{id}
+	</select>
+	
+	
+	<select id="getWbsProjectCellAndFileByIndexId" parameterType="int" resultMap="projectCellAndFileResultMap">
+		 
+		SELECT a.*, b.num
+		FROM proj_cellandfiles a 
+		INNER JOIN filedot b 
+		ON a.defId = b.fileID
+		WHERE ( a.index_id = #{indexId} ) 
+		AND ( a.inttype = 0 )
+		 
+	</select>
+	
+	<select id="getWbsFileProjectCellAndFileByIndexId" parameterType="int" resultMap="projectCellAndFileResultMap">
+		 
+		select * from proj_cellandfiles  
+		where index_id = #{indexId} 
+		and inttype=1
+		 
+	</select>
+
+
+	<select id="getProjectCellAndFileCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectProjectCellAndFilesSql" />
+	</select>
+
+
+	<select id="getProjectCellAndFileCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.ProjectCellAndFileQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectProjectCellAndFilesSql" />
+	</select>
+
+
+	<select id="getProjectCellAndFiles" 
+		parameterType="map"
+		resultMap="projectCellAndFileResultMap">
+		select E.*
+		<include refid="selectProjectCellAndFilesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getProjectCellAndFilesByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.ProjectCellAndFileQuery"
+		resultMap="projectCellAndFileResultMap">
+		select E.*
+		<include refid="selectProjectCellAndFilesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectProjectCellAndFilesSql">
+
+		from proj_cellandfiles E
+		 
+		<where>
+
+		       1 = 1  
+
+
+			<if test="indexId != null">
+				and E.index_id = #{indexId}
+			</if>
+
+			<if test="indexIdGreaterThanOrEqual != null">
+				and E.index_id &gt;= #{indexIdGreaterThanOrEqual}
+			</if>
+
+			<if test="indexIdLessThanOrEqual != null">
+				and E.index_id &lt;= #{indexIdLessThanOrEqual}
+			</if>
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+			    and E.index_id IN
+				<foreach item="x_indexId" index="index" collection="indexIds" 
+					open="(" separator="," close=")">
+                  #{x_indexId}
+				</foreach>
+			</if>
+
+
+			<if test="inttype != null">
+				and E.inttype = #{inttype}
+			</if>
+
+			<if test="inttypeGreaterThanOrEqual != null">
+				and E.inttype &gt;= #{inttypeGreaterThanOrEqual}
+			</if>
+
+			<if test="inttypeLessThanOrEqual != null">
+				and E.inttype &lt;= #{inttypeLessThanOrEqual}
+			</if>
+
+			<if test="inttypes != null and inttypes.size() &gt; 0">
+			    and E.inttype IN
+				<foreach item="x_inttype" index="index" collection="inttypes" 
+					open="(" separator="," close=")">
+                  #{x_inttype}
+				</foreach>
+			</if>
+
+	        
+			<if test="name != null and name != '' ">
+				and E.name = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.name like #{nameLike}
+			</if>
+
+			<if test="names != null and names.size() &gt; 0">
+			    and E.name IN
+				<foreach item="x_name" index="index" collection="names" 
+					open="(" separator="," close=")">
+                  #{x_name}
+				</foreach>
+			</if>
+
+	        
+			<if test="defId != null and defId != '' ">
+				and E.defId = #{defId}
+			</if>
+
+			<if test="defIdLike != null and defIdLike != '' ">
+				and E.defId like #{defIdLike}
+			</if>
+
+			<if test="defIds != null and defIds.size() &gt; 0">
+			    and E.defId IN
+				<foreach item="x_defId" index="index" collection="defIds" 
+					open="(" separator="," close=")">
+                  #{x_defId}
+				</foreach>
+			</if>
+
+	        
+			<if test="useId != null and useId != '' ">
+				and E.useId = #{useId}
+			</if>
+
+			<if test="useIdLike != null and useIdLike != '' ">
+				and E.useId like #{useIdLike}
+			</if>
+
+			<if test="useIds != null and useIds.size() &gt; 0">
+			    and E.useId IN
+				<foreach item="x_useId" index="index" collection="useIds" 
+					open="(" separator="," close=")">
+                  #{x_useId}
+				</foreach>
+			</if>
+
+
+			<if test="intPage0 != null">
+				and E.intPage0 = #{intPage0}
+			</if>
+
+			<if test="intPage0GreaterThanOrEqual != null">
+				and E.intPage0 &gt;= #{intPage0GreaterThanOrEqual}
+			</if>
+
+			<if test="intPage0LessThanOrEqual != null">
+				and E.intPage0 &lt;= #{intPage0LessThanOrEqual}
+			</if>
+
+			<if test="intPage0s != null and intPage0s.size() &gt; 0">
+			    and E.intPage0 IN
+				<foreach item="x_intPage0" index="index" collection="intPage0s" 
+					open="(" separator="," close=")">
+                  #{x_intPage0}
+				</foreach>
+			</if>
+
+
+			<if test="intPage1 != null">
+				and E.intPage1 = #{intPage1}
+			</if>
+
+			<if test="intPage1GreaterThanOrEqual != null">
+				and E.intPage1 &gt;= #{intPage1GreaterThanOrEqual}
+			</if>
+
+			<if test="intPage1LessThanOrEqual != null">
+				and E.intPage1 &lt;= #{intPage1LessThanOrEqual}
+			</if>
+
+			<if test="intPage1s != null and intPage1s.size() &gt; 0">
+			    and E.intPage1 IN
+				<foreach item="x_intPage1" index="index" collection="intPage1s" 
+					open="(" separator="," close=")">
+                  #{x_intPage1}
+				</foreach>
+			</if>
+
+
+			<if test="intPage2 != null">
+				and E.intPage2 = #{intPage2}
+			</if>
+
+			<if test="intPage2GreaterThanOrEqual != null">
+				and E.intPage2 &gt;= #{intPage2GreaterThanOrEqual}
+			</if>
+
+			<if test="intPage2LessThanOrEqual != null">
+				and E.intPage2 &lt;= #{intPage2LessThanOrEqual}
+			</if>
+
+			<if test="intPage2s != null and intPage2s.size() &gt; 0">
+			    and E.intPage2 IN
+				<foreach item="x_intPage2" index="index" collection="intPage2s" 
+					open="(" separator="," close=")">
+                  #{x_intPage2}
+				</foreach>
+			</if>
+
+
+			<if test="intfinish != null">
+				and E.intfinish = #{intfinish}
+			</if>
+
+			<if test="intfinishGreaterThanOrEqual != null">
+				and E.intfinish &gt;= #{intfinishGreaterThanOrEqual}
+			</if>
+
+			<if test="intfinishLessThanOrEqual != null">
+				and E.intfinish &lt;= #{intfinishLessThanOrEqual}
+			</if>
+
+			<if test="intfinishs != null and intfinishs.size() &gt; 0">
+			    and E.intfinish IN
+				<foreach item="x_intfinish" index="index" collection="intfinishs" 
+					open="(" separator="," close=")">
+                  #{x_intfinish}
+				</foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

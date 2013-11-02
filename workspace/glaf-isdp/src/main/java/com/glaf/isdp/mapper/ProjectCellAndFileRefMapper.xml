@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.ProjectCellAndFileRefMapper">
+
+ 	<resultMap id="projectCellAndFileRefResultMap"	type="com.glaf.isdp.domain.ProjectCellAndFileRef">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="pfileid" column="pfileid" jdbcType="VARCHAR"/>
+        <result property="cellid" column="cellid" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertProjectCellAndFileRef" parameterType="com.glaf.isdp.domain.ProjectCellAndFileRef">
+		insert into proj_cellandfiles_cell 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="pfileid != null">
+				,pfileid 
+			</if>
+			<if test="cellid != null">
+				,cellid 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="pfileid != null">
+				,#{pfileid, jdbcType=VARCHAR}
+			</if>
+			<if test="cellid != null">
+				,#{cellid, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateProjectCellAndFileRef" parameterType="com.glaf.isdp.domain.ProjectCellAndFileRef">
+		update
+		    proj_cellandfiles_cell
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="pfileid != null">
+				pfileid = #{pfileid, jdbcType=VARCHAR},
+			</if>
+			<if test="cellid != null">
+				cellid = #{cellid, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteProjectCellAndFileRefById" parameterType="string"> 
+        delete from proj_cellandfiles_cell
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteProjectCellAndFileRefs" parameterType="com.glaf.isdp.query.ProjectCellAndFileRefQuery">
+		delete from proj_cellandfiles_cell
+		where ( id IN
+          <foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+          </foreach>
+		)
+	</delete>
+
+
+	<select id="getProjectCellAndFileRefById" parameterType="string" resultMap="projectCellAndFileRefResultMap">
+		select * from proj_cellandfiles_cell where id = #{id}
+	</select>
+
+
+	<select id="getProjectCellAndFileRefCount" 
+	    parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectProjectCellAndFileRefsSql" />
+	</select>
+
+
+	<select id="getProjectCellAndFileRefCountByQueryCriteria" 
+	    parameterType="com.glaf.isdp.query.ProjectCellAndFileRefQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectProjectCellAndFileRefsSql" />
+	</select>
+
+
+	<select id="getProjectCellAndFileRefs" 
+	    parameterType="map"
+		resultMap="projectCellAndFileRefResultMap">
+		select E.*
+		<include refid="selectProjectCellAndFileRefsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+	<select id="getProjectCellAndFileRefsByQueryCriteria" 
+	    parameterType="com.glaf.isdp.query.ProjectCellAndFileRefQuery"
+		resultMap="projectCellAndFileRefResultMap">
+		select E.*
+		<include refid="selectProjectCellAndFileRefsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+
+	<sql id="selectProjectCellAndFileRefsSql">
+
+		from proj_cellandfiles_cell E
+		 
+		<where>
+
+		       1 = 1  
+
+	        
+			<if test="pfileid != null and pfileid != '' ">
+				and E.pfileid = #{pfileid}
+            </if>
+
+			<if test="pfileidLike != null and pfileidLike != '' ">
+				and E.pfileid like #{pfileidLike}
+            </if>
+
+			<if test="pfileids != null and pfileids.size() &gt; 0">
+			    and E.pfileid IN
+                <foreach item="x_pfileid" index="index" collection="pfileids" 
+                     open="(" separator="," close=")">
+                  #{x_pfileid}
+                </foreach>
+			</if>
+
+	        
+			<if test="cellid != null and cellid != '' ">
+				and E.cellid = #{cellid}
+            </if>
+
+			<if test="cellidLike != null and cellidLike != '' ">
+				and E.cellid like #{cellidLike}
+            </if>
+
+			<if test="cellids != null and cellids.size() &gt; 0">
+			    and E.cellid IN
+                <foreach item="x_cellid" index="index" collection="cellids" 
+                     open="(" separator="," close=")">
+                  #{x_cellid}
+                </foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

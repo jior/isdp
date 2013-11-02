@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.TreewbsAutostartMapper">
+
+ 	<resultMap id="treewbsAutostartResultMap"	type="com.glaf.isdp.domain.TreewbsAutostart">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="indexId" column="index_id" jdbcType="INTEGER"/>
+        <result property="wbsindex" column="wbsindex" jdbcType="INTEGER"/>
+        <result property="intstartype" column="intstartype" jdbcType="INTEGER"/>
+        <result property="intstardelayday" column="intstardelayday" jdbcType="INTEGER"/>
+        <result property="inttype" column="inttype" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertTreewbsAutostart" parameterType="com.glaf.isdp.domain.TreewbsAutostart">
+		insert into s_treewbs_autostart 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="indexId != null">
+				,index_id 
+			</if>
+			<if test="wbsindex != null">
+				,wbsindex 
+			</if>
+			<if test="intstartype != null">
+				,intstartype 
+			</if>
+			<if test="intstardelayday != null">
+				,intstardelayday 
+			</if>
+			<if test="inttype != null">
+				,inttype 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="wbsindex != null">
+				,#{wbsindex, jdbcType=INTEGER}
+			</if>
+			<if test="intstartype != null">
+				,#{intstartype, jdbcType=INTEGER}
+			</if>
+			<if test="intstardelayday != null">
+				,#{intstardelayday, jdbcType=INTEGER}
+			</if>
+			<if test="inttype != null">
+				,#{inttype, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateTreewbsAutostart" parameterType="com.glaf.isdp.domain.TreewbsAutostart">
+		update
+		    s_treewbs_autostart
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="indexId != null">
+				index_id = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="wbsindex != null">
+				wbsindex = #{wbsindex, jdbcType=INTEGER},
+			</if>
+			<if test="intstartype != null">
+				intstartype = #{intstartype, jdbcType=INTEGER},
+			</if>
+			<if test="intstardelayday != null">
+				intstardelayday = #{intstardelayday, jdbcType=INTEGER},
+			</if>
+			<if test="inttype != null">
+				inttype = #{inttype, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteTreewbsAutostartById" parameterType="string"> 
+        delete from s_treewbs_autostart
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteTreewbsAutostarts" parameterType="com.glaf.isdp.query.TreewbsAutostartQuery">
+		delete from s_treewbs_autostart
+		where ( id IN
+          <foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+          </foreach>
+		)
+	</delete>
+
+
+	<select id="getTreewbsAutostartById" parameterType="string" resultMap="treewbsAutostartResultMap">
+		select * from s_treewbs_autostart where id = #{id}
+	</select>
+
+
+	<select id="getTreewbsAutostartCount" 
+	    parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreewbsAutostartsSql" />
+	</select>
+
+
+	<select id="getTreewbsAutostartCountByQueryCriteria" 
+	    parameterType="com.glaf.isdp.query.TreewbsAutostartQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreewbsAutostartsSql" />
+	</select>
+
+
+	<select id="getTreewbsAutostarts" 
+	    parameterType="map"
+		resultMap="treewbsAutostartResultMap">
+		select E.*
+		<include refid="selectTreewbsAutostartsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+	<select id="getTreewbsAutostartsByQueryCriteria" 
+	    parameterType="com.glaf.isdp.query.TreewbsAutostartQuery"
+		resultMap="treewbsAutostartResultMap">
+		select E.*
+		<include refid="selectTreewbsAutostartsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+
+	<sql id="selectTreewbsAutostartsSql">
+
+		from s_treewbs_autostart E
+		 
+		<where>
+
+		       1 = 1  
+
+
+			<if test="indexId != null">
+				and E.index_id = #{indexId}
+            </if>
+
+			<if test="indexIdGreaterThanOrEqual != null">
+				and E.index_id &gt;= #{indexIdGreaterThanOrEqual}
+            </if>
+
+			<if test="indexIdLessThanOrEqual != null">
+				and E.index_id &lt;= #{indexIdLessThanOrEqual}
+            </if>
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+			    and E.index_id IN
+                <foreach item="x_indexId" index="index" collection="indexIds" 
+                     open="(" separator="," close=")">
+                  #{x_indexId}
+                </foreach>
+			</if>
+
+
+			<if test="wbsindex != null">
+				and E.wbsindex = #{wbsindex}
+            </if>
+
+			<if test="wbsindexGreaterThanOrEqual != null">
+				and E.wbsindex &gt;= #{wbsindexGreaterThanOrEqual}
+            </if>
+
+			<if test="wbsindexLessThanOrEqual != null">
+				and E.wbsindex &lt;= #{wbsindexLessThanOrEqual}
+            </if>
+
+			<if test="wbsindexs != null and wbsindexs.size() &gt; 0">
+			    and E.wbsindex IN
+                <foreach item="x_wbsindex" index="index" collection="wbsindexs" 
+                     open="(" separator="," close=")">
+                  #{x_wbsindex}
+                </foreach>
+			</if>
+
+
+			<if test="intstartype != null">
+				and E.intstartype = #{intstartype}
+            </if>
+
+			<if test="intstartypeGreaterThanOrEqual != null">
+				and E.intstartype &gt;= #{intstartypeGreaterThanOrEqual}
+            </if>
+
+			<if test="intstartypeLessThanOrEqual != null">
+				and E.intstartype &lt;= #{intstartypeLessThanOrEqual}
+            </if>
+
+			<if test="intstartypes != null and intstartypes.size() &gt; 0">
+			    and E.intstartype IN
+                <foreach item="x_intstartype" index="index" collection="intstartypes" 
+                     open="(" separator="," close=")">
+                  #{x_intstartype}
+                </foreach>
+			</if>
+
+
+			<if test="intstardelayday != null">
+				and E.intstardelayday = #{intstardelayday}
+            </if>
+
+			<if test="intstardelaydayGreaterThanOrEqual != null">
+				and E.intstardelayday &gt;= #{intstardelaydayGreaterThanOrEqual}
+            </if>
+
+			<if test="intstardelaydayLessThanOrEqual != null">
+				and E.intstardelayday &lt;= #{intstardelaydayLessThanOrEqual}
+            </if>
+
+			<if test="intstardelaydays != null and intstardelaydays.size() &gt; 0">
+			    and E.intstardelayday IN
+                <foreach item="x_intstardelayday" index="index" collection="intstardelaydays" 
+                     open="(" separator="," close=")">
+                  #{x_intstardelayday}
+                </foreach>
+			</if>
+
+
+			<if test="inttype != null">
+				and E.inttype = #{inttype}
+            </if>
+
+			<if test="inttypeGreaterThanOrEqual != null">
+				and E.inttype &gt;= #{inttypeGreaterThanOrEqual}
+            </if>
+
+			<if test="inttypeLessThanOrEqual != null">
+				and E.inttype &lt;= #{inttypeLessThanOrEqual}
+            </if>
+
+			<if test="inttypes != null and inttypes.size() &gt; 0">
+			    and E.inttype IN
+                <foreach item="x_inttype" index="index" collection="inttypes" 
+                     open="(" separator="," close=")">
+                  #{x_inttype}
+                </foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

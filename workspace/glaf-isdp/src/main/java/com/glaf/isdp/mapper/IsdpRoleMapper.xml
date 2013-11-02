@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.IsdpRoleMapper">
+
+	<resultMap id="isdpRoleResultMap"	type="com.glaf.isdp.domain.Role">
+		<id property="id" column="ID" jdbcType="VARCHAR"/>
+		<result property="roleName" column="roleName" jdbcType="VARCHAR"/>
+		<result property="roletype" column="roletype" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="alldata" column="alldata" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertIsdpRole" parameterType="com.glaf.isdp.domain.Role">
+		insert into role 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID
+			<if test="roleName != null">
+				,roleName 
+			</if>
+			<if test="roletype != null">
+				,roletype 
+			</if>
+			<if test="content != null">
+				,content 
+			</if>
+			<if test="alldata != null">
+				,alldata 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="roleName != null">
+				,#{roleName, jdbcType=VARCHAR}
+			</if>
+			<if test="roletype != null">
+				,#{roletype, jdbcType=VARCHAR}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="alldata != null">
+				,#{alldata, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateIsdpRole" parameterType="com.glaf.isdp.domain.Role">
+		update
+		role
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+		</trim>
+		where
+          ID = #{id, jdbcType=VARCHAR}
+		
+	</update>
+
+ 
+	<delete id="deleteIsdpRoleById" parameterType="string"> 
+        delete from role
+        where ID = #{id}
+	</delete>
+	
+
+	<delete id="deleteIsdpRoles" parameterType="com.glaf.isdp.query.RoleQuery">
+		delete from role
+		where ( ID IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getIsdpRoleById" parameterType="string" resultMap="isdpRoleResultMap">
+		select * from role where ID = #{id}
+	</select>
+
+
+	<select id="getIsdpRoleCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectIsdpRolesSql" />
+	</select>
+
+
+	<select id="getIsdpRoleCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.RoleQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectIsdpRolesSql" />
+	</select>
+
+
+	<select id="getIsdpRoles" 
+		parameterType="map"
+		resultMap="isdpRoleResultMap">
+		select E.*
+		<include refid="selectIsdpRolesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getIsdpRolesByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.RoleQuery"
+		resultMap="isdpRoleResultMap">
+		select E.*
+		<include refid="selectIsdpRolesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectIsdpRolesSql">
+
+		from role E
+		 
+		<where>
+
+		       1 = 1  
+
+	        
+			<if test="roleName != null and roleName != '' ">
+				and E.roleName = #{roleName}
+			</if>
+
+			<if test="roleNameLike != null and roleNameLike != '' ">
+				and E.roleName like #{roleNameLike}
+			</if>
+
+			<if test="roleNames != null and roleNames.size() &gt; 0">
+			    and E.roleName IN
+				<foreach item="x_roleName" index="index" collection="roleNames" 
+					open="(" separator="," close=")">
+                  #{x_roleName}
+				</foreach>
+			</if>
+
+	        
+			<if test="roletype != null and roletype != '' ">
+				and E.roletype = #{roletype}
+			</if>
+
+			<if test="roletypeLike != null and roletypeLike != '' ">
+				and E.roletype like #{roletypeLike}
+			</if>
+
+			<if test="roletypes != null and roletypes.size() &gt; 0">
+			    and E.roletype IN
+				<foreach item="x_roletype" index="index" collection="roletypes" 
+					open="(" separator="," close=")">
+                  #{x_roletype}
+				</foreach>
+			</if>
+
+	        
+			<if test="content != null and content != '' ">
+				and E.content = #{content}
+			</if>
+
+			<if test="contentLike != null and contentLike != '' ">
+				and E.content like #{contentLike}
+			</if>
+
+			<if test="contents != null and contents.size() &gt; 0">
+			    and E.content IN
+				<foreach item="x_content" index="index" collection="contents" 
+					open="(" separator="," close=")">
+                  #{x_content}
+				</foreach>
+			</if>
+
+	        
+			<if test="alldata != null and alldata != '' ">
+				and E.alldata = #{alldata}
+			</if>
+
+			<if test="alldataLike != null and alldataLike != '' ">
+				and E.alldata like #{alldataLike}
+			</if>
+
+			<if test="alldatas != null and alldatas.size() &gt; 0">
+			    and E.alldata IN
+				<foreach item="x_alldata" index="index" collection="alldatas" 
+					open="(" separator="," close=")">
+                  #{x_alldata}
+				</foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

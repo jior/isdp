@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.CellMyTaskMainMapper">
+
+	<resultMap id="cellMyTaskMainResultMap"	type="com.glaf.isdp.domain.CellMyTaskMain">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="ctime" column="ctime" jdbcType="TIMESTAMP"/>
+        <result property="indexId" column="index_id" jdbcType="INTEGER"/>
+        <result property="taskId" column="task_id" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="projname" column="projname" jdbcType="VARCHAR"/>
+        <result property="listno" column="listno" jdbcType="INTEGER"/>
+        <result property="typeIndexId" column="type_index_id" jdbcType="INTEGER"/>
+        <result property="flagint" column="flagint" jdbcType="INTEGER"/>
+        <result property="mycellTasksId" column="mycell_tasks_id" jdbcType="VARCHAR"/>
+        <result property="fromtasksid" column="fromtasksid" jdbcType="VARCHAR"/>
+        <result property="totaskid" column="totaskid" jdbcType="VARCHAR"/>
+        <result property="intfinish" column="intfinish" jdbcType="INTEGER"/>
+        <result property="typeTablename" column="type_tablename" jdbcType="VARCHAR"/>
+        <result property="typeId" column="type_id" jdbcType="VARCHAR"/>
+        <result property="userid" column="userid" jdbcType="VARCHAR"/>
+        <result property="netroleid" column="netroleid" jdbcType="VARCHAR"/>
+        <result property="intisflow" column="intisflow" jdbcType="INTEGER"/>
+        <result property="intStop" column="intStop" jdbcType="INTEGER"/>
+        <result property="filetypeIndex" column="filetype_index" jdbcType="INTEGER"/>
+	</resultMap>
+
+
+ 	<resultMap id="cellMyTaskMainHashMap"	type="java.util.HashMap">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="ctime" column="ctime" jdbcType="TIMESTAMP"/>
+        <result property="indexId" column="index_id" jdbcType="INTEGER"/>
+        <result property="taskId" column="task_id" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="projname" column="projname" jdbcType="VARCHAR"/>
+        <result property="listno" column="listno" jdbcType="INTEGER"/>
+        <result property="typeIndexId" column="type_index_id" jdbcType="INTEGER"/>
+        <result property="flagint" column="flagint" jdbcType="INTEGER"/>
+        <result property="mycellTasksId" column="mycell_tasks_id" jdbcType="VARCHAR"/>
+        <result property="fromtasksid" column="fromtasksid" jdbcType="VARCHAR"/>
+        <result property="totaskid" column="totaskid" jdbcType="VARCHAR"/>
+        <result property="intfinish" column="intfinish" jdbcType="INTEGER"/>
+        <result property="typeTablename" column="type_tablename" jdbcType="VARCHAR"/>
+        <result property="typeId" column="type_id" jdbcType="VARCHAR"/>
+        <result property="userid" column="userid" jdbcType="VARCHAR"/>
+        <result property="netroleid" column="netroleid" jdbcType="VARCHAR"/>
+        <result property="intisflow" column="intisflow" jdbcType="INTEGER"/>
+        <result property="intStop" column="intStop" jdbcType="INTEGER"/>
+        <result property="filetypeIndex" column="filetype_index" jdbcType="INTEGER"/>
+	</resultMap>
+ 
+	<insert id="insertCellMyTaskMain" parameterType="com.glaf.isdp.domain.CellMyTaskMain">
+		insert into cell_mytaskmain 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="ctime != null">
+				,ctime 
+			</if>
+			<if test="indexId != null">
+				,index_id 
+			</if>
+			<if test="taskId != null">
+				,task_id 
+			</if>
+			<if test="name != null">
+				,name 
+			</if>
+			<if test="projname != null">
+				,projname 
+			</if>
+			<if test="listno != null">
+				,listno 
+			</if>
+			<if test="typeIndexId != null">
+				,type_index_id 
+			</if>
+			<if test="flagint != null">
+				,flagint 
+			</if>
+			<if test="mycellTasksId != null">
+				,mycell_tasks_id 
+			</if>
+			<if test="fromtasksid != null">
+				,fromtasksid 
+			</if>
+			<if test="totaskid != null">
+				,totaskid 
+			</if>
+			<if test="intfinish != null">
+				,intfinish 
+			</if>
+			<if test="fileContent != null">
+			</if>
+			<if test="typeTablename != null">
+				,type_tablename 
+			</if>
+			<if test="typeId != null">
+				,type_id 
+			</if>
+			<if test="userid != null">
+				,userid 
+			</if>
+			<if test="netroleid != null">
+				,netroleid 
+			</if>
+			<if test="intisflow != null">
+				,intisflow 
+			</if>
+			<if test="intStop != null">
+				,intStop 
+			</if>
+			<if test="filetypeIndex != null">
+				,filetype_index 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="ctime != null">
+				,#{ctime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="taskId != null">
+				,#{taskId, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="projname != null">
+				,#{projname, jdbcType=VARCHAR}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+			<if test="typeIndexId != null">
+				,#{typeIndexId, jdbcType=INTEGER}
+			</if>
+			<if test="flagint != null">
+				,#{flagint, jdbcType=INTEGER}
+			</if>
+			<if test="mycellTasksId != null">
+				,#{mycellTasksId, jdbcType=VARCHAR}
+			</if>
+			<if test="fromtasksid != null">
+				,#{fromtasksid, jdbcType=VARCHAR}
+			</if>
+			<if test="totaskid != null">
+				,#{totaskid, jdbcType=VARCHAR}
+			</if>
+			<if test="intfinish != null">
+				,#{intfinish, jdbcType=INTEGER}
+			</if>
+			<if test="fileContent != null">
+			</if>
+			<if test="typeTablename != null">
+				,#{typeTablename, jdbcType=VARCHAR}
+			</if>
+			<if test="typeId != null">
+				,#{typeId, jdbcType=VARCHAR}
+			</if>
+			<if test="userid != null">
+				,#{userid, jdbcType=VARCHAR}
+			</if>
+			<if test="netroleid != null">
+				,#{netroleid, jdbcType=VARCHAR}
+			</if>
+			<if test="intisflow != null">
+				,#{intisflow, jdbcType=INTEGER}
+			</if>
+			<if test="intStop != null">
+				,#{intStop, jdbcType=INTEGER}
+			</if>
+			<if test="filetypeIndex != null">
+				,#{filetypeIndex, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateCellMyTaskMain" parameterType="com.glaf.isdp.domain.CellMyTaskMain">
+		update
+		cell_mytaskmain
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="ctime != null">
+				ctime = #{ctime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="indexId != null">
+				index_id = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="taskId != null">
+				task_id = #{taskId, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="projname != null">
+				projname = #{projname, jdbcType=VARCHAR},
+			</if>
+			<if test="listno != null">
+				listno = #{listno, jdbcType=INTEGER},
+			</if>
+			<if test="typeIndexId != null">
+				type_index_id = #{typeIndexId, jdbcType=INTEGER},
+			</if>
+			<if test="flagint != null">
+				flagint = #{flagint, jdbcType=INTEGER},
+			</if>
+			<if test="mycellTasksId != null">
+				mycell_tasks_id = #{mycellTasksId, jdbcType=VARCHAR},
+			</if>
+			<if test="fromtasksid != null">
+				fromtasksid = #{fromtasksid, jdbcType=VARCHAR},
+			</if>
+			<if test="totaskid != null">
+				totaskid = #{totaskid, jdbcType=VARCHAR},
+			</if>
+			<if test="intfinish != null">
+				intfinish = #{intfinish, jdbcType=INTEGER},
+			</if>
+			<if test="fileContent != null">
+			</if>
+			<if test="typeTablename != null">
+				type_tablename = #{typeTablename, jdbcType=VARCHAR},
+			</if>
+			<if test="typeId != null">
+				type_id = #{typeId, jdbcType=VARCHAR},
+			</if>
+			<if test="userid != null">
+				userid = #{userid, jdbcType=VARCHAR},
+			</if>
+			<if test="netroleid != null">
+				netroleid = #{netroleid, jdbcType=VARCHAR},
+			</if>
+			<if test="intisflow != null">
+				intisflow = #{intisflow, jdbcType=INTEGER},
+			</if>
+			<if test="intStop != null">
+				intStop = #{intStop, jdbcType=INTEGER},
+			</if>
+			<if test="filetypeIndex != null">
+				filetype_index = #{filetypeIndex, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteCellMyTaskMainById" parameterType="string"> 
+        delete from cell_mytaskmain
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteCellMyTaskMains" parameterType="com.glaf.isdp.query.CellMyTaskMainQuery">
+		delete from cell_mytaskmain
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getCellMyTaskMainById" parameterType="string" resultMap="cellMyTaskMainResultMap">
+		select * from cell_mytaskmain where id = #{id}
+	</select>
+	
+	<select id="getCellMyTaskMainByFlowActId" parameterType="string" resultMap="cellMyTaskMainResultMap">
+		
+		SELECT *
+		FROM cell_mytaskmain
+		WHERE (id IN
+		         ( SELECT Main_id FROM flow_Process
+		           WHERE id IN (SELECT Process_id FROM flow_activ WHERE id = #{id})
+		          )
+		      )
+               
+	</select>
+	
+	
+	<select id="getCellMyTaskMainIndexIdByFlowActId" parameterType="string" resultType="int">
+		
+		select index_id from cell_mytaskmain where id in(
+		  select main_id from flow_Process where id in(
+		      select process_id from flow_activ where id = #{id}
+		    )
+		)
+               
+	</select>
+
+
+	<select id="getCellMyTaskMainCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellMyTaskMainsSql" />
+	</select>
+
+
+	<select id="getCellMyTaskMainCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellMyTaskMainQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellMyTaskMainsSql" />
+	</select>
+
+
+	<select id="getCellMyTaskMains" 
+		parameterType="map"
+		resultMap="cellMyTaskMainResultMap">
+		select E.*
+		<include refid="selectCellMyTaskMainsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getCellMyTaskMainsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellMyTaskMainQuery"
+		resultMap="cellMyTaskMainResultMap">
+		select E.*
+		<include refid="selectCellMyTaskMainsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectCellMyTaskMainsSql">
+
+		from cell_mytaskmain E
+		 
+		<where>
+
+		       1 = 1  
+
+			<if test="ctimeGreaterThanOrEqual != null">
+				and E.ctime &gt;= #{ctimeGreaterThanOrEqual}
+			</if>
+
+			<if test="ctimeLessThanOrEqual != null">
+				and E.ctime &lt;= #{ctimeLessThanOrEqual}
+			</if>
+
+			<if test="indexId != null">
+				and E.index_id = #{indexId}
+			</if>
+
+			<if test="indexIdGreaterThanOrEqual != null">
+				and E.index_id &gt;= #{indexIdGreaterThanOrEqual}
+			</if>
+
+			<if test="indexIdLessThanOrEqual != null">
+				and E.index_id &lt;= #{indexIdLessThanOrEqual}
+			</if>
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+			    and E.index_id IN
+				<foreach item="x_indexId" index="index" collection="indexIds" 
+					open="(" separator="," close=")">
+                  #{x_indexId}
+				</foreach>
+			</if>
+
+	        
+			<if test="taskId != null and taskId != '' ">
+				and E.task_id = #{taskId}
+			</if>
+
+			<if test="taskIdLike != null and taskIdLike != '' ">
+				and E.task_id like #{taskIdLike}
+			</if>
+
+			<if test="taskIds != null and taskIds.size() &gt; 0">
+			    and E.task_id IN
+				<foreach item="x_taskId" index="index" collection="taskIds" 
+					open="(" separator="," close=")">
+                  #{x_taskId}
+				</foreach>
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.name like #{nameLike}
+			</if>
+
+			<if test="projnameLike != null and projnameLike != '' ">
+				and E.projname like #{projnameLike}
+			</if>
+
+			<if test="typeIndexId != null">
+				and E.type_index_id = #{typeIndexId}
+			</if>
+
+			<if test="typeIndexIdGreaterThanOrEqual != null">
+				and E.type_index_id &gt;= #{typeIndexIdGreaterThanOrEqual}
+			</if>
+
+			<if test="typeIndexIdLessThanOrEqual != null">
+				and E.type_index_id &lt;= #{typeIndexIdLessThanOrEqual}
+			</if>
+
+			<if test="typeIndexIds != null and typeIndexIds.size() &gt; 0">
+			    and E.type_index_id IN
+				<foreach item="x_typeIndexId" index="index" collection="typeIndexIds" 
+					open="(" separator="," close=")">
+                  #{x_typeIndexId}
+				</foreach>
+			</if>
+
+
+			<if test="flagint != null">
+				and E.flagint = #{flagint}
+			</if>
+
+			<if test="flagintGreaterThanOrEqual != null">
+				and E.flagint &gt;= #{flagintGreaterThanOrEqual}
+			</if>
+
+			<if test="flagintLessThanOrEqual != null">
+				and E.flagint &lt;= #{flagintLessThanOrEqual}
+			</if>
+
+			<if test="flagints != null and flagints.size() &gt; 0">
+			    and E.flagint IN
+				<foreach item="x_flagint" index="index" collection="flagints" 
+					open="(" separator="," close=")">
+                  #{x_flagint}
+				</foreach>
+			</if>
+
+	        
+			<if test="mycellTasksId != null and mycellTasksId != '' ">
+				and E.mycell_tasks_id = #{mycellTasksId}
+			</if>
+
+			<if test="mycellTasksIdLike != null and mycellTasksIdLike != '' ">
+				and E.mycell_tasks_id like #{mycellTasksIdLike}
+			</if>
+
+			<if test="mycellTasksIds != null and mycellTasksIds.size() &gt; 0">
+			    and E.mycell_tasks_id IN
+				<foreach item="x_mycellTasksId" index="index" collection="mycellTasksIds" 
+					open="(" separator="," close=")">
+                  #{x_mycellTasksId}
+				</foreach>
+			</if>
+
+	        
+			<if test="fromtasksid != null and fromtasksid != '' ">
+				and E.fromtasksid = #{fromtasksid}
+			</if>
+
+			<if test="fromtasksidLike != null and fromtasksidLike != '' ">
+				and E.fromtasksid like #{fromtasksidLike}
+			</if>
+
+			<if test="fromtasksids != null and fromtasksids.size() &gt; 0">
+			    and E.fromtasksid IN
+				<foreach item="x_fromtasksid" index="index" collection="fromtasksids" 
+					open="(" separator="," close=")">
+                  #{x_fromtasksid}
+				</foreach>
+			</if>
+
+	        
+			<if test="totaskid != null and totaskid != '' ">
+				and E.totaskid = #{totaskid}
+			</if>
+
+			<if test="totaskidLike != null and totaskidLike != '' ">
+				and E.totaskid like #{totaskidLike}
+			</if>
+
+			<if test="totaskids != null and totaskids.size() &gt; 0">
+			    and E.totaskid IN
+				<foreach item="x_totaskid" index="index" collection="totaskids" 
+					open="(" separator="," close=")">
+                  #{x_totaskid}
+				</foreach>
+			</if>
+
+
+			<if test="intfinish != null">
+				and E.intfinish = #{intfinish}
+			</if>
+
+			<if test="intfinishGreaterThanOrEqual != null">
+				and E.intfinish &gt;= #{intfinishGreaterThanOrEqual}
+			</if>
+
+			<if test="intfinishLessThanOrEqual != null">
+				and E.intfinish &lt;= #{intfinishLessThanOrEqual}
+			</if>
+
+			<if test="intfinishs != null and intfinishs.size() &gt; 0">
+			    and E.intfinish IN
+				<foreach item="x_intfinish" index="index" collection="intfinishs" 
+					open="(" separator="," close=")">
+                  #{x_intfinish}
+				</foreach>
+			</if>
+
+	        
+			<if test="typeTablename != null and typeTablename != '' ">
+				and E.type_tablename = #{typeTablename}
+			</if>
+
+			<if test="typeTablenameLike != null and typeTablenameLike != '' ">
+				and E.type_tablename like #{typeTablenameLike}
+			</if>
+
+			<if test="typeTablenames != null and typeTablenames.size() &gt; 0">
+			    and E.type_tablename IN
+				<foreach item="x_typeTablename" index="index" collection="typeTablenames" 
+					open="(" separator="," close=")">
+                  #{x_typeTablename}
+				</foreach>
+			</if>
+
+	        
+			<if test="typeId != null and typeId != '' ">
+				and E.type_id = #{typeId}
+			</if>
+
+			<if test="typeIdLike != null and typeIdLike != '' ">
+				and E.type_id like #{typeIdLike}
+			</if>
+
+			<if test="typeIds != null and typeIds.size() &gt; 0">
+			    and E.type_id IN
+				<foreach item="x_typeId" index="index" collection="typeIds" 
+					open="(" separator="," close=")">
+                  #{x_typeId}
+				</foreach>
+			</if>
+
+	        
+			<if test="userid != null and userid != '' ">
+				and E.userid = #{userid}
+			</if>
+
+			<if test="useridLike != null and useridLike != '' ">
+				and E.userid like #{useridLike}
+			</if>
+
+			<if test="userids != null and userids.size() &gt; 0">
+			    and E.userid IN
+				<foreach item="x_userid" index="index" collection="userids" 
+					open="(" separator="," close=")">
+                  #{x_userid}
+				</foreach>
+			</if>
+
+	        
+			<if test="netroleid != null and netroleid != '' ">
+				and E.netroleid = #{netroleid}
+			</if>
+
+			<if test="netroleidLike != null and netroleidLike != '' ">
+				and E.netroleid like #{netroleidLike}
+			</if>
+
+			<if test="netroleids != null and netroleids.size() &gt; 0">
+			    and E.netroleid IN
+				<foreach item="x_netroleid" index="index" collection="netroleids" 
+					open="(" separator="," close=")">
+                  #{x_netroleid}
+				</foreach>
+			</if>
+
+
+			<if test="intisflow != null">
+				and E.intisflow = #{intisflow}
+			</if>
+
+			<if test="intisflowGreaterThanOrEqual != null">
+				and E.intisflow &gt;= #{intisflowGreaterThanOrEqual}
+			</if>
+
+			<if test="intisflowLessThanOrEqual != null">
+				and E.intisflow &lt;= #{intisflowLessThanOrEqual}
+			</if>
+
+			<if test="intisflows != null and intisflows.size() &gt; 0">
+			    and E.intisflow IN
+				<foreach item="x_intisflow" index="index" collection="intisflows" 
+					open="(" separator="," close=")">
+                  #{x_intisflow}
+				</foreach>
+			</if>
+
+
+			<if test="intStop != null">
+				and E.intStop = #{intStop}
+			</if>
+
+			<if test="intStopGreaterThanOrEqual != null">
+				and E.intStop &gt;= #{intStopGreaterThanOrEqual}
+			</if>
+
+			<if test="intStopLessThanOrEqual != null">
+				and E.intStop &lt;= #{intStopLessThanOrEqual}
+			</if>
+
+			<if test="intStops != null and intStops.size() &gt; 0">
+			    and E.intStop IN
+				<foreach item="x_intStop" index="index" collection="intStops" 
+					open="(" separator="," close=")">
+                  #{x_intStop}
+				</foreach>
+			</if>
+
+
+			<if test="filetypeIndex != null">
+				and E.filetype_index = #{filetypeIndex}
+			</if>
+
+			<if test="filetypeIndexGreaterThanOrEqual != null">
+				and E.filetype_index &gt;= #{filetypeIndexGreaterThanOrEqual}
+			</if>
+
+			<if test="filetypeIndexLessThanOrEqual != null">
+				and E.filetype_index &lt;= #{filetypeIndexLessThanOrEqual}
+			</if>
+
+			<if test="filetypeIndexs != null and filetypeIndexs.size() &gt; 0">
+			    and E.filetype_index IN
+				<foreach item="x_filetypeIndex" index="index" collection="filetypeIndexs" 
+					open="(" separator="," close=")">
+                  #{x_filetypeIndex}
+				</foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

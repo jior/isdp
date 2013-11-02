@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.RoleUseMapper">
+
+	<resultMap id="roleUseResultMap"	type="com.glaf.isdp.domain.RoleUse">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="roleId" column="roleId" jdbcType="VARCHAR"/>
+		<result property="usetype" column="usetype" jdbcType="VARCHAR"/>
+		<result property="pid" column="pid" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertRoleUse" parameterType="com.glaf.isdp.domain.RoleUse">
+		insert into roleuse 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="roleId != null">
+				,roleId 
+			</if>
+			<if test="usetype != null">
+				,usetype 
+			</if>
+			<if test="pid != null">
+				,pid 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="roleId != null">
+				,#{roleId, jdbcType=VARCHAR}
+			</if>
+			<if test="usetype != null">
+				,#{usetype, jdbcType=VARCHAR}
+			</if>
+			<if test="pid != null">
+				,#{pid, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateRoleUse" parameterType="com.glaf.isdp.domain.RoleUse">
+		update roleuse
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="roleId != null">
+				roleId = #{roleId, jdbcType=VARCHAR},
+			</if>
+			<if test="usetype != null">
+				usetype = #{usetype, jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				pid = #{pid, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+	</update>
+
+ 
+	<delete id="deleteRoleUseById" parameterType="string"> 
+        delete from roleuse
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteRoleUses" parameterType="com.glaf.isdp.query.RoleUseQuery">
+		delete from roleuse
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getRoleUseById" parameterType="string" resultMap="roleUseResultMap">
+		select * from roleuse where id = #{id}
+	</select>
+
+
+	<select id="getRoleUseCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectRoleUsesSql" />
+	</select>
+
+
+	<select id="getRoleUseCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.RoleUseQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectRoleUsesSql" />
+	</select>
+
+
+	<select id="getRoleUses" 
+		parameterType="map"
+		resultMap="roleUseResultMap">
+		select E.*
+		<include refid="selectRoleUsesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getRoleUsesByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.RoleUseQuery"
+		resultMap="roleUseResultMap">
+		select E.*
+		<include refid="selectRoleUsesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectRoleUsesSql">
+
+		from roleuse E
+		 
+		<where>
+
+		       1 = 1  
+
+			<if test="roleId != null and roleId != '' ">
+				and E.roleId = #{roleId}
+			</if>
+
+			<if test="roleIds != null and roleIds.size() &gt; 0">
+			    and E.roleId IN
+				<foreach item="x_roleId" index="index" collection="roleIds" 
+					open="(" separator="," close=")">
+                  #{x_roleId}
+				</foreach>
+			</if>
+
+	        
+			<if test="usetype != null and usetype != '' ">
+				and E.usetype = #{usetype}
+			</if>
+
+			<if test="usetypeLike != null and usetypeLike != '' ">
+				and E.usetype like #{usetypeLike}
+			</if>
+
+			<if test="usetypes != null and usetypes.size() &gt; 0">
+			    and E.usetype IN
+				<foreach item="x_usetype" index="index" collection="usetypes" 
+					open="(" separator="," close=")">
+                  #{x_usetype}
+				</foreach>
+			</if>
+
+
+			<if test="pid != null">
+				and E.pid = #{pid}
+			</if>
+
+			<if test="pidGreaterThanOrEqual != null">
+				and E.pid &gt;= #{pidGreaterThanOrEqual}
+			</if>
+
+			<if test="pidLessThanOrEqual != null">
+				and E.pid &lt;= #{pidLessThanOrEqual}
+			</if>
+
+			<if test="pids != null and pids.size() &gt; 0">
+			    and E.pid IN
+				<foreach item="x_pid" index="index" collection="pids" 
+					open="(" separator="," close=")">
+                  #{x_pid}
+				</foreach>
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

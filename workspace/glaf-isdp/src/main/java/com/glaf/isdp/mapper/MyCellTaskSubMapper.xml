@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.MyCellTaskSubMapper">
+
+	<resultMap id="myCellTaskSubResultMap"	type="com.glaf.isdp.domain.MyCellTaskSub">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="tasksId" column="tasks_id" jdbcType="VARCHAR"/>
+		<result property="busiessId" column="busiess_id" jdbcType="VARCHAR"/>
+		<result property="celldotIndex" column="celldot_index" jdbcType="INTEGER"/>
+		<result property="filedotFileid" column="filedot_fileid" jdbcType="VARCHAR"/>
+		<result property="inttasktype" column="inttasktype" jdbcType="INTEGER"/>
+		<result property="indexId" column="index_id" jdbcType="INTEGER"/>
+		<result property="sname" column="sname" jdbcType="VARCHAR"/>
+		<result property="intistasks" column="intistasks" jdbcType="INTEGER"/>
+		<result property="intprojprocess" column="intprojprocess" jdbcType="INTEGER"/>
+		<result property="intistype" column="intistype" jdbcType="INTEGER"/>
+		<result property="nameTab" column="name_tab" jdbcType="VARCHAR"/>
+		<result property="flowid" column="flowid" jdbcType="VARCHAR"/>
+		<result property="constr" column="constr" jdbcType="VARCHAR"/>
+		<result property="intcandelcell" column="intcandelcell" jdbcType="INTEGER"/>
+		<result property="intcanAddcell" column="intcanAddcell" jdbcType="INTEGER"/>
+		<result property="intwbsnames" column="intwbsnames" jdbcType="INTEGER"/>
+	</resultMap>
+
+	<resultMap id="myCellTaskSubHashMap"	type="java.util.HashMap">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="tasksId" column="tasks_id" jdbcType="VARCHAR"/>
+		<result property="busiessId" column="busiess_id" jdbcType="VARCHAR"/>
+		<result property="celldotIndex" column="celldot_index" jdbcType="INTEGER"/>
+		<result property="filedotFileid" column="filedot_fileid" jdbcType="VARCHAR"/>
+		<result property="inttasktype" column="inttasktype" jdbcType="INTEGER"/>
+		<result property="indexId" column="index_id" jdbcType="INTEGER"/>
+		<result property="sname" column="sname" jdbcType="VARCHAR"/>
+		<result property="intistasks" column="intistasks" jdbcType="INTEGER"/>
+		<result property="intprojprocess" column="intprojprocess" jdbcType="INTEGER"/>
+		<result property="intistype" column="intistype" jdbcType="INTEGER"/>
+		<result property="nameTab" column="name_tab" jdbcType="VARCHAR"/>
+		<result property="flowid" column="flowid" jdbcType="VARCHAR"/>
+		<result property="constr" column="constr" jdbcType="VARCHAR"/>
+		<result property="intcandelcell" column="intcandelcell" jdbcType="INTEGER"/>
+		<result property="intcanAddcell" column="intcanAddcell" jdbcType="INTEGER"/>
+		<result property="intwbsnames" column="intwbsnames" jdbcType="INTEGER"/>
+	</resultMap>
+ 
+	<insert id="insertMyCellTaskSub" parameterType="com.glaf.isdp.domain.MyCellTaskSub">
+		insert into myCell_tasks_sub 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="tasksId != null">
+				,tasks_id 
+			</if>
+			<if test="busiessId != null">
+				,busiess_id 
+			</if>
+			<if test="celldotIndex != null">
+				,celldot_index 
+			</if>
+			<if test="filedotFileid != null">
+				,filedot_fileid 
+			</if>
+			<if test="inttasktype != null">
+				,inttasktype 
+			</if>
+			<if test="indexId != null">
+				,index_id 
+			</if>
+			<if test="sname != null">
+				,sname 
+			</if>
+			<if test="intistasks != null">
+				,intistasks 
+			</if>
+			<if test="intprojprocess != null">
+				,intprojprocess 
+			</if>
+			<if test="intistype != null">
+				,intistype 
+			</if>
+			<if test="nameTab != null">
+				,name_tab 
+			</if>
+			<if test="flowid != null">
+				,flowid 
+			</if>
+			<if test="constr != null">
+				,constr 
+			</if>
+			<if test="intcandelcell != null">
+				,intcandelcell 
+			</if>
+			<if test="intcanAddcell != null">
+				,intcanAddcell 
+			</if>
+			<if test="intwbsnames != null">
+				,intwbsnames 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="tasksId != null">
+				,#{tasksId, jdbcType=VARCHAR}
+			</if>
+			<if test="busiessId != null">
+				,#{busiessId, jdbcType=VARCHAR}
+			</if>
+			<if test="celldotIndex != null">
+				,#{celldotIndex, jdbcType=INTEGER}
+			</if>
+			<if test="filedotFileid != null">
+				,#{filedotFileid, jdbcType=VARCHAR}
+			</if>
+			<if test="inttasktype != null">
+				,#{inttasktype, jdbcType=INTEGER}
+			</if>
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="sname != null">
+				,#{sname, jdbcType=VARCHAR}
+			</if>
+			<if test="intistasks != null">
+				,#{intistasks, jdbcType=INTEGER}
+			</if>
+			<if test="intprojprocess != null">
+				,#{intprojprocess, jdbcType=INTEGER}
+			</if>
+			<if test="intistype != null">
+				,#{intistype, jdbcType=INTEGER}
+			</if>
+			<if test="nameTab != null">
+				,#{nameTab, jdbcType=VARCHAR}
+			</if>
+			<if test="flowid != null">
+				,#{flowid, jdbcType=VARCHAR}
+			</if>
+			<if test="constr != null">
+				,#{constr, jdbcType=VARCHAR}
+			</if>
+			<if test="intcandelcell != null">
+				,#{intcandelcell, jdbcType=INTEGER}
+			</if>
+			<if test="intcanAddcell != null">
+				,#{intcanAddcell, jdbcType=INTEGER}
+			</if>
+			<if test="intwbsnames != null">
+				,#{intwbsnames, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateMyCellTaskSub" parameterType="com.glaf.isdp.domain.MyCellTaskSub">
+		update
+		myCell_tasks_sub
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="tasksId != null">
+				tasks_id = #{tasksId, jdbcType=VARCHAR},
+			</if>
+			<if test="busiessId != null">
+				busiess_id = #{busiessId, jdbcType=VARCHAR},
+			</if>
+			<if test="celldotIndex != null">
+				celldot_index = #{celldotIndex, jdbcType=INTEGER},
+			</if>
+			<if test="filedotFileid != null">
+				filedot_fileid = #{filedotFileid, jdbcType=VARCHAR},
+			</if>
+			<if test="inttasktype != null">
+				inttasktype = #{inttasktype, jdbcType=INTEGER},
+			</if>
+			<if test="indexId != null">
+				index_id = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="sname != null">
+				sname = #{sname, jdbcType=VARCHAR},
+			</if>
+			<if test="intistasks != null">
+				intistasks = #{intistasks, jdbcType=INTEGER},
+			</if>
+			<if test="intprojprocess != null">
+				intprojprocess = #{intprojprocess, jdbcType=INTEGER},
+			</if>
+			<if test="intistype != null">
+				intistype = #{intistype, jdbcType=INTEGER},
+			</if>
+			<if test="nameTab != null">
+				name_tab = #{nameTab, jdbcType=VARCHAR},
+			</if>
+			<if test="flowid != null">
+				flowid = #{flowid, jdbcType=VARCHAR},
+			</if>
+			<if test="constr != null">
+				constr = #{constr, jdbcType=VARCHAR},
+			</if>
+			<if test="intcandelcell != null">
+				intcandelcell = #{intcandelcell, jdbcType=INTEGER},
+			</if>
+			<if test="intcanAddcell != null">
+				intcanAddcell = #{intcanAddcell, jdbcType=INTEGER},
+			</if>
+			<if test="intwbsnames != null">
+				intwbsnames = #{intwbsnames, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+	</update>
+
+ 
+	<delete id="deleteMyCellTaskSubById" parameterType="string"> 
+        delete from myCell_tasks_sub
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteMyCellTaskSub" parameterType="com.glaf.isdp.query.MyCellTaskSubQuery">
+		delete from myCell_tasks_sub
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getMyCellTaskSubById" parameterType="string" resultMap="myCellTaskSubResultMap">
+		select * from myCell_tasks_sub where id = #{id}
+	</select>
+
+
+	<select id="getMyCellTaskSubCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectMyCellTaskSubSql" />
+	</select>
+
+
+	<select id="getMyCellTaskSubCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.MyCellTaskSubQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectMyCellTaskSubSql" />
+	</select>
+
+
+	<select id="getMyCellTaskSubs" 
+		parameterType="map"
+		resultMap="myCellTaskSubResultMap">
+		select E.*
+		<include refid="selectMyCellTaskSubSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getMyCellTaskSubsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.MyCellTaskSubQuery"
+		resultMap="myCellTaskSubResultMap">
+		select E.*
+		<include refid="selectMyCellTaskSubSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectMyCellTaskSubSql">
+
+		from myCell_tasks_sub E
+		 
+		<where>
+		       1 = 1  
+	        
+			<if test="tasksId != null and tasksId != '' ">
+				and E.tasks_id = #{tasksId}
+			</if>
+
+			<if test="tasksIdLike != null and tasksIdLike != '' ">
+				and E.tasks_id like #{tasksIdLike}
+			</if>
+
+			<if test="tasksIds != null and tasksIds.size() &gt; 0">
+			    and E.tasks_id IN
+				<foreach item="x_tasksId" index="index" collection="tasksIds" 
+					open="(" separator="," close=")">
+                  #{x_tasksId}
+				</foreach>
+			</if>
+
+	        
+			<if test="busiessId != null and busiessId != '' ">
+				and E.busiess_id = #{busiessId}
+			</if>
+
+			<if test="busiessIdLike != null and busiessIdLike != '' ">
+				and E.busiess_id like #{busiessIdLike}
+			</if>
+
+			<if test="busiessIds != null and busiessIds.size() &gt; 0">
+			    and E.busiess_id IN
+				<foreach item="x_busiessId" index="index" collection="busiessIds" 
+					open="(" separator="," close=")">
+                  #{x_busiessId}
+				</foreach>
+			</if>
+
+			<if test="celldotIndex != null">
+				and E.celldot_index = #{celldotIndex}
+			</if>
+
+			<if test="celldotIndexGreaterThanOrEqual != null">
+				and E.celldot_index &gt;= #{celldotIndexGreaterThanOrEqual}
+			</if>
+
+			<if test="celldotIndexLessThanOrEqual != null">
+				and E.celldot_index &lt;= #{celldotIndexLessThanOrEqual}
+			</if>
+	        
+			<if test="filedotFileid != null and filedotFileid != '' ">
+				and E.filedot_fileid = #{filedotFileid}
+			</if>
+
+			<if test="filedotFileidLike != null and filedotFileidLike != '' ">
+				and E.filedot_fileid like #{filedotFileidLike}
+			</if>
+
+			<if test="inttasktype != null">
+				and E.inttasktype = #{inttasktype}
+			</if>
+
+			<if test="inttasktypeGreaterThanOrEqual != null">
+				and E.inttasktype &gt;= #{inttasktypeGreaterThanOrEqual}
+			</if>
+
+			<if test="inttasktypeLessThanOrEqual != null">
+				and E.inttasktype &lt;= #{inttasktypeLessThanOrEqual}
+			</if>
+
+			<if test="inttasktypes != null and inttasktypes.size() &gt; 0">
+			    and E.inttasktype IN
+				<foreach item="x_inttasktype" index="index" collection="inttasktypes" 
+					open="(" separator="," close=")">
+                  #{x_inttasktype}
+				</foreach>
+			</if>
+
+
+			<if test="indexId != null">
+				and E.index_id = #{indexId}
+			</if>
+
+			<if test="indexIdGreaterThanOrEqual != null">
+				and E.index_id &gt;= #{indexIdGreaterThanOrEqual}
+			</if>
+
+			<if test="indexIdLessThanOrEqual != null">
+				and E.index_id &lt;= #{indexIdLessThanOrEqual}
+			</if>
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+			    and E.index_id IN
+				<foreach item="x_indexId" index="index" collection="indexIds" 
+					open="(" separator="," close=")">
+                  #{x_indexId}
+				</foreach>
+			</if>
+
+			<if test="snameLike != null and snameLike != '' ">
+				and E.sname like #{snameLike}
+			</if>
+
+			<if test="intistasks != null">
+				and E.intistasks = #{intistasks}
+			</if>
+
+			<if test="intistasksGreaterThanOrEqual != null">
+				and E.intistasks &gt;= #{intistasksGreaterThanOrEqual}
+			</if>
+
+			<if test="intistasksLessThanOrEqual != null">
+				and E.intistasks &lt;= #{intistasksLessThanOrEqual}
+			</if>
+
+			<if test="intistaskss != null and intistaskss.size() &gt; 0">
+			    and E.intistasks IN
+				<foreach item="x_intistasks" index="index" collection="intistaskss" 
+					open="(" separator="," close=")">
+                  #{x_intistasks}
+				</foreach>
+			</if>
+
+
+			<if test="intprojprocess != null">
+				and E.intprojprocess = #{intprojprocess}
+			</if>
+
+			<if test="intprojprocessGreaterThanOrEqual != null">
+				and E.intprojprocess &gt;= #{intprojprocessGreaterThanOrEqual}
+			</if>
+
+			<if test="intprojprocessLessThanOrEqual != null">
+				and E.intprojprocess &lt;= #{intprojprocessLessThanOrEqual}
+			</if>
+
+			<if test="intprojprocesss != null and intprojprocesss.size() &gt; 0">
+			    and E.intprojprocess IN
+				<foreach item="x_intprojprocess" index="index" collection="intprojprocesss" 
+					open="(" separator="," close=")">
+                  #{x_intprojprocess}
+				</foreach>
+			</if>
+
+
+			<if test="intistype != null">
+				and E.intistype = #{intistype}
+			</if>
+
+			<if test="intistypeGreaterThanOrEqual != null">
+				and E.intistype &gt;= #{intistypeGreaterThanOrEqual}
+			</if>
+
+			<if test="intistypeLessThanOrEqual != null">
+				and E.intistype &lt;= #{intistypeLessThanOrEqual}
+			</if>
+
+			<if test="intistypes != null and intistypes.size() &gt; 0">
+			    and E.intistype IN
+				<foreach item="x_intistype" index="index" collection="intistypes" 
+					open="(" separator="," close=")">
+                  #{x_intistype}
+				</foreach>
+			</if>
+
+			<if test="nameTabLike != null and nameTabLike != '' ">
+				and E.name_tab like #{nameTabLike}
+			</if>
+
+			<if test="flowid != null and flowid != '' ">
+				and E.flowid = #{flowid}
+			</if>
+
+			<if test="flowidLike != null and flowidLike != '' ">
+				and E.flowid like #{flowidLike}
+			</if>
+
+			<if test="flowids != null and flowids.size() &gt; 0">
+			    and E.flowid IN
+				<foreach item="x_flowid" index="index" collection="flowids" 
+					open="(" separator="," close=")">
+                  #{x_flowid}
+				</foreach>
+			</if>
+
+			<if test="constrLike != null and constrLike != '' ">
+				and E.constr like #{constrLike}
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

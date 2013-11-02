@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.TreetopMapper">
+
+	<resultMap id="treetopResultMap"	type="com.glaf.isdp.domain.Treetop">
+		<id property="indexId" column="index_id" jdbcType="INTEGER" />
+		<result property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+		<result property="indexName" column="index_name" jdbcType="VARCHAR"/>
+		<result property="nlevel" column="nlevel" jdbcType="INTEGER"/>
+		<result property="num" column="num" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="ftype" column="ftype" jdbcType="VARCHAR"/>
+		<result property="secondIndexName" column="sindex_name" jdbcType="VARCHAR"/>
+		<result property="filenum" column="filenum" jdbcType="VARCHAR"/>
+		<result property="ztype" column="ztype" jdbcType="INTEGER"/>
+		<result property="content2" column="content2" jdbcType="VARCHAR"/>
+		<result property="topnode" column="topnode" jdbcType="VARCHAR"/>
+		<result property="isnotshow" column="isnotshow" jdbcType="VARCHAR"/>
+		<result property="nodeico" column="nodeico" jdbcType="INTEGER"/>
+		<result property="filenumid" column="filenumid" jdbcType="VARCHAR"/>
+		<result property="slevel" column="slevel" jdbcType="VARCHAR"/>
+		<result property="savetime" column="savetime" jdbcType="VARCHAR"/>
+	</resultMap>
+
+
+	<resultMap id="treetopHashMap"	type="java.util.HashMap">
+		<id property="indexId" column="index_id" jdbcType="INTEGER" />
+		<result property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+		<result property="indexName" column="index_name" jdbcType="VARCHAR"/>
+		<result property="nlevel" column="nlevel" jdbcType="INTEGER"/>
+		<result property="num" column="num" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="ftype" column="ftype" jdbcType="VARCHAR"/>
+		<result property="secondIndexName" column="sindex_name" jdbcType="VARCHAR"/>
+		<result property="filenum" column="filenum" jdbcType="VARCHAR"/>
+		<result property="ztype" column="ztype" jdbcType="INTEGER"/>
+		<result property="content2" column="content2" jdbcType="VARCHAR"/>
+		<result property="topnode" column="topnode" jdbcType="VARCHAR"/>
+		<result property="isnotshow" column="isnotshow" jdbcType="VARCHAR"/>
+		<result property="nodeico" column="nodeico" jdbcType="INTEGER"/>
+		<result property="filenumid" column="filenumid" jdbcType="VARCHAR"/>
+		<result property="slevel" column="slevel" jdbcType="VARCHAR"/>
+		<result property="savetime" column="savetime" jdbcType="VARCHAR"/>
+	</resultMap>
+ 
+	<insert id="insertTreetop" parameterType="com.glaf.isdp.domain.Treetop">
+		insert into treetop 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    index_id
+			<if test="id != null">
+				,id 
+			</if>
+			<if test="parentId != null">
+				,parent_id 
+			</if>
+			<if test="indexName != null">
+				,index_name 
+			</if>
+			<if test="nlevel != null">
+				,nlevel 
+			</if>
+			<if test="num != null">
+				,num 
+			</if>
+			<if test="content != null">
+				,content 
+			</if>
+			<if test="ftype != null">
+				,ftype 
+			</if>
+			<if test="secondIndexName != null">
+				,sindex_name 
+			</if>
+			<if test="filenum != null">
+				,filenum 
+			</if>
+			<if test="ztype != null">
+				,ztype 
+			</if>
+			<if test="content2 != null">
+				,content2 
+			</if>
+			<if test="topnode != null">
+				,topnode 
+			</if>
+			<if test="isnotshow != null">
+				,isnotshow 
+			</if>
+			<if test="nodeico != null">
+				,nodeico 
+			</if>
+			<if test="filenumid != null">
+				,filenumid 
+			</if>
+			<if test="slevel != null">
+				,slevel 
+			</if>
+			<if test="savetime != null">
+				,savetime 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{indexId, jdbcType=INTEGER}
+	     
+			<if test="id != null">
+				,#{id, jdbcType=VARCHAR}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=INTEGER}
+			</if>
+			<if test="indexName != null">
+				,#{indexName, jdbcType=VARCHAR}
+			</if>
+			<if test="nlevel != null">
+				,#{nlevel, jdbcType=INTEGER}
+			</if>
+			<if test="num != null">
+				,#{num, jdbcType=VARCHAR}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="ftype != null">
+				,#{ftype, jdbcType=VARCHAR}
+			</if>
+			<if test="secondIndexName != null">
+				,#{secondIndexName, jdbcType=VARCHAR}
+			</if>
+			<if test="filenum != null">
+				,#{filenum, jdbcType=VARCHAR}
+			</if>
+			<if test="ztype != null">
+				,#{ztype, jdbcType=INTEGER}
+			</if>
+			<if test="content2 != null">
+				,#{content2, jdbcType=VARCHAR}
+			</if>
+			<if test="topnode != null">
+				,#{topnode, jdbcType=VARCHAR}
+			</if>
+			<if test="isnotshow != null">
+				,#{isnotshow, jdbcType=VARCHAR}
+			</if>
+			<if test="nodeico != null">
+				,#{nodeico, jdbcType=INTEGER}
+			</if>
+			<if test="filenumid != null">
+				,#{filenumid, jdbcType=VARCHAR}
+			</if>
+			<if test="slevel != null">
+				,#{slevel, jdbcType=VARCHAR}
+			</if>
+			<if test="savetime != null">
+				,#{savetime, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateTreetop" parameterType="com.glaf.isdp.domain.Treetop">
+		update
+		    treetop
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="id != null">
+				ID = #{id, jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				parent_id = #{parentId, jdbcType=INTEGER},
+			</if>
+			<if test="indexName != null">
+				index_name = #{indexName, jdbcType=VARCHAR},
+			</if>
+			<if test="nlevel != null">
+				nlevel = #{nlevel, jdbcType=INTEGER},
+			</if>
+			<if test="num != null">
+				num = #{num, jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="ftype != null">
+				ftype = #{ftype, jdbcType=VARCHAR},
+			</if>
+			<if test="secondIndexName != null">
+				sindex_name = #{secondIndexName, jdbcType=VARCHAR},
+			</if>
+			<if test="filenum != null">
+				filenum = #{filenum, jdbcType=VARCHAR},
+			</if>
+			<if test="ztype != null">
+				ztype = #{ztype, jdbcType=INTEGER},
+			</if>
+			<if test="content2 != null">
+				content2 = #{content2, jdbcType=VARCHAR},
+			</if>
+			<if test="topnode != null">
+				topnode = #{topnode, jdbcType=VARCHAR},
+			</if>
+			<if test="isnotshow != null">
+				isnotshow = #{isnotshow, jdbcType=VARCHAR},
+			</if>
+			<if test="nodeico != null">
+				nodeico = #{nodeico, jdbcType=INTEGER},
+			</if>
+			<if test="filenumid != null">
+				filenumid = #{filenumid, jdbcType=VARCHAR},
+			</if>
+			<if test="slevel != null">
+				slevel = #{slevel, jdbcType=VARCHAR},
+			</if>
+			<if test="savetime != null">
+				savetime = #{savetime, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          index_id = #{indexId, jdbcType=INTEGER}
+		
+    </update>
+
+ 
+	<delete id="deleteTreetopById" parameterType="string"> 
+        delete from treetop
+        where index_id = #{id}
+	</delete>
+	
+
+	<delete id="deleteTreetops" parameterType="com.glaf.isdp.query.TreetopQuery">
+		delete from treetop
+		where ( index_id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getTreetopById" parameterType="string" resultMap="treetopResultMap">
+		select * from treetop where index_id = #{id}
+	</select>
+
+
+	<select id="getTreetopCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreetopsSql" />
+	</select>
+
+
+	<select id="getTreetopCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.TreetopQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreetopsSql" />
+	</select>
+
+
+	<select id="getTreetops" 
+		parameterType="map"
+		resultMap="treetopResultMap">
+		select E.*
+		<include refid="selectTreetopsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getTreetopMapList" parameterType="map" resultType="map">
+		select E.*
+		<include refid="selectTreetopsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getTreetopsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.TreetopQuery"
+		resultMap="treetopResultMap">
+		select E.*
+		<include refid="selectTreetopsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectTreetopsSql">
+
+		from treetop E
+		 
+		<where>
+
+		       1 = 1  
+		       
+			<if test=" topNode == 'true' ">
+				and E.parent_id = E.index_id
+			</if>
+
+			<if test="idLike != null and idLike != '' ">
+				and E.id like #{idLike}
+			</if>
+
+			<if test="ids != null and ids.size() &gt; 0">
+			    and E.id IN
+				<foreach item="x_id" index="index" collection="ids" 
+					open="(" separator="," close=")">
+                  #{x_id}
+				</foreach>
+			</if>
+
+			<if test="parentId != null">
+				and E.parent_id = #{parentId}
+				and E.parent_id != E.index_id
+			</if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+			    and E.parent_id IN
+				<foreach item="x_parentId" index="index" collection="parentIds" 
+					open="(" separator="," close=")">
+                  #{x_parentId}
+				</foreach>
+			</if>
+
+			<if test="indexNameLike != null and indexNameLike != '' ">
+				and E.index_name like #{indexNameLike}
+			</if>
+
+
+			<if test="numLike != null and numLike != '' ">
+				and E.num like #{numLike}
+			</if>
+
+		
+			<if test="contentLike != null and contentLike != '' ">
+				and E.content like #{contentLike}
+			</if>
+
+			<if test="ftype != null and ftype != '' ">
+				and E.ftype = #{ftype}
+			</if>
+
+			<if test="ftypes != null and ftypes.size() &gt; 0">
+			    and E.ftype IN
+				<foreach item="x_ftype" index="index" collection="ftypes" 
+					open="(" separator="," close=")">
+                  #{x_ftype}
+				</foreach>
+			</if>
+
+			<if test="secondIndexNameLike != null and secondIndexNameLike != '' ">
+				and E.sindex_name like #{secondIndexNameLike}
+			</if>
+
+			<if test="filenumLike != null and filenumLike != '' ">
+				and E.filenum like #{filenumLike}
+			</if>
+		
+			<if test="ztype != null">
+				and E.ztype = #{ztype}
+			</if>
+
+			<if test="ztypes != null and ztypes.size() &gt; 0">
+			    and E.ztype IN
+				<foreach item="x_ztype" index="index" collection="ztypes" 
+					open="(" separator="," close=")">
+                  #{x_ztype}
+				</foreach>
+			</if>
+
+			<if test="content2Like != null and content2Like != '' ">
+				and E.content2 like #{content2Like}
+			</if>
+	        
+			<if test="topnode != null and topnode != '' ">
+				and E.topnode = #{topnode}
+			</if>
+
+			<if test="topnodeLike != null and topnodeLike != '' ">
+				and E.topnode like #{topnodeLike}
+			</if>
+
+			<if test="topnodes != null and topnodes.size() &gt; 0">
+			    and E.topnode IN
+				<foreach item="x_topnode" index="index" collection="topnodes" 
+					open="(" separator="," close=")">
+                  #{x_topnode}
+				</foreach>
+			</if>
+	    
+			<if test="slevel != null and slevel != '' ">
+				and E.slevel = #{slevel}
+			</if>
+
+			<if test="slevelLike != null and slevelLike != '' ">
+				and E.slevel like #{slevelLike}
+			</if>
+	        
+			<if test="savetime != null and savetime != '' ">
+				and E.savetime = #{savetime}
+			</if>
+
+			<if test="savetimeLike != null and savetimeLike != '' ">
+				and E.savetime like #{savetimeLike}
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.ProjectTreeAllwbsMapper">
+
+	<resultMap id="projectTreeAllwbsResultMap"	type="com.glaf.isdp.domain.ProjectTreeAllwbs">
+		<id property="indexId" column="index_id" jdbcType="INTEGER" />
+		<result property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+		<result property="cellTaskIndexId" column="cellTaskIndexId" jdbcType="INTEGER"/>
+		<result property="num" column="num" jdbcType="VARCHAR"/>
+		<result property="indexName" column="index_name" jdbcType="VARCHAR"/>
+		<result property="nlevel" column="nlevel" jdbcType="INTEGER"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="nodeico" column="nodeico" jdbcType="INTEGER"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+		<result property="type" column="type" jdbcType="INTEGER"/>
+		<result property="roleid" column="roleid" jdbcType="INTEGER"/>
+		<result property="rolename" column="rolename" jdbcType="VARCHAR"/>
+		<result property="limtime" column="limtime" jdbcType="INTEGER"/>
+		<result property="userid" column="userid" jdbcType="VARCHAR"/>
+		<result property="username" column="username" jdbcType="VARCHAR"/>
+		<result property="starttime" column="starttime" jdbcType="TIMESTAMP"/>
+		<result property="endtime" column="endtime" jdbcType="TIMESTAMP"/>
+		<result property="useday" column="useday" jdbcType="DOUBLE"/>
+		<result property="intfinish" column="intfinish" jdbcType="INTEGER"/>
+		<result property="mainId" column="main_id" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertProjectTreeAllwbs" parameterType="com.glaf.isdp.domain.ProjectTreeAllwbs">
+		insert into proj_treeallwbs 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    index_id
+			<if test="id != null">
+				,id 
+			</if>
+			<if test="parentId != null">
+				,parent_id 
+			</if>
+			<if test="cellTaskIndexId != null">
+				,cellTaskIndexId 
+			</if>
+			<if test="num != null">
+				,num 
+			</if>
+			<if test="indexName != null">
+				,index_name 
+			</if>
+			<if test="nlevel != null">
+				,nlevel 
+			</if>
+			<if test="content != null">
+				,content 
+			</if>
+			<if test="nodeico != null">
+				,nodeico 
+			</if>
+			<if test="listno != null">
+				,listno 
+			</if>
+			<if test="type != null">
+				,type 
+			</if>
+			<if test="roleid != null">
+				,roleid 
+			</if>
+			<if test="rolename != null">
+				,rolename 
+			</if>
+			<if test="limtime != null">
+				,limtime 
+			</if>
+			<if test="userid != null">
+				,userid 
+			</if>
+			<if test="username != null">
+				,username 
+			</if>
+			<if test="starttime != null">
+				,starttime 
+			</if>
+			<if test="endtime != null">
+				,endtime 
+			</if>
+			<if test="useday != null">
+				,useday 
+			</if>
+			<if test="intfinish != null">
+				,intfinish 
+			</if>
+			<if test="mainId != null">
+				,main_id 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{indexId, jdbcType=INTEGER}
+	     
+			<if test="id != null">
+				,#{id, jdbcType=VARCHAR}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=INTEGER}
+			</if>
+			<if test="cellTaskIndexId != null">
+				,#{cellTaskIndexId, jdbcType=INTEGER}
+			</if>
+			<if test="num != null">
+				,#{num, jdbcType=VARCHAR}
+			</if>
+			<if test="indexName != null">
+				,#{indexName, jdbcType=VARCHAR}
+			</if>
+			<if test="nlevel != null">
+				,#{nlevel, jdbcType=INTEGER}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="nodeico != null">
+				,#{nodeico, jdbcType=INTEGER}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=INTEGER}
+			</if>
+			<if test="roleid != null">
+				,#{roleid, jdbcType=INTEGER}
+			</if>
+			<if test="rolename != null">
+				,#{rolename, jdbcType=VARCHAR}
+			</if>
+			<if test="limtime != null">
+				,#{limtime, jdbcType=INTEGER}
+			</if>
+			<if test="userid != null">
+				,#{userid, jdbcType=VARCHAR}
+			</if>
+			<if test="username != null">
+				,#{username, jdbcType=VARCHAR}
+			</if>
+			<if test="starttime != null">
+				,#{starttime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="endtime != null">
+				,#{endtime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="useday != null">
+				,#{useday, jdbcType=DOUBLE}
+			</if>
+			<if test="intfinish != null">
+				,#{intfinish, jdbcType=INTEGER}
+			</if>
+			<if test="mainId != null">
+				,#{mainId, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateProjectTreeAllwbs" parameterType="com.glaf.isdp.domain.ProjectTreeAllwbs">
+		update proj_treeallwbs
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="id != null">
+				id = #{id, jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				parent_id = #{parentId, jdbcType=INTEGER},
+			</if>
+			<if test="num != null">
+				num = #{num, jdbcType=VARCHAR},
+			</if>
+			<if test="indexName != null">
+				index_name = #{indexName, jdbcType=VARCHAR},
+			</if>
+			<if test="nlevel != null">
+				nlevel = #{nlevel, jdbcType=INTEGER},
+			</if>
+			<if test="content != null">
+				content = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="nodeico != null">
+				nodeico = #{nodeico, jdbcType=INTEGER},
+			</if>
+			<if test="listno != null">
+				listno = #{listno, jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				type = #{type, jdbcType=INTEGER},
+			</if>
+			<if test="roleid != null">
+				roleid = #{roleid, jdbcType=INTEGER},
+			</if>
+			<if test="rolename != null">
+				rolename = #{rolename, jdbcType=VARCHAR},
+			</if>
+			<if test="limtime != null">
+				limtime = #{limtime, jdbcType=INTEGER},
+			</if>
+			<if test="userid != null">
+				userid = #{userid, jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				username = #{username, jdbcType=VARCHAR},
+			</if>
+			<if test="starttime != null">
+				starttime = #{starttime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="endtime != null">
+				endtime = #{endtime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="useday != null">
+				useday = #{useday, jdbcType=DOUBLE},
+			</if>
+			<if test="intfinish != null">
+				intfinish = #{intfinish, jdbcType=INTEGER},
+			</if>
+			<if test="mainId != null">
+				main_id = #{mainId, jdbcType=VARCHAR},
+			</if>
+			<if test="cellTaskIndexId != null">
+				cellTaskIndexId = #{cellTaskIndexId, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          index_id = #{indexId, jdbcType=INTEGER}
+		
+    </update>
+
+ 
+	<delete id="deleteProjectTreeAllwbsById" parameterType="string"> 
+        delete from proj_treeallwbs
+        where id = #{id}
+	</delete>
+
+	<delete id="deleteProjectTreeAllwbsByCellTaskIndexId" parameterType="int"> 
+        delete from proj_treeallwbs
+        where cellTaskIndexId = #{cellTaskIndexId}
+	</delete>
+	
+
+	<delete id="deleteProjectTreeAllwbss" parameterType="com.glaf.isdp.query.ProjectTreeAllwbsQuery">
+		delete from proj_treeallwbs
+		where ( index_id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getProjectTreeAllwbsById" parameterType="string" resultMap="projectTreeAllwbsResultMap">
+		select * from proj_treeallwbs where id = #{id}
+	</select>
+
+	<select id="getProjectTreeAllwbsByIndexId" parameterType="int" resultMap="projectTreeAllwbsResultMap">
+		select * from proj_treeallwbs where index_id = #{indexId}
+	</select>
+
+
+	<select id="getProjectTreeAllwbsCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectProjectTreeAllwbssSql" />
+	</select>
+
+
+	<select id="getProjectTreeAllwbsCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.ProjectTreeAllwbsQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectProjectTreeAllwbssSql" />
+	</select>
+
+
+	<select id="getProjectTreeAllwbss" 
+		parameterType="map"
+		resultMap="projectTreeAllwbsResultMap">
+		select E.*
+		<include refid="selectProjectTreeAllwbssSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getProjectTreeAllwbssByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.ProjectTreeAllwbsQuery"
+		resultMap="projectTreeAllwbsResultMap">
+		select E.*
+		<include refid="selectProjectTreeAllwbssSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectProjectTreeAllwbssSql">
+
+		from proj_treeallwbs E
+		 
+		<where>
+
+		       1 = 1  
+
+			<if test="idLike != null and idLike != '' ">
+				and E.id like #{idLike}
+			</if>
+
+			<if test="ids != null and ids.size() &gt; 0">
+			    and E.id IN
+				<foreach item="x_id" index="index" collection="ids" 
+					open="(" separator="," close=")">
+                  #{x_id}
+				</foreach>
+			</if>
+			
+			<if test="parentId != null">
+				and E.parent_id = #{parentId}
+			</if>
+			
+			<if test="cellTaskIndexId != null">
+				and E.cellTaskIndexId = #{cellTaskIndexId}
+			</if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+			    and E.parent_id IN
+				<foreach item="x_parentId" index="index" collection="parentIds" 
+					open="(" separator="," close=")">
+                  #{x_parentId}
+				</foreach>
+			</if>
+ 
+			<if test="numLike != null and numLike != '' ">
+				and E.num like #{numLike}
+			</if>
+ 
+			<if test="indexNameLike != null and indexNameLike != '' ">
+				and E.index_name like #{indexNameLike}
+			</if>
+ 
+			<if test="nlevel != null">
+				and E.nlevel = #{nlevel}
+			</if>
+
+			<if test="nlevelGreaterThanOrEqual != null">
+				and E.nlevel &gt;= #{nlevelGreaterThanOrEqual}
+			</if>
+
+			<if test="nlevelLessThanOrEqual != null">
+				and E.nlevel &lt;= #{nlevelLessThanOrEqual}
+			</if>
+
+			<if test="nlevels != null and nlevels.size() &gt; 0">
+			    and E.nlevel IN
+				<foreach item="x_nlevel" index="index" collection="nlevels" 
+					open="(" separator="," close=")">
+                  #{x_nlevel}
+				</foreach>
+			</if>
+
+			<if test="contentLike != null and contentLike != '' ">
+				and E.content like #{contentLike}
+			</if>
+
+			<if test="type != null">
+				and E.type = #{type}
+			</if>
+
+			<if test="typeGreaterThanOrEqual != null">
+				and E.type &gt;= #{typeGreaterThanOrEqual}
+			</if>
+
+			<if test="typeLessThanOrEqual != null">
+				and E.type &lt;= #{typeLessThanOrEqual}
+			</if>
+
+			<if test="types != null and types.size() &gt; 0">
+			    and E.type IN
+				<foreach item="x_type" index="index" collection="types" 
+					open="(" separator="," close=")">
+                  #{x_type}
+				</foreach>
+			</if>
+
+			<if test="roleid != null">
+				and E.roleid = #{roleid}
+			</if>
+
+			<if test="roleidGreaterThanOrEqual != null">
+				and E.roleid &gt;= #{roleidGreaterThanOrEqual}
+			</if>
+
+			<if test="roleidLessThanOrEqual != null">
+				and E.roleid &lt;= #{roleidLessThanOrEqual}
+			</if>
+
+			<if test="roleids != null and roleids.size() &gt; 0">
+			    and E.roleid IN
+				<foreach item="x_roleid" index="index" collection="roleids" 
+					open="(" separator="," close=")">
+                  #{x_roleid}
+				</foreach>
+			</if>
+
+
+			<if test="rolenameLike != null and rolenameLike != '' ">
+				and E.rolename like #{rolenameLike}
+			</if>
+
+
+			<if test="limtime != null">
+				and E.limtime = #{limtime}
+			</if>
+
+			<if test="limtimeGreaterThanOrEqual != null">
+				and E.limtime &gt;= #{limtimeGreaterThanOrEqual}
+			</if>
+
+			<if test="limtimeLessThanOrEqual != null">
+				and E.limtime &lt;= #{limtimeLessThanOrEqual}
+			</if>
+
+			<if test="limtimes != null and limtimes.size() &gt; 0">
+			    and E.limtime IN
+				<foreach item="x_limtime" index="index" collection="limtimes" 
+					open="(" separator="," close=")">
+                  #{x_limtime}
+				</foreach>
+			</if>
+
+	        
+			<if test="userid != null and userid != '' ">
+				and E.userid = #{userid}
+			</if>
+
+			<if test="useridLike != null and useridLike != '' ">
+				and E.userid like #{useridLike}
+			</if>
+
+			<if test="userids != null and userids.size() &gt; 0">
+			    and E.userid IN
+				<foreach item="x_userid" index="index" collection="userids" 
+					open="(" separator="," close=")">
+                  #{x_userid}
+				</foreach>
+			</if>
+
+
+			<if test="usernameLike != null and usernameLike != '' ">
+				and E.username like #{usernameLike}
+			</if>
+
+			<if test="starttimeGreaterThanOrEqual != null">
+				and E.starttime &gt;= #{starttimeGreaterThanOrEqual}
+			</if>
+
+			<if test="starttimeLessThanOrEqual != null">
+				and E.starttime &lt;= #{starttimeLessThanOrEqual}
+			</if>
+
+
+			<if test="endtimeGreaterThanOrEqual != null">
+				and E.endtime &gt;= #{endtimeGreaterThanOrEqual}
+			</if>
+
+			<if test="endtimeLessThanOrEqual != null">
+				and E.endtime &lt;= #{endtimeLessThanOrEqual}
+			</if>
+
+		
+			<if test="useday != null">
+				and E.useday = #{useday}
+			</if>
+
+			<if test="usedayGreaterThanOrEqual != null">
+				and E.useday &gt;= #{usedayGreaterThanOrEqual}
+			</if>
+
+			<if test="usedayLessThanOrEqual != null">
+				and E.useday &lt;= #{usedayLessThanOrEqual}
+			</if>
+
+			<if test="usedays != null and usedays.size() &gt; 0">
+			    and E.useday IN
+				<foreach item="x_useday" index="index" collection="usedays" 
+					open="(" separator="," close=")">
+                  #{x_useday}
+				</foreach>
+			</if>
+
+
+			<if test="intfinish != null">
+				and E.intfinish = #{intfinish}
+			</if>
+
+			<if test="intfinishGreaterThanOrEqual != null">
+				and E.intfinish &gt;= #{intfinishGreaterThanOrEqual}
+			</if>
+
+			<if test="intfinishLessThanOrEqual != null">
+				and E.intfinish &lt;= #{intfinishLessThanOrEqual}
+			</if>
+
+			<if test="intfinishs != null and intfinishs.size() &gt; 0">
+			    and E.intfinish IN
+				<foreach item="x_intfinish" index="index" collection="intfinishs" 
+					open="(" separator="," close=")">
+                  #{x_intfinish}
+				</foreach>
+			</if>
+
+			<if test="mainId != null and mainId != '' ">
+				and E.main_id = #{mainId}
+			</if>
+
+			<if test="mainIdLike != null and mainIdLike != '' ">
+				and E.main_id like #{mainIdLike}
+			</if>
+
+			<if test="mainIds != null and mainIds.size() &gt; 0">
+			    and E.main_id IN
+				<foreach item="x_mainId" index="index" collection="mainIds" 
+					open="(" separator="," close=")">
+                  #{x_mainId}
+				</foreach>
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

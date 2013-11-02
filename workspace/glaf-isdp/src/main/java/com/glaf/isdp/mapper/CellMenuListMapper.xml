@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.CellMenuListMapper">
+
+	<resultMap id="cellMenuListResultMap"	type="com.glaf.isdp.domain.CellMenuList">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="topid" column="topid" jdbcType="VARCHAR"/>
+		<result property="indexId" column="index_id" jdbcType="INTEGER"/>
+	</resultMap>
+
+
+	<resultMap id="cellMenuListHashMap"	type="java.util.HashMap">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="topid" column="topid" jdbcType="VARCHAR"/>
+		<result property="indexId" column="index_id" jdbcType="INTEGER"/>
+	</resultMap>
+ 
+	<insert id="insertCellMenuList" parameterType="com.glaf.isdp.domain.CellMenuList">
+		insert into cell_setmymenulst 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="topid != null">
+				,topid 
+			</if>
+			<if test="indexId != null">
+				,index_id 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="topid != null">
+				,#{topid, jdbcType=VARCHAR}
+			</if>
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateCellMenuList" parameterType="com.glaf.isdp.domain.CellMenuList">
+		update
+		cell_setmymenulst
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="topid != null">
+				topid = #{topid, jdbcType=VARCHAR},
+			</if>
+			<if test="indexId != null">
+				index_id = #{indexId, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+	</update>
+
+ 
+	<delete id="deleteCellMenuListById" parameterType="string"> 
+        delete from cell_setmymenulst
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteCellMenuLists" parameterType="com.glaf.isdp.query.CellMenuListQuery">
+		delete from cell_setmymenulst
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getCellMenuListById" parameterType="string" resultMap="cellMenuListResultMap">
+		select * from cell_setmymenulst where id = #{id}
+	</select>
+
+
+	<select id="getCellMenuListCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*) from cell_setmymenulst E
+		<include refid="selectCellMenuListSql" />
+	</select>
+
+
+	<select id="getCellMenuListCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellMenuListQuery"
+		resultType="int">
+		select count(*) from cell_setmymenulst E
+		<include refid="selectCellMenuListSql" />
+	</select>
+
+
+	<select id="getCellMenuLists" 
+		parameterType="map"
+		resultMap="cellMenuListResultMap">
+		select E.* from cell_setmymenulst E
+		<include refid="selectCellMenuListSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getCellMenuListMapList" parameterType="map" resultType="map">
+		select E.* from cell_setmymenulst E 
+		<include refid="selectCellMenuListSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getCellMenuListsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellMenuListQuery"
+		resultMap="cellMenuListResultMap">
+		select E.* from cell_setmymenulst E
+		<include refid="selectCellMenuListSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectCellMenuListSql">
+		 
+		<where>
+
+		   1 = 1  
+
+			<if test="topid != null and topid != '' ">
+				and E.topid = #{topid}
+			</if>
+
+			<if test="topidLike != null and topidLike != '' ">
+				and E.topid like #{topidLike}
+			</if>
+
+			<if test="topids != null and topids.size() &gt; 0">
+			    and E.topid IN
+				<foreach item="x_topid" index="index" collection="topids" 
+					open="(" separator="," close=")">
+                  #{x_topid}
+				</foreach>
+			</if>
+
+			<if test="indexId != null">
+				and E.index_id = #{indexId}
+			</if>
+
+			<if test="indexIdGreaterThanOrEqual != null">
+				and E.index_id &gt;= #{indexIdGreaterThanOrEqual}
+			</if>
+
+			<if test="indexIdLessThanOrEqual != null">
+				and E.index_id &lt;= #{indexIdLessThanOrEqual}
+			</if>
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+			    and E.index_id IN
+				<foreach item="x_indexId" index="index" collection="indexIds" 
+					open="(" separator="," close=")">
+                  #{x_indexId}
+				</foreach>
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

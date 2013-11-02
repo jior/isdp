@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.ListShowMapper">
+
+	<resultMap id="listShowResultMap"	type="com.glaf.isdp.domain.ListShow">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="indexId" column="index_id" jdbcType="INTEGER"/>
+		<result property="listId" column="listId" jdbcType="VARCHAR"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+		<result property="frmtype" column="frmtype" jdbcType="VARCHAR"/>
+		<result property="leftL" column="left_L" jdbcType="INTEGER"/>
+		<result property="topL" column="top_L" jdbcType="INTEGER"/>
+		<result property="widthL" column="width_L" jdbcType="INTEGER"/>
+		<result property="heightL" column="height_L" jdbcType="INTEGER"/>
+		<result property="leftC" column="left_C" jdbcType="INTEGER"/>
+		<result property="topC" column="top_C" jdbcType="INTEGER"/>
+		<result property="widthC" column="width_C" jdbcType="INTEGER"/>
+		<result property="heightC" column="height_C" jdbcType="INTEGER"/>
+	</resultMap>
+
+
+	<resultMap id="listShowHashMap"	type="java.util.HashMap">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="indexId" column="index_id" jdbcType="INTEGER"/>
+		<result property="listId" column="listId" jdbcType="VARCHAR"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+		<result property="frmtype" column="frmtype" jdbcType="VARCHAR"/>
+		<result property="leftL" column="left_L" jdbcType="INTEGER"/>
+		<result property="topL" column="top_L" jdbcType="INTEGER"/>
+		<result property="widthL" column="width_L" jdbcType="INTEGER"/>
+		<result property="heightL" column="height_L" jdbcType="INTEGER"/>
+		<result property="leftC" column="left_C" jdbcType="INTEGER"/>
+		<result property="topC" column="top_C" jdbcType="INTEGER"/>
+		<result property="widthC" column="width_C" jdbcType="INTEGER"/>
+		<result property="heightC" column="height_C" jdbcType="INTEGER"/>
+	</resultMap>
+ 
+	<insert id="insertListShow" parameterType="com.glaf.isdp.domain.ListShow">
+		insert into listshow 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="indexId != null">
+				,index_id 
+			</if>
+			<if test="listId != null">
+				,listId 
+			</if>
+			<if test="listno != null">
+				,listno 
+			</if>
+			<if test="frmtype != null">
+				,frmtype 
+			</if>
+			<if test="leftL != null">
+				,left_L 
+			</if>
+			<if test="topL != null">
+				,top_L 
+			</if>
+			<if test="widthL != null">
+				,width_L 
+			</if>
+			<if test="heightL != null">
+				,height_L 
+			</if>
+			<if test="leftC != null">
+				,left_C 
+			</if>
+			<if test="topC != null">
+				,top_C 
+			</if>
+			<if test="widthC != null">
+				,width_C 
+			</if>
+			<if test="heightC != null">
+				,height_C 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="listId != null">
+				,#{listId, jdbcType=VARCHAR}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+			<if test="frmtype != null">
+				,#{frmtype, jdbcType=VARCHAR}
+			</if>
+			<if test="leftL != null">
+				,#{leftL, jdbcType=INTEGER}
+			</if>
+			<if test="topL != null">
+				,#{topL, jdbcType=INTEGER}
+			</if>
+			<if test="widthL != null">
+				,#{widthL, jdbcType=INTEGER}
+			</if>
+			<if test="heightL != null">
+				,#{heightL, jdbcType=INTEGER}
+			</if>
+			<if test="leftC != null">
+				,#{leftC, jdbcType=INTEGER}
+			</if>
+			<if test="topC != null">
+				,#{topC, jdbcType=INTEGER}
+			</if>
+			<if test="widthC != null">
+				,#{widthC, jdbcType=INTEGER}
+			</if>
+			<if test="heightC != null">
+				,#{heightC, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateListShow" parameterType="com.glaf.isdp.domain.ListShow">
+		update listshow
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="indexId != null">
+				index_id = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="listId != null">
+				listId = #{listId, jdbcType=VARCHAR},
+			</if>
+			<if test="listno != null">
+				listno = #{listno, jdbcType=INTEGER},
+			</if>
+			<if test="frmtype != null">
+				frmtype = #{frmtype, jdbcType=VARCHAR},
+			</if>
+			<if test="leftL != null">
+				left_L = #{leftL, jdbcType=INTEGER},
+			</if>
+			<if test="topL != null">
+				top_L = #{topL, jdbcType=INTEGER},
+			</if>
+			<if test="widthL != null">
+				width_L = #{widthL, jdbcType=INTEGER},
+			</if>
+			<if test="heightL != null">
+				height_L = #{heightL, jdbcType=INTEGER},
+			</if>
+			<if test="leftC != null">
+				left_C = #{leftC, jdbcType=INTEGER},
+			</if>
+			<if test="topC != null">
+				top_C = #{topC, jdbcType=INTEGER},
+			</if>
+			<if test="widthC != null">
+				width_C = #{widthC, jdbcType=INTEGER},
+			</if>
+			<if test="heightC != null">
+				height_C = #{heightC, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+	</update>
+
+ 
+	<delete id="deleteListShowById" parameterType="string"> 
+        delete from ListShow
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteListShows" parameterType="com.glaf.isdp.query.ListShowQuery">
+		delete from ListShow
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getListShowById" parameterType="string" resultMap="listShowResultMap">
+		select * from ListShow where id = #{id}
+	</select>
+
+
+	<select id="getListShowCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectListShowsSql" />
+	</select>
+
+
+	<select id="getListShowCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.ListShowQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectListShowsSql" />
+	</select>
+
+
+	<select id="getListShows" 
+		parameterType="map"
+		resultMap="listShowResultMap">
+		select E.*
+		<include refid="selectListShowsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getListShowMapList" parameterType="map" resultType="map">
+		select E.*
+		<include refid="selectListShowsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getListShowsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.ListShowQuery"
+		resultMap="listShowResultMap">
+		select E.*
+		<include refid="selectListShowsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectListShowsSql">
+
+		from ListShow E
+		 
+		<where>
+
+		       1 = 1  
+
+			<if test="indexId != null">
+				and E.index_id = #{indexId}
+			</if>
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+			    and E.index_id IN
+				<foreach item="x_indexId" index="index" collection="indexIds" 
+					open="(" separator="," close=")">
+                  #{x_indexId}
+				</foreach>
+			</if>
+	        
+			<if test="listId != null and listId != '' ">
+				and E.listId = #{listId}
+			</if>
+
+			<if test="listIds != null and listIds.size() &gt; 0">
+			    and E.listId IN
+				<foreach item="x_listId" index="index" collection="listIds" 
+					open="(" separator="," close=")">
+                  #{x_listId}
+				</foreach>
+			</if>
+
+			<if test="frmtype != null and frmtype != '' ">
+				and E.frmtype = #{frmtype}
+			</if>
+
+			<if test="frmtypeLike != null and frmtypeLike != '' ">
+				and E.frmtype like #{frmtypeLike}
+			</if>
+
+			<if test="frmtypes != null and frmtypes.size() &gt; 0">
+			    and E.frmtype IN
+				<foreach item="x_frmtype" index="index" collection="frmtypes" 
+					open="(" separator="," close=")">
+                  #{x_frmtype}
+				</foreach>
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

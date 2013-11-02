@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.CellSysDatalinkMapper">
+
+	<resultMap id="cellSysDatalinkResultMap"	type="com.glaf.isdp.domain.CellSysDatalink">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="busiessIdSrc" column="busiess_id_src" jdbcType="VARCHAR"/>
+		<result property="celldotIndexSrc" column="celldot_index_src" jdbcType="INTEGER"/>
+		<result property="fileidSrc" column="fileid_src" jdbcType="VARCHAR"/>
+		<result property="dotnameSrc" column="dotname_src" jdbcType="VARCHAR"/>
+		<result property="busiessIdDes" column="busiess_id_des" jdbcType="VARCHAR"/>
+		<result property="buiessnameDes" column="buiessname_des" jdbcType="VARCHAR"/>
+		<result property="celldotIndexDes" column="celldot_index_des" jdbcType="INTEGER"/>
+		<result property="fileidDes" column="fileid_des" jdbcType="VARCHAR"/>
+		<result property="dotnameDes" column="dotname_des" jdbcType="VARCHAR"/>
+		<result property="intlinktype" column="intlinktype" jdbcType="INTEGER"/>
+		<result property="intdiff1" column="intdiff1" jdbcType="INTEGER"/>
+		<result property="intdiff2" column="intdiff2" jdbcType="INTEGER"/>
+	</resultMap>
+
+
+	<resultMap id="cellSysDatalinkHashMap"	type="java.util.HashMap">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="busiessIdSrc" column="busiess_id_src" jdbcType="VARCHAR"/>
+		<result property="celldotIndexSrc" column="celldot_index_src" jdbcType="INTEGER"/>
+		<result property="fileidSrc" column="fileid_src" jdbcType="VARCHAR"/>
+		<result property="dotnameSrc" column="dotname_src" jdbcType="VARCHAR"/>
+		<result property="busiessIdDes" column="busiess_id_des" jdbcType="VARCHAR"/>
+		<result property="buiessnameDes" column="buiessname_des" jdbcType="VARCHAR"/>
+		<result property="celldotIndexDes" column="celldot_index_des" jdbcType="INTEGER"/>
+		<result property="fileidDes" column="fileid_des" jdbcType="VARCHAR"/>
+		<result property="dotnameDes" column="dotname_des" jdbcType="VARCHAR"/>
+		<result property="intlinktype" column="intlinktype" jdbcType="INTEGER"/>
+		<result property="intdiff1" column="intdiff1" jdbcType="INTEGER"/>
+		<result property="intdiff2" column="intdiff2" jdbcType="INTEGER"/>
+	</resultMap>
+ 
+	<insert id="insertCellSysDatalink" parameterType="com.glaf.isdp.domain.CellSysDatalink">
+		insert into cell_sysdatalink 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="busiessIdSrc != null">
+				,busiess_id_src 
+			</if>
+			<if test="celldotIndexSrc != null">
+				,celldot_index_src 
+			</if>
+			<if test="fileidSrc != null">
+				,fileid_src 
+			</if>
+			<if test="dotnameSrc != null">
+				,dotname_src 
+			</if>
+			<if test="busiessIdDes != null">
+				,busiess_id_des 
+			</if>
+			<if test="buiessnameDes != null">
+				,buiessname_des 
+			</if>
+			<if test="celldotIndexDes != null">
+				,celldot_index_des 
+			</if>
+			<if test="fileidDes != null">
+				,fileid_des 
+			</if>
+			<if test="dotnameDes != null">
+				,dotname_des 
+			</if>
+			<if test="intlinktype != null">
+				,intlinktype 
+			</if>
+			<if test="intdiff1 != null">
+				,intdiff1 
+			</if>
+			<if test="intdiff2 != null">
+				,intdiff2 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="busiessIdSrc != null">
+				,#{busiessIdSrc, jdbcType=VARCHAR}
+			</if>
+			<if test="celldotIndexSrc != null">
+				,#{celldotIndexSrc, jdbcType=INTEGER}
+			</if>
+			<if test="fileidSrc != null">
+				,#{fileidSrc, jdbcType=VARCHAR}
+			</if>
+			<if test="dotnameSrc != null">
+				,#{dotnameSrc, jdbcType=VARCHAR}
+			</if>
+			<if test="busiessIdDes != null">
+				,#{busiessIdDes, jdbcType=VARCHAR}
+			</if>
+			<if test="buiessnameDes != null">
+				,#{buiessnameDes, jdbcType=VARCHAR}
+			</if>
+			<if test="celldotIndexDes != null">
+				,#{celldotIndexDes, jdbcType=INTEGER}
+			</if>
+			<if test="fileidDes != null">
+				,#{fileidDes, jdbcType=VARCHAR}
+			</if>
+			<if test="dotnameDes != null">
+				,#{dotnameDes, jdbcType=VARCHAR}
+			</if>
+			<if test="intlinktype != null">
+				,#{intlinktype, jdbcType=INTEGER}
+			</if>
+			<if test="intdiff1 != null">
+				,#{intdiff1, jdbcType=INTEGER}
+			</if>
+			<if test="intdiff2 != null">
+				,#{intdiff2, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateCellSysDatalink" parameterType="com.glaf.isdp.domain.CellSysDatalink">
+		update
+		cell_sysdatalink
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="busiessIdSrc != null">
+				busiess_id_src = #{busiessIdSrc, jdbcType=VARCHAR},
+			</if>
+			<if test="celldotIndexSrc != null">
+				celldot_index_src = #{celldotIndexSrc, jdbcType=INTEGER},
+			</if>
+			<if test="fileidSrc != null">
+				fileid_src = #{fileidSrc, jdbcType=VARCHAR},
+			</if>
+			<if test="dotnameSrc != null">
+				dotname_src = #{dotnameSrc, jdbcType=VARCHAR},
+			</if>
+			<if test="busiessIdDes != null">
+				busiess_id_des = #{busiessIdDes, jdbcType=VARCHAR},
+			</if>
+			<if test="buiessnameDes != null">
+				buiessname_des = #{buiessnameDes, jdbcType=VARCHAR},
+			</if>
+			<if test="celldotIndexDes != null">
+				celldot_index_des = #{celldotIndexDes, jdbcType=INTEGER},
+			</if>
+			<if test="fileidDes != null">
+				fileid_des = #{fileidDes, jdbcType=VARCHAR},
+			</if>
+			<if test="dotnameDes != null">
+				dotname_des = #{dotnameDes, jdbcType=VARCHAR},
+			</if>
+			<if test="intlinktype != null">
+				intlinktype = #{intlinktype, jdbcType=INTEGER},
+			</if>
+			<if test="intdiff1 != null">
+				intdiff1 = #{intdiff1, jdbcType=INTEGER},
+			</if>
+			<if test="intdiff2 != null">
+				intdiff2 = #{intdiff2, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+	</update>
+
+ 
+	<delete id="deleteCellSysDatalinkById" parameterType="string"> 
+        delete from cell_sysdatalink
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteCellSysDatalinks" parameterType="com.glaf.isdp.query.CellSysDatalinkQuery">
+		delete from cell_sysdatalink
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getCellSysDatalinkById" parameterType="string" resultMap="cellSysDatalinkResultMap">
+		select * from cell_sysdatalink where id = #{id}
+	</select>
+
+
+	<select id="getCellSysDatalinkCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*) from cell_sysdatalink E
+		<include refid="selectCellSysDatalinkSql" />
+	</select>
+
+
+	<select id="getCellSysDatalinkCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellSysDatalinkQuery"
+		resultType="int">
+		select count(*) from cell_sysdatalink E
+		<include refid="selectCellSysDatalinkSql" />
+	</select>
+
+
+	<select id="getCellSysDatalinks" 
+		parameterType="map"
+		resultMap="cellSysDatalinkResultMap">
+		select E.* from cell_sysdatalink E
+		<include refid="selectCellSysDatalinkSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getCellSysDatalinkMapList" parameterType="map" resultType="map">
+		select E.* from cell_sysdatalink E 
+		<include refid="selectCellSysDatalinkSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getCellSysDatalinksByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellSysDatalinkQuery"
+		resultMap="cellSysDatalinkResultMap">
+		select E.* from cell_sysdatalink E
+		<include refid="selectCellSysDatalinkSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectCellSysDatalinkSql">
+		 
+		<where>
+
+		   1 = 1  
+
+	        
+			<if test="busiessIdSrc != null and busiessIdSrc != '' ">
+				and E.busiess_id_src = #{busiessIdSrc}
+			</if>
+
+			<if test="busiessIdSrcLike != null and busiessIdSrcLike != '' ">
+				and E.busiess_id_src like #{busiessIdSrcLike}
+			</if>
+
+			<if test="busiessIdSrcs != null and busiessIdSrcs.size() &gt; 0">
+			    and E.busiess_id_src IN
+				<foreach item="x_busiessIdSrc" index="index" collection="busiessIdSrcs" 
+					open="(" separator="," close=")">
+                  #{x_busiessIdSrc}
+				</foreach>
+			</if>
+
+
+			<if test="celldotIndexSrc != null">
+				and E.celldot_index_src = #{celldotIndexSrc}
+			</if>
+
+			<if test="celldotIndexSrcGreaterThanOrEqual != null">
+				and E.celldot_index_src &gt;= #{celldotIndexSrcGreaterThanOrEqual}
+			</if>
+
+			<if test="celldotIndexSrcLessThanOrEqual != null">
+				and E.celldot_index_src &lt;= #{celldotIndexSrcLessThanOrEqual}
+			</if>
+
+			<if test="celldotIndexSrcs != null and celldotIndexSrcs.size() &gt; 0">
+			    and E.celldot_index_src IN
+				<foreach item="x_celldotIndexSrc" index="index" collection="celldotIndexSrcs" 
+					open="(" separator="," close=")">
+                  #{x_celldotIndexSrc}
+				</foreach>
+			</if>
+
+	        
+			<if test="fileidSrc != null and fileidSrc != '' ">
+				and E.fileid_src = #{fileidSrc}
+			</if>
+
+			<if test="fileidSrcLike != null and fileidSrcLike != '' ">
+				and E.fileid_src like #{fileidSrcLike}
+			</if>
+
+			<if test="fileidSrcs != null and fileidSrcs.size() &gt; 0">
+			    and E.fileid_src IN
+				<foreach item="x_fileidSrc" index="index" collection="fileidSrcs" 
+					open="(" separator="," close=")">
+                  #{x_fileidSrc}
+				</foreach>
+			</if>
+
+	        
+			<if test="dotnameSrc != null and dotnameSrc != '' ">
+				and E.dotname_src = #{dotnameSrc}
+			</if>
+
+			<if test="dotnameSrcLike != null and dotnameSrcLike != '' ">
+				and E.dotname_src like #{dotnameSrcLike}
+			</if>
+
+			<if test="dotnameSrcs != null and dotnameSrcs.size() &gt; 0">
+			    and E.dotname_src IN
+				<foreach item="x_dotnameSrc" index="index" collection="dotnameSrcs" 
+					open="(" separator="," close=")">
+                  #{x_dotnameSrc}
+				</foreach>
+			</if>
+
+	        
+			<if test="busiessIdDes != null and busiessIdDes != '' ">
+				and E.busiess_id_des = #{busiessIdDes}
+			</if>
+
+			<if test="busiessIdDesLike != null and busiessIdDesLike != '' ">
+				and E.busiess_id_des like #{busiessIdDesLike}
+			</if>
+
+			<if test="busiessIdDess != null and busiessIdDess.size() &gt; 0">
+			    and E.busiess_id_des IN
+				<foreach item="x_busiessIdDes" index="index" collection="busiessIdDess" 
+					open="(" separator="," close=")">
+                  #{x_busiessIdDes}
+				</foreach>
+			</if>
+
+	        
+			<if test="buiessnameDes != null and buiessnameDes != '' ">
+				and E.buiessname_des = #{buiessnameDes}
+			</if>
+
+			<if test="buiessnameDesLike != null and buiessnameDesLike != '' ">
+				and E.buiessname_des like #{buiessnameDesLike}
+			</if>
+
+			<if test="buiessnameDess != null and buiessnameDess.size() &gt; 0">
+			    and E.buiessname_des IN
+				<foreach item="x_buiessnameDes" index="index" collection="buiessnameDess" 
+					open="(" separator="," close=")">
+                  #{x_buiessnameDes}
+				</foreach>
+			</if>
+
+
+			<if test="celldotIndexDes != null">
+				and E.celldot_index_des = #{celldotIndexDes}
+			</if>
+
+			<if test="celldotIndexDesGreaterThanOrEqual != null">
+				and E.celldot_index_des &gt;= #{celldotIndexDesGreaterThanOrEqual}
+			</if>
+
+			<if test="celldotIndexDesLessThanOrEqual != null">
+				and E.celldot_index_des &lt;= #{celldotIndexDesLessThanOrEqual}
+			</if>
+
+			<if test="celldotIndexDess != null and celldotIndexDess.size() &gt; 0">
+			    and E.celldot_index_des IN
+				<foreach item="x_celldotIndexDes" index="index" collection="celldotIndexDess" 
+					open="(" separator="," close=")">
+                  #{x_celldotIndexDes}
+				</foreach>
+			</if>
+
+	        
+			<if test="fileidDes != null and fileidDes != '' ">
+				and E.fileid_des = #{fileidDes}
+			</if>
+
+			<if test="fileidDesLike != null and fileidDesLike != '' ">
+				and E.fileid_des like #{fileidDesLike}
+			</if>
+
+			<if test="fileidDess != null and fileidDess.size() &gt; 0">
+			    and E.fileid_des IN
+				<foreach item="x_fileidDes" index="index" collection="fileidDess" 
+					open="(" separator="," close=")">
+                  #{x_fileidDes}
+				</foreach>
+			</if>
+
+	        
+			<if test="dotnameDes != null and dotnameDes != '' ">
+				and E.dotname_des = #{dotnameDes}
+			</if>
+
+			<if test="dotnameDesLike != null and dotnameDesLike != '' ">
+				and E.dotname_des like #{dotnameDesLike}
+			</if>
+
+			<if test="dotnameDess != null and dotnameDess.size() &gt; 0">
+			    and E.dotname_des IN
+				<foreach item="x_dotnameDes" index="index" collection="dotnameDess" 
+					open="(" separator="," close=")">
+                  #{x_dotnameDes}
+				</foreach>
+			</if>
+
+
+			<if test="intlinktype != null">
+				and E.intlinktype = #{intlinktype}
+			</if>
+
+			<if test="intlinktypeGreaterThanOrEqual != null">
+				and E.intlinktype &gt;= #{intlinktypeGreaterThanOrEqual}
+			</if>
+
+			<if test="intlinktypeLessThanOrEqual != null">
+				and E.intlinktype &lt;= #{intlinktypeLessThanOrEqual}
+			</if>
+
+			<if test="intlinktypes != null and intlinktypes.size() &gt; 0">
+			    and E.intlinktype IN
+				<foreach item="x_intlinktype" index="index" collection="intlinktypes" 
+					open="(" separator="," close=")">
+                  #{x_intlinktype}
+				</foreach>
+			</if>
+
+
+			<if test="intdiff1 != null">
+				and E.intdiff1 = #{intdiff1}
+			</if>
+
+			<if test="intdiff1GreaterThanOrEqual != null">
+				and E.intdiff1 &gt;= #{intdiff1GreaterThanOrEqual}
+			</if>
+
+			<if test="intdiff1LessThanOrEqual != null">
+				and E.intdiff1 &lt;= #{intdiff1LessThanOrEqual}
+			</if>
+
+			<if test="intdiff1s != null and intdiff1s.size() &gt; 0">
+			    and E.intdiff1 IN
+				<foreach item="x_intdiff1" index="index" collection="intdiff1s" 
+					open="(" separator="," close=")">
+                  #{x_intdiff1}
+				</foreach>
+			</if>
+
+
+			<if test="intdiff2 != null">
+				and E.intdiff2 = #{intdiff2}
+			</if>
+
+			<if test="intdiff2GreaterThanOrEqual != null">
+				and E.intdiff2 &gt;= #{intdiff2GreaterThanOrEqual}
+			</if>
+
+			<if test="intdiff2LessThanOrEqual != null">
+				and E.intdiff2 &lt;= #{intdiff2LessThanOrEqual}
+			</if>
+
+			<if test="intdiff2s != null and intdiff2s.size() &gt; 0">
+			    and E.intdiff2 IN
+				<foreach item="x_intdiff2" index="index" collection="intdiff2s" 
+					open="(" separator="," close=")">
+                  #{x_intdiff2}
+				</foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

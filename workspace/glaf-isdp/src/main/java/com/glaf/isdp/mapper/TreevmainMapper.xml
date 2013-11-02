@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.TreevmainMapper">
+
+	<resultMap id="treevmainResultMap"	type="com.glaf.isdp.domain.Treevmain">
+		<id property="indexId" column="index_id" jdbcType="INTEGER" />
+		<result property="id" column="ID" jdbcType="VARCHAR"/>
+		<result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+		<result property="indexName" column="index_name" jdbcType="VARCHAR"/>
+		<result property="nlevel" column="nlevel" jdbcType="INTEGER"/>
+		<result property="num" column="num" jdbcType="VARCHAR"/>
+		<result property="filenum" column="filenum" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="vflag" column="vflag" jdbcType="VARCHAR"/>
+		<result property="sindexName" column="sindex_name" jdbcType="VARCHAR"/>
+		<result property="ztype" column="ztype" jdbcType="INTEGER"/>
+		<result property="content2" column="content2" jdbcType="VARCHAR"/>
+		<result property="topnode" column="topnode" jdbcType="VARCHAR"/>
+		<result property="nodeico" column="nodeico" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertTreevmain" parameterType="com.glaf.isdp.domain.Treevmain">
+		insert into treevmain 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    index_id
+			<if test="id != null">
+				,ID 
+			</if>
+			<if test="parentId != null">
+				,parent_id 
+			</if>
+			<if test="indexName != null">
+				,index_name 
+			</if>
+			<if test="nlevel != null">
+				,nlevel 
+			</if>
+			<if test="num != null">
+				,num 
+			</if>
+			<if test="filenum != null">
+				,filenum 
+			</if>
+			<if test="content != null">
+				,content 
+			</if>
+			<if test="vflag != null">
+				,vflag 
+			</if>
+			<if test="sindexName != null">
+				,sindex_name 
+			</if>
+			<if test="ztype != null">
+				,ztype 
+			</if>
+			<if test="content2 != null">
+				,content2 
+			</if>
+			<if test="topnode != null">
+				,topnode 
+			</if>
+			<if test="nodeico != null">
+				,nodeico 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{indexId, jdbcType=INTEGER}
+	     
+			<if test="id != null">
+				,#{id, jdbcType=VARCHAR}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=INTEGER}
+			</if>
+			<if test="indexName != null">
+				,#{indexName, jdbcType=VARCHAR}
+			</if>
+			<if test="nlevel != null">
+				,#{nlevel, jdbcType=INTEGER}
+			</if>
+			<if test="num != null">
+				,#{num, jdbcType=VARCHAR}
+			</if>
+			<if test="filenum != null">
+				,#{filenum, jdbcType=VARCHAR}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="vflag != null">
+				,#{vflag, jdbcType=VARCHAR}
+			</if>
+			<if test="sindexName != null">
+				,#{sindexName, jdbcType=VARCHAR}
+			</if>
+			<if test="ztype != null">
+				,#{ztype, jdbcType=INTEGER}
+			</if>
+			<if test="content2 != null">
+				,#{content2, jdbcType=VARCHAR}
+			</if>
+			<if test="topnode != null">
+				,#{topnode, jdbcType=VARCHAR}
+			</if>
+			<if test="nodeico != null">
+				,#{nodeico, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateTreevmain" parameterType="com.glaf.isdp.domain.Treevmain">
+		update
+		    treevmain
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="id != null">
+				ID = #{id, jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				parent_id = #{parentId, jdbcType=INTEGER},
+			</if>
+			<if test="indexName != null">
+				index_name = #{indexName, jdbcType=VARCHAR},
+			</if>
+			<if test="nlevel != null">
+				nlevel = #{nlevel, jdbcType=INTEGER},
+			</if>
+			<if test="num != null">
+				num = #{num, jdbcType=VARCHAR},
+			</if>
+			<if test="filenum != null">
+				filenum = #{filenum, jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="vflag != null">
+				vflag = #{vflag, jdbcType=VARCHAR},
+			</if>
+			<if test="sindexName != null">
+				sindex_name = #{sindexName, jdbcType=VARCHAR},
+			</if>
+			<if test="ztype != null">
+				ztype = #{ztype, jdbcType=INTEGER},
+			</if>
+			<if test="content2 != null">
+				content2 = #{content2, jdbcType=VARCHAR},
+			</if>
+			<if test="topnode != null">
+				topnode = #{topnode, jdbcType=VARCHAR},
+			</if>
+			<if test="nodeico != null">
+				nodeico = #{nodeico, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          index_id = #{indexId, jdbcType=INTEGER}
+		
+    </update>
+
+ 
+	<delete id="deleteTreevmainById" parameterType="string"> 
+        delete from treevmain
+        where id = #{id}
+	</delete>
+
+
+	<delete id="deleteTreevmainByIndexId" parameterType="int"> 
+        delete from treevmain
+        where index_id = #{indexId}
+	</delete>
+	
+
+	<delete id="deleteTreevmains" parameterType="com.glaf.isdp.query.TreevmainQuery">
+		delete from treevmain
+		where ( index_id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getTreevmainById" parameterType="string" resultMap="treevmainResultMap">
+		select * from treevmain where id = #{id}
+	</select>
+
+
+	<select id="getTreevmainByIndexId" parameterType="int" resultMap="treevmainResultMap">
+		select * from treevmain where index_id = #{indexId}
+	</select>
+
+
+	<select id="getTreevmainCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreevmainsSql" />
+	</select>
+
+
+	<select id="getTreevmainCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.TreevmainQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreevmainsSql" />
+	</select>
+
+
+	<select id="getTreevmains" 
+		parameterType="map"
+		resultMap="treevmainResultMap">
+		select E.*
+		<include refid="selectTreevmainsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getTreevmainsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.TreevmainQuery"
+		resultMap="treevmainResultMap">
+		select E.*
+		<include refid="selectTreevmainsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectTreevmainsSql">
+
+		from treevmain E
+		 
+		<where>
+
+		       1 = 1  
+
+			<if test="idLike != null and idLike != '' ">
+				and E.ID like #{idLike}
+			</if>
+
+			<if test="parentId != null">
+				and E.parent_id = #{parentId}
+			</if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+			    and E.parent_id IN
+				<foreach item="x_parentId" index="index" collection="parentIds" 
+					open="(" separator="," close=")">
+                  #{x_parentId}
+				</foreach>
+			</if>	       
+
+			<if test="indexNameLike != null and indexNameLike != '' ">
+				and E.index_name like #{indexNameLike}
+			</if>
+
+			<if test="nlevel != null">
+				and E.nlevel = #{nlevel}
+			</if>
+
+			<if test="nlevelGreaterThanOrEqual != null">
+				and E.nlevel &gt;= #{nlevelGreaterThanOrEqual}
+			</if>
+
+			<if test="nlevelLessThanOrEqual != null">
+				and E.nlevel &lt;= #{nlevelLessThanOrEqual}
+			</if>
+
+			<if test="numLike != null and numLike != '' ">
+				and E.num like #{numLike}
+			</if>
+
+			<if test="filenumLike != null and filenumLike != '' ">
+				and E.filenum like #{filenumLike}
+			</if>
+
+			<if test="contentLike != null and contentLike != '' ">
+				and E.content like #{contentLike}
+			</if>
+	        
+			<if test="vflag != null and vflag != '' ">
+				and E.vflag = #{vflag}
+			</if>
+
+			<if test="vflagLike != null and vflagLike != '' ">
+				and E.vflag like #{vflagLike}
+			</if>
+
+			<if test="vflags != null and vflags.size() &gt; 0">
+			    and E.vflag IN
+				<foreach item="x_vflag" index="index" collection="vflags" 
+					open="(" separator="," close=")">
+                  #{x_vflag}
+				</foreach>
+			</if>
+
+			<if test="sindexNameLike != null and sindexNameLike != '' ">
+				and E.sindex_name like #{sindexNameLike}
+			</if>
+
+			<if test="ztype != null">
+				and E.ztype = #{ztype}
+			</if>
+
+			<if test="ztypeGreaterThanOrEqual != null">
+				and E.ztype &gt;= #{ztypeGreaterThanOrEqual}
+			</if>
+
+			<if test="ztypeLessThanOrEqual != null">
+				and E.ztype &lt;= #{ztypeLessThanOrEqual}
+			</if>
+
+			<if test="ztypes != null and ztypes.size() &gt; 0">
+			    and E.ztype IN
+				<foreach item="x_ztype" index="index" collection="ztypes" 
+					open="(" separator="," close=")">
+                  #{x_ztype}
+				</foreach>
+			</if>
+
+			<if test="content2Like != null and content2Like != '' ">
+				and E.content2 like #{content2Like}
+			</if>
+	        
+			<if test="topnode != null and topnode != '' ">
+				and E.topnode = #{topnode}
+			</if>
+
+			<if test="topnodeLike != null and topnodeLike != '' ">
+				and E.topnode like #{topnodeLike}
+			</if>
+
+			<if test="topnodes != null and topnodes.size() &gt; 0">
+			    and E.topnode IN
+				<foreach item="x_topnode" index="index" collection="topnodes" 
+					open="(" separator="," close=")">
+                  #{x_topnode}
+				</foreach>
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

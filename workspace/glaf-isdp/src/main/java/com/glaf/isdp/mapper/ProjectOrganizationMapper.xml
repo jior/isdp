@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.ProjectOrganizationMapper">
+
+	<resultMap id="projectOrganizationResultMap"	type="com.glaf.isdp.domain.ProjectOrganization">
+		<id property="indexId" column="index_id" jdbcType="INTEGER" />
+		<result property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="flag" column="intflag" jdbcType="INTEGER"/>
+		<result property="sysId" column="sys_id" jdbcType="VARCHAR"/>
+		<result property="projectName" column="projname" jdbcType="VARCHAR"/>
+		<result property="num" column="num" jdbcType="VARCHAR"/>
+		<result property="ctime" column="ctime" jdbcType="TIMESTAMP"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="dbname" column="sdbname" jdbcType="VARCHAR"/>
+		<result property="serverName" column="sServerName" jdbcType="VARCHAR"/>
+		<result property="user" column="sUser" jdbcType="VARCHAR"/>
+		<result property="password" column="sPassword" jdbcType="VARCHAR"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+		<result property="email" column="email" jdbcType="VARCHAR"/>
+		<result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+		<result property="nodeico" column="nodeico" jdbcType="INTEGER"/>
+		<result property="line" column="intLine" jdbcType="INTEGER"/>
+		<result property="domainIndex" column="domain_index" jdbcType="INTEGER"/>
+		<result property="intLocal" column="intLocal" jdbcType="INTEGER"/>
+		<result property="emailPsw" column="email_psw" jdbcType="VARCHAR"/>
+		<result property="connected" column="intConnected" jdbcType="INTEGER"/>
+		<result property="emailS" column="email_s" jdbcType="VARCHAR"/>
+		<result property="orgLevel" column="intorglevel" jdbcType="INTEGER"/>
+		<result property="sendType" column="intsendtype" jdbcType="INTEGER"/>
+		<result property="emailBackup" column="email_backup" jdbcType="VARCHAR"/>
+		<result property="emailImplement" column="email_implement" jdbcType="VARCHAR"/>
+	</resultMap>
+
+
+	<resultMap id="projectOrganizationHashMap"	type="java.util.HashMap">
+		<id property="indexId" column="index_id" jdbcType="INTEGER" />
+		<result property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="flag" column="intflag" jdbcType="INTEGER"/>
+		<result property="sysId" column="sys_id" jdbcType="VARCHAR"/>
+		<result property="projectName" column="projname" jdbcType="VARCHAR"/>
+		<result property="num" column="num" jdbcType="VARCHAR"/>
+		<result property="ctime" column="ctime" jdbcType="TIMESTAMP"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="dbname" column="sdbname" jdbcType="VARCHAR"/>
+		<result property="serverName" column="sServerName" jdbcType="VARCHAR"/>
+		<result property="user" column="sUser" jdbcType="VARCHAR"/>
+		<result property="password" column="sPassword" jdbcType="VARCHAR"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+		<result property="email" column="email" jdbcType="VARCHAR"/>
+		<result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+		<result property="nodeico" column="nodeico" jdbcType="INTEGER"/>
+		<result property="line" column="intLine" jdbcType="INTEGER"/>
+		<result property="domainIndex" column="domain_index" jdbcType="INTEGER"/>
+		<result property="intLocal" column="intLocal" jdbcType="INTEGER"/>
+		<result property="emailPsw" column="email_psw" jdbcType="VARCHAR"/>
+		<result property="connected" column="intConnected" jdbcType="INTEGER"/>
+		<result property="emailS" column="email_s" jdbcType="VARCHAR"/>
+		<result property="orgLevel" column="intorglevel" jdbcType="INTEGER"/>
+		<result property="sendType" column="intsendtype" jdbcType="INTEGER"/>
+		<result property="emailBackup" column="email_backup" jdbcType="VARCHAR"/>
+		<result property="emailImplement" column="email_implement" jdbcType="VARCHAR"/>
+	</resultMap>
+ 
+	<insert id="insertProjectOrganization" parameterType="com.glaf.isdp.domain.ProjectOrganization">
+		insert into proj_muiprojlist 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    index_id
+			<if test="id != null">
+				,id 
+			</if>
+			<if test="flag != null">
+				,intflag 
+			</if>
+			<if test="sysId != null">
+				,sys_id 
+			</if>
+			<if test="projectName != null">
+				,projname 
+			</if>
+			<if test="num != null">
+				,num 
+			</if>
+			<if test="ctime != null">
+				,ctime 
+			</if>
+			<if test="content != null">
+				,content 
+			</if>
+			<if test="dbname != null">
+				,sdbname 
+			</if>
+			<if test="serverName != null">
+				,sServerName 
+			</if>
+			<if test="user != null">
+				,sUser 
+			</if>
+			<if test="password != null">
+				,sPassword 
+			</if>
+			<if test="listno != null">
+				,listno 
+			</if>
+			<if test="email != null">
+				,email 
+			</if>
+			<if test="parentId != null">
+				,parent_id 
+			</if>
+			<if test="nodeico != null">
+				,nodeico 
+			</if>
+			<if test="line != null">
+				,intLine 
+			</if>
+			<if test="domainIndex != null">
+				,domain_index 
+			</if>
+			<if test="intLocal != null">
+				,intLocal 
+			</if>
+			<if test="emailPsw != null">
+				,email_psw 
+			</if>
+			<if test="connected != null">
+				,intConnected 
+			</if>
+			<if test="emailS != null">
+				,email_s 
+			</if>
+			<if test="orgLevel != null">
+				,intorglevel 
+			</if>
+			<if test="sendType != null">
+				,intsendtype 
+			</if>
+			<if test="emailBackup != null">
+				,email_backup 
+			</if>
+			<if test="emailImplement != null">
+				,email_implement 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{indexId, jdbcType=INTEGER}
+	     
+			<if test="id != null">
+				,#{id, jdbcType=VARCHAR}
+			</if>
+			<if test="flag != null">
+				,#{flag, jdbcType=INTEGER}
+			</if>
+			<if test="sysId != null">
+				,#{sysId, jdbcType=VARCHAR}
+			</if>
+			<if test="projectName != null">
+				,#{projectName, jdbcType=VARCHAR}
+			</if>
+			<if test="num != null">
+				,#{num, jdbcType=VARCHAR}
+			</if>
+			<if test="ctime != null">
+				,#{ctime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="dbname != null">
+				,#{dbname, jdbcType=VARCHAR}
+			</if>
+			<if test="serverName != null">
+				,#{serverName, jdbcType=VARCHAR}
+			</if>
+			<if test="user != null">
+				,#{user, jdbcType=VARCHAR}
+			</if>
+			<if test="password != null">
+				,#{password, jdbcType=VARCHAR}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+			<if test="email != null">
+				,#{email, jdbcType=VARCHAR}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=INTEGER}
+			</if>
+			<if test="nodeico != null">
+				,#{nodeico, jdbcType=INTEGER}
+			</if>
+			<if test="line != null">
+				,#{line, jdbcType=INTEGER}
+			</if>
+			<if test="domainIndex != null">
+				,#{domainIndex, jdbcType=INTEGER}
+			</if>
+			<if test="intLocal != null">
+				,#{intLocal, jdbcType=INTEGER}
+			</if>
+			<if test="emailPsw != null">
+				,#{emailPsw, jdbcType=VARCHAR}
+			</if>
+			<if test="connected != null">
+				,#{connected, jdbcType=INTEGER}
+			</if>
+			<if test="emailS != null">
+				,#{emailS, jdbcType=VARCHAR}
+			</if>
+			<if test="orgLevel != null">
+				,#{orgLevel, jdbcType=INTEGER}
+			</if>
+			<if test="sendType != null">
+				,#{sendType, jdbcType=INTEGER}
+			</if>
+			<if test="emailBackup != null">
+				,#{emailBackup, jdbcType=VARCHAR}
+			</if>
+			<if test="emailImplement != null">
+				,#{emailImplement, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateProjectOrganization" parameterType="com.glaf.isdp.domain.ProjectOrganization">
+		update
+		proj_muiprojlist
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="flag != null">
+				intflag = #{flag, jdbcType=INTEGER},
+			</if>
+			<if test="projectName != null">
+				projname = #{projectName, jdbcType=VARCHAR},
+			</if>
+			<if test="num != null">
+				num = #{num, jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="dbname != null">
+				sdbname = #{dbname, jdbcType=VARCHAR},
+			</if>
+			<if test="serverName != null">
+				sServerName = #{serverName, jdbcType=VARCHAR},
+			</if>
+			<if test="user != null">
+				sUser = #{user, jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				sPassword = #{password, jdbcType=VARCHAR},
+			</if>
+			<if test="listno != null">
+				listno = #{listno, jdbcType=INTEGER},
+			</if>
+			<if test="email != null">
+				email = #{email, jdbcType=VARCHAR},
+			</if>
+			<if test="nodeico != null">
+				nodeico = #{nodeico, jdbcType=INTEGER},
+			</if>
+			<if test="line != null">
+				intLine = #{line, jdbcType=INTEGER},
+			</if>
+			<if test="domainIndex != null">
+				domain_index = #{domainIndex, jdbcType=INTEGER},
+			</if>
+			<if test="intLocal != null">
+				intLocal = #{intLocal, jdbcType=INTEGER},
+			</if>
+			<if test="emailPsw != null">
+				email_psw = #{emailPsw, jdbcType=VARCHAR},
+			</if>
+			<if test="connected != null">
+				intConnected = #{connected, jdbcType=INTEGER},
+			</if>
+			<if test="emailS != null">
+				email_s = #{emailS, jdbcType=VARCHAR},
+			</if>
+			<if test="orgLevel != null">
+				intorglevel = #{orgLevel, jdbcType=INTEGER},
+			</if>
+			<if test="sendType != null">
+				intsendtype = #{sendType, jdbcType=INTEGER},
+			</if>
+			<if test="emailBackup != null">
+				email_backup = #{emailBackup, jdbcType=VARCHAR},
+			</if>
+			<if test="emailImplement != null">
+				email_implement = #{emailImplement, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+          index_id = #{indexId, jdbcType=INTEGER}
+		
+	</update>
+
+ 
+	<delete id="deleteProjectOrganizationById" parameterType="string"> 
+        delete from proj_muiprojlist
+        where index_id = #{id}
+	</delete>
+	
+
+	<delete id="deleteProjectOrganizations" parameterType="com.glaf.isdp.query.ProjectOrganizationQuery">
+		delete from proj_muiprojlist
+		where ( index_id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getProjectOrganizationById" parameterType="string" resultMap="projectOrganizationResultMap">
+		select * from proj_muiprojlist where index_id = #{id}
+	</select>
+
+
+	<select id="getProjectOrganizationCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectProjectOrganizationsSql" />
+	</select>
+
+
+	<select id="getProjectOrganizationCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.ProjectOrganizationQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectProjectOrganizationsSql" />
+	</select>
+
+
+	<select id="getProjectOrganizations" 
+		parameterType="map"
+		resultMap="projectOrganizationResultMap">
+		select E.*
+		<include refid="selectProjectOrganizationsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getProjectOrganizationMapList" parameterType="map" resultType="map">
+		select E.*
+		<include refid="selectProjectOrganizationsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getProjectOrganizationsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.ProjectOrganizationQuery"
+		resultMap="projectOrganizationResultMap">
+		select E.*
+		<include refid="selectProjectOrganizationsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectProjectOrganizationsSql">
+
+		from proj_muiprojlist E
+		 
+		<where>
+
+		       1 = 1  
+
+			<if test="idLike != null and idLike != '' ">
+				and E.id like #{idLike}
+			</if>
+
+			<if test="ids != null and ids.size() &gt; 0">
+			    and E.id IN
+				<foreach item="x_id" index="index" collection="ids" 
+					open="(" separator="," close=")">
+                  #{x_id}
+				</foreach>
+			</if>
+
+			<if test="flag != null">
+				and E.intflag = #{flag}
+			</if>
+
+			<if test="flags != null and flags.size() &gt; 0">
+			    and E.intflag IN
+				<foreach item="x_flag" index="index" collection="flags" 
+					open="(" separator="," close=")">
+                  #{x_flag}
+				</foreach>
+			</if>
+
+			<if test="sysId != null and sysId != '' ">
+				and E.sys_id = #{sysId}
+			</if>
+
+			<if test="sysIds != null and sysIds.size() &gt; 0">
+			    and E.sys_id IN
+				<foreach item="x_sysId" index="index" collection="sysIds" 
+					open="(" separator="," close=")">
+                  #{x_sysId}
+				</foreach>
+			</if>
+
+			<if test="projectNameLike != null and projectNameLike != '' ">
+				and E.projname like #{projectNameLike}
+			</if>
+
+			<if test="numLike != null and numLike != '' ">
+				and E.num like #{numLike}
+			</if>
+
+			<if test="ctimeGreaterThanOrEqual != null">
+				and E.ctime &gt;= #{ctimeGreaterThanOrEqual}
+			</if>
+
+			<if test="ctimeLessThanOrEqual != null">
+				and E.ctime &lt;= #{ctimeLessThanOrEqual}
+			</if>
+
+			<if test="contentLike != null and contentLike != '' ">
+				and E.content like #{contentLike}
+			</if>
+	        
+			<if test="dbname != null and dbname != '' ">
+				and E.sdbname = #{dbname}
+			</if>
+
+			<if test="dbnameLike != null and dbnameLike != '' ">
+				and E.sdbname like #{dbnameLike}
+			</if>
+
+			<if test="dbnames != null and dbnames.size() &gt; 0">
+			    and E.sdbname IN
+				<foreach item="x_dbname" index="index" collection="dbnames" 
+					open="(" separator="," close=")">
+                  #{x_dbname}
+				</foreach>
+			</if>
+
+	        
+			<if test="serverName != null and serverName != '' ">
+				and E.sServerName = #{serverName}
+			</if>
+
+			<if test="serverNameLike != null and serverNameLike != '' ">
+				and E.sServerName like #{serverNameLike}
+			</if>
+
+			<if test="serverNames != null and serverNames.size() &gt; 0">
+			    and E.sServerName IN
+				<foreach item="x_serverName" index="index" collection="serverNames" 
+					open="(" separator="," close=")">
+                  #{x_serverName}
+				</foreach>
+			</if>
+
+	        
+			<if test="user != null and user != '' ">
+				and E.sUser = #{user}
+			</if>
+
+			<if test="userLike != null and userLike != '' ">
+				and E.sUser like #{userLike}
+			</if>
+
+			<if test="users != null and users.size() &gt; 0">
+			    and E.sUser IN
+				<foreach item="x_user" index="index" collection="users" 
+					open="(" separator="," close=")">
+                  #{x_user}
+				</foreach>
+			</if>
+	        
+			<if test="email != null and email != '' ">
+				and E.email = #{email}
+			</if>
+
+			<if test="emailLike != null and emailLike != '' ">
+				and E.email like #{emailLike}
+			</if>
+
+			<if test="parentId != null">
+				and E.parent_id = #{parentId}
+			</if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+			    and E.parent_id IN
+				<foreach item="x_parentId" index="index" collection="parentIds" 
+					open="(" separator="," close=")">
+                  #{x_parentId}
+				</foreach>
+			</if>
+
+			<if test="domainIndex != null">
+				and E.domain_index = #{domainIndex}
+			</if>
+
+			<if test="domainIndexGreaterThanOrEqual != null">
+				and E.domain_index &gt;= #{domainIndexGreaterThanOrEqual}
+			</if>
+
+			<if test="domainIndexLessThanOrEqual != null">
+				and E.domain_index &lt;= #{domainIndexLessThanOrEqual}
+			</if>
+
+			<if test="domainIndexs != null and domainIndexs.size() &gt; 0">
+			    and E.domain_index IN
+				<foreach item="x_domainIndex" index="index" collection="domainIndexs" 
+					open="(" separator="," close=")">
+                  #{x_domainIndex}
+				</foreach>
+			</if>
+
+			<if test="intLocal != null">
+				and E.intLocal = #{intLocal}
+			</if>
+	
+			<if test="connected != null">
+				and E.intConnected = #{connected}
+			</if>
+            
+			<if test="orgLevel != null">
+				and E.intorglevel = #{orgLevel}
+			</if>
+
+			<if test="orgLevelGreaterThanOrEqual != null">
+				and E.intorglevel &gt;= #{orgLevelGreaterThanOrEqual}
+			</if>
+
+			<if test="orgLevelLessThanOrEqual != null">
+				and E.intorglevel &lt;= #{orgLevelLessThanOrEqual}
+			</if>
+
+			<if test="sendType != null">
+				and E.intsendtype = #{sendType}
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

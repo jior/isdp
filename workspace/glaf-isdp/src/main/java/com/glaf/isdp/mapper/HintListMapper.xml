@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.HintListMapper">
+
+	<resultMap id="hintListResultMap"	type="com.glaf.isdp.domain.HintList">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="hintid" column="hintid" jdbcType="VARCHAR"/>
+		<result property="list" column="list" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+		<result property="hintdata" column="hintdata" jdbcType="INTEGER"/>
+	</resultMap>
+
+	<resultMap id="hintListHashMap"	type="java.util.HashMap">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="hintid" column="hintid" jdbcType="VARCHAR"/>
+		<result property="list" column="list" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+		<result property="hintdata" column="hintdata" jdbcType="INTEGER"/>
+	</resultMap>
+ 
+	<insert id="insertHintList" parameterType="com.glaf.isdp.domain.HintList">
+		insert into hintlist 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="hintid != null">
+				,hintid 
+			</if>
+			<if test="list != null">
+				,list 
+			</if>
+			<if test="content != null">
+				,content 
+			</if>
+			<if test="listno != null">
+				,listno 
+			</if>
+			<if test="hintdata != null">
+				,hintdata 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="hintid != null">
+				,#{hintid, jdbcType=VARCHAR}
+			</if>
+			<if test="list != null">
+				,#{list, jdbcType=VARCHAR}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+			<if test="hintdata != null">
+				,#{hintdata, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateHintList" parameterType="com.glaf.isdp.domain.HintList">
+		update hintlist
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="hintid != null">
+				hintid = #{hintid, jdbcType=VARCHAR},
+			</if>
+			<if test="list != null">
+				list = #{list, jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="listno != null">
+				listno = #{listno, jdbcType=INTEGER},
+			</if>
+			<if test="hintdata != null">
+				hintdata = #{hintdata, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+	</update>
+
+ 
+	<delete id="deleteHintListById" parameterType="string"> 
+        delete from hintlist
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteHintLists" parameterType="com.glaf.isdp.query.HintListQuery">
+		delete from hintlist
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getHintListById" parameterType="string" resultMap="hintListResultMap">
+		select * from hintlist where id = #{id}
+	</select>
+
+
+	<select id="getHintListCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectHintListsSql" />
+	</select>
+
+
+	<select id="getHintListCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.HintListQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectHintListsSql" />
+	</select>
+
+
+	<select id="getHintLists" 
+		parameterType="map"
+		resultMap="hintListResultMap">
+		select E.*
+		<include refid="selectHintListsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getHintListsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.HintListQuery"
+		resultMap="hintListResultMap">
+		select E.*
+		<include refid="selectHintListsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectHintListsSql">
+
+		from hintlist E
+		 
+		<where>
+
+		       1 = 1  
+       
+			<if test="hintid != null and hintid != '' ">
+				and E.hintid = #{hintid}
+			</if>
+
+			<if test="hintidLike != null and hintidLike != '' ">
+				and E.hintid like #{hintidLike}
+			</if>
+
+			<if test="hintids != null and hintids.size() &gt; 0">
+			    and E.hintid IN
+				<foreach item="x_hintid" index="index" collection="hintids" 
+					open="(" separator="," close=")">
+                  #{x_hintid}
+				</foreach>
+			</if>
+
+			<if test="listLike != null and listLike != '' ">
+				and E.list like #{listLike}
+			</if>
+
+			<if test="contentLike != null and contentLike != '' ">
+				and E.content like #{contentLike}
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

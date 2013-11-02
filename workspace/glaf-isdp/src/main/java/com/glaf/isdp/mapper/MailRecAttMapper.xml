@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.MailRecAttMapper">
+
+	<resultMap id="mailRecAttResultMap"	type="com.glaf.isdp.domain.MailRecAtt">
+		<id property="fileId" column="fileId" jdbcType="VARCHAR"/>
+		<result property="topid" column="topid" jdbcType="VARCHAR"/>
+		<result property="fileName" column="file_name" jdbcType="VARCHAR"/>
+		<result property="ctime" column="ctime" jdbcType="TIMESTAMP"/>
+		<result property="filesize" column="filesize" jdbcType="INTEGER"/>
+		<result property="fileContent" column="file_content" jdbcType="BLOB"/>
+	</resultMap>
+	
+	<resultMap id="mailRecAttResultMap_postgres"	type="com.glaf.isdp.domain.MailRecAtt">
+		<id property="fileId" column="fileId" jdbcType="VARCHAR"/>
+		<result property="topid" column="topid" jdbcType="VARCHAR"/>
+		<result property="fileName" column="file_name" jdbcType="VARCHAR"/>
+		<result property="ctime" column="ctime" jdbcType="TIMESTAMP"/>
+		<result property="filesize" column="filesize" jdbcType="INTEGER"/>
+		<result property="fileContent" column="file_content" jdbcType="BINARY"/>
+	</resultMap>
+
+
+	<resultMap id="mailRecAttHashMap"	type="java.util.HashMap">
+		<id property="fileId" column="fileId" jdbcType="VARCHAR"/>
+		<result property="topid" column="topid" jdbcType="VARCHAR"/>
+		<result property="fileName" column="file_name" jdbcType="VARCHAR"/>
+		<result property="ctime" column="ctime" jdbcType="TIMESTAMP"/>
+		<result property="filesize" column="filesize" jdbcType="INTEGER"/>
+	</resultMap>
+ 
+	<insert id="insertMailRecAtt" parameterType="com.glaf.isdp.domain.MailRecAtt">
+		insert into email_recatt 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    fileId
+			<if test="topid != null">
+				,topid 
+			</if>
+			<if test="fileName != null">
+				,file_name 
+			</if>
+			<if test="fileContent != null">
+			</if>
+			<if test="ctime != null">
+				,ctime 
+			</if>
+			<if test="filesize != null">
+				,filesize 
+			</if>
+			<if test="fileContent != null">
+				,file_content 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{fileId, jdbcType=VARCHAR}
+	     
+			<if test="topid != null">
+				,#{topid, jdbcType=VARCHAR}
+			</if>
+			<if test="fileName != null">
+				,#{fileName, jdbcType=VARCHAR}
+			</if>
+			<if test="fileContent != null">
+			</if>
+			<if test="ctime != null">
+				,#{ctime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="filesize != null">
+				,#{filesize, jdbcType=INTEGER}
+			</if>
+			<if test="fileContent != null">
+				,#{fileContent, jdbcType=BLOB}
+			</if>
+		</trim>
+	</insert>
+	
+	
+	<insert id="insertMailRecAtt_postgres" parameterType="com.glaf.isdp.domain.MailRecAtt">
+		insert into email_recatt 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    fileId
+			<if test="topid != null">
+				,topid 
+			</if>
+			<if test="fileName != null">
+				,file_name 
+			</if>
+			<if test="fileContent != null">
+			</if>
+			<if test="ctime != null">
+				,ctime 
+			</if>
+			<if test="filesize != null">
+				,filesize 
+			</if>
+			<if test="fileContent != null">
+				,file_content 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{fileId, jdbcType=VARCHAR}
+	     
+			<if test="topid != null">
+				,#{topid, jdbcType=VARCHAR}
+			</if>
+			<if test="fileName != null">
+				,#{fileName, jdbcType=VARCHAR}
+			</if>
+			<if test="fileContent != null">
+			</if>
+			<if test="ctime != null">
+				,#{ctime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="filesize != null">
+				,#{filesize, jdbcType=INTEGER}
+			</if>
+			<if test="fileContent != null">
+				,#{fileContent, jdbcType=BINARY}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateMailRecAtt" parameterType="com.glaf.isdp.domain.MailRecAtt">
+		update email_recatt
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="topid != null">
+				topid = #{topid, jdbcType=VARCHAR},
+			</if>
+			<if test="fileName != null">
+				file_name = #{fileName, jdbcType=VARCHAR},
+			</if>
+			<if test="fileContent != null">
+			</if>
+			<if test="ctime != null">
+				ctime = #{ctime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="filesize != null">
+				filesize = #{filesize, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+          fileId = #{fileId, jdbcType=VARCHAR}
+		
+	</update>
+
+ 
+	<delete id="deleteMailRecAttById" parameterType="string"> 
+        delete from email_recatt
+        where fileId = #{id}
+	</delete>
+	
+
+	<delete id="deleteMailRecAtts" parameterType="com.glaf.isdp.query.MailRecAttQuery">
+		delete from email_recatt
+		where ( fileId IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getMailRecAttById" parameterType="string" resultMap="mailRecAttResultMap">
+		select * from email_recatt where fileId = #{id}
+	</select>
+
+
+	<select id="getMailRecAttCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*) from email_recatt E
+		<include refid="selectMailRecAttSql" />
+	</select>
+
+
+	<select id="getMailRecAttCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.MailRecAttQuery"
+		resultType="int">
+		select count(*) from email_recatt E
+		<include refid="selectMailRecAttSql" />
+	</select>
+
+
+	<select id="getMailRecAtts" 
+		parameterType="map"
+		resultMap="mailRecAttResultMap">
+		select E.fileId, E.topid, E.file_name, E.ctime, E.filesize from email_recatt E
+		<include refid="selectMailRecAttSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getMailRecAttMapList" parameterType="map" resultType="map">
+		select E.fileId, E.topid, E.file_name, E.ctime, E.filesize from email_recatt E 
+		<include refid="selectMailRecAttSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getMailRecAttsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.MailRecAttQuery"
+		resultMap="mailRecAttResultMap">
+		select E.fileId, E.topid, E.file_name, E.ctime, E.filesize from email_recatt E
+		<include refid="selectMailRecAttSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectMailRecAttSql">
+		 
+		<where>
+
+		   1 = 1  
+
+	        
+			<if test="topid != null and topid != '' ">
+				and E.topid = #{topid}
+			</if>
+
+			<if test="topidLike != null and topidLike != '' ">
+				and E.topid like #{topidLike}
+			</if>
+
+			<if test="topids != null and topids.size() &gt; 0">
+			    and E.topid IN
+				<foreach item="x_topid" index="index" collection="topids" 
+					open="(" separator="," close=")">
+                  #{x_topid}
+				</foreach>
+			</if>
+     
+			<if test="fileName != null and fileName != '' ">
+				and E.file_name = #{fileName}
+			</if>
+
+			<if test="fileNameLike != null and fileNameLike != '' ">
+				and E.file_name like #{fileNameLike}
+			</if>
+
+			<if test="ctimeGreaterThanOrEqual != null">
+				and E.ctime &gt;= #{ctimeGreaterThanOrEqual}
+			</if>
+
+			<if test="ctimeLessThanOrEqual != null">
+				and E.ctime &lt;= #{ctimeLessThanOrEqual}
+			</if>
+
+			<if test="filesizeGreaterThanOrEqual != null">
+				and E.filesize &gt;= #{filesizeGreaterThanOrEqual}
+			</if>
+
+			<if test="filesizeLessThanOrEqual != null">
+				and E.filesize &lt;= #{filesizeLessThanOrEqual}
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.UserRoleMapper">
+
+	<resultMap id="userRoleResultMap"	type="com.glaf.isdp.domain.UserRole">
+		<id property="id" column="ID" jdbcType="VARCHAR"/>
+		<result property="roleid" column="roleid" jdbcType="VARCHAR"/>
+		<result property="userid" column="userid" jdbcType="VARCHAR"/>
+		<result property="rsysid" column="Rsysid" jdbcType="VARCHAR"/>
+		<result property="ruserid" column="Ruserid" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertUserRole" parameterType="com.glaf.isdp.domain.UserRole">
+		insert into userrole 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID
+			<if test="roleid != null">
+				,roleid 
+			</if>
+			<if test="userid != null">
+				,userid 
+			</if>
+			<if test="rsysid != null">
+				,Rsysid 
+			</if>
+			<if test="ruserid != null">
+				,Ruserid 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="roleid != null">
+				,#{roleid, jdbcType=VARCHAR}
+			</if>
+			<if test="userid != null">
+				,#{userid, jdbcType=VARCHAR}
+			</if>
+			<if test="rsysid != null">
+				,#{rsysid, jdbcType=VARCHAR}
+			</if>
+			<if test="ruserid != null">
+				,#{ruserid, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateUserRole" parameterType="com.glaf.isdp.domain.UserRole">
+		update
+		    userrole
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="roleid != null">
+				roleid = #{roleid, jdbcType=VARCHAR},
+			</if>
+			<if test="userid != null">
+				userid = #{userid, jdbcType=VARCHAR},
+			</if>
+			<if test="rsysid != null">
+				rsysid = #{rsysid, jdbcType=VARCHAR},
+			</if>
+			<if test="ruserid != null">
+				ruserid = #{ruserid, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+
+ 
+	<delete id="deleteUserRoleById" parameterType="string"> 
+        delete from userrole
+        where ID = #{id}
+	</delete>
+	
+
+	<delete id="deleteUserRoles" parameterType="com.glaf.isdp.query.UserRoleQuery">
+		delete from userrole
+		where ( ID IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getUserRoleById" parameterType="string" resultMap="userRoleResultMap">
+		select * from userrole where ID = #{id}
+	</select>
+
+
+	<select id="getUserRoleCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectUserRolesSql" />
+	</select>
+
+
+	<select id="getUserRoleCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.UserRoleQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectUserRolesSql" />
+	</select>
+
+
+	<select id="getUserRoles" 
+		parameterType="map"
+		resultMap="userRoleResultMap">
+		select E.*
+		<include refid="selectUserRolesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getUserRolesByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.UserRoleQuery"
+		resultMap="userRoleResultMap">
+		select E.*
+		<include refid="selectUserRolesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectUserRolesSql">
+
+		from userrole E
+		 
+		<where>
+
+		       1 = 1  
+
+	        
+			<if test="roleid != null and roleid != '' ">
+				and E.roleid = #{roleid}
+			</if>
+
+			<if test="roleidLike != null and roleidLike != '' ">
+				and E.roleid like #{roleidLike}
+			</if>
+
+			<if test="roleids != null and roleids.size() &gt; 0">
+			    and E.roleid IN
+				<foreach item="x_roleid" index="index" collection="roleids" 
+					open="(" separator="," close=")">
+                  #{x_roleid}
+				</foreach>
+			</if>
+
+			<if test="userid != null and userid != '' ">
+				and E.userid = #{userid}
+			</if>
+
+			<if test="userids != null and userids.size() &gt; 0">
+			    and E.userid IN
+				<foreach item="x_userid" index="index" collection="userids" 
+					open="(" separator="," close=")">
+                  #{x_userid}
+				</foreach>
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

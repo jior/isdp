@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.NetDotRoleMapper">
+
+ 	<resultMap id="netDotRoleResultMap"	type="com.glaf.isdp.domain.NetDotRole">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="filedotFileid" column="filedot_fileid" jdbcType="VARCHAR"/>
+        <result property="roleId" column="role_id" jdbcType="INTEGER"/>
+        <result property="listno" column="listno" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertNetDotRole" parameterType="com.glaf.isdp.domain.NetDotRole">
+		insert into net_dot_role 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="filedotFileid != null">
+				,filedot_fileid 
+			</if>
+			<if test="roleId != null">
+				,role_id 
+			</if>
+			<if test="listno != null">
+				,listno 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="filedotFileid != null">
+				,#{filedotFileid, jdbcType=VARCHAR}
+			</if>
+			<if test="roleId != null">
+				,#{roleId, jdbcType=INTEGER}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateNetDotRole" parameterType="com.glaf.isdp.domain.NetDotRole">
+		update
+		net_dot_role
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="filedotFileid != null">
+				filedot_fileid = #{filedotFileid, jdbcType=VARCHAR},
+			</if>
+			<if test="roleId != null">
+				role_id = #{roleId, jdbcType=INTEGER},
+			</if>
+			<if test="listno != null">
+				listno = #{listno, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteNetDotRoleById" parameterType="string"> 
+        delete from net_dot_role
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteNetDotRoles" parameterType="com.glaf.isdp.query.NetDotRoleQuery">
+		delete from net_dot_role
+		where ( id IN
+          <foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+          </foreach>
+		)
+	</delete>
+
+
+	<select id="getNetDotRoleById" parameterType="string" resultMap="netDotRoleResultMap">
+		select * from net_dot_role where id = #{id}
+	</select>
+
+
+	<select id="getNetDotRoleCount" 
+	    parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectNetDotRolesSql" />
+	</select>
+
+
+	<select id="getNetDotRoleCountByQueryCriteria" 
+	    parameterType="com.glaf.isdp.query.NetDotRoleQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectNetDotRolesSql" />
+	</select>
+
+
+	<select id="getNetDotRoles" 
+	    parameterType="map"
+		resultMap="netDotRoleResultMap">
+		select E.*
+		<include refid="selectNetDotRolesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+	<select id="getNetDotRolesByQueryCriteria" 
+	    parameterType="com.glaf.isdp.query.NetDotRoleQuery"
+		resultMap="netDotRoleResultMap">
+		select E.*
+		<include refid="selectNetDotRolesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+        </if>
+	</select>
+
+
+	<sql id="selectNetDotRolesSql">
+
+		from net_dot_role E
+		 
+		<where>
+
+		       1 = 1  
+	        
+			<if test="filedotFileid != null and filedotFileid != '' ">
+				and E.filedot_fileid = #{filedotFileid}
+            </if>
+
+			<if test="filedotFileidLike != null and filedotFileidLike != '' ">
+				and E.filedot_fileid like #{filedotFileidLike}
+            </if>
+
+			<if test="filedotFileids != null and filedotFileids.size() &gt; 0">
+			    and E.filedot_fileid IN
+                <foreach item="x_filedotFileid" index="index" collection="filedotFileids" 
+                     open="(" separator="," close=")">
+                  #{x_filedotFileid}
+                </foreach>
+			</if>
+
+			<if test="roleId != null">
+				and E.role_id = #{roleId}
+            </if>
+
+			<if test="roleIdGreaterThanOrEqual != null">
+				and E.role_id &gt;= #{roleIdGreaterThanOrEqual}
+            </if>
+
+			<if test="roleIdLessThanOrEqual != null">
+				and E.role_id &lt;= #{roleIdLessThanOrEqual}
+            </if>
+
+			<if test="roleIds != null and roleIds.size() &gt; 0">
+			    and E.role_id IN
+                <foreach item="x_roleId" index="index" collection="roleIds" 
+                     open="(" separator="," close=")">
+                  #{x_roleId}
+                </foreach>
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

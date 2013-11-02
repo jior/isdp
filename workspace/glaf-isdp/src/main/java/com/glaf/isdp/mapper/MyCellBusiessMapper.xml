@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.MyCellBusiessMapper">
+
+	<resultMap id="myCellBusiessResultMap"	type="com.glaf.isdp.domain.MyCellBusiess">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="name" column="name" jdbcType="VARCHAR"/>
+		<result property="isused" column="isused" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="intsystype" column="intsystype" jdbcType="INTEGER"/>
+		<result property="picfile" column="picfile" jdbcType="VARCHAR"/>
+		<result property="picfileWelcom" column="picfile_welcom" jdbcType="VARCHAR"/>
+		<result property="picfileMain" column="picfile_main" jdbcType="VARCHAR"/>
+		<result property="picfileLogin" column="picfile_login" jdbcType="VARCHAR"/>
+		<result property="sysbuiesstypesId" column="sysbuiesstypes_id" jdbcType="VARCHAR"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+		<result property="domainIndex" column="domain_index" jdbcType="INTEGER"/>
+		<result property="fileContent" column="file_content" jdbcType="BLOB"/>
+		<result property="fileContentW" column="file_content_w" jdbcType="BLOB"/>
+		<result property="fileContentM" column="file_content_m" jdbcType="BLOB"/>
+		<result property="fileContentL" column="file_content_l" jdbcType="BLOB"/>
+	</resultMap>
+	
+	<resultMap id="myCellBusiessResultMap_postgres"	type="com.glaf.isdp.domain.MyCellBusiess">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="name" column="name" jdbcType="VARCHAR"/>
+		<result property="isused" column="isused" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="intsystype" column="intsystype" jdbcType="INTEGER"/>
+		<result property="picfile" column="picfile" jdbcType="VARCHAR"/>
+		<result property="picfileWelcom" column="picfile_welcom" jdbcType="VARCHAR"/>
+		<result property="picfileMain" column="picfile_main" jdbcType="VARCHAR"/>
+		<result property="picfileLogin" column="picfile_login" jdbcType="VARCHAR"/>
+		<result property="sysbuiesstypesId" column="sysbuiesstypes_id" jdbcType="VARCHAR"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+		<result property="domainIndex" column="domain_index" jdbcType="INTEGER"/>
+		<result property="fileContent" column="file_content" jdbcType="BINARY"/>
+		<result property="fileContentW" column="file_content_w" jdbcType="BINARY"/>
+		<result property="fileContentM" column="file_content_m" jdbcType="BINARY"/>
+		<result property="fileContentL" column="file_content_l" jdbcType="BINARY"/>
+	</resultMap>
+
+ 
+	<insert id="insertMyCellBusiess" parameterType="com.glaf.isdp.domain.MyCellBusiess">
+		insert into myCell_busiess 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="name != null">
+				,name 
+			</if>
+			<if test="isused != null">
+				,isused 
+			</if>
+			<if test="content != null">
+				,content 
+			</if>
+			<if test="intsystype != null">
+				,intsystype 
+			</if>
+			<if test="picfile != null">
+				,picfile 
+			</if>
+			<if test="fileContent != null">
+				file_content
+			</if>
+			<if test="picfileWelcom != null">
+				,picfile_welcom 
+			</if>
+			<if test="fileContentW != null">
+				file_content_w
+			</if>
+			<if test="picfileMain != null">
+				,picfile_main 
+			</if>
+			<if test="fileContentM != null">
+				file_content_m
+			</if>
+			<if test="picfileLogin != null">
+				,picfile_login 
+			</if>
+			<if test="fileContentL != null">
+				file_content_l
+			</if>
+			<if test="sysbuiesstypesId != null">
+				,sysbuiesstypes_id 
+			</if>
+			<if test="listno != null">
+				,listno 
+			</if>
+			<if test="domainIndex != null">
+				,domain_index 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="isused != null">
+				,#{isused, jdbcType=VARCHAR}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="intsystype != null">
+				,#{intsystype, jdbcType=INTEGER}
+			</if>
+			<if test="picfile != null">
+				,#{picfile, jdbcType=VARCHAR}
+			</if>
+			<if test="fileContent != null">
+				,#{fileContent, jdbcType=BLOB}
+			</if>
+			<if test="picfileWelcom != null">
+				,#{picfileWelcom, jdbcType=VARCHAR}
+			</if>
+			<if test="fileContentW != null">
+				,#{fileContentW, jdbcType=BLOB}
+			</if>
+			<if test="picfileMain != null">
+				,#{picfileMain, jdbcType=VARCHAR}
+			</if>
+			<if test="fileContentM != null">
+				,#{fileContentM, jdbcType=BLOB}
+			</if>
+			<if test="picfileLogin != null">
+				,#{picfileLogin, jdbcType=VARCHAR}
+			</if>
+			<if test="fileContentL != null">
+				,#{fileContentL, jdbcType=BLOB}
+			</if>
+			<if test="sysbuiesstypesId != null">
+				,#{sysbuiesstypesId, jdbcType=VARCHAR}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+			<if test="domainIndex != null">
+				,#{domainIndex, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateMyCellBusiess" parameterType="com.glaf.isdp.domain.MyCellBusiess">
+		update myCell_busiess
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="name != null">
+				name = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="isused != null">
+				isused = #{isused, jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="intsystype != null">
+				intsystype = #{intsystype, jdbcType=INTEGER},
+			</if>
+			<if test="picfile != null">
+				picfile = #{picfile, jdbcType=VARCHAR},
+			</if>
+			<if test="fileContent != null">
+				file_content = #{fileContent, jdbcType=BLOB},
+			</if>
+			<if test="picfileWelcom != null">
+				picfile_welcom = #{picfileWelcom, jdbcType=VARCHAR},
+			</if>
+			<if test="fileContentW != null">
+				file_content_w = #{fileContentW, jdbcType=BLOB},
+			</if>
+			<if test="picfileMain != null">
+				picfile_main = #{picfileMain, jdbcType=VARCHAR},
+			</if>
+			<if test="fileContentM != null">
+				file_content_M = #{fileContentM, jdbcType=BLOB},
+			</if>
+			<if test="picfileLogin != null">
+				picfile_login = #{picfileLogin, jdbcType=VARCHAR},
+			</if>
+			<if test="fileContentL != null">
+				file_content_l = #{fileContentL, jdbcType=BLOB},
+			</if>
+			<if test="sysbuiesstypesId != null">
+				sysbuiesstypes_id = #{sysbuiesstypesId, jdbcType=VARCHAR},
+			</if>
+			<if test="listno != null">
+				listno = #{listno, jdbcType=INTEGER},
+			</if>
+			<if test="domainIndex != null">
+				domain_index = #{domainIndex, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+	</update>
+
+ 
+	<delete id="deleteMyCellBusiessById" parameterType="string"> 
+        delete from myCell_busiess
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteMyCellBusiesss" parameterType="com.glaf.isdp.query.MyCellBusiessQuery">
+		delete from myCell_busiess
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getMyCellBusiessById" parameterType="string" resultMap="myCellBusiessResultMap">
+		select * from myCell_busiess where id = #{id}
+	</select>
+	
+	<select id="getMyCellBusiessById_postgres" parameterType="string" resultMap="myCellBusiessResultMap_postgres">
+		select * from myCell_busiess where id = #{id}
+	</select>
+
+
+	<select id="getMyCellBusiessCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectMyCellBusiesssSql" />
+	</select>
+
+
+	<select id="getMyCellBusiessCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.MyCellBusiessQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectMyCellBusiesssSql" />
+	</select>
+
+
+	<select id="getMyCellBusiesss" 
+		parameterType="map"
+		resultMap="myCellBusiessResultMap">
+		select E.id,E.name,E.isused,E.content,E.intsystype,E.picfile,E.domain_index,
+               E.picfile_welcom,E.picfile_main,E.picfile_login,E.sysbuiesstypes_id,E.listno
+		<include refid="selectMyCellBusiesssSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getMyCellBusiesssByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.MyCellBusiessQuery"
+		resultMap="myCellBusiessResultMap">
+		select E.id,E.name,E.isused,E.content,E.intsystype,E.picfile,E.domain_index,
+               E.picfile_welcom,E.picfile_main,E.picfile_login,E.sysbuiesstypes_id,E.listno 
+		<include refid="selectMyCellBusiesssSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectMyCellBusiesssSql">
+
+		from myCell_busiess E
+		 
+		<where>
+
+		       1 = 1  
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.name like #{nameLike}
+			</if>
+
+			<if test="isused != null and isused != '' ">
+				and E.isused = #{isused}
+			</if>
+            
+			<if test="contentLike != null and contentLike != '' ">
+				and E.content like #{contentLike}
+			</if>
+
+			<if test="intsystype != null">
+				and E.intsystype = #{intsystype}
+			</if>
+
+			<if test="intsystypeGreaterThanOrEqual != null">
+				and E.intsystype &gt;= #{intsystypeGreaterThanOrEqual}
+			</if>
+
+			<if test="intsystypeLessThanOrEqual != null">
+				and E.intsystype &lt;= #{intsystypeLessThanOrEqual}
+			</if>
+
+			<if test="intsystypes != null and intsystypes.size() &gt; 0">
+			    and E.intsystype IN
+				<foreach item="x_intsystype" index="index" collection="intsystypes" 
+					open="(" separator="," close=")">
+                  #{x_intsystype}
+				</foreach>
+			</if>
+
+	        
+			<if test="picfile != null and picfile != '' ">
+				and E.picfile = #{picfile}
+			</if>
+
+			<if test="picfileLike != null and picfileLike != '' ">
+				and E.picfile like #{picfileLike}
+			</if>
+
+			<if test="picfiles != null and picfiles.size() &gt; 0">
+			    and E.picfile IN
+				<foreach item="x_picfile" index="index" collection="picfiles" 
+					open="(" separator="," close=")">
+                  #{x_picfile}
+				</foreach>
+			</if>
+
+	        
+			<if test="picfileWelcom != null and picfileWelcom != '' ">
+				and E.picfile_welcom = #{picfileWelcom}
+			</if>
+
+			<if test="picfileWelcomLike != null and picfileWelcomLike != '' ">
+				and E.picfile_welcom like #{picfileWelcomLike}
+			</if>
+
+			<if test="picfileWelcoms != null and picfileWelcoms.size() &gt; 0">
+			    and E.picfile_welcom IN
+				<foreach item="x_picfileWelcom" index="index" collection="picfileWelcoms" 
+					open="(" separator="," close=")">
+                  #{x_picfileWelcom}
+				</foreach>
+			</if>
+
+	        
+			<if test="picfileMain != null and picfileMain != '' ">
+				and E.picfile_main = #{picfileMain}
+			</if>
+
+			<if test="picfileMainLike != null and picfileMainLike != '' ">
+				and E.picfile_main like #{picfileMainLike}
+			</if>
+
+			<if test="picfileMains != null and picfileMains.size() &gt; 0">
+			    and E.picfile_main IN
+				<foreach item="x_picfileMain" index="index" collection="picfileMains" 
+					open="(" separator="," close=")">
+                  #{x_picfileMain}
+				</foreach>
+			</if>
+
+	        
+			<if test="picfileLogin != null and picfileLogin != '' ">
+				and E.picfile_login = #{picfileLogin}
+			</if>
+
+			<if test="picfileLoginLike != null and picfileLoginLike != '' ">
+				and E.picfile_login like #{picfileLoginLike}
+			</if>
+
+			<if test="picfileLogins != null and picfileLogins.size() &gt; 0">
+			    and E.picfile_login IN
+				<foreach item="x_picfileLogin" index="index" collection="picfileLogins" 
+					open="(" separator="," close=")">
+                  #{x_picfileLogin}
+				</foreach>
+			</if>
+
+	        
+			<if test="sysbuiesstypesId != null and sysbuiesstypesId != '' ">
+				and E.sysbuiesstypes_id = #{sysbuiesstypesId}
+			</if>
+
+			<if test="sysbuiesstypesIdLike != null and sysbuiesstypesIdLike != '' ">
+				and E.sysbuiesstypes_id like #{sysbuiesstypesIdLike}
+			</if>
+
+			<if test="sysbuiesstypesIds != null and sysbuiesstypesIds.size() &gt; 0">
+			    and E.sysbuiesstypes_id IN
+				<foreach item="x_sysbuiesstypesId" index="index" collection="sysbuiesstypesIds" 
+					open="(" separator="," close=")">
+                  #{x_sysbuiesstypesId}
+				</foreach>
+			</if>
+
+			<if test="domainIndex != null">
+				and E.domain_index = #{domainIndex}
+			</if>
+
+			<if test="domainIndexs != null and domainIndexs.size() &gt; 0">
+			    and E.domain_index IN
+				<foreach item="x_domainIndex" index="index" collection="domainIndexs" 
+					open="(" separator="," close=")">
+                  #{x_domainIndex}
+				</foreach>
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.UserInfoMapper">
+
+	<resultMap id="userInfoResultMap"	type="com.glaf.isdp.domain.UserInfo">
+		<id property="actorId" column="userId" jdbcType="VARCHAR"/>
+		<result property="name" column="username" jdbcType="VARCHAR"/>
+		<result property="password" column="password" jdbcType="VARCHAR"/>
+		<result property="createDate" column="ctime" jdbcType="TIMESTAMP"/>
+		<result property="etime" column="etime" jdbcType="TIMESTAMP"/>
+		<result property="status" column="status" jdbcType="VARCHAR"/>
+		<result property="isSystem" column="issystem" jdbcType="VARCHAR"/>
+		<result property="setpruv" column="setpruv" jdbcType="VARCHAR"/>
+		<result property="remark" column="note" jdbcType="VARCHAR"/>
+		<result property="slevel" column="slevel" jdbcType="INTEGER"/>
+		<result property="deptId" column="depid" jdbcType="INTEGER"/>
+		<result property="isBind" column="isbind" jdbcType="VARCHAR"/>
+		<result property="computerId" column="computerid" jdbcType="VARCHAR"/>
+		<result property="mail" column="email" jdbcType="VARCHAR"/>
+		<result property="mailUser" column="email_user" jdbcType="VARCHAR"/>
+		<result property="mailPwd" column="email_psw" jdbcType="VARCHAR"/>
+		<result property="mobile" column="mobile" jdbcType="VARCHAR"/>
+		<result property="intRemote" column="intRemote" jdbcType="INTEGER"/>
+		<result property="domainIndex" column="domain_index" jdbcType="INTEGER"/>
+		<result property="intallwbs" column="intallwbs" jdbcType="INTEGER"/>
+		<result property="intVirtual" column="intVirtual" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertUserInfo" parameterType="com.glaf.isdp.domain.UserInfo">
+		insert into userinfo 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    userId
+			<if test="usernme != null">
+				,username 
+			</if>
+			<if test="password != null">
+				,password 
+			</if>
+			<if test="createDate != null">
+				,ctime 
+			</if>
+			<if test="etime != null">
+				,etime 
+			</if>
+			<if test="status != null">
+				,status 
+			</if>
+			<if test="isSystem != null">
+				,issystem 
+			</if>
+			<if test="setpruv != null">
+				,setpruv 
+			</if>
+			<if test="remark != null">
+				,note 
+			</if>
+			<if test="slevel != null">
+				,slevel 
+			</if>
+			<if test="deptId != null">
+				,depid 
+			</if>
+			<if test="isBind != null">
+				,isbind 
+			</if>
+			<if test="computerId != null">
+				,computerid 
+			</if>
+			<if test="mail != null">
+				,email 
+			</if>
+			<if test="mailUser != null">
+				,email_user 
+			</if>
+			<if test="mailPwd != null">
+				,email_psw 
+			</if>
+			<if test="mobile != null">
+				,mobile 
+			</if>
+			<if test="intRemote != null">
+				,intRemote 
+			</if>
+			<if test="domainIndex != null">
+				,domain_index 
+			</if>
+			<if test="intallwbs != null">
+				,intallwbs 
+			</if>
+			<if test="intVirtual != null">
+				,intVirtual 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{actorId, jdbcType=VARCHAR}
+	     
+			<if test="username != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="password != null">
+				,#{password, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="etime != null">
+				,#{etime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="status != null">
+				,#{status, jdbcType=VARCHAR}
+			</if>
+			<if test="isSystem != null">
+				,#{isSystem, jdbcType=VARCHAR}
+			</if>
+			<if test="setpruv != null">
+				,#{setpruv, jdbcType=VARCHAR}
+			</if>
+			<if test="remark != null">
+				,#{remark, jdbcType=VARCHAR}
+			</if>
+			<if test="slevel != null">
+				,#{slevel, jdbcType=INTEGER}
+			</if>
+			<if test="deptId != null">
+				,#{deptId, jdbcType=INTEGER}
+			</if>
+			<if test="isBind != null">
+				,#{isBind, jdbcType=VARCHAR}
+			</if>
+			<if test="computerId != null">
+				,#{computerId, jdbcType=VARCHAR}
+			</if>
+			<if test="mail != null">
+				,#{mail, jdbcType=VARCHAR}
+			</if>
+			<if test="mailUser != null">
+				,#{mailUser, jdbcType=VARCHAR}
+			</if>
+			<if test="mailPwd != null">
+				,#{mailPwd, jdbcType=VARCHAR}
+			</if>
+			<if test="mobile != null">
+				,#{mobile, jdbcType=VARCHAR}
+			</if>
+			<if test="intRemote != null">
+				,#{intRemote, jdbcType=INTEGER}
+			</if>
+			<if test="domainIndex != null">
+				,#{domainIndex, jdbcType=INTEGER}
+			</if>
+			<if test="intallwbs != null">
+				,#{intallwbs, jdbcType=INTEGER}
+			</if>
+			<if test="intVirtual != null">
+				,#{intVirtual, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateUserInfo" parameterType="com.glaf.isdp.domain.UserInfo">
+		update
+		    userinfo
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="name != null">
+				userName = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password, jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				ctime = #{createDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="etime != null">
+				etime = #{etime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				status = #{status, jdbcType=VARCHAR},
+			</if>
+			<if test="issystem != null">
+				issystem = #{issystem, jdbcType=VARCHAR},
+			</if>
+			<if test="setpruv != null">
+				setpruv = #{setpruv, jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				note = #{remark, jdbcType=VARCHAR},
+			</if>
+			<if test="slevel != null">
+				slevel = #{slevel, jdbcType=INTEGER},
+			</if>
+			<if test="deptId != null">
+				depid = #{deptId, jdbcType=INTEGER},
+			</if>
+			<if test="isBind != null">
+				isbind = #{isBind, jdbcType=VARCHAR},
+			</if>
+			<if test="computerId != null">
+				computerid = #{computerId, jdbcType=VARCHAR},
+			</if>
+			<if test="mail != null">
+				email = #{mail, jdbcType=VARCHAR},
+			</if>
+			<if test="mailUser != null">
+				email_user = #{mailUser, jdbcType=VARCHAR},
+			</if>
+			<if test="mailPwd != null">
+				email_psw = #{mailPwd, jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile, jdbcType=VARCHAR},
+			</if>
+			<if test="intRemote != null">
+				intRemote = #{intRemote, jdbcType=INTEGER},
+			</if>
+			<if test="domainIndex != null">
+				domain_index = #{domainIndex, jdbcType=INTEGER},
+			</if>
+			<if test="intallwbs != null">
+				intallwbs = #{intallwbs, jdbcType=INTEGER},
+			</if>
+			<if test="intVirtual != null">
+				intVirtual = #{intVirtual, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          userId = #{actorId, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteUserInfoById" parameterType="string"> 
+        delete from userinfo
+        where userID = #{actorId}
+	</delete>
+	
+
+	<delete id="deleteUserInfos" parameterType="com.glaf.isdp.query.UserInfoQuery">
+		delete from userinfo
+		where ( userID IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getUserInfoById" parameterType="string" resultMap="userInfoResultMap">
+		select * from userinfo where userId = #{userId}
+	</select>
+
+
+	<select id="getUserInfoCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectUserInfosSql" />
+	</select>
+
+
+	<select id="getUserInfoCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.UserInfoQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectUserInfosSql" />
+	</select>
+
+
+	<select id="getUserInfos" 
+		parameterType="java.util.HashMap"
+		resultMap="userInfoResultMap">
+		select E.*
+		<include refid="selectUserInfosSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+	
+	
+	<select id="searchUsers" parameterType="string" resultMap="userInfoResultMap">
+		
+		select E.* from userinfo E
+		where 1=1
+		and (
+		   E.userId like #{searchWord}
+		   or 
+		   E.username like #{searchWord}
+		   or
+		   E.email like #{searchWord}
+		   or
+		   E.mobile like #{searchWord}
+		)
+		 order by E.userID asc
+		 
+	</select>
+	
+
+	<select id="getUserInfosByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.UserInfoQuery"
+		resultMap="userInfoResultMap">
+		select E.*
+		<include refid="selectUserInfosSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectUserInfosSql">
+
+		from userinfo E
+		 
+		<where>
+
+		       1 = 1  
+
+			<if test="name != null and name != '' ">
+				and E.userName = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.userName like #{nameLike}
+			</if>
+
+			<if test="afterCreateDate != null">
+				and E.ctime &gt;= #{afterCreateDate}
+			</if>
+
+			<if test="beforeCreateDate != null">
+				and E.ctime &lt;= #{beforeCreateDate}
+			</if>
+
+			<if test="status != null and status != '' ">
+				and E.status = #{status}
+			</if>
+	        
+			<if test="isSystem != null and isSystem != '' ">
+				and E.issystem = #{isSystem}
+			</if>
+
+			<if test="remarkLike != null and remarkLike != '' ">
+				and E.note like #{remarkLike}
+			</if>
+
+			<if test="slevel != null">
+				and E.slevel = #{slevel}
+			</if>
+
+			<if test="slevelGreaterThanOrEqual != null">
+				and E.slevel &gt;= #{slevelGreaterThanOrEqual}
+			</if>
+
+			<if test="slevelLessThanOrEqual != null">
+				and E.slevel &lt;= #{slevelLessThanOrEqual}
+			</if>
+
+			<if test="slevels != null and slevels.size() &gt; 0">
+			    and E.slevel IN
+				<foreach item="x_slevel" index="index" collection="slevels" 
+					open="(" separator="," close=")">
+                  #{x_slevel}
+				</foreach>
+			</if>
+
+			<if test="deptId != null">
+				and E.depid = #{deptId}
+			</if>
+ 
+			<if test="deptIds != null and deptIds.size() &gt; 0">
+			    and E.depid IN
+				<foreach item="x_deptId" index="index" collection="deptIds" 
+					open="(" separator="," close=")">
+                  #{x_deptId}
+				</foreach>
+			</if>
+	        
+			<if test="computerId != null and computerId != '' ">
+				and E.computerid = #{computerId}
+			</if>
+
+			<if test="computerIdLike != null and computerIdLike != '' ">
+				and E.computerid like #{computerIdLike}
+			</if>
+
+			<if test="mail != null and mail != '' ">
+				and E.email = #{email}
+			</if>
+
+			<if test="mailLike != null and mailLike != '' ">
+				and E.email like #{mailLike}
+			</if>
+
+			<if test="mobile != null and mobile != '' ">
+				and E.mobile = #{mobile}
+			</if>
+
+			<if test="mobileLike != null and mobileLike != '' ">
+				and E.mobile like #{mobileLike}
+			</if>
+
+			<if test="intRemote != null">
+				and E.intRemote = #{intRemote}
+			</if>
+
+			<if test="domainIndex != null">
+				and E.domain_index = #{domainIndex}
+			</if>
+
+			<if test="domainIndexs != null and domainIndexs.size() &gt; 0">
+			    and E.domain_index IN
+				<foreach item="x_domainIndex" index="index" collection="domainIndexs" 
+					open="(" separator="," close=")">
+                  #{x_domainIndex}
+				</foreach>
+			</if>
+
+			<if test="intallwbs != null">
+				and E.intallwbs = #{intallwbs}
+			</if>
+			
+			<if test="intVirtual != null">
+				and E.intVirtual = #{intVirtual}
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

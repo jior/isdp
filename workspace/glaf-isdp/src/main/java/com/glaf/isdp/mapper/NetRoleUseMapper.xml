@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.NetRoleUseMapper">
+
+	<resultMap id="netRoleUseResultMap"	type="com.glaf.isdp.domain.NetRoleUse">
+		<id property="id" column="id" jdbcType="INTEGER" />
+		<result property="roleid" column="roleid" jdbcType="INTEGER"/>
+		<result property="celltreedotIndex" column="celltreedot_index" jdbcType="INTEGER"/>
+		<result property="intuserper" column="intuserper" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertNetRoleUse" parameterType="com.glaf.isdp.domain.NetRoleUse">
+		insert into net_roleuse 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="roleid != null">
+				,roleid 
+			</if>
+			<if test="celltreedotIndex != null">
+				,celltreedot_index 
+			</if>
+			<if test="intuserper != null">
+				,intuserper 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=INTEGER}
+	     
+			<if test="roleid != null">
+				,#{roleid, jdbcType=INTEGER}
+			</if>
+			<if test="celltreedotIndex != null">
+				,#{celltreedotIndex, jdbcType=INTEGER}
+			</if>
+			<if test="intuserper != null">
+				,#{intuserper, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateNetRoleUse" parameterType="com.glaf.isdp.domain.NetRoleUse">
+		update
+		net_roleuse
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="roleid != null">
+				roleid = #{roleid, jdbcType=INTEGER},
+			</if>
+			<if test="celltreedotIndex != null">
+				celltreedot_index = #{celltreedotIndex, jdbcType=INTEGER},
+			</if>
+			<if test="intuserper != null">
+				intuserper = #{intuserper, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          id = #{id, jdbcType=INTEGER}
+		
+    </update>
+
+ 
+	<delete id="deleteNetRoleUseById" parameterType="int"> 
+        delete from net_roleuse
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteNetRoleUses" parameterType="com.glaf.isdp.query.NetRoleUseQuery">
+		delete from net_roleuse
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getNetRoleUseById" parameterType="int" resultMap="netRoleUseResultMap">
+		select * from net_roleuse where id = #{id}
+	</select>
+
+
+    <select id="getNetRoleUsesByUserId" parameterType="string" resultMap="netRoleUseResultMap">
+		 select * from net_roleuse where roleid in(
+		     select id from net_role where exists (
+		         select * from userrole where  userid = #{userid} and roleid=net_role.id
+		      )
+		 )
+	</select>
+	
+
+	<select id="getNetRoleUseCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectNetRoleUsesSql" />
+	</select>
+
+
+	<select id="getNetRoleUseCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.NetRoleUseQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectNetRoleUsesSql" />
+	</select>
+
+
+	<select id="getNetRoleUses" 
+		parameterType="map"
+		resultMap="netRoleUseResultMap">
+		select E.*
+		<include refid="selectNetRoleUsesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getNetRoleUsesByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.NetRoleUseQuery"
+		resultMap="netRoleUseResultMap">
+		select E.*
+		<include refid="selectNetRoleUsesSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectNetRoleUsesSql">
+
+		from net_roleuse E
+		 
+		<where>
+
+		       1 = 1  
+
+			<if test="roleid != null">
+				and E.roleid = #{roleid}
+			</if>
+
+			<if test="roleids != null and roleids.size() &gt; 0">
+			    and E.roleid IN
+				<foreach item="x_roleid" index="index" collection="roleids" 
+					open="(" separator="," close=")">
+                  #{x_roleid}
+				</foreach>
+			</if>
+
+			<if test="celltreedotIndex != null">
+				and E.celltreedot_index = #{celltreedotIndex}
+			</if>
+
+			<if test="celltreedotIndexs != null and celltreedotIndexs.size() &gt; 0">
+			    and E.celltreedot_index IN
+				<foreach item="x_celltreedotIndex" index="index" collection="celltreedotIndexs" 
+					open="(" separator="," close=")">
+                  #{x_celltreedotIndex}
+				</foreach>
+			</if>
+
+			<if test="intuserper != null">
+				and E.intuserper = #{intuserper}
+			</if>
+
+			<if test="intuserpers != null and intuserpers.size() &gt; 0">
+			    and E.intuserper IN
+				<foreach item="x_intuserper" index="index" collection="intuserpers" 
+					open="(" separator="," close=")">
+                  #{x_intuserper}
+				</foreach>
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,846 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.TreewbsMapper">
+
+	<resultMap id="treewbsResultMap"	type="com.glaf.isdp.domain.Treewbs">
+		<id property="indexId" column="index_id" jdbcType="INTEGER" />
+		<result property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+		<result property="num" column="num" jdbcType="VARCHAR"/>
+		<result property="indexName" column="index_name" jdbcType="VARCHAR"/>
+		<result property="sindexName" column="sindex_name" jdbcType="VARCHAR"/>
+		<result property="nlevel" column="nlevel" jdbcType="INTEGER"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="nodeico" column="nodeico" jdbcType="INTEGER"/>
+		<result property="listno" column="listno" jdbcType="INTEGER"/>
+		<result property="inttype" column="inttype" jdbcType="INTEGER"/>
+		<result property="pindexId" column="pindex_id" jdbcType="INTEGER"/>
+		<result property="typeTablename" column="type_tablename" jdbcType="VARCHAR"/>
+		<result property="intusetname" column="intusetname" jdbcType="INTEGER"/>
+		<result property="intstartype" column="intstartype" jdbcType="INTEGER"/>
+		<result property="intstardelayday" column="intstardelayday" jdbcType="INTEGER"/>
+		<result property="intstartA" column="intstart_a" jdbcType="INTEGER"/>
+		<result property="intstartP" column="intstart_p" jdbcType="INTEGER"/>
+		<result property="intendA" column="intend_a" jdbcType="INTEGER"/>
+		<result property="intendP" column="intend_p" jdbcType="INTEGER"/>
+		<result property="intneednode" column="intneednode" jdbcType="INTEGER"/>
+		<result property="intusetnum" column="intusetnum" jdbcType="INTEGER"/>
+		<result property="domainIndex" column="domain_index" jdbcType="INTEGER"/>
+		<result property="strfileLocate" column="strfileLocate" jdbcType="VARCHAR"/>
+		<result property="intnodetype" column="intnodetype" jdbcType="INTEGER"/>
+		<result property="intloadfile" column="intloadfile" jdbcType="INTEGER"/>
+		<result property="intorglevel" column="intorglevel" jdbcType="INTEGER"/>
+		<result property="intsptotal" column="intsptotal" jdbcType="INTEGER"/>
+		<result property="uindexId" column="uindex_id" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertTreewbs" parameterType="com.glaf.isdp.domain.Treewbs">
+		insert into s_treewbs 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    index_id
+			<if test="id != null">
+				,id 
+			</if>
+			<if test="parentId != null">
+				,parent_id 
+			</if>
+			<if test="num != null">
+				,num 
+			</if>
+			<if test="indexName != null">
+				,index_name 
+			</if>
+			<if test="sindexName != null">
+				,sindex_name 
+			</if>
+			<if test="nlevel != null">
+				,nlevel 
+			</if>
+			<if test="content != null">
+				,content 
+			</if>
+			<if test="nodeico != null">
+				,nodeico 
+			</if>
+			<if test="listno != null">
+				,listno 
+			</if>
+			<if test="inttype != null">
+				,inttype 
+			</if>
+			<if test="pindexId != null">
+				,pindex_id 
+			</if>
+			<if test="typeTablename != null">
+				,type_tablename 
+			</if>
+			<if test="intusetname != null">
+				,intusetname 
+			</if>
+			<if test="intstartype != null">
+				,intstartype 
+			</if>
+			<if test="intstardelayday != null">
+				,intstardelayday 
+			</if>
+			<if test="intstartA != null">
+				,intstart_a 
+			</if>
+			<if test="intstartP != null">
+				,intstart_p 
+			</if>
+			<if test="intendA != null">
+				,intend_a 
+			</if>
+			<if test="intendP != null">
+				,intend_p 
+			</if>
+			<if test="intneednode != null">
+				,intneednode 
+			</if>
+			<if test="intusetnum != null">
+				,intusetnum 
+			</if>
+			<if test="domainIndex != null">
+				,domain_index 
+			</if>
+			<if test="strfileLocate != null">
+				,strfileLocate 
+			</if>
+			<if test="intnodetype != null">
+				,intnodetype 
+			</if>
+			<if test="intloadfile != null">
+				,intloadfile 
+			</if>
+			<if test="uindexId != null">
+				,uindex_id 
+			</if>
+			<if test="intstartnode != null">
+				,intstartnode 
+			</if>
+			<if test="intrename != null">
+				,intrename 
+			</if>
+			<if test="intorglevel != null">
+				,intorglevel 
+			</if>
+			<if test="intsptotal != null">
+				,intsptotal 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{indexId, jdbcType=INTEGER}
+	     
+			<if test="id != null">
+				,#{id, jdbcType=VARCHAR}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=INTEGER}
+			</if>
+			<if test="num != null">
+				,#{num, jdbcType=VARCHAR}
+			</if>
+			<if test="indexName != null">
+				,#{indexName, jdbcType=VARCHAR}
+			</if>
+			<if test="sindexName != null">
+				,#{sindexName, jdbcType=VARCHAR}
+			</if>
+			<if test="nlevel != null">
+				,#{nlevel, jdbcType=INTEGER}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="nodeico != null">
+				,#{nodeico, jdbcType=INTEGER}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+			<if test="inttype != null">
+				,#{inttype, jdbcType=INTEGER}
+			</if>
+			<if test="pindexId != null">
+				,#{pindexId, jdbcType=INTEGER}
+			</if>
+			<if test="typeTablename != null">
+				,#{typeTablename, jdbcType=VARCHAR}
+			</if>
+			<if test="intusetname != null">
+				,#{intusetname, jdbcType=INTEGER}
+			</if>
+			<if test="intstartype != null">
+				,#{intstartype, jdbcType=INTEGER}
+			</if>
+			<if test="intstardelayday != null">
+				,#{intstardelayday, jdbcType=INTEGER}
+			</if>
+			<if test="intstartA != null">
+				,#{intstartA, jdbcType=INTEGER}
+			</if>
+			<if test="intstartP != null">
+				,#{intstartP, jdbcType=INTEGER}
+			</if>
+			<if test="intendA != null">
+				,#{intendA, jdbcType=INTEGER}
+			</if>
+			<if test="intendP != null">
+				,#{intendP, jdbcType=INTEGER}
+			</if>
+			<if test="intneednode != null">
+				,#{intneednode, jdbcType=INTEGER}
+			</if>
+			<if test="intusetnum != null">
+				,#{intusetnum, jdbcType=INTEGER}
+			</if>
+			<if test="domainIndex != null">
+				,#{domainIndex, jdbcType=INTEGER}
+			</if>
+			<if test="strfileLocate != null">
+				,#{strfileLocate, jdbcType=VARCHAR}
+			</if>
+			<if test="intnodetype != null">
+				,#{intnodetype, jdbcType=INTEGER}
+			</if>
+			<if test="intloadfile != null">
+				,#{intloadfile, jdbcType=INTEGER}
+			</if>
+			<if test="uindexId != null">
+				,#{uindexId, jdbcType=INTEGER}
+			</if>
+			<if test="intstartnode != null">
+				,#{intstartnode, jdbcType=INTEGER}
+			</if>
+			<if test="intrename != null">
+				,#{intrename, jdbcType=INTEGER}
+			</if>
+			<if test="intorglevel != null">
+				,#{intorglevel, jdbcType=INTEGER}
+			</if>
+			<if test="intsptotal != null">
+				,#{intsptotal, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateTreewbs" parameterType="com.glaf.isdp.domain.Treewbs">
+		update
+		    s_treewbs
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="id != null">
+				id = #{id, jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				parent_id = #{parentId, jdbcType=INTEGER},
+			</if>
+			<if test="num != null">
+				num = #{num, jdbcType=VARCHAR},
+			</if>
+			<if test="indexName != null">
+				index_name = #{indexName, jdbcType=VARCHAR},
+			</if>
+			<if test="sindexName != null">
+				sindex_name = #{sindexName, jdbcType=VARCHAR},
+			</if>
+			<if test="nlevel != null">
+				nlevel = #{nlevel, jdbcType=INTEGER},
+			</if>
+			<if test="content != null">
+				content = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="nodeico != null">
+				nodeico = #{nodeico, jdbcType=INTEGER},
+			</if>
+			<if test="listno != null">
+				listno = #{listno, jdbcType=INTEGER},
+			</if>
+			<if test="inttype != null">
+				inttype = #{inttype, jdbcType=INTEGER},
+			</if>
+			<if test="pindexId != null">
+				pindex_id = #{pindexId, jdbcType=INTEGER},
+			</if>
+			<if test="typeTablename != null">
+				type_tablename = #{typeTablename, jdbcType=VARCHAR},
+			</if>
+			<if test="intusetname != null">
+				intusetname = #{intusetname, jdbcType=INTEGER},
+			</if>
+			<if test="intstartype != null">
+				intstartype = #{intstartype, jdbcType=INTEGER},
+			</if>
+			<if test="intstardelayday != null">
+				intstardelayday = #{intstardelayday, jdbcType=INTEGER},
+			</if>
+			<if test="intstartA != null">
+				intstart_a = #{intstartA, jdbcType=INTEGER},
+			</if>
+			<if test="intstartP != null">
+				intstart_p = #{intstartP, jdbcType=INTEGER},
+			</if>
+			<if test="intendA != null">
+				intend_a = #{intendA, jdbcType=INTEGER},
+			</if>
+			<if test="intendP != null">
+				intend_p = #{intendP, jdbcType=INTEGER},
+			</if>
+			<if test="intneednode != null">
+				intneednode = #{intneednode, jdbcType=INTEGER},
+			</if>
+			<if test="intusetnum != null">
+				intusetnum = #{intusetnum, jdbcType=INTEGER},
+			</if>
+			<if test="domainIndex != null">
+				domain_index = #{domainIndex, jdbcType=INTEGER},
+			</if>
+			<if test="strfileLocate != null">
+				strfileLocate = #{strfileLocate, jdbcType=VARCHAR},
+			</if>
+			<if test="intnodetype != null">
+				intnodetype = #{intnodetype, jdbcType=INTEGER},
+			</if>
+			<if test="intloadfile != null">
+				intloadfile = #{intloadfile, jdbcType=INTEGER},
+			</if>
+			<if test="uindexId != null">
+				uindex_id = #{uindexId, jdbcType=INTEGER},
+			</if>
+			<if test="intstartnode != null">
+				intstartnode = #{intstartnode, jdbcType=INTEGER},
+			</if>
+			<if test="intrename != null">
+				intrename = #{intrename, jdbcType=INTEGER},
+			</if>
+			<if test="intorglevel != null">
+				intorglevel = #{intorglevel, jdbcType=INTEGER},
+			</if>
+			<if test="intsptotal != null">
+				intsptotal = #{intsptotal, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+          index_id = #{indexId, jdbcType=INTEGER}
+		
+	</update>
+
+ 
+	<delete id="deleteTreewbsById" parameterType="string"> 
+        delete from s_treewbs
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteTreewbsByIndexId" parameterType="int"> 
+        delete from s_treewbs
+        where index_id = #{id}
+	</delete>
+
+
+	<delete id="deleteTreewbss" parameterType="com.glaf.isdp.query.TreewbsQuery">
+		delete from s_treewbs
+		where ( index_id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getTreewbsById" parameterType="string" resultMap="treewbsResultMap">
+		select * from s_treewbs where id = #{id}
+	</select>
+
+
+	<select id="getTreewbsByIndexId" parameterType="int" resultMap="treewbsResultMap">
+		select * from s_treewbs where index_id = #{indexId}
+	</select>
+
+
+	<select id="getTreewbsCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreewbssSql" />
+	</select>
+
+
+	<select id="getTreewbsCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.TreewbsQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreewbssSql" />
+	</select>
+
+
+	<select id="getTreewbss" 
+		parameterType="map"
+		resultMap="treewbsResultMap">
+		select E.*
+		<include refid="selectTreewbssSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getTreewbssByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.TreewbsQuery"
+		resultMap="treewbsResultMap">
+		select E.*
+		<include refid="selectTreewbssSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectTreewbssSql">
+
+		from s_treewbs E
+		 
+		<where>
+
+		       1 = 1  
+
+			<if test="idLike != null and idLike != '' ">
+				and E.id like #{idLike}
+			</if>
+
+			<if test="ids != null and ids.size() &gt; 0">
+			    and E.id IN
+				<foreach item="x_id" index="index" collection="ids" 
+					open="(" separator="," close=")">
+                  #{x_id}
+				</foreach>
+			</if>
+
+
+			<if test="parentId != null">
+				and E.parent_id = #{parentId}
+			</if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+			    and E.parent_id IN
+				<foreach item="x_parentId" index="index" collection="parentIds" 
+					open="(" separator="," close=")">
+                  #{x_parentId}
+				</foreach>
+			</if>
+
+			<if test="numLike != null and numLike != '' ">
+				and E.num like #{numLike}
+			</if>
+
+			<if test="indexNameLike != null and indexNameLike != '' ">
+				and E.index_name like #{indexNameLike}
+			</if>
+
+			<if test="sindexNameLike != null and sindexNameLike != '' ">
+				and E.sindex_name like #{sindexNameLike}
+			</if>
+
+			<if test="nlevel != null">
+				and E.nlevel = #{nlevel}
+			</if>
+
+			<if test="nlevelGreaterThanOrEqual != null">
+				and E.nlevel &gt;= #{nlevelGreaterThanOrEqual}
+			</if>
+
+			<if test="nlevelLessThanOrEqual != null">
+				and E.nlevel &lt;= #{nlevelLessThanOrEqual}
+			</if>
+
+			<if test="nlevels != null and nlevels.size() &gt; 0">
+			    and E.nlevel IN
+				<foreach item="x_nlevel" index="index" collection="nlevels" 
+					open="(" separator="," close=")">
+                  #{x_nlevel}
+				</foreach>
+			</if>
+
+			<if test="contentLike != null and contentLike != '' ">
+				and E.content like #{contentLike}
+			</if>
+
+			<if test="inttype != null">
+				and E.inttype = #{inttype}
+			</if>
+
+			<if test="inttypeGreaterThanOrEqual != null">
+				and E.inttype &gt;= #{inttypeGreaterThanOrEqual}
+			</if>
+
+			<if test="inttypeLessThanOrEqual != null">
+				and E.inttype &lt;= #{inttypeLessThanOrEqual}
+			</if>
+
+			<if test="inttypes != null and inttypes.size() &gt; 0">
+			    and E.inttype IN
+				<foreach item="x_inttype" index="index" collection="inttypes" 
+					open="(" separator="," close=")">
+                  #{x_inttype}
+				</foreach>
+			</if>
+
+
+			<if test="pindexId != null">
+				and E.pindex_id = #{pindexId}
+			</if>
+
+			<if test="pindexIdGreaterThanOrEqual != null">
+				and E.pindex_id &gt;= #{pindexIdGreaterThanOrEqual}
+			</if>
+
+			<if test="pindexIdLessThanOrEqual != null">
+				and E.pindex_id &lt;= #{pindexIdLessThanOrEqual}
+			</if>
+
+			<if test="pindexIds != null and pindexIds.size() &gt; 0">
+			    and E.pindex_id IN
+				<foreach item="x_pindexId" index="index" collection="pindexIds" 
+					open="(" separator="," close=")">
+                  #{x_pindexId}
+				</foreach>
+			</if>
+
+	        
+			<if test="typeTablename != null and typeTablename != '' ">
+				and E.type_tablename = #{typeTablename}
+			</if>
+
+			<if test="typeTablenameLike != null and typeTablenameLike != '' ">
+				and E.type_tablename like #{typeTablenameLike}
+			</if>
+
+			<if test="typeTablenames != null and typeTablenames.size() &gt; 0">
+			    and E.type_tablename IN
+				<foreach item="x_typeTablename" index="index" collection="typeTablenames" 
+					open="(" separator="," close=")">
+                  #{x_typeTablename}
+				</foreach>
+			</if>
+
+
+			<if test="intusetname != null">
+				and E.intusetname = #{intusetname}
+			</if>
+
+			<if test="intusetnameGreaterThanOrEqual != null">
+				and E.intusetname &gt;= #{intusetnameGreaterThanOrEqual}
+			</if>
+
+			<if test="intusetnameLessThanOrEqual != null">
+				and E.intusetname &lt;= #{intusetnameLessThanOrEqual}
+			</if>
+
+			<if test="intusetnames != null and intusetnames.size() &gt; 0">
+			    and E.intusetname IN
+				<foreach item="x_intusetname" index="index" collection="intusetnames" 
+					open="(" separator="," close=")">
+                  #{x_intusetname}
+				</foreach>
+			</if>
+
+
+			<if test="intstartype != null">
+				and E.intstartype = #{intstartype}
+			</if>
+
+			<if test="intstartypeGreaterThanOrEqual != null">
+				and E.intstartype &gt;= #{intstartypeGreaterThanOrEqual}
+			</if>
+
+			<if test="intstartypeLessThanOrEqual != null">
+				and E.intstartype &lt;= #{intstartypeLessThanOrEqual}
+			</if>
+
+			<if test="intstartypes != null and intstartypes.size() &gt; 0">
+			    and E.intstartype IN
+				<foreach item="x_intstartype" index="index" collection="intstartypes" 
+					open="(" separator="," close=")">
+                  #{x_intstartype}
+				</foreach>
+			</if>
+
+
+			<if test="intstardelayday != null">
+				and E.intstardelayday = #{intstardelayday}
+			</if>
+
+			<if test="intstardelaydayGreaterThanOrEqual != null">
+				and E.intstardelayday &gt;= #{intstardelaydayGreaterThanOrEqual}
+			</if>
+
+			<if test="intstardelaydayLessThanOrEqual != null">
+				and E.intstardelayday &lt;= #{intstardelaydayLessThanOrEqual}
+			</if>
+
+			<if test="intstardelaydays != null and intstardelaydays.size() &gt; 0">
+			    and E.intstardelayday IN
+				<foreach item="x_intstardelayday" index="index" collection="intstardelaydays" 
+					open="(" separator="," close=")">
+                  #{x_intstardelayday}
+				</foreach>
+			</if>
+
+
+			<if test="intstartA != null">
+				and E.intstart_a = #{intstartA}
+			</if>
+
+			<if test="intstartAGreaterThanOrEqual != null">
+				and E.intstart_a &gt;= #{intstartAGreaterThanOrEqual}
+			</if>
+
+			<if test="intstartALessThanOrEqual != null">
+				and E.intstart_a &lt;= #{intstartALessThanOrEqual}
+			</if>
+
+			<if test="intstartAs != null and intstartAs.size() &gt; 0">
+			    and E.intstart_a IN
+				<foreach item="x_intstartA" index="index" collection="intstartAs" 
+					open="(" separator="," close=")">
+                  #{x_intstartA}
+				</foreach>
+			</if>
+
+
+			<if test="intstartP != null">
+				and E.intstart_p = #{intstartP}
+			</if>
+
+			<if test="intstartPGreaterThanOrEqual != null">
+				and E.intstart_p &gt;= #{intstartPGreaterThanOrEqual}
+			</if>
+
+			<if test="intstartPLessThanOrEqual != null">
+				and E.intstart_p &lt;= #{intstartPLessThanOrEqual}
+			</if>
+
+			<if test="intstartPs != null and intstartPs.size() &gt; 0">
+			    and E.intstart_p IN
+				<foreach item="x_intstartP" index="index" collection="intstartPs" 
+					open="(" separator="," close=")">
+                  #{x_intstartP}
+				</foreach>
+			</if>
+
+
+			<if test="intendA != null">
+				and E.intend_a = #{intendA}
+			</if>
+
+			<if test="intendAGreaterThanOrEqual != null">
+				and E.intend_a &gt;= #{intendAGreaterThanOrEqual}
+			</if>
+
+			<if test="intendALessThanOrEqual != null">
+				and E.intend_a &lt;= #{intendALessThanOrEqual}
+			</if>
+
+			<if test="intendAs != null and intendAs.size() &gt; 0">
+			    and E.intend_a IN
+				<foreach item="x_intendA" index="index" collection="intendAs" 
+					open="(" separator="," close=")">
+                  #{x_intendA}
+				</foreach>
+			</if>
+
+
+			<if test="intendP != null">
+				and E.intend_p = #{intendP}
+			</if>
+
+			<if test="intendPGreaterThanOrEqual != null">
+				and E.intend_p &gt;= #{intendPGreaterThanOrEqual}
+			</if>
+
+			<if test="intendPLessThanOrEqual != null">
+				and E.intend_p &lt;= #{intendPLessThanOrEqual}
+			</if>
+
+			<if test="intendPs != null and intendPs.size() &gt; 0">
+			    and E.intend_p IN
+				<foreach item="x_intendP" index="index" collection="intendPs" 
+					open="(" separator="," close=")">
+                  #{x_intendP}
+				</foreach>
+			</if>
+
+
+			<if test="intneednode != null">
+				and E.intneednode = #{intneednode}
+			</if>
+
+			<if test="intneednodeGreaterThanOrEqual != null">
+				and E.intneednode &gt;= #{intneednodeGreaterThanOrEqual}
+			</if>
+
+			<if test="intneednodeLessThanOrEqual != null">
+				and E.intneednode &lt;= #{intneednodeLessThanOrEqual}
+			</if>
+
+			<if test="intneednodes != null and intneednodes.size() &gt; 0">
+			    and E.intneednode IN
+				<foreach item="x_intneednode" index="index" collection="intneednodes" 
+					open="(" separator="," close=")">
+                  #{x_intneednode}
+				</foreach>
+			</if>
+
+
+			<if test="intusetnum != null">
+				and E.intusetnum = #{intusetnum}
+			</if>
+
+			<if test="intusetnumGreaterThanOrEqual != null">
+				and E.intusetnum &gt;= #{intusetnumGreaterThanOrEqual}
+			</if>
+
+			<if test="intusetnumLessThanOrEqual != null">
+				and E.intusetnum &lt;= #{intusetnumLessThanOrEqual}
+			</if>
+
+			<if test="intusetnums != null and intusetnums.size() &gt; 0">
+			    and E.intusetnum IN
+				<foreach item="x_intusetnum" index="index" collection="intusetnums" 
+					open="(" separator="," close=")">
+                  #{x_intusetnum}
+				</foreach>
+			</if>
+
+
+			<if test="domainIndex != null">
+				and E.domain_index = #{domainIndex}
+			</if>
+
+			<if test="domainIndexGreaterThanOrEqual != null">
+				and E.domain_index &gt;= #{domainIndexGreaterThanOrEqual}
+			</if>
+
+			<if test="domainIndexLessThanOrEqual != null">
+				and E.domain_index &lt;= #{domainIndexLessThanOrEqual}
+			</if>
+
+			<if test="domainIndexs != null and domainIndexs.size() &gt; 0">
+			    and E.domain_index IN
+				<foreach item="x_domainIndex" index="index" collection="domainIndexs" 
+					open="(" separator="," close=")">
+                  #{x_domainIndex}
+				</foreach>
+			</if>
+
+	        
+			<if test="strfileLocate != null and strfileLocate != '' ">
+				and E.strfileLocate = #{strfileLocate}
+			</if>
+
+			<if test="strfileLocateLike != null and strfileLocateLike != '' ">
+				and E.strfileLocate like #{strfileLocateLike}
+			</if>
+
+			<if test="strfileLocates != null and strfileLocates.size() &gt; 0">
+			    and E.strfileLocate IN
+				<foreach item="x_strfileLocate" index="index" collection="strfileLocates" 
+					open="(" separator="," close=")">
+                  #{x_strfileLocate}
+				</foreach>
+			</if>
+
+
+			<if test="intnodetype != null">
+				and E.intnodetype = #{intnodetype}
+			</if>
+
+			<if test="intnodetypeGreaterThanOrEqual != null">
+				and E.intnodetype &gt;= #{intnodetypeGreaterThanOrEqual}
+			</if>
+
+			<if test="intnodetypeLessThanOrEqual != null">
+				and E.intnodetype &lt;= #{intnodetypeLessThanOrEqual}
+			</if>
+
+			<if test="intnodetypes != null and intnodetypes.size() &gt; 0">
+			    and E.intnodetype IN
+				<foreach item="x_intnodetype" index="index" collection="intnodetypes" 
+					open="(" separator="," close=")">
+                  #{x_intnodetype}
+				</foreach>
+			</if>
+
+
+			<if test="intloadfile != null">
+				and E.intloadfile = #{intloadfile}
+			</if>
+
+			<if test="intloadfileGreaterThanOrEqual != null">
+				and E.intloadfile &gt;= #{intloadfileGreaterThanOrEqual}
+			</if>
+
+			<if test="intloadfileLessThanOrEqual != null">
+				and E.intloadfile &lt;= #{intloadfileLessThanOrEqual}
+			</if>
+
+			<if test="intloadfiles != null and intloadfiles.size() &gt; 0">
+			    and E.intloadfile IN
+				<foreach item="x_intloadfile" index="index" collection="intloadfiles" 
+					open="(" separator="," close=")">
+                  #{x_intloadfile}
+				</foreach>
+			</if>
+
+
+			<if test="intorglevel != null">
+				and E.intorglevel = #{intorglevel}
+			</if>
+
+			<if test="intorglevelGreaterThanOrEqual != null">
+				and E.intorglevel &gt;= #{intorglevelGreaterThanOrEqual}
+			</if>
+
+			<if test="intorglevelLessThanOrEqual != null">
+				and E.intorglevel &lt;= #{intorglevelLessThanOrEqual}
+			</if>
+
+			<if test="intorglevels != null and intorglevels.size() &gt; 0">
+			    and E.intorglevel IN
+				<foreach item="x_intorglevel" index="index" collection="intorglevels" 
+					open="(" separator="," close=")">
+                  #{x_intorglevel}
+				</foreach>
+			</if>
+
+
+			<if test="uindexId != null">
+				and E.uindex_id = #{uindexId}
+			</if>
+
+			<if test="uindexIdGreaterThanOrEqual != null">
+				and E.uindex_id &gt;= #{uindexIdGreaterThanOrEqual}
+			</if>
+
+			<if test="uindexIdLessThanOrEqual != null">
+				and E.uindex_id &lt;= #{uindexIdLessThanOrEqual}
+			</if>
+
+			<if test="uindexIds != null and uindexIds.size() &gt; 0">
+			    and E.uindex_id IN
+				<foreach item="x_uindexId" index="index" collection="uindexIds" 
+					open="(" separator="," close=")">
+                  #{x_uindexId}
+				</foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

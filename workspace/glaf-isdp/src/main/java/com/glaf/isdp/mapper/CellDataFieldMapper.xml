@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.CellDataFieldMapper">
+
+	<resultMap id="cellDataFieldResultMap"	type="com.glaf.isdp.domain.CellDataField">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="tableid" column="tableid" jdbcType="VARCHAR"/>
+		<result property="fieldname" column="fieldname" jdbcType="VARCHAR"/>
+		<result property="userid" column="userid" jdbcType="VARCHAR"/>
+		<result property="maxuser" column="maxuser" jdbcType="INTEGER"/>
+		<result property="maxsys" column="maxsys" jdbcType="INTEGER"/>
+		<result property="ctime" column="ctime" jdbcType="TIMESTAMP"/>
+		<result property="sysnum" column="sysnum" jdbcType="VARCHAR"/>
+		<result property="tablename" column="tablename" jdbcType="VARCHAR"/>
+		<result property="dname" column="dname" jdbcType="VARCHAR"/>
+		<result property="userindex" column="userindex" jdbcType="VARCHAR"/>
+		<result property="treetablenameB" column="treetablename_b" jdbcType="VARCHAR"/>
+	</resultMap>
+
+
+	<resultMap id="cellDataFieldHashMap"	type="java.util.HashMap">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="tableid" column="tableid" jdbcType="VARCHAR"/>
+		<result property="fieldname" column="fieldname" jdbcType="VARCHAR"/>
+		<result property="userid" column="userid" jdbcType="VARCHAR"/>
+		<result property="maxuser" column="maxuser" jdbcType="INTEGER"/>
+		<result property="maxsys" column="maxsys" jdbcType="INTEGER"/>
+		<result property="ctime" column="ctime" jdbcType="TIMESTAMP"/>
+		<result property="sysnum" column="sysnum" jdbcType="VARCHAR"/>
+		<result property="tablename" column="tablename" jdbcType="VARCHAR"/>
+		<result property="dname" column="dname" jdbcType="VARCHAR"/>
+		<result property="userindex" column="userindex" jdbcType="VARCHAR"/>
+		<result property="treetablenameB" column="treetablename_b" jdbcType="VARCHAR"/>
+	</resultMap>
+ 
+	<insert id="insertCellDataField" parameterType="com.glaf.isdp.domain.CellDataField">
+		insert into cell_data_field 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="tableid != null">
+				,tableid 
+			</if>
+			<if test="fieldname != null">
+				,fieldname 
+			</if>
+			<if test="userid != null">
+				,userid 
+			</if>
+			<if test="maxuser != null">
+				,maxuser 
+			</if>
+			<if test="maxsys != null">
+				,maxsys 
+			</if>
+			<if test="ctime != null">
+				,ctime 
+			</if>
+			<if test="sysnum != null">
+				,sysnum 
+			</if>
+			<if test="tablename != null">
+				,tablename 
+			</if>
+			<if test="dname != null">
+				,dname 
+			</if>
+			<if test="userindex != null">
+				,userindex 
+			</if>
+			<if test="treetablenameB != null">
+				,treetablename_b 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="tableid != null">
+				,#{tableid, jdbcType=VARCHAR}
+			</if>
+			<if test="fieldname != null">
+				,#{fieldname, jdbcType=VARCHAR}
+			</if>
+			<if test="userid != null">
+				,#{userid, jdbcType=VARCHAR}
+			</if>
+			<if test="maxuser != null">
+				,#{maxuser, jdbcType=INTEGER}
+			</if>
+			<if test="maxsys != null">
+				,#{maxsys, jdbcType=INTEGER}
+			</if>
+			<if test="ctime != null">
+				,#{ctime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="sysnum != null">
+				,#{sysnum, jdbcType=VARCHAR}
+			</if>
+			<if test="tablename != null">
+				,#{tablename, jdbcType=VARCHAR}
+			</if>
+			<if test="dname != null">
+				,#{dname, jdbcType=VARCHAR}
+			</if>
+			<if test="userindex != null">
+				,#{userindex, jdbcType=VARCHAR}
+			</if>
+			<if test="treetablenameB != null">
+				,#{treetablenameB, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateCellDataField" parameterType="com.glaf.isdp.domain.CellDataField">
+		update
+		cell_data_field
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="tableid != null">
+				tableid = #{tableid, jdbcType=VARCHAR},
+			</if>
+			<if test="fieldname != null">
+				fieldname = #{fieldname, jdbcType=VARCHAR},
+			</if>
+			<if test="userid != null">
+				userid = #{userid, jdbcType=VARCHAR},
+			</if>
+			<if test="maxuser != null">
+				maxuser = #{maxuser, jdbcType=INTEGER},
+			</if>
+			<if test="maxsys != null">
+				maxsys = #{maxsys, jdbcType=INTEGER},
+			</if>
+			<if test="ctime != null">
+				ctime = #{ctime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="sysnum != null">
+				sysnum = #{sysnum, jdbcType=VARCHAR},
+			</if>
+			<if test="tablename != null">
+				tablename = #{tablename, jdbcType=VARCHAR},
+			</if>
+			<if test="dname != null">
+				dname = #{dname, jdbcType=VARCHAR},
+			</if>
+			<if test="userindex != null">
+				userindex = #{userindex, jdbcType=VARCHAR},
+			</if>
+			<if test="treetablenameB != null">
+				treetablename_b = #{treetablenameB, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+	</update>
+
+
+ 
+	<delete id="deleteCellDataFieldById" parameterType="string"> 
+        delete from cell_data_field
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteCellDataFields" parameterType="com.glaf.isdp.query.CellDataFieldQuery">
+		delete from cell_data_field
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getCellDataFieldById" parameterType="string" resultMap="cellDataFieldResultMap">
+		select * from cell_data_field where id = #{id}
+	</select>
+	
+	
+	<select id="getCellDataFieldsByTableId" parameterType="string" resultMap="cellDataFieldResultMap">
+		select * from cell_data_field where tableid = #{tableId}
+	</select>
+	
+	
+	<select id="getCellDataFieldsByFiledotId" parameterType="string" resultMap="cellDataFieldResultMap">
+		
+          select * from cell_data_field 
+          where tableid in( 
+              select frmtype from cell_repinfo where filedot_fileid = #{filedotId}
+          )
+
+	</select>
+
+
+	<select id="getCellDataFieldCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellDataFieldsSql" />
+	</select>
+
+
+	<select id="getCellDataFieldCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellDataFieldQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellDataFieldsSql" />
+	</select>
+
+
+	<select id="getCellDataFields" 
+		parameterType="map"
+		resultMap="cellDataFieldResultMap">
+		select E.*
+		<include refid="selectCellDataFieldsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getCellDataFieldsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellDataFieldQuery"
+		resultMap="cellDataFieldResultMap">
+		select E.*
+		<include refid="selectCellDataFieldsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectCellDataFieldsSql">
+
+		from cell_data_field E
+		 
+		<where>
+
+		       1 = 1  
+
+	        
+			<if test="tableid != null and tableid != '' ">
+				and E.tableid = #{tableid}
+			</if>
+
+			<if test="tableidLike != null and tableidLike != '' ">
+				and E.tableid like #{tableidLike}
+			</if>
+
+			<if test="tableids != null and tableids.size() &gt; 0">
+			    and E.tableid IN
+				<foreach item="x_tableid" index="index" collection="tableids" 
+					open="(" separator="," close=")">
+                  #{x_tableid}
+				</foreach>
+			</if>
+
+	        
+			<if test="fieldname != null and fieldname != '' ">
+				and E.fieldname = #{fieldname}
+			</if>
+
+			<if test="fieldnameLike != null and fieldnameLike != '' ">
+				and E.fieldname like #{fieldnameLike}
+			</if>
+
+			<if test="fieldnames != null and fieldnames.size() &gt; 0">
+			    and E.fieldname IN
+				<foreach item="x_fieldname" index="index" collection="fieldnames" 
+					open="(" separator="," close=")">
+                  #{x_fieldname}
+				</foreach>
+			</if>
+
+	        
+			<if test="userid != null and userid != '' ">
+				and E.userid = #{userid}
+			</if>
+
+			<if test="useridLike != null and useridLike != '' ">
+				and E.userid like #{useridLike}
+			</if>
+
+			<if test="userids != null and userids.size() &gt; 0">
+			    and E.userid IN
+				<foreach item="x_userid" index="index" collection="userids" 
+					open="(" separator="," close=")">
+                  #{x_userid}
+				</foreach>
+			</if>
+
+
+			<if test="maxuser != null">
+				and E.maxuser = #{maxuser}
+			</if>
+
+			<if test="maxuserGreaterThanOrEqual != null">
+				and E.maxuser &gt;= #{maxuserGreaterThanOrEqual}
+			</if>
+
+			<if test="maxuserLessThanOrEqual != null">
+				and E.maxuser &lt;= #{maxuserLessThanOrEqual}
+			</if>
+
+			<if test="maxusers != null and maxusers.size() &gt; 0">
+			    and E.maxuser IN
+				<foreach item="x_maxuser" index="index" collection="maxusers" 
+					open="(" separator="," close=")">
+                  #{x_maxuser}
+				</foreach>
+			</if>
+
+
+			<if test="maxsys != null">
+				and E.maxsys = #{maxsys}
+			</if>
+
+			<if test="maxsysGreaterThanOrEqual != null">
+				and E.maxsys &gt;= #{maxsysGreaterThanOrEqual}
+			</if>
+
+			<if test="maxsysLessThanOrEqual != null">
+				and E.maxsys &lt;= #{maxsysLessThanOrEqual}
+			</if>
+
+			<if test="maxsyss != null and maxsyss.size() &gt; 0">
+			    and E.maxsys IN
+				<foreach item="x_maxsys" index="index" collection="maxsyss" 
+					open="(" separator="," close=")">
+                  #{x_maxsys}
+				</foreach>
+			</if>
+
+
+			<if test="ctime != null">
+				and E.ctime = #{ctime}
+			</if>
+
+			<if test="ctimeGreaterThanOrEqual != null">
+				and E.ctime &gt;= #{ctimeGreaterThanOrEqual}
+			</if>
+
+			<if test="ctimeLessThanOrEqual != null">
+				and E.ctime &lt;= #{ctimeLessThanOrEqual}
+			</if>
+
+			<if test="ctimes != null and ctimes.size() &gt; 0">
+			    and E.ctime IN
+				<foreach item="x_ctime" index="index" collection="ctimes" 
+					open="(" separator="," close=")">
+                  #{x_ctime}
+				</foreach>
+			</if>
+
+	        
+			<if test="sysnum != null and sysnum != '' ">
+				and E.sysnum = #{sysnum}
+			</if>
+
+			<if test="sysnumLike != null and sysnumLike != '' ">
+				and E.sysnum like #{sysnumLike}
+			</if>
+
+			<if test="sysnums != null and sysnums.size() &gt; 0">
+			    and E.sysnum IN
+				<foreach item="x_sysnum" index="index" collection="sysnums" 
+					open="(" separator="," close=")">
+                  #{x_sysnum}
+				</foreach>
+			</if>
+
+	        
+			<if test="tablename != null and tablename != '' ">
+				and E.tablename = #{tablename}
+			</if>
+
+			<if test="tablenameLike != null and tablenameLike != '' ">
+				and E.tablename like #{tablenameLike}
+			</if>
+
+			<if test="tablenames != null and tablenames.size() &gt; 0">
+			    and E.tablename IN
+				<foreach item="x_tablename" index="index" collection="tablenames" 
+					open="(" separator="," close=")">
+                  #{x_tablename}
+				</foreach>
+			</if>
+
+	        
+			<if test="dname != null and dname != '' ">
+				and E.dname = #{dname}
+			</if>
+
+			<if test="dnameLike != null and dnameLike != '' ">
+				and E.dname like #{dnameLike}
+			</if>
+
+			<if test="dnames != null and dnames.size() &gt; 0">
+			    and E.dname IN
+				<foreach item="x_dname" index="index" collection="dnames" 
+					open="(" separator="," close=")">
+                  #{x_dname}
+				</foreach>
+			</if>
+
+	        
+			<if test="userindex != null and userindex != '' ">
+				and E.userindex = #{userindex}
+			</if>
+
+			<if test="userindexLike != null and userindexLike != '' ">
+				and E.userindex like #{userindexLike}
+			</if>
+
+			<if test="userindexs != null and userindexs.size() &gt; 0">
+			    and E.userindex IN
+				<foreach item="x_userindex" index="index" collection="userindexs" 
+					open="(" separator="," close=")">
+                  #{x_userindex}
+				</foreach>
+			</if>
+
+	        
+			<if test="treetablenameB != null and treetablenameB != '' ">
+				and E.treetablename_b = #{treetablenameB}
+			</if>
+
+			<if test="treetablenameBLike != null and treetablenameBLike != '' ">
+				and E.treetablename_b like #{treetablenameBLike}
+			</if>
+
+			<if test="treetablenameBs != null and treetablenameBs.size() &gt; 0">
+			    and E.treetablename_b IN
+				<foreach item="x_treetablenameB" index="index" collection="treetablenameBs" 
+					open="(" separator="," close=")">
+                  #{x_treetablenameB}
+				</foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

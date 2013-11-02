@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.MailSendMapper">
+
+	<resultMap id="mailSendResultMap"	type="com.glaf.isdp.domain.MailSend">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="msgId" column="msgId" jdbcType="VARCHAR"/>
+		<result property="inReplyTo" column="inreplyto" jdbcType="VARCHAR"/>
+		<result property="from" column="From" jdbcType="VARCHAR"/>
+		<result property="to" column="To" jdbcType="VARCHAR"/>
+		<result property="cc" column="CC" jdbcType="VARCHAR"/>
+		<result property="date" column="Date" jdbcType="TIMESTAMP"/>
+		<result property="subject" column="Subject" jdbcType="VARCHAR"/>
+		<result property="replyTo" column="replyto" jdbcType="VARCHAR"/>
+		<result property="text" column="Text" jdbcType="VARCHAR"/>
+		<result property="html" column="HTML" jdbcType="VARCHAR"/>
+		<result property="intflag" column="intflag" jdbcType="INTEGER"/>
+		<result property="email" column="email" jdbcType="VARCHAR"/>
+	</resultMap>
+
+
+	<resultMap id="mailSendHashMap"	type="java.util.HashMap">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="msgId" column="msgId" jdbcType="VARCHAR"/>
+		<result property="inReplyTo" column="inreplyto" jdbcType="VARCHAR"/>
+		<result property="from" column="From" jdbcType="VARCHAR"/>
+		<result property="to" column="To" jdbcType="VARCHAR"/>
+		<result property="cc" column="CC" jdbcType="VARCHAR"/>
+		<result property="date" column="Date" jdbcType="TIMESTAMP"/>
+		<result property="subject" column="Subject" jdbcType="VARCHAR"/>
+		<result property="replyTo" column="replyto" jdbcType="VARCHAR"/>
+		<result property="text" column="Text" jdbcType="VARCHAR"/>
+		<result property="html" column="HTML" jdbcType="VARCHAR"/>
+		<result property="intflag" column="intflag" jdbcType="INTEGER"/>
+		<result property="email" column="email" jdbcType="VARCHAR"/>
+	</resultMap>
+ 
+	<insert id="insertMailSend" parameterType="com.glaf.isdp.domain.MailSend">
+		insert into email_send 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="msgId != null">
+				,msgId 
+			</if>
+			<if test="inReplyTo != null">
+				,inreplyto 
+			</if>
+			<if test="from != null">
+				,[From] 
+			</if>
+			<if test="to != null">
+				,[To] 
+			</if>
+			<if test="cc != null">
+				,CC 
+			</if>
+			<if test="date != null">
+				,[Date] 
+			</if>
+			<if test="subject != null">
+				,Subject 
+			</if>
+			<if test="replyTo != null">
+				,replyto 
+			</if>
+			<if test="text != null">
+				,Text 
+			</if>
+			<if test="html != null">
+				,HTML 
+			</if>
+			<if test="intflag != null">
+				,intflag 
+			</if>
+			<if test="email != null">
+				,email 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="msgId != null">
+				,#{msgId, jdbcType=VARCHAR}
+			</if>
+			<if test="inReplyTo != null">
+				,#{inReplyTo, jdbcType=VARCHAR}
+			</if>
+			<if test="from != null">
+				,#{from, jdbcType=VARCHAR}
+			</if>
+			<if test="to != null">
+				,#{to, jdbcType=VARCHAR}
+			</if>
+			<if test="cc != null">
+				,#{cc, jdbcType=VARCHAR}
+			</if>
+			<if test="date != null">
+				,#{date, jdbcType=TIMESTAMP}
+			</if>
+			<if test="subject != null">
+				,#{subject, jdbcType=VARCHAR}
+			</if>
+			<if test="replyTo != null">
+				,#{replyTo, jdbcType=VARCHAR}
+			</if>
+			<if test="text != null">
+				,#{text, jdbcType=VARCHAR}
+			</if>
+			<if test="html != null">
+				,#{html, jdbcType=VARCHAR}
+			</if>
+			<if test="intflag != null">
+				,#{intflag, jdbcType=INTEGER}
+			</if>
+			<if test="email != null">
+				,#{email, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateMailSend" parameterType="com.glaf.isdp.domain.MailSend">
+		update email_send
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="msgId != null">
+				msgId = #{msgId, jdbcType=VARCHAR},
+			</if>
+			<if test="inReplyTo != null">
+				inreplyto = #{inReplyTo, jdbcType=VARCHAR},
+			</if>
+			<if test="from != null">
+				[From] = #{from, jdbcType=VARCHAR},
+			</if>
+			<if test="to != null">
+				[To] = #{to, jdbcType=VARCHAR},
+			</if>
+			<if test="cc != null">
+				CC = #{cc, jdbcType=VARCHAR},
+			</if>
+			<if test="date != null">
+				[Date] = #{date, jdbcType=TIMESTAMP},
+			</if>
+			<if test="subject != null">
+				Subject = #{subject, jdbcType=VARCHAR},
+			</if>
+			<if test="replyTo != null">
+				replyto = #{replyTo, jdbcType=VARCHAR},
+			</if>
+			<if test="text != null">
+				Text = #{text, jdbcType=VARCHAR},
+			</if>
+			<if test="html != null">
+				HTML = #{html, jdbcType=VARCHAR},
+			</if>
+			<if test="intflag != null">
+				intflag = #{intflag, jdbcType=INTEGER},
+			</if>
+			<if test="email != null">
+				email = #{email, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+	</update>
+
+ 
+	<delete id="deleteMailSendById" parameterType="string"> 
+        delete from email_send
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteMailSends" parameterType="com.glaf.isdp.query.MailSendQuery">
+		delete from email_send
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getMailSendById" parameterType="string" resultMap="mailSendResultMap">
+		select * from email_send where id = #{id}
+	</select>
+
+
+	<select id="getMailSendCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*) from email_send E
+		<include refid="selectMailSendSql" />
+	</select>
+
+
+	<select id="getMailSendCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.MailSendQuery"
+		resultType="int">
+		select count(*) from email_send E
+		<include refid="selectMailSendSql" />
+	</select>
+
+
+	<select id="getMailSends" 
+		parameterType="map"
+		resultMap="mailSendResultMap">
+		select E.* from email_send E
+		<include refid="selectMailSendSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getMailSendMapList" parameterType="map" resultType="map">
+		select E.* from email_send E 
+		<include refid="selectMailSendSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getMailSendsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.MailSendQuery"
+		resultMap="mailSendResultMap">
+		select E.* from email_send E
+		<include refid="selectMailSendSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectMailSendSql">
+		 
+		<where>
+
+		   1 = 1  
+
+	        
+			<if test="msgId != null and msgId != '' ">
+				and E.msgId = #{msgId}
+			</if>
+
+			<if test="msgIdLike != null and msgIdLike != '' ">
+				and E.msgId like #{msgIdLike}
+			</if>
+
+			<if test="msgIds != null and msgIds.size() &gt; 0">
+			    and E.msgId IN
+				<foreach item="x_msgId" index="index" collection="msgIds" 
+					open="(" separator="," close=")">
+                  #{x_msgId}
+				</foreach>
+			</if>
+
+	        
+			<if test="inReplyTo != null and inReplyTo != '' ">
+				and E.inreplyto = #{inReplyTo}
+			</if>
+
+			<if test="inReplyToLike != null and inReplyToLike != '' ">
+				and E.inreplyto like #{inReplyToLike}
+			</if>
+
+	        
+			<if test="from != null and from != '' ">
+				and E.[From] = #{from}
+			</if>
+
+			<if test="fromLike != null and fromLike != '' ">
+				and E.[From] like #{fromLike}
+			</if>
+
+	        
+			<if test="to != null and to != '' ">
+				and E.[To] = #{to}
+			</if>
+
+			<if test="toLike != null and toLike != '' ">
+				and E.[To] like #{toLike}
+			</if>
+
+	        
+			<if test="cc != null and cc != '' ">
+				and E.CC = #{cc}
+			</if>
+
+			<if test="ccLike != null and ccLike != '' ">
+				and E.CC like #{ccLike}
+			</if>
+
+			<if test="dateGreaterThanOrEqual != null">
+				and E.[Date] &gt;= #{dateGreaterThanOrEqual}
+			</if>
+
+			<if test="dateLessThanOrEqual != null">
+				and E.[Date] &lt;= #{dateLessThanOrEqual}
+			</if>
+
+			<if test="subjectLike != null and subjectLike != '' ">
+				and E.Subject like #{subjectLike}
+			</if>
+	        
+			<if test="replyTo != null and replyTo != '' ">
+				and E.replyto = #{replyTo}
+			</if>
+
+			<if test="replyToLike != null and replyToLike != '' ">
+				and E.replyto like #{replyToLike}
+			</if>
+
+			<if test="intflag != null">
+				and E.intflag = #{intflag}
+			</if>
+
+			<if test="intflagGreaterThanOrEqual != null">
+				and E.intflag &gt;= #{intflagGreaterThanOrEqual}
+			</if>
+
+			<if test="intflagLessThanOrEqual != null">
+				and E.intflag &lt;= #{intflagLessThanOrEqual}
+			</if>
+
+			<if test="intflags != null and intflags.size() &gt; 0">
+			    and E.intflag IN
+				<foreach item="x_intflag" index="index" collection="intflags" 
+					open="(" separator="," close=")">
+                  #{x_intflag}
+				</foreach>
+			</if>
+
+	        
+			<if test="email != null and email != '' ">
+				and E.email = #{email}
+			</if>
+
+			<if test="emailLike != null and emailLike != '' ">
+				and E.email like #{emailLike}
+			</if>
+
+			<if test="emails != null and emails.size() &gt; 0">
+			    and E.email IN
+				<foreach item="x_email" index="index" collection="emails" 
+					open="(" separator="," close=")">
+                  #{x_email}
+				</foreach>
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

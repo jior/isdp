@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.CellHintlistMapper">
+
+	<resultMap id="cellHintlistResultMap"	type="com.glaf.isdp.domain.CellHintlist">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="indexId" column="index_id" jdbcType="INTEGER"/>
+		<result property="hint" column="hint" jdbcType="VARCHAR"/>
+	</resultMap>
+
+
+	<resultMap id="cellHintlistHashMap"	type="java.util.HashMap">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="indexId" column="index_id" jdbcType="INTEGER"/>
+		<result property="hint" column="hint" jdbcType="VARCHAR"/>
+	</resultMap>
+ 
+	<insert id="insertCellHintlist" parameterType="com.glaf.isdp.domain.CellHintlist">
+		insert into cell_hintlist 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="indexId != null">
+				,index_id 
+			</if>
+			<if test="hint != null">
+				,hint 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="hint != null">
+				,#{hint, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateCellHintlist" parameterType="com.glaf.isdp.domain.CellHintlist">
+		update
+		cell_hintlist
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="indexId != null">
+				index_id = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="hint != null">
+				hint = #{hint, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+	</update>
+
+ 
+	<delete id="deleteCellHintlistById" parameterType="string"> 
+        delete from cell_hintlist
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteCellHintlists" parameterType="com.glaf.isdp.query.CellHintlistQuery">
+		delete from cell_hintlist
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getCellHintlistById" parameterType="string" resultMap="cellHintlistResultMap">
+		select * from cell_hintlist where id = #{id}
+	</select>
+
+
+	<select id="getCellHintlistCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*) from cell_hintlist E
+		<include refid="selectCellHintlistSql" />
+	</select>
+
+
+	<select id="getCellHintlistCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellHintlistQuery"
+		resultType="int">
+		select count(*) from cell_hintlist E
+		<include refid="selectCellHintlistSql" />
+	</select>
+
+
+	<select id="getCellHintlists" 
+		parameterType="map"
+		resultMap="cellHintlistResultMap">
+		select E.* from cell_hintlist E
+		<include refid="selectCellHintlistSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getCellHintlistMapList" parameterType="map" resultType="map">
+		select E.* from cell_hintlist E 
+		<include refid="selectCellHintlistSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getCellHintlistsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellHintlistQuery"
+		resultMap="cellHintlistResultMap">
+		select E.* from cell_hintlist E
+		<include refid="selectCellHintlistSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectCellHintlistSql">
+		 
+		<where>
+
+		   1 = 1  
+
+
+			<if test="indexId != null">
+				and E.index_id = #{indexId}
+			</if>
+
+			<if test="indexIdGreaterThanOrEqual != null">
+				and E.index_id &gt;= #{indexIdGreaterThanOrEqual}
+			</if>
+
+			<if test="indexIdLessThanOrEqual != null">
+				and E.index_id &lt;= #{indexIdLessThanOrEqual}
+			</if>
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+			    and E.index_id IN
+				<foreach item="x_indexId" index="index" collection="indexIds" 
+					open="(" separator="," close=")">
+                  #{x_indexId}
+				</foreach>
+			</if>
+
+	        
+			<if test="hint != null and hint != '' ">
+				and E.hint = #{hint}
+			</if>
+
+			<if test="hintLike != null and hintLike != '' ">
+				and E.hint like #{hintLike}
+			</if>
+
+			<if test="hints != null and hints.size() &gt; 0">
+			    and E.hint IN
+				<foreach item="x_hint" index="index" collection="hints" 
+					open="(" separator="," close=")">
+                  #{x_hint}
+				</foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

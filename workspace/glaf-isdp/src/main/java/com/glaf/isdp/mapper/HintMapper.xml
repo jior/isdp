@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.HintMapper">
+
+	<resultMap id="hintResultMap"	type="com.glaf.isdp.domain.Hint">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="hint" column="hint" jdbcType="VARCHAR"/>
+	</resultMap>
+
+
+	<resultMap id="hintHashMap"	type="java.util.HashMap">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="hint" column="hint" jdbcType="VARCHAR"/>
+	</resultMap>
+ 
+	<insert id="insertHint" parameterType="com.glaf.isdp.domain.Hint">
+		insert into hint 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="hint != null">
+				,hint 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="hint != null">
+				,#{hint, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateHint" parameterType="com.glaf.isdp.domain.Hint">
+		
+		update hint
+		set hint = #{hint, jdbcType=VARCHAR} 
+		where id = #{id, jdbcType=VARCHAR}
+		
+	</update>
+
+ 
+	<delete id="deleteHintById" parameterType="string"> 
+        delete from hint
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteHints" parameterType="com.glaf.isdp.query.HintQuery">
+		delete from hint
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getHintById" parameterType="string" resultMap="hintResultMap">
+		select * from hint where id = #{id}
+	</select>
+
+
+	<select id="getHintCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectHintsSql" />
+	</select>
+
+
+	<select id="getHintCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.HintQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectHintsSql" />
+	</select>
+
+
+	<select id="getHints" 
+		parameterType="map"
+		resultMap="hintResultMap">
+		select E.*
+		<include refid="selectHintsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getHintsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.HintQuery"
+		resultMap="hintResultMap">
+		select E.*
+		<include refid="selectHintsSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectHintsSql">
+
+		from hint E
+		 
+		<where>
+
+		       1 = 1  
+
+	        
+			<if test="hint != null and hint != '' ">
+				and E.hint = #{hint}
+			</if>
+
+			<if test="hintLike != null and hintLike != '' ">
+				and E.hint like #{hintLike}
+			</if>
+
+			<if test="hints != null and hints.size() &gt; 0">
+			    and E.hint IN
+				<foreach item="x_hint" index="index" collection="hints" 
+					open="(" separator="," close=")">
+                  #{x_hint}
+				</foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>

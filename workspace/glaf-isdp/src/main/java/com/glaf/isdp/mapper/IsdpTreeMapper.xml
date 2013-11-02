@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.IsdpTreeMapper">
+
+	<resultMap id="isdpBaseTreeResultMap" type="com.glaf.isdp.domain.BaseTree">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="indexId" column="index_id" jdbcType="INTEGER"/>
+		<result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+		<result property="indexName" column="index_name" jdbcType="INTEGER"/>
+		<result property="level" column="nlevel" jdbcType="INTEGER"/>
+	</resultMap>
+
+	<select id="getBaseTreesByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.BaseTreeQuery"
+		resultMap="isdpBaseTreeResultMap">
+		select * 
+		<include refid="selectBaseTreeSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+	
+	<select id="getIsdpTreesByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.IsdpTreeQuery"
+		resultMap="isdpBaseTreeResultMap">
+		 
+		 ${selectSql}
+		 
+	</select>
+
+	<sql id="selectBaseTreeSql">
+
+		from ${tableName} 
+		 
+		<where>
+
+		       1 = 1  
+ 
+			<if test="idLike != null and idLike != '' ">
+				and id like #{idLike}
+			</if>
+
+			<if test="ids != null and ids.size() &gt; 0">
+			    and id IN
+				<foreach item="x_id" index="index" collection="ids" 
+					open="(" separator="," close=")">
+                  #{x_id}
+				</foreach>
+			</if>
+					
+			<if test="parentId != null">
+				and parent_id = #{parentId}
+			</if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+			    and parent_id IN
+				<foreach item="x_parentId" index="index" collection="parentIds" 
+					open="(" separator="," close=")">
+                  #{x_parentId}
+				</foreach>
+			</if>
+ 
+			<if test="indexNameLike != null and indexNameLike != '' ">
+				and index_name like #{indexNameLike}
+			</if>
+
+		</where>
+	</sql>
+	
+	<sql id="selectIsdpTreeSql">
+ 
+		<if test="idLike != null and idLike != '' ">
+				and id like #{idLike}
+		</if>
+
+		<if test="ids != null and ids.size() &gt; 0">
+			    and id IN
+			<foreach item="x_id" index="index" collection="ids" 
+				open="(" separator="," close=")">
+                  #{x_id}
+			</foreach>
+		</if>
+					
+		<if test="parentId != null">
+				and parent_id = #{parentId}
+		</if>
+
+		<if test="parentIds != null and parentIds.size() &gt; 0">
+			    and parent_id IN
+			<foreach item="x_parentId" index="index" collection="parentIds" 
+				open="(" separator="," close=")">
+                  #{x_parentId}
+			</foreach>
+		</if>
+ 
+		<if test="indexNameLike != null and indexNameLike != '' ">
+				and index_name like #{indexNameLike}
+		</if>
+ 
+	</sql>
+
+</mapper>

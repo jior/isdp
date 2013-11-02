@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.CellSysDatalinkConMapper">
+
+	<resultMap id="cellSysDatalinkConResultMap"	type="com.glaf.isdp.domain.CellSysDatalinkCon">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="sysdatalinkId" column="sysdatalink_id" jdbcType="VARCHAR"/>
+		<result property="intandor" column="intandor" jdbcType="INTEGER"/>
+		<result property="sqlconshow" column="sqlconshow" jdbcType="VARCHAR"/>
+		<result property="sqlcon" column="sqlcon" jdbcType="VARCHAR"/>
+	</resultMap>
+
+
+	<resultMap id="cellSysDatalinkConHashMap"	type="java.util.HashMap">
+		<id property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="sysdatalinkId" column="sysdatalink_id" jdbcType="VARCHAR"/>
+		<result property="intandor" column="intandor" jdbcType="INTEGER"/>
+		<result property="sqlconshow" column="sqlconshow" jdbcType="VARCHAR"/>
+		<result property="sqlcon" column="sqlcon" jdbcType="VARCHAR"/>
+	</resultMap>
+ 
+	<insert id="insertCellSysDatalinkCon" parameterType="com.glaf.isdp.domain.CellSysDatalinkCon">
+		insert into cell_sysdatalink_con 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    id
+			<if test="sysdatalinkId != null">
+				,sysdatalink_id 
+			</if>
+			<if test="intandor != null">
+				,intandor 
+			</if>
+			<if test="sqlconshow != null">
+				,sqlconshow 
+			</if>
+			<if test="sqlcon != null">
+				,sqlcon 
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="sysdatalinkId != null">
+				,#{sysdatalinkId, jdbcType=VARCHAR}
+			</if>
+			<if test="intandor != null">
+				,#{intandor, jdbcType=INTEGER}
+			</if>
+			<if test="sqlconshow != null">
+				,#{sqlconshow, jdbcType=VARCHAR}
+			</if>
+			<if test="sqlcon != null">
+				,#{sqlcon, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+	 
+	<update id="updateCellSysDatalinkCon" parameterType="com.glaf.isdp.domain.CellSysDatalinkCon">
+		update
+		cell_sysdatalink_con
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="sysdatalinkId != null">
+				sysdatalink_id = #{sysdatalinkId, jdbcType=VARCHAR},
+			</if>
+			<if test="intandor != null">
+				intandor = #{intandor, jdbcType=INTEGER},
+			</if>
+			<if test="sqlconshow != null">
+				sqlconshow = #{sqlconshow, jdbcType=VARCHAR},
+			</if>
+			<if test="sqlcon != null">
+				sqlcon = #{sqlcon, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+          id = #{id, jdbcType=VARCHAR}
+		
+	</update>
+
+ 
+	<delete id="deleteCellSysDatalinkConById" parameterType="string"> 
+        delete from cell_sysdatalink_con
+        where id = #{id}
+	</delete>
+	
+
+	<delete id="deleteCellSysDatalinkCons" parameterType="com.glaf.isdp.query.CellSysDatalinkConQuery">
+		delete from cell_sysdatalink_con
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
+              #{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getCellSysDatalinkConById" parameterType="string" resultMap="cellSysDatalinkConResultMap">
+		select * from cell_sysdatalink_con where id = #{id}
+	</select>
+
+
+	<select id="getCellSysDatalinkConCount" 
+		parameterType="map"
+		resultType="int">
+		select count(*) from cell_sysdatalink_con E
+		<include refid="selectCellSysDatalinkConSql" />
+	</select>
+
+
+	<select id="getCellSysDatalinkConCountByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellSysDatalinkConQuery"
+		resultType="int">
+		select count(*) from cell_sysdatalink_con E
+		<include refid="selectCellSysDatalinkConSql" />
+	</select>
+
+
+	<select id="getCellSysDatalinkCons" 
+		parameterType="map"
+		resultMap="cellSysDatalinkConResultMap">
+		select E.* from cell_sysdatalink_con E
+		<include refid="selectCellSysDatalinkConSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getCellSysDatalinkConMapList" parameterType="map" resultType="map">
+		select E.* from cell_sysdatalink_con E 
+		<include refid="selectCellSysDatalinkConSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getCellSysDatalinkConsByQueryCriteria" 
+		parameterType="com.glaf.isdp.query.CellSysDatalinkConQuery"
+		resultMap="cellSysDatalinkConResultMap">
+		select E.* from cell_sysdatalink_con E
+		<include refid="selectCellSysDatalinkConSql" />
+		<if test="orderBy != null">
+		   order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectCellSysDatalinkConSql">
+		 
+		<where>
+
+		   1 = 1  
+
+	        
+			<if test="sysdatalinkId != null and sysdatalinkId != '' ">
+				and E.sysdatalink_id = #{sysdatalinkId}
+			</if>
+
+			<if test="sysdatalinkIdLike != null and sysdatalinkIdLike != '' ">
+				and E.sysdatalink_id like #{sysdatalinkIdLike}
+			</if>
+
+			<if test="sysdatalinkIds != null and sysdatalinkIds.size() &gt; 0">
+			    and E.sysdatalink_id IN
+				<foreach item="x_sysdatalinkId" index="index" collection="sysdatalinkIds" 
+					open="(" separator="," close=")">
+                  #{x_sysdatalinkId}
+				</foreach>
+			</if>
+
+
+			<if test="intandor != null">
+				and E.intandor = #{intandor}
+			</if>
+
+			<if test="intandorGreaterThanOrEqual != null">
+				and E.intandor &gt;= #{intandorGreaterThanOrEqual}
+			</if>
+
+			<if test="intandorLessThanOrEqual != null">
+				and E.intandor &lt;= #{intandorLessThanOrEqual}
+			</if>
+
+			<if test="intandors != null and intandors.size() &gt; 0">
+			    and E.intandor IN
+				<foreach item="x_intandor" index="index" collection="intandors" 
+					open="(" separator="," close=")">
+                  #{x_intandor}
+				</foreach>
+			</if>
+
+			 
+		</where>
+	</sql>
+
+</mapper>
