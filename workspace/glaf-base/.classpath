@@ -97,5 +97,7 @@
 	<classpathentry kind="lib" path="/glaf-core/lib/commons-fileupload.jar"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/commons-lang3.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/glaf-ui"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/glaf-security"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/glaf-mail"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
