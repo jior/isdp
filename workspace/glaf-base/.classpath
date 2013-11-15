@@ -73,7 +73,7 @@
 	<classpathentry kind="lib" path="/glaf-core/lib/jfreechart.jar"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/mybatis-spring.jar"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/mybatis.jar"/>
-	<classpathentry kind="lib" path="/glaf-core/lib/ehcache-core.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/ehcache.jar"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/junit.jar"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/fastjson.jar"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/guava.jar"/>

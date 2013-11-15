@@ -72,7 +72,7 @@
 	<classpathentry kind="lib" path="/glaf-core/lib/jfreechart.jar"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/mybatis-spring.jar"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/mybatis.jar"/>
-	<classpathentry kind="lib" path="/glaf-core/lib/ehcache-core.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/ehcache.jar"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/activiti-bpmn-converter.jar"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/activiti-bpmn-layout.jar"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/activiti-bpmn-model.jar"/>
