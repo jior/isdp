@@ -122,6 +122,10 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		if (appId != null && appId > 0) {
 			sysAccessMapper.deleteSysAccessByAppId(appId);
 			sysApplicationMapper.deleteSysApplicationById(appId);
+			SysApplication app = this.getSysApplication(appId);
+			if (app != null) {
+				sysTreeMapper.deleteSysTreeById(app.getNodeId());
+			}
 		}
 	}
 
@@ -142,7 +146,7 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		}
 		return app;
 	}
-	
+
 	/**
 	 * 按编码查找对象
 	 * 
@@ -150,7 +154,7 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	 *            String
 	 * @return SysApplication
 	 */
-	public SysApplication findByCode(String code){
+	public SysApplication findByCode(String code) {
 		SysApplicationQuery query = new SysApplicationQuery();
 		query.code(code);
 
@@ -371,7 +375,7 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 			SysApplication app = this.findById(parent);
 			SysTreeQuery query = new SysTreeQuery();
 			String treeId = app.getNode().getTreeId();
-			logger.debug("treeId="+treeId);
+			logger.debug("treeId=" + treeId);
 			query.treeId(treeId);
 			query.treeIdLike(treeId + "%");
 			if (!user.isSystemAdmin()) {
@@ -400,8 +404,8 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 				} else {
 					query.setActorId(actorId);
 				}
-				logger.debug("treeId="+query.getTreeId());
-				logger.debug("treeIdLike="+query.getTreeIdLike());
+				logger.debug("treeId=" + query.getTreeId());
+				logger.debug("treeIdLike=" + query.getTreeIdLike());
 				treeList = sysTreeMapper.getTreeListByUsers(query);
 			} else {
 				treeList = sysTreeMapper.getTreeList(query);
@@ -413,8 +417,8 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 			}
 			TreeHelper treeHelper = new TreeHelper();
 			array = treeHelper.getTreeJSONArray(treeModels);
-			//logger.debug("-------------------user menu-----------------------");
-			//logger.debug(array.toString('\n'));
+			// logger.debug("-------------------user menu-----------------------");
+			// logger.debug(array.toString('\n'));
 		}
 		return array;
 	}

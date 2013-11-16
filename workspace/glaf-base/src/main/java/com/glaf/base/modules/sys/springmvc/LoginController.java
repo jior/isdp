@@ -83,7 +83,7 @@ public class LoginController {
 		if (session == null) {
 			return new ModelAndView("/modules/login", modelMap);
 		}
-		
+
 		RequestUtils.setRequestParameterToAttribute(request);
 		if (StringUtils.isNotEmpty(request.getParameter("systemName"))) {
 			Environment
@@ -91,7 +91,7 @@ public class LoginController {
 		} else {
 			Environment.setCurrentSystemName(Environment.DEFAULT_SYSTEM_NAME);
 		}
-		
+
 		ViewMessages messages = new ViewMessages();
 		// 获取参数
 		String account = ParamUtil.getParameter(request, "x");
@@ -123,8 +123,9 @@ public class LoginController {
 		} else {
 			String loginIP = UserOnlineListener.findUser(bean.getActorId());
 			logger.info("login IP:" + loginIP);
-			if (loginIP != null && !StringUtils
-					.equals(RequestUtils.getIPAddress(request), loginIP)) {// 用户已在其他机器登陆
+			if (loginIP != null
+					&& !StringUtils.equals(RequestUtils.getIPAddress(request),
+							loginIP)) {// 用户已在其他机器登陆
 				messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 						"authorize.login_failure2"));
 				MessageUtils.addMessages(request, messages);
@@ -172,6 +173,8 @@ public class LoginController {
 
 			if (bean.getAccountType() == 1) {// 供应商用户
 				return new ModelAndView("/modules/sp_main", modelMap);
+			} else if (bean.getAccountType() == 2) {// 微信用户
+				return new ModelAndView("/modules/wx_main", modelMap);
 			} else {
 				return new ModelAndView("/modules/main", modelMap);
 			}
