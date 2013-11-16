@@ -140,7 +140,9 @@
 
 	<tr height="27" id="urlDir" style="display:block;">
 		<td align="left" width="30%" valign="top">&nbsp;</td>
-		<td align="left" width="70%" valign="middle"><textarea id="link" name="link" rows="5" cols="39"
+		<td align="left" width="70%" valign="middle">
+		<textarea id="link" name="link" rows="5" cols="39" 
+		    style="width: 320px; height: 30px; text-align: left;"
 			class="input-xlarge x-text"><c:out
 			value="${panel.link}" escapeXml="false" /></textarea></td>
 	</tr>
@@ -157,7 +159,7 @@
 	<tr>
 		<td align="left" width="30%"   valign="top">高度</td>
 		<td align="left" align="left" valign="middle" >
-			<input type="text" name="height" value="${panel.height}" maxLength="3" class="input-mini x-text" /> (例如: 300, 显示一个高度为300像素的模块)
+			<input type="text" name="height" value="${panel.height}" maxLength="3" size="5" class="input-mini x-text" /> (例如: 300, 显示一个高度为300像素的模块)
 		</td>
 	</tr>
 

@@ -28,17 +28,15 @@
 <link href="<%=request.getContextPath()%>/icons/styles.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/easyui/locale/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src='${contextPath}/scripts/easyui.simple.extend.js'></script> 
+<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/easyui.simple.extend.js"></script> 
 <script type="text/javascript">
 
     var openTabSize = 0;  
 
-
 	$(function() {
         changeTheme();
         $('#editTheme').click(function() {
-            $('#w').window('open');
+            $('#themeWin').window('open');
         });  
 	});	
 
@@ -48,7 +46,7 @@
 			$('#tabs').tabs('select', title);
 		} else {
 			//alert(menuId);
-			var url = "${contextPath}/mx/my/menu/jump?id="+menuId;
+			var url = "${contextPath}/my/menu.do?method=jump&id="+menuId;
 			addTab(title, url, "icon-gears");
 		}
 	}
@@ -57,16 +55,19 @@
 	  if(!$('#tabs').tabs('exists',subtitle)){
 		//alert(menuId);
 		openTabSize = openTabSize + 1;
-		if(openTabSize > 10){
+		if(openTabSize > 1){
 			$('#tabs').tabs('close', 1);//关闭第二个,第一个为我的桌面，不能关闭
 		}
 		var url = "${contextPath}/mx/my/menu/jump?id="+menuId;
-		$('#tabs').tabs('add',{
+		//jQuery('#cc').attr('src', url);
+		
+		jQuery('#tabs').tabs('add',{
 			title:subtitle,
 			content:createFrame(url),
 			closable:true,
 			icon:"icon-gears"
 		});
+		
 	  }else{
 		$('#tabs').tabs('select',subtitle);
 		$('#mm-tabupdate').click();
@@ -75,7 +76,7 @@
   }
 
 	function openThemeWin(){
-		 $('#themeWin').window('open');
+		 jQuery('#themeWin').window('open');
 	}
 	
     function changeTheme(){
@@ -99,11 +100,11 @@
 
  
     function showDesktop(){
-		var url = "${contextPath}/mx/user/portal?easyuiPortal=true";
-        $('#cc').attr('src', url);
-	}
+		  var url = "${contextPath}/mx/user/portal?easyuiPortal=true";
+          $('#cc').attr('src', url);
+	 }
 
-  	function relogin(){
+  	 function relogin(){
         if(confirm("您确定要重新登录吗？")){
 			var link = '${contextPath}/mx/login/logout';
 			self.location.href = link;
@@ -111,7 +112,7 @@
 	}
  
     jQuery(document).ready(function(){
-        $('#themeWin').window('close'); 
+        jQuery('#themeWin').window('close'); 
 	});
 	
 </script>
@@ -141,7 +142,7 @@
 				<td width="5%" align="center" valign="middle"><img
 					src="<%=request.getContextPath()%>/layout/images/logo.gif"
 					border="0"></td>
-				<td width="25%" align="left" valign="middle"><span
+				<td width="35%" align="left" valign="middle"><span
 					class="sys_name" style="padding-left:10px; font-size: 24px; "><%=SystemConfig.getString("res_system_name")%></span>
 					&nbsp;<span class="sys_version"><%=SystemConfig.getString("res_version")%></span></td>
 				<td>&nbsp;</td>
@@ -201,9 +202,9 @@
 		style="background: #eee; overflow-y: hidden">
 		<div id="tabs" class="easyui-tabs" fit="true" border="false">
 			<div title="我的桌面" style="padding: 1px; overflow: hidden; color: red;">
-				<iframe
+				<iframe id="cc"
 					src="${contextPath}/mx/user/portal?easyuiPortal=true"
-					width='100%' height='100%' frameborder='0' scrolling='no' noResize></iframe>
+					width='100%' height='100%' frameborder='0' scrolling='auto' noResize></iframe>
 			</div>
 		</div>
 	</div>
@@ -224,13 +225,11 @@
 							<option value="default" selected>蓝色</option>
 							<option value="gray">灰色</option>
 							<option value="sunny">橙色</option>
+							<option value="black">黑色</option>
 							<option value="bootstrap">bootstrap</option>
 							<option value="metro">metro</option>
 							<!-- <option value="metro-blue">metro-blue</option> -->
 						</select>
-						<script type="text/javascript">
-							document.getElementById("theme").value="${theme}";
-					    </script>
 						</td>
 						<td>&nbsp;<a id="btnEp" class="easyui-linkbutton"
 							icon="icon-ok" href="javascript:changeTheme();">确定</a>
@@ -253,9 +252,16 @@
 		<div id="closeright">当前页右侧全部关闭</div>
 		<div id="closeleft">当前页左侧全部关闭</div>
 	</div>
-
+<script type="text/javascript">
+	var waitTime=1000; //1 秒 
+	timer=setInterval("OnTimer()",1000); 
+	function OnTimer(){ 
+		waitTime=waitTime-1000; 
+		if(waitTime==0){ 
+			jQuery('#themeWin').window('close'); 
+		}
+	}
+</script>
 </body>
 </html>
-<script type="text/javascript">
-   
-</script>
+ 
