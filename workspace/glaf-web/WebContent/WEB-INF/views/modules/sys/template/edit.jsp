@@ -105,7 +105,7 @@
 						value="${template.templateId}">
 				</c:when>
 				<c:otherwise>
-					<input name="templateId" size="50" type="text" class="input-xlarge" maxlength="255"
+					<input name="templateId" size="50" type="text" class="input-xlarge x-text" maxlength="255"
 						value="${template.templateId}">
 				</c:otherwise>
 			</c:choose></td>
@@ -113,13 +113,13 @@
 
 		<tr class="x-content-hight">
 			<td align="left" width="18%" noWrap><span>名称</span></td>
-			<td align="left"><input name="name" type="text" size="50" class="input-xlarge" maxlength="255"
+			<td align="left"><input name="name" type="text" size="50" class="input-xlarge x-text" maxlength="255"
 				value="${template.name}"></td>
 		</tr>
 
 		<tr class="x-content-hight">
 			<td align="left" width="18%" noWrap><span>主题</span></td>
-			<td align="left"><input name="title" type="text" size="50" class="input-xlarge" maxlength="255"
+			<td align="left"><input name="title" type="text" size="50" class="input-xlarge x-text" maxlength="255"
 				value="${template.title}"></td>
 		</tr>
 
@@ -137,7 +137,7 @@
 			<td align="left" rowspan="1" colspan="4" width="81%" height="143"><textarea
 				id="description" name="description" displayName="描述"
 				style="height: 142.0px; width: 330px; text-align: left; vertical-align: middle;"
-				class="input-xlarge" />${template.description}</textarea></td>
+				class="input-xlarge x-text" />${template.description}</textarea></td>
 		</tr>
 
 		<tr>
