@@ -23,14 +23,13 @@ import com.glaf.core.query.DataQuery;
 
 public class SysApplicationQuery extends DataQuery {
 	private static final long serialVersionUID = 1L;
+	protected String code;
 	protected String codeLike;
 	protected String descLike;
 	protected String name;
 	protected String nameLike;
 	protected List<String> names;
 	protected Long nodeId;
-	protected Long nodeIdGreaterThanOrEqual;
-	protected Long nodeIdLessThanOrEqual;
 	protected List<Long> nodeIds;
 	protected Integer showMenu;
 	protected Integer sortGreaterThan;
@@ -43,12 +42,24 @@ public class SysApplicationQuery extends DataQuery {
 
 	}
 
+	public SysApplicationQuery code(String code) {
+		if (code == null) {
+			throw new RuntimeException("code is null");
+		}
+		this.code = code;
+		return this;
+	}
+
 	public SysApplicationQuery descLike(String descLike) {
 		if (descLike == null) {
 			throw new RuntimeException("desc is null");
 		}
 		this.descLike = descLike;
 		return this;
+	}
+
+	public String getCode() {
+		return code;
 	}
 
 	public String getCodeLike() {
@@ -89,14 +100,6 @@ public class SysApplicationQuery extends DataQuery {
 
 	public Long getNodeId() {
 		return nodeId;
-	}
-
-	public Long getNodeIdGreaterThanOrEqual() {
-		return nodeIdGreaterThanOrEqual;
-	}
-
-	public Long getNodeIdLessThanOrEqual() {
-		return nodeIdLessThanOrEqual;
 	}
 
 	public List<Long> getNodeIds() {
@@ -214,29 +217,16 @@ public class SysApplicationQuery extends DataQuery {
 		return this;
 	}
 
-	public SysApplicationQuery nodeIdGreaterThanOrEqual(
-			Long nodeIdGreaterThanOrEqual) {
-		if (nodeIdGreaterThanOrEqual == null) {
-			throw new RuntimeException("nodeId is null");
-		}
-		this.nodeIdGreaterThanOrEqual = nodeIdGreaterThanOrEqual;
-		return this;
-	}
-
-	public SysApplicationQuery nodeIdLessThanOrEqual(Long nodeIdLessThanOrEqual) {
-		if (nodeIdLessThanOrEqual == null) {
-			throw new RuntimeException("nodeId is null");
-		}
-		this.nodeIdLessThanOrEqual = nodeIdLessThanOrEqual;
-		return this;
-	}
-
 	public SysApplicationQuery nodeIds(List<Long> nodeIds) {
 		if (nodeIds == null) {
 			throw new RuntimeException("nodeIds is empty ");
 		}
 		this.nodeIds = nodeIds;
 		return this;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public void setCodeLike(String codeLike) {
@@ -261,14 +251,6 @@ public class SysApplicationQuery extends DataQuery {
 
 	public void setNodeId(Long nodeId) {
 		this.nodeId = nodeId;
-	}
-
-	public void setNodeIdGreaterThanOrEqual(Long nodeIdGreaterThanOrEqual) {
-		this.nodeIdGreaterThanOrEqual = nodeIdGreaterThanOrEqual;
-	}
-
-	public void setNodeIdLessThanOrEqual(Long nodeIdLessThanOrEqual) {
-		this.nodeIdLessThanOrEqual = nodeIdLessThanOrEqual;
 	}
 
 	public void setNodeIds(List<Long> nodeIds) {

@@ -80,7 +80,7 @@ public interface SysUserService {
 	 */
 	@Transactional
 	void deleteRoleUsers(SysRole role, String[] userIds);
-	
+
 	/**
 	 * 删除部门角色用户
 	 * 
@@ -266,6 +266,7 @@ public interface SysUserService {
 
 	/**
 	 * 判断用户是否有权限
+	 * 
 	 * @param user
 	 * @param code
 	 * @return

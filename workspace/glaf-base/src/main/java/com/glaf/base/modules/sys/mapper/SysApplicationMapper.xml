@@ -69,11 +69,11 @@
 				,UPDATEDATE
 			</if>
 			<if test="extendedColumns != null and  extendedColumns.size() &gt; 0">
-	          <foreach collection="extendedColumns" item="column">
-			    <if test="column.value != null">
-				,${column.columnName}
-				</if>
-			  </foreach>
+				<foreach collection="extendedColumns" item="column">
+					<if test="column.value != null">
+						,${column.columnName}
+					</if>
+				</foreach>
 			</if>
 		</trim>
 
@@ -117,7 +117,8 @@
 				,#{updateDate, jdbcType=TIMESTAMP}
 			</if>
 
-			<include refid="com.glaf.core.mapper.TableDataMapper.insertExtendedTableDataSql" />
+			<include
+				refid="com.glaf.core.mapper.TableDataMapper.insertExtendedTableDataSql" />
 
 		</trim>
 	</insert>
@@ -158,7 +159,8 @@
 				UPDATEDATE = #{updateDate, jdbcType=TIMESTAMP},
 			</if>
 
-			<include refid="com.glaf.core.mapper.TableDataMapper.updateExtendedTableDataSql" />
+			<include
+				refid="com.glaf.core.mapper.TableDataMapper.updateExtendedTableDataSql" />
 
 		</trim>
 		where
@@ -197,7 +199,8 @@
 
 		select E.* from sys_application E
 		inner join sys_access A
-		on E.ID = A.APPID
+		on
+		E.ID = A.APPID
 		where A.ROLEID = #{roleId}
 
 	</select>
@@ -208,12 +211,13 @@
 
 		select E.* from sys_application E
 		inner join sys_access A
-		on E.id = A.appId
+		on
+		E.id = A.appId
 		where A.roleId in (
-		  select R.id from net_role R
-		  inner join userrole UR
-		  on R.id = UR.roleid
-		  where UR.userid = #{userId}
+		select R.id from net_role R
+		inner join userrole UR
+		on R.id = UR.roleid
+		where UR.userid = #{userId}
 		)
 
 	</select>
@@ -221,9 +225,11 @@
 
 	<select id="getRealmInfos" parameterType="map" resultMap="realmInfoResultMap">
 
-		select E.url, r.code from sys_application E
+		select
+		E.url, r.code from sys_application E
 		inner join sys_access A
-		on E.id = A.appId
+		on E.id =
+		A.appId
 		inner join net_role R
 		on A.roleid = R.id
 		where E.url is not null
@@ -285,6 +291,10 @@
 				</foreach>
 			</if>
 
+			<if test="code != null and code != '' ">
+				and E.CODE = #{code}
+			</if>
+
 			<if test="codeLike != null and codeLike != '' ">
 				and E.CODE like #{codeLike}
 			</if>
@@ -321,14 +331,6 @@
 				and E.NODEID = #{nodeId}
 			</if>
 
-			<if test="nodeIdGreaterThanOrEqual != null">
-				and E.NODEID &gt;= #{nodeIdGreaterThanOrEqual}
-			</if>
-
-			<if test="nodeIdLessThanOrEqual != null">
-				and E.NODEID &lt;= #{nodeIdLessThanOrEqual}
-			</if>
-
 			<if test="nodeIds != null and nodeIds.size() &gt; 0">
 				and E.NODEID IN
 				<foreach item="x_nodeId" index="index" collection="nodeIds"
@@ -336,9 +338,9 @@
 					#{x_nodeId}
 				</foreach>
 			</if>
-			
+
 			<if test="locked != null">
-				and E.LOCKED is not null 
+				and E.LOCKED is not null
 				and E.LOCKED = #{locked}
 			</if>
 
