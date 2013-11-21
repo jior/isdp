@@ -7,15 +7,15 @@
 <%@ page import="com.glaf.core.service.*"%>
 <%@ page import="com.glaf.core.util.*"%>
 <%@ page import="com.glaf.dts.domain.*"%>
-<%@ page import="com.glaf.dts.jdbc.*"%>
 <%@ page import="com.glaf.dts.transform.*"%>
 <%@ page import="com.glaf.dts.query.*"%>
 <%@ page import="com.glaf.dts.service.*"%>
 <%@ page import="com.glaf.dts.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ include file="/WEB-INF/views/inc/init_import.jsp"%>
+<%@ include file="/WEB-INF/views/inc/init_config.jsp"%>
 <%
-         
 		IQueryDefinitionService queryDefinitionService = ContextFactory.getBean("queryDefinitionService");
         String queryId = request.getParameter("queryId");
 		String actionType = request.getParameter("actionType");
@@ -45,8 +45,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Table</title>
 <%@ include file="/WEB-INF/views/tm/mx_header.jsp"%>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/scripts/easyui/themes/${theme}/easyui.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/themes/${theme}/styles.css">
+<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/easyui/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript">
 	     function saveForm(actionType){
              if(document.getElementById("title").value==""){
@@ -153,46 +156,41 @@
 		}
 </script>
 </head>
-<body>
-<br>
+<body style="padding-left:60px;padding-right:60px">
+<br/>
 <div class="x_content_title" style="width: 90%;">
     <img src="<%=request.getContextPath()%>/images/window.png" alt="编辑查询信息">&nbsp;编辑查询信息
 </div>
 <form id="iForm"  name="iForm" method="post" action="" class="x-form">
 <input type="hidden" id="actionType" name="actionType" />
+<input type="hidden" id="nodeId" name="nodeId" value="${nodeId}"/>
 <input type="hidden" id="queryId" name="queryId" value="${query.id}"/>
 <div class="content-block" style="width: 90%;"><br>
  
-
-<table align="center"   cellspacing="1"
-	cellpadding="1" width="95%">
+<table align="center"  class="easyui-form"   cellspacing="1" cellpadding="1" width="95%">
 	<tr>
-	    <td >标题&nbsp;<span class="required">*</span>&nbsp;</td>
-		<td >
-		    <input type="text" id="title" name="title" class="input-xlarge" value="${query.title}"/> 
+	    <td width="12%" align="left">标题&nbsp;<span class="required">*</span>&nbsp;</td>
+		<td width="38%" align="left">
+		    <input type="text" id="title" name="title" size="30" class="x-text input-xlarge easyui-validatebox" value="${query.title}"/> 
 		</td>
-    </tr>
-	<tr>
-		<td >名称</td>
-		<td >
-		    <input type="text" id="name" name="name" class="input-xlarge" value="${query.name}"/>
+		<td width="12%" align="left">名称</td>
+		<td width="38%" align="left">
+		    <input type="text" id="name" name="name" size="30" class="x-text input-xlarge" value="${query.name}"/>
 		</td>
 	</tr>
 	<tr>
-		<td >目标表</td>
-		<td >
-		  <input type="text" id="targetTableName" name="targetTableName" class="input-xlarge" value="${query.targetTableName}"/>
+		<td width="12%" align="left">目标表</td>
+		<td width="38%" align="left">
+		  <input type="text" id="targetTableName" name="targetTableName" size="30" class="x-text input-xlarge" value="${query.targetTableName}"/>
 		</td>
-    </tr>
-	<tr>
-		<td >描述</td>
-		<td >
-		  <input type="text" id="description" name="description" class="input-xlarge" value="${query.description}"/>
+		<td width="12%" align="left">描述</td>
+		<td width="38%" align="left">
+		  <input type="text" id="description" name="description" size="30" class="x-text input-xlarge" value="${query.description}"/>
 		</td>
 	</tr>
 	<tr>
-		<td >父查询</td>
-		<td >
+		<td width="12%" align="left">父查询</td>
+		<td colspan="3" align="left">
 		  
 		   <%
 		     StringBuffer sb = new StringBuffer();
@@ -216,52 +214,58 @@
 		</td>
 	</tr>
 	<tr>
-		<td >SQL语句&nbsp;<span class="required">*</span>&nbsp;</td>
-		<td > 
-		    <textarea id="sql" name="sql" rows="15" cols="86" class="span7 input-xlarge">${query.sql}</textarea>
+		<td width="12%" align="left">SQL语句&nbsp;<span class="required">*</span>&nbsp;</td>
+		<td colspan="3"> 
+		    <textarea id="sql" name="sql" rows="15" cols="86" style="width:650px;height:300px;"
+			          class="span7 input-xlarge easyui-validatebox">${query.sql}</textarea>
+			<br>
+				 提示：如果查询条件使用变量，请用 ( 某表字段 = <%out.println("${变量}");%> ) ，如果变量不存在则替换为 ( 1=1 )
+                 <br><%out.println("${curr_yyyymmdd}");%>代表当天的日期，如<%=com.glaf.core.config.SystemConfig.getCurrentYYYYMMDD()%>
+                 <br><%out.println("${curr_yyyymm}");%>代表当天的月份，如<%=com.glaf.core.config.SystemConfig.getCurrentYYYYMM()%>
+				 <br><%out.println("${input_yyyymmdd}");%>代表报表输入的日期，如<%=com.glaf.core.config.SystemConfig.getInputYYYYMMDD()%>
+                 <br><%out.println("${input_yyyymm}");%>代表报表输入的月份，如<%=com.glaf.core.config.SystemConfig.getInputYYYYMM()%>
 		</td>
 	</tr>
 
 	<tr>
-	   <td >&nbsp;</td>
-	   <td   align="left">
+	   <td width="12%" align="left">&nbsp;</td>
+	   <td colspan="3" align="left"><br/>
 	    <input type="button"  name="save" value="保存" class="btn btn-primary" 
-		           onclick="javascript:saveForm('');"/>&nbsp;
+		       onclick="javascript:saveForm('');"/>&nbsp;
 		<input type="button"  name="save" value="另存" class="btn " 
-		           onclick="javascript:saveAs('');"/>&nbsp;
+		       onclick="javascript:saveAs('');"/>&nbsp;
 		<input type="button"  name="query" value="查询" class="btn"
-			     onclick="javascript:queryForm('');"/>&nbsp;
+			   onclick="javascript:queryForm('');"/>&nbsp;
 		<input type="button"  name="transform" value="取数到目标表" class="btn"
-			     onclick="javascript:transformToTable();"/>&nbsp;
+			   onclick="javascript:transformToTable();"/>&nbsp;
  	    <input type="button"  name="qtyEditor" value="设计器" class="btn" 
-		           onclick="javascript:openEditor();"/>&nbsp;
+		       onclick="javascript:openEditor();"/>&nbsp;
 	   </td>
 	</tr>
 </table>
- 
 	
 </form>
 
 <br />
  <%
- if("query".equals(actionType)){
+  if("query".equals(actionType)){
     TableDefinition tableDefinition = null;
-	      if(query.getSql() != null && query.getSql() .trim().length() >0){
-			  MxTransformManager manager = new MxTransformManager();
-			  try{
-			      tableDefinition = manager.toTableDefinition(query);
-			   } catch(Exception ex){
-				  out.println("<div style='color:red;font-size:24px;'>");
-				  out.println("<br />查询语句有错误：<br />");
-				  out.println(ex.getMessage());
-				  out.println("</div>");
-				  return;
-			  }
-		}
+	if(query.getSql() != null && query.getSql().trim().length() >0){
+		MxTransformManager manager = new MxTransformManager();
+		try{
+			 tableDefinition = manager.toTableDefinition(query);
+		} catch(Exception ex){
+			out.println("<div style='color:red;font-size:24px;'>");
+			out.println("<br />查询语句有错误：<br />");
+			out.println(ex.getMessage());
+			out.println("</div>");
+			return;
+		 }
+	}
    if(tableDefinition != null && tableDefinition.getColumns() != null){
 %>
-<table align="center" class="x-table-border" cellspacing="1"
-	cellpadding="1" width="95%">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" 
+       class="table table-striped table-bordered table-condensed">
 	<tr >
 	   <% for(ColumnDefinition column:tableDefinition.getColumns()){%>
 		<td >
@@ -271,12 +275,18 @@
 	</tr>
 
 	 <%if(tableDefinition != null && tableDefinition.getColumns() != null){
-	    QueryRunner queryRunner = new QueryRunner();
 		try {
-		    List rows = queryRunner.search(query, tableDefinition);
+			ITablePageService tablePageService = ContextFactory.getBean("tablePageService");
+ 
+            Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put(SystemConfig.CURR_YYYYMMDD, SystemConfig.getCurrentYYYYMMDD());
+			parameters.put(SystemConfig.CURR_YYYYMM, SystemConfig.getCurrentYYYYMM());
+			parameters.put(SystemConfig.INPUT_YYYYMMDD, SystemConfig.getInputYYYYMMDD());
+			parameters.put(SystemConfig.INPUT_YYYYMM, SystemConfig.getInputYYYYMM());
+
+		    List rows = tablePageService.getListData(query.getSql(), parameters);
 			if(rows != null && !rows.isEmpty()){
-				//System.out.println("rows size:"+rows.size());
-				Iterator iterator = rows.iterator();
+ 				Iterator iterator = rows.iterator();
 				while(iterator.hasNext()){
 					 Map rowMap = (Map)iterator.next();
 					 out.println("<tr class='x-content'>");

@@ -11,6 +11,7 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/jquery.form.js"></script>
 <script language="javascript" src="<%=request.getContextPath()%>/scripts/kindeditor/kindeditor-min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/glaf-base.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/glaf-core.js"></script>
 <script type="text/javascript">
 
@@ -88,7 +89,20 @@
 			     });
 		}
 
-        function openQx(){
+
+		function openQx(){
+            var selected = jQuery("#queryIds").val();
+            var link = '<%=request.getContextPath()%>/mx/dts/query/queryTree?elementId=queryIds&elementName=queryNames&nodeCode=report_category&selected='+selected;
+			var x=100;
+			var y=100;
+			if(is_ie) {
+				x=document.body.scrollLeft+event.clientX-event.offsetX-200;
+				y=document.body.scrollTop+event.clientY-event.offsetY-200;
+			 }
+			openWindow(link,self,x, y, 495, 480);
+		}
+
+        function openQx2(){
                 var link = '<%=request.getContextPath()%>/mx/bi/report/chooseQuery?reportId=${report.id}&elementId=queryIds&elementName=queryNames';
 				var x=100;
 				var y=100;
@@ -99,7 +113,20 @@
 				openWindow(link,self,x, y, 695, 480);
 			}
 
-        function openChart(){
+
+		function openChart(){
+            var selected = jQuery("#chartIds").val();
+            var link = '<%=request.getContextPath()%>/mx/bi/chart/chartTree?elementId=chartIds&elementName=chartNames&nodeCode=report_category&selected='+selected;
+			var x=100;
+			var y=100;
+			if(is_ie) {
+				x=document.body.scrollLeft+event.clientX-event.offsetX-200;
+				y=document.body.scrollTop+event.clientY-event.offsetY-200;
+			 }
+			openWindow(link,self,x, y, 495, 480);
+		}
+
+        function openChart2(){
                 var link = '<%=request.getContextPath()%>/mx/bi/report/chooseChart?reportId=${report.id}&elementId=chartIds&elementName=chartNames';
 				var x=100;
 				var y=100;
@@ -108,6 +135,17 @@
 					y=document.body.scrollTop+event.clientY-event.offsetY-200;
 				 }
 				openWindow(link,self,x, y, 695, 480);
+			}
+
+		function openFile(){
+                var link = '<%=request.getContextPath()%>/mx/bi/report/chooseFile?reportId=${report.id}&elementId=reportTemplate&elementName=reportTemplate';
+				var x=100;
+				var y=100;
+				if(is_ie) {
+					x=document.body.scrollLeft+event.clientX-event.offsetX-200;
+					y=document.body.scrollTop+event.clientY-event.offsetY-200;
+				 }
+				openWindow(link,self,x, y, 745, 480);
 			}
 
 	 </script>
@@ -119,6 +157,7 @@
 	</div>
 	 <form id="iForm" name="iForm" method="post">
 	    <input type="hidden" id="id" name="id" value="${report.id}"/>
+		<input type="hidden" id="nodeId" name="nodeId" value="${nodeId}"/>
 	    <input type="hidden" id="reportId" name="reportId" value="${report.id}"/>
 	    <table class="easyui-form" style="width:920px;" align="center">
 		<tbody>
@@ -152,8 +191,11 @@
 				 <td>模板文件</td>
 				 <td >
                  <input id="reportTemplate" name="reportTemplate" class="span7 x-text" type="text"
-				        value="${report.reportTemplate}" size="80"
-				 ></input>
+				        value="${report.reportTemplate}" size="80" onclick="javascript:openFile();"></input>
+				  &nbsp;
+						  <a href="#" onclick="javascript:openFile();">
+						  <img src="<%=request.getContextPath()%>/images/report.gif" border="0">
+						  </a>
 				 </td>
 			</tr>
 			<tr>
@@ -252,7 +294,7 @@
                  <td >
 				   <input type="hidden" id="queryIds" name="queryIds" value="${report.queryIds}">
 				   <textarea type="textarea" id="queryNames" name="queryNames" value="${queryNames}"
-				          readonly="true"    onclick="javascript:openQx();" style="width:535px;height:90px;">${queryNames}</textarea>
+				          readonly="true"  class="x-textarea"  onclick="javascript:openQx();" style="width:535px;height:90px;">${queryNames}</textarea>
 						  &nbsp;
 						  <a href="#" onclick="javascript:openQx();">
 						  <img src="<%=request.getContextPath()%>/images/search_results.gif" border="0"
@@ -265,7 +307,7 @@
                  <td >
 				   <input type="hidden" id="chartIds" name="chartIds" value="${report.chartIds}">
 				   <textarea type="textarea" id="chartNames" name="chartNames" value="${chartNames}"
-				          readonly="true"  onclick="javascript:openChart();"  
+				          readonly="true" class="x-textarea" onclick="javascript:openChart();"  
 						  style="width:535px;height:90px;">${chartNames}</textarea>
 						  &nbsp;
 						  <a href="#" onclick="javascript:openChart();">

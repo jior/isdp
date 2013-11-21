@@ -46,11 +46,24 @@
 <!DOCTYPE html >
 <html>
 <head>
-	<title>表管理</title>
-	<%@ include file="/WEB-INF/views/tm/mx_header.jsp"%>
-	<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/glaf-core.js"></script>		
-	<script type="text/javascript">
-	     function openQx(){
+<title>表管理</title>
+<%@ include file="/WEB-INF/views/tm/mx_header.jsp"%>
+<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/glaf-core.js"></script>		
+<script type="text/javascript">
+
+		function openQx(){
+            var selected = jQuery("#queryIds").val();
+            var link = '<%=request.getContextPath()%>/mx/dts/query/queryTree?elementId=queryIds&elementName=queryNames&nodeCode=report_category&selected='+selected;
+			var x=100;
+			var y=100;
+			if(is_ie) {
+				x=document.body.scrollLeft+event.clientX-event.offsetX-200;
+				y=document.body.scrollTop+event.clientY-event.offsetY-200;
+			}
+			openWindow(link,self,x, y, 495, 480);
+		}
+
+	     function openQx2(){
 			var elementValue = $('#queryIds').val();
 			var link = '<%=request.getContextPath()%>/mx/dts/query/chooseQuery?elementId=queryIds&elementName=queryNames&elementValue='+elementValue;
 			var x=100;
@@ -141,7 +154,7 @@
         <td class="x-content" colspan="3">
 			<input type="hidden" id="queryIds" name="queryIds" value="${table.queryIds}">
 			<input type="text" id="queryNames" name="queryNames" value="${queryNames}"
-				   readonly="true" size="80" onclick="javascript:openQx();" class="x-text">
+				   readonly="true" size="50" onclick="javascript:openQx();" class="x-text">
 			&nbsp;
 			<a href="#" onclick="javascript:openQx();">
 			<img src="<%=request.getContextPath()%>/images/search_results.gif" border="0"
@@ -247,15 +260,15 @@
 			 
 		</td>
 		<td>
-		<input type="text" name="${column.columnName}_title" class="input-medium" 
+		<input type="text" name="${column.columnName}_title" class="input-medium x-text" 
 		value="${column.title}"/>
 		</td>
 		<td>
-		<input type="text" name="${column.columnName}_name" class="input-small" 
+		<input type="text" name="${column.columnName}_name" class="input-small x-text" 
 		value="${column.name}"/>
 		</td>
 		<td>
-		<input type="text" name="${column.columnName}_length" class="input-mini" 
+		<input type="text" name="${column.columnName}_length" class="input-mini x-text" 
 		value="${column.length}" size="3" maxLength="4"/>
 		</td>
 	</tr>

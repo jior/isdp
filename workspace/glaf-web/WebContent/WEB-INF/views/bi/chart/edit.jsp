@@ -160,6 +160,18 @@
 			}
 
 			function openQx(){
+                var selected = jQuery("#queryIds").val();
+                var link = '<%=request.getContextPath()%>/mx/dts/query/queryTree?elementId=queryIds&elementName=queryNames&nodeCode=report_category&selected='+selected;
+				var x=100;
+				var y=100;
+				if(is_ie) {
+					x=document.body.scrollLeft+event.clientX-event.offsetX-200;
+					y=document.body.scrollTop+event.clientY-event.offsetY-200;
+				 }
+				openWindow(link,self,x, y, 495, 480);
+			}
+
+			function openQx2(){
                 var link = '<%=request.getContextPath()%>/mx/bi/chart/chooseQuery?chartId=${chart.id}&elementId=queryIds&elementName=queryNames';
 				var x=100;
 				var y=100;
@@ -181,6 +193,7 @@
  <br/>
 	 <form id="iForm" name="iForm" method="post">
 	    <input type="hidden" id="id" name="id" value="${chart.id}"/>
+		<input type="hidden" id="nodeId" name="nodeId" value="${nodeId}"/>
 	    <input type="hidden" id="chartId" name="chartId" value="${chart.id}"/>
 	    <table class="easyui-form" style="width:800px;height:250px" align="center">
 		<tbody>
@@ -314,7 +327,7 @@
 				 <td>组合查询</td>
                  <td colspan="3">
 				   <input type="hidden" id="queryIds" name="queryIds" value="${chart.queryIds}">
-				   <textarea id="queryNames" name="queryNames" rows="12" cols="68"   
+				   <textarea id="queryNames" name="queryNames" rows="12" cols="68" class="x-textarea"
 				   style="width:580px;height:80px;" onclick="javascript:openQx();"  
 				   readonly="true" >${queryNames}</textarea>&nbsp;
 			       <a href="#" onclick="javascript:openQx();">

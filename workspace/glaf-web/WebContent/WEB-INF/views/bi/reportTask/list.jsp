@@ -12,6 +12,7 @@
 <title>报表任务定义</title>
 <%@ include file="/WEB-INF/views/tm/header.jsp"%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/scripts/easyui/themes/${theme}/easyui.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/themes/${theme}/styles.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/icons/styles.css">
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/jquery.form.js"></script>
@@ -29,13 +30,11 @@
 				striped: true,
 				collapsible:true,
 				url:'<%=request.getContextPath()%>/rs/bi/reportTask/list?gridType=easyui',
-				sortName: 'id',
-				sortOrder: 'desc',
 				remoteSort: false,
 				singleSelect:true,
-				idField:'reportTask.id',
+				idField:'id',
 				columns:[[
-	                {title:'编号',field:'reportTask.id',width:80,sortable:true},
+	                {title:'编号',field:'id',width:80,sortable:true},
 					{title:'名称',field:'name', width:120},
 					{title:'标题',field:'subject', width:120},
 					{title:'发送标题',field:'sendTitle', width:120},
@@ -172,7 +171,7 @@
 <div style="margin:0;"></div>  
 <div class="easyui-layout" data-options="fit:true">  
    <div data-options="region:'north',split:true,border:true" style="height:40px"> 
-    <div style="background:#fafafa;padding:2px;border:1px solid #ddd;font-size:12px"> 
+    <div class="toolbar-backgroud"> 
 	<img src="<%=request.getContextPath()%>/images/window.png">
 	&nbsp;<span class="x_content_title">报表任务定义列表</span>
     <a href="#" class="easyui-linkbutton" data-options="plain:true, iconCls:'icon-add'" 
