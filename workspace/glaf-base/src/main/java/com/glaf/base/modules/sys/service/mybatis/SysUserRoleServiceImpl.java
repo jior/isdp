@@ -80,11 +80,11 @@ public class SysUserRoleServiceImpl implements SysUserRoleService {
 			String startDate, String endDate, int mark, String processNames,
 			String processDescriptions) {
 		boolean ret = false;
-		if (null != processNames && processNames.length() > 0){
+		if (null != processNames && processNames.length() > 0) {
 			processNames = processNames.substring(0,
 					processNames.lastIndexOf(","));
 		}
-		if (null != processDescriptions && processDescriptions.length() > 0){
+		if (null != processDescriptions && processDescriptions.length() > 0) {
 			processDescriptions = processDescriptions.substring(0,
 					processDescriptions.lastIndexOf(","));
 		}
@@ -97,8 +97,8 @@ public class SysUserRoleServiceImpl implements SysUserRoleService {
 		// 取出授权人fromUser的角色集合
 		SysUserRoleQuery query = new SysUserRoleQuery();
 		query.userId(fromUserId);
-		query.authorized(0);//0-角色用户
-		//找到授权人的角色，把TA授给代理人 
+		query.authorized(0);// 0-角色用户
+		// 找到授权人的角色，把TA授给代理人
 		List<SysUserRole> userRoles = this.list(query);
 		Iterator<SysUserRole> iter = userRoles.iterator();
 		while (iter.hasNext()) {
@@ -418,15 +418,15 @@ public class SysUserRoleServiceImpl implements SysUserRoleService {
 		if (mark == 1) {// 全局代理
 			TableModel table = new TableModel();
 			table.setTableName("SYS_AGENT");
-			table.addColumn("ID_", "String",
+			table.addStringColumn("ID_",
 					String.valueOf(idGenerator.getNextId()));
-			table.addColumn("ASSIGNTO_", "String", toUser.getAccount());
-			table.addColumn("ASSIGNFROM_", "String", fromUser.getAccount());
-			table.addColumn("AGENTTYPE_", "Integer", 0);
-			table.addColumn("STARTDATE_", "Date", DateUtils.toDate(startDate));
-			table.addColumn("ENDDATE_", "Date", DateUtils.toDate(endDate));
-			table.addColumn("SERVICEKEY_", "String", "BPM");
-			table.addColumn("LOCKED_", "Integer", 0);
+			table.addStringColumn("ASSIGNTO_", toUser.getAccount());
+			table.addStringColumn("ASSIGNFROM_", fromUser.getAccount());
+			table.addIntegerColumn("AGENTTYPE_", 0);
+			table.addDateColumn("STARTDATE_", DateUtils.toDate(startDate));
+			table.addDateColumn("ENDDATE_", DateUtils.toDate(endDate));
+			table.addStringColumn("SERVICEKEY_", "BPM");
+			table.addIntegerColumn("LOCKED_", 0);
 			tableDataService.insertTableData(table);
 		} else {
 			String[] ss = processNames.split(",");
@@ -434,17 +434,16 @@ public class SysUserRoleServiceImpl implements SysUserRoleService {
 				String processName = ss[i];
 				TableModel table = new TableModel();
 				table.setTableName("SYS_AGENT");
-				table.addColumn("ID_", "String",
+				table.addStringColumn("ID_",
 						String.valueOf(idGenerator.getNextId()));
-				table.addColumn("ASSIGNTO_", "String", toUser.getAccount());
-				table.addColumn("ASSIGNFROM_", "String", fromUser.getAccount());
-				table.addColumn("AGENTTYPE_", "Integer", 0);
-				table.addColumn("STARTDATE_", "Date",
-						DateUtils.toDate(startDate));
-				table.addColumn("ENDDATE_", "Date", DateUtils.toDate(endDate));
-				table.addColumn("SERVICEKEY_", "String", "BPM");
-				table.addColumn("PROCESSNAME_", "String", processName);
-				table.addColumn("LOCKED_", "Integer", 0);
+				table.addStringColumn("ASSIGNTO_", toUser.getAccount());
+				table.addStringColumn("ASSIGNFROM_", fromUser.getAccount());
+				table.addIntegerColumn("AGENTTYPE_", 0);
+				table.addDateColumn("STARTDATE_", DateUtils.toDate(startDate));
+				table.addDateColumn("ENDDATE_", DateUtils.toDate(endDate));
+				table.addStringColumn("SERVICEKEY_", "BPM");
+				table.addStringColumn("PROCESSNAME_", processName);
+				table.addIntegerColumn("LOCKED_", 0);
 				tableDataService.insertTableData(table);
 			}
 		}
@@ -475,8 +474,8 @@ public class SysUserRoleServiceImpl implements SysUserRoleService {
 	public void removeAgent(SysUser fromUser, SysUser toUser) {
 		TableModel table = new TableModel();
 		table.setTableName("SYS_AGENT");
-		table.addColumn("ASSIGNTO_", "String", toUser.getAccount());
-		table.addColumn("ASSIGNFROM_", "String", fromUser.getAccount());
+		table.addStringColumn("ASSIGNTO_", toUser.getAccount());
+		table.addStringColumn("ASSIGNFROM_", fromUser.getAccount());
 		tableDataService.deleteTableData(table);
 	}
 
@@ -574,14 +573,14 @@ public class SysUserRoleServiceImpl implements SysUserRoleService {
 	public void saveRoleUsers(long roleId, List<String> userIds) {
 		TableModel tm = new TableModel();
 		tm.setTableName("userrole");
-		tm.addColumn("ROLEID", "Long", roleId);
+		tm.addLongColumn("ROLEID", roleId);
 		tableDataService.deleteTableData(tm);
 
 		TableModel table = new TableModel();
 		table.setTableName("SYS_MEMBERSHIP");
-		table.addColumn("ROLEID_", "Long", roleId);
-		table.addColumn("OBJECTID_", "String", "userrole");
-		table.addColumn("TYPE_", "String", "SysUserRole");
+		table.addLongColumn("ROLEID_", roleId);
+		table.addStringColumn("OBJECTID_", "userrole");
+		table.addStringColumn("TYPE_", "SysUserRole");
 		tableDataService.deleteTableData(table);
 
 		for (String userId : userIds) {

@@ -136,16 +136,17 @@ public class SysUserServiceImpl implements SysUserService {
 				logger.debug(user.getName());
 				TableModel table = new TableModel();
 				table.setTableName("userrole");
-				table.addColumn("AUTHORIZED", "Integer", 0);
-				table.addColumn("ROLEID", "String", deptRole.getRoleId());
-				table.addColumn("USERID", "String", user.getActorId());
+				table.addIntegerColumn("AUTHORIZED", 0);
+				table.addStringColumn("ROLEID",
+						String.valueOf(deptRole.getRoleId()));
+				table.addStringColumn("USERID", user.getActorId());
 				tableDataService.deleteTableData(table);
 
 				TableModel table2 = new TableModel();
 				table2.setTableName("SYS_MEMBERSHIP");
-				table2.addColumn("ACTORID_", "String", user.getAccount());
-				table2.addColumn("ROLEID_", "Long", deptRole.getRoleId());
-				table2.addColumn("NODEID_", "Long", deptRole.getDeptId());
+				table2.addStringColumn("ACTORID_", user.getAccount());
+				table2.addLongColumn("ROLEID_", deptRole.getRoleId());
+				table2.addLongColumn("NODEID_", deptRole.getDeptId());
 				tableDataService.deleteTableData(table2);
 			}
 		}
@@ -165,15 +166,15 @@ public class SysUserServiceImpl implements SysUserService {
 				logger.debug(user.getName());
 				TableModel table = new TableModel();
 				table.setTableName("userrole");
-				table.addColumn("AUTHORIZED", "Integer", 0);
-				table.addColumn("ROLEID", "String", role.getId());
-				table.addColumn("USERID", "String", user.getActorId());
+				table.addIntegerColumn("AUTHORIZED", 0);
+				table.addStringColumn("ROLEID", String.valueOf(role.getId()));
+				table.addStringColumn("USERID", user.getActorId());
 				tableDataService.deleteTableData(table);
 
 				TableModel table2 = new TableModel();
 				table2.setTableName("SYS_MEMBERSHIP");
-				table2.addColumn("ACTORID_", "String", user.getAccount());
-				table2.addColumn("ROLEID_", "Long", role.getId());
+				table2.addStringColumn("ACTORID_", user.getAccount());
+				table2.addLongColumn("ROLEID_", role.getId());
 				tableDataService.deleteTableData(table2);
 			}
 		}
@@ -596,8 +597,8 @@ public class SysUserServiceImpl implements SysUserService {
 
 		TableModel table = new TableModel();
 		table.setTableName("SYS_MEMBERSHIP");
-		table.addColumn("ACTORID_", "String", sysUser.getAccount());
-		table.addColumn("TYPE_", "String", "Superior");
+		table.addStringColumn("ACTORID_", sysUser.getAccount());
+		table.addStringColumn("TYPE_", "Superior");
 		tableDataService.deleteTableData(table);
 
 		if (StringUtils.isNotEmpty(sysUser.getSuperiorIds())) {
@@ -695,8 +696,8 @@ public class SysUserServiceImpl implements SysUserService {
 		sysUserMapper.updateSysUser(sysUser);
 		TableModel table = new TableModel();
 		table.setTableName("SYS_MEMBERSHIP");
-		table.addColumn("ACTORID_", "String", sysUser.getAccount());
-		table.addColumn("TYPE_", "String", "Superior");
+		table.addStringColumn("ACTORID_", sysUser.getAccount());
+		table.addStringColumn("TYPE_", "Superior");
 		tableDataService.deleteTableData(table);
 
 		if (StringUtils.isNotEmpty(sysUser.getSuperiorIds())) {
@@ -730,8 +731,8 @@ public class SysUserServiceImpl implements SysUserService {
 			for (SysUserRole userRole : userRoles) {
 				TableModel table = new TableModel();
 				table.setTableName("userrole");
-				table.addColumn("userId", "String", user.getActorId());
-				table.addColumn("roleId", "String", userRole.getRoleId());
+				table.addStringColumn("userId", user.getActorId());
+				table.addStringColumn("roleId", userRole.getRoleId());
 				tableDataService.deleteTableData(table);
 			}
 		}
@@ -784,8 +785,8 @@ public class SysUserServiceImpl implements SysUserService {
 			for (SysUserRole userRole : userRoles) {
 				TableModel table = new TableModel();
 				table.setTableName("userrole");
-				table.addColumn("userId", "String", user.getActorId());
-				table.addColumn("roleId", "String", userRole.getRoleId());
+				table.addStringColumn("userId", user.getActorId());
+				table.addStringColumn("roleId", userRole.getRoleId());
 				tableDataService.deleteTableData(table);
 			}
 		}
