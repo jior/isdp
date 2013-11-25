@@ -254,7 +254,7 @@
 				and E.process_id like #{processIdLike}
 			</if>
 
-			<if test="processIds != null and processIds.size() &gt; 0">
+			<if test="processIds != null and processIds.size != 0">
 			    and E.process_id IN
 				<foreach item="x_processId" index="index" collection="processIds" 
 					open="(" separator="," close=")">
@@ -270,7 +270,7 @@
 				and E.typeofact like #{typeofactLike}
 			</if>
 
-			<if test="typeofacts != null and typeofacts.size() &gt; 0">
+			<if test="typeofacts != null and typeofacts.size != 0">
 			    and E.typeofact IN
 				<foreach item="x_typeofact" index="index" collection="typeofacts" 
 					open="(" separator="," close=")">
@@ -287,7 +287,7 @@
 				and E.name like #{nameLike}
 			</if>
 
-			<if test="names != null and names.size() &gt; 0">
+			<if test="names != null and names.size != 0">
 			    and E.name IN
 				<foreach item="x_name" index="index" collection="names" 
 					open="(" separator="," close=")">
@@ -311,7 +311,7 @@
 				and E.netroleid like #{netroleidLike}
 			</if>
 
-			<if test="netroleids != null and netroleids.size() &gt; 0">
+			<if test="netroleids != null and netroleids.size != 0">
 			    and E.netroleid IN
 				<foreach item="x_netroleid" index="index" collection="netroleids" 
 					open="(" separator="," close=")">
@@ -341,7 +341,7 @@
 				and E.issave &lt;= #{issaveLessThanOrEqual}
 			</if>
 
-			<if test="issaves != null and issaves.size() &gt; 0">
+			<if test="issaves != null and issaves.size != 0">
 			    and E.issave IN
 				<foreach item="x_issave" index="index" collection="issaves" 
 					open="(" separator="," close=")">
@@ -362,7 +362,7 @@
 				and E.isdel &lt;= #{isdelLessThanOrEqual}
 			</if>
 
-			<if test="isdels != null and isdels.size() &gt; 0">
+			<if test="isdels != null and isdels.size != 0">
 			    and E.isdel IN
 				<foreach item="x_isdel" index="index" collection="isdels" 
 					open="(" separator="," close=")">
@@ -383,7 +383,7 @@
 				and E.intselectuser &lt;= #{intselectuserLessThanOrEqual}
 			</if>
 
-			<if test="intselectusers != null and intselectusers.size() &gt; 0">
+			<if test="intselectusers != null and intselectusers.size != 0">
 			    and E.intselectuser IN
 				<foreach item="x_intselectuser" index="index" collection="intselectusers" 
 					open="(" separator="," close=")">
@@ -404,7 +404,7 @@
 				and E.intusedomain &lt;= #{intusedomainLessThanOrEqual}
 			</if>
 
-			<if test="intusedomains != null and intusedomains.size() &gt; 0">
+			<if test="intusedomains != null and intusedomains.size != 0">
 			    and E.intusedomain IN
 				<foreach item="x_intusedomain" index="index" collection="intusedomains" 
 					open="(" separator="," close=")">

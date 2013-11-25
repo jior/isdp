@@ -286,7 +286,7 @@
 				and E.tasks_id like #{tasksIdLike}
 			</if>
 
-			<if test="tasksIds != null and tasksIds.size() &gt; 0">
+			<if test="tasksIds != null and tasksIds.size != 0">
 			    and E.tasks_id IN
 				<foreach item="x_tasksId" index="index" collection="tasksIds" 
 					open="(" separator="," close=")">
@@ -303,7 +303,7 @@
 				and E.busiess_id like #{busiessIdLike}
 			</if>
 
-			<if test="busiessIds != null and busiessIds.size() &gt; 0">
+			<if test="busiessIds != null and busiessIds.size != 0">
 			    and E.busiess_id IN
 				<foreach item="x_busiessId" index="index" collection="busiessIds" 
 					open="(" separator="," close=")">
@@ -343,7 +343,7 @@
 				and E.inttasktype &lt;= #{inttasktypeLessThanOrEqual}
 			</if>
 
-			<if test="inttasktypes != null and inttasktypes.size() &gt; 0">
+			<if test="inttasktypes != null and inttasktypes.size != 0">
 			    and E.inttasktype IN
 				<foreach item="x_inttasktype" index="index" collection="inttasktypes" 
 					open="(" separator="," close=")">
@@ -364,7 +364,7 @@
 				and E.index_id &lt;= #{indexIdLessThanOrEqual}
 			</if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
 				<foreach item="x_indexId" index="index" collection="indexIds" 
 					open="(" separator="," close=")">
@@ -388,7 +388,7 @@
 				and E.intistasks &lt;= #{intistasksLessThanOrEqual}
 			</if>
 
-			<if test="intistaskss != null and intistaskss.size() &gt; 0">
+			<if test="intistaskss != null and intistaskss.size != 0">
 			    and E.intistasks IN
 				<foreach item="x_intistasks" index="index" collection="intistaskss" 
 					open="(" separator="," close=")">
@@ -409,7 +409,7 @@
 				and E.intprojprocess &lt;= #{intprojprocessLessThanOrEqual}
 			</if>
 
-			<if test="intprojprocesss != null and intprojprocesss.size() &gt; 0">
+			<if test="intprojprocesss != null and intprojprocesss.size != 0">
 			    and E.intprojprocess IN
 				<foreach item="x_intprojprocess" index="index" collection="intprojprocesss" 
 					open="(" separator="," close=")">
@@ -430,7 +430,7 @@
 				and E.intistype &lt;= #{intistypeLessThanOrEqual}
 			</if>
 
-			<if test="intistypes != null and intistypes.size() &gt; 0">
+			<if test="intistypes != null and intistypes.size != 0">
 			    and E.intistype IN
 				<foreach item="x_intistype" index="index" collection="intistypes" 
 					open="(" separator="," close=")">
@@ -450,7 +450,7 @@
 				and E.flowid like #{flowidLike}
 			</if>
 
-			<if test="flowids != null and flowids.size() &gt; 0">
+			<if test="flowids != null and flowids.size != 0">
 			    and E.flowid IN
 				<foreach item="x_flowid" index="index" collection="flowids" 
 					open="(" separator="," close=")">

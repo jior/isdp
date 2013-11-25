@@ -323,7 +323,7 @@
 				and E.list_id &lt;= #{listIdLessThanOrEqual}
             </if>
 
-			<if test="listIds != null and listIds.size() &gt; 0">
+			<if test="listIds != null and listIds.size != 0">
 			    and E.list_id IN
                 <foreach item="x_listId" index="index" collection="listIds" 
                      open="(" separator="," close=")">
@@ -340,7 +340,7 @@
 				and E.topid like #{topidLike}
             </if>
 
-			<if test="topids != null and topids.size() &gt; 0">
+			<if test="topids != null and topids.size != 0">
 			    and E.topid IN
                 <foreach item="x_topid" index="index" collection="topids" 
                      open="(" separator="," close=")">
@@ -357,7 +357,7 @@
 				and E.tname like #{tnameLike}
             </if>
 
-			<if test="tnames != null and tnames.size() &gt; 0">
+			<if test="tnames != null and tnames.size != 0">
 			    and E.tname IN
                 <foreach item="x_tname" index="index" collection="tnames" 
                      open="(" separator="," close=")">
@@ -374,7 +374,7 @@
 				and E.duty like #{dutyLike}
             </if>
 
-			<if test="dutys != null and dutys.size() &gt; 0">
+			<if test="dutys != null and dutys.size != 0">
 			    and E.duty IN
                 <foreach item="x_duty" index="index" collection="dutys" 
                      open="(" separator="," close=")">
@@ -391,7 +391,7 @@
 				and E.tagnum like #{tagnumLike}
             </if>
 
-			<if test="tagnums != null and tagnums.size() &gt; 0">
+			<if test="tagnums != null and tagnums.size != 0">
 			    and E.tagnum IN
                 <foreach item="x_tagnum" index="index" collection="tagnums" 
                      open="(" separator="," close=")">
@@ -412,7 +412,7 @@
 				and E.ctime &lt;= #{ctimeLessThanOrEqual}
             </if>
 
-			<if test="ctimes != null and ctimes.size() &gt; 0">
+			<if test="ctimes != null and ctimes.size != 0">
 			    and E.ctime IN
                 <foreach item="x_ctime" index="index" collection="ctimes" 
                      open="(" separator="," close=")">
@@ -429,7 +429,7 @@
 				and E.pageno like #{pagenoLike}
             </if>
 
-			<if test="pagenos != null and pagenos.size() &gt; 0">
+			<if test="pagenos != null and pagenos.size != 0">
 			    and E.pageno IN
                 <foreach item="x_pageno" index="index" collection="pagenos" 
                      open="(" separator="," close=")">
@@ -450,7 +450,7 @@
 				and E.page &lt;= #{pageLessThanOrEqual}
             </if>
 
-			<if test="pages != null and pages.size() &gt; 0">
+			<if test="pages != null and pages.size != 0">
 			    and E.page IN
                 <foreach item="x_page" index="index" collection="pages" 
                      open="(" separator="," close=")">
@@ -467,7 +467,7 @@
 				and E.filetype like #{filetypeLike}
             </if>
 
-			<if test="filetypes != null and filetypes.size() &gt; 0">
+			<if test="filetypes != null and filetypes.size != 0">
 			    and E.filetype IN
                 <foreach item="x_filetype" index="index" collection="filetypes" 
                      open="(" separator="," close=")">
@@ -484,7 +484,7 @@
 				and E.savetime like #{savetimeLike}
             </if>
 
-			<if test="savetimes != null and savetimes.size() &gt; 0">
+			<if test="savetimes != null and savetimes.size != 0">
 			    and E.savetime IN
                 <foreach item="x_savetime" index="index" collection="savetimes" 
                      open="(" separator="," close=")">
@@ -501,7 +501,7 @@
 				and E.annotations like #{annotationsLike}
             </if>
 
-			<if test="annotationss != null and annotationss.size() &gt; 0">
+			<if test="annotationss != null and annotationss.size != 0">
 			    and E.annotations IN
                 <foreach item="x_annotations" index="index" collection="annotationss" 
                      open="(" separator="," close=")">
@@ -518,7 +518,7 @@
 				and E.carriertype like #{carriertypeLike}
             </if>
 
-			<if test="carriertypes != null and carriertypes.size() &gt; 0">
+			<if test="carriertypes != null and carriertypes.size != 0">
 			    and E.carriertype IN
                 <foreach item="x_carriertype" index="index" collection="carriertypes" 
                      open="(" separator="," close=")">
@@ -535,7 +535,7 @@
 				and E.summary like #{summaryLike}
             </if>
 
-			<if test="summarys != null and summarys.size() &gt; 0">
+			<if test="summarys != null and summarys.size != 0">
 			    and E.summary IN
                 <foreach item="x_summary" index="index" collection="summarys" 
                      open="(" separator="," close=")">
@@ -552,7 +552,7 @@
 				and E.ptext like #{ptextLike}
             </if>
 
-			<if test="ptexts != null and ptexts.size() &gt; 0">
+			<if test="ptexts != null and ptexts.size != 0">
 			    and E.ptext IN
                 <foreach item="x_ptext" index="index" collection="ptexts" 
                      open="(" separator="," close=")">
@@ -569,7 +569,7 @@
 				and E.carrieru like #{carrieruLike}
             </if>
 
-			<if test="carrierus != null and carrierus.size() &gt; 0">
+			<if test="carrierus != null and carrierus.size != 0">
 			    and E.carrieru IN
                 <foreach item="x_carrieru" index="index" collection="carrierus" 
                      open="(" separator="," close=")">
@@ -586,7 +586,7 @@
 				and E.glidenum like #{glidenumLike}
             </if>
 
-			<if test="glidenums != null and glidenums.size() &gt; 0">
+			<if test="glidenums != null and glidenums.size != 0">
 			    and E.glidenum IN
                 <foreach item="x_glidenum" index="index" collection="glidenums" 
                      open="(" separator="," close=")">
@@ -603,7 +603,7 @@
 				and E.pagetype like #{pagetypeLike}
             </if>
 
-			<if test="pagetypes != null and pagetypes.size() &gt; 0">
+			<if test="pagetypes != null and pagetypes.size != 0">
 			    and E.pagetype IN
                 <foreach item="x_pagetype" index="index" collection="pagetypes" 
                      open="(" separator="," close=")">
@@ -624,7 +624,7 @@
 				and E.clistno &lt;= #{clistnoLessThanOrEqual}
             </if>
 
-			<if test="clistnos != null and clistnos.size() &gt; 0">
+			<if test="clistnos != null and clistnos.size != 0">
 			    and E.clistno IN
                 <foreach item="x_clistno" index="index" collection="clistnos" 
                      open="(" separator="," close=")">
@@ -641,7 +641,7 @@
 				and E.cpageno like #{cpagenoLike}
             </if>
 
-			<if test="cpagenos != null and cpagenos.size() &gt; 0">
+			<if test="cpagenos != null and cpagenos.size != 0">
 			    and E.cpageno IN
                 <foreach item="x_cpageno" index="index" collection="cpagenos" 
                      open="(" separator="," close=")">
@@ -658,7 +658,7 @@
 				and E.vnum like #{vnumLike}
             </if>
 
-			<if test="vnums != null and vnums.size() &gt; 0">
+			<if test="vnums != null and vnums.size != 0">
 			    and E.vnum IN
                 <foreach item="x_vnum" index="index" collection="vnums" 
                      open="(" separator="," close=")">
@@ -675,7 +675,7 @@
 				and E.cvnum like #{cvnumLike}
             </if>
 
-			<if test="cvnums != null and cvnums.size() &gt; 0">
+			<if test="cvnums != null and cvnums.size != 0">
 			    and E.cvnum IN
                 <foreach item="x_cvnum" index="index" collection="cvnums" 
                      open="(" separator="," close=")">

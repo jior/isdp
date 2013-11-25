@@ -208,7 +208,7 @@
 				and E.process_id like #{processIdLike}
             </if>
 
-			<if test="processIds != null and processIds.size() &gt; 0">
+			<if test="processIds != null and processIds.size != 0">
 			    and E.process_id IN
                 <foreach item="x_processId" index="index" collection="processIds" 
                      open="(" separator="," close=")">
@@ -225,7 +225,7 @@
 				and E.flow_forward_d like #{flowForwardDLike}
             </if>
 
-			<if test="flowForwardDs != null and flowForwardDs.size() &gt; 0">
+			<if test="flowForwardDs != null and flowForwardDs.size != 0">
 			    and E.flow_forward_d IN
                 <foreach item="x_flowForwardD" index="index" collection="flowForwardDs" 
                      open="(" separator="," close=")">
@@ -246,7 +246,7 @@
 				and E.intandor &lt;= #{intandorLessThanOrEqual}
             </if>
 
-			<if test="intandors != null and intandors.size() &gt; 0">
+			<if test="intandors != null and intandors.size != 0">
 			    and E.intandor IN
                 <foreach item="x_intandor" index="index" collection="intandors" 
                      open="(" separator="," close=")">
@@ -267,7 +267,7 @@
 				and E.sqlcon_type &lt;= #{sqlconTypeLessThanOrEqual}
             </if>
 
-			<if test="sqlconTypes != null and sqlconTypes.size() &gt; 0">
+			<if test="sqlconTypes != null and sqlconTypes.size != 0">
 			    and E.sqlcon_type IN
                 <foreach item="x_sqlconType" index="index" collection="sqlconTypes" 
                      open="(" separator="," close=")">
@@ -284,7 +284,7 @@
 				and E.sqlcon_dtype like #{sqlconDtypeLike}
             </if>
 
-			<if test="sqlconDtypes != null and sqlconDtypes.size() &gt; 0">
+			<if test="sqlconDtypes != null and sqlconDtypes.size != 0">
 			    and E.sqlcon_dtype IN
                 <foreach item="x_sqlconDtype" index="index" collection="sqlconDtypes" 
                      open="(" separator="," close=")">
@@ -301,7 +301,7 @@
 				and E.sqlcon_field like #{sqlconFieldLike}
             </if>
 
-			<if test="sqlconFields != null and sqlconFields.size() &gt; 0">
+			<if test="sqlconFields != null and sqlconFields.size != 0">
 			    and E.sqlcon_field IN
                 <foreach item="x_sqlconField" index="index" collection="sqlconFields" 
                      open="(" separator="," close=")">
@@ -318,7 +318,7 @@
 				and E.strsp like #{strspLike}
             </if>
 
-			<if test="strsps != null and strsps.size() &gt; 0">
+			<if test="strsps != null and strsps.size != 0">
 			    and E.strsp IN
                 <foreach item="x_strsp" index="index" collection="strsps" 
                      open="(" separator="," close=")">
@@ -335,7 +335,7 @@
 				and E.sqlcon_value like #{sqlconValueLike}
             </if>
 
-			<if test="sqlconValues != null and sqlconValues.size() &gt; 0">
+			<if test="sqlconValues != null and sqlconValues.size != 0">
 			    and E.sqlcon_value IN
                 <foreach item="x_sqlconValue" index="index" collection="sqlconValues" 
                      open="(" separator="," close=")">
@@ -352,7 +352,7 @@
 				and E.sqlconshow like #{sqlconshowLike}
             </if>
 
-			<if test="sqlconshows != null and sqlconshows.size() &gt; 0">
+			<if test="sqlconshows != null and sqlconshows.size != 0">
 			    and E.sqlconshow IN
                 <foreach item="x_sqlconshow" index="index" collection="sqlconshows" 
                      open="(" separator="," close=")">
@@ -373,7 +373,7 @@
 				and E.issave &lt;= #{issaveLessThanOrEqual}
             </if>
 
-			<if test="issaves != null and issaves.size() &gt; 0">
+			<if test="issaves != null and issaves.size != 0">
 			    and E.issave IN
                 <foreach item="x_issave" index="index" collection="issaves" 
                      open="(" separator="," close=")">

@@ -165,7 +165,7 @@
 				and E.sysdatalink_id like #{sysdatalinkIdLike}
 			</if>
 
-			<if test="sysdatalinkIds != null and sysdatalinkIds.size() &gt; 0">
+			<if test="sysdatalinkIds != null and sysdatalinkIds.size != 0">
 			    and E.sysdatalink_id IN
 				<foreach item="x_sysdatalinkId" index="index" collection="sysdatalinkIds" 
 					open="(" separator="," close=")">
@@ -186,7 +186,7 @@
 				and E.intandor &lt;= #{intandorLessThanOrEqual}
 			</if>
 
-			<if test="intandors != null and intandors.size() &gt; 0">
+			<if test="intandors != null and intandors.size != 0">
 			    and E.intandor IN
 				<foreach item="x_intandor" index="index" collection="intandors" 
 					open="(" separator="," close=")">

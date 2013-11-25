@@ -199,7 +199,7 @@
 				and E.name like #{nameLike}
             </if>
 
-			<if test="names != null and names.size() &gt; 0">
+			<if test="names != null and names.size != 0">
 			    and E.name IN
                 <foreach item="x_name" index="index" collection="names" 
                      open="(" separator="," close=")">
@@ -211,7 +211,7 @@
 				and E.userid = #{userid}
             </if>
 
-			<if test="userids != null and userids.size() &gt; 0">
+			<if test="userids != null and userids.size != 0">
 			    and E.userid IN
                 <foreach item="x_userid" index="index" collection="userids" 
                      open="(" separator="," close=")">
@@ -223,7 +223,7 @@
 				and E.isuselect = #{isuselect}
             </if>
 
-			<if test="isuselects != null and isuselects.size() &gt; 0">
+			<if test="isuselects != null and isuselects.size != 0">
 			    and E.isuselect IN
                 <foreach item="x_isuselect" index="index" collection="isuselects" 
                      open="(" separator="," close=")">
@@ -235,7 +235,7 @@
 				and E.issystem = #{issystem}
             </if>
 
-			<if test="issystems != null and issystems.size() &gt; 0">
+			<if test="issystems != null and issystems.size != 0">
 			    and E.issystem IN
                 <foreach item="x_issystem" index="index" collection="issystems" 
                      open="(" separator="," close=")">
@@ -247,7 +247,7 @@
 				and E.intused = #{intused}
             </if>
 
-			<if test="intuseds != null and intuseds.size() &gt; 0">
+			<if test="intuseds != null and intuseds.size != 0">
 			    and E.intused IN
                 <foreach item="x_intused" index="index" collection="intuseds" 
                      open="(" separator="," close=")">
@@ -259,7 +259,7 @@
 				and E.busiess_id = #{busiessId}
             </if>
 
-			<if test="busiessIds != null and busiessIds.size() &gt; 0">
+			<if test="busiessIds != null and busiessIds.size != 0">
 			    and E.busiess_id IN
                 <foreach item="x_busiessId" index="index" collection="busiessIds" 
                      open="(" separator="," close=")">
@@ -271,7 +271,7 @@
 				and E.intdel = #{intdel}
             </if>
 
-			<if test="intdels != null and intdels.size() &gt; 0">
+			<if test="intdels != null and intdels.size != 0">
 			    and E.intdel IN
                 <foreach item="x_intdel" index="index" collection="intdels" 
                      open="(" separator="," close=")">

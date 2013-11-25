@@ -147,7 +147,7 @@
 				and E.index_id &lt;= #{indexIdLessThanOrEqual}
 			</if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
 				<foreach item="x_indexId" index="index" collection="indexIds" 
 					open="(" separator="," close=")">
@@ -164,7 +164,7 @@
 				and E.hint like #{hintLike}
 			</if>
 
-			<if test="hints != null and hints.size() &gt; 0">
+			<if test="hints != null and hints.size != 0">
 			    and E.hint IN
 				<foreach item="x_hint" index="index" collection="hints" 
 					open="(" separator="," close=")">

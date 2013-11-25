@@ -418,7 +418,7 @@
 				and E.index_id = #{indexId}
 			</if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
 				<foreach item="x_indexId" index="index" collection="indexIds" 
 					open="(" separator="," close=")">
@@ -430,7 +430,7 @@
 				and E.projid = #{projid}
 			</if>
 
-			<if test="projids != null and projids.size() &gt; 0">
+			<if test="projids != null and projids.size != 0">
 			    and E.projid IN
 				<foreach item="x_projid" index="index" collection="projids" 
 					open="(" separator="," close=")">
@@ -442,7 +442,7 @@
 				and E.pid = #{pid}
 			</if>
 
-			<if test="pids != null and pids.size() &gt; 0">
+			<if test="pids != null and pids.size != 0">
 			    and E.pid IN
 				<foreach item="x_pid" index="index" collection="pids" 
 					open="(" separator="," close=")">
@@ -458,7 +458,7 @@
 				and E.dotid like #{dotidLike}
 			</if>
 
-			<if test="dotids != null and dotids.size() &gt; 0">
+			<if test="dotids != null and dotids.size != 0">
 			    and E.dotid IN
 				<foreach item="x_dotid" index="index" collection="dotids" 
 					open="(" separator="," close=")">
@@ -506,7 +506,7 @@
 				and E.vision like #{visionLike}
 			</if>
 
-			<if test="visions != null and visions.size() &gt; 0">
+			<if test="visions != null and visions.size != 0">
 			    and E.vision IN
 				<foreach item="x_vision" index="index" collection="visions" 
 					open="(" separator="," close=")">
@@ -526,7 +526,7 @@
 				and dwid = #{dwid}
 			</if>
 
-			<if test="dwids != null and dwids.size() &gt; 0">
+			<if test="dwids != null and dwids.size != 0">
 			    and E.dwid IN
 				<foreach item="x_dwid" index="index" collection="dwids" 
 					open="(" separator="," close=")">
@@ -538,7 +538,7 @@
 				and E.fbid = #{fbid}
 			</if>
 
-			<if test="fbids != null and fbids.size() &gt; 0">
+			<if test="fbids != null and fbids.size != 0">
 			    and E.fbid IN
 				<foreach item="x_fbid" index="index" collection="fbids" 
 					open="(" separator="," close=")">
@@ -550,7 +550,7 @@
 				and E.fxid = #{fxid}
 			</if>
 
-			<if test="fxids != null and fxids.size() &gt; 0">
+			<if test="fxids != null and fxids.size != 0">
 			    and E.fxid IN
 				<foreach item="x_fxid" index="index" collection="fxids" 
 					open="(" separator="," close=")">
@@ -566,7 +566,7 @@
 				and E.jid like #{jidLike}
 			</if>
 
-			<if test="jids != null and jids.size() &gt; 0">
+			<if test="jids != null and jids.size != 0">
 			    and E.jid IN
 				<foreach item="x_jid" index="index" collection="jids" 
 					open="(" separator="," close=")">
@@ -582,7 +582,7 @@
 				and E.flid like #{flidLike}
 			</if>
 
-			<if test="flids != null and flids.size() &gt; 0">
+			<if test="flids != null and flids.size != 0">
 			    and E.flid IN
 				<foreach item="x_flid" index="index" collection="flids" 
 					open="(" separator="," close=")">
@@ -599,7 +599,7 @@
 				and E.topnode like #{topnodeLike}
 			</if>
 
-			<if test="topnodes != null and topnodes.size() &gt; 0">
+			<if test="topnodes != null and topnodes.size != 0">
 			    and E.topnode IN
 				<foreach item="x_topnode" index="index" collection="topnodes" 
 					open="(" separator="," close=")">
@@ -616,7 +616,7 @@
 				and E.topid like #{topidLike}
 			</if>
 
-			<if test="topids != null and topids.size() &gt; 0">
+			<if test="topids != null and topids.size != 0">
 			    and E.topid IN
 				<foreach item="x_topid" index="index" collection="topids" 
 					open="(" separator="," close=")">
@@ -628,7 +628,7 @@
 				and E.type = #{type}
 			</if>
 
-			<if test="types != null and types.size() &gt; 0">
+			<if test="types != null and types.size != 0">
 			    and E.type IN
 				<foreach item="x_type" index="index" collection="types" 
 					open="(" separator="," close=")">
@@ -648,7 +648,7 @@
 				and E.isink like #{isinkLike}
 			</if>
 
-			<if test="isinks != null and isinks.size() &gt; 0">
+			<if test="isinks != null and isinks.size != 0">
 			    and E.isink IN
 				<foreach item="x_isink" index="index" collection="isinks" 
 					open="(" separator="," close=")">
@@ -664,7 +664,7 @@
 				and E.old_id like #{oldIdLike}
 			</if>
 
-			<if test="oldIds != null and oldIds.size() &gt; 0">
+			<if test="oldIds != null and oldIds.size != 0">
 			    and E.old_id IN
 				<foreach item="x_oldId" index="index" collection="oldIds" 
 					open="(" separator="," close=")">
@@ -680,7 +680,7 @@
 				and E.task_id like #{taskIdLike}
 			</if>
 
-			<if test="taskIds != null and taskIds.size() &gt; 0">
+			<if test="taskIds != null and taskIds.size != 0">
 			    and E.task_id IN
 				<foreach item="x_taskId" index="index" collection="taskIds" 
 					open="(" separator="," close=")">

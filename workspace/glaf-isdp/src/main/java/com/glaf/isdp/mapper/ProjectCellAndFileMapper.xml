@@ -224,7 +224,7 @@
 				and E.index_id &lt;= #{indexIdLessThanOrEqual}
 			</if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
 				<foreach item="x_indexId" index="index" collection="indexIds" 
 					open="(" separator="," close=")">
@@ -245,7 +245,7 @@
 				and E.inttype &lt;= #{inttypeLessThanOrEqual}
 			</if>
 
-			<if test="inttypes != null and inttypes.size() &gt; 0">
+			<if test="inttypes != null and inttypes.size != 0">
 			    and E.inttype IN
 				<foreach item="x_inttype" index="index" collection="inttypes" 
 					open="(" separator="," close=")">
@@ -262,7 +262,7 @@
 				and E.name like #{nameLike}
 			</if>
 
-			<if test="names != null and names.size() &gt; 0">
+			<if test="names != null and names.size != 0">
 			    and E.name IN
 				<foreach item="x_name" index="index" collection="names" 
 					open="(" separator="," close=")">
@@ -279,7 +279,7 @@
 				and E.defId like #{defIdLike}
 			</if>
 
-			<if test="defIds != null and defIds.size() &gt; 0">
+			<if test="defIds != null and defIds.size != 0">
 			    and E.defId IN
 				<foreach item="x_defId" index="index" collection="defIds" 
 					open="(" separator="," close=")">
@@ -296,7 +296,7 @@
 				and E.useId like #{useIdLike}
 			</if>
 
-			<if test="useIds != null and useIds.size() &gt; 0">
+			<if test="useIds != null and useIds.size != 0">
 			    and E.useId IN
 				<foreach item="x_useId" index="index" collection="useIds" 
 					open="(" separator="," close=")">
@@ -317,7 +317,7 @@
 				and E.intPage0 &lt;= #{intPage0LessThanOrEqual}
 			</if>
 
-			<if test="intPage0s != null and intPage0s.size() &gt; 0">
+			<if test="intPage0s != null and intPage0s.size != 0">
 			    and E.intPage0 IN
 				<foreach item="x_intPage0" index="index" collection="intPage0s" 
 					open="(" separator="," close=")">
@@ -338,7 +338,7 @@
 				and E.intPage1 &lt;= #{intPage1LessThanOrEqual}
 			</if>
 
-			<if test="intPage1s != null and intPage1s.size() &gt; 0">
+			<if test="intPage1s != null and intPage1s.size != 0">
 			    and E.intPage1 IN
 				<foreach item="x_intPage1" index="index" collection="intPage1s" 
 					open="(" separator="," close=")">
@@ -359,7 +359,7 @@
 				and E.intPage2 &lt;= #{intPage2LessThanOrEqual}
 			</if>
 
-			<if test="intPage2s != null and intPage2s.size() &gt; 0">
+			<if test="intPage2s != null and intPage2s.size != 0">
 			    and E.intPage2 IN
 				<foreach item="x_intPage2" index="index" collection="intPage2s" 
 					open="(" separator="," close=")">
@@ -380,7 +380,7 @@
 				and E.intfinish &lt;= #{intfinishLessThanOrEqual}
 			</if>
 
-			<if test="intfinishs != null and intfinishs.size() &gt; 0">
+			<if test="intfinishs != null and intfinishs.size != 0">
 			    and E.intfinish IN
 				<foreach item="x_intfinish" index="index" collection="intfinishs" 
 					open="(" separator="," close=")">

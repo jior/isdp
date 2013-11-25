@@ -253,7 +253,7 @@
 				and E.busiess_id_src like #{busiessIdSrcLike}
 			</if>
 
-			<if test="busiessIdSrcs != null and busiessIdSrcs.size() &gt; 0">
+			<if test="busiessIdSrcs != null and busiessIdSrcs.size != 0">
 			    and E.busiess_id_src IN
 				<foreach item="x_busiessIdSrc" index="index" collection="busiessIdSrcs" 
 					open="(" separator="," close=")">
@@ -274,7 +274,7 @@
 				and E.celldot_index_src &lt;= #{celldotIndexSrcLessThanOrEqual}
 			</if>
 
-			<if test="celldotIndexSrcs != null and celldotIndexSrcs.size() &gt; 0">
+			<if test="celldotIndexSrcs != null and celldotIndexSrcs.size != 0">
 			    and E.celldot_index_src IN
 				<foreach item="x_celldotIndexSrc" index="index" collection="celldotIndexSrcs" 
 					open="(" separator="," close=")">
@@ -291,7 +291,7 @@
 				and E.fileid_src like #{fileidSrcLike}
 			</if>
 
-			<if test="fileidSrcs != null and fileidSrcs.size() &gt; 0">
+			<if test="fileidSrcs != null and fileidSrcs.size != 0">
 			    and E.fileid_src IN
 				<foreach item="x_fileidSrc" index="index" collection="fileidSrcs" 
 					open="(" separator="," close=")">
@@ -308,7 +308,7 @@
 				and E.dotname_src like #{dotnameSrcLike}
 			</if>
 
-			<if test="dotnameSrcs != null and dotnameSrcs.size() &gt; 0">
+			<if test="dotnameSrcs != null and dotnameSrcs.size != 0">
 			    and E.dotname_src IN
 				<foreach item="x_dotnameSrc" index="index" collection="dotnameSrcs" 
 					open="(" separator="," close=")">
@@ -325,7 +325,7 @@
 				and E.busiess_id_des like #{busiessIdDesLike}
 			</if>
 
-			<if test="busiessIdDess != null and busiessIdDess.size() &gt; 0">
+			<if test="busiessIdDess != null and busiessIdDess.size != 0">
 			    and E.busiess_id_des IN
 				<foreach item="x_busiessIdDes" index="index" collection="busiessIdDess" 
 					open="(" separator="," close=")">
@@ -342,7 +342,7 @@
 				and E.buiessname_des like #{buiessnameDesLike}
 			</if>
 
-			<if test="buiessnameDess != null and buiessnameDess.size() &gt; 0">
+			<if test="buiessnameDess != null and buiessnameDess.size != 0">
 			    and E.buiessname_des IN
 				<foreach item="x_buiessnameDes" index="index" collection="buiessnameDess" 
 					open="(" separator="," close=")">
@@ -363,7 +363,7 @@
 				and E.celldot_index_des &lt;= #{celldotIndexDesLessThanOrEqual}
 			</if>
 
-			<if test="celldotIndexDess != null and celldotIndexDess.size() &gt; 0">
+			<if test="celldotIndexDess != null and celldotIndexDess.size != 0">
 			    and E.celldot_index_des IN
 				<foreach item="x_celldotIndexDes" index="index" collection="celldotIndexDess" 
 					open="(" separator="," close=")">
@@ -380,7 +380,7 @@
 				and E.fileid_des like #{fileidDesLike}
 			</if>
 
-			<if test="fileidDess != null and fileidDess.size() &gt; 0">
+			<if test="fileidDess != null and fileidDess.size != 0">
 			    and E.fileid_des IN
 				<foreach item="x_fileidDes" index="index" collection="fileidDess" 
 					open="(" separator="," close=")">
@@ -397,7 +397,7 @@
 				and E.dotname_des like #{dotnameDesLike}
 			</if>
 
-			<if test="dotnameDess != null and dotnameDess.size() &gt; 0">
+			<if test="dotnameDess != null and dotnameDess.size != 0">
 			    and E.dotname_des IN
 				<foreach item="x_dotnameDes" index="index" collection="dotnameDess" 
 					open="(" separator="," close=")">
@@ -418,7 +418,7 @@
 				and E.intlinktype &lt;= #{intlinktypeLessThanOrEqual}
 			</if>
 
-			<if test="intlinktypes != null and intlinktypes.size() &gt; 0">
+			<if test="intlinktypes != null and intlinktypes.size != 0">
 			    and E.intlinktype IN
 				<foreach item="x_intlinktype" index="index" collection="intlinktypes" 
 					open="(" separator="," close=")">
@@ -439,7 +439,7 @@
 				and E.intdiff1 &lt;= #{intdiff1LessThanOrEqual}
 			</if>
 
-			<if test="intdiff1s != null and intdiff1s.size() &gt; 0">
+			<if test="intdiff1s != null and intdiff1s.size != 0">
 			    and E.intdiff1 IN
 				<foreach item="x_intdiff1" index="index" collection="intdiff1s" 
 					open="(" separator="," close=")">
@@ -460,7 +460,7 @@
 				and E.intdiff2 &lt;= #{intdiff2LessThanOrEqual}
 			</if>
 
-			<if test="intdiff2s != null and intdiff2s.size() &gt; 0">
+			<if test="intdiff2s != null and intdiff2s.size != 0">
 			    and E.intdiff2 IN
 				<foreach item="x_intdiff2" index="index" collection="intdiff2s" 
 					open="(" separator="," close=")">

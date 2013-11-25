@@ -249,7 +249,7 @@
 				and E.parent_id = #{parentId}
 			</if>
 
-			<if test="parentIds != null and parentIds.size() &gt; 0">
+			<if test="parentIds != null and parentIds.size != 0">
 			    and E.parent_id IN
 				<foreach item="x_parentId" index="index" collection="parentIds" 
 					open="(" separator="," close=")">
@@ -293,7 +293,7 @@
 				and E.vflag like #{vflagLike}
 			</if>
 
-			<if test="vflags != null and vflags.size() &gt; 0">
+			<if test="vflags != null and vflags.size != 0">
 			    and E.vflag IN
 				<foreach item="x_vflag" index="index" collection="vflags" 
 					open="(" separator="," close=")">
@@ -317,7 +317,7 @@
 				and E.ztype &lt;= #{ztypeLessThanOrEqual}
 			</if>
 
-			<if test="ztypes != null and ztypes.size() &gt; 0">
+			<if test="ztypes != null and ztypes.size != 0">
 			    and E.ztype IN
 				<foreach item="x_ztype" index="index" collection="ztypes" 
 					open="(" separator="," close=")">
@@ -337,7 +337,7 @@
 				and E.topnode like #{topnodeLike}
 			</if>
 
-			<if test="topnodes != null and topnodes.size() &gt; 0">
+			<if test="topnodes != null and topnodes.size != 0">
 			    and E.topnode IN
 				<foreach item="x_topnode" index="index" collection="topnodes" 
 					open="(" separator="," close=")">

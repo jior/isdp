@@ -359,7 +359,7 @@
 				and E.slevel &lt;= #{slevelLessThanOrEqual}
 			</if>
 
-			<if test="slevels != null and slevels.size() &gt; 0">
+			<if test="slevels != null and slevels.size != 0">
 			    and E.slevel IN
 				<foreach item="x_slevel" index="index" collection="slevels" 
 					open="(" separator="," close=")">
@@ -371,7 +371,7 @@
 				and E.depid = #{deptId}
 			</if>
  
-			<if test="deptIds != null and deptIds.size() &gt; 0">
+			<if test="deptIds != null and deptIds.size != 0">
 			    and E.depid IN
 				<foreach item="x_deptId" index="index" collection="deptIds" 
 					open="(" separator="," close=")">
@@ -411,7 +411,7 @@
 				and E.domain_index = #{domainIndex}
 			</if>
 
-			<if test="domainIndexs != null and domainIndexs.size() &gt; 0">
+			<if test="domainIndexs != null and domainIndexs.size != 0">
 			    and E.domain_index IN
 				<foreach item="x_domainIndex" index="index" collection="domainIndexs" 
 					open="(" separator="," close=")">

@@ -225,7 +225,7 @@
 				and E.roletype &lt;= #{roletypeLessThanOrEqual}
 			</if>
 
-			<if test="roletypes != null and roletypes.size() &gt; 0">
+			<if test="roletypes != null and roletypes.size != 0">
 			    and E.roletype IN
 				<foreach item="x_roletype" index="index" collection="roletypes" 
 					open="(" separator="," close=")">
@@ -241,7 +241,7 @@
 				and E.busiess_id like #{busiessIdLike}
 			</if>
 
-			<if test="busiessIds != null and busiessIds.size() &gt; 0">
+			<if test="busiessIds != null and busiessIds.size != 0">
 			    and E.busiess_id IN
 				<foreach item="x_busiessId" index="index" collection="busiessIds" 
 					open="(" separator="," close=")">
@@ -273,7 +273,7 @@
 				and E.domain_index &lt;= #{domainIndexLessThanOrEqual}
 			</if>
 
-			<if test="domainIndexs != null and domainIndexs.size() &gt; 0">
+			<if test="domainIndexs != null and domainIndexs.size != 0">
 			    and E.domain_index IN
 				<foreach item="x_domainIndex" index="index" collection="domainIndexs" 
 					open="(" separator="," close=")">

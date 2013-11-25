@@ -304,7 +304,7 @@
 				and E.id like #{idLike}
 			</if>
 
-			<if test="ids != null and ids.size() &gt; 0">
+			<if test="ids != null and ids.size != 0">
 			    and E.id IN
 				<foreach item="x_id" index="index" collection="ids" 
 					open="(" separator="," close=")">
@@ -317,7 +317,7 @@
 				and E.parent_id = #{parentId}
 			</if>
 
-			<if test="parentIds != null and parentIds.size() &gt; 0">
+			<if test="parentIds != null and parentIds.size != 0">
 			    and E.parent_id IN
 				<foreach item="x_parentId" index="index" collection="parentIds" 
 					open="(" separator="," close=")">
@@ -342,7 +342,7 @@
 				and E.nlevel &lt;= #{nlevelLessThanOrEqual}
 			</if>
 
-			<if test="nlevels != null and nlevels.size() &gt; 0">
+			<if test="nlevels != null and nlevels.size != 0">
 			    and E.nlevel IN
 				<foreach item="x_nlevel" index="index" collection="nlevels" 
 					open="(" separator="," close=")">
@@ -374,7 +374,7 @@
 				and E.menuid &lt;= #{menuidLessThanOrEqual}
 			</if>
 
-			<if test="menuids != null and menuids.size() &gt; 0">
+			<if test="menuids != null and menuids.size != 0">
 			    and E.menuid IN
 				<foreach item="x_menuid" index="index" collection="menuids" 
 					open="(" separator="," close=")">
@@ -395,7 +395,7 @@
 				and E.isend &lt;= #{isendLessThanOrEqual}
 			</if>
 
-			<if test="isends != null and isends.size() &gt; 0">
+			<if test="isends != null and isends.size != 0">
 			    and E.isend IN
 				<foreach item="x_isend" index="index" collection="isends" 
 					open="(" separator="," close=")">
@@ -412,7 +412,7 @@
 				and E.sysmenuid like #{sysmenuidLike}
 			</if>
 
-			<if test="sysmenuids != null and sysmenuids.size() &gt; 0">
+			<if test="sysmenuids != null and sysmenuids.size != 0">
 			    and E.sysmenuid IN
 				<foreach item="x_sysmenuid" index="index" collection="sysmenuids" 
 					open="(" separator="," close=")">
@@ -433,7 +433,7 @@
 				and E.type &lt;= #{typeLessThanOrEqual}
 			</if>
 
-			<if test="types != null and types.size() &gt; 0">
+			<if test="types != null and types.size != 0">
 			    and E.type IN
 				<foreach item="x_type" index="index" collection="types" 
 					open="(" separator="," close=")">
@@ -450,7 +450,7 @@
 				and E.filenumid like #{filenumidLike}
 			</if>
 
-			<if test="filenumids != null and filenumids.size() &gt; 0">
+			<if test="filenumids != null and filenumids.size != 0">
 			    and E.filenumid IN
 				<foreach item="x_filenumid" index="index" collection="filenumids" 
 					open="(" separator="," close=")">
@@ -467,7 +467,7 @@
 				and E.filenumid2 like #{filenumid2Like}
 			</if>
 
-			<if test="filenumid2s != null and filenumid2s.size() &gt; 0">
+			<if test="filenumid2s != null and filenumid2s.size != 0">
 			    and E.filenumid2 IN
 				<foreach item="x_filenumid2" index="index" collection="filenumid2s" 
 					open="(" separator="," close=")">
@@ -488,7 +488,7 @@
 				and E.proj_index &lt;= #{projIndexLessThanOrEqual}
 			</if>
 
-			<if test="projIndexs != null and projIndexs.size() &gt; 0">
+			<if test="projIndexs != null and projIndexs.size != 0">
 			    and E.proj_index IN
 				<foreach item="x_projIndex" index="index" collection="projIndexs" 
 					open="(" separator="," close=")">
@@ -509,7 +509,7 @@
 				and E.domain_index &lt;= #{domainIndexLessThanOrEqual}
 			</if>
 
-			<if test="domainIndexs != null and domainIndexs.size() &gt; 0">
+			<if test="domainIndexs != null and domainIndexs.size != 0">
 			    and E.domain_index IN
 				<foreach item="x_domainIndex" index="index" collection="domainIndexs" 
 					open="(" separator="," close=")">

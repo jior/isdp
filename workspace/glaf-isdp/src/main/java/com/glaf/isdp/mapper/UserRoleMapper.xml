@@ -150,7 +150,7 @@
 				and E.roleid like #{roleidLike}
 			</if>
 
-			<if test="roleids != null and roleids.size() &gt; 0">
+			<if test="roleids != null and roleids.size != 0">
 			    and E.roleid IN
 				<foreach item="x_roleid" index="index" collection="roleids" 
 					open="(" separator="," close=")">
@@ -162,7 +162,7 @@
 				and E.userid = #{userid}
 			</if>
 
-			<if test="userids != null and userids.size() &gt; 0">
+			<if test="userids != null and userids.size != 0">
 			    and E.userid IN
 				<foreach item="x_userid" index="index" collection="userids" 
 					open="(" separator="," close=")">

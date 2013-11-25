@@ -381,7 +381,7 @@
 				and E.id like #{idLike}
 			</if>
 
-			<if test="ids != null and ids.size() &gt; 0">
+			<if test="ids != null and ids.size != 0">
 			    and E.id IN
 				<foreach item="x_id" index="index" collection="ids" 
 					open="(" separator="," close=")">
@@ -393,7 +393,7 @@
 				and E.intflag = #{flag}
 			</if>
 
-			<if test="flags != null and flags.size() &gt; 0">
+			<if test="flags != null and flags.size != 0">
 			    and E.intflag IN
 				<foreach item="x_flag" index="index" collection="flags" 
 					open="(" separator="," close=")">
@@ -405,7 +405,7 @@
 				and E.sys_id = #{sysId}
 			</if>
 
-			<if test="sysIds != null and sysIds.size() &gt; 0">
+			<if test="sysIds != null and sysIds.size != 0">
 			    and E.sys_id IN
 				<foreach item="x_sysId" index="index" collection="sysIds" 
 					open="(" separator="," close=")">
@@ -441,7 +441,7 @@
 				and E.sdbname like #{dbnameLike}
 			</if>
 
-			<if test="dbnames != null and dbnames.size() &gt; 0">
+			<if test="dbnames != null and dbnames.size != 0">
 			    and E.sdbname IN
 				<foreach item="x_dbname" index="index" collection="dbnames" 
 					open="(" separator="," close=")">
@@ -458,7 +458,7 @@
 				and E.sServerName like #{serverNameLike}
 			</if>
 
-			<if test="serverNames != null and serverNames.size() &gt; 0">
+			<if test="serverNames != null and serverNames.size != 0">
 			    and E.sServerName IN
 				<foreach item="x_serverName" index="index" collection="serverNames" 
 					open="(" separator="," close=")">
@@ -475,7 +475,7 @@
 				and E.sUser like #{userLike}
 			</if>
 
-			<if test="users != null and users.size() &gt; 0">
+			<if test="users != null and users.size != 0">
 			    and E.sUser IN
 				<foreach item="x_user" index="index" collection="users" 
 					open="(" separator="," close=")">
@@ -495,7 +495,7 @@
 				and E.parent_id = #{parentId}
 			</if>
 
-			<if test="parentIds != null and parentIds.size() &gt; 0">
+			<if test="parentIds != null and parentIds.size != 0">
 			    and E.parent_id IN
 				<foreach item="x_parentId" index="index" collection="parentIds" 
 					open="(" separator="," close=")">
@@ -515,7 +515,7 @@
 				and E.domain_index &lt;= #{domainIndexLessThanOrEqual}
 			</if>
 
-			<if test="domainIndexs != null and domainIndexs.size() &gt; 0">
+			<if test="domainIndexs != null and domainIndexs.size != 0">
 			    and E.domain_index IN
 				<foreach item="x_domainIndex" index="index" collection="domainIndexs" 
 					open="(" separator="," close=")">

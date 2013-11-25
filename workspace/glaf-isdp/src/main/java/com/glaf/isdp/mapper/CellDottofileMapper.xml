@@ -141,7 +141,7 @@
 				and E.treetop_indexid &lt;= #{treetopIndexidLessThanOrEqual}
             </if>
 
-			<if test="treetopIndexids != null and treetopIndexids.size() &gt; 0">
+			<if test="treetopIndexids != null and treetopIndexids.size != 0">
 			    and E.treetop_indexid IN
                 <foreach item="x_treetopIndexid" index="index" collection="treetopIndexids" 
                      open="(" separator="," close=")">

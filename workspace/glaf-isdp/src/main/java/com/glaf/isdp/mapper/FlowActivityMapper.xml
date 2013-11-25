@@ -257,7 +257,7 @@
 				and E.activ_d_id like #{activDefIdLike}
 			</if>
 
-			<if test="activDefIds != null and activDefIds.size() &gt; 0">
+			<if test="activDefIds != null and activDefIds.size != 0">
 			    and E.activ_d_id IN
 				<foreach item="x_activDefId" index="index" collection="activDefIds" 
 					open="(" separator="," close=")">
@@ -274,7 +274,7 @@
 				and E.process_id like #{processIdLike}
 			</if>
 
-			<if test="processIds != null and processIds.size() &gt; 0">
+			<if test="processIds != null and processIds.size != 0">
 			    and E.process_id IN
 				<foreach item="x_processId" index="index" collection="processIds" 
 					open="(" separator="," close=")">
@@ -291,7 +291,7 @@
 				and E.typeofact like #{typeofactLike}
 			</if>
 
-			<if test="typeofacts != null and typeofacts.size() &gt; 0">
+			<if test="typeofacts != null and typeofacts.size != 0">
 			    and E.typeofact IN
 				<foreach item="x_typeofact" index="index" collection="typeofacts" 
 					open="(" separator="," close=")">
@@ -319,7 +319,7 @@
 				and E.netroleid like #{netroleidLike}
 			</if>
 
-			<if test="netroleids != null and netroleids.size() &gt; 0">
+			<if test="netroleids != null and netroleids.size != 0">
 			    and E.netroleid IN
 				<foreach item="x_netroleid" index="index" collection="netroleids" 
 					open="(" separator="," close=")">
@@ -335,7 +335,7 @@
 				and E.userid like #{useridLike}
 			</if>
 
-			<if test="userids != null and userids.size() &gt; 0">
+			<if test="userids != null and userids.size != 0">
 			    and E.userid IN
 				<foreach item="x_userid" index="index" collection="userids" 
 					open="(" separator="," close=")">
@@ -379,7 +379,7 @@
 				and E.state &lt;= #{stateLessThanOrEqual}
 			</if>
 
-			<if test="states != null and states.size() &gt; 0">
+			<if test="states != null and states.size != 0">
 			    and E.state IN
 				<foreach item="x_state" index="index" collection="states" 
 					open="(" separator="," close=")">
@@ -399,7 +399,7 @@
 				and E.intback &lt;= #{intbackLessThanOrEqual}
 			</if>
 
-			<if test="intbacks != null and intbacks.size() &gt; 0">
+			<if test="intbacks != null and intbacks.size != 0">
 			    and E.intback IN
 				<foreach item="x_intback" index="index" collection="intbacks" 
 					open="(" separator="," close=")">

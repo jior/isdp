@@ -588,7 +588,7 @@
 				and E.index_id &lt;= #{indexIdLessThanOrEqual}
 			</if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
 				<foreach item="x_indexId" index="index" collection="indexIds" 
 					open="(" separator="," close=")">
@@ -609,7 +609,7 @@
 				and E.typeint &lt;= #{typeintLessThanOrEqual}
 			</if>
 
-			<if test="typeints != null and typeints.size() &gt; 0">
+			<if test="typeints != null and typeints.size != 0">
 			    and E.typeint IN
 				<foreach item="x_typeint" index="index" collection="typeints" 
 					open="(" separator="," close=")">
@@ -626,7 +626,7 @@
 				and E.type like #{typeLike}
 			</if>
 
-			<if test="types != null and types.size() &gt; 0">
+			<if test="types != null and types.size != 0">
 			    and E.type IN
 				<foreach item="x_type" index="index" collection="types" 
 					open="(" separator="," close=")">
@@ -662,7 +662,7 @@
 				and E.scale &lt;= #{scaleLessThanOrEqual}
 			</if>
 
-			<if test="scales != null and scales.size() &gt; 0">
+			<if test="scales != null and scales.size != 0">
 			    and E.scale IN
 				<foreach item="x_scale" index="index" collection="scales" 
 					open="(" separator="," close=")">
@@ -682,7 +682,7 @@
 				and E.point &lt;= #{pointLessThanOrEqual}
 			</if>
 
-			<if test="points != null and points.size() &gt; 0">
+			<if test="points != null and points.size != 0">
 			    and E.point IN
 				<foreach item="x_point" index="index" collection="points" 
 					open="(" separator="," close=")">
@@ -702,7 +702,7 @@
 				and E.usetypeint &lt;= #{usetypeintLessThanOrEqual}
 			</if>
 
-			<if test="usetypeints != null and usetypeints.size() &gt; 0">
+			<if test="usetypeints != null and usetypeints.size != 0">
 			    and E.usetypeint IN
 				<foreach item="x_usetypeint" index="index" collection="usetypeints" 
 					open="(" separator="," close=")">
@@ -722,7 +722,7 @@
 				and E.checktype &lt;= #{checktypeLessThanOrEqual}
 			</if>
 
-			<if test="checktypes != null and checktypes.size() &gt; 0">
+			<if test="checktypes != null and checktypes.size != 0">
 			    and E.checktype IN
 				<foreach item="x_checktype" index="index" collection="checktypes" 
 					open="(" separator="," close=")">
@@ -742,7 +742,7 @@
 				and E.minallow like #{minallowLike}
 			</if>
 
-			<if test="minallows != null and minallows.size() &gt; 0">
+			<if test="minallows != null and minallows.size != 0">
 			    and E.minallow IN
 				<foreach item="x_minallow" index="index" collection="minallows" 
 					open="(" separator="," close=")">
@@ -758,7 +758,7 @@
 				and E.minallow_s like #{minallowSLike}
 			</if>
 
-			<if test="minallowSs != null and minallowSs.size() &gt; 0">
+			<if test="minallowSs != null and minallowSs.size != 0">
 			    and E.minallow_s IN
 				<foreach item="x_minallowS" index="index" collection="minallowSs" 
 					open="(" separator="," close=")">
@@ -774,7 +774,7 @@
 				and E.maxallow like #{maxallowLike}
 			</if>
 
-			<if test="maxallows != null and maxallows.size() &gt; 0">
+			<if test="maxallows != null and maxallows.size != 0">
 			    and E.maxallow IN
 				<foreach item="x_maxallow" index="index" collection="maxallows" 
 					open="(" separator="," close=")">
@@ -790,7 +790,7 @@
 				and E.maxallow_s like #{maxallowSLike}
 			</if>
 
-			<if test="maxallowSs != null and maxallowSs.size() &gt; 0">
+			<if test="maxallowSs != null and maxallowSs.size != 0">
 			    and E.maxallow_s IN
 				<foreach item="x_maxallowS" index="index" collection="maxallowSs" 
 					open="(" separator="," close=")">
@@ -810,7 +810,7 @@
 				and E.conint &lt;= #{conintLessThanOrEqual}
 			</if>
 
-			<if test="conints != null and conints.size() &gt; 0">
+			<if test="conints != null and conints.size != 0">
 			    and E.conint IN
 				<foreach item="x_conint" index="index" collection="conints" 
 					open="(" separator="," close=")">
@@ -827,7 +827,7 @@
 				and E.conmin like #{conminLike}
 			</if>
 
-			<if test="conmins != null and conmins.size() &gt; 0">
+			<if test="conmins != null and conmins.size != 0">
 			    and E.conmin IN
 				<foreach item="x_conmin" index="index" collection="conmins" 
 					open="(" separator="," close=")">
@@ -844,7 +844,7 @@
 				and E.conmin_s like #{conminSLike}
 			</if>
 
-			<if test="conminSs != null and conminSs.size() &gt; 0">
+			<if test="conminSs != null and conminSs.size != 0">
 			    and E.conmin_s IN
 				<foreach item="x_conminS" index="index" collection="conminSs" 
 					open="(" separator="," close=")">
@@ -861,7 +861,7 @@
 				and E.conmax like #{conmaxLike}
 			</if>
 
-			<if test="conmaxs != null and conmaxs.size() &gt; 0">
+			<if test="conmaxs != null and conmaxs.size != 0">
 			    and E.conmax IN
 				<foreach item="x_conmax" index="index" collection="conmaxs" 
 					open="(" separator="," close=")">
@@ -878,7 +878,7 @@
 				and E.conmax_s like #{conmaxSLike}
 			</if>
 
-			<if test="conmaxSs != null and conmaxSs.size() &gt; 0">
+			<if test="conmaxSs != null and conmaxSs.size != 0">
 			    and E.conmax_s IN
 				<foreach item="x_conmaxS" index="index" collection="conmaxSs" 
 					open="(" separator="," close=")">
@@ -894,7 +894,7 @@
 				and E.constr like #{constrLike}
 			</if>
 
-			<if test="constrs != null and constrs.size() &gt; 0">
+			<if test="constrs != null and constrs.size != 0">
 			    and E.constr IN
 				<foreach item="x_constr" index="index" collection="constrs" 
 					open="(" separator="," close=")">
@@ -910,7 +910,7 @@
 				and E.usingstr like #{usingstrLike}
 			</if>
 
-			<if test="usingstrs != null and usingstrs.size() &gt; 0">
+			<if test="usingstrs != null and usingstrs.size != 0">
 			    and E.usingstr IN
 				<foreach item="x_usingstr" index="index" collection="usingstrs" 
 					open="(" separator="," close=")">
@@ -927,7 +927,7 @@
 				and E.subnum like #{subnumLike}
 			</if>
 
-			<if test="subnums != null and subnums.size() &gt; 0">
+			<if test="subnums != null and subnums.size != 0">
 			    and E.subnum IN
 				<foreach item="x_subnum" index="index" collection="subnums" 
 					open="(" separator="," close=")">
@@ -948,7 +948,7 @@
 				and E.chkvalueint &lt;= #{chkvalueintLessThanOrEqual}
 			</if>
 
-			<if test="chkvalueints != null and chkvalueints.size() &gt; 0">
+			<if test="chkvalueints != null and chkvalueints.size != 0">
 			    and E.chkvalueint IN
 				<foreach item="x_chkvalueint" index="index" collection="chkvalueints" 
 					open="(" separator="," close=")">
@@ -965,7 +965,7 @@
 				and E.strposc like #{strposcLike}
 			</if>
 
-			<if test="strposcs != null and strposcs.size() &gt; 0">
+			<if test="strposcs != null and strposcs.size != 0">
 			    and E.strposc IN
 				<foreach item="x_strposc" index="index" collection="strposcs" 
 					open="(" separator="," close=")">
@@ -982,7 +982,7 @@
 				and E.strposc2 like #{strposc2Like}
 			</if>
 
-			<if test="strposc2s != null and strposc2s.size() &gt; 0">
+			<if test="strposc2s != null and strposc2s.size != 0">
 			    and E.strposc2 IN
 				<foreach item="x_strposc2" index="index" collection="strposc2s" 
 					open="(" separator="," close=")">
@@ -999,7 +999,7 @@
 				and E.strpos like #{strposLike}
 			</if>
 
-			<if test="strposs != null and strposs.size() &gt; 0">
+			<if test="strposs != null and strposs.size != 0">
 			    and E.strpos IN
 				<foreach item="x_strpos" index="index" collection="strposs" 
 					open="(" separator="," close=")">
@@ -1016,7 +1016,7 @@
 				and E.strpos2 like #{strpos2Like}
 			</if>
 
-			<if test="strpos2s != null and strpos2s.size() &gt; 0">
+			<if test="strpos2s != null and strpos2s.size != 0">
 			    and E.strpos2 IN
 				<foreach item="x_strpos2" index="index" collection="strpos2s" 
 					open="(" separator="," close=")">
@@ -1033,7 +1033,7 @@
 				and E.chkfield like #{chkfieldLike}
 			</if>
 
-			<if test="chkfields != null and chkfields.size() &gt; 0">
+			<if test="chkfields != null and chkfields.size != 0">
 			    and E.chkfield IN
 				<foreach item="x_chkfield" index="index" collection="chkfields" 
 					open="(" separator="," close=")">
@@ -1050,7 +1050,7 @@
 				and E.chkunit like #{chkunitLike}
 			</if>
 
-			<if test="chkunits != null and chkunits.size() &gt; 0">
+			<if test="chkunits != null and chkunits.size != 0">
 			    and E.chkunit IN
 				<foreach item="x_chkunit" index="index" collection="chkunits" 
 					open="(" separator="," close=")">
@@ -1067,7 +1067,7 @@
 				and E.chkfield_id like #{chkfieldIdLike}
 			</if>
 
-			<if test="chkfieldIds != null and chkfieldIds.size() &gt; 0">
+			<if test="chkfieldIds != null and chkfieldIds.size != 0">
 			    and E.chkfield_id IN
 				<foreach item="x_chkfieldId" index="index" collection="chkfieldIds" 
 					open="(" separator="," close=")">
@@ -1084,7 +1084,7 @@
 				and E.chkformual like #{chkformualLike}
 			</if>
 
-			<if test="chkformuals != null and chkformuals.size() &gt; 0">
+			<if test="chkformuals != null and chkformuals.size != 0">
 			    and E.chkformual IN
 				<foreach item="x_chkformual" index="index" collection="chkformuals" 
 					open="(" separator="," close=")">
@@ -1101,7 +1101,7 @@
 				and E.chkformualD like #{chkformualDLike}
 			</if>
 
-			<if test="chkformualDs != null and chkformualDs.size() &gt; 0">
+			<if test="chkformualDs != null and chkformualDs.size != 0">
 			    and E.chkformualD IN
 				<foreach item="x_chkformualD" index="index" collection="chkformualDs" 
 					open="(" separator="," close=")">
@@ -1122,7 +1122,7 @@
 				and E.ichecknum &lt;= #{ichecknumLessThanOrEqual}
 			</if>
 
-			<if test="ichecknums != null and ichecknums.size() &gt; 0">
+			<if test="ichecknums != null and ichecknums.size != 0">
 			    and E.ichecknum IN
 				<foreach item="x_ichecknum" index="index" collection="ichecknums" 
 					open="(" separator="," close=")">
@@ -1142,7 +1142,7 @@
 				and E.constr1 like #{constr1Like}
 			</if>
 
-			<if test="constr1s != null and constr1s.size() &gt; 0">
+			<if test="constr1s != null and constr1s.size != 0">
 			    and E.constr1 IN
 				<foreach item="x_constr1" index="index" collection="constr1s" 
 					open="(" separator="," close=")">
@@ -1159,7 +1159,7 @@
 				and E.constr2 like #{constr2Like}
 			</if>
 
-			<if test="constr2s != null and constr2s.size() &gt; 0">
+			<if test="constr2s != null and constr2s.size != 0">
 			    and E.constr2 IN
 				<foreach item="x_constr2" index="index" collection="constr2s" 
 					open="(" separator="," close=")">
@@ -1176,7 +1176,7 @@
 				and E.ichecknum_less like #{ichecknumLessLike}
 			</if>
 
-			<if test="ichecknumLesss != null and ichecknumLesss.size() &gt; 0">
+			<if test="ichecknumLesss != null and ichecknumLesss.size != 0">
 			    and E.ichecknum_less IN
 				<foreach item="x_ichecknumLess" index="index" collection="ichecknumLesss" 
 					open="(" separator="," close=")">
@@ -1193,7 +1193,7 @@
 				and E.clevel like #{clevelLike}
 			</if>
 
-			<if test="clevels != null and clevels.size() &gt; 0">
+			<if test="clevels != null and clevels.size != 0">
 			    and E.clevel IN
 				<foreach item="x_clevel" index="index" collection="clevels" 
 					open="(" separator="," close=")">

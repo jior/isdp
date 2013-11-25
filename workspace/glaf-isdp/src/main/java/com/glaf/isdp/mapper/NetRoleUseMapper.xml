@@ -143,7 +143,7 @@
 				and E.roleid = #{roleid}
 			</if>
 
-			<if test="roleids != null and roleids.size() &gt; 0">
+			<if test="roleids != null and roleids.size != 0">
 			    and E.roleid IN
 				<foreach item="x_roleid" index="index" collection="roleids" 
 					open="(" separator="," close=")">
@@ -155,7 +155,7 @@
 				and E.celltreedot_index = #{celltreedotIndex}
 			</if>
 
-			<if test="celltreedotIndexs != null and celltreedotIndexs.size() &gt; 0">
+			<if test="celltreedotIndexs != null and celltreedotIndexs.size != 0">
 			    and E.celltreedot_index IN
 				<foreach item="x_celltreedotIndex" index="index" collection="celltreedotIndexs" 
 					open="(" separator="," close=")">
@@ -167,7 +167,7 @@
 				and E.intuserper = #{intuserper}
 			</if>
 
-			<if test="intuserpers != null and intuserpers.size() &gt; 0">
+			<if test="intuserpers != null and intuserpers.size != 0">
 			    and E.intuserper IN
 				<foreach item="x_intuserper" index="index" collection="intuserpers" 
 					open="(" separator="," close=")">

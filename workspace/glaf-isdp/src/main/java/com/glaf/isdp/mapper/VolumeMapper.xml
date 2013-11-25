@@ -819,7 +819,7 @@
 				and E.oldid like #{oldidLike}
 			</if>
 
-			<if test="oldids != null and oldids.size() &gt; 0">
+			<if test="oldids != null and oldids.size != 0">
 			    and E.oldid IN
 				<foreach item="x_oldid" index="index" collection="oldids" 
 					open="(" separator="," close=")">
@@ -835,7 +835,7 @@
 				and E.ruleID like #{ruleIDLike}
 			</if>
 
-			<if test="ruleIDs != null and ruleIDs.size() &gt; 0">
+			<if test="ruleIDs != null and ruleIDs.size != 0">
 			    and E.ruleID IN
 				<foreach item="x_ruleID" index="index" collection="ruleIDs" 
 					open="(" separator="," close=")">
@@ -851,7 +851,7 @@
 				and E.ruleflag like #{ruleflagLike}
 			</if>
 
-			<if test="ruleflags != null and ruleflags.size() &gt; 0">
+			<if test="ruleflags != null and ruleflags.size != 0">
 			    and E.ruleflag IN
 				<foreach item="x_ruleflag" index="index" collection="ruleflags" 
 					open="(" separator="," close=")">
@@ -867,7 +867,7 @@
 				and E.rulepid like #{rulepidLike}
 			</if>
 
-			<if test="rulepids != null and rulepids.size() &gt; 0">
+			<if test="rulepids != null and rulepids.size != 0">
 			    and E.rulepid IN
 				<foreach item="x_rulepid" index="index" collection="rulepids" 
 					open="(" separator="," close=")">
@@ -879,7 +879,7 @@
 				and E.vid like #{vidLike}
 			</if>
 
-			<if test="vids != null and vids.size() &gt; 0">
+			<if test="vids != null and vids.size != 0">
 			    and E.vid IN
 				<foreach item="x_vid" index="index" collection="vids" 
 					open="(" separator="," close=")">
@@ -895,7 +895,7 @@
 				and E.sumflag like #{sumflagLike}
 			</if>
 
-			<if test="sumflags != null and sumflags.size() &gt; 0">
+			<if test="sumflags != null and sumflags.size != 0">
 			    and E.sumflag IN
 				<foreach item="x_sumflag" index="index" collection="sumflags" 
 					open="(" separator="," close=")">
@@ -915,7 +915,7 @@
 				and E.topid &lt;= #{topidLessThanOrEqual}
 			</if>
 
-			<if test="topids != null and topids.size() &gt; 0">
+			<if test="topids != null and topids.size != 0">
 			    and E.topid IN
 				<foreach item="x_topid" index="index" collection="topids" 
 					open="(" separator="," close=")">
@@ -935,7 +935,7 @@
 				and E.index_id &lt;= #{indexIdLessThanOrEqual}
 			</if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
 				<foreach item="x_indexId" index="index" collection="indexIds" 
 					open="(" separator="," close=")">
@@ -955,7 +955,7 @@
 				and E.projid &lt;= #{projidLessThanOrEqual}
 			</if>
 
-			<if test="projids != null and projids.size() &gt; 0">
+			<if test="projids != null and projids.size != 0">
 			    and E.projid IN
 				<foreach item="x_projid" index="index" collection="projids" 
 					open="(" separator="," close=")">
@@ -975,7 +975,7 @@
 				and E.pid &lt;= #{pidLessThanOrEqual}
 			</if>
 
-			<if test="pids != null and pids.size() &gt; 0">
+			<if test="pids != null and pids.size != 0">
 			    and E.pid IN
 				<foreach item="x_pid" index="index" collection="pids" 
 					open="(" separator="," close=")">
@@ -995,7 +995,7 @@
 				and E.vflag like #{vflagLike}
 			</if>
 
-			<if test="vflags != null and vflags.size() &gt; 0">
+			<if test="vflags != null and vflags.size != 0">
 			    and E.vflag IN
 				<foreach item="x_vflag" index="index" collection="vflags" 
 					open="(" separator="," close=")">
@@ -1019,7 +1019,7 @@
 				and E.year &lt;= #{yearLessThanOrEqual}
 			</if>
 
-			<if test="years != null and years.size() &gt; 0">
+			<if test="years != null and years.size != 0">
 			    and E.year IN
 				<foreach item="x_year" index="index" collection="years" 
 					open="(" separator="," close=")">
@@ -1036,7 +1036,7 @@
 				and E.glidenum like #{glidenumLike}
 			</if>
 
-			<if test="glidenums != null and glidenums.size() &gt; 0">
+			<if test="glidenums != null and glidenums.size != 0">
 			    and E.glidenum IN
 				<foreach item="x_glidenum" index="index" collection="glidenums" 
 					open="(" separator="," close=")">
@@ -1050,7 +1050,7 @@
 			</if>
 
 
-			<if test="filingflags != null and filingflags.size() &gt; 0">
+			<if test="filingflags != null and filingflags.size != 0">
 			    and E.filingflag IN
 				<foreach item="x_filingflag" index="index" collection="filingflags" 
 					open="(" separator="," close=")">
@@ -1063,7 +1063,7 @@
 				and E.checkupflag = #{checkupflag}
 			</if>
 
-			<if test="checkupflags != null and checkupflags.size() &gt; 0">
+			<if test="checkupflags != null and checkupflags.size != 0">
 			    and E.checkupflag IN
 				<foreach item="x_checkupflag" index="index" collection="checkupflags" 
 					open="(" separator="," close=")">
@@ -1077,7 +1077,7 @@
 			</if>
 
 
-			<if test="openflags != null and openflags.size() &gt; 0">
+			<if test="openflags != null and openflags.size != 0">
 			    and E.openflag IN
 				<foreach item="x_openflag" index="index" collection="openflags" 
 					open="(" separator="," close=")">
@@ -1089,7 +1089,7 @@
 				and E.finishflag = #{finishflag}
 			</if>
 
-			<if test="finishflags != null and finishflags.size() &gt; 0">
+			<if test="finishflags != null and finishflags.size != 0">
 			    and E.finishflag IN
 				<foreach item="x_finishflag" index="index" collection="finishflags" 
 					open="(" separator="," close=")">
@@ -1106,7 +1106,7 @@
 				and E.vtagnum like #{vtagnumLike}
 			</if>
 
-			<if test="vtagnums != null and vtagnums.size() &gt; 0">
+			<if test="vtagnums != null and vtagnums.size != 0">
 			    and E.vtagnum IN
 				<foreach item="x_vtagnum" index="index" collection="vtagnums" 
 					open="(" separator="," close=")">
@@ -1123,7 +1123,7 @@
 				and E.vtype like #{vtypeLike}
 			</if>
 
-			<if test="vtypes != null and vtypes.size() &gt; 0">
+			<if test="vtypes != null and vtypes.size != 0">
 			    and E.vtype IN
 				<foreach item="x_vtype" index="index" collection="vtypes" 
 					open="(" separator="," close=")">
@@ -1140,7 +1140,7 @@
 				and E.vnum like #{vnumLike}
 			</if>
 
-			<if test="vnums != null and vnums.size() &gt; 0">
+			<if test="vnums != null and vnums.size != 0">
 			    and E.vnum IN
 				<foreach item="x_vnum" index="index" collection="vnums" 
 					open="(" separator="," close=")">
@@ -1157,7 +1157,7 @@
 				and E.vtmpnum like #{vtmpnumLike}
 			</if>
 
-			<if test="vtmpnums != null and vtmpnums.size() &gt; 0">
+			<if test="vtmpnums != null and vtmpnums.size != 0">
 			    and E.vtmpnum IN
 				<foreach item="x_vtmpnum" index="index" collection="vtmpnums" 
 					open="(" separator="," close=")">
@@ -1174,7 +1174,7 @@
 				and E.roomnum like #{roomnumLike}
 			</if>
 
-			<if test="roomnums != null and roomnums.size() &gt; 0">
+			<if test="roomnums != null and roomnums.size != 0">
 			    and E.roomnum IN
 				<foreach item="x_roomnum" index="index" collection="roomnums" 
 					open="(" separator="," close=")">
@@ -1191,7 +1191,7 @@
 				and E.zoonum like #{zoonumLike}
 			</if>
 
-			<if test="zoonums != null and zoonums.size() &gt; 0">
+			<if test="zoonums != null and zoonums.size != 0">
 			    and E.zoonum IN
 				<foreach item="x_zoonum" index="index" collection="zoonums" 
 					open="(" separator="," close=")">
@@ -1208,7 +1208,7 @@
 				and E.efilenum like #{efilenumLike}
 			</if>
 
-			<if test="efilenums != null and efilenums.size() &gt; 0">
+			<if test="efilenums != null and efilenums.size != 0">
 			    and E.efilenum IN
 				<foreach item="x_efilenum" index="index" collection="efilenums" 
 					open="(" separator="," close=")">
@@ -1225,7 +1225,7 @@
 				and E.boxnum like #{boxnumLike}
 			</if>
 
-			<if test="boxnums != null and boxnums.size() &gt; 0">
+			<if test="boxnums != null and boxnums.size != 0">
 			    and E.boxnum IN
 				<foreach item="x_boxnum" index="index" collection="boxnums" 
 					open="(" separator="," close=")">
@@ -1242,7 +1242,7 @@
 				and E.place like #{placeLike}
 			</if>
 
-			<if test="places != null and places.size() &gt; 0">
+			<if test="places != null and places.size != 0">
 			    and E.place IN
 				<foreach item="x_place" index="index" collection="places" 
 					open="(" separator="," close=")">
@@ -1259,7 +1259,7 @@
 				and E.tname like #{tnameLike}
 			</if>
 
-			<if test="tnames != null and tnames.size() &gt; 0">
+			<if test="tnames != null and tnames.size != 0">
 			    and E.tname IN
 				<foreach item="x_tname" index="index" collection="tnames" 
 					open="(" separator="," close=")">
@@ -1276,7 +1276,7 @@
 				and E.wcompany like #{wcompanyLike}
 			</if>
 
-			<if test="wcompanys != null and wcompanys.size() &gt; 0">
+			<if test="wcompanys != null and wcompanys.size != 0">
 			    and E.wcompany IN
 				<foreach item="x_wcompany" index="index" collection="wcompanys" 
 					open="(" separator="," close=")">
@@ -1297,7 +1297,7 @@
 				and E.wdate &lt;= #{wdateLessThanOrEqual}
 			</if>
 
-			<if test="wdates != null and wdates.size() &gt; 0">
+			<if test="wdates != null and wdates.size != 0">
 			    and E.wdate IN
 				<foreach item="x_wdate" index="index" collection="wdates" 
 					open="(" separator="," close=")">
@@ -1314,7 +1314,7 @@
 				and E.carriertype like #{carriertypeLike}
 			</if>
 
-			<if test="carriertypes != null and carriertypes.size() &gt; 0">
+			<if test="carriertypes != null and carriertypes.size != 0">
 			    and E.carriertype IN
 				<foreach item="x_carriertype" index="index" collection="carriertypes" 
 					open="(" separator="," close=")">
@@ -1331,7 +1331,7 @@
 				and E.numunit like #{numunitLike}
 			</if>
 
-			<if test="numunits != null and numunits.size() &gt; 0">
+			<if test="numunits != null and numunits.size != 0">
 			    and E.numunit IN
 				<foreach item="x_numunit" index="index" collection="numunits" 
 					open="(" separator="," close=")">
@@ -1348,7 +1348,7 @@
 				and E.spec like #{specLike}
 			</if>
 
-			<if test="specs != null and specs.size() &gt; 0">
+			<if test="specs != null and specs.size != 0">
 			    and E.spec IN
 				<foreach item="x_spec" index="index" collection="specs" 
 					open="(" separator="," close=")">
@@ -1369,7 +1369,7 @@
 				and E.startday &lt;= #{startdayLessThanOrEqual}
 			</if>
 
-			<if test="startdays != null and startdays.size() &gt; 0">
+			<if test="startdays != null and startdays.size != 0">
 			    and E.startday IN
 				<foreach item="x_startday" index="index" collection="startdays" 
 					open="(" separator="," close=")">
@@ -1390,7 +1390,7 @@
 				and E.endday &lt;= #{enddayLessThanOrEqual}
 			</if>
 
-			<if test="enddays != null and enddays.size() &gt; 0">
+			<if test="enddays != null and enddays.size != 0">
 			    and E.endday IN
 				<foreach item="x_endday" index="index" collection="enddays" 
 					open="(" separator="," close=")">
@@ -1407,7 +1407,7 @@
 				and E.savetime like #{savetimeLike}
 			</if>
 
-			<if test="savetimes != null and savetimes.size() &gt; 0">
+			<if test="savetimes != null and savetimes.size != 0">
 			    and E.savetime IN
 				<foreach item="x_savetime" index="index" collection="savetimes" 
 					open="(" separator="," close=")">
@@ -1424,7 +1424,7 @@
 				and E.slevel like #{slevelLike}
 			</if>
 
-			<if test="slevels != null and slevels.size() &gt; 0">
+			<if test="slevels != null and slevels.size != 0">
 			    and E.slevel IN
 				<foreach item="x_slevel" index="index" collection="slevels" 
 					open="(" separator="," close=")">
@@ -1441,7 +1441,7 @@
 				and E.thematic like #{thematicLike}
 			</if>
 
-			<if test="thematics != null and thematics.size() &gt; 0">
+			<if test="thematics != null and thematics.size != 0">
 			    and E.thematic IN
 				<foreach item="x_thematic" index="index" collection="thematics" 
 					open="(" separator="," close=")">
@@ -1458,7 +1458,7 @@
 				and E.annotations like #{annotationsLike}
 			</if>
 
-			<if test="annotationss != null and annotationss.size() &gt; 0">
+			<if test="annotationss != null and annotationss.size != 0">
 			    and E.annotations IN
 				<foreach item="x_annotations" index="index" collection="annotationss" 
 					open="(" separator="," close=")">
@@ -1479,7 +1479,7 @@
 				and E.totalfile &lt;= #{totalfileLessThanOrEqual}
 			</if>
 
-			<if test="totalfiles != null and totalfiles.size() &gt; 0">
+			<if test="totalfiles != null and totalfiles.size != 0">
 			    and E.totalfile IN
 				<foreach item="x_totalfile" index="index" collection="totalfiles" 
 					open="(" separator="," close=")">
@@ -1500,7 +1500,7 @@
 				and E.totalpage &lt;= #{totalpageLessThanOrEqual}
 			</if>
 
-			<if test="totalpages != null and totalpages.size() &gt; 0">
+			<if test="totalpages != null and totalpages.size != 0">
 			    and E.totalpage IN
 				<foreach item="x_totalpage" index="index" collection="totalpages" 
 					open="(" separator="," close=")">
@@ -1521,7 +1521,7 @@
 				and E.txtpage &lt;= #{txtpageLessThanOrEqual}
 			</if>
 
-			<if test="txtpages != null and txtpages.size() &gt; 0">
+			<if test="txtpages != null and txtpages.size != 0">
 			    and E.txtpage IN
 				<foreach item="x_txtpage" index="index" collection="txtpages" 
 					open="(" separator="," close=")">
@@ -1542,7 +1542,7 @@
 				and E.picpage &lt;= #{picpageLessThanOrEqual}
 			</if>
 
-			<if test="picpages != null and picpages.size() &gt; 0">
+			<if test="picpages != null and picpages.size != 0">
 			    and E.picpage IN
 				<foreach item="x_picpage" index="index" collection="picpages" 
 					open="(" separator="," close=")">
@@ -1563,7 +1563,7 @@
 				and E.photopage &lt;= #{photopageLessThanOrEqual}
 			</if>
 
-			<if test="photopages != null and photopages.size() &gt; 0">
+			<if test="photopages != null and photopages.size != 0">
 			    and E.photopage IN
 				<foreach item="x_photopage" index="index" collection="photopages" 
 					open="(" separator="," close=")">
@@ -1580,7 +1580,7 @@
 				and E.cman like #{cmanLike}
 			</if>
 
-			<if test="cmans != null and cmans.size() &gt; 0">
+			<if test="cmans != null and cmans.size != 0">
 			    and E.cman IN
 				<foreach item="x_cman" index="index" collection="cmans" 
 					open="(" separator="," close=")">
@@ -1601,7 +1601,7 @@
 				and E.ctime &lt;= #{ctimeLessThanOrEqual}
 			</if>
 
-			<if test="ctimes != null and ctimes.size() &gt; 0">
+			<if test="ctimes != null and ctimes.size != 0">
 			    and E.ctime IN
 				<foreach item="x_ctime" index="index" collection="ctimes" 
 					open="(" separator="," close=")">
@@ -1618,7 +1618,7 @@
 				and E.assessor like #{assessorLike}
 			</if>
 
-			<if test="assessors != null and assessors.size() &gt; 0">
+			<if test="assessors != null and assessors.size != 0">
 			    and E.assessor IN
 				<foreach item="x_assessor" index="index" collection="assessors" 
 					open="(" separator="," close=")">
@@ -1639,7 +1639,7 @@
 				and E.atime &lt;= #{atimeLessThanOrEqual}
 			</if>
 
-			<if test="atimes != null and atimes.size() &gt; 0">
+			<if test="atimes != null and atimes.size != 0">
 			    and E.atime IN
 				<foreach item="x_atime" index="index" collection="atimes" 
 					open="(" separator="," close=")">
@@ -1656,7 +1656,7 @@
 				and E.content like #{contentLike}
 			</if>
 
-			<if test="contents != null and contents.size() &gt; 0">
+			<if test="contents != null and contents.size != 0">
 			    and E.content IN
 				<foreach item="x_content" index="index" collection="contents" 
 					open="(" separator="," close=")">
@@ -1673,7 +1673,7 @@
 				and E.islocate like #{islocateLike}
 			</if>
 
-			<if test="islocates != null and islocates.size() &gt; 0">
+			<if test="islocates != null and islocates.size != 0">
 			    and E.islocate IN
 				<foreach item="x_islocate" index="index" collection="islocates" 
 					open="(" separator="," close=")">
@@ -1690,7 +1690,7 @@
 				and E.topnode like #{topnodeLike}
 			</if>
 
-			<if test="topnodes != null and topnodes.size() &gt; 0">
+			<if test="topnodes != null and topnodes.size != 0">
 			    and E.topnode IN
 				<foreach item="x_topnode" index="index" collection="topnodes" 
 					open="(" separator="," close=")">
@@ -1707,7 +1707,7 @@
 				and E.lcontent like #{lcontentLike}
 			</if>
 
-			<if test="lcontents != null and lcontents.size() &gt; 0">
+			<if test="lcontents != null and lcontents.size != 0">
 			    and E.lcontent IN
 				<foreach item="x_lcontent" index="index" collection="lcontents" 
 					open="(" separator="," close=")">
@@ -1724,7 +1724,7 @@
 				and E.lcompany like #{lcompanyLike}
 			</if>
 
-			<if test="lcompanys != null and lcompanys.size() &gt; 0">
+			<if test="lcompanys != null and lcompanys.size != 0">
 			    and E.lcompany IN
 				<foreach item="x_lcompany" index="index" collection="lcompanys" 
 					open="(" separator="," close=")">
@@ -1741,7 +1741,7 @@
 				and E.lman like #{lmanLike}
 			</if>
 
-			<if test="lmans != null and lmans.size() &gt; 0">
+			<if test="lmans != null and lmans.size != 0">
 			    and E.lman IN
 				<foreach item="x_lman" index="index" collection="lmans" 
 					open="(" separator="," close=")">
@@ -1758,7 +1758,7 @@
 				and E.llen like #{llenLike}
 			</if>
 
-			<if test="llens != null and llens.size() &gt; 0">
+			<if test="llens != null and llens.size != 0">
 			    and E.llen IN
 				<foreach item="x_llen" index="index" collection="llens" 
 					open="(" separator="," close=")">
@@ -1779,7 +1779,7 @@
 				and E.ldate &lt;= #{ldateLessThanOrEqual}
 			</if>
 
-			<if test="ldates != null and ldates.size() &gt; 0">
+			<if test="ldates != null and ldates.size != 0">
 			    and E.ldate IN
 				<foreach item="x_ldate" index="index" collection="ldates" 
 					open="(" separator="," close=")">
@@ -1796,7 +1796,7 @@
 				and E.jconten like #{jcontenLike}
 			</if>
 
-			<if test="jcontens != null and jcontens.size() &gt; 0">
+			<if test="jcontens != null and jcontens.size != 0">
 			    and E.jconten IN
 				<foreach item="x_jconten" index="index" collection="jcontens" 
 					open="(" separator="," close=")">
@@ -1813,7 +1813,7 @@
 				and E.jplace like #{jplaceLike}
 			</if>
 
-			<if test="jplaces != null and jplaces.size() &gt; 0">
+			<if test="jplaces != null and jplaces.size != 0">
 			    and E.jplace IN
 				<foreach item="x_jplace" index="index" collection="jplaces" 
 					open="(" separator="," close=")">
@@ -1830,7 +1830,7 @@
 				and E.jman like #{jmanLike}
 			</if>
 
-			<if test="jmans != null and jmans.size() &gt; 0">
+			<if test="jmans != null and jmans.size != 0">
 			    and E.jman IN
 				<foreach item="x_jman" index="index" collection="jmans" 
 					open="(" separator="," close=")">
@@ -1847,7 +1847,7 @@
 				and E.jback like #{jbackLike}
 			</if>
 
-			<if test="jbacks != null and jbacks.size() &gt; 0">
+			<if test="jbacks != null and jbacks.size != 0">
 			    and E.jback IN
 				<foreach item="x_jback" index="index" collection="jbacks" 
 					open="(" separator="," close=")">
@@ -1864,7 +1864,7 @@
 				and E.jactor like #{jactorLike}
 			</if>
 
-			<if test="jactors != null and jactors.size() &gt; 0">
+			<if test="jactors != null and jactors.size != 0">
 			    and E.jactor IN
 				<foreach item="x_jactor" index="index" collection="jactors" 
 					open="(" separator="," close=")">
@@ -1881,7 +1881,7 @@
 				and E.tnum like #{tnumLike}
 			</if>
 
-			<if test="tnums != null and tnums.size() &gt; 0">
+			<if test="tnums != null and tnums.size != 0">
 			    and E.tnum IN
 				<foreach item="x_tnum" index="index" collection="tnums" 
 					open="(" separator="," close=")">
@@ -1898,7 +1898,7 @@
 				and E.tzoom like #{tzoomLike}
 			</if>
 
-			<if test="tzooms != null and tzooms.size() &gt; 0">
+			<if test="tzooms != null and tzooms.size != 0">
 			    and E.tzoom IN
 				<foreach item="x_tzoom" index="index" collection="tzooms" 
 					open="(" separator="," close=")">
@@ -1915,7 +1915,7 @@
 				and E.tflag like #{tflagLike}
 			</if>
 
-			<if test="tflags != null and tflags.size() &gt; 0">
+			<if test="tflags != null and tflags.size != 0">
 			    and E.tflag IN
 				<foreach item="x_tflag" index="index" collection="tflags" 
 					open="(" separator="," close=")">
@@ -1932,7 +1932,7 @@
 				and E.tdesigner like #{tdesignerLike}
 			</if>
 
-			<if test="tdesigners != null and tdesigners.size() &gt; 0">
+			<if test="tdesigners != null and tdesigners.size != 0">
 			    and E.tdesigner IN
 				<foreach item="x_tdesigner" index="index" collection="tdesigners" 
 					open="(" separator="," close=")">
@@ -1949,7 +1949,7 @@
 				and E.tviewer like #{tviewerLike}
 			</if>
 
-			<if test="tviewers != null and tviewers.size() &gt; 0">
+			<if test="tviewers != null and tviewers.size != 0">
 			    and E.tviewer IN
 				<foreach item="x_tviewer" index="index" collection="tviewers" 
 					open="(" separator="," close=")">
@@ -1966,7 +1966,7 @@
 				and E.tassessor like #{tassessorLike}
 			</if>
 
-			<if test="tassessors != null and tassessors.size() &gt; 0">
+			<if test="tassessors != null and tassessors.size != 0">
 			    and E.tassessor IN
 				<foreach item="x_tassessor" index="index" collection="tassessors" 
 					open="(" separator="," close=")">
@@ -1983,7 +1983,7 @@
 				and E.tvision like #{tvisionLike}
 			</if>
 
-			<if test="tvisions != null and tvisions.size() &gt; 0">
+			<if test="tvisions != null and tvisions.size != 0">
 			    and E.tvision IN
 				<foreach item="x_tvision" index="index" collection="tvisions" 
 					open="(" separator="," close=")">
@@ -2004,7 +2004,7 @@
 				and E.finishday &lt;= #{finishdayLessThanOrEqual}
 			</if>
 
-			<if test="finishdays != null and finishdays.size() &gt; 0">
+			<if test="finishdays != null and finishdays.size != 0">
 			    and E.finishday IN
 				<foreach item="x_finishday" index="index" collection="finishdays" 
 					open="(" separator="," close=")">

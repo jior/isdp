@@ -201,7 +201,7 @@
 				and E.tablename like #{tablenameLike}
 			</if>
 
-			<if test="tablenames != null and tablenames.size() &gt; 0">
+			<if test="tablenames != null and tablenames.size != 0">
 			    and E.tablename IN
 				<foreach item="x_tablename" index="index" collection="tablenames" 
 					open="(" separator="," close=")">
@@ -218,7 +218,7 @@
 				and E.tablename_s like #{tablenameSLike}
 			</if>
 
-			<if test="tablenameSs != null and tablenameSs.size() &gt; 0">
+			<if test="tablenameSs != null and tablenameSs.size != 0">
 			    and E.tablename_s IN
 				<foreach item="x_tablenameS" index="index" collection="tablenameSs" 
 					open="(" separator="," close=")">
@@ -235,7 +235,7 @@
 				and E.alldname like #{alldnameLike}
 			</if>
 
-			<if test="alldnames != null and alldnames.size() &gt; 0">
+			<if test="alldnames != null and alldnames.size != 0">
 			    and E.alldname IN
 				<foreach item="x_alldname" index="index" collection="alldnames" 
 					open="(" separator="," close=")">
@@ -252,7 +252,7 @@
 				and E.allfname like #{allfnameLike}
 			</if>
 
-			<if test="allfnames != null and allfnames.size() &gt; 0">
+			<if test="allfnames != null and allfnames.size != 0">
 			    and E.allfname IN
 				<foreach item="x_allfname" index="index" collection="allfnames" 
 					open="(" separator="," close=")">
@@ -273,7 +273,7 @@
 				and E.index_id &lt;= #{indexIdLessThanOrEqual}
 			</if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
 				<foreach item="x_indexId" index="index" collection="indexIds" 
 					open="(" separator="," close=")">
@@ -293,7 +293,7 @@
 				and E.intrad &lt;= #{intradLessThanOrEqual}
 			</if>
 
-			<if test="intrads != null and intrads.size() &gt; 0">
+			<if test="intrads != null and intrads.size != 0">
 			    and E.intrad IN
 				<foreach item="x_intrad" index="index" collection="intrads" 
 					open="(" separator="," close=")">
@@ -314,7 +314,7 @@
 				and E.intwbslevel &lt;= #{intwbslevelLessThanOrEqual}
 			</if>
 
-			<if test="intwbslevels != null and intwbslevels.size() &gt; 0">
+			<if test="intwbslevels != null and intwbslevels.size != 0">
 			    and E.intwbslevel IN
 				<foreach item="x_intwbslevel" index="index" collection="intwbslevels" 
 					open="(" separator="," close=")">

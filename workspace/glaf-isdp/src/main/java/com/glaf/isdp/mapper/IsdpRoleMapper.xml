@@ -137,7 +137,7 @@
 				and E.roleName like #{roleNameLike}
 			</if>
 
-			<if test="roleNames != null and roleNames.size() &gt; 0">
+			<if test="roleNames != null and roleNames.size != 0">
 			    and E.roleName IN
 				<foreach item="x_roleName" index="index" collection="roleNames" 
 					open="(" separator="," close=")">
@@ -154,7 +154,7 @@
 				and E.roletype like #{roletypeLike}
 			</if>
 
-			<if test="roletypes != null and roletypes.size() &gt; 0">
+			<if test="roletypes != null and roletypes.size != 0">
 			    and E.roletype IN
 				<foreach item="x_roletype" index="index" collection="roletypes" 
 					open="(" separator="," close=")">
@@ -171,7 +171,7 @@
 				and E.content like #{contentLike}
 			</if>
 
-			<if test="contents != null and contents.size() &gt; 0">
+			<if test="contents != null and contents.size != 0">
 			    and E.content IN
 				<foreach item="x_content" index="index" collection="contents" 
 					open="(" separator="," close=")">
@@ -188,7 +188,7 @@
 				and E.alldata like #{alldataLike}
 			</if>
 
-			<if test="alldatas != null and alldatas.size() &gt; 0">
+			<if test="alldatas != null and alldatas.size != 0">
 			    and E.alldata IN
 				<foreach item="x_alldata" index="index" collection="alldatas" 
 					open="(" separator="," close=")">

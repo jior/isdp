@@ -392,7 +392,7 @@
 				and E.USERID like #{accountLike}
 			</if>
 
-			<if test="accounts != null and accounts.size() &gt; 0">
+			<if test="accounts != null and accounts.size != 0">
 				and E.USERID IN
 				<foreach item="x_account" index="index" collection="accounts"
 					open="(" separator="," close=")">
@@ -408,7 +408,7 @@
 				and E.USERNAME like #{nameLike}
 			</if>
 
-			<if test="names != null and names.size() &gt; 0">
+			<if test="names != null and names.size != 0">
 				and E.USERNAME IN
 				<foreach item="x_name" index="index" collection="names"
 					open="(" separator="," close=")">
@@ -444,7 +444,7 @@
 				and E.DEPID = #{deptId}
 			</if>
 
-			<if test="deptIds != null and deptIds.size() &gt; 0">
+			<if test="deptIds != null and deptIds.size != 0">
 				and E.DEPID IN
 				<foreach item="x_deptId" index="index" collection="deptIds"
 					open="(" separator="," close=")">

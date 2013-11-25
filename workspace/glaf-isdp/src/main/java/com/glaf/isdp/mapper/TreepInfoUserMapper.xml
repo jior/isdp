@@ -254,7 +254,7 @@
 				and E.id like #{idLike}
 			</if>
 
-			<if test="ids != null and ids.size() &gt; 0">
+			<if test="ids != null and ids.size != 0">
 			    and E.id IN
 				<foreach item="x_id" index="index" collection="ids" 
 					open="(" separator="," close=")">
@@ -266,7 +266,7 @@
 				and E.parent_id = #{parentId}
 			</if>
 
-			<if test="parentIds != null and parentIds.size() &gt; 0">
+			<if test="parentIds != null and parentIds.size != 0">
 			    and E.parent_id IN
 				<foreach item="x_parentId" index="index" collection="parentIds" 
 					open="(" separator="," close=")">
@@ -294,7 +294,7 @@
 				and E.nlevel &lt;= #{nlevelLessThanOrEqual}
 			</if>
 
-			<if test="nlevels != null and nlevels.size() &gt; 0">
+			<if test="nlevels != null and nlevels.size != 0">
 			    and E.nlevel IN
 				<foreach item="x_nlevel" index="index" collection="nlevels" 
 					open="(" separator="," close=")">
@@ -311,7 +311,7 @@
 				and E.nodetype like #{nodetypeLike}
 			</if>
 
-			<if test="nodetypes != null and nodetypes.size() &gt; 0">
+			<if test="nodetypes != null and nodetypes.size != 0">
 			    and E.nodetype IN
 				<foreach item="x_nodetype" index="index" collection="nodetypes" 
 					open="(" separator="," close=")">
@@ -332,7 +332,7 @@
 				and E.fromid &lt;= #{fromidLessThanOrEqual}
 			</if>
 
-			<if test="fromids != null and fromids.size() &gt; 0">
+			<if test="fromids != null and fromids.size != 0">
 			    and E.fromid IN
 				<foreach item="x_fromid" index="index" collection="fromids" 
 					open="(" separator="," close=")">
@@ -353,7 +353,7 @@
 				and E.showid &lt;= #{showidLessThanOrEqual}
 			</if>
 
-			<if test="showids != null and showids.size() &gt; 0">
+			<if test="showids != null and showids.size != 0">
 			    and E.showid IN
 				<foreach item="x_showid" index="index" collection="showids" 
 					open="(" separator="," close=")">
@@ -370,7 +370,7 @@
 				and E.projtype like #{projtypeLike}
 			</if>
 
-			<if test="projtypes != null and projtypes.size() &gt; 0">
+			<if test="projtypes != null and projtypes.size != 0">
 			    and E.projtype IN
 				<foreach item="x_projtype" index="index" collection="projtypes" 
 					open="(" separator="," close=")">
@@ -390,7 +390,7 @@
 				and E.part_id &lt;= #{partIdLessThanOrEqual}
 			</if>
 
-			<if test="partIds != null and partIds.size() &gt; 0">
+			<if test="partIds != null and partIds.size != 0">
 			    and E.part_id IN
 				<foreach item="x_partId" index="index" collection="partIds" 
 					open="(" separator="," close=")">
@@ -411,7 +411,7 @@
 				and E.pfiles_index &lt;= #{pfilesIndexLessThanOrEqual}
 			</if>
 
-			<if test="pfilesIndexs != null and pfilesIndexs.size() &gt; 0">
+			<if test="pfilesIndexs != null and pfilesIndexs.size != 0">
 			    and E.pfiles_index IN
 				<foreach item="x_pfilesIndex" index="index" collection="pfilesIndexs" 
 					open="(" separator="," close=")">
@@ -428,7 +428,7 @@
 				and E.type_tablename like #{typeTablenameLike}
 			</if>
 
-			<if test="typeTablenames != null and typeTablenames.size() &gt; 0">
+			<if test="typeTablenames != null and typeTablenames.size != 0">
 			    and E.type_tablename IN
 				<foreach item="x_typeTablename" index="index" collection="typeTablenames" 
 					open="(" separator="," close=")">
@@ -445,7 +445,7 @@
 				and E.strfileLocate like #{strfileLocateLike}
 			</if>
 
-			<if test="strfileLocates != null and strfileLocates.size() &gt; 0">
+			<if test="strfileLocates != null and strfileLocates.size != 0">
 			    and E.strfileLocate IN
 				<foreach item="x_strfileLocate" index="index" collection="strfileLocates" 
 					open="(" separator="," close=")">

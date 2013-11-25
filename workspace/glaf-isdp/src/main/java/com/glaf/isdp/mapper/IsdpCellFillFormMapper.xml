@@ -408,7 +408,7 @@
 				and E.topid like #{topidLike}
 			</if>
 
-			<if test="topids != null and topids.size() &gt; 0">
+			<if test="topids != null and topids.size != 0">
 			    and E.topid IN
 				<foreach item="x_topid" index="index" collection="topids" 
 					open="(" separator="," close=")">
@@ -429,7 +429,7 @@
 				and E.index_id &lt;= #{indexIdLessThanOrEqual}
 			</if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
 				<foreach item="x_indexId" index="index" collection="indexIds" 
 					open="(" separator="," close=")">
@@ -446,7 +446,7 @@
 				and E.task_id like #{taskIdLike}
 			</if>
 
-			<if test="taskIds != null and taskIds.size() &gt; 0">
+			<if test="taskIds != null and taskIds.size != 0">
 			    and E.task_id IN
 				<foreach item="x_taskId" index="index" collection="taskIds" 
 					open="(" separator="," close=")">
@@ -467,7 +467,7 @@
 				and E.pfileflag &lt;= #{pfileflagLessThanOrEqual}
 			</if>
 
-			<if test="pfileflags != null and pfileflags.size() &gt; 0">
+			<if test="pfileflags != null and pfileflags.size != 0">
 			    and E.pfileflag IN
 				<foreach item="x_pfileflag" index="index" collection="pfileflags" 
 					open="(" separator="," close=")">
@@ -484,7 +484,7 @@
 				and E.filedot_fileid like #{filedotFileidLike}
 			</if>
 
-			<if test="filedotFileids != null and filedotFileids.size() &gt; 0">
+			<if test="filedotFileids != null and filedotFileids.size != 0">
 			    and E.filedot_fileid IN
 				<foreach item="x_filedotFileid" index="index" collection="filedotFileids" 
 					open="(" separator="," close=")">
@@ -504,7 +504,7 @@
 				and E.pfile_id like #{pfileIdLike}
 			</if>
 
-			<if test="pfileIds != null and pfileIds.size() &gt; 0">
+			<if test="pfileIds != null and pfileIds.size != 0">
 			    and E.pfile_id IN
 				<foreach item="x_pfileId" index="index" collection="pfileIds" 
 					open="(" separator="," close=")">
@@ -525,7 +525,7 @@
 				and E.tempsave &lt;= #{tempsaveLessThanOrEqual}
 			</if>
 
-			<if test="tempsaves != null and tempsaves.size() &gt; 0">
+			<if test="tempsaves != null and tempsaves.size != 0">
 			    and E.tempsave IN
 				<foreach item="x_tempsave" index="index" collection="tempsaves" 
 					open="(" separator="," close=")">
@@ -542,7 +542,7 @@
 				and E.userid like #{useridLike}
 			</if>
 
-			<if test="userids != null and userids.size() &gt; 0">
+			<if test="userids != null and userids.size != 0">
 			    and E.userid IN
 				<foreach item="x_userid" index="index" collection="userids" 
 					open="(" separator="," close=")">
@@ -563,7 +563,7 @@
 				and E.refillflag &lt;= #{refillflagLessThanOrEqual}
 			</if>
 
-			<if test="refillflags != null and refillflags.size() &gt; 0">
+			<if test="refillflags != null and refillflags.size != 0">
 			    and E.refillflag IN
 				<foreach item="x_refillflag" index="index" collection="refillflags" 
 					open="(" separator="," close=")">
@@ -584,7 +584,7 @@
 				and E.groupid &lt;= #{groupidLessThanOrEqual}
 			</if>
 
-			<if test="groupids != null and groupids.size() &gt; 0">
+			<if test="groupids != null and groupids.size != 0">
 			    and E.groupid IN
 				<foreach item="x_groupid" index="index" collection="groupids" 
 					open="(" separator="," close=")">
@@ -601,7 +601,7 @@
 				and E.old_id like #{oldIdLike}
 			</if>
 
-			<if test="oldIds != null and oldIds.size() &gt; 0">
+			<if test="oldIds != null and oldIds.size != 0">
 			    and E.old_id IN
 				<foreach item="x_oldId" index="index" collection="oldIds" 
 					open="(" separator="," close=")">
@@ -621,7 +621,7 @@
 				and E.role_id &lt;= #{roleIdLessThanOrEqual}
 			</if>
 
-			<if test="roleIds != null and roleIds.size() &gt; 0">
+			<if test="roleIds != null and roleIds.size != 0">
 			    and E.role_id IN
 				<foreach item="x_roleId" index="index" collection="roleIds" 
 					open="(" separator="," close=")">
@@ -641,7 +641,7 @@
 				and E.isfinish &lt;= #{isfinishLessThanOrEqual}
 			</if>
 
-			<if test="isfinishs != null and isfinishs.size() &gt; 0">
+			<if test="isfinishs != null and isfinishs.size != 0">
 			    and E.isfinish IN
 				<foreach item="x_isfinish" index="index" collection="isfinishs" 
 					open="(" separator="," close=")">
@@ -657,7 +657,7 @@
 				and E.type_tablename like #{typeTablenameLike}
 			</if>
 
-			<if test="typeTablenames != null and typeTablenames.size() &gt; 0">
+			<if test="typeTablenames != null and typeTablenames.size != 0">
 			    and E.type_tablename IN
 				<foreach item="x_typeTablename" index="index" collection="typeTablenames" 
 					open="(" separator="," close=")">
@@ -673,7 +673,7 @@
 				and E.type_id like #{typeIdLike}
 			</if>
 
-			<if test="typeIds != null and typeIds.size() &gt; 0">
+			<if test="typeIds != null and typeIds.size != 0">
 			    and E.type_id IN
 				<foreach item="x_typeId" index="index" collection="typeIds" 
 					open="(" separator="," close=")">
@@ -693,7 +693,7 @@
 				and E.type_index_id &lt;= #{typeIndexIdLessThanOrEqual}
 			</if>
 
-			<if test="typeIndexIds != null and typeIndexIds.size() &gt; 0">
+			<if test="typeIndexIds != null and typeIndexIds.size != 0">
 			    and E.type_index_id IN
 				<foreach item="x_typeIndexId" index="index" collection="typeIndexIds" 
 					open="(" separator="," close=")">
@@ -709,7 +709,7 @@
 				and E.main_id like #{mainIdLike}
 			</if>
 
-			<if test="mainIds != null and mainIds.size() &gt; 0">
+			<if test="mainIds != null and mainIds.size != 0">
 			    and E.main_id IN
 				<foreach item="x_mainId" index="index" collection="mainIds" 
 					open="(" separator="," close=")">

@@ -133,7 +133,7 @@
 				and E.index_id &lt;= #{indexIdLessThanOrEqual}
             </if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
                 <foreach item="x_indexId" index="index" collection="indexIds" 
                      open="(" separator="," close=")">
@@ -154,7 +154,7 @@
 				and E.treeproj_par_user1 &lt;= #{treeProjectParUser1LessThanOrEqual}
             </if>
 
-			<if test="treeProjectParUser1s != null and treeProjectParUser1s.size() &gt; 0">
+			<if test="treeProjectParUser1s != null and treeProjectParUser1s.size != 0">
 			    and E.treeproj_par_user1 IN
                 <foreach item="x_treeProjectParUser1" index="index" collection="treeProjectParUser1s" 
                      open="(" separator="," close=")">

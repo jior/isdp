@@ -183,7 +183,7 @@
 				and E.roleID = #{roleId}
             </if>
 
-			<if test="roleIds != null and roleIds.size() &gt; 0">
+			<if test="roleIds != null and roleIds.size != 0">
 			    and E.roleID IN
                 <foreach item="x_roleId" index="index" collection="roleIds" 
                      open="(" separator="," close=")">
@@ -200,7 +200,7 @@
 				and E.usetype like #{useTypeLike}
             </if>
 
-			<if test="useTypes != null and useTypes.size() &gt; 0">
+			<if test="useTypes != null and useTypes.size != 0">
 			    and E.usetype IN
                 <foreach item="x_useType" index="index" collection="useTypes" 
                      open="(" separator="," close=")">
@@ -220,7 +220,7 @@
 				and E.treetype &lt;= #{treeTypeLessThanOrEqual}
             </if>
 
-			<if test="treeTypes != null and treeTypes.size() &gt; 0">
+			<if test="treeTypes != null and treeTypes.size != 0">
 			    and E.treetype IN
                 <foreach item="x_treeType" index="index" collection="treeTypes" 
                      open="(" separator="," close=")">
@@ -244,7 +244,7 @@
 				and E.treeid like #{treeIdLike}
             </if>
 
-			<if test="treeIds != null and treeIds.size() &gt; 0">
+			<if test="treeIds != null and treeIds.size != 0">
 			    and E.treeid IN
                 <foreach item="x_treeId" index="index" collection="treeIds" 
                      open="(" separator="," close=")">

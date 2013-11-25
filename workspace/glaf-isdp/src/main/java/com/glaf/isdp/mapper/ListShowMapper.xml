@@ -249,7 +249,7 @@
 				and E.index_id = #{indexId}
 			</if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
 				<foreach item="x_indexId" index="index" collection="indexIds" 
 					open="(" separator="," close=")">
@@ -261,7 +261,7 @@
 				and E.listId = #{listId}
 			</if>
 
-			<if test="listIds != null and listIds.size() &gt; 0">
+			<if test="listIds != null and listIds.size != 0">
 			    and E.listId IN
 				<foreach item="x_listId" index="index" collection="listIds" 
 					open="(" separator="," close=")">
@@ -277,7 +277,7 @@
 				and E.frmtype like #{frmtypeLike}
 			</if>
 
-			<if test="frmtypes != null and frmtypes.size() &gt; 0">
+			<if test="frmtypes != null and frmtypes.size != 0">
 			    and E.frmtype IN
 				<foreach item="x_frmtype" index="index" collection="frmtypes" 
 					open="(" separator="," close=")">

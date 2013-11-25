@@ -152,7 +152,7 @@
 				and E.index_id &lt;= #{indexIdLessThanOrEqual}
 			</if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
 				<foreach item="x_indexId" index="index" collection="indexIds" 
 					open="(" separator="," close=")">
@@ -172,7 +172,7 @@
 				and E.tab_index &lt;= #{tabIndexLessThanOrEqual}
 			</if>
 
-			<if test="tabIndexs != null and tabIndexs.size() &gt; 0">
+			<if test="tabIndexs != null and tabIndexs.size != 0">
 			    and E.tab_index IN
 				<foreach item="x_tabIndex" index="index" collection="tabIndexs" 
 					open="(" separator="," close=")">

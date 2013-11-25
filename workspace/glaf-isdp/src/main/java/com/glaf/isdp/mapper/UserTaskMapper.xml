@@ -436,7 +436,7 @@
 				and E.parent_id = #{parentId}
 			</if>
 
-			<if test="parentIds != null and parentIds.size() &gt; 0">
+			<if test="parentIds != null and parentIds.size != 0">
 				and E.parent_id IN
 				<foreach item="x_parentId" index="index" collection="parentIds"
 					open="(" separator="," close=")">
@@ -452,7 +452,7 @@
 				and E.actorId = #{actorId}
 			</if>
 
-			<if test="actorIds != null and actorIds.size() &gt; 0">
+			<if test="actorIds != null and actorIds.size != 0">
 				and E.actorId IN
 				<foreach item="x_actorId" index="index" collection="actorIds"
 					open="(" separator="," close=")">
@@ -476,7 +476,7 @@
 				and E.activityId = #{activityId}
 			</if>
 
-			<if test="activityIds != null and activityIds.size() &gt; 0">
+			<if test="activityIds != null and activityIds.size != 0">
 				and E.activityId IN
 				<foreach item="x_activityId" index="index" collection="activityIds"
 					open="(" separator="," close=")">
@@ -512,7 +512,7 @@
 				and E.state &lt;= #{stateLessThanOrEqual}
 			</if>
 
-			<if test="states != null and states.size() &gt; 0">
+			<if test="states != null and states.size != 0">
 				and E.state IN
 				<foreach item="x_state" index="index" collection="states"
 					open="(" separator="," close=")">

@@ -133,7 +133,7 @@
 			<if test="viewCount != null">
 				,VIEWCOUNT_
 			</if>
-			<if test="extendedColumns != null and  extendedColumns.size() &gt; 0">
+			<if test="extendedColumns != null and  extendedColumns.size != 0">
 	          <foreach collection="extendedColumns" item="column">
 			    <if test="column.value != null">
 				,${column.columnName}
@@ -392,7 +392,7 @@
 		<where>
 			1 = 1
 
-			<if test="processInstanceIds != null and processInstanceIds.size() &gt; 0">
+			<if test="processInstanceIds != null and processInstanceIds.size != 0">
 				and E.PROCESSINSTANCEID_ IN
 				<foreach item="x_processInstanceId" index="index"
 					collection="processInstanceIds" open="(" separator="," close=")">
@@ -404,7 +404,7 @@
 				and E.PROCESSNAME_ = #{processName}
 			</if>
 
-			<if test="processNames != null and processNames.size() &gt; 0">
+			<if test="processNames != null and processNames.size != 0">
 				and E.PROCESSNAME_ IN
 				<foreach item="x_processName" index="index" collection="processNames"
 					open="(" separator="," close=")">
@@ -412,7 +412,7 @@
 				</foreach>
 			</if>
 
-			<if test="rowIds != null and rowIds.size() &gt; 0">
+			<if test="rowIds != null and rowIds.size != 0">
 				and E.ID_ IN
 				<foreach item="x_rowId" index="index" collection="rowIds"
 					open="(" separator="," close=")">
@@ -488,7 +488,7 @@
 				and E.NODEID_ = #{nodeId}
 			</if>
 
-			<if test="nodeIds != null and nodeIds.size() &gt; 0">
+			<if test="nodeIds != null and nodeIds.size != 0">
 				and E.NODEID_ IN
 				<foreach item="x_nodeId" index="index" collection="nodeIds"
 					open="(" separator="," close=")">

@@ -309,7 +309,7 @@
 				and E.id like #{idLike}
 			</if>
 
-			<if test="ids != null and ids.size() &gt; 0">
+			<if test="ids != null and ids.size != 0">
 			    and E.id IN
 				<foreach item="x_id" index="index" collection="ids" 
 					open="(" separator="," close=")">
@@ -322,7 +322,7 @@
 				and E.parent_id != E.index_id
 			</if>
 
-			<if test="parentIds != null and parentIds.size() &gt; 0">
+			<if test="parentIds != null and parentIds.size != 0">
 			    and E.parent_id IN
 				<foreach item="x_parentId" index="index" collection="parentIds" 
 					open="(" separator="," close=")">
@@ -348,7 +348,7 @@
 				and E.ftype = #{ftype}
 			</if>
 
-			<if test="ftypes != null and ftypes.size() &gt; 0">
+			<if test="ftypes != null and ftypes.size != 0">
 			    and E.ftype IN
 				<foreach item="x_ftype" index="index" collection="ftypes" 
 					open="(" separator="," close=")">
@@ -368,7 +368,7 @@
 				and E.ztype = #{ztype}
 			</if>
 
-			<if test="ztypes != null and ztypes.size() &gt; 0">
+			<if test="ztypes != null and ztypes.size != 0">
 			    and E.ztype IN
 				<foreach item="x_ztype" index="index" collection="ztypes" 
 					open="(" separator="," close=")">
@@ -388,7 +388,7 @@
 				and E.topnode like #{topnodeLike}
 			</if>
 
-			<if test="topnodes != null and topnodes.size() &gt; 0">
+			<if test="topnodes != null and topnodes.size != 0">
 			    and E.topnode IN
 				<foreach item="x_topnode" index="index" collection="topnodes" 
 					open="(" separator="," close=")">

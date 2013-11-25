@@ -198,7 +198,7 @@
 				and E.process_id like #{processIdLike}
 			</if>
 
-			<if test="processIds != null and processIds.size() &gt; 0">
+			<if test="processIds != null and processIds.size != 0">
 			    and E.process_id IN
 				<foreach item="x_processId" index="index" collection="processIds" 
 					open="(" separator="," close=")">
@@ -215,7 +215,7 @@
 				and E.activ_id like #{activIdLike}
 			</if>
 
-			<if test="activIds != null and activIds.size() &gt; 0">
+			<if test="activIds != null and activIds.size != 0">
 			    and E.activ_id IN
 				<foreach item="x_activId" index="index" collection="activIds" 
 					open="(" separator="," close=")">
@@ -232,7 +232,7 @@
 				and E.activ_pre like #{activPreLike}
 			</if>
 
-			<if test="activPres != null and activPres.size() &gt; 0">
+			<if test="activPres != null and activPres.size != 0">
 			    and E.activ_pre IN
 				<foreach item="x_activPre" index="index" collection="activPres" 
 					open="(" separator="," close=")">
@@ -249,7 +249,7 @@
 				and E.activ_next like #{activNextLike}
 			</if>
 
-			<if test="activNexts != null and activNexts.size() &gt; 0">
+			<if test="activNexts != null and activNexts.size != 0">
 			    and E.activ_next IN
 				<foreach item="x_activNext" index="index" collection="activNexts" 
 					open="(" separator="," close=")">
@@ -270,7 +270,7 @@
 				and E.issave &lt;= #{issaveLessThanOrEqual}
 			</if>
 
-			<if test="issaves != null and issaves.size() &gt; 0">
+			<if test="issaves != null and issaves.size != 0">
 			    and E.issave IN
 				<foreach item="x_issave" index="index" collection="issaves" 
 					open="(" separator="," close=")">

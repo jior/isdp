@@ -246,7 +246,7 @@
 				and E.treeproj_index &lt;= #{treeprojIndexLessThanOrEqual}
 			</if>
 
-			<if test="treeprojIndexs != null and treeprojIndexs.size() &gt; 0">
+			<if test="treeprojIndexs != null and treeprojIndexs.size != 0">
 			    and E.treeproj_index IN
 				<foreach item="x_treeprojIndex" index="index" collection="treeprojIndexs" 
 					open="(" separator="," close=")">
@@ -278,7 +278,7 @@
 				and E.isuse &lt;= #{isuseLessThanOrEqual}
 			</if>
 
-			<if test="isuses != null and isuses.size() &gt; 0">
+			<if test="isuses != null and isuses.size != 0">
 			    and E.isuse IN
 				<foreach item="x_isuse" index="index" collection="isuses" 
 					open="(" separator="," close=")">
@@ -290,7 +290,7 @@
 				and E.id like #{idLike}
 			</if>
 			
-			<if test="ids != null and ids.size() &gt; 0">
+			<if test="ids != null and ids.size != 0">
 			    and E.id IN
 				<foreach item="x_id" index="index" collection="ids" 
 					open="(" separator="," close=")">
@@ -302,7 +302,7 @@
 				and E.parent_id = #{parentId}
 			</if>
 
-			<if test="parentIds != null and parentIds.size() &gt; 0">
+			<if test="parentIds != null and parentIds.size != 0">
 			    and E.parent_id IN
 				<foreach item="x_parentId" index="index" collection="parentIds" 
 					open="(" separator="," close=")">
@@ -322,7 +322,7 @@
 				and E.inttype &lt;= #{inttypeLessThanOrEqual}
 			</if>
 
-			<if test="inttypes != null and inttypes.size() &gt; 0">
+			<if test="inttypes != null and inttypes.size != 0">
 			    and E.inttype IN
 				<foreach item="x_inttype" index="index" collection="inttypes" 
 					open="(" separator="," close=")">

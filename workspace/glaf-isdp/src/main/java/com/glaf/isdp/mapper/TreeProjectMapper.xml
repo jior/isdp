@@ -295,7 +295,7 @@
 				and E.parent_id = #{parentId}
 			</if>
 
-			<if test="parentIds != null and parentIds.size() &gt; 0">
+			<if test="parentIds != null and parentIds.size != 0">
 			    and E.parent_id IN
 				<foreach item="x_parentId" index="index" collection="parentIds" 
 					open="(" separator="," close=")">
@@ -315,7 +315,7 @@
 				and E.top_id &lt;= #{topIdLessThanOrEqual}
 			</if>
 
-			<if test="topIds != null and topIds.size() &gt; 0">
+			<if test="topIds != null and topIds.size != 0">
 			    and E.top_id IN
 				<foreach item="x_topId" index="index" collection="topIds" 
 					open="(" separator="," close=")">
@@ -339,7 +339,7 @@
 				and E.nlevel &lt;= #{nlevelLessThanOrEqual}
 			</if>
 
-			<if test="nlevels != null and nlevels.size() &gt; 0">
+			<if test="nlevels != null and nlevels.size != 0">
 			    and E.nlevel IN
 				<foreach item="x_nlevel" index="index" collection="nlevels" 
 					open="(" separator="," close=")">
@@ -363,7 +363,7 @@
 				and E.useId like #{useIdLike}
 			</if>
 
-			<if test="useIds != null and useIds.size() &gt; 0">
+			<if test="useIds != null and useIds.size != 0">
 			    and E.useId IN
 				<foreach item="x_useId" index="index" collection="useIds" 
 					open="(" separator="," close=")">
@@ -387,7 +387,7 @@
 				and E.topnode like #{topnodeLike}
 			</if>
 
-			<if test="topnodes != null and topnodes.size() &gt; 0">
+			<if test="topnodes != null and topnodes.size != 0">
 			    and E.topnode IN
 				<foreach item="x_topnode" index="index" collection="topnodes" 
 					open="(" separator="," close=")">
@@ -403,7 +403,7 @@
 				and E.projtype like #{projtypeLike}
 			</if>
 
-			<if test="projtypes != null and projtypes.size() &gt; 0">
+			<if test="projtypes != null and projtypes.size != 0">
 			    and E.projtype IN
 				<foreach item="x_projtype" index="index" collection="projtypes" 
 					open="(" separator="," close=")">
@@ -420,7 +420,7 @@
 				and E.unitnum like #{unitnumLike}
 			</if>
 
-			<if test="unitnums != null and unitnums.size() &gt; 0">
+			<if test="unitnums != null and unitnums.size != 0">
 			    and E.unitnum IN
 				<foreach item="x_unitnum" index="index" collection="unitnums" 
 					open="(" separator="," close=")">
@@ -441,7 +441,7 @@
 				and E.showid &lt;= #{showidLessThanOrEqual}
 			</if>
 
-			<if test="showids != null and showids.size() &gt; 0">
+			<if test="showids != null and showids.size != 0">
 			    and E.showid IN
 				<foreach item="x_showid" index="index" collection="showids" 
 					open="(" separator="," close=")">
@@ -462,7 +462,7 @@
 				and E.scale_q &lt;= #{scaleQLessThanOrEqual}
 			</if>
 
-			<if test="scaleQs != null and scaleQs.size() &gt; 0">
+			<if test="scaleQs != null and scaleQs.size != 0">
 			    and E.scale_q IN
 				<foreach item="x_scaleQ" index="index" collection="scaleQs" 
 					open="(" separator="," close=")">
@@ -478,7 +478,7 @@
 				and E.ispegwork like #{ispegworkLike}
 			</if>
 
-			<if test="ispegworks != null and ispegworks.size() &gt; 0">
+			<if test="ispegworks != null and ispegworks.size != 0">
 			    and E.ispegwork IN
 				<foreach item="x_ispegwork" index="index" collection="ispegworks" 
 					open="(" separator="," close=")">

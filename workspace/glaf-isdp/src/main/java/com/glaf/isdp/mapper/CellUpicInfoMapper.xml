@@ -408,7 +408,7 @@
 				and E.topid like #{topidLike}
 			</if>
 
-			<if test="topids != null and topids.size() &gt; 0">
+			<if test="topids != null and topids.size != 0">
 			    and E.topid IN
 				<foreach item="x_topid" index="index" collection="topids" 
 					open="(" separator="," close=")">
@@ -429,7 +429,7 @@
 				and E.index_id &lt;= #{indexIdLessThanOrEqual}
 			</if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
 				<foreach item="x_indexId" index="index" collection="indexIds" 
 					open="(" separator="," close=")">
@@ -446,7 +446,7 @@
 				and E.task_id like #{taskIdLike}
 			</if>
 
-			<if test="taskIds != null and taskIds.size() &gt; 0">
+			<if test="taskIds != null and taskIds.size != 0">
 			    and E.task_id IN
 				<foreach item="x_taskId" index="index" collection="taskIds" 
 					open="(" separator="," close=")">
@@ -467,7 +467,7 @@
 				and E.pfileflag &lt;= #{pfileflagLessThanOrEqual}
 			</if>
 
-			<if test="pfileflags != null and pfileflags.size() &gt; 0">
+			<if test="pfileflags != null and pfileflags.size != 0">
 			    and E.pfileflag IN
 				<foreach item="x_pfileflag" index="index" collection="pfileflags" 
 					open="(" separator="," close=")">
@@ -484,7 +484,7 @@
 				and E.filedot_fileid like #{filedotFileidLike}
 			</if>
 
-			<if test="filedotFileids != null and filedotFileids.size() &gt; 0">
+			<if test="filedotFileids != null and filedotFileids.size != 0">
 			    and E.filedot_fileid IN
 				<foreach item="x_filedotFileid" index="index" collection="filedotFileids" 
 					open="(" separator="," close=")">
@@ -505,7 +505,7 @@
 				and E.listno &lt;= #{listnoLessThanOrEqual}
 			</if>
 
-			<if test="listnos != null and listnos.size() &gt; 0">
+			<if test="listnos != null and listnos.size != 0">
 			    and E.listno IN
 				<foreach item="x_listno" index="index" collection="listnos" 
 					open="(" separator="," close=")">
@@ -526,7 +526,7 @@
 				and E.chktotal &lt;= #{chktotalLessThanOrEqual}
 			</if>
 
-			<if test="chktotals != null and chktotals.size() &gt; 0">
+			<if test="chktotals != null and chktotals.size != 0">
 			    and E.chktotal IN
 				<foreach item="x_chktotal" index="index" collection="chktotals" 
 					open="(" separator="," close=")">
@@ -547,7 +547,7 @@
 				and E.chkresult &lt;= #{chkresultLessThanOrEqual}
 			</if>
 
-			<if test="chkresults != null and chkresults.size() &gt; 0">
+			<if test="chkresults != null and chkresults.size != 0">
 			    and E.chkresult IN
 				<foreach item="x_chkresult" index="index" collection="chkresults" 
 					open="(" separator="," close=")">
@@ -564,7 +564,7 @@
 				and E.pfile_id like #{pfileIdLike}
 			</if>
 
-			<if test="pfileIds != null and pfileIds.size() &gt; 0">
+			<if test="pfileIds != null and pfileIds.size != 0">
 			    and E.pfile_id IN
 				<foreach item="x_pfileId" index="index" collection="pfileIds" 
 					open="(" separator="," close=")">
@@ -581,7 +581,7 @@
 				and E.userid like #{useridLike}
 			</if>
 
-			<if test="userids != null and userids.size() &gt; 0">
+			<if test="userids != null and userids.size != 0">
 			    and E.userid IN
 				<foreach item="x_userid" index="index" collection="userids" 
 					open="(" separator="," close=")">
@@ -602,7 +602,7 @@
 				and E.refillflag &lt;= #{refillflagLessThanOrEqual}
 			</if>
 
-			<if test="refillflags != null and refillflags.size() &gt; 0">
+			<if test="refillflags != null and refillflags.size != 0">
 			    and E.refillflag IN
 				<foreach item="x_refillflag" index="index" collection="refillflags" 
 					open="(" separator="," close=")">
@@ -623,7 +623,7 @@
 				and E.groupid &lt;= #{groupidLessThanOrEqual}
 			</if>
 
-			<if test="groupids != null and groupids.size() &gt; 0">
+			<if test="groupids != null and groupids.size != 0">
 			    and E.groupid IN
 				<foreach item="x_groupid" index="index" collection="groupids" 
 					open="(" separator="," close=")">
@@ -640,7 +640,7 @@
 				and E.old_id like #{oldIdLike}
 			</if>
 
-			<if test="oldIds != null and oldIds.size() &gt; 0">
+			<if test="oldIds != null and oldIds.size != 0">
 			    and E.old_id IN
 				<foreach item="x_oldId" index="index" collection="oldIds" 
 					open="(" separator="," close=")">
@@ -661,7 +661,7 @@
 				and E.role_id &lt;= #{roleIdLessThanOrEqual}
 			</if>
 
-			<if test="roleIds != null and roleIds.size() &gt; 0">
+			<if test="roleIds != null and roleIds.size != 0">
 			    and E.role_id IN
 				<foreach item="x_roleId" index="index" collection="roleIds" 
 					open="(" separator="," close=")">
@@ -682,7 +682,7 @@
 				and E.isfinish &lt;= #{isfinishLessThanOrEqual}
 			</if>
 
-			<if test="isfinishs != null and isfinishs.size() &gt; 0">
+			<if test="isfinishs != null and isfinishs.size != 0">
 			    and E.isfinish IN
 				<foreach item="x_isfinish" index="index" collection="isfinishs" 
 					open="(" separator="," close=")">
@@ -699,7 +699,7 @@
 				and E.tagnum like #{tagnumLike}
 			</if>
 
-			<if test="tagnums != null and tagnums.size() &gt; 0">
+			<if test="tagnums != null and tagnums.size != 0">
 			    and E.tagnum IN
 				<foreach item="x_tagnum" index="index" collection="tagnums" 
 					open="(" separator="," close=")">
@@ -720,7 +720,7 @@
 				and E.ctime &lt;= #{ctimeLessThanOrEqual}
 			</if>
 
-			<if test="ctimes != null and ctimes.size() &gt; 0">
+			<if test="ctimes != null and ctimes.size != 0">
 			    and E.ctime IN
 				<foreach item="x_ctime" index="index" collection="ctimes" 
 					open="(" separator="," close=")">
@@ -737,7 +737,7 @@
 				and E.tname like #{tnameLike}
 			</if>
 
-			<if test="tnames != null and tnames.size() &gt; 0">
+			<if test="tnames != null and tnames.size != 0">
 			    and E.tname IN
 				<foreach item="x_tname" index="index" collection="tnames" 
 					open="(" separator="," close=")">
@@ -758,7 +758,7 @@
 				and E.page &lt;= #{pageLessThanOrEqual}
 			</if>
 
-			<if test="pages != null and pages.size() &gt; 0">
+			<if test="pages != null and pages.size != 0">
 			    and E.page IN
 				<foreach item="x_page" index="index" collection="pages" 
 					open="(" separator="," close=")">
@@ -775,7 +775,7 @@
 				and E.duty like #{dutyLike}
 			</if>
 
-			<if test="dutys != null and dutys.size() &gt; 0">
+			<if test="dutys != null and dutys.size != 0">
 			    and E.duty IN
 				<foreach item="x_duty" index="index" collection="dutys" 
 					open="(" separator="," close=")">
@@ -792,7 +792,7 @@
 				and E.thematic like #{thematicLike}
 			</if>
 
-			<if test="thematics != null and thematics.size() &gt; 0">
+			<if test="thematics != null and thematics.size != 0">
 			    and E.thematic IN
 				<foreach item="x_thematic" index="index" collection="thematics" 
 					open="(" separator="," close=")">
@@ -809,7 +809,7 @@
 				and E.annotations like #{annotationsLike}
 			</if>
 
-			<if test="annotationss != null and annotationss.size() &gt; 0">
+			<if test="annotationss != null and annotationss.size != 0">
 			    and E.annotations IN
 				<foreach item="x_annotations" index="index" collection="annotationss" 
 					open="(" separator="," close=")">
@@ -830,7 +830,7 @@
 				and E.type_index_id &lt;= #{typeIndexIdLessThanOrEqual}
 			</if>
 
-			<if test="typeIndexIds != null and typeIndexIds.size() &gt; 0">
+			<if test="typeIndexIds != null and typeIndexIds.size != 0">
 			    and E.type_index_id IN
 				<foreach item="x_typeIndexId" index="index" collection="typeIndexIds" 
 					open="(" separator="," close=")">
@@ -847,7 +847,7 @@
 				and E.type_id like #{typeIdLike}
 			</if>
 
-			<if test="typeIds != null and typeIds.size() &gt; 0">
+			<if test="typeIds != null and typeIds.size != 0">
 			    and E.type_id IN
 				<foreach item="x_typeId" index="index" collection="typeIds" 
 					open="(" separator="," close=")">

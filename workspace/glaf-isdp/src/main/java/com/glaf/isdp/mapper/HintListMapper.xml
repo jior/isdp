@@ -165,7 +165,7 @@
 				and E.hintid like #{hintidLike}
 			</if>
 
-			<if test="hintids != null and hintids.size() &gt; 0">
+			<if test="hintids != null and hintids.size != 0">
 			    and E.hintid IN
 				<foreach item="x_hintid" index="index" collection="hintids" 
 					open="(" separator="," close=")">

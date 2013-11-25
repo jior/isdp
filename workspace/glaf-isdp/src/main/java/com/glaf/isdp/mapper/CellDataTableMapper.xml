@@ -386,7 +386,7 @@
 				and E.tablename like #{tablenameLike}
 			</if>
 
-			<if test="tablenames != null and tablenames.size() &gt; 0">
+			<if test="tablenames != null and tablenames.size != 0">
 			    and E.tablename IN
 				<foreach item="x_tablename" index="index" collection="tablenames" 
 					open="(" separator="," close=")">
@@ -410,7 +410,7 @@
 				and E.addtype &lt;= #{addtypeLessThanOrEqual}
 			</if>
 
-			<if test="addtypes != null and addtypes.size() &gt; 0">
+			<if test="addtypes != null and addtypes.size != 0">
 			    and E.addtype IN
 				<foreach item="x_addtype" index="index" collection="addtypes" 
 					open="(" separator="," close=")">
@@ -430,7 +430,7 @@
 				and E.maxuser &lt;= #{maxuserLessThanOrEqual}
 			</if>
 
-			<if test="maxusers != null and maxusers.size() &gt; 0">
+			<if test="maxusers != null and maxusers.size != 0">
 			    and E.maxuser IN
 				<foreach item="x_maxuser" index="index" collection="maxusers" 
 					open="(" separator="," close=")">
@@ -450,7 +450,7 @@
 				and E.maxsys &lt;= #{maxsysLessThanOrEqual}
 			</if>
 
-			<if test="maxsyss != null and maxsyss.size() &gt; 0">
+			<if test="maxsyss != null and maxsyss.size != 0">
 			    and E.maxsys IN
 				<foreach item="x_maxsys" index="index" collection="maxsyss" 
 					open="(" separator="," close=")">
@@ -466,7 +466,7 @@
 				and E.userid like #{useridLike}
 			</if>
 
-			<if test="userids != null and userids.size() &gt; 0">
+			<if test="userids != null and userids.size != 0">
 			    and E.userid IN
 				<foreach item="x_userid" index="index" collection="userids" 
 					open="(" separator="," close=")">
@@ -494,7 +494,7 @@
 				and E.sysnum like #{sysnumLike}
 			</if>
 
-			<if test="sysnums != null and sysnums.size() &gt; 0">
+			<if test="sysnums != null and sysnums.size != 0">
 			    and E.sysnum IN
 				<foreach item="x_sysnum" index="index" collection="sysnums" 
 					open="(" separator="," close=")">
@@ -514,7 +514,7 @@
 				and E.topid like #{topidLike}
 			</if>
 
-			<if test="topids != null and topids.size() &gt; 0">
+			<if test="topids != null and topids.size != 0">
 			    and E.topid IN
 				<foreach item="x_topid" index="index" collection="topids" 
 					open="(" separator="," close=")">
@@ -530,7 +530,7 @@
 				and E.filedot_fileid like #{filedotFileidLike}
 			</if>
 
-			<if test="filedotFileids != null and filedotFileids.size() &gt; 0">
+			<if test="filedotFileids != null and filedotFileids.size != 0">
 			    and E.filedot_fileid IN
 				<foreach item="x_filedotFileid" index="index" collection="filedotFileids" 
 					open="(" separator="," close=")">
@@ -550,7 +550,7 @@
 				and E.index_id &lt;= #{indexIdLessThanOrEqual}
 			</if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
 				<foreach item="x_indexId" index="index" collection="indexIds" 
 					open="(" separator="," close=")">

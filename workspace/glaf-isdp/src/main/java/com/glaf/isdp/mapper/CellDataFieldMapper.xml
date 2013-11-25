@@ -250,7 +250,7 @@
 				and E.tableid like #{tableidLike}
 			</if>
 
-			<if test="tableids != null and tableids.size() &gt; 0">
+			<if test="tableids != null and tableids.size != 0">
 			    and E.tableid IN
 				<foreach item="x_tableid" index="index" collection="tableids" 
 					open="(" separator="," close=")">
@@ -267,7 +267,7 @@
 				and E.fieldname like #{fieldnameLike}
 			</if>
 
-			<if test="fieldnames != null and fieldnames.size() &gt; 0">
+			<if test="fieldnames != null and fieldnames.size != 0">
 			    and E.fieldname IN
 				<foreach item="x_fieldname" index="index" collection="fieldnames" 
 					open="(" separator="," close=")">
@@ -284,7 +284,7 @@
 				and E.userid like #{useridLike}
 			</if>
 
-			<if test="userids != null and userids.size() &gt; 0">
+			<if test="userids != null and userids.size != 0">
 			    and E.userid IN
 				<foreach item="x_userid" index="index" collection="userids" 
 					open="(" separator="," close=")">
@@ -305,7 +305,7 @@
 				and E.maxuser &lt;= #{maxuserLessThanOrEqual}
 			</if>
 
-			<if test="maxusers != null and maxusers.size() &gt; 0">
+			<if test="maxusers != null and maxusers.size != 0">
 			    and E.maxuser IN
 				<foreach item="x_maxuser" index="index" collection="maxusers" 
 					open="(" separator="," close=")">
@@ -326,7 +326,7 @@
 				and E.maxsys &lt;= #{maxsysLessThanOrEqual}
 			</if>
 
-			<if test="maxsyss != null and maxsyss.size() &gt; 0">
+			<if test="maxsyss != null and maxsyss.size != 0">
 			    and E.maxsys IN
 				<foreach item="x_maxsys" index="index" collection="maxsyss" 
 					open="(" separator="," close=")">
@@ -347,7 +347,7 @@
 				and E.ctime &lt;= #{ctimeLessThanOrEqual}
 			</if>
 
-			<if test="ctimes != null and ctimes.size() &gt; 0">
+			<if test="ctimes != null and ctimes.size != 0">
 			    and E.ctime IN
 				<foreach item="x_ctime" index="index" collection="ctimes" 
 					open="(" separator="," close=")">
@@ -364,7 +364,7 @@
 				and E.sysnum like #{sysnumLike}
 			</if>
 
-			<if test="sysnums != null and sysnums.size() &gt; 0">
+			<if test="sysnums != null and sysnums.size != 0">
 			    and E.sysnum IN
 				<foreach item="x_sysnum" index="index" collection="sysnums" 
 					open="(" separator="," close=")">
@@ -381,7 +381,7 @@
 				and E.tablename like #{tablenameLike}
 			</if>
 
-			<if test="tablenames != null and tablenames.size() &gt; 0">
+			<if test="tablenames != null and tablenames.size != 0">
 			    and E.tablename IN
 				<foreach item="x_tablename" index="index" collection="tablenames" 
 					open="(" separator="," close=")">
@@ -398,7 +398,7 @@
 				and E.dname like #{dnameLike}
 			</if>
 
-			<if test="dnames != null and dnames.size() &gt; 0">
+			<if test="dnames != null and dnames.size != 0">
 			    and E.dname IN
 				<foreach item="x_dname" index="index" collection="dnames" 
 					open="(" separator="," close=")">
@@ -415,7 +415,7 @@
 				and E.userindex like #{userindexLike}
 			</if>
 
-			<if test="userindexs != null and userindexs.size() &gt; 0">
+			<if test="userindexs != null and userindexs.size != 0">
 			    and E.userindex IN
 				<foreach item="x_userindex" index="index" collection="userindexs" 
 					open="(" separator="," close=")">
@@ -432,7 +432,7 @@
 				and E.treetablename_b like #{treetablenameBLike}
 			</if>
 
-			<if test="treetablenameBs != null and treetablenameBs.size() &gt; 0">
+			<if test="treetablenameBs != null and treetablenameBs.size != 0">
 			    and E.treetablename_b IN
 				<foreach item="x_treetablenameB" index="index" collection="treetablenameBs" 
 					open="(" separator="," close=")">

@@ -149,7 +149,7 @@
 				and E.index_id &lt;= #{indexIdLessThanOrEqual}
 			</if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
 				<foreach item="x_indexId" index="index" collection="indexIds" 
 					open="(" separator="," close=")">
@@ -165,7 +165,7 @@
 				and E.filedot_fileid like #{filedotFileidLike}
 			</if>
 
-			<if test="filedotFileids != null and filedotFileids.size() &gt; 0">
+			<if test="filedotFileids != null and filedotFileids.size != 0">
 			    and E.filedot_fileid IN
 				<foreach item="x_filedotFileid" index="index" collection="filedotFileids" 
 					open="(" separator="," close=")">

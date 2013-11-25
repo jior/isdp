@@ -499,7 +499,7 @@
 				and  E.index_id = #{indexId}
 			</if>
 			 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
 				<foreach item="x_indexId" index="index" collection="indexIds" 
 					open="(" separator="," close=")">
@@ -515,7 +515,7 @@
 				and E.fbelong like #{fbelongLike}
 			</if>
 
-			<if test="fbelongs != null and fbelongs.size() &gt; 0">
+			<if test="fbelongs != null and fbelongs.size != 0">
 			    and E.fbelong IN
 				<foreach item="x_fbelong" index="index" collection="fbelongs" 
 					open="(" separator="," close=")">
@@ -535,7 +535,7 @@
 				and E.pbelong like #{pbelongLike}
 			</if>
 
-			<if test="pbelongs != null and pbelongs.size() &gt; 0">
+			<if test="pbelongs != null and pbelongs.size != 0">
 			    and E.pbelong IN
 				<foreach item="x_pbelong" index="index" collection="pbelongs" 
 					open="(" separator="," close=")">
@@ -579,7 +579,7 @@
 				and E.dwid = #{dwid}
 			</if>
 
-			<if test="dwids != null and dwids.size() &gt; 0">
+			<if test="dwids != null and dwids.size != 0">
 			    and E.dwid IN
 				<foreach item="x_dwid" index="index" collection="dwids" 
 					open="(" separator="," close=")">
@@ -591,7 +591,7 @@
 				and E.fbid = #{fbid}
 			</if>
 
-			<if test="fbids != null and fbids.size() &gt; 0">
+			<if test="fbids != null and fbids.size != 0">
 			    and E.fbid IN
 				<foreach item="x_fbid" index="index" collection="fbids" 
 					open="(" separator="," close=")">
@@ -604,7 +604,7 @@
 			</if>
 
 
-			<if test="fxids != null and fxids.size() &gt; 0">
+			<if test="fxids != null and fxids.size != 0">
 			    and E.fxid IN
 				<foreach item="x_fxid" index="index" collection="fxids" 
 					open="(" separator="," close=")">
@@ -620,7 +620,7 @@
 				and E.jid like #{jidLike}
 			</if>
 
-			<if test="jids != null and jids.size() &gt; 0">
+			<if test="jids != null and jids.size != 0">
 			    and E.jid IN
 				<foreach item="x_jid" index="index" collection="jids" 
 					open="(" separator="," close=")">
@@ -636,7 +636,7 @@
 				and E.flid like #{flidLike}
 			</if>
 
-			<if test="flids != null and flids.size() &gt; 0">
+			<if test="flids != null and flids.size != 0">
 			    and E.flid IN
 				<foreach item="x_flid" index="index" collection="flids" 
 					open="(" separator="," close=")">
@@ -652,7 +652,7 @@
 				and E.topnode like #{topnodeLike}
 			</if>
 
-			<if test="topnodes != null and topnodes.size() &gt; 0">
+			<if test="topnodes != null and topnodes.size != 0">
 			    and E.topnode IN
 				<foreach item="x_topnode" index="index" collection="topnodes" 
 					open="(" separator="," close=")">
@@ -676,7 +676,7 @@
 				and E.listflag like #{listflagLike}
 			</if>
 
-			<if test="listflags != null and listflags.size() &gt; 0">
+			<if test="listflags != null and listflags.size != 0">
 			    and E.listflag IN
 				<foreach item="x_listflag" index="index" collection="listflags" 
 					open="(" separator="," close=")">
@@ -692,7 +692,7 @@
 				and E.isink like #{isinkLike}
 			</if>
 
-			<if test="isinks != null and isinks.size() &gt; 0">
+			<if test="isinks != null and isinks.size != 0">
 			    and E.isink IN
 				<foreach item="x_isink" index="index" collection="isinks" 
 					open="(" separator="," close=")">
@@ -704,7 +704,7 @@
 				and E.dottype = #{dottype}
 			</if>
 
-			<if test="dottypes != null and dottypes.size() &gt; 0">
+			<if test="dottypes != null and dottypes.size != 0">
 			    and E.dottype IN
 				<foreach item="x_dottype" index="index" collection="dottypes" 
 					open="(" separator="," close=")">
@@ -720,7 +720,7 @@
 				and E.ctimedname like #{ctimednameLike}
 			</if>
 
-			<if test="ctimednames != null and ctimednames.size() &gt; 0">
+			<if test="ctimednames != null and ctimednames.size != 0">
 			    and E.ctimedname IN
 				<foreach item="x_ctimedname" index="index" collection="ctimednames" 
 					open="(" separator="," close=")">
@@ -732,7 +732,7 @@
 				and E.type = #{type}
 			</if>
 
-			<if test="types != null and types.size() &gt; 0">
+			<if test="types != null and types.size != 0">
 			    and E.type IN
 				<foreach item="x_type" index="index" collection="types" 
 					open="(" separator="," close=")">
@@ -744,7 +744,7 @@
 				and E.utree_index = #{utreeIndex}
 			</if>
 
-			<if test="utreeIndexs != null and utreeIndexs.size() &gt; 0">
+			<if test="utreeIndexs != null and utreeIndexs.size != 0">
 			    and E.utree_index IN
 				<foreach item="x_utreeIndex" index="index" collection="utreeIndexs" 
 					open="(" separator="," close=")">
@@ -760,7 +760,7 @@
 				and E.isquan like #{isquanLike}
 			</if>
 
-			<if test="isquans != null and isquans.size() &gt; 0">
+			<if test="isquans != null and isquans.size != 0">
 			    and E.isquan IN
 				<foreach item="x_isquan" index="index" collection="isquans" 
 					open="(" separator="," close=")">
@@ -772,7 +772,7 @@
 				and E.intsysform = #{intsysform}
 			</if>
 
-			<if test="intsysforms != null and intsysforms.size() &gt; 0">
+			<if test="intsysforms != null and intsysforms.size != 0">
 			    and E.intsysform IN
 				<foreach item="x_intsysform" index="index" collection="intsysforms" 
 					open="(" separator="," close=")">

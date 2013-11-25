@@ -129,7 +129,7 @@
 				and E.process_id like #{processIdLike}
 			</if>
 
-			<if test="processIds != null and processIds.size() &gt; 0">
+			<if test="processIds != null and processIds.size != 0">
 			    and E.process_id IN
 				<foreach item="x_processId" index="index" collection="processIds" 
 					open="(" separator="," close=")">
@@ -143,7 +143,7 @@
 			</if>
 
 		 
-			<if test="activDefIds != null and activDefIds.size() &gt; 0">
+			<if test="activDefIds != null and activDefIds.size != 0">
 			    and E.activ_d_id IN
 				<foreach item="x_activDefId" index="index" collection="activDefIds" 
 					open="(" separator="," close=")">

@@ -323,7 +323,7 @@
 				and E.frmtype like #{frmtypeLike}
 			</if>
 
-			<if test="frmtypes != null and frmtypes.size() &gt; 0">
+			<if test="frmtypes != null and frmtypes.size != 0">
 			    and E.frmtype IN
 				<foreach item="x_frmtype" index="index" collection="frmtypes" 
 					open="(" separator="," close=")">
@@ -344,7 +344,7 @@
 				and E.type &lt;= #{typeLessThanOrEqual}
 			</if>
 
-			<if test="types != null and types.size() &gt; 0">
+			<if test="types != null and types.size != 0">
 			    and E.type IN
 				<foreach item="x_type" index="index" collection="types" 
 					open="(" separator="," close=")">
@@ -369,7 +369,7 @@
 				and E.filedot_fileid like #{filedotFileidLike}
 			</if>
 
-			<if test="filedotFileids != null and filedotFileids.size() &gt; 0">
+			<if test="filedotFileids != null and filedotFileids.size != 0">
 			    and E.filedot_fileid IN
 				<foreach item="x_filedotFileid" index="index" collection="filedotFileids" 
 					open="(" separator="," close=")">
@@ -389,7 +389,7 @@
 				and E.role_id &lt;= #{roleIdLessThanOrEqual}
 			</if>
 
-			<if test="roleIds != null and roleIds.size() &gt; 0">
+			<if test="roleIds != null and roleIds.size != 0">
 			    and E.role_id IN
 				<foreach item="x_roleId" index="index" collection="roleIds" 
 					open="(" separator="," close=")">
@@ -406,7 +406,7 @@
 				and E.tablename like #{tablenameLike}
 			</if>
 
-			<if test="tablenames != null and tablenames.size() &gt; 0">
+			<if test="tablenames != null and tablenames.size != 0">
 			    and E.tablename IN
 				<foreach item="x_tablename" index="index" collection="tablenames" 
 					open="(" separator="," close=")">
@@ -423,7 +423,7 @@
 				and E.fname like #{fnameLike}
 			</if>
 
-			<if test="fnames != null and fnames.size() &gt; 0">
+			<if test="fnames != null and fnames.size != 0">
 			    and E.fname IN
 				<foreach item="x_fname" index="index" collection="fnames" 
 					open="(" separator="," close=")">
@@ -440,7 +440,7 @@
 				and E.dname like #{dnameLike}
 			</if>
 
-			<if test="dnames != null and dnames.size() &gt; 0">
+			<if test="dnames != null and dnames.size != 0">
 			    and E.dname IN
 				<foreach item="x_dname" index="index" collection="dnames" 
 					open="(" separator="," close=")">
@@ -457,7 +457,7 @@
 				and E.issubtable like #{issubtableLike}
 			</if>
 
-			<if test="issubtables != null and issubtables.size() &gt; 0">
+			<if test="issubtables != null and issubtables.size != 0">
 			    and E.issubtable IN
 				<foreach item="x_issubtable" index="index" collection="issubtables" 
 					open="(" separator="," close=")">
@@ -474,7 +474,7 @@
 				and E.tablename2 like #{tablename2Like}
 			</if>
 
-			<if test="tablename2s != null and tablename2s.size() &gt; 0">
+			<if test="tablename2s != null and tablename2s.size != 0">
 			    and E.tablename2 IN
 				<foreach item="x_tablename2" index="index" collection="tablename2s" 
 					open="(" separator="," close=")">
@@ -495,7 +495,7 @@
 				and E.intautoinvalue &lt;= #{intautoinvalueLessThanOrEqual}
 			</if>
 
-			<if test="intautoinvalues != null and intautoinvalues.size() &gt; 0">
+			<if test="intautoinvalues != null and intautoinvalues.size != 0">
 			    and E.intautoinvalue IN
 				<foreach item="x_intautoinvalue" index="index" collection="intautoinvalues" 
 					open="(" separator="," close=")">

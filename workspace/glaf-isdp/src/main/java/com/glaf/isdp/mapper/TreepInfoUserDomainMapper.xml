@@ -145,7 +145,7 @@
 				and E.domainindex &lt;= #{domainindexLessThanOrEqual}
 			</if>
 
-			<if test="domainindexs != null and domainindexs.size() &gt; 0">
+			<if test="domainindexs != null and domainindexs.size != 0">
 			    and E.domainindex IN
 				<foreach item="x_domainindex" index="index" collection="domainindexs" 
 					open="(" separator="," close=")">
@@ -165,7 +165,7 @@
 				and E.uindex_id &lt;= #{uindexIdLessThanOrEqual}
 			</if>
 
-			<if test="uindexIds != null and uindexIds.size() &gt; 0">
+			<if test="uindexIds != null and uindexIds.size != 0">
 			    and E.uindex_id IN
 				<foreach item="x_uindexId" index="index" collection="uindexIds" 
 					open="(" separator="," close=")">

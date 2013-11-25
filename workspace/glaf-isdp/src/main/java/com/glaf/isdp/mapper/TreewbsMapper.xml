@@ -413,7 +413,7 @@
 				and E.id like #{idLike}
 			</if>
 
-			<if test="ids != null and ids.size() &gt; 0">
+			<if test="ids != null and ids.size != 0">
 			    and E.id IN
 				<foreach item="x_id" index="index" collection="ids" 
 					open="(" separator="," close=")">
@@ -426,7 +426,7 @@
 				and E.parent_id = #{parentId}
 			</if>
 
-			<if test="parentIds != null and parentIds.size() &gt; 0">
+			<if test="parentIds != null and parentIds.size != 0">
 			    and E.parent_id IN
 				<foreach item="x_parentId" index="index" collection="parentIds" 
 					open="(" separator="," close=")">
@@ -458,7 +458,7 @@
 				and E.nlevel &lt;= #{nlevelLessThanOrEqual}
 			</if>
 
-			<if test="nlevels != null and nlevels.size() &gt; 0">
+			<if test="nlevels != null and nlevels.size != 0">
 			    and E.nlevel IN
 				<foreach item="x_nlevel" index="index" collection="nlevels" 
 					open="(" separator="," close=")">
@@ -482,7 +482,7 @@
 				and E.inttype &lt;= #{inttypeLessThanOrEqual}
 			</if>
 
-			<if test="inttypes != null and inttypes.size() &gt; 0">
+			<if test="inttypes != null and inttypes.size != 0">
 			    and E.inttype IN
 				<foreach item="x_inttype" index="index" collection="inttypes" 
 					open="(" separator="," close=")">
@@ -503,7 +503,7 @@
 				and E.pindex_id &lt;= #{pindexIdLessThanOrEqual}
 			</if>
 
-			<if test="pindexIds != null and pindexIds.size() &gt; 0">
+			<if test="pindexIds != null and pindexIds.size != 0">
 			    and E.pindex_id IN
 				<foreach item="x_pindexId" index="index" collection="pindexIds" 
 					open="(" separator="," close=")">
@@ -520,7 +520,7 @@
 				and E.type_tablename like #{typeTablenameLike}
 			</if>
 
-			<if test="typeTablenames != null and typeTablenames.size() &gt; 0">
+			<if test="typeTablenames != null and typeTablenames.size != 0">
 			    and E.type_tablename IN
 				<foreach item="x_typeTablename" index="index" collection="typeTablenames" 
 					open="(" separator="," close=")">
@@ -541,7 +541,7 @@
 				and E.intusetname &lt;= #{intusetnameLessThanOrEqual}
 			</if>
 
-			<if test="intusetnames != null and intusetnames.size() &gt; 0">
+			<if test="intusetnames != null and intusetnames.size != 0">
 			    and E.intusetname IN
 				<foreach item="x_intusetname" index="index" collection="intusetnames" 
 					open="(" separator="," close=")">
@@ -562,7 +562,7 @@
 				and E.intstartype &lt;= #{intstartypeLessThanOrEqual}
 			</if>
 
-			<if test="intstartypes != null and intstartypes.size() &gt; 0">
+			<if test="intstartypes != null and intstartypes.size != 0">
 			    and E.intstartype IN
 				<foreach item="x_intstartype" index="index" collection="intstartypes" 
 					open="(" separator="," close=")">
@@ -583,7 +583,7 @@
 				and E.intstardelayday &lt;= #{intstardelaydayLessThanOrEqual}
 			</if>
 
-			<if test="intstardelaydays != null and intstardelaydays.size() &gt; 0">
+			<if test="intstardelaydays != null and intstardelaydays.size != 0">
 			    and E.intstardelayday IN
 				<foreach item="x_intstardelayday" index="index" collection="intstardelaydays" 
 					open="(" separator="," close=")">
@@ -604,7 +604,7 @@
 				and E.intstart_a &lt;= #{intstartALessThanOrEqual}
 			</if>
 
-			<if test="intstartAs != null and intstartAs.size() &gt; 0">
+			<if test="intstartAs != null and intstartAs.size != 0">
 			    and E.intstart_a IN
 				<foreach item="x_intstartA" index="index" collection="intstartAs" 
 					open="(" separator="," close=")">
@@ -625,7 +625,7 @@
 				and E.intstart_p &lt;= #{intstartPLessThanOrEqual}
 			</if>
 
-			<if test="intstartPs != null and intstartPs.size() &gt; 0">
+			<if test="intstartPs != null and intstartPs.size != 0">
 			    and E.intstart_p IN
 				<foreach item="x_intstartP" index="index" collection="intstartPs" 
 					open="(" separator="," close=")">
@@ -646,7 +646,7 @@
 				and E.intend_a &lt;= #{intendALessThanOrEqual}
 			</if>
 
-			<if test="intendAs != null and intendAs.size() &gt; 0">
+			<if test="intendAs != null and intendAs.size != 0">
 			    and E.intend_a IN
 				<foreach item="x_intendA" index="index" collection="intendAs" 
 					open="(" separator="," close=")">
@@ -667,7 +667,7 @@
 				and E.intend_p &lt;= #{intendPLessThanOrEqual}
 			</if>
 
-			<if test="intendPs != null and intendPs.size() &gt; 0">
+			<if test="intendPs != null and intendPs.size != 0">
 			    and E.intend_p IN
 				<foreach item="x_intendP" index="index" collection="intendPs" 
 					open="(" separator="," close=")">
@@ -688,7 +688,7 @@
 				and E.intneednode &lt;= #{intneednodeLessThanOrEqual}
 			</if>
 
-			<if test="intneednodes != null and intneednodes.size() &gt; 0">
+			<if test="intneednodes != null and intneednodes.size != 0">
 			    and E.intneednode IN
 				<foreach item="x_intneednode" index="index" collection="intneednodes" 
 					open="(" separator="," close=")">
@@ -709,7 +709,7 @@
 				and E.intusetnum &lt;= #{intusetnumLessThanOrEqual}
 			</if>
 
-			<if test="intusetnums != null and intusetnums.size() &gt; 0">
+			<if test="intusetnums != null and intusetnums.size != 0">
 			    and E.intusetnum IN
 				<foreach item="x_intusetnum" index="index" collection="intusetnums" 
 					open="(" separator="," close=")">
@@ -730,7 +730,7 @@
 				and E.domain_index &lt;= #{domainIndexLessThanOrEqual}
 			</if>
 
-			<if test="domainIndexs != null and domainIndexs.size() &gt; 0">
+			<if test="domainIndexs != null and domainIndexs.size != 0">
 			    and E.domain_index IN
 				<foreach item="x_domainIndex" index="index" collection="domainIndexs" 
 					open="(" separator="," close=")">
@@ -747,7 +747,7 @@
 				and E.strfileLocate like #{strfileLocateLike}
 			</if>
 
-			<if test="strfileLocates != null and strfileLocates.size() &gt; 0">
+			<if test="strfileLocates != null and strfileLocates.size != 0">
 			    and E.strfileLocate IN
 				<foreach item="x_strfileLocate" index="index" collection="strfileLocates" 
 					open="(" separator="," close=")">
@@ -768,7 +768,7 @@
 				and E.intnodetype &lt;= #{intnodetypeLessThanOrEqual}
 			</if>
 
-			<if test="intnodetypes != null and intnodetypes.size() &gt; 0">
+			<if test="intnodetypes != null and intnodetypes.size != 0">
 			    and E.intnodetype IN
 				<foreach item="x_intnodetype" index="index" collection="intnodetypes" 
 					open="(" separator="," close=")">
@@ -789,7 +789,7 @@
 				and E.intloadfile &lt;= #{intloadfileLessThanOrEqual}
 			</if>
 
-			<if test="intloadfiles != null and intloadfiles.size() &gt; 0">
+			<if test="intloadfiles != null and intloadfiles.size != 0">
 			    and E.intloadfile IN
 				<foreach item="x_intloadfile" index="index" collection="intloadfiles" 
 					open="(" separator="," close=")">
@@ -810,7 +810,7 @@
 				and E.intorglevel &lt;= #{intorglevelLessThanOrEqual}
 			</if>
 
-			<if test="intorglevels != null and intorglevels.size() &gt; 0">
+			<if test="intorglevels != null and intorglevels.size != 0">
 			    and E.intorglevel IN
 				<foreach item="x_intorglevel" index="index" collection="intorglevels" 
 					open="(" separator="," close=")">
@@ -831,7 +831,7 @@
 				and E.uindex_id &lt;= #{uindexIdLessThanOrEqual}
 			</if>
 
-			<if test="uindexIds != null and uindexIds.size() &gt; 0">
+			<if test="uindexIds != null and uindexIds.size != 0">
 			    and E.uindex_id IN
 				<foreach item="x_uindexId" index="index" collection="uindexIds" 
 					open="(" separator="," close=")">

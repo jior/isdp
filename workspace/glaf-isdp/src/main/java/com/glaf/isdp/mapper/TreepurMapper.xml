@@ -173,7 +173,7 @@
 				and E.index_id &lt;= #{indexIdLessThanOrEqual}
             </if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
                 <foreach item="x_indexId" index="index" collection="indexIds" 
                      open="(" separator="," close=")">
@@ -185,7 +185,7 @@
 				and E.parent_id = #{parentId}
 			</if>
 
-			<if test="parentIds != null and parentIds.size() &gt; 0">
+			<if test="parentIds != null and parentIds.size != 0">
 			    and E.parent_id IN
 				<foreach item="x_parentId" index="index" collection="parentIds" 
 					open="(" separator="," close=")">
@@ -209,7 +209,7 @@
 				and E.modulenum &lt;= #{modulenumLessThanOrEqual}
             </if>
 
-			<if test="modulenums != null and modulenums.size() &gt; 0">
+			<if test="modulenums != null and modulenums.size != 0">
 			    and E.modulenum IN
                 <foreach item="x_modulenum" index="index" collection="modulenums" 
                      open="(" separator="," close=")">

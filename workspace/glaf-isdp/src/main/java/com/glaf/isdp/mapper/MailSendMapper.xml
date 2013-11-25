@@ -252,7 +252,7 @@
 				and E.msgId like #{msgIdLike}
 			</if>
 
-			<if test="msgIds != null and msgIds.size() &gt; 0">
+			<if test="msgIds != null and msgIds.size != 0">
 			    and E.msgId IN
 				<foreach item="x_msgId" index="index" collection="msgIds" 
 					open="(" separator="," close=")">
@@ -328,7 +328,7 @@
 				and E.intflag &lt;= #{intflagLessThanOrEqual}
 			</if>
 
-			<if test="intflags != null and intflags.size() &gt; 0">
+			<if test="intflags != null and intflags.size != 0">
 			    and E.intflag IN
 				<foreach item="x_intflag" index="index" collection="intflags" 
 					open="(" separator="," close=")">
@@ -345,7 +345,7 @@
 				and E.email like #{emailLike}
 			</if>
 
-			<if test="emails != null and emails.size() &gt; 0">
+			<if test="emails != null and emails.size != 0">
 			    and E.email IN
 				<foreach item="x_email" index="index" collection="emails" 
 					open="(" separator="," close=")">

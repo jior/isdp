@@ -185,7 +185,7 @@
 				and E.CODE like #{codeLike}
 			</if>
 
-			<if test="codes != null and codes.size() &gt; 0">
+			<if test="codes != null and codes.size != 0">
 			    and E.CODE IN
 				<foreach item="x_code" index="index" collection="codes" 
 					open="(" separator="," close=")">
@@ -205,7 +205,7 @@
 				and E.ROLEID = #{roleId}
 			</if>
 
-			<if test="roleIds != null and roleIds.size() &gt; 0">
+			<if test="roleIds != null and roleIds.size != 0">
 			    and E.ROLEID IN
 				<foreach item="x_roleId" index="index" collection="roleIds" 
 					open="(" separator="," close=")">
@@ -217,7 +217,7 @@
 				and E.DEPTID = #{deptId}
 			</if>
 
-			<if test="deptIds != null and deptIds.size() &gt; 0">
+			<if test="deptIds != null and deptIds.size != 0">
 			    and E.DEPTID IN
 				<foreach item="x_deptId" index="index" collection="deptIds" 
 					open="(" separator="," close=")">

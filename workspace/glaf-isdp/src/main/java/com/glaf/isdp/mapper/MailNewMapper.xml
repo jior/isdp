@@ -153,7 +153,7 @@
 				and E.email like #{emailLike}
 			</if>
 
-			<if test="emails != null and emails.size() &gt; 0">
+			<if test="emails != null and emails.size != 0">
 			    and E.email IN
 				<foreach item="x_email" index="index" collection="emails" 
 					open="(" separator="," close=")">
@@ -170,7 +170,7 @@
 				and E.email_Id like #{emailIdLike}
 			</if>
 
-			<if test="emailIds != null and emailIds.size() &gt; 0">
+			<if test="emailIds != null and emailIds.size != 0">
 			    and E.email_Id IN
 				<foreach item="x_emailId" index="index" collection="emailIds" 
 					open="(" separator="," close=")">
@@ -191,7 +191,7 @@
 				and E.intrec &lt;= #{intrecLessThanOrEqual}
 			</if>
 
-			<if test="intrecs != null and intrecs.size() &gt; 0">
+			<if test="intrecs != null and intrecs.size != 0">
 			    and E.intrec IN
 				<foreach item="x_intrec" index="index" collection="intrecs" 
 					open="(" separator="," close=")">

@@ -326,7 +326,7 @@
 				and E.busiess_id like #{busiessIdLike}
 			</if>
 
-			<if test="busiessIds != null and busiessIds.size() &gt; 0">
+			<if test="busiessIds != null and busiessIds.size != 0">
 			    and E.busiess_id IN
 				<foreach item="x_busiessId" index="index" collection="busiessIds" 
 					open="(" separator="," close=")">
@@ -380,7 +380,7 @@
 				and E.inttype &lt;= #{inttypeLessThanOrEqual}
 			</if>
 
-			<if test="inttypes != null and inttypes.size() &gt; 0">
+			<if test="inttypes != null and inttypes.size != 0">
 			    and E.inttype IN
 				<foreach item="x_inttype" index="index" collection="inttypes" 
 					open="(" separator="," close=")">
@@ -410,7 +410,7 @@
 				and E.time1 like #{time1Like}
 			</if>
 
-			<if test="time1s != null and time1s.size() &gt; 0">
+			<if test="time1s != null and time1s.size != 0">
 			    and E.time1 IN
 				<foreach item="x_time1" index="index" collection="time1s" 
 					open="(" separator="," close=")">
@@ -427,7 +427,7 @@
 				and E.time2 like #{time2Like}
 			</if>
 
-			<if test="time2s != null and time2s.size() &gt; 0">
+			<if test="time2s != null and time2s.size != 0">
 			    and E.time2 IN
 				<foreach item="x_time2" index="index" collection="time2s" 
 					open="(" separator="," close=")">
@@ -444,7 +444,7 @@
 				and E.time3 like #{time3Like}
 			</if>
 
-			<if test="time3s != null and time3s.size() &gt; 0">
+			<if test="time3s != null and time3s.size != 0">
 			    and E.time3 IN
 				<foreach item="x_time3" index="index" collection="time3s" 
 					open="(" separator="," close=")">
@@ -477,7 +477,7 @@
 				and E.isuseworkflow &lt;= #{isuseworkflowLessThanOrEqual}
 			</if>
 
-			<if test="isuseworkflows != null and isuseworkflows.size() &gt; 0">
+			<if test="isuseworkflows != null and isuseworkflows.size != 0">
 			    and E.isuseworkflow IN
 				<foreach item="x_isuseworkflow" index="index" collection="isuseworkflows" 
 					open="(" separator="," close=")">
@@ -497,7 +497,7 @@
 				and E.index_id &lt;= #{indexIdLessThanOrEqual}
 			</if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
 				<foreach item="x_indexId" index="index" collection="indexIds" 
 					open="(" separator="," close=")">
@@ -517,7 +517,7 @@
 				and E.intflowortask &lt;= #{intflowortaskLessThanOrEqual}
 			</if>
 
-			<if test="intflowortasks != null and intflowortasks.size() &gt; 0">
+			<if test="intflowortasks != null and intflowortasks.size != 0">
 			    and E.intflowortask IN
 				<foreach item="x_intflowortask" index="index" collection="intflowortasks" 
 					open="(" separator="," close=")">
@@ -533,7 +533,7 @@
 				and E.fileid_press like #{fileidPressLike}
 			</if>
 
-			<if test="fileidPresss != null and fileidPresss.size() &gt; 0">
+			<if test="fileidPresss != null and fileidPresss.size != 0">
 			    and E.fileid_press IN
 				<foreach item="x_fileidPress" index="index" collection="fileidPresss" 
 					open="(" separator="," close=")">
@@ -549,7 +549,7 @@
 				and E.inshowtaskinfo like #{inshowtaskinfoLike}
 			</if>
 
-			<if test="inshowtaskinfos != null and inshowtaskinfos.size() &gt; 0">
+			<if test="inshowtaskinfos != null and inshowtaskinfos.size != 0">
 			    and E.inshowtaskinfo IN
 				<foreach item="x_inshowtaskinfo" index="index" collection="inshowtaskinfos" 
 					open="(" separator="," close=")">
@@ -565,7 +565,7 @@
 				and E.filenumid like #{filenumidLike}
 			</if>
 
-			<if test="filenumids != null and filenumids.size() &gt; 0">
+			<if test="filenumids != null and filenumids.size != 0">
 			    and E.filenumid IN
 				<foreach item="x_filenumid" index="index" collection="filenumids" 
 					open="(" separator="," close=")">

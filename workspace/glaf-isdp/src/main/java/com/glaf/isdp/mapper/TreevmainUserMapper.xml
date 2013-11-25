@@ -353,7 +353,7 @@
 				and E.index_id &lt;= #{indexIdLessThanOrEqual}
             </if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
                 <foreach item="x_indexId" index="index" collection="indexIds" 
                      open="(" separator="," close=")">
@@ -365,7 +365,7 @@
 				and E.parent_id = #{parentId}
 			</if>
 
-			<if test="parentIds != null and parentIds.size() &gt; 0">
+			<if test="parentIds != null and parentIds.size != 0">
 			    and E.parent_id IN
 				<foreach item="x_parentId" index="index" collection="parentIds" 
 					open="(" separator="," close=")">
@@ -389,7 +389,7 @@
 				and E.nlevel &lt;= #{nlevelLessThanOrEqual}
             </if>
 
-			<if test="nlevels != null and nlevels.size() &gt; 0">
+			<if test="nlevels != null and nlevels.size != 0">
 			    and E.nlevel IN
                 <foreach item="x_nlevel" index="index" collection="nlevels" 
                      open="(" separator="," close=")">
@@ -417,7 +417,7 @@
 				and E.vflag like #{vflagLike}
             </if>
 
-			<if test="vflags != null and vflags.size() &gt; 0">
+			<if test="vflags != null and vflags.size != 0">
 			    and E.vflag IN
                 <foreach item="x_vflag" index="index" collection="vflags" 
                      open="(" separator="," close=")">
@@ -441,7 +441,7 @@
 				and E.ztype &lt;= #{ztypeLessThanOrEqual}
             </if>
 
-			<if test="ztypes != null and ztypes.size() &gt; 0">
+			<if test="ztypes != null and ztypes.size != 0">
 			    and E.ztype IN
                 <foreach item="x_ztype" index="index" collection="ztypes" 
                      open="(" separator="," close=")">
@@ -461,7 +461,7 @@
 				and E.topnode like #{topnodeLike}
             </if>
 
-			<if test="topnodes != null and topnodes.size() &gt; 0">
+			<if test="topnodes != null and topnodes.size != 0">
 			    and E.topnode IN
                 <foreach item="x_topnode" index="index" collection="topnodes" 
                      open="(" separator="," close=")">
@@ -473,7 +473,7 @@
 				and E.nodetype = #{nodetype}
             </if>
 
-			<if test="nodetypes != null and nodetypes.size() &gt; 0">
+			<if test="nodetypes != null and nodetypes.size != 0">
 			    and E.nodetype IN
                 <foreach item="x_nodetype" index="index" collection="nodetypes" 
                      open="(" separator="," close=")">
@@ -494,7 +494,7 @@
 				and E.fromid &lt;= #{fromidLessThanOrEqual}
             </if>
 
-			<if test="fromids != null and fromids.size() &gt; 0">
+			<if test="fromids != null and fromids.size != 0">
 			    and E.fromid IN
                 <foreach item="x_fromid" index="index" collection="fromids" 
                      open="(" separator="," close=")">
@@ -514,7 +514,7 @@
 				and E.frmtypeindex &lt;= #{frmtypeindexLessThanOrEqual}
             </if>
 
-			<if test="frmtypeindexs != null and frmtypeindexs.size() &gt; 0">
+			<if test="frmtypeindexs != null and frmtypeindexs.size != 0">
 			    and E.frmtypeindex IN
                 <foreach item="x_frmtypeindex" index="index" collection="frmtypeindexs" 
                      open="(" separator="," close=")">

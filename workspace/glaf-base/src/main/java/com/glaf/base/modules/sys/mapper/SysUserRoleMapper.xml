@@ -203,7 +203,7 @@
 				and E.USERID = #{userId}
 			</if>
 
-			<if test="userIds != null and userIds.size() &gt; 0">
+			<if test="userIds != null and userIds.size != 0">
 				and E.USERID IN
 				<foreach item="x_userId" index="index" collection="userIds"
 					open="(" separator="," close=")">
@@ -215,7 +215,7 @@
 				and E.ROLEID = #{roleId}
 			</if>
 
-			<if test="roleIds != null and roleIds.size() &gt; 0">
+			<if test="roleIds != null and roleIds.size != 0">
 				and E.ROLEID IN
 				<foreach item="x_roleId" index="index" collection="roleIds"
 					open="(" separator="," close=")">
@@ -231,7 +231,7 @@
 				and E.AUTHORIZEFROM = #{authorizeFrom}
 			</if>
 
-			<if test="authorizeFroms != null and authorizeFroms.size() &gt; 0">
+			<if test="authorizeFroms != null and authorizeFroms.size != 0">
 				and E.AUTHORIZEFROM IN
 				<foreach item="x_authorizeFrom" index="index" collection="authorizeFroms"
 					open="(" separator="," close=")">

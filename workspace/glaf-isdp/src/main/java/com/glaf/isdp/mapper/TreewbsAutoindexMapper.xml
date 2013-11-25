@@ -153,7 +153,7 @@
 				and E.index_id &lt;= #{indexIdLessThanOrEqual}
             </if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
                 <foreach item="x_indexId" index="index" collection="indexIds" 
                      open="(" separator="," close=")">
@@ -174,7 +174,7 @@
 				and E.autoindex &lt;= #{autoindexLessThanOrEqual}
             </if>
 
-			<if test="autoindexs != null and autoindexs.size() &gt; 0">
+			<if test="autoindexs != null and autoindexs.size != 0">
 			    and E.autoindex IN
                 <foreach item="x_autoindex" index="index" collection="autoindexs" 
                      open="(" separator="," close=")">
@@ -195,7 +195,7 @@
 				and E.inttype &lt;= #{inttypeLessThanOrEqual}
             </if>
 
-			<if test="inttypes != null and inttypes.size() &gt; 0">
+			<if test="inttypes != null and inttypes.size != 0">
 			    and E.inttype IN
                 <foreach item="x_inttype" index="index" collection="inttypes" 
                      open="(" separator="," close=")">
@@ -216,7 +216,7 @@
 				and E.index_rule &lt;= #{indexRuleLessThanOrEqual}
             </if>
 
-			<if test="indexRules != null and indexRules.size() &gt; 0">
+			<if test="indexRules != null and indexRules.size != 0">
 			    and E.index_rule IN
                 <foreach item="x_indexRule" index="index" collection="indexRules" 
                      open="(" separator="," close=")">

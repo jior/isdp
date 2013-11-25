@@ -133,7 +133,7 @@
 				and E.index_id &lt;= #{indexIdLessThanOrEqual}
             </if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
                 <foreach item="x_indexId" index="index" collection="indexIds" 
                      open="(" separator="," close=")">
@@ -154,7 +154,7 @@
 				and E.wbsindex &lt;= #{wbsindexLessThanOrEqual}
             </if>
 
-			<if test="wbsindexs != null and wbsindexs.size() &gt; 0">
+			<if test="wbsindexs != null and wbsindexs.size != 0">
 			    and E.wbsindex IN
                 <foreach item="x_wbsindex" index="index" collection="wbsindexs" 
                      open="(" separator="," close=")">

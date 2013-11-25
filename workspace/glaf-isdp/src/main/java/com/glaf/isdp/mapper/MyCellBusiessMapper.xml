@@ -298,7 +298,7 @@
 				and E.intsystype &lt;= #{intsystypeLessThanOrEqual}
 			</if>
 
-			<if test="intsystypes != null and intsystypes.size() &gt; 0">
+			<if test="intsystypes != null and intsystypes.size != 0">
 			    and E.intsystype IN
 				<foreach item="x_intsystype" index="index" collection="intsystypes" 
 					open="(" separator="," close=")">
@@ -315,7 +315,7 @@
 				and E.picfile like #{picfileLike}
 			</if>
 
-			<if test="picfiles != null and picfiles.size() &gt; 0">
+			<if test="picfiles != null and picfiles.size != 0">
 			    and E.picfile IN
 				<foreach item="x_picfile" index="index" collection="picfiles" 
 					open="(" separator="," close=")">
@@ -332,7 +332,7 @@
 				and E.picfile_welcom like #{picfileWelcomLike}
 			</if>
 
-			<if test="picfileWelcoms != null and picfileWelcoms.size() &gt; 0">
+			<if test="picfileWelcoms != null and picfileWelcoms.size != 0">
 			    and E.picfile_welcom IN
 				<foreach item="x_picfileWelcom" index="index" collection="picfileWelcoms" 
 					open="(" separator="," close=")">
@@ -349,7 +349,7 @@
 				and E.picfile_main like #{picfileMainLike}
 			</if>
 
-			<if test="picfileMains != null and picfileMains.size() &gt; 0">
+			<if test="picfileMains != null and picfileMains.size != 0">
 			    and E.picfile_main IN
 				<foreach item="x_picfileMain" index="index" collection="picfileMains" 
 					open="(" separator="," close=")">
@@ -366,7 +366,7 @@
 				and E.picfile_login like #{picfileLoginLike}
 			</if>
 
-			<if test="picfileLogins != null and picfileLogins.size() &gt; 0">
+			<if test="picfileLogins != null and picfileLogins.size != 0">
 			    and E.picfile_login IN
 				<foreach item="x_picfileLogin" index="index" collection="picfileLogins" 
 					open="(" separator="," close=")">
@@ -383,7 +383,7 @@
 				and E.sysbuiesstypes_id like #{sysbuiesstypesIdLike}
 			</if>
 
-			<if test="sysbuiesstypesIds != null and sysbuiesstypesIds.size() &gt; 0">
+			<if test="sysbuiesstypesIds != null and sysbuiesstypesIds.size != 0">
 			    and E.sysbuiesstypes_id IN
 				<foreach item="x_sysbuiesstypesId" index="index" collection="sysbuiesstypesIds" 
 					open="(" separator="," close=")">
@@ -395,7 +395,7 @@
 				and E.domain_index = #{domainIndex}
 			</if>
 
-			<if test="domainIndexs != null and domainIndexs.size() &gt; 0">
+			<if test="domainIndexs != null and domainIndexs.size != 0">
 			    and E.domain_index IN
 				<foreach item="x_domainIndex" index="index" collection="domainIndexs" 
 					open="(" separator="," close=")">

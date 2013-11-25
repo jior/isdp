@@ -165,7 +165,7 @@
 				and E.topid like #{topidLike}
 			</if>
 
-			<if test="topids != null and topids.size() &gt; 0">
+			<if test="topids != null and topids.size != 0">
 			    and E.topid IN
 				<foreach item="x_topid" index="index" collection="topids" 
 					open="(" separator="," close=")">
@@ -182,7 +182,7 @@
 				and E.name_line like #{nameLineLike}
 			</if>
 
-			<if test="nameLines != null and nameLines.size() &gt; 0">
+			<if test="nameLines != null and nameLines.size != 0">
 			    and E.name_line IN
 				<foreach item="x_nameLine" index="index" collection="nameLines" 
 					open="(" separator="," close=")">
@@ -199,7 +199,7 @@
 				and E.dname_x like #{dnameXLike}
 			</if>
 
-			<if test="dnameXs != null and dnameXs.size() &gt; 0">
+			<if test="dnameXs != null and dnameXs.size != 0">
 			    and E.dname_x IN
 				<foreach item="x_dnameX" index="index" collection="dnameXs" 
 					open="(" separator="," close=")">
@@ -216,7 +216,7 @@
 				and E.dname_y like #{dnameYLike}
 			</if>
 
-			<if test="dnameYs != null and dnameYs.size() &gt; 0">
+			<if test="dnameYs != null and dnameYs.size != 0">
 			    and E.dname_y IN
 				<foreach item="x_dnameY" index="index" collection="dnameYs" 
 					open="(" separator="," close=")">

@@ -159,7 +159,7 @@
 				and E.process_id like #{processIdLike}
 			</if>
 
-			<if test="processIds != null and processIds.size() &gt; 0">
+			<if test="processIds != null and processIds.size != 0">
 			    and E.process_id IN
 				<foreach item="x_processId" index="index" collection="processIds" 
 					open="(" separator="," close=")">
@@ -173,7 +173,7 @@
 			</if>
 
 			 
-			<if test="activDefIds != null and activDefIds.size() &gt; 0">
+			<if test="activDefIds != null and activDefIds.size != 0">
 			    and E.activ_d_id IN
 				<foreach item="x_activDefId" index="index" collection="activDefIds" 
 					open="(" separator="," close=")">
@@ -187,7 +187,7 @@
 			</if>
 
 
-			<if test="activDefNexts != null and activDefNexts.size() &gt; 0">
+			<if test="activDefNexts != null and activDefNexts.size != 0">
 			    and E.activ_d_next IN
 				<foreach item="x_activDefNext" index="index" collection="activDefNexts" 
 					open="(" separator="," close=")">
@@ -208,7 +208,7 @@
 				and E.sendtype &lt;= #{sendtypeLessThanOrEqual}
 			</if>
 
-			<if test="sendtypes != null and sendtypes.size() &gt; 0">
+			<if test="sendtypes != null and sendtypes.size != 0">
 			    and E.sendtype IN
 				<foreach item="x_sendtype" index="index" collection="sendtypes" 
 					open="(" separator="," close=")">
@@ -229,7 +229,7 @@
 				and E.sendtimes &lt;= #{sendtimesLessThanOrEqual}
 			</if>
 
-			<if test="sendtimess != null and sendtimess.size() &gt; 0">
+			<if test="sendtimess != null and sendtimess.size != 0">
 			    and E.sendtimes IN
 				<foreach item="x_sendtimes" index="index" collection="sendtimess" 
 					open="(" separator="," close=")">

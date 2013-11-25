@@ -222,7 +222,7 @@
 				and E.filetype &lt;= #{filetypeLessThanOrEqual}
 			</if>
 
-			<if test="filetypes != null and filetypes.size() &gt; 0">
+			<if test="filetypes != null and filetypes.size != 0">
 			    and E.filetype IN
 				<foreach item="x_filetype" index="index" collection="filetypes" 
 					open="(" separator="," close=")">
@@ -239,7 +239,7 @@
 				and E.fileid like #{fileidLike}
 			</if>
 
-			<if test="fileids != null and fileids.size() &gt; 0">
+			<if test="fileids != null and fileids.size != 0">
 			    and E.fileid IN
 				<foreach item="x_fileid" index="index" collection="fileids" 
 					open="(" separator="," close=")">
@@ -256,7 +256,7 @@
 				and E.ost_tablename like #{ostTablenameLike}
 			</if>
 
-			<if test="ostTablenames != null and ostTablenames.size() &gt; 0">
+			<if test="ostTablenames != null and ostTablenames.size != 0">
 			    and E.ost_tablename IN
 				<foreach item="x_ostTablename" index="index" collection="ostTablenames" 
 					open="(" separator="," close=")">
@@ -277,7 +277,7 @@
 				and E.ost_row &lt;= #{ostRowLessThanOrEqual}
 			</if>
 
-			<if test="ostRows != null and ostRows.size() &gt; 0">
+			<if test="ostRows != null and ostRows.size != 0">
 			    and E.ost_row IN
 				<foreach item="x_ostRow" index="index" collection="ostRows" 
 					open="(" separator="," close=")">
@@ -298,7 +298,7 @@
 				and E.ost_col &lt;= #{ostColLessThanOrEqual}
 			</if>
 
-			<if test="ostCols != null and ostCols.size() &gt; 0">
+			<if test="ostCols != null and ostCols.size != 0">
 			    and E.ost_col IN
 				<foreach item="x_ostCol" index="index" collection="ostCols" 
 					open="(" separator="," close=")">
@@ -315,7 +315,7 @@
 				and E.ost_cellid like #{ostCellidLike}
 			</if>
 
-			<if test="ostCellids != null and ostCellids.size() &gt; 0">
+			<if test="ostCellids != null and ostCellids.size != 0">
 			    and E.ost_cellid IN
 				<foreach item="x_ostCellid" index="index" collection="ostCellids" 
 					open="(" separator="," close=")">
@@ -332,7 +332,7 @@
 				and E.file_name like #{fileNameLike}
 			</if>
 
-			<if test="fileNames != null and fileNames.size() &gt; 0">
+			<if test="fileNames != null and fileNames.size != 0">
 			    and E.file_name IN
 				<foreach item="x_fileName" index="index" collection="fileNames" 
 					open="(" separator="," close=")">

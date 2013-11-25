@@ -129,7 +129,7 @@
 				and E.pfileid like #{pfileidLike}
             </if>
 
-			<if test="pfileids != null and pfileids.size() &gt; 0">
+			<if test="pfileids != null and pfileids.size != 0">
 			    and E.pfileid IN
                 <foreach item="x_pfileid" index="index" collection="pfileids" 
                      open="(" separator="," close=")">
@@ -146,7 +146,7 @@
 				and E.cellid like #{cellidLike}
             </if>
 
-			<if test="cellids != null and cellids.size() &gt; 0">
+			<if test="cellids != null and cellids.size != 0">
 			    and E.cellid IN
                 <foreach item="x_cellid" index="index" collection="cellids" 
                      open="(" separator="," close=")">

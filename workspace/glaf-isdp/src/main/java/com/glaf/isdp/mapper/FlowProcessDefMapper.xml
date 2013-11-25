@@ -222,7 +222,7 @@
 				and E.main_id = #{mainId}
 			</if>
 
-			<if test="mainIds != null and mainIds.size() &gt; 0">
+			<if test="mainIds != null and mainIds.size != 0">
 			    and E.main_id IN
 				<foreach item="x_mainId" index="index" collection="mainIds" 
 					open="(" separator="," close=")">
@@ -238,7 +238,7 @@
 				and E.fileid like #{fileidLike}
 			</if>
 
-			<if test="fileids != null and fileids.size() &gt; 0">
+			<if test="fileids != null and fileids.size != 0">
 			    and E.fileid IN
 				<foreach item="x_fileid" index="index" collection="fileids" 
 					open="(" separator="," close=")">
@@ -262,7 +262,7 @@
 				and E.actor like #{actorLike}
 			</if>
 
-			<if test="actors != null and actors.size() &gt; 0">
+			<if test="actors != null and actors.size != 0">
 			    and E.actor IN
 				<foreach item="x_actor" index="index" collection="actors" 
 					open="(" separator="," close=")">

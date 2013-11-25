@@ -295,7 +295,7 @@
 				and E.id like #{idLike}
 			</if>
 
-			<if test="ids != null and ids.size() &gt; 0">
+			<if test="ids != null and ids.size != 0">
 			    and E.id IN
 				<foreach item="x_id" index="index" collection="ids" 
 					open="(" separator="," close=")">
@@ -307,7 +307,7 @@
 				and E.parent_id = #{parentId}
 			</if>
 
-			<if test="parentIds != null and parentIds.size() &gt; 0">
+			<if test="parentIds != null and parentIds.size != 0">
 			    and E.parent_id IN
 				<foreach item="x_parentId" index="index" collection="parentIds" 
 					open="(" separator="," close=")">
@@ -331,7 +331,7 @@
 				and E.nlevel &lt;= #{nlevelLessThanOrEqual}
 			</if>
 
-			<if test="nlevels != null and nlevels.size() &gt; 0">
+			<if test="nlevels != null and nlevels.size != 0">
 			    and E.nlevel IN
 				<foreach item="x_nlevel" index="index" collection="nlevels" 
 					open="(" separator="," close=")">
@@ -357,7 +357,7 @@
 				and E.inttype &lt;= #{inttypeLessThanOrEqual}
 			</if>
 
-			<if test="inttypes != null and inttypes.size() &gt; 0">
+			<if test="inttypes != null and inttypes.size != 0">
 			    and E.inttype IN
 				<foreach item="x_inttype" index="index" collection="inttypes" 
 					open="(" separator="," close=")">
@@ -385,7 +385,7 @@
 				and E.filenum like #{filenumLike}
 			</if>
 
-			<if test="filenums != null and filenums.size() &gt; 0">
+			<if test="filenums != null and filenums.size != 0">
 			    and E.filenum IN
 				<foreach item="x_filenum" index="index" collection="filenums" 
 					open="(" separator="," close=")">
@@ -402,7 +402,7 @@
 				and E.ftype like #{ftypeLike}
 			</if>
 
-			<if test="ftypes != null and ftypes.size() &gt; 0">
+			<if test="ftypes != null and ftypes.size != 0">
 			    and E.ftype IN
 				<foreach item="x_ftype" index="index" collection="ftypes" 
 					open="(" separator="," close=")">
@@ -423,7 +423,7 @@
 				and E.ztype &lt;= #{ztypeLessThanOrEqual}
 			</if>
 
-			<if test="ztypes != null and ztypes.size() &gt; 0">
+			<if test="ztypes != null and ztypes.size != 0">
 			    and E.ztype IN
 				<foreach item="x_ztype" index="index" collection="ztypes" 
 					open="(" separator="," close=")">
@@ -440,7 +440,7 @@
 				and E.slevel like #{slevelLike}
 			</if>
 
-			<if test="slevels != null and slevels.size() &gt; 0">
+			<if test="slevels != null and slevels.size != 0">
 			    and E.slevel IN
 				<foreach item="x_slevel" index="index" collection="slevels" 
 					open="(" separator="," close=")">
@@ -457,7 +457,7 @@
 				and E.savetime like #{savetimeLike}
 			</if>
 
-			<if test="savetimes != null and savetimes.size() &gt; 0">
+			<if test="savetimes != null and savetimes.size != 0">
 			    and E.savetime IN
 				<foreach item="x_savetime" index="index" collection="savetimes" 
 					open="(" separator="," close=")">
@@ -478,7 +478,7 @@
 				and E.domain_index &lt;= #{domainIndexLessThanOrEqual}
 			</if>
 
-			<if test="domainIndexs != null and domainIndexs.size() &gt; 0">
+			<if test="domainIndexs != null and domainIndexs.size != 0">
 			    and E.domain_index IN
 				<foreach item="x_domainIndex" index="index" collection="domainIndexs" 
 					open="(" separator="," close=")">
@@ -499,7 +499,7 @@
 				and E.menuindex &lt;= #{menuindexLessThanOrEqual}
 			</if>
 
-			<if test="menuindexs != null and menuindexs.size() &gt; 0">
+			<if test="menuindexs != null and menuindexs.size != 0">
 			    and E.menuindex IN
 				<foreach item="x_menuindex" index="index" collection="menuindexs" 
 					open="(" separator="," close=")">

@@ -433,7 +433,7 @@
 				and E.id like #{idLike}
 			</if>
 			
-			<if test="ids != null and ids.size() &gt; 0">
+			<if test="ids != null and ids.size != 0">
 			    and E.id IN
 				<foreach item="x_id" index="index" collection="ids" 
 					open="(" separator="," close=")">
@@ -445,7 +445,7 @@
 				and E.parent_id = #{parentId}
 			</if>
 
-			<if test="parentIds != null and parentIds.size() &gt; 0">
+			<if test="parentIds != null and parentIds.size != 0">
 			    and E.parent_id IN
 				<foreach item="x_parentId" index="index" collection="parentIds" 
 					open="(" separator="," close=")">
@@ -469,7 +469,7 @@
 				and E.nlevel &lt;= #{nlevelLessThanOrEqual}
 			</if>
 
-			<if test="nlevels != null and nlevels.size() &gt; 0">
+			<if test="nlevels != null and nlevels.size != 0">
 			    and E.nlevel IN
 				<foreach item="x_nlevel" index="index" collection="nlevels" 
 					open="(" separator="," close=")">
@@ -504,7 +504,7 @@
 				and E.viewtype &lt;= #{viewtypeLessThanOrEqual}
 			</if>
 
-			<if test="viewtypes != null and viewtypes.size() &gt; 0">
+			<if test="viewtypes != null and viewtypes.size != 0">
 			    and E.viewtype IN
 				<foreach item="x_viewtype" index="index" collection="viewtypes" 
 					open="(" separator="," close=")">
@@ -521,7 +521,7 @@
 				and E.ismode like #{ismodeLike}
 			</if>
 
-			<if test="ismodes != null and ismodes.size() &gt; 0">
+			<if test="ismodes != null and ismodes.size != 0">
 			    and E.ismode IN
 				<foreach item="x_ismode" index="index" collection="ismodes" 
 					open="(" separator="," close=")">
@@ -538,7 +538,7 @@
 				and E.modetable_id like #{modetableIdLike}
 			</if>
 
-			<if test="modetableIds != null and modetableIds.size() &gt; 0">
+			<if test="modetableIds != null and modetableIds.size != 0">
 			    and E.modetable_id IN
 				<foreach item="x_modetableId" index="index" collection="modetableIds" 
 					open="(" separator="," close=")">
@@ -559,7 +559,7 @@
 				and E.issystem &lt;= #{issystemLessThanOrEqual}
 			</if>
 
-			<if test="issystems != null and issystems.size() &gt; 0">
+			<if test="issystems != null and issystems.size != 0">
 			    and E.issystem IN
 				<foreach item="x_issystem" index="index" collection="issystems" 
 					open="(" separator="," close=")">
@@ -579,7 +579,7 @@
 				and E.intsystemselect &lt;= #{intsystemselectLessThanOrEqual}
 			</if>
 
-			<if test="intsystemselects != null and intsystemselects.size() &gt; 0">
+			<if test="intsystemselects != null and intsystemselects.size != 0">
 			    and E.intsystemselect IN
 				<foreach item="x_intsystemselect" index="index" collection="intsystemselects" 
 					open="(" separator="," close=")">
@@ -600,7 +600,7 @@
 				and E.intused &lt;= #{intusedLessThanOrEqual}
 			</if>
 
-			<if test="intuseds != null and intuseds.size() &gt; 0">
+			<if test="intuseds != null and intuseds.size != 0">
 			    and E.intused IN
 				<foreach item="x_intused" index="index" collection="intuseds" 
 					open="(" separator="," close=")">
@@ -621,7 +621,7 @@
 				and E.intdel &lt;= #{intdelLessThanOrEqual}
 			</if>
 
-			<if test="intdels != null and intdels.size() &gt; 0">
+			<if test="intdels != null and intdels.size != 0">
 			    and E.intdel IN
 				<foreach item="x_intdel" index="index" collection="intdels" 
 					open="(" separator="," close=")">
@@ -638,7 +638,7 @@
 				and E.type_tablename like #{typeTablenameLike}
 			</if>
 
-			<if test="typeTablenames != null and typeTablenames.size() &gt; 0">
+			<if test="typeTablenames != null and typeTablenames.size != 0">
 			    and E.type_tablename IN
 				<foreach item="x_typeTablename" index="index" collection="typeTablenames" 
 					open="(" separator="," close=")">
@@ -659,7 +659,7 @@
 				and E.intoperation &lt;= #{intoperationLessThanOrEqual}
 			</if>
 
-			<if test="intoperations != null and intoperations.size() &gt; 0">
+			<if test="intoperations != null and intoperations.size != 0">
 			    and E.intoperation IN
 				<foreach item="x_intoperation" index="index" collection="intoperations" 
 					open="(" separator="," close=")">
@@ -680,7 +680,7 @@
 				and E.intMuiFrm &lt;= #{intMuiFrmLessThanOrEqual}
 			</if>
 
-			<if test="intMuiFrms != null and intMuiFrms.size() &gt; 0">
+			<if test="intMuiFrms != null and intMuiFrms.size != 0">
 			    and E.intMuiFrm IN
 				<foreach item="x_intMuiFrm" index="index" collection="intMuiFrms" 
 					open="(" separator="," close=")">
@@ -701,7 +701,7 @@
 				and E.intnoshow &lt;= #{intnoshowLessThanOrEqual}
 			</if>
 
-			<if test="intnoshows != null and intnoshows.size() &gt; 0">
+			<if test="intnoshows != null and intnoshows.size != 0">
 			    and E.intnoshow IN
 				<foreach item="x_intnoshow" index="index" collection="intnoshows" 
 					open="(" separator="," close=")">
@@ -718,7 +718,7 @@
 				and E.type_basetable like #{typeBasetableLike}
 			</if>
 
-			<if test="typeBasetables != null and typeBasetables.size() &gt; 0">
+			<if test="typeBasetables != null and typeBasetables.size != 0">
 			    and E.type_basetable IN
 				<foreach item="x_typeBasetable" index="index" collection="typeBasetables" 
 					open="(" separator="," close=")">
@@ -739,7 +739,7 @@
 				and E.type_index &lt;= #{typeIndexLessThanOrEqual}
 			</if>
 
-			<if test="typeIndexs != null and typeIndexs.size() &gt; 0">
+			<if test="typeIndexs != null and typeIndexs.size != 0">
 			    and E.type_index IN
 				<foreach item="x_typeIndex" index="index" collection="typeIndexs" 
 					open="(" separator="," close=")">
@@ -752,7 +752,7 @@
 				and E.gid like #{gidLike}
 			</if>
 
-			<if test="gids != null and gids.size() &gt; 0">
+			<if test="gids != null and gids.size != 0">
 			    and E.gid IN
 				<foreach item="x_gid" index="index" collection="gids" 
 					open="(" separator="," close=")">

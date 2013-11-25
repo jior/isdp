@@ -720,7 +720,7 @@
 				and E.index_id like #{indexIdLike}
 			</if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
 				<foreach item="x_indexId" index="index" collection="indexIds" 
 					open="(" separator="," close=")">
@@ -737,7 +737,7 @@
 				and E.frmtype like #{frmtypeLike}
 			</if>
 
-			<if test="frmtypes != null and frmtypes.size() &gt; 0">
+			<if test="frmtypes != null and frmtypes.size != 0">
 			    and E.frmtype IN
 				<foreach item="x_frmtype" index="index" collection="frmtypes" 
 					open="(" separator="," close=")">
@@ -754,7 +754,7 @@
 				and E.issystem like #{issystemLike}
 			</if>
 
-			<if test="issystems != null and issystems.size() &gt; 0">
+			<if test="issystems != null and issystems.size != 0">
 			    and E.issystem IN
 				<foreach item="x_issystem" index="index" collection="issystems" 
 					open="(" separator="," close=")">
@@ -778,7 +778,7 @@
 				and E.dtype like #{dtypeLike}
 			</if>
 
-			<if test="dtypes != null and dtypes.size() &gt; 0">
+			<if test="dtypes != null and dtypes.size != 0">
 			    and E.dtype IN
 				<foreach item="x_dtype" index="index" collection="dtypes" 
 					open="(" separator="," close=")">
@@ -795,7 +795,7 @@
 				and E.showtype like #{showtypeLike}
 			</if>
 
-			<if test="showtypes != null and showtypes.size() &gt; 0">
+			<if test="showtypes != null and showtypes.size != 0">
 			    and E.showtype IN
 				<foreach item="x_showtype" index="index" collection="showtypes" 
 					open="(" separator="," close=")">
@@ -813,7 +813,7 @@
 				and E.form like #{formLike}
 			</if>
 
-			<if test="forms != null and forms.size() &gt; 0">
+			<if test="forms != null and forms.size != 0">
 			    and E.form IN
 				<foreach item="x_form" index="index" collection="forms" 
 					open="(" separator="," close=")">
@@ -830,7 +830,7 @@
 				and E.intype like #{intypeLike}
 			</if>
 
-			<if test="intypes != null and intypes.size() &gt; 0">
+			<if test="intypes != null and intypes.size != 0">
 			    and E.intype IN
 				<foreach item="x_intype" index="index" collection="intypes" 
 					open="(" separator="," close=")">
@@ -847,7 +847,7 @@
 				and E.hintID like #{hintIDLike}
 			</if>
 
-			<if test="hintIDs != null and hintIDs.size() &gt; 0">
+			<if test="hintIDs != null and hintIDs.size != 0">
 			    and E.hintID IN
 				<foreach item="x_hintID" index="index" collection="hintIDs" 
 					open="(" separator="," close=")">
@@ -863,7 +863,7 @@
 				and E.ztype like #{ztypeLike}
 			</if>
 
-			<if test="ztypes != null and ztypes.size() &gt; 0">
+			<if test="ztypes != null and ztypes.size != 0">
 			    and E.ztype IN
 				<foreach item="x_ztype" index="index" collection="ztypes" 
 					open="(" separator="," close=")">
@@ -880,7 +880,7 @@
 				and E.ismustfill like #{ismustfillLike}
 			</if>
 
-			<if test="ismustfills != null and ismustfills.size() &gt; 0">
+			<if test="ismustfills != null and ismustfills.size != 0">
 			    and E.ismustfill IN
 				<foreach item="x_ismustfill" index="index" collection="ismustfills" 
 					open="(" separator="," close=")">
@@ -897,7 +897,7 @@
 				and E.isListShow like #{isListShowLike}
 			</if>
 
-			<if test="isListShows != null and isListShows.size() &gt; 0">
+			<if test="isListShows != null and isListShows.size != 0">
 			    and E.isListShow IN
 				<foreach item="x_isListShow" index="index" collection="isListShows" 
 					open="(" separator="," close=")">
@@ -913,7 +913,7 @@
 				and E.panid like #{panidLike}
 			</if>
 
-			<if test="panids != null and panids.size() &gt; 0">
+			<if test="panids != null and panids.size != 0">
 			    and E.panid IN
 				<foreach item="x_panid" index="index" collection="panids" 
 					open="(" separator="," close=")">
@@ -929,7 +929,7 @@
 				and E.istname = #{istname}
 			</if>
 
-			<if test="istnames != null and istnames.size() &gt; 0">
+			<if test="istnames != null and istnames.size != 0">
 			    and E.istname IN
 				<foreach item="x_istname" index="index" collection="istnames" 
 					open="(" separator="," close=")">
@@ -945,7 +945,7 @@
 				and E.filedot_fileid like #{filedotFileidLike}
 			</if>
 
-			<if test="filedotFileids != null and filedotFileids.size() &gt; 0">
+			<if test="filedotFileids != null and filedotFileids.size != 0">
 			    and E.filedot_fileid IN
 				<foreach item="x_filedotFileid" index="index" collection="filedotFileids" 
 					open="(" separator="," close=")">
@@ -965,7 +965,7 @@
 				and E.datapoint &lt;= #{datapointLessThanOrEqual}
 			</if>
 
-			<if test="datapoints != null and datapoints.size() &gt; 0">
+			<if test="datapoints != null and datapoints.size != 0">
 			    and E.datapoint IN
 				<foreach item="x_datapoint" index="index" collection="datapoints" 
 					open="(" separator="," close=")">
@@ -985,7 +985,7 @@
 				and E.isdataonly like #{isdataonlyLike}
 			</if>
 
-			<if test="isdataonlys != null and isdataonlys.size() &gt; 0">
+			<if test="isdataonlys != null and isdataonlys.size != 0">
 			    and E.isdataonly IN
 				<foreach item="x_isdataonly" index="index" collection="isdataonlys" 
 					open="(" separator="," close=")">
@@ -1006,7 +1006,7 @@
 				and E.checktype &lt;= #{checktypeLessThanOrEqual}
 			</if>
 
-			<if test="checktypes != null and checktypes.size() &gt; 0">
+			<if test="checktypes != null and checktypes.size != 0">
 			    and E.checktype IN
 				<foreach item="x_checktype" index="index" collection="checktypes" 
 					open="(" separator="," close=")">
@@ -1023,7 +1023,7 @@
 				and E.orderid like #{orderidLike}
 			</if>
 
-			<if test="orderids != null and orderids.size() &gt; 0">
+			<if test="orderids != null and orderids.size != 0">
 			    and E.orderid IN
 				<foreach item="x_orderid" index="index" collection="orderids" 
 					open="(" separator="," close=")">
@@ -1044,7 +1044,7 @@
 				and E.celltype &lt;= #{celltypeLessThanOrEqual}
 			</if>
 
-			<if test="celltypes != null and celltypes.size() &gt; 0">
+			<if test="celltypes != null and celltypes.size != 0">
 			    and E.celltype IN
 				<foreach item="x_celltype" index="index" collection="celltypes" 
 					open="(" separator="," close=")">
@@ -1060,7 +1060,7 @@
 				and E.hintlist like #{hintlistLike}
 			</if>
 
-			<if test="hintlists != null and hintlists.size() &gt; 0">
+			<if test="hintlists != null and hintlists.size != 0">
 			    and E.hintlist IN
 				<foreach item="x_hintlist" index="index" collection="hintlists" 
 					open="(" separator="," close=")">
@@ -1076,7 +1076,7 @@
 				and E.olddname like #{olddnameLike}
 			</if>
 
-			<if test="olddnames != null and olddnames.size() &gt; 0">
+			<if test="olddnames != null and olddnames.size != 0">
 			    and E.olddname IN
 				<foreach item="x_olddname" index="index" collection="olddnames" 
 					open="(" separator="," close=")">
@@ -1092,7 +1092,7 @@
 				and E.data_tablename like #{dataTablenameLike}
 			</if>
 
-			<if test="dataTablenames != null and dataTablenames.size() &gt; 0">
+			<if test="dataTablenames != null and dataTablenames.size != 0">
 			    and E.data_tablename IN
 				<foreach item="x_dataTablename" index="index" collection="dataTablenames" 
 					open="(" separator="," close=")">
@@ -1109,7 +1109,7 @@
 				and E.data_fieldname like #{dataFieldnameLike}
 			</if>
 
-			<if test="dataFieldnames != null and dataFieldnames.size() &gt; 0">
+			<if test="dataFieldnames != null and dataFieldnames.size != 0">
 			    and E.data_fieldname IN
 				<foreach item="x_dataFieldname" index="index" collection="dataFieldnames" 
 					open="(" separator="," close=")">
@@ -1130,7 +1130,7 @@
 				and E.order_con &lt;= #{orderConLessThanOrEqual}
 			</if>
 
-			<if test="orderCons != null and orderCons.size() &gt; 0">
+			<if test="orderCons != null and orderCons.size != 0">
 			    and E.order_con IN
 				<foreach item="x_orderCon" index="index" collection="orderCons" 
 					open="(" separator="," close=")">
@@ -1150,7 +1150,7 @@
 				and E.connum &lt;= #{connumLessThanOrEqual}
 			</if>
 
-			<if test="connums != null and connums.size() &gt; 0">
+			<if test="connums != null and connums.size != 0">
 			    and E.connum IN
 				<foreach item="x_connum" index="index" collection="connums" 
 					open="(" separator="," close=")">
@@ -1170,7 +1170,7 @@
 				and E.node_index &lt;= #{nodeIndexLessThanOrEqual}
 			</if>
 
-			<if test="nodeIndexs != null and nodeIndexs.size() &gt; 0">
+			<if test="nodeIndexs != null and nodeIndexs.size != 0">
 			    and E.node_index IN
 				<foreach item="x_nodeIndex" index="index" collection="nodeIndexs" 
 					open="(" separator="," close=")">
@@ -1187,7 +1187,7 @@
 				and E.type_id like #{typeIdLike}
 			</if>
 
-			<if test="typeIds != null and typeIds.size() &gt; 0">
+			<if test="typeIds != null and typeIds.size != 0">
 			    and E.type_id IN
 				<foreach item="x_typeId" index="index" collection="typeIds" 
 					open="(" separator="," close=")">
@@ -1204,7 +1204,7 @@
 				and E.userindex like #{userindexLike}
 			</if>
 
-			<if test="userindexs != null and userindexs.size() &gt; 0">
+			<if test="userindexs != null and userindexs.size != 0">
 			    and E.userindex IN
 				<foreach item="x_userindex" index="index" collection="userindexs" 
 					open="(" separator="," close=")">
@@ -1225,7 +1225,7 @@
 				and E.order_index &lt;= #{orderIndexLessThanOrEqual}
 			</if>
 
-			<if test="orderIndexs != null and orderIndexs.size() &gt; 0">
+			<if test="orderIndexs != null and orderIndexs.size != 0">
 			    and E.order_index IN
 				<foreach item="x_orderIndex" index="index" collection="orderIndexs" 
 					open="(" separator="," close=")">
@@ -1242,7 +1242,7 @@
 				and E.parent_dname like #{parentDnameLike}
 			</if>
 
-			<if test="parentDnames != null and parentDnames.size() &gt; 0">
+			<if test="parentDnames != null and parentDnames.size != 0">
 			    and E.parent_dname IN
 				<foreach item="x_parentDname" index="index" collection="parentDnames" 
 					open="(" separator="," close=")">
@@ -1263,7 +1263,7 @@
 				and E.sysauto &lt;= #{sysautoLessThanOrEqual}
 			</if>
 
-			<if test="sysautos != null and sysautos.size() &gt; 0">
+			<if test="sysautos != null and sysautos.size != 0">
 			    and E.sysauto IN
 				<foreach item="x_sysauto" index="index" collection="sysautos" 
 					open="(" separator="," close=")">
@@ -1284,7 +1284,7 @@
 				and E.order_index_F &lt;= #{orderIndexFLessThanOrEqual}
 			</if>
 
-			<if test="orderIndexFs != null and orderIndexFs.size() &gt; 0">
+			<if test="orderIndexFs != null and orderIndexFs.size != 0">
 			    and E.order_index_F IN
 				<foreach item="x_orderIndexF" index="index" collection="orderIndexFs" 
 					open="(" separator="," close=")">
@@ -1301,7 +1301,7 @@
 				and E.orderid_F like #{orderidFLike}
 			</if>
 
-			<if test="orderidFs != null and orderidFs.size() &gt; 0">
+			<if test="orderidFs != null and orderidFs.size != 0">
 			    and E.orderid_F IN
 				<foreach item="x_orderidF" index="index" collection="orderidFs" 
 					open="(" separator="," close=")">
@@ -1322,7 +1322,7 @@
 				and E.order_con_F &lt;= #{orderConFLessThanOrEqual}
 			</if>
 
-			<if test="orderConFs != null and orderConFs.size() &gt; 0">
+			<if test="orderConFs != null and orderConFs.size != 0">
 			    and E.order_con_F IN
 				<foreach item="x_orderConF" index="index" collection="orderConFs" 
 					open="(" separator="," close=")">
@@ -1343,7 +1343,7 @@
 				and E.isprintvalue &lt;= #{isprintvalueLessThanOrEqual}
 			</if>
 
-			<if test="isprintvalues != null and isprintvalues.size() &gt; 0">
+			<if test="isprintvalues != null and isprintvalues.size != 0">
 			    and E.isprintvalue IN
 				<foreach item="x_isprintvalue" index="index" collection="isprintvalues" 
 					open="(" separator="," close=")">

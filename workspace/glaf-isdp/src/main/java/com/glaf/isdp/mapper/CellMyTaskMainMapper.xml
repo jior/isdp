@@ -362,7 +362,7 @@
 				and E.index_id &lt;= #{indexIdLessThanOrEqual}
 			</if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
 				<foreach item="x_indexId" index="index" collection="indexIds" 
 					open="(" separator="," close=")">
@@ -379,7 +379,7 @@
 				and E.task_id like #{taskIdLike}
 			</if>
 
-			<if test="taskIds != null and taskIds.size() &gt; 0">
+			<if test="taskIds != null and taskIds.size != 0">
 			    and E.task_id IN
 				<foreach item="x_taskId" index="index" collection="taskIds" 
 					open="(" separator="," close=")">
@@ -407,7 +407,7 @@
 				and E.type_index_id &lt;= #{typeIndexIdLessThanOrEqual}
 			</if>
 
-			<if test="typeIndexIds != null and typeIndexIds.size() &gt; 0">
+			<if test="typeIndexIds != null and typeIndexIds.size != 0">
 			    and E.type_index_id IN
 				<foreach item="x_typeIndexId" index="index" collection="typeIndexIds" 
 					open="(" separator="," close=")">
@@ -428,7 +428,7 @@
 				and E.flagint &lt;= #{flagintLessThanOrEqual}
 			</if>
 
-			<if test="flagints != null and flagints.size() &gt; 0">
+			<if test="flagints != null and flagints.size != 0">
 			    and E.flagint IN
 				<foreach item="x_flagint" index="index" collection="flagints" 
 					open="(" separator="," close=")">
@@ -445,7 +445,7 @@
 				and E.mycell_tasks_id like #{mycellTasksIdLike}
 			</if>
 
-			<if test="mycellTasksIds != null and mycellTasksIds.size() &gt; 0">
+			<if test="mycellTasksIds != null and mycellTasksIds.size != 0">
 			    and E.mycell_tasks_id IN
 				<foreach item="x_mycellTasksId" index="index" collection="mycellTasksIds" 
 					open="(" separator="," close=")">
@@ -462,7 +462,7 @@
 				and E.fromtasksid like #{fromtasksidLike}
 			</if>
 
-			<if test="fromtasksids != null and fromtasksids.size() &gt; 0">
+			<if test="fromtasksids != null and fromtasksids.size != 0">
 			    and E.fromtasksid IN
 				<foreach item="x_fromtasksid" index="index" collection="fromtasksids" 
 					open="(" separator="," close=")">
@@ -479,7 +479,7 @@
 				and E.totaskid like #{totaskidLike}
 			</if>
 
-			<if test="totaskids != null and totaskids.size() &gt; 0">
+			<if test="totaskids != null and totaskids.size != 0">
 			    and E.totaskid IN
 				<foreach item="x_totaskid" index="index" collection="totaskids" 
 					open="(" separator="," close=")">
@@ -500,7 +500,7 @@
 				and E.intfinish &lt;= #{intfinishLessThanOrEqual}
 			</if>
 
-			<if test="intfinishs != null and intfinishs.size() &gt; 0">
+			<if test="intfinishs != null and intfinishs.size != 0">
 			    and E.intfinish IN
 				<foreach item="x_intfinish" index="index" collection="intfinishs" 
 					open="(" separator="," close=")">
@@ -517,7 +517,7 @@
 				and E.type_tablename like #{typeTablenameLike}
 			</if>
 
-			<if test="typeTablenames != null and typeTablenames.size() &gt; 0">
+			<if test="typeTablenames != null and typeTablenames.size != 0">
 			    and E.type_tablename IN
 				<foreach item="x_typeTablename" index="index" collection="typeTablenames" 
 					open="(" separator="," close=")">
@@ -534,7 +534,7 @@
 				and E.type_id like #{typeIdLike}
 			</if>
 
-			<if test="typeIds != null and typeIds.size() &gt; 0">
+			<if test="typeIds != null and typeIds.size != 0">
 			    and E.type_id IN
 				<foreach item="x_typeId" index="index" collection="typeIds" 
 					open="(" separator="," close=")">
@@ -551,7 +551,7 @@
 				and E.userid like #{useridLike}
 			</if>
 
-			<if test="userids != null and userids.size() &gt; 0">
+			<if test="userids != null and userids.size != 0">
 			    and E.userid IN
 				<foreach item="x_userid" index="index" collection="userids" 
 					open="(" separator="," close=")">
@@ -568,7 +568,7 @@
 				and E.netroleid like #{netroleidLike}
 			</if>
 
-			<if test="netroleids != null and netroleids.size() &gt; 0">
+			<if test="netroleids != null and netroleids.size != 0">
 			    and E.netroleid IN
 				<foreach item="x_netroleid" index="index" collection="netroleids" 
 					open="(" separator="," close=")">
@@ -589,7 +589,7 @@
 				and E.intisflow &lt;= #{intisflowLessThanOrEqual}
 			</if>
 
-			<if test="intisflows != null and intisflows.size() &gt; 0">
+			<if test="intisflows != null and intisflows.size != 0">
 			    and E.intisflow IN
 				<foreach item="x_intisflow" index="index" collection="intisflows" 
 					open="(" separator="," close=")">
@@ -610,7 +610,7 @@
 				and E.intStop &lt;= #{intStopLessThanOrEqual}
 			</if>
 
-			<if test="intStops != null and intStops.size() &gt; 0">
+			<if test="intStops != null and intStops.size != 0">
 			    and E.intStop IN
 				<foreach item="x_intStop" index="index" collection="intStops" 
 					open="(" separator="," close=")">
@@ -631,7 +631,7 @@
 				and E.filetype_index &lt;= #{filetypeIndexLessThanOrEqual}
 			</if>
 
-			<if test="filetypeIndexs != null and filetypeIndexs.size() &gt; 0">
+			<if test="filetypeIndexs != null and filetypeIndexs.size != 0">
 			    and E.filetype_index IN
 				<foreach item="x_filetypeIndex" index="index" collection="filetypeIndexs" 
 					open="(" separator="," close=")">

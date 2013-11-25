@@ -247,7 +247,7 @@
 				and E.index_id &lt;= #{indexIdLessThanOrEqual}
 			</if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
 				<foreach item="x_indexId" index="index" collection="indexIds" 
 					open="(" separator="," close=")">
@@ -259,7 +259,7 @@
 				and E.parent_id = #{parentId}
 			</if>
 
-			<if test="parentIds != null and parentIds.size() &gt; 0">
+			<if test="parentIds != null and parentIds.size != 0">
 			    and E.parent_id IN
 				<foreach item="x_parentId" index="index" collection="parentIds" 
 					open="(" separator="," close=")">
@@ -287,7 +287,7 @@
 				and E.nlevel &lt;= #{nlevelLessThanOrEqual}
 			</if>
 
-			<if test="nlevels != null and nlevels.size() &gt; 0">
+			<if test="nlevels != null and nlevels.size != 0">
 			    and E.nlevel IN
 				<foreach item="x_nlevel" index="index" collection="nlevels" 
 					open="(" separator="," close=")">
@@ -308,7 +308,7 @@
 				and E.showid &lt;= #{showidLessThanOrEqual}
 			</if>
 
-			<if test="showids != null and showids.size() &gt; 0">
+			<if test="showids != null and showids.size != 0">
 			    and E.showid IN
 				<foreach item="x_showid" index="index" collection="showids" 
 					open="(" separator="," close=")">
@@ -325,7 +325,7 @@
 				and E.ruleId like #{ruleIdLike}
 			</if>
 
-			<if test="ruleIds != null and ruleIds.size() &gt; 0">
+			<if test="ruleIds != null and ruleIds.size != 0">
 			    and E.ruleId IN
 				<foreach item="x_ruleId" index="index" collection="ruleIds" 
 					open="(" separator="," close=")">
@@ -341,7 +341,7 @@
 				and E.fruleId like #{fruleIdLike}
 			</if>
 
-			<if test="fruleIds != null and fruleIds.size() &gt; 0">
+			<if test="fruleIds != null and fruleIds.size != 0">
 			    and E.fruleId IN
 				<foreach item="x_fruleId" index="index" collection="fruleIds" 
 					open="(" separator="," close=")">
@@ -361,7 +361,7 @@
 				and E.sys_id like #{sysIdLike}
 			</if>
 
-			<if test="sysIds != null and sysIds.size() &gt; 0">
+			<if test="sysIds != null and sysIds.size != 0">
 			    and E.sys_id IN
 				<foreach item="x_sysId" index="index" collection="sysIds" 
 					open="(" separator="," close=")">
@@ -382,7 +382,7 @@
 				and E.domain_index &lt;= #{domainIndexLessThanOrEqual}
 			</if>
 
-			<if test="domainIndexs != null and domainIndexs.size() &gt; 0">
+			<if test="domainIndexs != null and domainIndexs.size != 0">
 			    and E.domain_index IN
 				<foreach item="x_domainIndex" index="index" collection="domainIndexs" 
 					open="(" separator="," close=")">

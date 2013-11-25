@@ -266,7 +266,7 @@
 				and E.topid like #{topidLike}
 			</if>
 
-			<if test="topids != null and topids.size() &gt; 0">
+			<if test="topids != null and topids.size != 0">
 			    and E.topid IN
 				<foreach item="x_topid" index="index" collection="topids" 
 					open="(" separator="," close=")">
@@ -322,7 +322,7 @@
 				and E.visID like #{visIDLike}
 			</if>
 
-			<if test="visIDs != null and visIDs.size() &gt; 0">
+			<if test="visIDs != null and visIDs.size != 0">
 			    and E.visID IN
 				<foreach item="x_visID" index="index" collection="visIDs" 
 					open="(" separator="," close=")">
@@ -338,7 +338,7 @@
 				and E.attID like #{attIDLike}
 			</if>
 
-			<if test="attIDs != null and attIDs.size() &gt; 0">
+			<if test="attIDs != null and attIDs.size != 0">
 			    and E.attID IN
 				<foreach item="x_attID" index="index" collection="attIDs" 
 					open="(" separator="," close=")">

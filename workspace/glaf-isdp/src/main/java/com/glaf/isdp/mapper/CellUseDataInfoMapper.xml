@@ -233,7 +233,7 @@
 				and E.table_name like #{tablenameLike}
 			</if>
 
-			<if test="tablenames != null and tablenames.size() &gt; 0">
+			<if test="tablenames != null and tablenames.size != 0">
 			    and E.table_name IN
 				<foreach item="x_tablename" index="index" collection="tablenames" 
 					open="(" separator="," close=")">
@@ -250,7 +250,7 @@
 				and E.table_id like #{tableIdLike}
 			</if>
 
-			<if test="tableIds != null and tableIds.size() &gt; 0">
+			<if test="tableIds != null and tableIds.size != 0">
 			    and E.table_id IN
 				<foreach item="x_tableId" index="index" collection="tableIds" 
 					open="(" separator="," close=")">
@@ -271,7 +271,7 @@
 				and E.ost_tablename &lt;= #{ostTablenameLessThanOrEqual}
 			</if>
 
-			<if test="ostTablenames != null and ostTablenames.size() &gt; 0">
+			<if test="ostTablenames != null and ostTablenames.size != 0">
 			    and E.ost_tablename IN
 				<foreach item="x_ostTablename" index="index" collection="ostTablenames" 
 					open="(" separator="," close=")">
@@ -292,7 +292,7 @@
 				and E.ost_row &lt;= #{ostRowLessThanOrEqual}
 			</if>
 
-			<if test="ostRows != null and ostRows.size() &gt; 0">
+			<if test="ostRows != null and ostRows.size != 0">
 			    and E.ost_row IN
 				<foreach item="x_ostRow" index="index" collection="ostRows" 
 					open="(" separator="," close=")">
@@ -313,7 +313,7 @@
 				and E.ost_col &lt;= #{ostColLessThanOrEqual}
 			</if>
 
-			<if test="ostCols != null and ostCols.size() &gt; 0">
+			<if test="ostCols != null and ostCols.size != 0">
 			    and E.ost_col IN
 				<foreach item="x_ostCol" index="index" collection="ostCols" 
 					open="(" separator="," close=")">
@@ -334,7 +334,7 @@
 				and E.flag &lt;= #{flagLessThanOrEqual}
 			</if>
 
-			<if test="flags != null and flags.size() &gt; 0">
+			<if test="flags != null and flags.size != 0">
 			    and E.flag IN
 				<foreach item="x_flag" index="index" collection="flags" 
 					open="(" separator="," close=")">
@@ -355,7 +355,7 @@
 				and E.treenlevel &lt;= #{levelLessThanOrEqual}
 			</if>
 
-			<if test="levels != null and levels.size() &gt; 0">
+			<if test="levels != null and levels.size != 0">
 			    and E.treenlevel IN
 				<foreach item="x_level" index="index" collection="levels" 
 					open="(" separator="," close=")">
@@ -372,7 +372,7 @@
 				and E.use_tablename like #{useTablenameLike}
 			</if>
 
-			<if test="useTablenames != null and useTablenames.size() &gt; 0">
+			<if test="useTablenames != null and useTablenames.size != 0">
 			    and E.use_tablename IN
 				<foreach item="x_useTablename" index="index" collection="useTablenames" 
 					open="(" separator="," close=")">
@@ -389,7 +389,7 @@
 				and E.use_id like #{useIdLike}
 			</if>
 
-			<if test="useIds != null and useIds.size() &gt; 0">
+			<if test="useIds != null and useIds.size != 0">
 			    and E.use_id IN
 				<foreach item="x_useId" index="index" collection="useIds" 
 					open="(" separator="," close=")">
@@ -410,7 +410,7 @@
 				and E.use_index_id &lt;= #{useIndexIdLessThanOrEqual}
 			</if>
 
-			<if test="useIndexIds != null and useIndexIds.size() &gt; 0">
+			<if test="useIndexIds != null and useIndexIds.size != 0">
 			    and E.use_index_id IN
 				<foreach item="x_useIndexId" index="index" collection="useIndexIds" 
 					open="(" separator="," close=")">

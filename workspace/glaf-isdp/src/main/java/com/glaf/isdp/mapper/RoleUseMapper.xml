@@ -133,7 +133,7 @@
 				and E.roleId = #{roleId}
 			</if>
 
-			<if test="roleIds != null and roleIds.size() &gt; 0">
+			<if test="roleIds != null and roleIds.size != 0">
 			    and E.roleId IN
 				<foreach item="x_roleId" index="index" collection="roleIds" 
 					open="(" separator="," close=")">
@@ -150,7 +150,7 @@
 				and E.usetype like #{usetypeLike}
 			</if>
 
-			<if test="usetypes != null and usetypes.size() &gt; 0">
+			<if test="usetypes != null and usetypes.size != 0">
 			    and E.usetype IN
 				<foreach item="x_usetype" index="index" collection="usetypes" 
 					open="(" separator="," close=")">
@@ -171,7 +171,7 @@
 				and E.pid &lt;= #{pidLessThanOrEqual}
 			</if>
 
-			<if test="pids != null and pids.size() &gt; 0">
+			<if test="pids != null and pids.size != 0">
 			    and E.pid IN
 				<foreach item="x_pid" index="index" collection="pids" 
 					open="(" separator="," close=")">

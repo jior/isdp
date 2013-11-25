@@ -802,7 +802,7 @@
 				and E.id like #{idLike}
 			</if>
 
-			<if test="ids != null and ids.size() &gt; 0">
+			<if test="ids != null and ids.size != 0">
 			    and E.id IN
 				<foreach item="x_id" index="index" collection="ids" 
 					open="(" separator="," close=")">
@@ -814,7 +814,7 @@
 				and E.parent_id = #{parentId}
 			</if>
 
-			<if test="parentIds != null and parentIds.size() &gt; 0">
+			<if test="parentIds != null and parentIds.size != 0">
 			    and E.parent_id IN
 				<foreach item="x_parentId" index="index" collection="parentIds" 
 					open="(" separator="," close=")">
@@ -838,7 +838,7 @@
 				and E.top_id &lt;= #{topIdLessThanOrEqual}
 			</if>
 
-			<if test="topIds != null and topIds.size() &gt; 0">
+			<if test="topIds != null and topIds.size != 0">
 			    and E.top_id IN
 				<foreach item="x_topId" index="index" collection="topIds" 
 					open="(" separator="," close=")">
@@ -862,7 +862,7 @@
 				and E.nlevel &lt;= #{nlevelLessThanOrEqual}
 			</if>
 
-			<if test="nlevels != null and nlevels.size() &gt; 0">
+			<if test="nlevels != null and nlevels.size != 0">
 			    and E.nlevel IN
 				<foreach item="x_nlevel" index="index" collection="nlevels" 
 					open="(" separator="," close=")">
@@ -879,7 +879,7 @@
 				and E.nodetype like #{nodetypeLike}
 			</if>
 
-			<if test="nodetypes != null and nodetypes.size() &gt; 0">
+			<if test="nodetypes != null and nodetypes.size != 0">
 			    and E.nodetype IN
 				<foreach item="x_nodetype" index="index" collection="nodetypes" 
 					open="(" separator="," close=")">
@@ -900,7 +900,7 @@
 				and E.fromid &lt;= #{fromidLessThanOrEqual}
 			</if>
 
-			<if test="fromids != null and fromids.size() &gt; 0">
+			<if test="fromids != null and fromids.size != 0">
 			    and E.fromid IN
 				<foreach item="x_fromid" index="index" collection="fromids" 
 					open="(" separator="," close=")">
@@ -921,7 +921,7 @@
 				and E.part_id &lt;= #{partIdLessThanOrEqual}
 			</if>
 
-			<if test="partIds != null and partIds.size() &gt; 0">
+			<if test="partIds != null and partIds.size != 0">
 			    and E.part_id IN
 				<foreach item="x_partId" index="index" collection="partIds" 
 					open="(" separator="," close=")">
@@ -942,7 +942,7 @@
 				and E.showid &lt;= #{showidLessThanOrEqual}
 			</if>
 
-			<if test="showids != null and showids.size() &gt; 0">
+			<if test="showids != null and showids.size != 0">
 			    and E.showid IN
 				<foreach item="x_showid" index="index" collection="showids" 
 					open="(" separator="," close=")">
@@ -966,7 +966,7 @@
 				and E.filenum &lt;= #{filenumLessThanOrEqual}
 			</if>
 
-			<if test="filenums != null and filenums.size() &gt; 0">
+			<if test="filenums != null and filenums.size != 0">
 			    and E.filenum IN
 				<foreach item="x_filenum" index="index" collection="filenums" 
 					open="(" separator="," close=")">
@@ -987,7 +987,7 @@
 				and E.filenum0 &lt;= #{filenum0LessThanOrEqual}
 			</if>
 
-			<if test="filenum0s != null and filenum0s.size() &gt; 0">
+			<if test="filenum0s != null and filenum0s.size != 0">
 			    and E.filenum0 IN
 				<foreach item="x_filenum0" index="index" collection="filenum0s" 
 					open="(" separator="," close=")">
@@ -1008,7 +1008,7 @@
 				and E.filenum1 &lt;= #{filenum1LessThanOrEqual}
 			</if>
 
-			<if test="filenum1s != null and filenum1s.size() &gt; 0">
+			<if test="filenum1s != null and filenum1s.size != 0">
 			    and E.filenum1 IN
 				<foreach item="x_filenum1" index="index" collection="filenum1s" 
 					open="(" separator="," close=")">
@@ -1029,7 +1029,7 @@
 				and E.filenum2 &lt;= #{filenum2LessThanOrEqual}
 			</if>
 
-			<if test="filenum2s != null and filenum2s.size() &gt; 0">
+			<if test="filenum2s != null and filenum2s.size != 0">
 			    and E.filenum2 IN
 				<foreach item="x_filenum2" index="index" collection="filenum2s" 
 					open="(" separator="," close=")">
@@ -1046,7 +1046,7 @@
 				and E.projtype like #{projtypeLike}
 			</if>
 
-			<if test="projtypes != null and projtypes.size() &gt; 0">
+			<if test="projtypes != null and projtypes.size != 0">
 			    and E.projtype IN
 				<foreach item="x_projtype" index="index" collection="projtypes" 
 					open="(" separator="," close=")">
@@ -1063,7 +1063,7 @@
 				and E.cid like #{cidLike}
 			</if>
 
-			<if test="cids != null and cids.size() &gt; 0">
+			<if test="cids != null and cids.size != 0">
 			    and E.cid IN
 				<foreach item="x_cid" index="index" collection="cids" 
 					open="(" separator="," close=")">
@@ -1084,7 +1084,7 @@
 				and E.dwid &lt;= #{dwidLessThanOrEqual}
 			</if>
 
-			<if test="dwids != null and dwids.size() &gt; 0">
+			<if test="dwids != null and dwids.size != 0">
 			    and E.dwid IN
 				<foreach item="x_dwid" index="index" collection="dwids" 
 					open="(" separator="," close=")">
@@ -1105,7 +1105,7 @@
 				and E.fbid &lt;= #{fbidLessThanOrEqual}
 			</if>
 
-			<if test="fbids != null and fbids.size() &gt; 0">
+			<if test="fbids != null and fbids.size != 0">
 			    and E.fbid IN
 				<foreach item="x_fbid" index="index" collection="fbids" 
 					open="(" separator="," close=")">
@@ -1126,7 +1126,7 @@
 				and E.fxid &lt;= #{fxidLessThanOrEqual}
 			</if>
 
-			<if test="fxids != null and fxids.size() &gt; 0">
+			<if test="fxids != null and fxids.size != 0">
 			    and E.fxid IN
 				<foreach item="x_fxid" index="index" collection="fxids" 
 					open="(" separator="," close=")">
@@ -1143,7 +1143,7 @@
 				and E.jid like #{jidLike}
 			</if>
 
-			<if test="jids != null and jids.size() &gt; 0">
+			<if test="jids != null and jids.size != 0">
 			    and E.jid IN
 				<foreach item="x_jid" index="index" collection="jids" 
 					open="(" separator="," close=")">
@@ -1160,7 +1160,7 @@
 				and E.flid like #{flidLike}
 			</if>
 
-			<if test="flids != null and flids.size() &gt; 0">
+			<if test="flids != null and flids.size != 0">
 			    and E.flid IN
 				<foreach item="x_flid" index="index" collection="flids" 
 					open="(" separator="," close=")">
@@ -1177,7 +1177,7 @@
 				and E.topnode like #{topnodeLike}
 			</if>
 
-			<if test="topnodes != null and topnodes.size() &gt; 0">
+			<if test="topnodes != null and topnodes.size != 0">
 			    and E.topnode IN
 				<foreach item="x_topnode" index="index" collection="topnodes" 
 					open="(" separator="," close=")">
@@ -1198,7 +1198,7 @@
 				and E.nodeico &lt;= #{nodeicoLessThanOrEqual}
 			</if>
 
-			<if test="nodeicos != null and nodeicos.size() &gt; 0">
+			<if test="nodeicos != null and nodeicos.size != 0">
 			    and E.nodeico IN
 				<foreach item="x_nodeico" index="index" collection="nodeicos" 
 					open="(" separator="," close=")">
@@ -1215,7 +1215,7 @@
 				and E.outflag like #{outflagLike}
 			</if>
 
-			<if test="outflags != null and outflags.size() &gt; 0">
+			<if test="outflags != null and outflags.size != 0">
 			    and E.outflag IN
 				<foreach item="x_outflag" index="index" collection="outflags" 
 					open="(" separator="," close=")">
@@ -1232,7 +1232,7 @@
 				and E.inflag like #{inflagLike}
 			</if>
 
-			<if test="inflags != null and inflags.size() &gt; 0">
+			<if test="inflags != null and inflags.size != 0">
 			    and E.inflag IN
 				<foreach item="x_inflag" index="index" collection="inflags" 
 					open="(" separator="," close=")">
@@ -1249,7 +1249,7 @@
 				and E.password like #{passwordLike}
 			</if>
 
-			<if test="passwords != null and passwords.size() &gt; 0">
+			<if test="passwords != null and passwords.size != 0">
 			    and E.password IN
 				<foreach item="x_password" index="index" collection="passwords" 
 					open="(" separator="," close=")">
@@ -1266,7 +1266,7 @@
 				and E.listnum like #{listnumLike}
 			</if>
 
-			<if test="listnums != null and listnums.size() &gt; 0">
+			<if test="listnums != null and listnums.size != 0">
 			    and E.listnum IN
 				<foreach item="x_listnum" index="index" collection="listnums" 
 					open="(" separator="," close=")">
@@ -1283,7 +1283,7 @@
 				and E.wcompany like #{wcompanyLike}
 			</if>
 
-			<if test="wcompanys != null and wcompanys.size() &gt; 0">
+			<if test="wcompanys != null and wcompanys.size != 0">
 			    and E.wcompany IN
 				<foreach item="x_wcompany" index="index" collection="wcompanys" 
 					open="(" separator="," close=")">
@@ -1304,7 +1304,7 @@
 				and E.listno &lt;= #{listnoLessThanOrEqual}
 			</if>
 
-			<if test="listnos != null and listnos.size() &gt; 0">
+			<if test="listnos != null and listnos.size != 0">
 			    and E.listno IN
 				<foreach item="x_listno" index="index" collection="listnos" 
 					open="(" separator="," close=")">
@@ -1325,7 +1325,7 @@
 				and E.plevel &lt;= #{plevelLessThanOrEqual}
 			</if>
 
-			<if test="plevels != null and plevels.size() &gt; 0">
+			<if test="plevels != null and plevels.size != 0">
 			    and E.plevel IN
 				<foreach item="x_plevel" index="index" collection="plevels" 
 					open="(" separator="," close=")">
@@ -1342,7 +1342,7 @@
 				and E.usernmu like #{usernmuLike}
 			</if>
 
-			<if test="usernmus != null and usernmus.size() &gt; 0">
+			<if test="usernmus != null and usernmus.size != 0">
 			    and E.usernmu IN
 				<foreach item="x_usernmu" index="index" collection="usernmus" 
 					open="(" separator="," close=")">
@@ -1363,7 +1363,7 @@
 				and E.index_id_old &lt;= #{indexIdOldLessThanOrEqual}
 			</if>
 
-			<if test="indexIdOlds != null and indexIdOlds.size() &gt; 0">
+			<if test="indexIdOlds != null and indexIdOlds.size != 0">
 			    and E.index_id_old IN
 				<foreach item="x_indexIdOld" index="index" collection="indexIdOlds" 
 					open="(" separator="," close=")">
@@ -1384,7 +1384,7 @@
 				and E.pindex_id &lt;= #{pindexIdLessThanOrEqual}
 			</if>
 
-			<if test="pindexIds != null and pindexIds.size() &gt; 0">
+			<if test="pindexIds != null and pindexIds.size != 0">
 			    and E.pindex_id IN
 				<foreach item="x_pindexId" index="index" collection="pindexIds" 
 					open="(" separator="," close=")">
@@ -1405,7 +1405,7 @@
 				and E.finishint &lt;= #{finishintLessThanOrEqual}
 			</if>
 
-			<if test="finishints != null and finishints.size() &gt; 0">
+			<if test="finishints != null and finishints.size != 0">
 			    and E.finishint IN
 				<foreach item="x_finishint" index="index" collection="finishints" 
 					open="(" separator="," close=")">
@@ -1422,7 +1422,7 @@
 				and E.type_tablename like #{typeTablenameLike}
 			</if>
 
-			<if test="typeTablenames != null and typeTablenames.size() &gt; 0">
+			<if test="typeTablenames != null and typeTablenames.size != 0">
 			    and E.type_tablename IN
 				<foreach item="x_typeTablename" index="index" collection="typeTablenames" 
 					open="(" separator="," close=")">
@@ -1439,7 +1439,7 @@
 				and E.tree_dliststr like #{treeDliststrLike}
 			</if>
 
-			<if test="treeDliststrs != null and treeDliststrs.size() &gt; 0">
+			<if test="treeDliststrs != null and treeDliststrs.size != 0">
 			    and E.tree_dliststr IN
 				<foreach item="x_treeDliststr" index="index" collection="treeDliststrs" 
 					open="(" separator="," close=")">
@@ -1460,7 +1460,7 @@
 				and E.pfiles_index &lt;= #{pfilesIndexLessThanOrEqual}
 			</if>
 
-			<if test="pfilesIndexs != null and pfilesIndexs.size() &gt; 0">
+			<if test="pfilesIndexs != null and pfilesIndexs.size != 0">
 			    and E.pfiles_index IN
 				<foreach item="x_pfilesIndex" index="index" collection="pfilesIndexs" 
 					open="(" separator="," close=")">
@@ -1481,7 +1481,7 @@
 				and E.bdate &lt;= #{bdateLessThanOrEqual}
 			</if>
 
-			<if test="bdates != null and bdates.size() &gt; 0">
+			<if test="bdates != null and bdates.size != 0">
 			    and E.bdate IN
 				<foreach item="x_bdate" index="index" collection="bdates" 
 					open="(" separator="," close=")">
@@ -1502,7 +1502,7 @@
 				and E.edate &lt;= #{edateLessThanOrEqual}
 			</if>
 
-			<if test="edates != null and edates.size() &gt; 0">
+			<if test="edates != null and edates.size != 0">
 			    and E.edate IN
 				<foreach item="x_edate" index="index" collection="edates" 
 					open="(" separator="," close=")">
@@ -1523,7 +1523,7 @@
 				and E.wbsindex &lt;= #{wbsindexLessThanOrEqual}
 			</if>
 
-			<if test="wbsindexs != null and wbsindexs.size() &gt; 0">
+			<if test="wbsindexs != null and wbsindexs.size != 0">
 			    and E.wbsindex IN
 				<foreach item="x_wbsindex" index="index" collection="wbsindexs" 
 					open="(" separator="," close=")">
@@ -1544,7 +1544,7 @@
 				and E.bdate_s &lt;= #{bdateSLessThanOrEqual}
 			</if>
 
-			<if test="bdateSs != null and bdateSs.size() &gt; 0">
+			<if test="bdateSs != null and bdateSs.size != 0">
 			    and E.bdate_s IN
 				<foreach item="x_bdateS" index="index" collection="bdateSs" 
 					open="(" separator="," close=")">
@@ -1565,7 +1565,7 @@
 				and E.edate_s &lt;= #{edateSLessThanOrEqual}
 			</if>
 
-			<if test="edateSs != null and edateSs.size() &gt; 0">
+			<if test="edateSs != null and edateSs.size != 0">
 			    and E.edate_s IN
 				<foreach item="x_edateS" index="index" collection="edateSs" 
 					open="(" separator="," close=")">
@@ -1582,7 +1582,7 @@
 				and E.type_id like #{typeIdLike}
 			</if>
 
-			<if test="typeIds != null and typeIds.size() &gt; 0">
+			<if test="typeIds != null and typeIds.size != 0">
 			    and E.type_id IN
 				<foreach item="x_typeId" index="index" collection="typeIds" 
 					open="(" separator="," close=")">
@@ -1603,7 +1603,7 @@
 				and E.cell1 &lt;= #{cell1LessThanOrEqual}
 			</if>
 
-			<if test="cell1s != null and cell1s.size() &gt; 0">
+			<if test="cell1s != null and cell1s.size != 0">
 			    and E.cell1 IN
 				<foreach item="x_cell1" index="index" collection="cell1s" 
 					open="(" separator="," close=")">
@@ -1624,7 +1624,7 @@
 				and E.cell2 &lt;= #{cell2LessThanOrEqual}
 			</if>
 
-			<if test="cell2s != null and cell2s.size() &gt; 0">
+			<if test="cell2s != null and cell2s.size != 0">
 			    and E.cell2 IN
 				<foreach item="x_cell2" index="index" collection="cell2s" 
 					open="(" separator="," close=")">
@@ -1645,7 +1645,7 @@
 				and E.cell3 &lt;= #{cell3LessThanOrEqual}
 			</if>
 
-			<if test="cell3s != null and cell3s.size() &gt; 0">
+			<if test="cell3s != null and cell3s.size != 0">
 			    and E.cell3 IN
 				<foreach item="x_cell3" index="index" collection="cell3s" 
 					open="(" separator="," close=")">
@@ -1662,7 +1662,7 @@
 				and E.strfileLocate like #{strfileLocateLike}
 			</if>
 
-			<if test="strfileLocates != null and strfileLocates.size() &gt; 0">
+			<if test="strfileLocates != null and strfileLocates.size != 0">
 			    and E.strfileLocate IN
 				<foreach item="x_strfileLocate" index="index" collection="strfileLocates" 
 					open="(" separator="," close=")">
@@ -1683,7 +1683,7 @@
 				and E.intpfile1 &lt;= #{intpfile1LessThanOrEqual}
 			</if>
 
-			<if test="intpfile1s != null and intpfile1s.size() &gt; 0">
+			<if test="intpfile1s != null and intpfile1s.size != 0">
 			    and E.intpfile1 IN
 				<foreach item="x_intpfile1" index="index" collection="intpfile1s" 
 					open="(" separator="," close=")">
@@ -1704,7 +1704,7 @@
 				and E.intpfile2 &lt;= #{intpfile2LessThanOrEqual}
 			</if>
 
-			<if test="intpfile2s != null and intpfile2s.size() &gt; 0">
+			<if test="intpfile2s != null and intpfile2s.size != 0">
 			    and E.intpfile2 IN
 				<foreach item="x_intpfile2" index="index" collection="intpfile2s" 
 					open="(" separator="," close=")">
@@ -1725,7 +1725,7 @@
 				and E.intpfile3 &lt;= #{intpfile3LessThanOrEqual}
 			</if>
 
-			<if test="intpfile3s != null and intpfile3s.size() &gt; 0">
+			<if test="intpfile3s != null and intpfile3s.size != 0">
 			    and E.intpfile3 IN
 				<foreach item="x_intpfile3" index="index" collection="intpfile3s" 
 					open="(" separator="," close=")">
@@ -1746,7 +1746,7 @@
 				and E.intcellfinish &lt;= #{intcellfinishLessThanOrEqual}
 			</if>
 
-			<if test="intcellfinishs != null and intcellfinishs.size() &gt; 0">
+			<if test="intcellfinishs != null and intcellfinishs.size != 0">
 			    and E.intcellfinish IN
 				<foreach item="x_intcellfinish" index="index" collection="intcellfinishs" 
 					open="(" separator="," close=")">
@@ -1763,7 +1763,7 @@
 				and E.sys_id like #{sysIdLike}
 			</if>
 
-			<if test="sysIds != null and sysIds.size() &gt; 0">
+			<if test="sysIds != null and sysIds.size != 0">
 			    and E.sys_id IN
 				<foreach item="x_sysId" index="index" collection="sysIds" 
 					open="(" separator="," close=")">
@@ -1784,7 +1784,7 @@
 				and E.index_in &lt;= #{indexInLessThanOrEqual}
 			</if>
 
-			<if test="indexIns != null and indexIns.size() &gt; 0">
+			<if test="indexIns != null and indexIns.size != 0">
 			    and E.index_in IN
 				<foreach item="x_indexIn" index="index" collection="indexIns" 
 					open="(" separator="," close=")">
@@ -1801,7 +1801,7 @@
 				and E.strButtonStar like #{strButtonStarLike}
 			</if>
 
-			<if test="strButtonStars != null and strButtonStars.size() &gt; 0">
+			<if test="strButtonStars != null and strButtonStars.size != 0">
 			    and E.strButtonStar IN
 				<foreach item="x_strButtonStar" index="index" collection="strButtonStars" 
 					open="(" separator="," close=")">
@@ -1822,7 +1822,7 @@
 				and E.intisuse &lt;= #{intisuseLessThanOrEqual}
 			</if>
 
-			<if test="intisuses != null and intisuses.size() &gt; 0">
+			<if test="intisuses != null and intisuses.size != 0">
 			    and E.intisuse IN
 				<foreach item="x_intisuse" index="index" collection="intisuses" 
 					open="(" separator="," close=")">
@@ -1843,7 +1843,7 @@
 				and E.wbsindex_in &lt;= #{wbsindexInLessThanOrEqual}
 			</if>
 
-			<if test="wbsindexIns != null and wbsindexIns.size() &gt; 0">
+			<if test="wbsindexIns != null and wbsindexIns.size != 0">
 			    and E.wbsindex_in IN
 				<foreach item="x_wbsindexIn" index="index" collection="wbsindexIns" 
 					open="(" separator="," close=")">

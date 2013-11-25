@@ -312,7 +312,7 @@
 				and E.id like #{idLike}
 			</if>
 
-			<if test="ids != null and ids.size() &gt; 0">
+			<if test="ids != null and ids.size != 0">
 			    and E.id IN
 				<foreach item="x_id" index="index" collection="ids" 
 					open="(" separator="," close=")">
@@ -328,7 +328,7 @@
 				and E.cellTaskIndexId = #{cellTaskIndexId}
 			</if>
 
-			<if test="parentIds != null and parentIds.size() &gt; 0">
+			<if test="parentIds != null and parentIds.size != 0">
 			    and E.parent_id IN
 				<foreach item="x_parentId" index="index" collection="parentIds" 
 					open="(" separator="," close=")">
@@ -356,7 +356,7 @@
 				and E.nlevel &lt;= #{nlevelLessThanOrEqual}
 			</if>
 
-			<if test="nlevels != null and nlevels.size() &gt; 0">
+			<if test="nlevels != null and nlevels.size != 0">
 			    and E.nlevel IN
 				<foreach item="x_nlevel" index="index" collection="nlevels" 
 					open="(" separator="," close=")">
@@ -380,7 +380,7 @@
 				and E.type &lt;= #{typeLessThanOrEqual}
 			</if>
 
-			<if test="types != null and types.size() &gt; 0">
+			<if test="types != null and types.size != 0">
 			    and E.type IN
 				<foreach item="x_type" index="index" collection="types" 
 					open="(" separator="," close=")">
@@ -400,7 +400,7 @@
 				and E.roleid &lt;= #{roleidLessThanOrEqual}
 			</if>
 
-			<if test="roleids != null and roleids.size() &gt; 0">
+			<if test="roleids != null and roleids.size != 0">
 			    and E.roleid IN
 				<foreach item="x_roleid" index="index" collection="roleids" 
 					open="(" separator="," close=")">
@@ -426,7 +426,7 @@
 				and E.limtime &lt;= #{limtimeLessThanOrEqual}
 			</if>
 
-			<if test="limtimes != null and limtimes.size() &gt; 0">
+			<if test="limtimes != null and limtimes.size != 0">
 			    and E.limtime IN
 				<foreach item="x_limtime" index="index" collection="limtimes" 
 					open="(" separator="," close=")">
@@ -443,7 +443,7 @@
 				and E.userid like #{useridLike}
 			</if>
 
-			<if test="userids != null and userids.size() &gt; 0">
+			<if test="userids != null and userids.size != 0">
 			    and E.userid IN
 				<foreach item="x_userid" index="index" collection="userids" 
 					open="(" separator="," close=")">
@@ -486,7 +486,7 @@
 				and E.useday &lt;= #{usedayLessThanOrEqual}
 			</if>
 
-			<if test="usedays != null and usedays.size() &gt; 0">
+			<if test="usedays != null and usedays.size != 0">
 			    and E.useday IN
 				<foreach item="x_useday" index="index" collection="usedays" 
 					open="(" separator="," close=")">
@@ -507,7 +507,7 @@
 				and E.intfinish &lt;= #{intfinishLessThanOrEqual}
 			</if>
 
-			<if test="intfinishs != null and intfinishs.size() &gt; 0">
+			<if test="intfinishs != null and intfinishs.size != 0">
 			    and E.intfinish IN
 				<foreach item="x_intfinish" index="index" collection="intfinishs" 
 					open="(" separator="," close=")">
@@ -523,7 +523,7 @@
 				and E.main_id like #{mainIdLike}
 			</if>
 
-			<if test="mainIds != null and mainIds.size() &gt; 0">
+			<if test="mainIds != null and mainIds.size != 0">
 			    and E.main_id IN
 				<foreach item="x_mainId" index="index" collection="mainIds" 
 					open="(" separator="," close=")">

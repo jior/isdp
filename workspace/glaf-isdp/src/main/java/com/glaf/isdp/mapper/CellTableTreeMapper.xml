@@ -287,7 +287,7 @@
 				and E.id like #{idLike}
 			</if>
 
-			<if test="ids != null and ids.size() &gt; 0">
+			<if test="ids != null and ids.size != 0">
 			    and E.id IN
 				<foreach item="x_id" index="index" collection="ids" 
 					open="(" separator="," close=")">
@@ -300,7 +300,7 @@
 				and E.parent_id = #{parentId}
 			</if>
 
-			<if test="parentIds != null and parentIds.size() &gt; 0">
+			<if test="parentIds != null and parentIds.size != 0">
 			    and E.parent_id IN
 				<foreach item="x_parentId" index="index" collection="parentIds" 
 					open="(" separator="," close=")">
@@ -316,7 +316,7 @@
 				and E.tabletype = #{tabletype}
 			</if>
 
-			<if test="tabletypes != null and tabletypes.size() &gt; 0">
+			<if test="tabletypes != null and tabletypes.size != 0">
 			    and E.tabletype IN
 				<foreach item="x_tabletype" index="index" collection="tabletypes" 
 					open="(" separator="," close=")">
@@ -333,7 +333,7 @@
 				and E.busiess_id = #{busiessId}
 			</if>
 
-			<if test="busiessIds != null and busiessIds.size() &gt; 0">
+			<if test="busiessIds != null and busiessIds.size != 0">
 			    and E.busiess_id IN
 				<foreach item="x_busiessId" index="index" collection="busiessIds" 
 					open="(" separator="," close=")">
@@ -353,7 +353,7 @@
 				and E.menuindex = #{menuindex}
 			</if>
 
-			<if test="menuindexs != null and menuindexs.size() &gt; 0">
+			<if test="menuindexs != null and menuindexs.size != 0">
 			    and E.menuindex IN
 				<foreach item="x_menuindex" index="index" collection="menuindexs" 
 					open="(" separator="," close=")">
@@ -365,7 +365,7 @@
 				and E.domain_index = #{domainIndex}
 			</if>
 
-			<if test="domainIndexs != null and domainIndexs.size() &gt; 0">
+			<if test="domainIndexs != null and domainIndexs.size != 0">
 			    and E.domain_index IN
 				<foreach item="x_domainIndex" index="index" collection="domainIndexs" 
 					open="(" separator="," close=")">

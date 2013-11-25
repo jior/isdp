@@ -163,7 +163,7 @@
 				and E.index_id &lt;= #{indexIdLessThanOrEqual}
             </if>
 
-			<if test="indexIds != null and indexIds.size() &gt; 0">
+			<if test="indexIds != null and indexIds.size != 0">
 			    and E.index_id IN
                 <foreach item="x_indexId" index="index" collection="indexIds" 
                      open="(" separator="," close=")">
@@ -184,7 +184,7 @@
 				and E.wbsindex &lt;= #{wbsindexLessThanOrEqual}
             </if>
 
-			<if test="wbsindexs != null and wbsindexs.size() &gt; 0">
+			<if test="wbsindexs != null and wbsindexs.size != 0">
 			    and E.wbsindex IN
                 <foreach item="x_wbsindex" index="index" collection="wbsindexs" 
                      open="(" separator="," close=")">
@@ -205,7 +205,7 @@
 				and E.intstartype &lt;= #{intstartypeLessThanOrEqual}
             </if>
 
-			<if test="intstartypes != null and intstartypes.size() &gt; 0">
+			<if test="intstartypes != null and intstartypes.size != 0">
 			    and E.intstartype IN
                 <foreach item="x_intstartype" index="index" collection="intstartypes" 
                      open="(" separator="," close=")">
@@ -226,7 +226,7 @@
 				and E.intstardelayday &lt;= #{intstardelaydayLessThanOrEqual}
             </if>
 
-			<if test="intstardelaydays != null and intstardelaydays.size() &gt; 0">
+			<if test="intstardelaydays != null and intstardelaydays.size != 0">
 			    and E.intstardelayday IN
                 <foreach item="x_intstardelayday" index="index" collection="intstardelaydays" 
                      open="(" separator="," close=")">
@@ -247,7 +247,7 @@
 				and E.inttype &lt;= #{inttypeLessThanOrEqual}
             </if>
 
-			<if test="inttypes != null and inttypes.size() &gt; 0">
+			<if test="inttypes != null and inttypes.size != 0">
 			    and E.inttype IN
                 <foreach item="x_inttype" index="index" collection="inttypes" 
                      open="(" separator="," close=")">

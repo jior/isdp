@@ -187,7 +187,7 @@
 				and E.tableid like #{tableidLike}
 			</if>
 
-			<if test="tableids != null and tableids.size() &gt; 0">
+			<if test="tableids != null and tableids.size != 0">
 			    and E.tableid IN
 				<foreach item="x_tableid" index="index" collection="tableids" 
 					open="(" separator="," close=")">
@@ -204,7 +204,7 @@
 				and E.desid like #{desidLike}
 			</if>
 
-			<if test="desids != null and desids.size() &gt; 0">
+			<if test="desids != null and desids.size != 0">
 			    and E.desid IN
 				<foreach item="x_desid" index="index" collection="desids" 
 					open="(" separator="," close=")">
@@ -225,7 +225,7 @@
 				and E.inttype &lt;= #{inttypeLessThanOrEqual}
 			</if>
 
-			<if test="inttypes != null and inttypes.size() &gt; 0">
+			<if test="inttypes != null and inttypes.size != 0">
 			    and E.inttype IN
 				<foreach item="x_inttype" index="index" collection="inttypes" 
 					open="(" separator="," close=")">
@@ -253,7 +253,7 @@
 				and E.intsave &lt;= #{intsaveLessThanOrEqual}
 			</if>
 
-			<if test="intsaves != null and intsaves.size() &gt; 0">
+			<if test="intsaves != null and intsaves.size != 0">
 			    and E.intsave IN
 				<foreach item="x_intsave" index="index" collection="intsaves" 
 					open="(" separator="," close=")">
