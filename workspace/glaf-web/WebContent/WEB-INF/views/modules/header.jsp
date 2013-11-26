@@ -9,7 +9,6 @@
 <%@ page import="com.glaf.base.modules.workspace.service.*"%>
 <%
 	SysUser user = com.glaf.base.utils.RequestUtil.getLoginUser(request);
-	String menu = (String)session.getAttribute(SysConstants.MENU);
 
 	MyMenuService myMenuService = ContextFactory.getBean("myMenuService");
 	List menuList = myMenuService.getMyMenuList(user.getId());
