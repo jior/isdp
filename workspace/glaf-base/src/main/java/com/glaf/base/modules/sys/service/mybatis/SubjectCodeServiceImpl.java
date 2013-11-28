@@ -17,24 +17,24 @@
  */
 package com.glaf.base.modules.sys.service.mybatis;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.glaf.core.id.*;
+import com.glaf.base.modules.sys.mapper.SubjectCodeMapper;
+import com.glaf.base.modules.sys.model.SubjectCode;
+import com.glaf.base.modules.sys.query.SubjectCodeQuery;
+import com.glaf.base.modules.sys.service.SubjectCodeService;
+import com.glaf.core.id.IdGenerator;
 import com.glaf.core.util.PageResult;
-
-import com.glaf.base.modules.sys.mapper.*;
-import com.glaf.base.modules.sys.model.*;
-import com.glaf.base.modules.sys.query.*;
-import com.glaf.base.modules.sys.service.*;
 
 @Service("subjectCodeService")
 @Transactional(readOnly = true)
@@ -226,7 +226,6 @@ public class SubjectCodeServiceImpl implements SubjectCodeService {
 	}
 
 	@Resource
-	@Qualifier("myBatisDbIdGenerator")
 	public void setIdGenerator(IdGenerator idGenerator) {
 		this.idGenerator = idGenerator;
 	}

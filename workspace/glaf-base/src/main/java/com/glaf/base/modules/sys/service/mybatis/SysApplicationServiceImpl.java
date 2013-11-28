@@ -17,7 +17,12 @@
  */
 package com.glaf.base.modules.sys.service.mybatis;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -27,23 +32,30 @@ import org.apache.ibatis.session.RowBounds;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.glaf.core.id.*;
-import com.glaf.core.identity.Agent;
-import com.glaf.core.service.EntityService;
-import com.glaf.core.util.PageResult;
+import com.glaf.base.business.TreeHelper;
+import com.glaf.base.modules.sys.SysConstants;
+import com.glaf.base.modules.sys.mapper.SysAccessMapper;
+import com.glaf.base.modules.sys.mapper.SysApplicationMapper;
+import com.glaf.base.modules.sys.mapper.SysTreeMapper;
+import com.glaf.base.modules.sys.model.RealmInfo;
+import com.glaf.base.modules.sys.model.SysApplication;
+import com.glaf.base.modules.sys.model.SysTree;
+import com.glaf.base.modules.sys.model.SysUser;
+import com.glaf.base.modules.sys.query.SysApplicationQuery;
+import com.glaf.base.modules.sys.query.SysTreeQuery;
+import com.glaf.base.modules.sys.service.AuthorizeService;
+import com.glaf.base.modules.sys.service.SysApplicationService;
+import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.core.base.BaseTree;
 import com.glaf.core.base.TreeModel;
 import com.glaf.core.context.ApplicationContext;
-import com.glaf.base.business.TreeHelper;
-import com.glaf.base.modules.sys.SysConstants;
-import com.glaf.base.modules.sys.mapper.*;
-import com.glaf.base.modules.sys.model.*;
-import com.glaf.base.modules.sys.query.*;
-import com.glaf.base.modules.sys.service.*;
+import com.glaf.core.id.IdGenerator;
+import com.glaf.core.identity.Agent;
+import com.glaf.core.service.EntityService;
+import com.glaf.core.util.PageResult;
 
 @Service("sysApplicationService")
 @Transactional(readOnly = true)
@@ -582,7 +594,6 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	}
 
 	@Resource
-	@Qualifier("myBatisDbIdGenerator")
 	public void setIdGenerator(IdGenerator idGenerator) {
 		this.idGenerator = idGenerator;
 	}

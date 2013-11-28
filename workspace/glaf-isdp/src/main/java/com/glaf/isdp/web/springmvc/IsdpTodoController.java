@@ -42,7 +42,7 @@ public class IsdpTodoController {
 
 	protected IUserTaskService userTaskService;
 
-	@javax.annotation.Resource(name = "myBatisEntityService")
+	@javax.annotation.Resource 
 	public void setEntityService(EntityService entityService) {
 		this.entityService = entityService;
 	}

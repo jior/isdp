@@ -18,7 +18,14 @@
 
 package com.glaf.base.modules.sys.service.mybatis;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -27,21 +34,35 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.glaf.core.id.*;
+import com.glaf.base.modules.sys.mapper.SysAccessMapper;
+import com.glaf.base.modules.sys.mapper.SysApplicationMapper;
+import com.glaf.base.modules.sys.mapper.SysDeptRoleMapper;
+import com.glaf.base.modules.sys.mapper.SysFunctionMapper;
+import com.glaf.base.modules.sys.mapper.SysPermissionMapper;
+import com.glaf.base.modules.sys.mapper.SysRoleMapper;
+import com.glaf.base.modules.sys.mapper.SysUserMapper;
+import com.glaf.base.modules.sys.mapper.SysUserRoleMapper;
+import com.glaf.base.modules.sys.model.SysApplication;
+import com.glaf.base.modules.sys.model.SysDepartment;
+import com.glaf.base.modules.sys.model.SysDeptRole;
+import com.glaf.base.modules.sys.model.SysFunction;
+import com.glaf.base.modules.sys.model.SysRole;
+import com.glaf.base.modules.sys.model.SysUser;
+import com.glaf.base.modules.sys.model.SysUserRole;
+import com.glaf.base.modules.sys.query.SysDeptRoleQuery;
+import com.glaf.base.modules.sys.query.SysUserQuery;
+import com.glaf.base.modules.sys.service.SysDepartmentService;
+import com.glaf.base.modules.sys.service.SysUserService;
+import com.glaf.core.base.TableModel;
+import com.glaf.core.domain.Membership;
+import com.glaf.core.id.IdGenerator;
 import com.glaf.core.service.ITableDataService;
 import com.glaf.core.service.MembershipService;
 import com.glaf.core.util.PageResult;
 import com.glaf.core.util.StringTools;
-import com.glaf.core.base.TableModel;
-import com.glaf.core.domain.Membership;
-import com.glaf.base.modules.sys.mapper.*;
-import com.glaf.base.modules.sys.model.*;
-import com.glaf.base.modules.sys.query.*;
-import com.glaf.base.modules.sys.service.*;
 
 @Service("sysUserService")
 @Transactional(readOnly = true)
@@ -623,7 +644,6 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
 	@Resource
-	@Qualifier("myBatisDbIdGenerator")
 	public void setIdGenerator(IdGenerator idGenerator) {
 		this.idGenerator = idGenerator;
 	}

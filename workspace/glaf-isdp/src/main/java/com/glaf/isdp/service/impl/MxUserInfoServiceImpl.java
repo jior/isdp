@@ -165,12 +165,12 @@ public class MxUserInfoServiceImpl implements IUserInfoService {
 		return userInfoMapper.searchUsers(searchWord);
 	}
 
-	@javax.annotation.Resource(name = "myBatisEntityDAO")
+	@javax.annotation.Resource
 	public void setEntityDAO(EntityDAO entityDAO) {
 		this.entityDAO = entityDAO;
 	}
 
-	@javax.annotation.Resource(name = "myBatisDbIdGenerator")
+	@javax.annotation.Resource
 	public void setIdGenerator(IdGenerator idGenerator) {
 		this.idGenerator = idGenerator;
 	}

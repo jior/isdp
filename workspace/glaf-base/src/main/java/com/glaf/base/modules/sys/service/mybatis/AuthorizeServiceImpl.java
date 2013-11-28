@@ -30,7 +30,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.glaf.base.modules.sys.model.SysDepartment;
 import com.glaf.base.modules.sys.model.SysUser;
-import com.glaf.base.modules.sys.service.*;
+import com.glaf.base.modules.sys.service.AuthorizeService;
+import com.glaf.base.modules.sys.service.SysDepartmentService;
+import com.glaf.base.modules.sys.service.SysUserService;
 
 @Service("authorizeService")
 @Transactional(readOnly = true)

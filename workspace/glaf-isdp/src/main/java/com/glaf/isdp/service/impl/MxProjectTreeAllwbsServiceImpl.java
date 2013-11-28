@@ -336,7 +336,7 @@ public class MxProjectTreeAllwbsServiceImpl implements
 		this.cellTaskMainService = cellTaskMainService;
 	}
 
-	@javax.annotation.Resource(name = "myBatisEntityDAO")
+	@javax.annotation.Resource
 	public void setEntityDAO(EntityDAO entityDAO) {
 		this.entityDAO = entityDAO;
 	}
@@ -352,7 +352,7 @@ public class MxProjectTreeAllwbsServiceImpl implements
 		this.flowActivityService = flowActivityService;
 	}
 
-	@javax.annotation.Resource(name = "myBatisDbIdGenerator")
+	@javax.annotation.Resource
 	public void setIdGenerator(IdGenerator idGenerator) {
 		this.idGenerator = idGenerator;
 	}

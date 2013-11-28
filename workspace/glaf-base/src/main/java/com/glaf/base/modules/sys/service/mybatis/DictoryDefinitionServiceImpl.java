@@ -1,23 +1,22 @@
 package com.glaf.base.modules.sys.service.mybatis;
 
-import java.util.*;
+import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.glaf.core.id.*;
-import com.glaf.core.dao.*;
-import com.glaf.base.modules.sys.mapper.*;
-import com.glaf.base.modules.sys.model.*;
-import com.glaf.base.modules.sys.query.*;
+import com.glaf.base.modules.sys.mapper.DictoryDefinitionMapper;
+import com.glaf.base.modules.sys.model.DictoryDefinition;
+import com.glaf.base.modules.sys.query.DictoryDefinitionQuery;
 import com.glaf.base.modules.sys.service.DictoryDefinitionService;
+import com.glaf.core.dao.EntityDAO;
+import com.glaf.core.id.IdGenerator;
 
 @Service("dictoryDefinitionService")
 @Transactional(readOnly = true)
@@ -111,12 +110,12 @@ public class DictoryDefinitionServiceImpl implements DictoryDefinitionService {
 		this.dictoryDefinitionMapper = dictoryDefinitionMapper;
 	}
 
-	@Resource(name = "myBatisEntityDAO")
+	@Resource
 	public void setEntityDAO(EntityDAO entityDAO) {
 		this.entityDAO = entityDAO;
 	}
 
-	@Resource(name = "myBatisDbIdGenerator")
+	@Resource
 	public void setIdGenerator(IdGenerator idGenerator) {
 		this.idGenerator = idGenerator;
 	}

@@ -43,7 +43,7 @@ public class IsdpTaskController {
 
 	}
 
-	@javax.annotation.Resource(name = "myBatisEntityService")
+	@javax.annotation.Resource 
 	public void setEntityService(EntityService entityService) {
 		this.entityService = entityService;
 	}

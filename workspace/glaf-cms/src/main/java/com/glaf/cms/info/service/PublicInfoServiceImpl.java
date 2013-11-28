@@ -130,12 +130,12 @@ public class PublicInfoServiceImpl implements PublicInfoService {
 		this.blobService = blobService;
 	}
 
-	@Resource(name = "myBatisEntityDAO")
+	@Resource
 	public void setEntityDAO(EntityDAO entityDAO) {
 		this.entityDAO = entityDAO;
 	}
 
-	@Resource(name = "myBatisDbIdGenerator")
+	@Resource
 	public void setIdGenerator(IdGenerator idGenerator) {
 		this.idGenerator = idGenerator;
 	}

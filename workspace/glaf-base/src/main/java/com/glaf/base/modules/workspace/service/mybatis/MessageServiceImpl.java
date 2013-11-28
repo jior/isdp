@@ -17,28 +17,31 @@
  */
 package com.glaf.base.modules.workspace.service.mybatis;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.apache.commons.beanutils.PropertyUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.glaf.core.id.*;
-import com.glaf.core.util.PageResult;
-
 import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.service.SysUserService;
-import com.glaf.base.modules.workspace.mapper.*;
-import com.glaf.base.modules.workspace.model.*;
-import com.glaf.base.modules.workspace.query.*;
-import com.glaf.base.modules.workspace.service.*;
+import com.glaf.base.modules.workspace.mapper.MessageMapper;
+import com.glaf.base.modules.workspace.model.Message;
+import com.glaf.base.modules.workspace.query.MessageQuery;
+import com.glaf.base.modules.workspace.service.MessageService;
+import com.glaf.core.id.IdGenerator;
+import com.glaf.core.util.PageResult;
 
 @Service("messageService")
 @Transactional(readOnly = true)
@@ -121,8 +124,10 @@ public class MessageServiceImpl implements MessageService {
 		}
 		Message message = messageMapper.getMessageById(id);
 		if (message != null) {
-			message.setRecver(sysUserService.findByAccount(message.getRecverId()));
-			message.setSender(sysUserService.findByAccount(message.getSenderId()));
+			message.setRecver(sysUserService.findByAccount(message
+					.getRecverId()));
+			message.setSender(sysUserService.findByAccount(message
+					.getSenderId()));
 		}
 		return message;
 	}
@@ -450,7 +455,6 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Resource
-	@Qualifier("myBatisDbIdGenerator")
 	public void setIdGenerator(IdGenerator idGenerator) {
 		this.idGenerator = idGenerator;
 	}

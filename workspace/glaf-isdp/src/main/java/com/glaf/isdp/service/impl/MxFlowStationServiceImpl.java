@@ -122,7 +122,7 @@ public class MxFlowStationServiceImpl implements IFlowStationService {
 	}
 
  
-	@javax.annotation.Resource(name="myBatisEntityDAO")
+	@javax.annotation.Resource
 	public void setEntityDAO(EntityDAO entityDAO) {
 		this.entityDAO = entityDAO;
 	}
@@ -133,7 +133,7 @@ public class MxFlowStationServiceImpl implements IFlowStationService {
 		this.flowStationMapper = flowStationMapper;
 	}
 
-	@javax.annotation.Resource(name="myBatisDbIdGenerator")
+	@javax.annotation.Resource
 	public void setIdGenerator(IdGenerator idGenerator) {
 		this.idGenerator = idGenerator;
 	}

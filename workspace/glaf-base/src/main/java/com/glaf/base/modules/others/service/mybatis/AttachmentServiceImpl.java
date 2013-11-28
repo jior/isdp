@@ -18,23 +18,25 @@
 
 package com.glaf.base.modules.others.service.mybatis;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.glaf.core.id.*;
-
-import com.glaf.base.modules.others.mapper.*;
-import com.glaf.base.modules.others.model.*;
-import com.glaf.base.modules.others.query.*;
-import com.glaf.base.modules.others.service.*;
+import com.glaf.base.modules.others.mapper.AttachmentMapper;
+import com.glaf.base.modules.others.model.Attachment;
+import com.glaf.base.modules.others.query.AttachmentQuery;
+import com.glaf.base.modules.others.service.AttachmentService;
+import com.glaf.core.id.IdGenerator;
 
 @Service("attachmentService")
 @Transactional(readOnly = true)
@@ -267,7 +269,6 @@ public class AttachmentServiceImpl implements AttachmentService {
 	}
 
 	@Resource
-	@Qualifier("myBatisDbIdGenerator")
 	public void setIdGenerator(IdGenerator idGenerator) {
 		this.idGenerator = idGenerator;
 	}

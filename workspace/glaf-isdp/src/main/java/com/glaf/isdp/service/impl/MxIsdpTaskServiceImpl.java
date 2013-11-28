@@ -130,7 +130,7 @@ public class MxIsdpTaskServiceImpl implements IsdpTaskService {
 	}
 
  
-	@javax.annotation.Resource(name="myBatisEntityDAO")
+	@javax.annotation.Resource
 	public void setEntityDAO(EntityDAO entityDAO) {
 		this.entityDAO = entityDAO;
 	}
