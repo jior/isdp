@@ -18,7 +18,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 
@@ -128,8 +127,6 @@ public class WebFile {
 
 	private String m_rootPath = null;
 
-	private HttpSession m_session = null;
-
 	private boolean m_showFolderSize = false;
 
 	private boolean m_showHiddenFiles = false;
@@ -201,8 +198,8 @@ public class WebFile {
 		m_folderVirtualPath = "";
 		currentLocale = new Locale(Locale.getDefault().getLanguage(), Locale
 				.getDefault().getCountry());
-		//System.out.println(Locale.getDefault().getLanguage());
-		//System.out.println(Locale.getDefault().getCountry());
+		// System.out.println(Locale.getDefault().getLanguage());
+		// System.out.println(Locale.getDefault().getCountry());
 		labels = ResourceBundle.getBundle("com.glaf.cms.webfile.WebFileLabels",
 				currentLocale);
 		mimes = ResourceBundle.getBundle(
@@ -463,9 +460,7 @@ public class WebFile {
 			mySmartUpload.initialize(m_config, m_request, m_response);
 		if (m_initialize == 3)
 			mySmartUpload.initialize(m_pageContext);
-		if (m_initialize == 4)
-			mySmartUpload.initialize(m_application, m_session, m_request,
-					m_response, m_outNew);
+
 		try {
 			mySmartUpload.downloadFile(path, contentType);
 		} catch (Exception ex) {
@@ -1228,9 +1223,6 @@ public class WebFile {
 					myUpload.initialize(m_config, m_request, m_response);
 				if (m_initialize == 3)
 					myUpload.initialize(m_pageContext);
-				if (m_initialize == 4)
-					myUpload.initialize(m_application, m_session, m_request,
-							m_response, m_outNew);
 
 				myUpload.setDeniedFilesList(m_strDeniedFilesList);
 				myUpload.setAllowedFilesList(m_strAllowedFilesList);
@@ -1693,9 +1685,9 @@ public class WebFile {
 
 			responseWriteLn(String
 					.valueOf((new StringBuffer(
-							"ftarget.write('<form method=POST  NAME=NEW_FILE action=\""))
+							"ftarget.write('<form method=\"POST\"  NAME=\"NEW_FILE\" action=\""))
 							.append(scriptPath)
-							.append("?QUERY=FILEADM_NEWFILE&RELATIVEPATH=\"")
+							.append("?QUERY=FILEADM_NEWFILE&RELATIVEPATH=")
 							.append(relativePath).append("\" TARGET=FPROP>');")));
 			responseWriteLn(String
 					.valueOf((new StringBuffer(
@@ -2251,7 +2243,7 @@ public class WebFile {
 		responseWriteLn("</SCRIPT>");
 		responseWriteLn("</HEAD>");
 		if (!m_showProperties) {
-			if (!m_jsEventHandler.equals(null))
+			if (m_jsEventHandler != null)
 				responseWriteLn(String.valueOf((new StringBuffer(
 						"<body bgcolor="))
 						.append(colors.getString("FRAME_BORDER"))
@@ -2264,22 +2256,23 @@ public class WebFile {
 			responseWriteLn("</BODY>");
 			responseWriteLn("</HTML>");
 		} else {
-			if (relativePath.equals(null)) {
+			if (relativePath == null || relativePath == "") {
 				responseWriteLn(String.valueOf((new StringBuffer(
 						"<body bgcolor=")).append(colors.getString("PROP_BG"))
 						.append(">")));
 				responseWriteLn("&nbsp;");
 				responseWriteLn("</BODY>");
 				responseWriteLn("</HTML>");
-			} else if (!m_jsEventHandler.equals(null))
+			} else if (m_jsEventHandler != null) {
 				responseWriteLn(String.valueOf((new StringBuffer(
 						"<body bgcolor=")).append(colors.getString("PROP_BG"))
 						.append(" onload=\"").append(m_jsEventHandler)
 						.append("(selectedFile);\">")));
-			else
+			} else {
 				responseWriteLn(String.valueOf((new StringBuffer(
 						"<body bgcolor=")).append(colors.getString("PROP_BG"))
 						.append(">")));
+			}
 			responseWriteLn(String.valueOf((new StringBuffer(
 					"<table width='100%' bgcolor=")).append(
 					colors.getString("PROP_BG")).append(
@@ -3268,7 +3261,6 @@ public class WebFile {
 			throws ServletException, IOException {
 		m_pageContext = pageContext;
 		m_application = pageContext.getServletContext();
-		m_session = pageContext.getSession();
 		m_request = (HttpServletRequest) pageContext.getRequest();
 		m_response = (HttpServletResponse) pageContext.getResponse();
 		m_outNew = pageContext.getOut();
@@ -3283,18 +3275,6 @@ public class WebFile {
 		m_request = request;
 		m_response = response;
 		m_initialize = 2;
-	}
-
-	public final void initialize(ServletContext application,
-			HttpSession session, HttpServletRequest request,
-			HttpServletResponse response, JspWriter out)
-			throws ServletException, IOException {
-		m_application = application;
-		m_session = session;
-		m_request = request;
-		m_response = response;
-		m_outNew = out;
-		m_initialize = 4;
 	}
 
 	private boolean isHidden(File file) throws IOException,
