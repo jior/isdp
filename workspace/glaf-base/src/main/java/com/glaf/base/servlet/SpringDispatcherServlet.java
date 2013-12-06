@@ -81,6 +81,7 @@ public class SpringDispatcherServlet extends DispatcherServlet {
 		try {
 			super.doService(request, response);
 		} finally {
+			Environment.setCurrentSystemName(null);
 			Environment.removeCurrentSystemName();
 		}
 

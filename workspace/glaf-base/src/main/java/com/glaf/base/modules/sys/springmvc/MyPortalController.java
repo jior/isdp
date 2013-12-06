@@ -139,11 +139,16 @@ public class MyPortalController {
 		if (root != null) {
 			treeNodes = sysApplicationService.getTreeModels(root.getId(),
 					loginContext.getActorId());
-			Collections.sort(treeNodes);
+			if (treeNodes != null) {
+				Collections.sort(treeNodes);
+			}
+
 		} else {
 			treeNodes = sysApplicationService.getTreeModels(3,
 					loginContext.getActorId());
-			Collections.sort(treeNodes);
+			if (treeNodes != null) {
+				Collections.sort(treeNodes);
+			}
 		}
 
 		Collection<String> roles = loginContext.getRoles();
