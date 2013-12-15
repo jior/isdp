@@ -30,7 +30,7 @@
 <script type="text/javascript" src="<%=context%>/scripts/site.js"></script>
 <script type="text/javascript">
     function importXls(){
-		location.href="<%=context%>/sys/todo/showUpload";
+		location.href="<%=context%>/mx/sys/todo/showUpload";
     }
 </script>
 </head>
