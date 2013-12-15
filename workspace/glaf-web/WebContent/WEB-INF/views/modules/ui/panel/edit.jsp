@@ -135,31 +135,24 @@
 			<c:if test="${panel.type == 'L'}">checked</c:if> />链接地址
 			<input id="type" name="type" type="radio" value="T" onclick="changeDiv('T');" 
 			<c:if test="${panel.type == 'T'}">checked</c:if> />文本内容
-		</td>
-	</tr>
-
-	<tr height="27" id="urlDir" style="display:block;">
-		<td align="left" width="30%" valign="top">&nbsp;</td>
-		<td align="left" width="70%" valign="middle">
-		<textarea id="link" name="link" rows="5" cols="39" 
-		    style="width: 320px; height: 30px; text-align: left;"
-			class="input-xlarge x-text"><c:out
-			value="${panel.link}" escapeXml="false" /></textarea></td>
-	</tr>
-
-	<tr height="27" id="divDir" style="display:none;">
-		<td align="left" width="30%" valign="top">&nbsp;</td>
-		<td align="left" width="70%" valign="middle">
-		    <textarea id="content" name="content" rows="8" cols="100"  
+			<br>
+			<div id="urlDir" style="display:block;">
+		      <textarea id="link" name="link" rows="5" cols="39"
+			    class="input-xlarge x-textarea" style="width: 350px; height: 90px; text-align: left;"><c:out
+			    value="${panel.link}" escapeXml="false" /></textarea>
+			</div>
+			<div id="divDir" style="display:none;">
+		       <textarea id="content" name="content" rows="8" cols="60"  
 			style="width: 550px; height: 350px; text-align: left;"><c:out
 			value="${panel.content}" escapeXml="false" /></textarea>
-        </td>
+			</div>
+		</td>
 	</tr>
 
 	<tr>
 		<td align="left" width="30%"   valign="top">高度</td>
 		<td align="left" align="left" valign="middle" >
-			<input type="text" name="height" value="${panel.height}" maxLength="3" size="5" class="input-mini x-text" /> (例如: 300, 显示一个高度为300像素的模块)
+			<input type="text" name="height" value="${panel.height}" size="3" maxLength="3" class="input-mini x-text" /> (例如: 300, 显示一个高度为300像素的模块)
 		</td>
 	</tr>
 
@@ -175,9 +168,9 @@
 		<td align="left" width="30%" valign="top">是否可收缩</td>
 		<td align="left" align="left" valign="middle" >
 			<input type="radio" name="collapsible" value="true"
-						<c:if test="${panel.collapsible}">checked</c:if>>是&nbsp;&nbsp;
+						<c:if test="${panel.collapsible == 1}">checked</c:if>>是&nbsp;&nbsp;
 			<input type="radio" name="collapsible" value="false"
-						<c:if test="${!panel.collapsible}">checked</c:if>>否
+						<c:if test="${panel.collapsible == 0}">checked</c:if>>否
 		</td>
 	</tr>
 
@@ -185,9 +178,9 @@
 		<td align="left" width="30%" valign="top">是否可关闭</td>
 		<td align="left" align="left" valign="middle" >
 			<input type="radio" name="close" value="true"
-						<c:if test="${panel.close}">checked</c:if>>是&nbsp;&nbsp;
+						<c:if test="${panel.close == 1}">checked</c:if>>是&nbsp;&nbsp;
 			<input type="radio" name="close" value="false"
-						<c:if test="${!panel.close}">checked</c:if>>否
+						<c:if test="${panel.close == 0}">checked</c:if>>否
 		</td>
 	</tr>
 
@@ -204,7 +197,7 @@
 <div style="width: 645px;" align="center"><br />
 <input name="btn_save2" type="button" value="保存" class="btn btn-primary" onclick="javascript:submitXY();">
 <input name="btn_back" type="button" value="返回" class="btn"
-	onclick="javascript:history.back();"> <br />
+	   onclick="javascript:history.back();"> <br />
 <br />
 </div>
 </div>
