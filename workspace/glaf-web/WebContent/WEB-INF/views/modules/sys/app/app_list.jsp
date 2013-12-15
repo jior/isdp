@@ -88,8 +88,8 @@ function func(form){
 function del(){
   var form = document.all.GenericForm;
   if(confirmDelete(form)){
-    form.target="hiddenFrame";
-    form.action="application/batchDelete";
+    //form.target="hiddenFrame";
+    //form.action="${contextPath}/mx/application/batchDelete";
 	form.submit();
   }
 }
@@ -112,7 +112,8 @@ function sort(id, operate){
 
 <body style="padding-top:2px;padding-left:2px;padding-right:20px;">
 <div class="nav-title"><span class="Title">模块管理</span>&gt;&gt;模块列表</div>
-<html:form name="GenericForm" action="${contextPath}/mx/sys/application/batchDelete" method="post" target="_self"> 
+<html:form id="GenericForm" name="GenericForm" 
+           action="${contextPath}/mx/sys/application/batchDelete" method="post" target="_self"> 
 <input name="page_no" type="hidden" value="<%=pager.getCurrentPageNo()%>">
 <input name="parent" type="hidden" value="<%=parent%>">
 <input type="hidden" name="id" value="0">
