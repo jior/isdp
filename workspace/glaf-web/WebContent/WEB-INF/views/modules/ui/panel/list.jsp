@@ -38,7 +38,7 @@ function addPanel(){
 	</tr>
 </table>
 <br><br>
-<table align="center" class="x-table-border table table-striped table-bordered table-condensed" cellspacing="1"
+<table align="center" class="table table-striped table-bordered table-condensed" cellspacing="1"
 	cellpadding="4" width="90%">
 	<thead>
 	<tr class="x-title">
