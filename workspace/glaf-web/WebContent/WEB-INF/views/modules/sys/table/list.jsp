@@ -32,8 +32,6 @@
 				striped: true,
 				collapsible:true,
 				url:'<%=request.getContextPath()%>/mx/sys/table/json',
-				sortName: 'tablename',
-				sortOrder: 'asc',
 				remoteSort: false,
 				checkbox: true, 
 				idField:'tablename',
@@ -46,7 +44,7 @@
 				]],
 				rownumbers:false,
 				pagination:false,
-				pageSize:15,
+				pageSize:10,
 				pageList: [10,15,20,25,30,40,50,100],
 				onDblClickRow: onRowClick 
 			});

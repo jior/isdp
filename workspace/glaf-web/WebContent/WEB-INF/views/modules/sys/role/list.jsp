@@ -30,8 +30,6 @@
 				striped: true,
 				collapsible:true,
 				url:'<%=request.getContextPath()%>/mx/sys/role/json',
-				sortName: 'id',
-				sortOrder: 'desc',
 				remoteSort: false,
 				singleSelect: true,
 				idField:'id',
@@ -46,7 +44,7 @@
 				]],
 				rownumbers:false,
 				pagination:true,
-				pageSize:15,
+				pageSize:10,
 				pageList: [10,15,20,25,30,40,50,100],
 				onClickRow: onMyRowClick 
 			});

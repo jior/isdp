@@ -29,8 +29,6 @@
 				striped: true,
 				collapsible:true,
 				url:'<%=request.getContextPath()%>/mx/sys/cacheMgr/json',
-				sortName: 'id',
-				sortOrder: 'desc',
 				remoteSort: false,
 				singleSelect:false,
 				idField:'id',
