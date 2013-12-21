@@ -77,7 +77,7 @@
 <body id="document" style="padding-left:120px;padding-right:120px">
  
 <br> 
-<html:form action="${contextPath}/sys/scheduler.do?method=saveModify" method="post"  onsubmit="return verifyAll(this);">
+<html:form action="${contextPath}/mx/sys/scheduler/saveModify" method="post"  onsubmit="return verifyAll(this);">
 <input type="hidden" name="status" value="0">
 <c:if test="${not empty scheduler.id}">
 <input type="hidden" name="id" value="${scheduler.id}">

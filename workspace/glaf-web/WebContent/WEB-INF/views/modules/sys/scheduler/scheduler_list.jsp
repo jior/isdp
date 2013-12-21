@@ -30,8 +30,8 @@ function lockedScheduler(taskId, locked) {
 			location.href="<%=request.getContextPath()%>/mx/sys/scheduler/locked?taskId="+taskId+"&locked="+locked;
 		}
 	} else {
-			 location.href="<%=request.getContextPath()%>/mx/sys/scheduler/locked?taskId="+taskId+"&locked="+locked;
-		}
+		location.href="<%=request.getContextPath()%>/mx/sys/scheduler/locked?taskId="+taskId+"&locked="+locked;
+	}
 }
 
 function schedulerXY(taskId, startup) {
