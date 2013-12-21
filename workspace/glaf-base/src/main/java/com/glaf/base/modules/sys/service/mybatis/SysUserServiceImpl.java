@@ -315,7 +315,7 @@ public class SysUserServiceImpl implements SysUserService {
 		PageResult pager = new PageResult();
 		SysUserQuery query = new SysUserQuery();
 		query.deptId(Long.valueOf(deptId));
-		query.accountType(0);
+	
 		int count = this.count(query);
 		if (count == 0) {// 结果集为空
 			pager.setPageSize(pageSize);
@@ -341,7 +341,7 @@ public class SysUserServiceImpl implements SysUserService {
 		PageResult pager = new PageResult();
 		SysUserQuery query = new SysUserQuery();
 		query.deptId(Long.valueOf(deptId));
-		query.accountType(0);
+
 		if (fullName != null && fullName.trim().length() > 0) {
 			query.nameLike(fullName);
 		}
