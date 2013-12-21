@@ -58,6 +58,12 @@ public class ClearOnlineUserJob implements Job {
 				&& StringUtils.isNumeric(p.getValue())) {
 			timeoutSeconds = Integer.parseInt(p.getValue());
 		}
+		if (timeoutSeconds < 60) {
+			timeoutSeconds = 60;
+		}
+		if (timeoutSeconds > 3600) {
+			timeoutSeconds = 3600;
+		}
 		userOnlineService.deleteTimeoutUsers(timeoutSeconds);
 	}
 

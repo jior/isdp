@@ -85,6 +85,7 @@ public class SysSchedulerController {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+		scheduler.setJobClass(request.getParameter("jobClass"));
 		Date startDate = ParamUtil.getDate(params, "startDate");
 		Date endDate = ParamUtil.getDate(params, "endDate");
 		scheduler.setStartDate(startDate);
@@ -159,9 +160,12 @@ public class SysSchedulerController {
 			scheduler = sysSchedulerService.getSchedulerByTaskId(taskId);
 			if (scheduler != null) {
 				if (StringUtils.equals(startup, "1")) {
+					logger.debug("停止调度......");
 					QuartzUtils.stop(taskId);
+					logger.debug("重启调度......");
 					QuartzUtils.restart(taskId);
 				} else {
+					logger.debug("停止调度......");
 					QuartzUtils.stop(taskId);
 				}
 			}
