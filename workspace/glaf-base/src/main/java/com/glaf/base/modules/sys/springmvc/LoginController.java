@@ -34,20 +34,24 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.glaf.base.listener.UserOnlineListener;
 import com.glaf.base.modules.sys.SysConstants;
 import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.service.AuthorizeService;
 import com.glaf.base.modules.sys.service.SysApplicationService;
 import com.glaf.base.modules.sys.service.SysUserService;
+import com.glaf.base.online.domain.UserOnline;
+import com.glaf.base.online.service.UserOnlineService;
 import com.glaf.base.utils.ContextUtil;
 import com.glaf.base.utils.ParamUtil;
 import com.glaf.core.cache.CacheFactory;
 import com.glaf.core.config.Environment;
+import com.glaf.core.context.ContextFactory;
+import com.glaf.core.domain.SystemProperty;
 import com.glaf.core.res.MessageUtils;
 import com.glaf.core.res.ViewMessage;
 import com.glaf.core.res.ViewMessages;
 import com.glaf.core.security.DigestUtil;
+import com.glaf.core.service.ISystemPropertyService;
 import com.glaf.core.util.ClassUtils;
 import com.glaf.core.util.Constants;
 import com.glaf.core.util.RequestUtils;
@@ -66,6 +70,8 @@ public class LoginController {
 	private AuthorizeService authorizeService;
 
 	private SysUserService sysUserService;
+
+	private UserOnlineService userOnlineService;
 
 	/**
 	 * 登录
@@ -121,15 +127,30 @@ public class LoginController {
 			MessageUtils.addMessages(request, messages);
 			return new ModelAndView("/modules/login", modelMap);
 		} else {
-			String loginIP = UserOnlineListener.findUser(bean.getActorId());
-			logger.info("login IP:" + loginIP);
-			if (loginIP != null
-					&& !StringUtils.equals(RequestUtils.getIPAddress(request),
-							loginIP)) {// 用户已在其他机器登陆
-				messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-						"authorize.login_failure2"));
-				MessageUtils.addMessages(request, messages);
-				return new ModelAndView("/modules/login", modelMap);
+			ISystemPropertyService systemPropertyService = ContextFactory
+					.getBean("systemPropertyService");
+			SystemProperty p = systemPropertyService.getSystemProperty("SYS",
+					"login_limit");
+			/**
+			 * 检测是否限制一个用户只能在一个地方登录
+			 */
+			if (p != null && StringUtils.equals(p.getValue(), "true")) {
+				String loginIP = null;
+				UserOnline userOnline = userOnlineService
+						.getUserOnline(account);
+				if (userOnline != null) {
+					loginIP = userOnline.getLoginIP();
+				}
+				logger.info("login IP:" + loginIP);
+				if (loginIP != null
+						&& !StringUtils.equals(
+								RequestUtils.getIPAddress(request), loginIP)) {// 用户已在其他机器登陆
+					messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
+							"authorize.login_failure2"));
+					MessageUtils.addMessages(request, messages);
+					logger.debug("用户已经在其他地方登录。");
+					return new ModelAndView("/modules/login", modelMap);
+				}
 			}
 
 			session = request.getSession(true);// 重写Session
@@ -171,6 +192,15 @@ public class LoginController {
 
 			request.setAttribute(SysConstants.MENU, menus);
 
+			UserOnline online = new UserOnline();
+			online.setActorId(bean.getActorId());
+			online.setName(bean.getName());
+			online.setCheckDate(new Date());
+			online.setLoginDate(new Date());
+			online.setLoginIP(RequestUtils.getIPAddress(request));
+			online.setSessionId(session.getId());
+			userOnlineService.login(online);
+
 			if (bean.getAccountType() == 1) {// 供应商用户
 				return new ModelAndView("/modules/sp_main", modelMap);
 			} else if (bean.getAccountType() == 2) {// 微信用户
@@ -196,6 +226,7 @@ public class LoginController {
 		request.getSession().removeAttribute(SysConstants.LOGIN);
 		request.getSession().removeAttribute(SysConstants.MENU);
 		try {
+			userOnlineService.logout(actorId);
 			String cacheKey = Constants.LOGIN_USER_CACHE + actorId;
 			CacheFactory.remove(cacheKey);
 			cacheKey = Constants.USER_CACHE + actorId;
@@ -232,7 +263,11 @@ public class LoginController {
 	public void setSysApplicationService(
 			SysApplicationService sysApplicationService) {
 		this.sysApplicationService = sysApplicationService;
+	}
 
+	@javax.annotation.Resource
+	public void setUserOnlineService(UserOnlineService userOnlineService) {
+		this.userOnlineService = userOnlineService;
 	}
 
 	@javax.annotation.Resource

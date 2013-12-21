@@ -18,6 +18,7 @@
 
 package com.glaf.base.listener;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -30,6 +31,9 @@ import org.apache.commons.logging.LogFactory;
 
 import com.glaf.base.modules.sys.SysConstants;
 import com.glaf.base.modules.sys.model.SysUser;
+import com.glaf.base.online.domain.UserOnline;
+import com.glaf.base.online.service.UserOnlineService;
+import com.glaf.core.context.ContextFactory;
 
 public class UserOnlineListener implements HttpSessionAttributeListener {
 	private static Log logger = LogFactory.getLog(UserOnlineListener.class);
@@ -93,6 +97,16 @@ public class UserOnlineListener implements HttpSessionAttributeListener {
 			logger.info("in stack userId:" + user.getActorId());
 			if (findUser(user.getActorId()) == null) {// ÓÃ»§Î´µÇÂ½
 				userList.put(user.getActorId(), user.getLoginIP());
+				UserOnlineService userOnlineService = ContextFactory
+						.getBean("userOnlineService");
+				UserOnline online = new UserOnline();
+				online.setActorId(user.getActorId());
+				online.setName(user.getName());
+				online.setLoginDate(new Date());
+				online.setLoginIP(user.getLoginIP());
+				online.setCheckDate(new Date());
+				online.setSessionId(user.getSessionId());
+				userOnlineService.login(online);
 			}
 		}
 	}
@@ -108,6 +122,9 @@ public class UserOnlineListener implements HttpSessionAttributeListener {
 		synchronized (this) {
 			logger.info("out stack userId:" + user.getActorId());
 			userList.remove(user.getActorId());
+			UserOnlineService userOnlineService = ContextFactory
+					.getBean("userOnlineService");
+			userOnlineService.remain(user.getActorId());
 		}
 	}
 }

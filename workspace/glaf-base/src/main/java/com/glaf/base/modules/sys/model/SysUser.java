@@ -206,6 +206,9 @@ public class SysUser implements Serializable, User, JSONable {
 	@Column(name = "USERTYPE")
 	protected int userType;
 
+	@javax.persistence.Transient
+	protected String sessionId;
+
 	public SysUser() {
 
 	}
@@ -351,6 +354,10 @@ public class SysUser implements Serializable, User, JSONable {
 			roles = new HashSet<SysRole>();
 		}
 		return roles;
+	}
+
+	public String getSessionId() {
+		return sessionId;
 	}
 
 	public String getStatus() {
@@ -524,7 +531,7 @@ public class SysUser implements Serializable, User, JSONable {
 	}
 
 	public void setId(long id) {
-		 
+
 	}
 
 	public void setLastLoginDate(Date lastLoginDate) {
@@ -583,6 +590,10 @@ public class SysUser implements Serializable, User, JSONable {
 		this.roles = roles;
 	}
 
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
+	}
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
@@ -619,7 +630,6 @@ public class SysUser implements Serializable, User, JSONable {
 		return SysUserJsonFactory.toObjectNode(this);
 	}
 
- 
 	public String toString() {
 		return toJsonObject().toJSONString();
 	}

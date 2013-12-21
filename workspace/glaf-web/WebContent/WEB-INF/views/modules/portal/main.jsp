@@ -252,6 +252,9 @@
 		<div id="closeright">当前页右侧全部关闭</div>
 		<div id="closeleft">当前页左侧全部关闭</div>
 	</div>
+
+	<iframe id="newFrame" name="newFrame" width="0" height="0" src="<%=request.getContextPath()%>/mx/sys/online/remain"></iframe>
+
 <script type="text/javascript">
 	var waitTime=1000; //1 秒 
 	timer=setInterval("OnTimer()",1000); 

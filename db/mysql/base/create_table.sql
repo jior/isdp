@@ -366,6 +366,7 @@ CREATE TABLE sys_property (
         name_ varchar(50),
         title_ varchar(200),
         type_ varchar(50),
+	inputtype_ varchar(50),
         value_ varchar(1000),
         PRIMARY KEY (id_)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin;
