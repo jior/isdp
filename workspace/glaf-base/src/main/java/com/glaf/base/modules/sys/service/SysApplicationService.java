@@ -93,6 +93,9 @@ public interface SysApplicationService {
 	 * @return SysApplication
 	 */
 	SysApplication findByName(String name);
+	
+	
+	SysApplication findByNodeId(long nodeId);
 
 	/**
 	 * 获取用户能访问到的模块列表

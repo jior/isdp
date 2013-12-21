@@ -195,6 +195,21 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 
 		return null;
 	}
+	
+	public SysApplication findByNodeId(long nodeId) {
+		SysApplicationQuery query = new SysApplicationQuery();
+		query.nodeId(nodeId);
+
+		List<SysApplication> list = this.list(query);
+		if (list != null && !list.isEmpty()) {
+			SysApplication sysApplication = list.get(0);
+			SysTree node = sysTreeService.findById(sysApplication.getNodeId());
+			sysApplication.setNode(node);
+			return sysApplication;
+		}
+
+		return null;
+	}
 
 	public List<SysApplication> getAccessAppList(long parentId, SysUser user) {
 		long parentAppId = parentId;
