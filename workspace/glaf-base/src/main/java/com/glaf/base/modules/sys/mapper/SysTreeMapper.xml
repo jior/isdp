@@ -284,24 +284,17 @@
 		resultMap="sysTreeResultMap">
 
 		select distinct E.* from sys_tree E
-		inner join sys_department
-		D
-		on E.ID =
-		D.NODEID
+		inner join sys_department D
+		on E.ID = D.NODEID
 		inner join UserInfo U
 		on D.ID = U.DEPID
-		inner join
-		userrole UR
+		inner join userrole UR
 		on U.USERID = UR.USERID
 		inner join net_role R
-		on UR.ROLEID =
-		R.ID
-		where
-		UR.USERID = #{account}
+		on UR.ROLEID = R.ID
+		where UR.USERID = #{account}
 		and R.CODE = #{roleCode}
-		order by
-		E.PARENT asc,
-		E.SORT asc
+		order by E.PARENT asc, E.SORT asc
 
 	</select>
 

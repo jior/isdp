@@ -46,9 +46,9 @@ import com.glaf.base.modules.sys.model.SysTree;
 import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.query.SysApplicationQuery;
 import com.glaf.base.modules.sys.query.SysTreeQuery;
-import com.glaf.base.modules.sys.service.AuthorizeService;
 import com.glaf.base.modules.sys.service.SysApplicationService;
 import com.glaf.base.modules.sys.service.SysTreeService;
+import com.glaf.base.modules.sys.service.SysUserService;
 import com.glaf.core.base.BaseTree;
 import com.glaf.core.base.TreeModel;
 import com.glaf.core.context.ApplicationContext;
@@ -63,8 +63,6 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	protected final static Log logger = LogFactory
 			.getLog(SysApplicationServiceImpl.class);
 
-	protected AuthorizeService authorizeService;
-
 	protected IdGenerator idGenerator;
 
 	protected SqlSessionTemplate sqlSessionTemplate;
@@ -76,6 +74,8 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	protected SysTreeMapper sysTreeMapper;
 
 	protected SysTreeService sysTreeService;
+
+	protected SysUserService sysUserService;
 
 	protected EntityService entityService;
 
@@ -365,13 +365,13 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	 * 
 	 * @param parent
 	 *            ¸¸½Úµã±àºÅ
-	 * @param userId
+	 * @param actorId
 	 *            ÓÃ»§µÇÂ¼ÕËºÅ
 	 * @return
 	 */
-	public List<TreeModel> getTreeModels(long parentId, String userId) {
+	public List<TreeModel> getTreeModels(long parentId, String actorId) {
 		List<TreeModel> treeModels = new ArrayList<TreeModel>();
-		SysUser user = authorizeService.login(userId);
+		SysUser user = sysUserService.findByAccountWithAll(actorId);
 		if (user != null) {
 			this.loadChildrenTreeModels(treeModels, parentId, user);
 		}
@@ -380,7 +380,7 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 
 	public JSONArray getUserMenu(long parent, String actorId) {
 		JSONArray array = new JSONArray();
-		SysUser user = authorizeService.login(actorId);
+		SysUser user = sysUserService.findByAccountWithAll(actorId);
 		if (user != null) {
 			List<SysTree> treeList = null;
 			SysApplication app = this.findById(parent);
@@ -483,9 +483,9 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		return array;
 	}
 
-	public JSONArray getUserMenu2(long parent, String userId) {
+	public JSONArray getUserMenu2(long parent, String actorId) {
 		JSONArray array = new JSONArray();
-		SysUser user = authorizeService.login(userId);
+		SysUser user = sysUserService.findByAccountWithAll(actorId);
 		if (user != null) {
 			List<SysApplication> list = null;
 			if (user.isSystemAdmin()) {
@@ -583,11 +583,6 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	}
 
 	@Resource
-	public void setAuthorizeService(AuthorizeService authorizeService) {
-		this.authorizeService = authorizeService;
-	}
-
-	@Resource
 	public void setEntityService(EntityService entityService) {
 		this.entityService = entityService;
 	}
@@ -621,6 +616,11 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	@Resource
 	public void setSysTreeService(SysTreeService sysTreeService) {
 		this.sysTreeService = sysTreeService;
+	}
+
+	@Resource
+	public void setSysUserService(SysUserService sysUserService) {
+		this.sysUserService = sysUserService;
 	}
 
 	@Transactional
