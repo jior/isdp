@@ -79,11 +79,9 @@
 				collapsible:false,
 				singleSelect:true,
 				url:'<%=request.getContextPath()%>/mx/bi/report/json',
-				sortName: 'id',
-				sortOrder: 'desc',
 				remoteSort: false,
 				idField:'id',
-				pageSize:10,
+				pageSize: <%=com.glaf.core.util.Paging.DEFAULT_PAGE_SIZE%>,
 				columns:[[
 					//{field:'ck',checkbox:true},
 				    {field:'id', title:'编号',width:80,sortable:true},

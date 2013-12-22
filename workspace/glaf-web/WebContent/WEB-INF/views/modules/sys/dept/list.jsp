@@ -100,7 +100,7 @@
 				]],
 				rownumbers:false,
 				pagination:true,
-				pageSize:10,
+				pageSize: <%=com.glaf.core.util.Paging.DEFAULT_PAGE_SIZE%>,
 				pageList: [10,15,20,25,30,40,50,100],
 				onDblClickRow: onRowClick 
 			});

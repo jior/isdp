@@ -80,7 +80,7 @@
 				remoteSort: false,
 				singleSelect:true,
 				idField:'id',
-				pageSize:20,
+				pageSize: <%=com.glaf.core.util.Paging.DEFAULT_PAGE_SIZE%>,
 				columns:[[
 	                {title:'编号',field:'id',width:80,sortable:true},
 					{field:'subject',title:'标题',width:180},
