@@ -20,59 +20,56 @@
 	<insert id="insertSysRole" parameterType="com.glaf.base.modules.sys.model.SysRole">
 		insert into net_role
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			ID
 			<if test="name != null">
-				,ROLENAME
+				ROLENAME,
 			</if>
 			<if test="content != null">
-				,CONTENT
+				CONTENT,
 			</if>
 			<if test="code != null">
-				,CODE
+				CODE,
 			</if>
 			<if test="sort != null">
-				,TASKSORT
+				TASKSORT,
 			</if>
 			<if test="createDate != null">
-				,CREATEDATE
+				CREATEDATE,
 			</if>
 			<if test="createBy != null">
-				,CREATEBY
+				CREATEBY,
 			</if>
 			<if test="updateBy != null">
-				,UPDATEBY
+				UPDATEBY,
 			</if>
 			<if test="updateDate != null">
-				,UPDATEDATE
+				UPDATEDATE
 			</if>
 		</trim>
 
 		<trim prefix=" values (" suffix=")" suffixOverrides=",">
-			#{id, jdbcType=BIGINT}
-
 			<if test="name != null">
-				,#{name, jdbcType=VARCHAR}
+				#{name, jdbcType=VARCHAR},
 			</if>
 			<if test="content != null">
-				,#{content, jdbcType=VARCHAR}
+				#{content, jdbcType=VARCHAR},
 			</if>
 			<if test="code != null">
-				,#{code, jdbcType=VARCHAR}
+				#{code, jdbcType=VARCHAR},
 			</if>
 			<if test="sort != null">
-				,#{sort, jdbcType=INTEGER}
+				#{sort, jdbcType=INTEGER},
 			</if>
 			<if test="createDate != null">
-				,#{createDate, jdbcType=TIMESTAMP}
+				#{createDate, jdbcType=TIMESTAMP},
 			</if>
 			<if test="createBy != null">
-				,#{createBy, jdbcType=VARCHAR}
+				#{createBy, jdbcType=VARCHAR},
 			</if>
 			<if test="updateBy != null">
-				,#{updateBy, jdbcType=VARCHAR}
+				#{updateBy, jdbcType=VARCHAR},
 			</if>
 			<if test="updateDate != null">
-				,#{updateDate, jdbcType=TIMESTAMP}
+				#{updateDate, jdbcType=TIMESTAMP}
 			</if>
 		</trim>
 	</insert>
@@ -136,7 +133,8 @@
 
 		select R.* from net_role R
 		inner join sys_dept_role DR
-		on DR.ROLEID = R.ID
+		on DR.ROLEID =
+		R.ID
 		inner join sys_department D
 		on DR.DEPTID = D.ID
 		where 1=1
@@ -162,7 +160,8 @@
 
 		select * from net_role R
 		inner join sys_dept_role DR
-		on R.ID = DR.ROLEID
+		on R.ID =
+		DR.ROLEID
 		where R.ID = #{roleId}
 
 	</select>

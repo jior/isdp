@@ -684,9 +684,12 @@ public class SysUserController {
 	 */
 	@RequestMapping("/saveModify")
 	public ModelAndView saveModify(HttpServletRequest request, ModelMap modelMap) {
+		logger.debug(RequestUtils.getParameterMap(request));
 		String id = ParamUtil.getParameter(request, "id");
 		id = RequestUtils.decodeString(id);
+		logger.debug("id = "+id);
 		SysUser bean = sysUserService.findById(id);
+		logger.debug("user = "+bean);
 		boolean ret = false;
 		if (bean != null) {
 			SysDepartment department = sysDepartmentService.findById(ParamUtil

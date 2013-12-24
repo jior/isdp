@@ -44,7 +44,7 @@ function setValue(obj){
 <div class="nav-title"><span class="Title">用户管理</span>&gt;&gt;修改用户</div>
 <html:form id="iForm" name="iForm" action="${contextPath}/mx/sys/user/saveModify" 
       method="post"  onsubmit="return checkForm(this);"> 
-<input type="hidden" name="id" value="<%=bean.getActorId()%>">
+<input type="hidden" name="id" value="<%=com.glaf.core.util.RequestUtils.encodeString(bean.getActorId())%>">
 <input type="hidden" name="nodeId" value="<%=nodeId%>">
 <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="box">
   <tr>

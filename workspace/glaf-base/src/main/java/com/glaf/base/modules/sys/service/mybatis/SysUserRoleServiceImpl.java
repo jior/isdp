@@ -600,7 +600,7 @@ public class SysUserRoleServiceImpl implements SysUserRoleService {
 
 		for (String userId : userIds) {
 			SysUser user = sysUserMapper.getSysUserByAccount(userId);
-			if (user.getDeptId() > 0) {
+			if (user != null && user.getDeptId() > 0) {
 				SysDeptRoleQuery query = new SysDeptRoleQuery();
 				query.setDeptId(user.getDeptId());
 				query.setRoleId(roleId);
@@ -618,22 +618,24 @@ public class SysUserRoleServiceImpl implements SysUserRoleService {
 				}
 			}
 
-			SysUserRole userRole = new SysUserRole();
-			userRole.setId(idGenerator.getNextId());
-			userRole.setUserId(user.getActorId());
-			userRole.setRoleId(String.valueOf(roleId));
-			userRole.setCreateDate(new Date());
-			sysUserRoleMapper.insertSysUserRole(userRole);
+			if (user != null) {
+				SysUserRole userRole = new SysUserRole();
+				userRole.setId(idGenerator.getNextId());
+				userRole.setUserId(user.getActorId());
+				userRole.setRoleId(String.valueOf(roleId));
+				userRole.setCreateDate(new Date());
+				sysUserRoleMapper.insertSysUserRole(userRole);
 
-			Membership membership = new Membership();
-			membership.setActorId(user.getActorId());
-			membership.setModifyDate(new java.util.Date());
-			membership.setRoleId(roleId);
-			membership.setNodeId(user.getDeptId());
-			membership.setObjectId("userrole");
-			membership.setObjectValue(String.valueOf(roleId));
-			membership.setType("SysUserRole");
-			membershipService.save(membership);
+				Membership membership = new Membership();
+				membership.setActorId(user.getActorId());
+				membership.setModifyDate(new java.util.Date());
+				membership.setRoleId(roleId);
+				membership.setNodeId(user.getDeptId());
+				membership.setObjectId("userrole");
+				membership.setObjectValue(String.valueOf(roleId));
+				membership.setType("SysUserRole");
+				membershipService.save(membership);
+			}
 		}
 	}
 

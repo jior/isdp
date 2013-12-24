@@ -15,7 +15,7 @@ List list = pager.getResults();
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>部门列表</title>
+<title></title>
 <link href="<%=request.getContextPath()%>/css/site.css" type="text/css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/scripts/artDialog/skins/default.css" rel="stylesheet" />
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/jquery.min.js"></script>
@@ -24,7 +24,7 @@ List list = pager.getResults();
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/artDialog/plugins/iframeTools.js"></script>
 <script language="javascript" src='<%=context%>/scripts/verify.js'></script>
 <script language="javascript" src='<%=context%>/scripts/main.js'></script>
-<script language="javascript">
+<script language="JavaScript">
 var num=0;
 function checkOperation(form){
   num = getCheckedBoxNum(form,"id");
@@ -161,7 +161,7 @@ if(list!=null){
   <tr <%=i%2==0?"":"class='list-back'"%>> 
     <td class="td-cb"> <input type="checkbox" name="id" value="<%=bean.getId()%>" onClick="checkOperation(this.form)">    </td>
     <td class="td-no"><%=((pager.getCurrentPageNo()-1)*pageSize + i+1)%></td>
-    <td class="td-text"><a href="department/showList&id=<%=bean.getId()%>&parent=<%=bean.getNodeId()%>"><%=bean.getName()%></a> </td>
+    <td class="td-text"><a href="<%=request.getContextPath()%>/mx/sys/department/showList?id=<%=bean.getId()%>&parent=<%=bean.getNodeId()%>"><%=bean.getName()%></a> </td>
     <td class="td-no"><%=bean.getStatus()==0?"有效":"无效"%>&nbsp;</td>
     <td class="td-no"><%=bean.getCode()%>&nbsp;</td>
     <td class="td-no"><%=bean.getNo()%>&nbsp;</td>
