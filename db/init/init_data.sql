@@ -39,7 +39,7 @@ insert into sys_tree (id, parent, name, nodedesc, sort, code, treeId) values (2,
 insert into sys_tree (id, parent, name, nodedesc, sort, code, treeId) values (3, 1, '应用模块', '', 10, '02', '1|3|');
 insert into sys_tree (id, parent, name, nodedesc, sort, code, treeId) values (4, 2, '基础数据', '', 50, '011', '1|2|4|');
 insert into sys_tree (id, parent, name, nodedesc, sort, code, discriminator) values (5, 2, '部门结构', '部门结构', 40, '012','D');
-insert into sys_tree (id, parent, name, nodedesc, sort, code, discriminator) values (6, 5, '技术部', '技术部', 284, 'JS000','D');
+insert into sys_tree (id, parent, name, nodedesc, sort, code, discriminator) values (6, 5, '系统管理部', '系统管理部', 284, 'JS000','D');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (8, 3, '系统管理', '系统管理', 5, '');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (10, 3, '安全设置', '安全设置', 30, '');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (11, 8, '系统目录', '系统目录', 20, '');
@@ -124,10 +124,10 @@ insert into sys_tree (id, parent, name, nodedesc, sort, code) values (947, 941, 
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (948, 941, '分类设置', '分类设置', 30, '');
 
 /*初始化部门信息*/
-insert into sys_department (id, name, deptdesc, createtime, sort, deptno, code, code2, status, fincode, nodeid) values (6, '技术部', '技术部', null, 284, 'JS000', 'JS', 'J', 0, 'JS000', 6);
+insert into sys_department (id, name, deptdesc, createtime, sort, deptno, code, code2, status, fincode, nodeid) values (0, '系统管理部', '系统管理部', null, 284, 'JS000', 'JS', 'J', 0, 'JS000', 6);
  
 /*初始化用户信息*/
-insert into UserInfo (UserID,  UserName, password, depId, status, issystem ) values ('root', '系统管理员', '111111', 6, '0', '1');
+insert into UserInfo (UserID,  UserName, password, depId, status, issystem ) values ('root', '系统管理员', '111111', 0, '0', '1');
 
 /*初始化应用信息*/
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (3, '应用模块', '应用模块', '', 3, 1, 3);
@@ -203,7 +203,7 @@ insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) val
 
 
 /*插入部门角色*/ 
-insert into sys_dept_role (id, grade, code, sort, roleid, deptid) values (1, 0, null, 0, 15, 6);
+insert into sys_dept_role (id, grade, code, sort, roleid, deptid) values (1, 0, null, 0, 15, 0);
 
 
 /*插入用户角色*/
