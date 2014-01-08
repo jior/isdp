@@ -26,21 +26,23 @@ import com.glaf.base.modules.sys.query.*;
 @Component
 public interface SysApplicationMapper {
 
-	void deleteSysApplications(SysApplicationQuery query);
-
 	void deleteSysApplicationById(Long id);
 
-	SysApplication getSysApplicationById(Long id);
+	void deleteSysApplications(SysApplicationQuery query);
 
-	int getSysApplicationCount(SysApplicationQuery query);
-	
 	List<RealmInfo> getRealmInfos(Map<String,Object> params);
 
-	List<SysApplication> getSysApplications(SysApplicationQuery query);
+	SysApplication getSysApplicationById(Long id);
+	
+	List<SysApplication> getSysApplicationByRoleCode(String roleCode);
 
 	List<SysApplication> getSysApplicationByRoleId(long roleId);
-	
+
 	List<SysApplication> getSysApplicationByUserId(String userId);
+	
+	int getSysApplicationCount(SysApplicationQuery query);
+	
+	List<SysApplication> getSysApplications(SysApplicationQuery query);
 
 	void insertSysApplication(SysApplication model);
 

@@ -23,6 +23,7 @@ import com.glaf.core.query.DataQuery;
 
 public class SysTreeQuery extends DataQuery {
 	private static final long serialVersionUID = 1L;
+	protected List<Long> nodeIds;
 	protected String code;
 	protected String codeLike;
 	protected List<String> codes;
@@ -150,6 +151,10 @@ public class SysTreeQuery extends DataQuery {
 
 	public List<String> getNames() {
 		return names;
+	}
+
+	public List<Long> getNodeIds() {
+		return nodeIds;
 	}
 
 	public String getOrderBy() {
@@ -319,6 +324,14 @@ public class SysTreeQuery extends DataQuery {
 		return this;
 	}
 
+	public SysTreeQuery nodeIds(List<Long> nodeIds) {
+		if (nodeIds == null) {
+			throw new RuntimeException("nodeIds is empty ");
+		}
+		this.nodeIds = nodeIds;
+		return this;
+	}
+
 	public void setCode(String code) {
 		this.code = code;
 	}
@@ -365,6 +378,10 @@ public class SysTreeQuery extends DataQuery {
 
 	public void setNames(List<String> names) {
 		this.names = names;
+	}
+
+	public void setNodeIds(List<Long> nodeIds) {
+		this.nodeIds = nodeIds;
 	}
 
 	public void setRelationColumn(String relationColumn) {

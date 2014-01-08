@@ -26,6 +26,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.RowBounds;
@@ -150,15 +151,6 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		}
 	}
 
-	public SysApplication findById(long id) {
-		SysApplication app = this.getSysApplication(id);
-		if (app.getNodeId() > 0) {
-			SysTree node = sysTreeMapper.getSysTreeById(app.getNodeId());
-			app.setNode(node);
-		}
-		return app;
-	}
-
 	/**
 	 * 按编码查找对象
 	 * 
@@ -181,6 +173,15 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		return null;
 	}
 
+	public SysApplication findById(long id) {
+		SysApplication app = this.getSysApplication(id);
+		if (app.getNodeId() > 0) {
+			SysTree node = sysTreeMapper.getSysTreeById(app.getNodeId());
+			app.setNode(node);
+		}
+		return app;
+	}
+
 	public SysApplication findByName(String name) {
 		SysApplicationQuery query = new SysApplicationQuery();
 		query.name(name);
@@ -195,7 +196,7 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 
 		return null;
 	}
-	
+
 	public SysApplication findByNodeId(long nodeId) {
 		SysApplicationQuery query = new SysApplicationQuery();
 		query.nodeId(nodeId);
@@ -348,6 +349,10 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		return sysApplication;
 	}
 
+	public List<SysApplication> getSysApplicationByRoleCode(String roleCode) {
+		return sysApplicationMapper.getSysApplicationByRoleCode(roleCode);
+	}
+
 	public int getSysApplicationCountByQueryCriteria(SysApplicationQuery query) {
 		return sysApplicationMapper.getSysApplicationCount(query);
 	}
@@ -373,6 +378,77 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 			return treeModel;
 		}
 		return null;
+	}
+
+	public JSONArray getRoleMenu(String roleCode) {
+		JSONArray array = new JSONArray();
+		List<SysApplication> apps = this.getSysApplicationByRoleCode(roleCode);
+		if (apps != null && !apps.isEmpty()) {
+			List<Long> nodeIds = new ArrayList<Long>();
+			for (SysApplication app : apps) {
+				nodeIds.add(app.getNodeId());
+			}
+			SysTreeQuery query = new SysTreeQuery();
+			query.nodeIds(nodeIds);
+			List<SysTree> treeList = sysTreeService
+					.getApplicationSysTrees(query);
+			List<TreeModel> treeModels = new ArrayList<TreeModel>();
+			for (SysTree tree : treeList) {
+				treeModels.add(tree);
+			}
+			TreeHelper treeHelper = new TreeHelper();
+			array = treeHelper.getTreeJSONArray(treeModels);
+		}
+		return array;
+	}
+
+	/**
+	 * 获取角色菜单之json对象
+	 * 
+	 * @param serviceUrl
+	 * @param roleCode
+	 * @return
+	 */
+	public JSONArray getRoleMenu(String serviceUrl, String roleCode) {
+		JSONArray array = new JSONArray();
+		List<SysApplication> apps = this.getSysApplicationByRoleCode(roleCode);
+		if (apps != null && !apps.isEmpty()) {
+			Map<Long, String> urlMap = new HashMap<Long, String>();
+			List<Long> nodeIds = new ArrayList<Long>();
+			for (SysApplication app : apps) {
+				nodeIds.add(app.getNodeId());
+				if (StringUtils.isNotEmpty(app.getUrl())) {
+					if (StringUtils.startsWith(app.getUrl(), "http://")
+							|| StringUtils.startsWith(app.getUrl(), "https://")) {
+						urlMap.put(app.getNodeId(), app.getUrl());
+					} else {
+						if (StringUtils.startsWith(app.getUrl(), "/")) {
+							urlMap.put(app.getNodeId(),
+									serviceUrl + app.getUrl());
+						} else {
+							urlMap.put(app.getNodeId(),
+									serviceUrl + "/" + app.getUrl());
+						}
+					}
+				}
+			}
+			
+			logger.info("urlMap:"+urlMap);
+			
+			SysTreeQuery query = new SysTreeQuery();
+			query.nodeIds(nodeIds);
+			List<SysTree> treeList = sysTreeService
+					.getApplicationSysTrees(query);
+			List<TreeModel> treeModels = new ArrayList<TreeModel>();
+			for (SysTree tree : treeList) {
+				tree.setUrl(urlMap.get(tree.getId()));
+				logger.debug(tree.getUrl());
+				treeModels.add(tree);
+			}
+			TreeHelper treeHelper = new TreeHelper();
+			array = treeHelper.getTreeJSONArray(treeModels);
+		}
+		return array;
 	}
 
 	/**

@@ -98,5 +98,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/glaf-ui"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/glaf-security"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/glaf-mail"/>
+	<classpathentry kind="lib" path="conf"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

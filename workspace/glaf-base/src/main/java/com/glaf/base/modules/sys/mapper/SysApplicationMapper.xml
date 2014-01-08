@@ -204,6 +204,21 @@
 		where A.ROLEID = #{roleId}
 
 	</select>
+	
+	
+	<select id="getSysApplicationByRoleCode" parameterType="String"
+		resultMap="sysApplicationResultMap">
+
+		select E.* from sys_application E
+		inner join sys_access A
+		on
+		E.id = A.appId
+		where A.roleId in (
+		    select R.id from net_role R
+		    where R.code = #{roleCode}
+		)
+
+	</select>
 
 
 	<select id="getSysApplicationByUserId" parameterType="String"

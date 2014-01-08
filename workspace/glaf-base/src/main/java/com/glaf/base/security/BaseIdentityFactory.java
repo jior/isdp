@@ -19,21 +19,20 @@
 package com.glaf.base.security;
 
 import java.util.ArrayList;
-
 import java.util.HashMap;
-
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.json.JSONArray;
 
+import com.glaf.core.config.SystemConfig;
 import com.glaf.core.context.ContextFactory;
 import com.glaf.core.identity.Agent;
 import com.glaf.core.service.EntityService;
-
 import com.glaf.base.modules.sys.model.SysDepartment;
 import com.glaf.base.modules.sys.model.SysRole;
 import com.glaf.base.modules.sys.model.SysUser;
@@ -47,6 +46,7 @@ import com.glaf.base.modules.sys.service.SysDepartmentService;
 import com.glaf.base.utils.ContextUtil;
 
 public class BaseIdentityFactory {
+
 	protected static final Log logger = LogFactory
 			.getLog(BaseIdentityFactory.class);
 
@@ -340,6 +340,34 @@ public class BaseIdentityFactory {
 	}
 
 	/**
+	 * 获取角色菜单之json对象
+	 * 
+	 * @param roleCode
+	 * @return
+	 */
+	public static JSONArray getRoleMenu(String roleCode) {
+		String serviceUrl = SystemConfig.getServiceUrl();
+		if (StringUtils.isNotEmpty(serviceUrl)
+				&& (StringUtils.startsWith(serviceUrl, "http://") || StringUtils
+						.startsWith(serviceUrl, "https://"))) {
+			return getSysApplicationService().getRoleMenu(serviceUrl, roleCode);
+		}
+		return getSysApplicationService().getRoleMenu(roleCode);
+	}
+
+	/**
+	 * 获取角色菜单之json对象
+	 * 
+	 * @param serviceUrl
+	 *            服务地址,如:http://192.168.1.1:8080/glaf
+	 * @param roleCode
+	 * @return
+	 */
+	public static JSONArray getRoleMenu(String serviceUrl, String roleCode) {
+		return getSysApplicationService().getRoleMenu(serviceUrl, roleCode);
+	}
+
+	/**
 	 * 获取全部角色
 	 * 
 	 * @return
@@ -499,6 +527,14 @@ public class BaseIdentityFactory {
 	 */
 	public static List<SysUser> getUsers() {
 		return getSysUserService().getSysUserList();
+	}
+
+	public static void main(String[] args) {
+		System.setProperty("spring-config-file",
+				"E:/isdp/workspace/glaf-base/conf/spring/spring-config.xml");
+		System.out.println(System.getProperty("spring-config-file"));
+		System.out.println(BaseIdentityFactory.getRoleMenu(
+				"http://192.168.1.1:8080/glaf", "BranchAdmin").toString('\n'));
 	}
 
 	public static void setSysApplicationService(
