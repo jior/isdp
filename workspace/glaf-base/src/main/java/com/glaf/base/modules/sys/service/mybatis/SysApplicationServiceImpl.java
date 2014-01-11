@@ -336,6 +336,80 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		return sysApplicationMapper.getRealmInfos(params);
 	}
 
+	public JSONArray getRoleMenu(String roleCode) {
+		JSONArray array = new JSONArray();
+		List<SysApplication> apps = this.getSysApplicationByRoleCode(roleCode);
+		if (apps != null && !apps.isEmpty()) {
+			List<Long> nodeIds = new ArrayList<Long>();
+			for (SysApplication app : apps) {
+				nodeIds.add(app.getNodeId());
+			}
+			SysTreeQuery query = new SysTreeQuery();
+			query.nodeIds(nodeIds);
+			List<SysTree> treeList = sysTreeService
+					.getApplicationSysTrees(query);
+			List<TreeModel> treeModels = new ArrayList<TreeModel>();
+			for (SysTree tree : treeList) {
+				tree.setLocked(0);
+				treeModels.add(tree);
+			}
+			TreeHelper treeHelper = new TreeHelper();
+			array = treeHelper.getTreeJSONArray(treeModels);
+		}
+		return array;
+	}
+
+	/**
+	 * 获取角色菜单之json对象
+	 * 
+	 * @param serviceUrl
+	 * @param roleCode
+	 * @return
+	 */
+	public JSONArray getRoleMenu(String serviceUrl, String roleCode) {
+		JSONArray array = new JSONArray();
+		List<SysApplication> apps = this.getSysApplicationByRoleCode(roleCode);
+		if (apps != null && !apps.isEmpty()) {
+			Map<Long, String> urlMap = new HashMap<Long, String>();
+			List<Long> nodeIds = new ArrayList<Long>();
+			for (SysApplication app : apps) {
+				nodeIds.add(app.getNodeId());
+				if (StringUtils.isNotEmpty(app.getUrl())) {
+					if (StringUtils.startsWith(app.getUrl(), "http://")
+							|| StringUtils.startsWith(app.getUrl(), "https://")) {
+						urlMap.put(app.getNodeId(), app.getUrl());
+					} else {
+						if (StringUtils.startsWith(app.getUrl(), "/")) {
+							urlMap.put(app.getNodeId(),
+									serviceUrl + app.getUrl());
+						} else {
+							urlMap.put(app.getNodeId(),
+									serviceUrl + "/" + app.getUrl());
+						}
+					}
+				}
+			}
+
+			logger.debug("urlMap:" + urlMap);
+
+			SysTreeQuery query = new SysTreeQuery();
+			query.nodeIds(nodeIds);
+			List<SysTree> treeList = sysTreeService
+					.getApplicationSysTrees(query);
+			List<TreeModel> treeModels = new ArrayList<TreeModel>();
+			for (SysTree tree : treeList) {
+				tree.setLocked(0);
+				tree.setUrl(urlMap.get(tree.getId()));
+				logger.debug(tree.getUrl());
+				treeModels.add(tree);
+			}
+			logger.debug("treeModels:" + treeModels.size());
+			TreeHelper treeHelper = new TreeHelper();
+			array = treeHelper.getTreeJSONArray(treeModels);
+		}
+		return array;
+	}
+
 	public SysApplication getSysApplication(Long id) {
 		if (id == null) {
 			return null;
@@ -380,77 +454,6 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		return null;
 	}
 
-	public JSONArray getRoleMenu(String roleCode) {
-		JSONArray array = new JSONArray();
-		List<SysApplication> apps = this.getSysApplicationByRoleCode(roleCode);
-		if (apps != null && !apps.isEmpty()) {
-			List<Long> nodeIds = new ArrayList<Long>();
-			for (SysApplication app : apps) {
-				nodeIds.add(app.getNodeId());
-			}
-			SysTreeQuery query = new SysTreeQuery();
-			query.nodeIds(nodeIds);
-			List<SysTree> treeList = sysTreeService
-					.getApplicationSysTrees(query);
-			List<TreeModel> treeModels = new ArrayList<TreeModel>();
-			for (SysTree tree : treeList) {
-				treeModels.add(tree);
-			}
-			TreeHelper treeHelper = new TreeHelper();
-			array = treeHelper.getTreeJSONArray(treeModels);
-		}
-		return array;
-	}
-
-	/**
-	 * 获取角色菜单之json对象
-	 * 
-	 * @param serviceUrl
-	 * @param roleCode
-	 * @return
-	 */
-	public JSONArray getRoleMenu(String serviceUrl, String roleCode) {
-		JSONArray array = new JSONArray();
-		List<SysApplication> apps = this.getSysApplicationByRoleCode(roleCode);
-		if (apps != null && !apps.isEmpty()) {
-			Map<Long, String> urlMap = new HashMap<Long, String>();
-			List<Long> nodeIds = new ArrayList<Long>();
-			for (SysApplication app : apps) {
-				nodeIds.add(app.getNodeId());
-				if (StringUtils.isNotEmpty(app.getUrl())) {
-					if (StringUtils.startsWith(app.getUrl(), "http://")
-							|| StringUtils.startsWith(app.getUrl(), "https://")) {
-						urlMap.put(app.getNodeId(), app.getUrl());
-					} else {
-						if (StringUtils.startsWith(app.getUrl(), "/")) {
-							urlMap.put(app.getNodeId(),
-									serviceUrl + app.getUrl());
-						} else {
-							urlMap.put(app.getNodeId(),
-									serviceUrl + "/" + app.getUrl());
-						}
-					}
-				}
-			}
-			
-			logger.info("urlMap:"+urlMap);
-			
-			SysTreeQuery query = new SysTreeQuery();
-			query.nodeIds(nodeIds);
-			List<SysTree> treeList = sysTreeService
-					.getApplicationSysTrees(query);
-			List<TreeModel> treeModels = new ArrayList<TreeModel>();
-			for (SysTree tree : treeList) {
-				tree.setUrl(urlMap.get(tree.getId()));
-				logger.debug(tree.getUrl());
-				treeModels.add(tree);
-			}
-			TreeHelper treeHelper = new TreeHelper();
-			array = treeHelper.getTreeJSONArray(treeModels);
-		}
-		return array;
-	}
-
 	/**
 	 * 获取用户某个分类下的全部分类节点
 	 * 
@@ -465,6 +468,32 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		SysUser user = sysUserService.findByAccountWithAll(actorId);
 		if (user != null) {
 			this.loadChildrenTreeModels(treeModels, parentId, user);
+		}
+		return treeModels;
+	}
+
+	/**
+	 * 获取某个角色编码的全部分类节点（包含已经失效的菜单）
+	 * 
+	 * @param roleCode
+	 *            角色编码
+	 * @return
+	 */
+	public List<TreeModel> getTreeModels(String roleCode) {
+		List<TreeModel> treeModels = new ArrayList<TreeModel>();
+		List<SysApplication> apps = this.getSysApplicationByRoleCode(roleCode);
+		if (apps != null && !apps.isEmpty()) {
+			List<Long> nodeIds = new ArrayList<Long>();
+			for (SysApplication app : apps) {
+				nodeIds.add(app.getNodeId());
+			}
+			SysTreeQuery query = new SysTreeQuery();
+			query.nodeIds(nodeIds);
+			List<SysTree> treeList = sysTreeService
+					.getApplicationSysTrees(query);
+			for (SysTree tree : treeList) {
+				treeModels.add(tree);
+			}
 		}
 		return treeModels;
 	}

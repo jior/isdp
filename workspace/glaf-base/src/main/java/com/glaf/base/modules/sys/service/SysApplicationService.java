@@ -69,14 +69,6 @@ public interface SysApplicationService {
 	boolean deleteAll(long[] id);
 
 	/**
-	 * 获取对象
-	 * 
-	 * @param id
-	 * @return
-	 */
-	SysApplication findById(long id);
-
-	/**
 	 * 按编码查找对象
 	 * 
 	 * @param code
@@ -84,6 +76,14 @@ public interface SysApplicationService {
 	 * @return SysApplication
 	 */
 	SysApplication findByCode(String code);
+
+	/**
+	 * 获取对象
+	 * 
+	 * @param id
+	 * @return
+	 */
+	SysApplication findById(long id);
 
 	/**
 	 * 按名称查找对象
@@ -106,8 +106,6 @@ public interface SysApplicationService {
 	 * @return List
 	 */
 	List<SysApplication> getAccessAppList(long parent, SysUser user);
-
-	List<SysApplication> getSysApplicationByRoleCode(String roleCode);
 
 	/**
 	 * 获取全部列表
@@ -150,28 +148,13 @@ public interface SysApplicationService {
 	List<RealmInfo> getRealmInfos();
 
 	/**
-	 * 根据查询参数获取记录总数
-	 * 
-	 * @return
-	 */
-	int getSysApplicationCountByQueryCriteria(SysApplicationQuery query);
-
-	/**
-	 * 根据查询参数获取一页的数据
-	 * 
-	 * @return
-	 */
-	List<SysApplication> getSysApplicationsByQueryCriteria(int start,
-			int pageSize, SysApplicationQuery query);
-
-	/**
 	 * 获取角色菜单之json对象
 	 * 
 	 * @param roleCode
 	 * @return
 	 */
 	JSONArray getRoleMenu(String roleCode);
-	
+
 	/**
 	 * 获取角色菜单之json对象
 	 * 
@@ -181,16 +164,22 @@ public interface SysApplicationService {
 	 */
 	JSONArray getRoleMenu(String serviceUrl, String roleCode);
 
+	List<SysApplication> getSysApplicationByRoleCode(String roleCode);
+
 	/**
-	 * 获取用户菜单之json对象
+	 * 根据查询参数获取记录总数
 	 * 
-	 * @param parentId
-	 *            父节点编号
-	 * @param userId
-	 *            用户登录账号
 	 * @return
 	 */
-	JSONArray getUserMenu(long parentId, String userId);
+	int getSysApplicationCountByQueryCriteria(SysApplicationQuery query);
+	
+	/**
+	 * 根据查询参数获取一页的数据
+	 * 
+	 * @return
+	 */
+	List<SysApplication> getSysApplicationsByQueryCriteria(int start,
+			int pageSize, SysApplicationQuery query);
 
 	TreeModel getTreeModelByAppId(long appId);
 
@@ -204,6 +193,26 @@ public interface SysApplicationService {
 	 * @return
 	 */
 	List<TreeModel> getTreeModels(long parentId, String userId);
+
+	/**
+	 * 获取某个角色编码的全部分类节点（包含已经失效的菜单）
+	 * 
+	 * @param roleCode
+	 *            角色编码
+	 * @return
+	 */
+	List<TreeModel> getTreeModels(String roleCode);
+	
+	/**
+	 * 获取用户菜单之json对象
+	 * 
+	 * @param parentId
+	 *            父节点编号
+	 * @param userId
+	 *            用户登录账号
+	 * @return
+	 */
+	JSONArray getUserMenu(long parentId, String userId);
 
 	/**
 	 * 排序
