@@ -43,6 +43,9 @@
 		<copy todir="../glaf-web/WebContent/WEB-INF/classes">
 			<fileset dir="bin" includes="com/**/*.class,com/**/*.properties,com/**/*.xml" />
 		</copy>
+		<copy todir="../glaf-zk-web/WebContent/WEB-INF/classes">
+			<fileset dir="bin" includes="com/**/*.class,com/**/*.properties,com/**/*.xml" />
+		</copy>
 	</target>
 
 	<!-- 编译任务 -->
