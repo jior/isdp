@@ -42,9 +42,9 @@
 		<listener-class>org.zkoss.zk.ui.http.HttpSessionListener</listener-class>
 	</listener>
 
-	<!-- <listener>
+	<listener>
 		<listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
-	</listener> -->
+	</listener>
 
 
 	<!--转码过滤器-->
@@ -78,18 +78,7 @@
 	</filter-mapping>
 
 
-    <!--shiroFilter-->
-	<!-- <filter> 
-	   <filter-name>shiroFilter</filter-name> 
-	   <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> 
-	</filter> 
-
-	<filter-mapping> 
-	   <filter-name>shiroFilter</filter-name> 
-	   <url-pattern>/*</url-pattern> 
-	</filter-mapping>  -->
-
-	<!-- <servlet>
+	<servlet>
 		<servlet-name>resteasy</servlet-name>
 		<servlet-class>com.glaf.base.servlet.SpringDispatcherServlet</servlet-class>
 		<load-on-startup>2</load-on-startup>
@@ -99,7 +88,7 @@
 		<servlet-name>resteasy</servlet-name>
 		<url-pattern>/rs/*</url-pattern>
 	</servlet-mapping>
- -->
+ 
 
     <servlet>
 		<servlet-name>InitBaseData</servlet-name>
@@ -107,25 +96,6 @@
 		<load-on-startup>2</load-on-startup>
 	</servlet>
 
-	<!-- <servlet>
-        <servlet-name>FileUploadServlet</servlet-name>
-        <servlet-class>com.glaf.core.web.servlet.FileUploadServlet</servlet-class>
-    </servlet>
-
-	<servlet-mapping>
-        <servlet-name>FileUploadServlet</servlet-name>
-        <url-pattern>/myupload</url-pattern>
-    </servlet-mapping>
-
-	<servlet>
-		<servlet-name>FileUploadBackGroundServlet</servlet-name>
-		<servlet-class>com.glaf.base.utils.upload.FileUploadBackGroundServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-		<servlet-name>FileUploadBackGroundServlet</servlet-name>
-		<url-pattern>/fileUploadService</url-pattern>
-    </servlet-mapping> -->
 
 	<servlet>
 		<servlet-name>zkLoader</servlet-name>
