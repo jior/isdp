@@ -19,7 +19,7 @@ public class IsdpTemplateConfig {
 
 	private static final String DEFAULT_CONFIG = "/config/isdp/templates.xml";
 
-	private static final Map<String, Template> templates = new HashMap<String, Template>();
+	private static final Map<String, Template> templates = new java.util.concurrent.ConcurrentHashMap<String, Template>();
 
 	static {
 		reload();

@@ -43,147 +43,147 @@ public class IsdpDispatcher {
 	protected static final RenderContainer container = RenderContainer
 			.getContainer();
 
-	protected ICellMenuService cellMenuService;
+	protected volatile ICellMenuService cellMenuService;
 
-	protected ICellRepInfoService cellRepInfoService;
+	protected volatile ICellRepInfoService cellRepInfoService;
 
-	protected ICellTreedotService cellTreedotService;
+	protected volatile ICellTreedotService cellTreedotService;
 
-	protected ICellTreedotPerService cellTreedotPerService;
+	protected volatile ICellTreedotPerService cellTreedotPerService;
 
-	protected IsdpFiledotService isdpFiledotService;
+	protected volatile IsdpFiledotService isdpFiledotService;
 
-	protected IFieldInterfaceService fieldInterfaceService;
+	protected volatile IFieldInterfaceService fieldInterfaceService;
 
-	protected IMyCellBusiessService myCellBusiessService;
+	protected volatile IMyCellBusiessService myCellBusiessService;
 
-	protected INetRoleService netRoleService;
+	protected volatile INetRoleService netRoleService;
 
-	protected INetRoleUseService netRoleUseService;
+	protected volatile INetRoleUseService netRoleUseService;
 
-	protected IRoleUse2Service roleUse2Service;
+	protected volatile IRoleUse2Service roleUse2Service;
 
-	protected ITreedotService treedotService;
+	protected volatile ITreedotService treedotService;
 
-	protected ICellCriterionService cellCriterionService;
+	protected volatile ICellCriterionService cellCriterionService;
 
-	protected ICellCriterionTreeService cellCriterionTreeService;
+	protected volatile ICellCriterionTreeService cellCriterionTreeService;
 
-	protected ICellDataFieldService cellDataFieldService;
+	protected volatile ICellDataFieldService cellDataFieldService;
 
-	protected ICellDataTableService cellDataTableService;
+	protected volatile ICellDataTableService cellDataTableService;
 
-	protected ICellDottofileService cellDottofileService;
+	protected volatile ICellDottofileService cellDottofileService;
 
-	protected IsdpCellFillFormService isdpCellFillFormService;
+	protected volatile IsdpCellFillFormService isdpCellFillFormService;
 
-	protected IsdpCellFormService isdpCellFormService;
+	protected volatile IsdpCellFormService isdpCellFormService;
 
-	protected ICellMyTaskMainService cellMyTaskMainService;
+	protected volatile ICellMyTaskMainService cellMyTaskMainService;
 
-	protected ICellMyTaskService cellMyTaskService;
+	protected volatile ICellMyTaskService cellMyTaskService;
 
-	protected ICellRepInfo2Service cellRepInfo2Service;
+	protected volatile ICellRepInfo2Service cellRepInfo2Service;
 
-	protected ICellTableTreeService cellTableTreeService;
+	protected volatile ICellTableTreeService cellTableTreeService;
 
-	protected ICellTreedotDotService cellTreedotDotService;
+	protected volatile ICellTreedotDotService cellTreedotDotService;
 
-	protected ICellTreedotViewService cellTreedotViewService;
+	protected volatile ICellTreedotViewService cellTreedotViewService;
 
-	protected ICellTreehintService cellTreehintService;
+	protected volatile ICellTreehintService cellTreehintService;
 
-	protected ICellUpicInfoService cellUpicInfoService;
+	protected volatile ICellUpicInfoService cellUpicInfoService;
 
-	protected ICellUseDataInfoService cellUseDataInfoService;
+	protected volatile ICellUseDataInfoService cellUseDataInfoService;
 
-	protected IsdpDotuseService isdpDotuseService;
+	protected volatile IsdpDotuseService isdpDotuseService;
 
-	protected IsdpFileattService isdpFileattService;
+	protected volatile IsdpFileattService isdpFileattService;
 
-	protected IFlowActivityDefService flowActivityDefService;
+	protected volatile IFlowActivityDefService flowActivityDefService;
 
-	protected IFlowActivityService flowActivityService;
+	protected volatile IFlowActivityService flowActivityService;
 
-	protected IFlowForwardDefService flowForwardDefService;
+	protected volatile IFlowForwardDefService flowForwardDefService;
 
-	protected IFlowForwardService flowForwardService;
+	protected volatile IFlowForwardService flowForwardService;
 
-	protected IFlowProcessDefService flowProcessDefService;
+	protected volatile IFlowProcessDefService flowProcessDefService;
 
-	protected IFlowProcessService flowProcessService;
+	protected volatile IFlowProcessService flowProcessService;
 
-	protected IFlowStationService flowStationService;
+	protected volatile IFlowStationService flowStationService;
 
-	protected IHintListService hintListService;
+	protected volatile IHintListService hintListService;
 
-	protected IHintService hintService;
+	protected volatile IHintService hintService;
 
-	protected IsdpIdentityService isdpIdentityService;
+	protected volatile IsdpIdentityService isdpIdentityService;
 
-	protected IMyCellTaskSubService myCellTaskSubService;
+	protected volatile IMyCellTaskSubService myCellTaskSubService;
 
-	protected IMyCellTaskService myCellTaskService;
+	protected volatile IMyCellTaskService myCellTaskService;
 
-	protected INetDotRoleService netDotRoleService;
+	protected volatile INetDotRoleService netDotRoleService;
 
-	protected IUserInfoService userInfoService;
+	protected volatile IUserInfoService userInfoService;
 
-	protected IsdpPfileAttService isdpPfileAttService;
+	protected volatile IsdpPfileAttService isdpPfileAttService;
 
-	protected IsdpPfileService isdpPfileService;
+	protected volatile IsdpPfileService isdpPfileService;
 
-	protected IsdpPinfoService isdpPinfoService;
+	protected volatile IsdpPinfoService isdpPinfoService;
 
-	protected IProjectCellAndFileRefService projectCellAndFileRefService;
+	protected volatile IProjectCellAndFileRefService projectCellAndFileRefService;
 
-	protected IProjectCellAndFileService projectCellAndFileService;
+	protected volatile IProjectCellAndFileService projectCellAndFileService;
 
-	protected IProjectOrganizationService projectOrganizationService;
+	protected volatile IProjectOrganizationService projectOrganizationService;
 
-	protected IProjectTreeAllwbsService projectTreeAllwbsService;
+	protected volatile IProjectTreeAllwbsService projectTreeAllwbsService;
 
-	protected IProjectTreeService projectTreeService;
+	protected volatile IProjectTreeService projectTreeService;
 
-	protected IsdpRoleService isdpRoleService;
+	protected volatile IsdpRoleService isdpRoleService;
 
-	protected IRoleUseService roleUseService;
+	protected volatile IRoleUseService roleUseService;
 
-	protected ITreeFolderService treeFolderService;
+	protected volatile ITreeFolderService treeFolderService;
 
-	protected IsdpTreepInfoService isdpTreepInfoService;
+	protected volatile IsdpTreepInfoService isdpTreepInfoService;
 
-	protected ITreepInfoUserService treepInfoUserService;
+	protected volatile ITreepInfoUserService treepInfoUserService;
 
-	protected IsdpTreepnameService isdpTreepnameService;
+	protected volatile IsdpTreepnameService isdpTreepnameService;
 
-	protected ITreeProjectParService treeProjectParService;
+	protected volatile ITreeProjectParService treeProjectParService;
 
-	protected ITreeProjectService treeProjectService;
+	protected volatile ITreeProjectService treeProjectService;
 
-	protected ITreepurService treepurService;
+	protected volatile ITreepurService treepurService;
 
-	protected IsdpTreeService isdpTreeService;
+	protected volatile IsdpTreeService isdpTreeService;
 
-	protected ITreetopService treetopService;
+	protected volatile ITreetopService treetopService;
 
-	protected ITreevmainService treevmainService;
+	protected volatile ITreevmainService treevmainService;
 
-	protected ITreevmainUserService treevmainUserService;
+	protected volatile ITreevmainUserService treevmainUserService;
 
-	protected ITreewbsAutoindexService treewbsAutoindexService;
+	protected volatile ITreewbsAutoindexService treewbsAutoindexService;
 
-	protected ITreewbsAutostartService treewbsAutostartService;
+	protected volatile ITreewbsAutostartService treewbsAutostartService;
 
-	protected ITreewbsNameService treewbsNameService;
+	protected volatile ITreewbsNameService treewbsNameService;
 
-	protected ITreewbsTabService treewbsTabService;
+	protected volatile ITreewbsTabService treewbsTabService;
 
-	protected ITreewbsService treewbsService;
+	protected volatile ITreewbsService treewbsService;
 
-	protected IUserRoleService userRoleService;
+	protected volatile IUserRoleService userRoleService;
 
-	protected IUserTaskService userTaskService;
+	protected volatile IUserTaskService userTaskService;
 
 	public IsdpDispatcher() {
 
