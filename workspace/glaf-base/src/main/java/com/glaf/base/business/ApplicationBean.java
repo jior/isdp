@@ -27,9 +27,10 @@ import com.glaf.core.context.ContextFactory;
 import com.glaf.base.modules.sys.service.SysApplicationService;
 
 public class ApplicationBean {
-	protected static final Log logger = LogFactory.getLog(ApplicationBean.class);
-	
-	protected SysApplicationService sysApplicationService;
+	protected static final Log logger = LogFactory
+			.getLog(ApplicationBean.class);
+
+	protected volatile SysApplicationService sysApplicationService;
 
 	public ApplicationBean() {
 

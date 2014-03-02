@@ -71,8 +71,6 @@ public class BaseDataManager {
 
 	protected static Configuration conf = BaseConfiguration.create();
 
-	protected static BaseDataManager instance = new BaseDataManager();
-
 	protected static Log logger = LogFactory.getLog(BaseDataManager.class);
 
 	protected static AtomicBoolean loading = new AtomicBoolean(false);
@@ -90,27 +88,27 @@ public class BaseDataManager {
 		return BaseDataManagerHolder.instance;
 	}
 
-	protected DictoryService dictoryService;
+	protected volatile DictoryService dictoryService;
 
-	protected SubjectCodeService subjectCodeService;
+	protected volatile SubjectCodeService subjectCodeService;
 
-	protected SysApplicationService sysApplicationService;
+	protected volatile SysApplicationService sysApplicationService;
 
-	protected SysDepartmentService sysDepartmentService;
+	protected volatile SysDepartmentService sysDepartmentService;
 
-	protected SysDeptRoleService sysDeptRoleService;
+	protected volatile SysDeptRoleService sysDeptRoleService;
 
-	protected SysFunctionService sysFunctionService;
+	protected volatile SysFunctionService sysFunctionService;
 
-	protected SysRoleService sysRoleService;
+	protected volatile SysRoleService sysRoleService;
 
-	protected SysTreeService sysTreeService;
+	protected volatile SysTreeService sysTreeService;
 
-	protected SysUserRoleService sysUserRoleService;
+	protected volatile SysUserRoleService sysUserRoleService;
 
-	protected SysUserService sysUserService;
+	protected volatile SysUserService sysUserService;
 
-	protected EntityService entityService;
+	protected volatile EntityService entityService;
 
 	private BaseDataManager() {
 

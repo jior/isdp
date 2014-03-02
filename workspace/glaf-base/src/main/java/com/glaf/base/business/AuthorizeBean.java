@@ -50,7 +50,7 @@ public class AuthorizeBean {
 	private static final Log logger = LogFactory.getLog(AuthorizeBean.class);
 	protected static String configurationResource = "/conf/spring/spring-config.xml";
 
-	protected static org.springframework.context.ApplicationContext ctx;
+	protected static volatile org.springframework.context.ApplicationContext ctx;
 
 	public static void main(String[] args) {
 		ctx = new ClassPathXmlApplicationContext(configurationResource);
