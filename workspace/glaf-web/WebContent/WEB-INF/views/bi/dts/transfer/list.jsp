@@ -92,7 +92,7 @@
 				]],
 				rownumbers: false,
 				pagination: true,
-				pageSize: <%=com.glaf.core.util.Paging.DEFAULT_PAGE_SIZE%>,
+				pageSize: 15,
 				pageList: [10,15,20,25,30,40,50,100],
 				onDblClickRow: onRowClick 
 			});
@@ -113,13 +113,13 @@
 			return;
 		}
 	    var link="<%=request.getContextPath()%>/mx/dts/dataTransfer/edit?nodeId="+nodeId;
-	    art.dialog.open(link, { height: 420, width: 780, title: "添加记录", lock: true, scrollbars:"no" }, false);
+	    art.dialog.open(link, { height: 430, width: 820, title: "添加记录", lock: true, scrollbars:"no" }, false);
 	}
 
 	function onRowClick(rowIndex, row){
 		var nodeId = jQuery("#nodeId").val();
 	    var link = '<%=request.getContextPath()%>/mx/dts/dataTransfer/edit?id='+row.id+"&nodeId="+nodeId;
-	    art.dialog.open(link, { height: 420, width: 780, title: "修改记录", lock: true, scrollbars:"no" }, false);
+	    art.dialog.open(link, { height: 430, width: 820, title: "修改记录", lock: true, scrollbars:"no" }, false);
 	}
 
 	function searchWin(){
@@ -144,7 +144,7 @@
 	    if (selected ){
 		  var nodeId = jQuery("#nodeId").val();
 		  var link = "<%=request.getContextPath()%>/mx/dts/dataTransfer/edit?id="+selected.id+"&nodeId="+nodeId;
-		  art.dialog.open(link, { height: 420, width: 780, title: "修改记录", lock: true, scrollbars:"no" }, false);
+		  art.dialog.open(link, { height: 430, width: 820, title: "修改记录", lock: true, scrollbars:"no" }, false);
 	    }
 	}
 
