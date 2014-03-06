@@ -21,7 +21,6 @@ package com.glaf.base.servlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.context.WebApplicationContext;
@@ -49,7 +48,7 @@ public class SpringDispatcherServlet extends DispatcherServlet {
 			HttpServletResponse response) throws Exception {
 		try {
 			String systemName = RequestUtils.getCurrentSystem(request);
-			if (systemName != null && !StringUtils.equals("GLAF", systemName)) {
+			if (systemName != null) {
 				Environment.setCurrentSystemName(systemName);
 			}
 

@@ -39,7 +39,6 @@ import com.glaf.base.config.BaseConfiguration;
 import com.glaf.base.modules.sys.SysConstants;
 import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.service.AuthorizeService;
-import com.glaf.base.modules.sys.service.SysApplicationService;
 import com.glaf.base.modules.sys.service.SysUserService;
 import com.glaf.base.online.domain.UserOnline;
 import com.glaf.base.online.service.UserOnlineService;
@@ -70,8 +69,6 @@ public class LoginController {
 	private static final Log logger = LogFactory.getLog(LoginController.class);
 
 	private static Configuration conf = BaseConfiguration.create();
-
-	private SysApplicationService sysApplicationService;
 
 	private AuthorizeService authorizeService;
 
@@ -184,19 +181,14 @@ public class LoginController {
 			bean.setLastLoginDate(new Date());
 			sysUserService.updateUser(bean);
 
-			String menus = sysApplicationService.getMenu(3, bean);
-			bean.setMenus(menus);
-
 			ContextUtil.put(bean.getAccount(), bean);// 传入全局变量
 
 			if (StringUtils.isEmpty(systemName)) {
-				systemName = "GLAF";
+				systemName = "default";
 			}
 
 			RequestUtils.setLoginUser(request, response, systemName,
 					bean.getAccount());
-
-			request.setAttribute(SysConstants.MENU, menus);
 
 			UserOnline online = new UserOnline();
 			online.setActorId(bean.getActorId());
@@ -217,7 +209,7 @@ public class LoginController {
 		}
 	}
 
-/**
+	/**
 	 * 登录
 	 * 
 	 * @param request
@@ -304,12 +296,6 @@ public class LoginController {
 	public void setAuthorizeService(AuthorizeService authorizeService) {
 		this.authorizeService = authorizeService;
 
-	}
-
-	@javax.annotation.Resource
-	public void setSysApplicationService(
-			SysApplicationService sysApplicationService) {
-		this.sysApplicationService = sysApplicationService;
 	}
 
 	@javax.annotation.Resource
