@@ -1,1 +1,0 @@
-jbpm par deploy dir

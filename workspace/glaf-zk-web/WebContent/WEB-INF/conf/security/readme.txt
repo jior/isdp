@@ -1,1 +1,0 @@
-shiro security properties
