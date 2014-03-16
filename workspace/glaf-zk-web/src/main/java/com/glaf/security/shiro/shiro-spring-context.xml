@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<bean id="shiroFilter" class="com.glaf.security.shiro.MyShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/login.jsp" />
+		<property name="successUrl" value="/main.jsp" />
+		<property name="unauthorizedUrl" value="/unauthorized.jsp" />
+		<property name="filters">
+			<util:map>
+				<entry key="authc" value-ref="formAuthenticationFilter" />
+			</util:map>
+		</property>
+	</bean>
+
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="myShiroRealm" />
+		<property name="cacheManager" ref="shiroCacheManager" />
+	</bean>
+
+	<bean id="myShiroRealm" class="com.glaf.security.shiro.SystemRealm">
+		<property name="cacheManager" ref="shiroCacheManager" />
+	</bean>
+
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+
+	<bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManager" ref="ehCacheManager" />
+	</bean>
+
+	<!-- <bean id="shiroCacheManager" class="com.glaf.security.shiro.ZooKeeperCacheManager"> 
+		<property name="servers" value="127.0.0.1:2181" /> </bean> -->
+
+	<bean id="formAuthenticationFilter"
+		class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter" />
+
+	<bean
+		class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+		depends-on="lifecycleBeanPostProcessor" />
+
+	<bean
+		class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+
+</beans>
