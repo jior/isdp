@@ -1,4 +1,4 @@
-<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?link rel="stylesheet" type="text/css" href="/css/style.css"?>
 <!-- protect page by the authentication init -->
 <?init class="com.glaf.auth.init.AuthenticationInit"?>
 <!-- authentication init have to locate before composition -->

@@ -12,9 +12,11 @@
 		either a package's name or a portion of it. -->
 	<javascript-module name="skin" version="4.3" />
 
+    <!--  
 	<library-property>
 		<name>org.zkoss.theme.preferred</name>
 		<value>sapphire</value>
 	</library-property>
+	-->
 
 </language-addon>

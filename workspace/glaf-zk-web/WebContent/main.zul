@@ -1,27 +1,44 @@
-<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?link rel="stylesheet" type="text/css" href="/css/style.css"?>
 <!-- protect page by the authentication init -->
 <?init class="com.glaf.auth.init.AuthenticationInit"?>
 <zk>
   <borderlayout width="100%" height="100%" >
 
-		<north border="0" height="63px" splittable="false" collapsible="false" 
+		<north border="none" height="63px" splittable="false" collapsible="false" 
 		style="  border-bottom-width: 4px; border-color: rgb(245,245,245); background-image:url('imgs/topbg_gray.jpg');">
             <hlayout hflex="true" vflex="true">
                 <hbox hflex="true" vflex="true" pack="start" align="center">
                      <a style="padding-left: 15px;" href="#" image="imgs/logo_gray.jpg" tooltiptext=" "/>
                 </hbox>
-                <hbox hflex="true" vflex="true" pack="end" align="center">
+                <hbox hflex="true" vflex="true" pack="end" align="center" apply="com.glaf.auth.mvc.LogoutController">
                     Welcome, <label value="${sessionScope.userCredential.name}" />
 					<label id="logout" value="退出系统" sclass="logout" />
                 </hbox>
             </hlayout>
         </north>
 
-		<west maxsize="500" width="260px" border="0"
+		<west maxsize="500" width="218px" border="none"
 			splittable="true">
-			<div   vflex="1">
-				 
-			</div>
+			<grid hflex="1" vflex="1" sclass="sidebar">
+				<columns>
+					<column width="36px" />
+					<column width="180px"/>
+				</columns>
+				<rows>
+					<row>
+						<image src="/imgs/PANEL.png" />
+						<label>zk</label>
+					</row>
+					<row>
+						<image src="/imgs/PANEL.png" />
+						<label>zk demo</label>
+					</row>
+					<row>
+						<image src="/imgs/PANEL.png" />
+						<label>zk dev</label>
+					</row>
+				</rows>
+			</grid>
 		</west>
 
 		<center border="0">
