@@ -2,27 +2,30 @@
 <!-- protect page by the authentication init -->
 <?init class="com.glaf.auth.init.AuthenticationInit"?>
 <zk>
-<borderlayout>
-		<north border="0" title="North" maxsize="300" size="64"
-			splittable="true" collapsible="false">
-			<div style="background:#B8D335;font-size:15px" vflex="1">
-				<hbox apply="com.glaf.auth.mvc.LogoutController"
-					hflex="1" vflex="1" pack="end" align="end">
-					Welcome, <label value="${sessionScope.userCredential.name}" />
+  <borderlayout width="100%" height="100%" >
+
+		<north border="0" height="63px" splittable="false" collapsible="false" 
+		style="  border-bottom-width: 4px; border-color: rgb(245,245,245); background-image:url('imgs/topbg_gray.jpg');">
+            <hlayout hflex="true" vflex="true">
+                <hbox hflex="true" vflex="true" pack="start" align="center">
+                     <a style="padding-left: 15px;" href="#" image="imgs/logo_gray.jpg" tooltiptext=" "/>
+                </hbox>
+                <hbox hflex="true" vflex="true" pack="end" align="center">
+                    Welcome, <label value="${sessionScope.userCredential.name}" />
 					<label id="logout" value="退出系统" sclass="logout" />
-				</hbox>
-			</div>
-		</north>
+                </hbox>
+            </hlayout>
+        </north>
 
 		<west maxsize="500" width="260px" border="0"
 			splittable="true">
-			<div style="background:#E6D92C" vflex="1">
-				<label value="West" style="color:white;font-size:30px" />
+			<div   vflex="1">
+				 
 			</div>
 		</west>
 
 		<center border="0">
-			<label value="Center" style="color:gray;font-size:80px" />
+			 
 		</center>
 
 		<east maxsize="200" border="0" splittable="true" width="0px">
@@ -31,9 +34,9 @@
 
 		<south border="0" title="South" maxsize="40" size="40"
 			collapsible="false" height="30px">
-			<div style="background:#B8D335" vflex="1">
+			<div vflex="1">
 				<label value="South" style="color:white;font-size:20px" />
 			</div>
 		</south>
-	</borderlayout> 
+  </borderlayout> 
 </zk>
