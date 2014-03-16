@@ -50,13 +50,13 @@
 
 	<!-- 编译任务 -->
 	<target name="jar" depends="build" description="Create java jar file">
-		<jar jarfile="glaf-zk-framework-src.zip">
+		<jar jarfile="glaf-zk-web-src.zip">
 			<fileset dir="." includes="*.bat,*.xml, src/**/*.*,mapping/**/*.xml" excludes="**/*.cvs,**/*.bak,**/*.tmp,**/*.scc,**/*.svn" />
 		</jar>
 		<copy todir="bin">
 			<fileset dir="src/main/java" includes="com/**/*.tld,com/**/*.properties,com/**/*.xml,metainfo/**/*.*" />
 		</copy>
-		<jar jarfile="glaf-zk-framework.jar" basedir="bin" includes="com/**/*.class,com/**/*.properties,com/**/*.xml,metainfo/**/*.*,org/**/*.class" excludes="**/test/**" />
+		<jar jarfile="glaf-zk-web.jar" basedir="bin" includes="com/**/*.class,com/**/*.properties,com/**/*.xml,metainfo/**/*.*,org/**/*.class" excludes="**/test/**" />
 
 		<jar jarfile="glaf-zk-min-web.zip">
 			<fileset dir="WebContent" includes="**/*.*" excludes="**/*.jar,**/*.class,**/archives/*.*,**/*.ttc,**/*.lib,**/*.dll,**/*.so, **/data/index/**/*.*,**/examples/**/*.*, **/locks,**/*.cvs,**/*.bak,**/*.tmp,**/*.scc,**/*.svn" casesensitive="yes" />

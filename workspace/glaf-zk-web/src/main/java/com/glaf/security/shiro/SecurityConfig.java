@@ -20,9 +20,9 @@ package com.glaf.security.shiro;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
@@ -32,7 +32,9 @@ import com.glaf.core.util.PropertiesUtils;
 
 public class SecurityConfig {
 
-	private static LinkedHashMap<String, String> properties = new LinkedHashMap<String, String>();
+	private static volatile LinkedHashMap<String, String> properties = new LinkedHashMap<String, String>();
+
+	protected static AtomicBoolean loading = new AtomicBoolean(false);
 
 	static {
 		try {
@@ -110,9 +112,10 @@ public class SecurityConfig {
 	}
 
 	public static void reload() {
-		synchronized (SecurityConfig.class) {
+		if (!loading.get()) {
 			InputStream inputStream = null;
 			try {
+				loading.set(true);
 				String config = SystemConfig.getConfigRootPath()
 						+ "/conf/security/";
 				File directory = new File(config);
@@ -134,7 +137,7 @@ public class SecurityConfig {
 									properties.put(key, value);
 								}
 							}
-							inputStream.close();
+							IOUtils.closeQuietly(inputStream);
 							inputStream = null;
 						}
 					}
@@ -142,6 +145,7 @@ public class SecurityConfig {
 			} catch (Exception ex) {
 				throw new RuntimeException(ex);
 			} finally {
+				loading.set(false);
 				IOUtils.closeQuietly(inputStream);
 			}
 		}
