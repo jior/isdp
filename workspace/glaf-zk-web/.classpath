@@ -134,6 +134,5 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/zweb.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/glaf-base.jar"/>
 	<classpathentry kind="lib" path="lib/servlet-api.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/zk-source"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>
