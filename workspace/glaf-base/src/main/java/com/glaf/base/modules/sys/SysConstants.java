@@ -35,8 +35,6 @@ public class SysConstants {
 	// 用户session名称
 	public static String LOGIN = "SYS_LOGIN_USER";
 
-	public static String MENU = "SYS_LOGIN_MENU";
-
 	public static int SORT_FORWARD = 1;// 后移
 
 	public static int SORT_PREVIOUS = 0;// 前移

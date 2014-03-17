@@ -18,12 +18,6 @@
 
 package com.glaf.base.business;
 
-import java.util.Enumeration;
-import java.util.Properties;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -33,18 +27,12 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.glaf.core.cache.CacheFactory;
 import com.glaf.core.context.ContextFactory;
-import com.glaf.core.util.ClassUtils;
 import com.glaf.core.util.Constants;
-import com.glaf.core.util.RequestUtils;
-import com.glaf.core.web.callback.CallbackProperties;
-import com.glaf.core.web.callback.LoginCallback;
-import com.glaf.base.modules.sys.SysConstants;
 import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.service.AuthorizeService;
 import com.glaf.base.modules.sys.service.SysApplicationService;
 import com.glaf.base.modules.sys.service.SysUserService;
 import com.glaf.base.modules.sys.util.SysUserJsonFactory;
-import com.glaf.base.utils.ContextUtil;
 
 public class AuthorizeBean {
 	private static final Log logger = LogFactory.getLog(AuthorizeBean.class);
@@ -116,50 +104,6 @@ public class AuthorizeBean {
 			}
 		}
 		return sysUser;
-	}
-
-	/**
-	 * 登录
-	 * 
-	 * @param request
-	 */
-	public SysUser login(String account, HttpServletRequest request,
-			HttpServletResponse response) {
-		logger.debug(account + " start login........................");
-		// 用户登陆，返回系统用户对象
-		SysUser bean = getSysUserService().findByAccount(account);
-		if (bean != null) {
-			// 登录成功，修改最近一次登录时间
-			Properties props = CallbackProperties.getProperties();
-			if (props != null && props.keys().hasMoreElements()) {
-				Enumeration<?> e = props.keys();
-				while (e.hasMoreElements()) {
-					String className = (String) e.nextElement();
-					try {
-						Object obj = ClassUtils.instantiateObject(className);
-						if (obj instanceof LoginCallback) {
-							LoginCallback callback = (LoginCallback) obj;
-							callback.afterLogin(bean.getAccount(), request,
-									null);
-						}
-					} catch (Exception ex) {
-						ex.printStackTrace();
-						logger.error(ex);
-					}
-				}
-			}
-
-			String menus = getSysApplicationService().getMenu(3, bean);
-			bean.setMenus(menus);
-
-			ContextUtil.put(bean.getAccount(), bean);// 传入全局变量
-			RequestUtils.setLoginUser(request, response, "default",
-					bean.getAccount());
-			// 保存session对象，跳转到后台主页面
-			request.getSession().setAttribute(SysConstants.MENU, menus);
-
-		}
-		return bean;
 	}
 
 	public void setAuthorizeService(AuthorizeService authorizeService) {

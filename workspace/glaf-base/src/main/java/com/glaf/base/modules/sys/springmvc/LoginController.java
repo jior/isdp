@@ -263,7 +263,6 @@ public class LoginController {
 		String actorId = RequestUtils.getActorId(request);
 		// 登出系统，清除session对象
 		request.getSession().removeAttribute(SysConstants.LOGIN);
-		request.getSession().removeAttribute(SysConstants.MENU);
 		try {
 			userOnlineService.logout(actorId);
 			String cacheKey = Constants.LOGIN_USER_CACHE + actorId;

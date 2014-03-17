@@ -26,6 +26,7 @@ import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.util.Initiator;
 
 import com.glaf.auth.Constants;
+import com.glaf.base.utils.Authentication;
 import com.glaf.core.identity.User;
 
 public class AuthenticationInit implements Initiator {
@@ -37,5 +38,6 @@ public class AuthenticationInit implements Initiator {
 			Executions.sendRedirect("/login.zul");
 			return;
 		}
+		Authentication.setAuthenticatedAccount(user.getActorId());
 	}
 }

@@ -28,6 +28,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 import com.glaf.core.config.Environment;
 import com.glaf.core.util.RequestUtils;
+import com.glaf.core.util.ThreadContextHolder;
 import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.utils.Authentication;
 import com.glaf.base.utils.RequestUtil;
@@ -77,6 +78,9 @@ public class SpringDispatcherServlet extends DispatcherServlet {
 			ex.printStackTrace();
 		}
 
+		ThreadContextHolder.setHttpRequest(request);
+		ThreadContextHolder.setHttpResponse(response);
+		
 		try {
 			super.doService(request, response);
 		} finally {
