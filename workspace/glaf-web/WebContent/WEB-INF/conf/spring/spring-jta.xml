@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	                                     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+										 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<!-- Use an Atomikos DataSource to access the DB transactionally -->
+	<!-- NOTE: this datasource is not XA-capable! See below for XA instead -->
+	<bean id="dataSource" class="com.atomikos.jdbc.nonxa.AtomikosNonXADataSourceBean">
+		<property name="uniqueResourceName"><value>NONXADBMS</value></property>
+		<property name="url"><value>jdbc:sqlserver://127.0.0.1:1433;databaseName=yz</value></property>
+		<property name="driverClassName"><value>com.microsoft.sqlserver.jdbc.SQLServerDriver</value></property>
+		<property name="user"><value>sa</value></property>
+		<property name="password"><value></value></property>
+		<property name="poolSize"><value>50</value></property>
+		<property name="borrowConnectionTimeout"><value>180</value></property>
+	</bean>
+	<!-- The following shows an alternative XA datasource setup 
+	(illustrated with derby but works with any other XA driver as well)
+	-->
+	<!-- UNCOMMENT TO USE XA; CALL INIT TO REGISTER FOR RECOVERY AND CLOSE TO SHUTDOWN POOL!
+	<bean id="dataSource"
+		class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close">
+		<property name="uniqueResourceName"><value>XADBMS</value></property>
+		<property name="xaDataSourceClassName"><value>org.apache.derby.jdbc.EmbeddedXADataSource</value></property>
+		<property name="xaProperties">
+			<props>
+				<prop key="databaseName">db</prop>
+				<prop key="createDatabase">create</prop>
+			</props>
+		</property>
+		<property name="poolSize"><value>1</value></property>
+	</bean>
+	-->
+
+	<!-- Construct Atomikos UserTransactionManager, needed to configure Spring -->
+	<bean id="atomikosTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager" init-method="init" destroy-method="close">
+		<!--  when close is called, should we force transactions to terminate or not? -->
+		<property name="forceShutdown"><value>true</value></property>
+	</bean>
+
+	<!-- Also use Atomikos UserTransactionImp, needed to configure Spring  --> 
+	<bean id="atomikosUserTransaction" class="com.atomikos.icatch.jta.UserTransactionImp">
+		<property name="transactionTimeout"><value>300</value></property>
+	</bean>
+
+	<!-- Configure the Spring framework to use JTA transactions from Atomikos -->
+	<bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
+		<property name="transactionManager"><ref bean="atomikosTransactionManager"  /></property>
+		<property name="userTransaction"><ref bean="atomikosUserTransaction"  /></property>
+	</bean>
+
+ 
+</beans>
