@@ -21,10 +21,11 @@
 	}
 	try {
 		con = com.glaf.core.jdbc.DBConnectionFactory.getConnection();
+		con.setAutoCommit(false);
 		psmt = con.prepareStatement(" CREATE TABLE Test_ACT (ID_ VARCHAR(50) NOT NULL,PROCESSNAME_ VARCHAR(50),PROCESSINSTANCEID_ VARCHAR(50),STATUS_ INT,WFSTATUS_ INT,PRIMARY KEY(ID_))  ");
 		psmt.executeUpdate();
 		psmt.close();
-
+        
 		psmt = con.prepareStatement(" delete from Test_ACT  ");
 		psmt.executeUpdate();
 		psmt.close();
@@ -35,7 +36,7 @@
 			psmt.executeUpdate();
 			psmt.close();
 		}
-		 
+	   con.commit(); 
 	} catch (Exception ex) {
 		ex.printStackTrace();
 	} finally {
