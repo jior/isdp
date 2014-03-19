@@ -442,7 +442,7 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	public TreeModel getTreeModelByAppId(long appId) {
 		SysApplication bean = this.findById(appId);
 		if (bean != null) {
-			TreeModel treeModel = sysTreeService.findById(bean.getId());
+			TreeModel treeModel = sysTreeService.findById(bean.getNodeId());
 			treeModel.setCode(bean.getCode());
 			treeModel.setName(bean.getName());
 			treeModel.setLocked(bean.getLocked());
