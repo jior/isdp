@@ -68,13 +68,6 @@
 			<if test="updateDate != null">
 				,UPDATEDATE
 			</if>
-			<if test="extendedColumns != null and  extendedColumns.size != 0">
-				<foreach collection="extendedColumns" item="column">
-					<if test="column.value != null">
-						,${column.columnName}
-					</if>
-				</foreach>
-			</if>
 		</trim>
 
 		<trim prefix=" values (" suffix=")" suffixOverrides=",">
@@ -116,10 +109,6 @@
 			<if test="updateDate != null">
 				,#{updateDate, jdbcType=TIMESTAMP}
 			</if>
-
-			<include
-				refid="com.glaf.core.mapper.TableDataMapper.insertExtendedTableDataSql" />
-
 		</trim>
 	</insert>
 
@@ -158,9 +147,6 @@
 			<if test="updateDate != null">
 				UPDATEDATE = #{updateDate, jdbcType=TIMESTAMP},
 			</if>
-
-			<include
-				refid="com.glaf.core.mapper.TableDataMapper.updateExtendedTableDataSql" />
 
 		</trim>
 		where
