@@ -45,6 +45,7 @@ import com.glaf.base.modules.sys.model.SysDepartment;
 import com.glaf.base.modules.sys.model.SysFunction;
 import com.glaf.base.modules.sys.model.SysTree;
 import com.glaf.base.modules.sys.model.SysUser;
+import com.glaf.base.modules.sys.query.SysTreeQuery;
 import com.glaf.base.modules.sys.service.DictoryService;
 import com.glaf.base.modules.sys.service.SubjectCodeService;
 import com.glaf.base.modules.sys.service.SysApplicationService;
@@ -745,7 +746,17 @@ public class BaseDataManager {
 					SysConstants.TREE_DEPT);
 			List<SysTree> list = new ArrayList<SysTree>();
 			getSysTreeService().getSysTree(list, (int) parent.getId(), 0);
-
+			SysTreeQuery query = new SysTreeQuery();
+			query.setDiscriminator("D");
+			query.setTreeIdLike(parent.getTreeId() + "%");
+			List<SysTree> deptTrees = getSysTreeService()
+					.getSysTreesByQueryCriteria(0, 5000, query);
+			Map<Long, SysTree> deptTreeMap = new HashMap<Long, SysTree>();
+			if (deptTrees != null && !deptTrees.isEmpty()) {
+				for (SysTree t : deptTrees) {
+					deptTreeMap.put(t.getId(), t);
+				}
+			}
 			// 显示所有部门列表
 			if (list != null) {
 				Iterator<SysTree> iter = list.iterator();
@@ -761,8 +772,8 @@ public class BaseDataManager {
 						bdi.setNo(bean.getNo());// 部门编号
 						bdi.setDeep(tree.getDeep());
 						// bdi.setParentId((int) tree.getParent());
-						SysTree parentTree = getSysTreeService().findById(
-								tree.getParentId());
+						SysTree parentTree = deptTreeMap
+								.get(tree.getParentId());
 						if (parentTree != null
 								&& parentTree.getDepartment() != null
 								&& parent.getId() != parentTree.getId()) {// 不等于部门结构,则取部门

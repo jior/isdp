@@ -63,7 +63,7 @@
 	</update>
 
  
-	<delete id="deleteWorkCalendarById" parameterType="string"> 
+	<delete id="deleteWorkCalendarById" parameterType="long"> 
         delete from sys_workcalendar
         where ID =	#{id}
 	</delete>
@@ -79,7 +79,7 @@
 		)
 	</delete>
 
-	<select id="getWorkCalendarById" parameterType="string" resultMap="workCalendarResultMap">
+	<select id="getWorkCalendarById" parameterType="long" resultMap="workCalendarResultMap">
 		select * from sys_workcalendar where ID = #{id}
 	</select>
 
