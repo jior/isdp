@@ -96,7 +96,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/glaf-core"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/commons-lang3.jar"/>
 	<classpathentry kind="lib" path="lib/aspriseTIFF.jar"/>
-	<classpathentry kind="lib" path="lib/fontbox-1.8.3.jar"/>
-	<classpathentry kind="lib" path="lib/pdfbox-1.8.3.jar"/>
+	<classpathentry kind="lib" path="lib/fontbox.jar"/>
+	<classpathentry kind="lib" path="lib/pdfbox.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

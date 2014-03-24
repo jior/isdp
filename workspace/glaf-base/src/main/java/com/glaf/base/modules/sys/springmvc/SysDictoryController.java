@@ -20,9 +20,7 @@ package com.glaf.base.modules.sys.springmvc;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import java.util.Collections;
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +33,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -50,13 +49,10 @@ import com.glaf.core.util.PageResult;
 import com.glaf.core.util.ParamUtils;
 import com.glaf.core.util.RequestUtils;
 import com.glaf.core.util.Tools;
-
 import com.glaf.base.modules.BaseDataManager;
 import com.glaf.base.modules.Constants;
-
 import com.glaf.base.modules.sys.model.Dictory;
 import com.glaf.base.modules.sys.model.DictoryDefinition;
-
 import com.glaf.base.modules.sys.model.SysTree;
 import com.glaf.base.modules.sys.query.DictoryQuery;
 import com.glaf.base.modules.sys.service.DictoryDefinitionService;
@@ -346,7 +342,7 @@ public class SysDictoryController {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping("/saveLoadDictory")
+	@RequestMapping(value = "/saveLoadDictory", method = RequestMethod.POST)
 	public ModelAndView saveLoadDictory(HttpServletRequest request,
 			ModelMap modelMap) {
 		BaseDataManager.getInstance().refreshBaseData();
