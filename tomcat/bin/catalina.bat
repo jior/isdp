@@ -174,8 +174,8 @@ goto juliClasspathDone
 set "CLASSPATH=%CLASSPATH%;%CATALINA_HOME%\bin\tomcat-juli.jar"
 :juliClasspathDone
 
-set JAVA_OPTS=%JAVA_OPTS% -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m
- 
+set JAVA_OPTS=%JAVA_OPTS% -server -Xms1024m -Xmx1024m -Xmn384m -XX:PermSize=256m -XX:MaxPermSize=512m -XX:-UseParallelGC -XX:-UseParallelOldGC
+
 if not "%LOGGING_CONFIG%" == "" goto noJuliConfig
 set LOGGING_CONFIG=-Dnop
 if not exist "%CATALINA_BASE%\conf\logging.properties" goto noJuliConfig
