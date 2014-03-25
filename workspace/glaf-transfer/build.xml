@@ -22,6 +22,10 @@
 			<classpath refid="classpath"/>
 			<jvmarg line="-Xmx512m -XX:PermSize=128m -XX:MaxPermSize=256m"/>
 		</java>
+		<java classname="com.glaf.core.execution.ExecutionManager" fork="true">
+			<classpath refid="classpath"/>
+			<jvmarg line="-Xmx512m -XX:PermSize=128m -XX:MaxPermSize=256m"/>
+		</java>
 	</target>
 
 	<target name="run-sqlite-export" >
