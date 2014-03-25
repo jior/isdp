@@ -137,7 +137,7 @@
           driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
           url="jdbc:sqlserver://127.0.0.1:1433;databaseName=glafdb"/>  -->
 
-    <Resource name="jdbc/glafdb"
+    <!-- <Resource name="jdbc/glafdb"
           auth="Container"
           type="javax.sql.DataSource"
           factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
@@ -161,7 +161,7 @@
           username="sa"
           password="654321"
           driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-          url="jdbc:sqlserver://127.0.0.1:1433;databaseName=pMagic2013"/>
+          url="jdbc:sqlserver://127.0.0.1:1433;databaseName=pMagic2013"/> -->
 
 <!-- <Resource name="jdbc/glafdb"
           auth="Container"
