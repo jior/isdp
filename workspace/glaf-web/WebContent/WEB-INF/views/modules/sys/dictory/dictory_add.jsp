@@ -41,21 +41,21 @@
       <tr>
         <td class="input-box2" valign="top">代码</td>
         <td>
-		<input type="text" name="code" datatype="string" nullable="yes" maxsize="20" chname="代码"
+		<input type="text" name="code" datatype="string" nullable="yes" maxsize="50" chname="代码"
 		       class="easyui-validatebox" >
 		</td>
       </tr>
 	  <tr>
         <td class="input-box2" valign="top">属性值</td>
         <td>
-		<input type="text" name="value" datatype="string" nullable="yes" maxsize="20" chname="属性值"
+		<input type="text" name="value" datatype="string" nullable="yes" maxsize="200" chname="属性值"
 		       class="easyui-validatebox" >
 		</td>
       </tr>
 	  <tr>
         <td class="input-box2" valign="top">描述</td>
         <td>
-		<input type="text" name="desc" class="easyui-validatebox" datatype="string" nullable="yes" maxsize="20" chname="描述">
+		<input type="text" name="desc" class="easyui-validatebox" datatype="string" nullable="yes" maxsize="200" chname="描述">
 		</td>
       </tr>
 

@@ -44,7 +44,7 @@
       <tr>
         <td class="input-box2" valign="top">代码</td>
         <td>
-		<input type="text" name="code" class="easyui-validatebox" datatype="string" nullable="yes" maxsize="20" 
+		<input type="text" name="code" class="easyui-validatebox" datatype="string" nullable="yes" maxsize="50" 
 		       value="<%=bean.getCode() != null ? bean.getCode() : ""%>" 
 		       chname="代码">
 		</td>
@@ -52,7 +52,7 @@
 	  <tr>
         <td class="input-box2" valign="top">属性值</td>
         <td>
-		<input type="text" name="value" class="easyui-validatebox" datatype="string" nullable="yes" maxsize="20" 
+		<input type="text" name="value" class="easyui-validatebox" datatype="string" nullable="yes" maxsize="200" 
 		       value="<%=bean.getValue() != null ? bean.getValue() : ""%>" 
 		       chname="属性值">
 		</td>
@@ -60,7 +60,7 @@
 	  <tr>
         <td class="input-box2" valign="top">描述</td>
         <td>
-		<input type="text" name="desc" class="easyui-validatebox" datatype="string" nullable="yes" maxsize="20" 
+		<input type="text" name="desc" class="easyui-validatebox" datatype="string" nullable="yes" maxsize="200" 
 		       value="<%=bean.getDesc() != null ? bean.getDesc() : ""%>" 
 		       chname="描述">
 		</td>

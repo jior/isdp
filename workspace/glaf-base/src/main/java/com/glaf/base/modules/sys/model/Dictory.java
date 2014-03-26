@@ -55,7 +55,7 @@ public class Dictory implements Serializable, JSONable {
 	/**
 	 * ×Ö·û´®Öµ1
 	 */
-	@Column(name = "EXT1")
+	@Column(name = "EXT1", length = 200)
 	protected String ext1;
 
 	/**
@@ -122,7 +122,7 @@ public class Dictory implements Serializable, JSONable {
 	/**
 	 * ×Ö·û´®Öµ2
 	 */
-	@Column(name = "EXT2")
+	@Column(name = "EXT2", length = 200)
 	protected String ext2;
 
 	/**
@@ -134,13 +134,13 @@ public class Dictory implements Serializable, JSONable {
 	/**
 	 * ×Ö·û´®Öµ3
 	 */
-	@Column(name = "EXT3")
+	@Column(name = "EXT3", length = 200)
 	protected String ext3;
 
 	/**
 	 * ×Ö·û´®Öµ4
 	 */
-	@Column(name = "EXT4")
+	@Column(name = "EXT4", length = 200)
 	protected String ext4;
 
 	/**
@@ -185,7 +185,7 @@ public class Dictory implements Serializable, JSONable {
 	/**
 	 * Ãû³Æ
 	 */
-	@Column(name = "NAME")
+	@Column(name = "NAME", length = 50)
 	protected String name;
 
 	/**
@@ -216,7 +216,7 @@ public class Dictory implements Serializable, JSONable {
 	/**
 	 * Öµ
 	 */
-	@Column(name = "VALUE_")
+	@Column(name = "VALUE_", length = 200)
 	protected String value;
 
 	@javax.persistence.Transient
