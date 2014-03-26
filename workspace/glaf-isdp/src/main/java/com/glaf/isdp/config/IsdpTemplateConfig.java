@@ -10,8 +10,8 @@ import org.apache.commons.logging.LogFactory;
 
 import com.alibaba.fastjson.util.IOUtils;
 import com.glaf.core.config.SystemProperties;
-import com.glaf.core.template.Template;
-import com.glaf.core.template.TemplateXmlReader;
+import com.glaf.template.Template;
+import com.glaf.template.TemplateXmlReader;
 import com.glaf.core.util.FileUtils;
 
 public class IsdpTemplateConfig {

@@ -20,9 +20,12 @@ package com.glaf.base.modules.workspace;
 
 import java.io.FileInputStream;
 import java.util.Map;
+
 import org.apache.commons.beanutils.PropertyUtils;
+
 import com.glaf.core.config.SystemProperties;
-import com.glaf.core.freemarker.TemplateUtils;
+import com.glaf.template.util.TemplateUtils;
+ 
 
 public class Messager {
 

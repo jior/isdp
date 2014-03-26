@@ -17,21 +17,20 @@ import javax.ws.rs.WebApplicationException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.apache.commons.lang.StringUtils;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import com.glaf.core.freemarker.TemplateUtils;
+ 
 import com.glaf.core.util.Paging;
 import com.glaf.core.util.ParamUtils;
 import com.glaf.core.util.RequestUtils;
 import com.glaf.core.util.StringTools;
 import com.glaf.core.util.Tools;
-
 import com.glaf.isdp.config.IsdpTemplateConfig;
 import com.glaf.isdp.domain.FieldInterface;
 import com.glaf.isdp.domain.IsdpPfile;
@@ -41,6 +40,7 @@ import com.glaf.isdp.service.IFieldInterfaceService;
 import com.glaf.isdp.service.IHintListService;
 import com.glaf.isdp.service.IsdpPfileService;
 import com.glaf.isdp.service.IsdpTreepInfoService;
+import com.glaf.template.util.TemplateUtils;
 
 @Controller
 @Path("/rs/isdp/pfile")
