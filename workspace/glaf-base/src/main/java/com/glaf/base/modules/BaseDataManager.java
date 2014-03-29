@@ -38,27 +38,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.glaf.base.config.BaseConfiguration;
-import com.glaf.base.modules.sys.SysConstants;
-import com.glaf.base.modules.sys.business.UpdateTreeBean;
-import com.glaf.base.modules.sys.model.BaseDataInfo;
-import com.glaf.base.modules.sys.model.Dictory;
-import com.glaf.base.modules.sys.model.SubjectCode;
-import com.glaf.base.modules.sys.model.SysDepartment;
-import com.glaf.base.modules.sys.model.SysFunction;
-import com.glaf.base.modules.sys.model.SysTree;
-import com.glaf.base.modules.sys.model.SysUser;
-import com.glaf.base.modules.sys.query.SysTreeQuery;
-import com.glaf.base.modules.sys.service.DictoryService;
-import com.glaf.base.modules.sys.service.SubjectCodeService;
-import com.glaf.base.modules.sys.service.SysApplicationService;
-import com.glaf.base.modules.sys.service.SysDepartmentService;
-import com.glaf.base.modules.sys.service.SysDeptRoleService;
-import com.glaf.base.modules.sys.service.SysFunctionService;
-import com.glaf.base.modules.sys.service.SysRoleService;
-import com.glaf.base.modules.sys.service.SysTreeService;
-import com.glaf.base.modules.sys.service.SysUserRoleService;
-import com.glaf.base.modules.sys.service.SysUserService;
+
 import com.glaf.core.config.*;
 import com.glaf.core.business.DbTableChecker;
 import com.glaf.core.context.ContextFactory;
@@ -67,6 +47,26 @@ import com.glaf.core.service.ITableDefinitionService;
 import com.glaf.core.startup.BootstrapManager;
 import com.glaf.core.util.ThreadContextHolder;
 import com.glaf.core.util.Tools;
+
+import com.glaf.base.config.BaseConfiguration;
+import com.glaf.base.modules.sys.SysConstants;
+import com.glaf.base.modules.sys.business.UpdateTreeBean;
+import com.glaf.base.modules.sys.model.BaseDataInfo;
+import com.glaf.base.modules.sys.model.Dictory;
+import com.glaf.base.modules.sys.model.SysDepartment;
+import com.glaf.base.modules.sys.model.SysFunction;
+import com.glaf.base.modules.sys.model.SysTree;
+import com.glaf.base.modules.sys.model.SysUser;
+import com.glaf.base.modules.sys.query.SysTreeQuery;
+import com.glaf.base.modules.sys.service.DictoryService;
+import com.glaf.base.modules.sys.service.SysApplicationService;
+import com.glaf.base.modules.sys.service.SysDepartmentService;
+import com.glaf.base.modules.sys.service.SysDeptRoleService;
+import com.glaf.base.modules.sys.service.SysFunctionService;
+import com.glaf.base.modules.sys.service.SysRoleService;
+import com.glaf.base.modules.sys.service.SysTreeService;
+import com.glaf.base.modules.sys.service.SysUserRoleService;
+import com.glaf.base.modules.sys.service.SysUserService;
 
 public class BaseDataManager {
 	private static class BaseDataManagerHolder {
@@ -95,8 +95,6 @@ public class BaseDataManager {
 	}
 
 	protected volatile DictoryService dictoryService;
-
-	protected volatile SubjectCodeService subjectCodeService;
 
 	protected volatile SysApplicationService sysApplicationService;
 
@@ -386,13 +384,6 @@ public class BaseDataManager {
 		}
 	}
 
-	public SubjectCodeService getSubjectCodeService() {
-		if (subjectCodeService == null) {
-			subjectCodeService = ContextFactory.getBean("subjectCodeService");
-		}
-		return subjectCodeService;
-	}
-
 	public SysApplicationService getSysApplicationService() {
 		if (sysApplicationService == null) {
 			sysApplicationService = ContextFactory
@@ -660,7 +651,6 @@ public class BaseDataManager {
 		loadCustomInfo();
 		// 用户自定义数据处理程序
 		loadCustomHandler();
-
 		// 用户信息
 		loadUsers();
 		// 部门结构
@@ -669,8 +659,6 @@ public class BaseDataManager {
 		loadFunctions();
 		// 数据字典
 		loadDictInfo();
-		// 科目代码
-		loadSubjectCode();
 		// 数据表定义信息
 		loadTableMeta();
 	}
@@ -902,44 +890,6 @@ public class BaseDataManager {
 		}
 	}
 
-	/**
-	 * 
-	 * 装载预算科目信息
-	 * 
-	 */
-	public void loadSubjectCode() {
-		try {
-			logger.info("装载科目代码开始...");
-			List<SubjectCode> list = getSubjectCodeService()
-					.getSubjectCodeList();
-			// 显示所有列表
-			if (list != null) {
-				Iterator<SubjectCode> iter = list.iterator();
-				List<BaseDataInfo> tmp = new ArrayList<BaseDataInfo>();
-				while (iter.hasNext()) {
-					SubjectCode bean = (SubjectCode) iter.next();
-					if (bean != null) {
-						BaseDataInfo bdi = new BaseDataInfo();
-						bdi.setId(bean.getId());// 分类id
-						bdi.setName(bean.getSubjectName());// 分类名称
-						String code = bean.getSubjectCode();
-						code = code.substring(code.indexOf(".") + 1);
-						bdi.setCode(code);// 分类编号
-						logger.debug("id:" + bean.getId() + ",SubjectName:"
-								+ bean.getSubjectName() + ", SubjectCode:"
-								+ code);
-						tmp.add(bdi);
-					}
-				}
-				baseDataMap.put(Constants.SYS_SUBJECTS, tmp);
-			}
-			logger.info("装载科目代码信息结束");
-		} catch (Exception e) {
-			e.printStackTrace();
-			logger.error("提取科目代码数据失败！");
-		}
-	}
-
 	private void loadTableMeta() {
 		// 需要在glaf-base-site.xml中配置load.table.meta=true
 		/**
@@ -1028,10 +978,6 @@ public class BaseDataManager {
 
 	public void setEntityService(EntityService entityService) {
 		this.entityService = entityService;
-	}
-
-	public void setSubjectCodeService(SubjectCodeService subjectCodeService) {
-		this.subjectCodeService = subjectCodeService;
 	}
 
 	public void setSysApplicationService(
