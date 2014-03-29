@@ -91,8 +91,8 @@ public interface DictoryService {
 	 * @param parent
 	 * @return
 	 */
-	List<Dictory> getAvailableDictoryList(long parent);
-	
+	List<Dictory> getAvailableDictoryList(long nodeId);
+
 	/**
 	 * 返回某分类下的所有字典列表
 	 * 
@@ -131,7 +131,7 @@ public interface DictoryService {
 	 * @param parent
 	 * @return
 	 */
-	List<Dictory> getDictoryList(long parent);
+	List<Dictory> getDictoryList(long nodeId);
 
 	/**
 	 * 按类型号搜索列表
@@ -141,16 +141,15 @@ public interface DictoryService {
 	 * @param pageSize
 	 * @return
 	 */
-	PageResult getDictoryList(long parent, int pageNo, int pageSize);
+	PageResult getDictoryList(long nodeId, int pageNo, int pageSize);
 
 	/**
-	 * 主要用在获得核算项目的键值对
+	 * 获得某个分类字典的键值对
 	 * 
-	 * @param list
-	 * @param purchaseId
+	 * @param parent
 	 * @return
 	 */
-	Map<String, String> getDictoryMap(List<Dictory> list, long purchaseId);
+	Map<String, String> getDictoryMap(long nodeId);
 
 	/**
 	 * 根据查询参数获取一页的数据
@@ -169,7 +168,7 @@ public interface DictoryService {
 	 *            int 操作
 	 */
 	@Transactional
-	void sort(long parent, Dictory bean, int operate);
+	void sort(long nodeId, Dictory bean, int operate);
 
 	/**
 	 * 更新

@@ -219,8 +219,17 @@ public class DictoryServiceImpl implements DictoryService {
 		return null;
 	}
 
-	public Map<String, String> getDictoryMap(List<Dictory> list, long purchaseId) {
+	public Map<String, String> getDictoryMap(long nodeId) {
 		Map<String, String> dictoryMap = new HashMap<String, String>();
+		DictoryQuery query = new DictoryQuery();
+		query.nodeId(nodeId);
+		query.setOrderBy(" E.SORT desc");
+		List<Dictory> list = this.list(query);
+		if (list != null && !list.isEmpty()) {
+			for (Dictory dictory : list) {
+				dictoryMap.put(dictory.getCode(), dictory.getValue());
+			}
+		}
 		return dictoryMap;
 	}
 
