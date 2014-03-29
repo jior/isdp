@@ -41,7 +41,9 @@ public class ContextUtil {
 	}
 
 	public static void put(Object key, Object value) {
-		dataMap.put(key, value);
+		if (key != null && value != null) {
+			dataMap.put(key, value);
+		}
 	}
 
 	public static void setContextPath(String contextPath) {
