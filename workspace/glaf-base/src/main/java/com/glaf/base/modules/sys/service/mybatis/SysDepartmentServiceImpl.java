@@ -161,7 +161,7 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	}
 
 	public SysDepartment findById(long id) {
-		return this.getSysDepartment(id);
+		return sysDepartmentMapper.getSysDepartmentById(id);
 	}
 
 	public SysDepartment findByName(String name) {
