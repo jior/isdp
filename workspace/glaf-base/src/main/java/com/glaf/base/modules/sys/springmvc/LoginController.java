@@ -123,7 +123,7 @@ public class LoginController {
 		logger.debug("currentSystemName:" + Environment.getCurrentSystemName());
 
 		// 用户登陆，返回系统用户对象
-		SysUser bean = authorizeService.login(account, pwd);
+		SysUser bean = authorizeService.authorize(account, pwd);
 		if (bean == null) {
 			// 用户对象为空或失效，显示错误信息
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
@@ -132,44 +132,48 @@ public class LoginController {
 			return new ModelAndView("/modules/login", modelMap);
 		} else {
 
-			SystemProperty p = systemPropertyService.getSystemProperty("SYS",
-					"login_limit");
-			SystemProperty pt = systemPropertyService.getSystemProperty("SYS",
-					"login_time_check");
+			String ipAddr = RequestUtils.getIPAddress(request);
 
-			int time_check = 1000 * 60 * 2;
-			if (pt != null && pt.getIntValue() > 0 && pt.getIntValue() < 30) {
-				time_check = 1000 * 60 * pt.getIntValue();
-			}
+			if (!(StringUtils.equals(ipAddr, "localhost") || StringUtils
+					.equals(ipAddr, "127.0.0.1"))) {
+				SystemProperty p = systemPropertyService.getSystemProperty(
+						"SYS", "login_limit");
+				SystemProperty pt = systemPropertyService.getSystemProperty(
+						"SYS", "login_time_check");
 
-			/**
-			 * 检测是否限制一个用户只能在一个地方登录
-			 */
-			if (p != null && StringUtils.equals(p.getValue(), "true")) {
-				logger.debug("#################3#########################");
-				String loginIP = null;
-				UserOnline userOnline = userOnlineService
-						.getUserOnline(account);
-				boolean timeout = false;
-				if (userOnline != null) {
-					loginIP = userOnline.getLoginIP();
-					if (System.currentTimeMillis()
-							- userOnline.getCheckDateMs() > time_check) {
-						timeout = true;// 超时，说明登录已经过期
-					}
+				int time_check = 1000 * 60 * 2;// 120秒
+				if (pt != null && pt.getIntValue() > 30
+						&& pt.getIntValue() <= 1200) {
+					time_check = 1000 * pt.getIntValue();
 				}
-				logger.info("timeout:" + timeout);
-				logger.info("login IP:" + loginIP);
-				if (!timeout) {// 超时，说明登录已经过期，不用判断是否已经登录了
-					if (loginIP != null
-							&& !(StringUtils
-									.equals(RequestUtils.getIPAddress(request),
-											loginIP))) {// 用户已在其他机器登陆
-						messages.add(ViewMessages.GLOBAL_MESSAGE,
-								new ViewMessage("authorize.login_failure2"));
-						MessageUtils.addMessages(request, messages);
-						logger.debug("用户已经在其他地方登录。");
-						return new ModelAndView("/modules/login", modelMap);
+
+				/**
+				 * 检测是否限制一个用户只能在一个地方登录
+				 */
+				if (p != null && StringUtils.equals(p.getValue(), "true")) {
+					logger.debug("#################3#########################");
+					String loginIP = null;
+					UserOnline userOnline = userOnlineService
+							.getUserOnline(account);
+					boolean timeout = false;
+					if (userOnline != null) {
+						loginIP = userOnline.getLoginIP();
+						if (System.currentTimeMillis()
+								- userOnline.getCheckDateMs() > time_check) {
+							timeout = true;// 超时，说明登录已经过期
+						}
+					}
+					logger.info("timeout:" + timeout);
+					logger.info("login IP:" + loginIP);
+					if (!timeout) {// 超时，说明登录已经过期，不用判断是否已经登录了
+						if (loginIP != null
+								&& !(StringUtils.equals(ipAddr, loginIP))) {// 用户已在其他机器登陆
+							messages.add(ViewMessages.GLOBAL_MESSAGE,
+									new ViewMessage("authorize.login_failure2"));
+							MessageUtils.addMessages(request, messages);
+							logger.debug("用户已经在其他地方登录。");
+							return new ModelAndView("/modules/login", modelMap);
+						}
 					}
 				}
 			}
@@ -213,7 +217,7 @@ public class LoginController {
 			online.setName(bean.getName());
 			online.setCheckDate(new Date());
 			online.setLoginDate(new Date());
-			online.setLoginIP(RequestUtils.getIPAddress(request));
+			online.setLoginIP(ipAddr);
 			online.setSessionId(session.getId());
 			userOnlineService.login(online);
 
@@ -279,7 +283,7 @@ public class LoginController {
 	public ModelAndView logout(HttpServletRequest request, ModelMap modelMap) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		String actorId = RequestUtils.getActorId(request);
-		// 登出系统，清除session对象
+		// 退出系统，清除session对象
 		request.getSession().removeAttribute(SysConstants.LOGIN);
 		try {
 			userOnlineService.logout(actorId);

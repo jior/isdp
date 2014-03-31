@@ -29,10 +29,19 @@ public interface AuthorizeService {
 	 * 用户登陆
 	 * 
 	 * @param account
+	 * @param pwd
+	 * @return
+	 */
+	SysUser authorize(String account, String pwd);
+
+	/**
+	 * 用户登陆
+	 * 
+	 * @param account
 	 * @return
 	 */
 	SysUser login(String account);
-
+	
 	/**
 	 * 用户登陆
 	 * 

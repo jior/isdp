@@ -51,6 +51,30 @@ public class AuthorizeServiceImpl implements AuthorizeService {
 	 * @param pwd
 	 * @return
 	 */
+	public SysUser authorize(String account, String pwd) {
+		SysUser bean = sysUserService.findByAccountWithAll(account);
+		if (bean != null) {
+			if (bean.isDepartmentAdmin()) {
+				logger.debug(account + " is department admin");
+			}
+			if (bean.isSystemAdmin()) {
+				logger.debug(account + " is system admin");
+			}
+			if (!bean.getPassword().equals(pwd) || // √‹¬Î≤ª∆•≈‰
+					bean.getLocked() == 1) {// ’ ∫≈Ω˚÷π
+				bean = null;
+			}
+		}
+		return bean;
+	}
+
+	/**
+	 * ”√ªßµ«¬Ω
+	 * 
+	 * @param account
+	 * @param pwd
+	 * @return
+	 */
 	public SysUser login(String account) {
 		SysUser bean = sysUserService.findByAccountWithAll(account);
 		if (bean != null) {
