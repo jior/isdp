@@ -52,7 +52,7 @@ public class AuthorizeServiceImpl implements AuthorizeService {
 	 * @return
 	 */
 	public SysUser authorize(String account, String pwd) {
-		SysUser bean = sysUserService.findByAccountWithAll(account);
+		SysUser bean = sysUserService.findByAccount(account);
 		if (bean != null) {
 			if (bean.isDepartmentAdmin()) {
 				logger.debug(account + " is department admin");
