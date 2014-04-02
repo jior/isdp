@@ -21,8 +21,8 @@ package com.glaf.base.online.util;
 import com.alibaba.fastjson.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import com.glaf.core.util.DateUtils;
+import com.glaf.core.util.RequestUtils;
 import com.glaf.base.online.domain.*;
 
 public class UserOnlineJsonFactory {
@@ -41,6 +41,9 @@ public class UserOnlineJsonFactory {
 		if (jsonObject.containsKey("loginDate")) {
 			model.setLoginDate(jsonObject.getDate("loginDate"));
 		}
+		if (jsonObject.containsKey("checkDate")) {
+			model.setCheckDate(jsonObject.getDate("checkDate"));
+		}
 		if (jsonObject.containsKey("loginIP")) {
 			model.setLoginIP(jsonObject.getString("loginIP"));
 		}
@@ -58,9 +61,18 @@ public class UserOnlineJsonFactory {
 		jsonObject.put("_oid_", model.getId());
 		if (model.getActorId() != null) {
 			jsonObject.put("actorId", model.getActorId());
+			jsonObject.put("actorId_enc", RequestUtils.encodeString(model.getActorId()));
 		}
 		if (model.getName() != null) {
 			jsonObject.put("name", model.getName());
+		}
+		if (model.getCheckDate() != null) {
+			jsonObject
+					.put("checkDate", DateUtils.getDate(model.getCheckDate()));
+			jsonObject.put("checkDate_date",
+					DateUtils.getDate(model.getCheckDate()));
+			jsonObject.put("checkDate_datetime",
+					DateUtils.getDateTime(model.getCheckDate()));
 		}
 		if (model.getLoginDate() != null) {
 			jsonObject
@@ -73,6 +85,7 @@ public class UserOnlineJsonFactory {
 		if (model.getLoginIP() != null) {
 			jsonObject.put("loginIP", model.getLoginIP());
 		}
+
 		if (model.getSessionId() != null) {
 			jsonObject.put("sessionId", model.getSessionId());
 		}
@@ -86,9 +99,18 @@ public class UserOnlineJsonFactory {
 		jsonObject.put("_oid_", model.getId());
 		if (model.getActorId() != null) {
 			jsonObject.put("actorId", model.getActorId());
+			jsonObject.put("actorId_enc", RequestUtils.encodeString(model.getActorId()));
 		}
 		if (model.getName() != null) {
 			jsonObject.put("name", model.getName());
+		}
+		if (model.getCheckDate() != null) {
+			jsonObject
+					.put("checkDate", DateUtils.getDate(model.getCheckDate()));
+			jsonObject.put("checkDate_date",
+					DateUtils.getDate(model.getCheckDate()));
+			jsonObject.put("checkDate_datetime",
+					DateUtils.getDateTime(model.getCheckDate()));
 		}
 		if (model.getLoginDate() != null) {
 			jsonObject

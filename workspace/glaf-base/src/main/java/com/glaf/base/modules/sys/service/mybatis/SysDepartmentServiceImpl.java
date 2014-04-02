@@ -161,7 +161,7 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	}
 
 	public SysDepartment findById(long id) {
-		return sysDepartmentMapper.getSysDepartmentById(id);
+		return this.getSysDepartment(id);
 	}
 
 	public SysDepartment findByName(String name) {
@@ -220,8 +220,8 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 		list.add(node);
 	}
 
-	public SysDepartment getSysDepartment(Long id) {
-		if (id == null) {
+	public SysDepartment getSysDepartment(long id) {
+		if (id <= 0) {
 			return null;
 		}
 		SysDepartment sysDepartment = sysDepartmentMapper

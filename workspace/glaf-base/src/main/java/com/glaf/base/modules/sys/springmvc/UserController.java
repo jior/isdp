@@ -19,7 +19,6 @@
 package com.glaf.base.modules.sys.springmvc;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +33,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.glaf.base.modules.Constants;
 import com.glaf.base.modules.sys.model.SysDepartment;
-
 import com.glaf.base.modules.sys.model.SysTree;
 import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.service.SysDepartmentService;
@@ -44,7 +42,6 @@ import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.service.SysUserService;
 import com.glaf.base.utils.ParamUtil;
 import com.glaf.base.utils.RequestUtil;
-
 import com.glaf.core.cache.CacheUtils;
 import com.glaf.core.config.ViewProperties;
 import com.glaf.core.res.MessageUtils;
@@ -259,35 +256,75 @@ public class UserController {
 		return new ModelAndView("show_msg", modelMap);
 	}
 
+	/**
+	 * œ‘ æ–ﬁ∏ƒ“≥√Ê
+	 * 
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping("/view")
+	public ModelAndView view(HttpServletRequest request, ModelMap modelMap) {
+		RequestUtils.setRequestParameterToAttribute(request);
+		String actorId = ParamUtil.getParameter(request, "actorId");
+		actorId = RequestUtils.decodeString(actorId);
+		SysUser bean = sysUserService.findByAccount(actorId);
+		request.setAttribute("bean", bean);
+
+		if (bean != null && StringUtils.isNotEmpty(bean.getSuperiorIds())) {
+			List<String> userIds = StringTools.split(bean.getSuperiorIds());
+			StringBuffer buffer = new StringBuffer();
+			if (userIds != null && !userIds.isEmpty()) {
+				for (String userId : userIds) {
+					SysUser u = sysUserService.findByAccount(userId);
+					if (u != null) {
+						buffer.append(u.getName()).append("[")
+								.append(u.getAccount()).append("] ");
+					}
+				}
+				request.setAttribute("x_users_name", buffer.toString());
+			}
+		}
+
+		SysTree parent = sysTreeService.getSysTreeByCode(Constants.TREE_DEPT);
+		List<SysTree> list = new ArrayList<SysTree>();
+		parent.setDeep(0);
+		list.add(parent);
+		sysTreeService.getSysTree(list, (int) parent.getId(), 1);
+		request.setAttribute("parent", list);
+
+		String x_view = ViewProperties.getString("user.view");
+		if (StringUtils.isNotEmpty(x_view)) {
+			return new ModelAndView(x_view, modelMap);
+		}
+
+		return new ModelAndView("/modules/identity/user/user_view", modelMap);
+	}
+
 	@javax.annotation.Resource
 	public void setSysDepartmentService(
 			SysDepartmentService sysDepartmentService) {
 		this.sysDepartmentService = sysDepartmentService;
-
 	}
 
 	@javax.annotation.Resource
 	public void setSysDeptRoleService(SysDeptRoleService sysDeptRoleService) {
 		this.sysDeptRoleService = sysDeptRoleService;
-
 	}
 
 	@javax.annotation.Resource
 	public void setSysRoleService(SysRoleService sysRoleService) {
 		this.sysRoleService = sysRoleService;
-
 	}
 
 	@javax.annotation.Resource
 	public void setSysTreeService(SysTreeService sysTreeService) {
 		this.sysTreeService = sysTreeService;
-
 	}
 
 	@javax.annotation.Resource
 	public void setSysUserService(SysUserService sysUserService) {
 		this.sysUserService = sysUserService;
-
 	}
 
 	@javax.annotation.Resource
