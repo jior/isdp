@@ -571,3 +571,16 @@ create table sys_input_def (
         add constraint FK_PERM_FUN
         foreign key (funcId) 
         references sys_function;
+
+
+    alter table SYS_APPLICATION
+        add constraint SYS_UNIQ_APPLICATION
+        unique (code);
+
+    alter table SYS_DEPARTMENT
+        add constraint SYS_UNIQ_DEPARTMENT
+        unique (code);
+
+    alter table SYS_TREE
+        add constraint SYS_UNIQ_TREE
+        unique (code);
