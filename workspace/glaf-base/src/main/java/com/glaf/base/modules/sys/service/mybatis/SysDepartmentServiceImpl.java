@@ -41,6 +41,7 @@ import com.glaf.base.modules.sys.model.SysRole;
 import com.glaf.base.modules.sys.model.SysTree;
 import com.glaf.base.modules.sys.query.SysDepartmentQuery;
 import com.glaf.base.modules.sys.query.SysDeptRoleQuery;
+import com.glaf.base.modules.sys.query.SysTreeQuery;
 import com.glaf.base.modules.sys.service.SysDepartmentService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
@@ -70,7 +71,6 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	}
 
 	public int count(SysDepartmentQuery query) {
-		query.ensureInitialized();
 		return sysDepartmentMapper.getSysDepartmentCount(query);
 	}
 
@@ -298,14 +298,15 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 				}
 			}
 			for (SysDeptRole bean : list) {
-				bean.setRole(dataMap.get(Long.valueOf(bean.getRoleId())));
+				bean.setRole(dataMap.get(bean.getRoleId()));
 			}
 		}
 	}
 
 	protected void initTrees(List<SysDepartment> list) {
 		if (list != null && !list.isEmpty()) {
-			List<SysTree> trees = sysTreeService.getAllSysTreeList();
+			SysTreeQuery query = new SysTreeQuery();
+			List<SysTree> trees = sysTreeService.getDepartmentSysTrees(query);
 			Map<Long, SysTree> treeMap = new HashMap<Long, SysTree>();
 			if (trees != null && !trees.isEmpty()) {
 				for (SysTree tree : trees) {
@@ -313,13 +314,12 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 				}
 			}
 			for (SysDepartment bean : list) {
-				bean.setNode(treeMap.get(Long.valueOf(bean.getNodeId())));
+				bean.setNode(treeMap.get(bean.getNodeId()));
 			}
 		}
 	}
 
 	public List<SysDepartment> list(SysDepartmentQuery query) {
-		query.ensureInitialized();
 		List<SysDepartment> list = sysDepartmentMapper.getSysDepartments(query);
 		if (list != null && !list.isEmpty()) {
 			this.initTrees(list);
