@@ -24,7 +24,6 @@
 	<classpathentry kind="lib" path="/glaf-core/lib/commons-io.jar"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/commons-jexl-1.1.jar"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/commons-jexl.jar"/>
-	<classpathentry kind="lib" path="/glaf-core/lib/commons-lang2.jar"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/commons-logging.jar"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/commons-math.jar"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/commons-net.jar"/>
@@ -95,5 +94,6 @@
 	<classpathentry kind="lib" path="/glaf-core/lib/slf4j-log4j.jar"/>
 	<classpathentry kind="lib" path="/glaf-core/lib/sqljdbc4.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/glaf-activiti"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/commons-lang3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

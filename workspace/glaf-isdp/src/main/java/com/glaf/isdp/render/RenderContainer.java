@@ -1,6 +1,6 @@
 package com.glaf.isdp.render;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.glaf.core.config.Configuration;
 import com.glaf.isdp.config.IsdpBaseConfiguration;
