@@ -134,10 +134,9 @@ public class LoginController {
 
 			String ipAddr = RequestUtils.getIPAddress(request);
 
-			if (!(StringUtils.equals(ipAddr, "localhost")
-					|| StringUtils.equals(ipAddr, "127.0.0.1")
-					|| StringUtils.equals(account, "root") || StringUtils
-						.equals(account, "admin"))) {
+			if (!(StringUtils.equals(account, "root") || StringUtils.equals(
+					account, "admin"))) {
+				logger.debug("#################check login limit#####################");
 				SystemProperty p = systemPropertyService.getSystemProperty(
 						"SYS", "login_limit");
 				SystemProperty pt = systemPropertyService.getSystemProperty(
@@ -163,11 +162,18 @@ public class LoginController {
 					String loginIP = null;
 					UserOnline userOnline = userOnlineService
 							.getUserOnline(account);
+					logger.debug("userOnline:" + userOnline);
 					boolean timeout = false;
 					if (userOnline != null) {
 						loginIP = userOnline.getLoginIP();
-						if (System.currentTimeMillis()
-								- userOnline.getCheckDateMs() > timeoutSeconds) {
+						if (userOnline.getCheckDateMs() != null
+								&& System.currentTimeMillis()
+										- userOnline.getCheckDateMs() > timeoutSeconds * 1000) {
+							timeout = true;// 超时，说明登录已经过期
+						}
+						if (userOnline.getLoginDate() != null
+								&& System.currentTimeMillis()
+										- userOnline.getLoginDate().getTime() > timeoutSeconds * 1000) {
 							timeout = true;// 超时，说明登录已经过期
 						}
 					}
