@@ -14,11 +14,9 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import com.alibaba.fastjson.JSONObject;
-
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.glaf.core.base.JSONable;
 import com.glaf.core.identity.User;
-
 import com.glaf.isdp.util.UserInfoJsonFactory;
 
 @Entity
@@ -174,8 +172,14 @@ public class UserInfo implements Serializable, JSONable, User {
 	@Column(name = "status", length = 1)
 	protected String status;
 
-	@javax.persistence.Transient
+	@Column(name = "USERTYPE")
 	protected int userType;
+
+	/**
+	 * Token
+	 */
+	@Column(name = "TOKEN", length = 250)
+	protected String token;
 
 	public UserInfo() {
 
@@ -327,6 +331,10 @@ public class UserInfo implements Serializable, JSONable, User {
 		return null;
 	}
 
+	public String getToken() {
+		return token;
+	}
+
 	public String getUserId() {
 		return this.actorId;
 	}
@@ -377,6 +385,10 @@ public class UserInfo implements Serializable, JSONable, User {
 	}
 
 	public void setDeptId(long deptId) {
+		this.deptId = deptId;
+	}
+
+	public void setDeptId(Long deptId) {
 		this.deptId = deptId;
 	}
 
@@ -490,6 +502,10 @@ public class UserInfo implements Serializable, JSONable, User {
 
 	public void setSuperiorId(String superiorId) {
 
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	public void setUserId(String userId) {

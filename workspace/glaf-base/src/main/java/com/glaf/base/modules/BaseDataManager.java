@@ -75,6 +75,8 @@ public class BaseDataManager {
 
 	private static Map<String, List<BaseDataInfo>> baseDataMap = new ConcurrentHashMap<String, List<BaseDataInfo>>();
 
+	private static Map<String, List<Object>> dataMap = new ConcurrentHashMap<String, List<Object>>();
+
 	protected static Configuration conf = BaseConfiguration.create();
 
 	protected static Log logger = LogFactory.getLog(BaseDataManager.class);
@@ -127,6 +129,19 @@ public class BaseDataManager {
 	public List<BaseDataInfo> getBaseData(String key) {
 		if (baseDataMap.containsKey(key)) {
 			return (List<BaseDataInfo>) baseDataMap.get(key);
+		}
+		return null;
+	}
+
+	/**
+	 * 获取某种类型的基础数据
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public List<Object> getListData(String key) {
+		if (dataMap.containsKey(key)) {
+			return (List<Object>) dataMap.get(key);
 		}
 		return null;
 	}
@@ -680,6 +695,10 @@ public class BaseDataManager {
 						BaseDataHandler handler = (BaseDataHandler) object;
 						List<BaseDataInfo> list = handler.loadData();
 						baseDataMap.put(key, list);
+					} else if (object instanceof DataHandler) {
+						DataHandler handler = (DataHandler) object;
+						List<Object> list = handler.loadData();
+						dataMap.put(key, list);
 					}
 				}
 			}
