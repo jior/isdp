@@ -6,10 +6,11 @@
 
 
 	<resultMap id="sysRoleResultMap" type="com.glaf.core.identity.impl.RoleImpl">
-		<id property="roleId" column="id" jdbcType="INTEGER" />
-		<result property="name" column="rolename" jdbcType="VARCHAR" />
-		<result property="busiessId" column="busiess_id" jdbcType="VARCHAR" />
-        <result property="domainIndex" column="domain_index" jdbcType="INTEGER" />
+		<id property="roleId" column="ID" jdbcType="INTEGER" />
+		<result property="code" column="CODE" jdbcType="VARCHAR" />
+		<result property="name" column="ROLENAME" jdbcType="VARCHAR" />
+		<result property="busiessId" column="BUSIESS_ID" jdbcType="VARCHAR" />
+        <result property="domainIndex" column="DOMAIN_INDEX" jdbcType="INTEGER" />
 	</resultMap>
 
 
