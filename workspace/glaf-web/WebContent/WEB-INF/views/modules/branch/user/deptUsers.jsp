@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/scripts/ztree/css/zTreeStyle/zTreeStyle.css" >
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/scripts/easyui/themes/${theme}/easyui.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/themes/${theme}/styles.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/icons/styles.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/icons.css">
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/jquery.form.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/ztree/js/jquery.ztree.all.min.js"></script>
@@ -39,7 +39,7 @@
 		if (!childNodes) return null;
 		for (var i=0, l=childNodes.length; i<l; i++) {
 			childNodes[i].name = childNodes[i].name.replace(/\.n/g, '.');
-			childNodes[i].icon="<%=request.getContextPath()%>/icons/icons/basic.gif";
+			childNodes[i].icon="<%=request.getContextPath()%>/images/basic.gif";
 		}
 		return childNodes;
 	}

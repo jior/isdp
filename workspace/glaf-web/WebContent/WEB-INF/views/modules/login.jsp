@@ -25,7 +25,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>系统登录</title>
 <link href="${contextPath}/scripts/easyui/themes/gray/easyui.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="${contextPath}/icons/styles.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/css/icons.css">
 <style type="text/css">
 .default {
 	font-weight:normal;

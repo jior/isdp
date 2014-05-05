@@ -72,7 +72,7 @@ public class LoginController extends SelectorComposer<Component> {
 		String pd = password.getValue();
 
 		if (getAuthorizeService().login(actorId, pd) == null) {
-			message.setValue("ÓÃ»§Ãû»òÃÜÂë²»ÕýÈ·.");
+			message.setValue("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë²»ï¿½ï¿½È·.");
 			return;
 		}
 
@@ -87,12 +87,12 @@ public class LoginController extends SelectorComposer<Component> {
 
 		SysUser user = getAuthorizeService().login(actorId);
 
-		// µÇÂ¼³É¹¦£¬ÐÞ¸Ä×î½üÒ»´ÎµÇÂ¼Ê±¼ä
+		// ï¿½ï¿½Â¼ï¿½É¹ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Îµï¿½Â¼Ê±ï¿½ï¿½
 		user.setLastLoginDate(new Date());
 		user.setLastLoginIP(Executions.getCurrent().getRemoteAddr());
 		getSysUserService().updateUser(user);
 
-		ContextUtil.put(user.getAccount(), user);// ´«ÈëÈ«¾Ö±äÁ¿
+		ContextUtil.put(user.getAccount(), user);// ï¿½ï¿½ï¿½ï¿½È«ï¿½Ö±ï¿½ï¿½ï¿½
 		HttpServletRequest request = (HttpServletRequest) Executions
 				.getCurrent().getNativeRequest();
 		HttpServletResponse response = (HttpServletResponse) Executions

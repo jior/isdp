@@ -12,7 +12,7 @@
 <title>角色用户</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/core.css"/>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/scripts/ztree/css/zTreeStyle/zTreeStyle.css"/>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/icons/styles.css"/>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/icons.css"/>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/themes/${theme}/styles.css">
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/jquery.form.js"></script>
@@ -38,7 +38,7 @@
 		for (var i=0, l=childNodes.length; i<l; i++) {
 			childNodes[i].name = childNodes[i].name.replace(/\.n/g, '.');
             //if(childNodes[i].iconCls=='icon-user'){
-			   // childNodes[i].icon="<%=request.getContextPath()%>/icons/icons/user.gif";
+			   // childNodes[i].icon="<%=request.getContextPath()%>/images/user.gif";
 		    //}
 		}
 		return childNodes;

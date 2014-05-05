@@ -1,7 +1,6 @@
 /** 清空数据
 delete from sys_access;
 delete from sys_function;
-delete from sys_dept_role;
 delete from sys_department;
 delete from sys_application;
 delete from sys_tree;
@@ -18,19 +17,10 @@ delete from sys_input_def;
 
 
 /*初始化角色信息*/
-insert into net_role (rolename, content, tasksort, code) values ('部长', '', 15, 'R001');
-insert into net_role (rolename, content, tasksort, code) values ('科长', '', 14, 'R002');
-insert into net_role (rolename, content, tasksort, code) values ('CO', '', 12, 'R003');
-insert into net_role (rolename, content, tasksort, code) values ('系长', '', 13, 'R004');
-insert into net_role (rolename, content, tasksort, code) values ('预算员', '', 11, 'R005');
-insert into net_role (rolename, content, tasksort, code) values ('部门管理员', '', 10, 'R006');
-insert into net_role (rolename, content, tasksort, code) values ('采购联络员', '', 9, 'R007');
-insert into net_role (rolename, content, tasksort, code) values ('采购担当', '', 6, 'R010');
-insert into net_role (rolename, content, tasksort, code) values ('申请担当', '使用部门申请起票经办人', 5, 'R011');
-insert into net_role (rolename, content, tasksort, code) values ('收单担当', '', 4, 'R012');
 insert into net_role (rolename, content, tasksort, code) values ('系统管理员', '', 1, 'SystemAdministrator');
+insert into net_role (rolename, content, tasksort, code) values ('部门管理员', '', 10, 'R006');
 insert into net_role (rolename, content, tasksort, code) values ('分级管理员', '', 2, 'BranchAdmin');
-insert into net_role (rolename, content, tasksort, code) values ('主任', '', 18, 'R017');
+
 
 
 /*初始系统树信息*/
@@ -124,7 +114,7 @@ insert into sys_tree (id, parent, name, nodedesc, sort, code) values (947, 941, 
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (948, 941, '分类设置', '分类设置', 30, '');
 
 /*初始化部门信息*/
-insert into sys_department (id, name, deptdesc, createtime, sort, deptno, code, code2, status, fincode, nodeid) values (0, '系统管理部', '系统管理部', null, 284, 'JS000', 'JS', 'J', 0, 'JS000', 6);
+insert into sys_department (id, name, deptdesc, createtime, sort, deptno, code, code2, status, fincode, nodeid) values (1, '系统管理部', '系统管理部', null, 284, 'SYS000', 'SYS', 'S', 0, 'SYS000', 6);
  
 /*初始化用户信息*/
 insert into UserInfo (UserID,  UserName, password, depId, status, issystem ) values ('root', '系统管理员', '111111', 0, '0', '1');
@@ -201,9 +191,6 @@ insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) val
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (947, '字典设置', '', '/mx/sys/dictory', 15, 2, 947);
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (948, '分类设置', '', '/mx/sys/tree', 15, 2, 948);
 
-
-/*插入部门角色*/ 
-insert into sys_dept_role (id, grade, code, sort, roleid, deptid) values (1, 0, null, 0, 15, 0);
 
 
 /*插入用户角色*/
@@ -401,7 +388,7 @@ insert into sys_workcalendar (id, freeday, freemonth, freeyear) values (108, 27,
 
 insert into sys_params (id, business_key, date_val, double_val, int_val, java_type, key_name, long_val, service_key, string_val, text_val, title, type_cd) values ('news__news_processName', 'news', null, null, null, 'string', 'processName', null, 'news', 'PublicInfoProcess', 'PublicInfoProcess', '流程名称', 'news');
 insert into sys_params (id, business_key, date_val, double_val, int_val, java_type, key_name, long_val, service_key, string_val, text_val, title, type_cd) values ('bulletin__bulletin_processName', 'bulletin', null, null, null, 'string', 'processName', null, 'bulletin', 'PublicInfoProcess', 'PublicInfoProcess', '流程名称', 'bulletin');
-insert into sys_params (id, business_key, date_val, double_val, int_val, java_type, key_name, long_val, service_key, string_val, text_val, title, type_cd) values ('sys_table', 'sys_table', null, null, null, 'json', 'sys_table', null, 'sys_table', '[{"tablename":"net_role","title":"角色"},{"tablename":"sys_tree","title":"系统树"},{"tablename":"sys_department","title":"部门"},{"tablename":"UserInfo","title":"用户"},{"tablename":"sys_application","title":"模块"},{"tablename":"sys_dept_role","title":"部门角色"},{"tablename":"userrole","title":"用户角色"},{"tablename":"sys_access","title":"访问权限"},{"tablename":"sys_function","title":"系统功能"},{"tablename":"sys_dictory","title":"数据字典"},{"tablename":"sys_dictory_def","title":"字典定义"},{"tablename":"sys_dbid","title":"系统主键"},{"tablename":"sys_property","title":"系统属性"},{"tablename":"sys_workcalendar","title":"工作日历"},{"tablename":"sys_params","title":"参数定义"},{"tablename":"sys_input_def","title":"系统输入定义"}]', '[{"tablename":"net_role","title":"角色"},{"tablename":"sys_tree","title":"系统树"},{"tablename":"sys_department","title":"部门"},{"tablename":"UserInfo","title":"用户"},{"tablename":"sys_application","title":"模块"},{"tablename":"sys_dept_role","title":"部门角色"},{"tablename":"userrole","title":"用户角色"},{"tablename":"sys_access","title":"访问权限"},{"tablename":"sys_function","title":"系统功能"},{"tablename":"sys_dictory","title":"数据字典"},{"tablename":"sys_dictory_def","title":"字典定义"},{"tablename":"sys_dbid","title":"系统主键"},{"tablename":"sys_property","title":"系统属性"},{"tablename":"sys_workcalendar","title":"工作日历"},{"tablename":"sys_params","title":"参数定义"},{"tablename":"sys_input_def","title":"系统输入定义"}]', '系统表', 'sys_table');
+insert into sys_params (id, business_key, date_val, double_val, int_val, java_type, key_name, long_val, service_key, string_val, text_val, title, type_cd) values ('sys_table', 'sys_table', null, null, null, 'json', 'sys_table', null, 'sys_table', '[{"tablename":"net_role","title":"角色"},{"tablename":"sys_tree","title":"系统树"},{"tablename":"sys_department","title":"部门"},{"tablename":"UserInfo","title":"用户"},{"tablename":"sys_application","title":"模块"},{"tablename":"userrole","title":"用户角色"},{"tablename":"sys_access","title":"访问权限"},{"tablename":"sys_function","title":"系统功能"},{"tablename":"sys_dictory","title":"数据字典"},{"tablename":"sys_dictory_def","title":"字典定义"},{"tablename":"sys_dbid","title":"系统主键"},{"tablename":"sys_property","title":"系统属性"},{"tablename":"sys_workcalendar","title":"工作日历"},{"tablename":"sys_params","title":"参数定义"},{"tablename":"sys_input_def","title":"系统输入定义"}]', '[{"tablename":"net_role","title":"角色"},{"tablename":"sys_tree","title":"系统树"},{"tablename":"sys_department","title":"部门"},{"tablename":"UserInfo","title":"用户"},{"tablename":"sys_application","title":"模块"},{"tablename":"userrole","title":"用户角色"},{"tablename":"sys_access","title":"访问权限"},{"tablename":"sys_function","title":"系统功能"},{"tablename":"sys_dictory","title":"数据字典"},{"tablename":"sys_dictory_def","title":"字典定义"},{"tablename":"sys_dbid","title":"系统主键"},{"tablename":"sys_property","title":"系统属性"},{"tablename":"sys_workcalendar","title":"工作日历"},{"tablename":"sys_params","title":"参数定义"},{"tablename":"sys_input_def","title":"系统输入定义"}]', '系统表', 'sys_table');
 
 
 insert into sys_input_def (id, init_value, input_type, java_type, key_name, required, service_key, text_field, title, type_cd, type_title, url, valid_type, value_field) values ('7', '/rs/jbpm/definition/json', 'combobox', 'String', 'processName', null, 'news', 'text', '流程名称', 'news', '新闻发布', '/rs/jbpm/definition/json', null, 'name');

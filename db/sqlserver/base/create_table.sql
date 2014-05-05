@@ -42,15 +42,6 @@ CREATE TABLE sys_department(
         PRIMARY KEY (id)
 );
 
-CREATE TABLE sys_dept_role(
-        id bigint not null,
-        grade int,
-        code nvarchar(255),
-        sort int,
-        roleid bigint NOT NULL,
-        deptid bigint NOT NULL,
-        PRIMARY KEY (id)
-);
 
 CREATE TABLE sys_function(
         id bigint not null,
@@ -538,10 +529,6 @@ create table sys_input_def (
 
     create index SYS_APP_NODE on SYS_APPLICATION (NODEID);
 
-    create index SYS_DEPTROLE_DEPT on SYS_DEPT_ROLE (DEPTID);
-
-    create index SYS_DEPTROLE_ROLE on SYS_DEPT_ROLE (ROLEID);
-
     alter table sys_access 
         add constraint FK_ACCESS_APP 
         foreign key (appId) 
@@ -556,11 +543,6 @@ create table sys_input_def (
         add constraint FK_DEPT_TREE 
         foreign key (nodeId) 
         references sys_tree;
-
-    alter table sys_dept_role 
-        add constraint FK_DEPTROLE_DEPT 
-        foreign key (deptId) 
-        references sys_department;
 
     alter table sys_function 
         add constraint FK_FUN_APP 

@@ -10,7 +10,7 @@ request.setAttribute("theme", theme);
 <html>
 <head>
 <title>用户选择</title>
-<%@ include file="/WEB-INF/views/tm/mx_header.jsp"%>
+<%@ include file="/WEB-INF/views/inc/mx_header.jsp"%>
 <%
 	     
 	    StringBuffer bufferx = new StringBuffer();

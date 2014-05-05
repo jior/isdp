@@ -13,9 +13,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Layout</title>
-<%@ include file="/WEB-INF/views/tm/header.jsp"%>
+<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 <link rel="stylesheet" type="text/css" href="${contextPath}/scripts/easyui/themes/${theme}/easyui.css">
-<link rel="stylesheet" type="text/css" href="${contextPath}/icons/styles.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/css/icons.css">
 <link rel="stylesheet" type="text/css" href="${contextPath}/scripts/ztree/css/zTreeStyle/zTreeStyle.css">
 <script type="text/javascript" src="${contextPath}/scripts/jquery.min.js"></script>
 <script type="text/javascript" src="${contextPath}/scripts/easyui/jquery.easyui.min.js"></script>
