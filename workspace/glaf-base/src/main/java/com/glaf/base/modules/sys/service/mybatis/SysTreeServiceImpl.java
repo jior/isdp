@@ -381,17 +381,21 @@ public class SysTreeServiceImpl implements SysTreeService {
 	}
 
 	public void loadChildren(List<SysTree> treeList, long parentId) {
+		logger.debug("--------------loadChildren---------");
 		SysTree root = this.findById(parentId);
 		if (root != null) {
 			if (StringUtils.isNotEmpty(root.getTreeId())) {
 				SysTreeQuery query = new SysTreeQuery();
 				query.treeIdLike(root.getTreeId() + "%");
+				query.setOrderBy(" E.TREEID asc ");
 				List<SysTree> nodes = this.list(query);
 				if (nodes != null && !nodes.isEmpty()) {
 					Iterator<SysTree> iter = nodes.iterator();
 					while (iter.hasNext()) {
 						SysTree bean = iter.next();
-						treeList.add(bean);
+						if (bean.getId() != parentId) {
+							treeList.add(bean);
+						}
 					}
 				}
 			} else {
@@ -424,18 +428,23 @@ public class SysTreeServiceImpl implements SysTreeService {
 
 	protected void loadChildrenTreeListForDept(List<SysTree> treeList,
 			long parentId, int status) {
+		logger.debug("--------------loadChildrenTreeListForDept---------");
 		SysTree root = this.findById(parentId);
 		if (root != null) {
+			logger.debug("dept name:" + root.getName());
 			if (StringUtils.isNotEmpty(root.getTreeId())) {
 				SysTreeQuery query = new SysTreeQuery();
 				query.treeIdLike(root.getTreeId() + "%");
+				query.setOrderBy(" E.TREEID asc ");
 				List<SysTree> nodes = this.list(query);
 				if (nodes != null && !nodes.isEmpty()) {
-					this.initDepartments(nodes);
+					// this.initDepartments(nodes);
 					Iterator<SysTree> iter = nodes.iterator();
 					while (iter.hasNext()) {
 						SysTree bean = iter.next();
-						treeList.add(bean);
+						if (bean.getId() != parentId) {
+							treeList.add(bean);
+						}
 					}
 				}
 			} else {
@@ -443,7 +452,7 @@ public class SysTreeServiceImpl implements SysTreeService {
 				query.setParentId(Long.valueOf(parentId));
 				List<SysTree> nodes = this.list(query);
 				if (nodes != null && !nodes.isEmpty()) {
-					this.initDepartments(nodes);
+					// this.initDepartments(nodes);
 					Iterator<SysTree> iter = nodes.iterator();
 					while (iter.hasNext()) {
 						SysTree bean = iter.next();
@@ -473,11 +482,13 @@ public class SysTreeServiceImpl implements SysTreeService {
 	}
 
 	public void loadSysTrees(List<SysTree> treeList, long parentId, int deep) {
+		logger.debug("--------------loadSysTrees---------------");
 		SysTree root = this.findById(parentId);
 		if (root != null) {
 			if (StringUtils.isNotEmpty(root.getTreeId())) {
 				SysTreeQuery query = new SysTreeQuery();
 				query.treeIdLike(root.getTreeId() + "%");
+				query.setOrderBy(" E.TREEID asc ");
 				List<SysTree> nodes = this.list(query);
 				if (nodes != null && !nodes.isEmpty()) {
 					this.initDepartments(nodes);
@@ -485,12 +496,16 @@ public class SysTreeServiceImpl implements SysTreeService {
 					Iterator<SysTree> iter = nodes.iterator();
 					while (iter.hasNext()) {
 						SysTree bean = iter.next();
-						String treeId = bean.getTreeId();
-						String tmp = treeId.substring(
-								root.getTreeId().length(), treeId.length());
-						StringTokenizer token = new StringTokenizer(tmp, "|");
-						bean.setDeep(token.countTokens());
-						treeList.add(bean);// 加入到数组
+						if (bean.getId() != parentId) {
+							String treeId = bean.getTreeId();
+							String tmp = treeId.substring(root.getTreeId()
+									.length(), treeId.length());
+							StringTokenizer token = new StringTokenizer(tmp,
+									"|");
+							bean.setDeep(token.countTokens());
+							treeList.add(bean);// 加入到数组
+							logger.debug("dept level:"+bean.getDeep());
+						}
 					}
 				}
 			} else {

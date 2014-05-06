@@ -252,7 +252,7 @@ public class SysRoleResource {
 			List<TreeModel> treeModels = new ArrayList<TreeModel>();
 			// treeModels.add(root);
 			List<SysTree> trees = sysTreeService.getAllSysTreeListForDept(
-					(int) root.getId(), 0);
+					root.getId(), 0);
 			if (trees != null && !trees.isEmpty()) {
 				logger.debug("dept tree size:" + trees.size());
 				Map<Long, SysTree> treeMap = new HashMap<Long, SysTree>();
