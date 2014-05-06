@@ -17,7 +17,7 @@ public class CellTreehintTest extends AbstractTest {
 	public void testList() {
 		cellTreehintService = super.getBean("cellTreehintService");
 		CellTreehintQuery query = new CellTreehintQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<CellTreehint> rows = cellTreehintService
 				.getCellTreehintsByQueryCriteria(0, 10, query);
 		for (CellTreehint row : rows) {

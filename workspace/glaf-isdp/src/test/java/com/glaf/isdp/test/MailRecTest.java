@@ -16,7 +16,7 @@ public class MailRecTest extends AbstractTest {
 	public void testList() {
 		mailRecService = super.getBean("mailRecService");
 		MailRecQuery query = new MailRecQuery();
-		// query.nameLike("¹¤³Ì");
+		// query.nameLike("å·¥ç¨‹");
 		List<MailRec> rows = mailRecService.getMailRecsByQueryCriteria(0, 10,
 				query);
 		for (MailRec row : rows) {

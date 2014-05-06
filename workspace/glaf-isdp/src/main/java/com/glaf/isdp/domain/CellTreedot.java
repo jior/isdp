@@ -20,7 +20,7 @@ import com.glaf.core.base.JSONable;
 import com.glaf.isdp.util.CellTreedotJsonFactory;
 
 /**
- * ²Ëµ¥Ê÷£¨°´Å¥£©
+ * èœå•æ ‘ï¼ˆæŒ‰é’®ï¼‰
  */
 @Entity
 @Table(name = "cell_treedot")

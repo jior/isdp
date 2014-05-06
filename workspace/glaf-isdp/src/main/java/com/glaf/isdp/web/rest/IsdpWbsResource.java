@@ -148,7 +148,7 @@ public class IsdpWbsResource {
 	}
 
 	/**
-	 * ½ÚµãÊôĞÔ
+	 * èŠ‚ç‚¹å±æ€§
 	 * 
 	 * @param request
 	 * @return
@@ -295,7 +295,7 @@ public class IsdpWbsResource {
 	}
 
 	/**
-	 * Ïà¹Ø¹æ·¶
+	 * ç›¸å…³è§„èŒƒ
 	 * 
 	 * @param request
 	 * @return

@@ -17,7 +17,7 @@ public class HintTest extends AbstractTest {
 	public void testList() {
 		hintService = super.getBean("hintService");
 		HintQuery query = new HintQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<Hint> rows = hintService
 				.getHintsByQueryCriteria(0, 10, query);
 		for (Hint row : rows) {

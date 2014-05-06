@@ -17,7 +17,7 @@ import com.glaf.core.base.JSONable;
 import com.glaf.isdp.util.RoleUseJsonFactory;
 
 /**
- * ½ÇÉ«ÓÃµ½µÄ¹¦ÄÜÈ¨ÏŞ
+ * è§’è‰²ç”¨åˆ°çš„åŠŸèƒ½æƒé™
  */
 @Entity
 @Table(name = "roleuse")

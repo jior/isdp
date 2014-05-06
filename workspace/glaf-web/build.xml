@@ -1,4 +1,5 @@
-<project name="glaf-base" basedir="." default="jar">
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="glaf-web" basedir="." default="jar">
 	<!-- Project settings -->
 	<property name="project.title" value="GLAF Web System" />
 	<property name="project.distname" value="glaf-web" />
@@ -32,7 +33,7 @@
 	<target name="build" depends="clean">
 		<echo message="编译应用程序......" />
 		<mkdir dir="bin" />
-		<javac srcdir="src" destdir="bin" debug="on" fork="${javac.fork}" deprecation="on">
+		<javac srcdir="src" destdir="bin" debug="on" fork="${javac.fork}" deprecation="on" encoding="UTF-8">
 			<include name="main/java/**/*.java" />
 			<include name="test/java/**/*.java" />
 			<classpath refid="compile.classpath" />

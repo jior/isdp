@@ -17,7 +17,7 @@ public class TreewbsAutoindexTest extends AbstractTest {
 	public void testList() {
 		treewbsAutoindexService = super.getBean("treewbsAutoindexService");
 		TreewbsAutoindexQuery query = new TreewbsAutoindexQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<TreewbsAutoindex> rows = treewbsAutoindexService
 				.getTreewbsAutoindexsByQueryCriteria(0, 10, query);
 		for (TreewbsAutoindex row : rows) {

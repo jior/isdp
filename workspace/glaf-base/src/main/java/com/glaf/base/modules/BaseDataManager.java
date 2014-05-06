@@ -88,7 +88,7 @@ public class BaseDataManager {
 	protected static final String CUSTOM_HANDLER = "/conf/props/data_handler.properties";
 
 	/**
-	 * µ¥ÀıÄ£Ê½
+	 * å•ä¾‹æ¨¡å¼
 	 * 
 	 * @return
 	 */
@@ -121,7 +121,7 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÖÖÀàĞÍµÄ»ù´¡Êı¾İ
+	 * è·å–æŸç§ç±»å‹çš„åŸºç¡€æ•°æ®
 	 * 
 	 * @param key
 	 * @return
@@ -134,7 +134,7 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÖÖÀàĞÍµÄ»ù´¡Êı¾İ
+	 * è·å–æŸç§ç±»å‹çš„åŸºç¡€æ•°æ®
 	 * 
 	 * @param key
 	 * @return
@@ -147,7 +147,7 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * ¸ù¾İÊı¾İ¶ÔÏónameºÍÀàĞÍ·µ»Ø¶ÔÏó
+	 * æ ¹æ®æ•°æ®å¯¹è±¡nameå’Œç±»å‹è¿”å›å¯¹è±¡
 	 * 
 	 * @param name
 	 * @param key
@@ -167,7 +167,7 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * ¸ù¾İÊı¾İ¶ÔÏónoºÍÀàĞÍ·µ»Ø¶ÔÏó
+	 * æ ¹æ®æ•°æ®å¯¹è±¡noå’Œç±»å‹è¿”å›å¯¹è±¡
 	 * 
 	 * @param value
 	 * @param key
@@ -187,7 +187,7 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * ¸ù¾İbean±àºÅ»ñÈ¡bean
+	 * æ ¹æ®beanç¼–å·è·å–bean
 	 * 
 	 * @param beanId
 	 * @return
@@ -197,7 +197,7 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * ¸ù¾İÀàĞÍ·µ»Ø¶ÔÏóÁĞ±í
+	 * æ ¹æ®ç±»å‹è¿”å›å¯¹è±¡åˆ—è¡¨
 	 * 
 	 * @param
 	 * 
@@ -227,7 +227,7 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * ¸ù¾İÀàĞÍ·µ»Ø¶ÔÏóÁĞ±í
+	 * æ ¹æ®ç±»å‹è¿”å›å¯¹è±¡åˆ—è¡¨
 	 * 
 	 * @param key
 	 * @return
@@ -242,7 +242,7 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * »ñÈ¡ÉÏÒ»¼¶¿ÆÄ¿Ãû³Æ
+	 * è·å–ä¸Šä¸€çº§ç§‘ç›®åç§°
 	 * 
 	 * @param valueId
 	 * @param key
@@ -261,7 +261,7 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * ¸ù¾İÊı¾İ¶ÔÏóidºÍÀàĞÍ·µ»Ø¸ù¶ÔÏóÃû³Æ
+	 * æ ¹æ®æ•°æ®å¯¹è±¡idå’Œç±»å‹è¿”å›æ ¹å¯¹è±¡åç§°
 	 * 
 	 * @param valueId
 	 * @param key
@@ -273,7 +273,7 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * »ñÈ¡ÉÏÒ»¼¶¿ÆÄ¿
+	 * è·å–ä¸Šä¸€çº§ç§‘ç›®
 	 * 
 	 * @param valueId
 	 * @param key
@@ -291,7 +291,7 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * ¸ù¾İÊı¾İ¶ÔÏóidºÍÀàĞÍ·µ»Ø¸ù¶ÔÏó
+	 * æ ¹æ®æ•°æ®å¯¹è±¡idå’Œç±»å‹è¿”å›æ ¹å¯¹è±¡
 	 * 
 	 * @param valueId
 	 * @param key
@@ -307,7 +307,7 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * ¸ù¾İÊı¾İ¶ÔÏóidºÍÀàĞÍ·µ»Ø¶ÔÏóÃû³Æ
+	 * æ ¹æ®æ•°æ®å¯¹è±¡idå’Œç±»å‹è¿”å›å¯¹è±¡åç§°
 	 * 
 	 * @param valueId
 	 * @param key
@@ -340,7 +340,7 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * ¸ù¾İÊı¾İ¶ÔÏóidºÍÀàĞÍ·µ»Ø¶ÔÏóÃû³Æ
+	 * æ ¹æ®æ•°æ®å¯¹è±¡idå’Œç±»å‹è¿”å›å¯¹è±¡åç§°
 	 * 
 	 * @param valueId
 	 * @param key
@@ -368,7 +368,7 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * ¸ù¾İÊı¾İ¶ÔÏóidºÍÀàĞÍ·µ»Ø¶ÔÏóÃû³Æ
+	 * æ ¹æ®æ•°æ®å¯¹è±¡idå’Œç±»å‹è¿”å›å¯¹è±¡åç§°
 	 * 
 	 * @param valueId
 	 * @param key
@@ -384,7 +384,7 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * ¸ù¾İ±àºÅºÍÀàĞÍ·µ»Ø¶ÔÏóÃû³Æ
+	 * æ ¹æ®ç¼–å·å’Œç±»å‹è¿”å›å¯¹è±¡åç§°
 	 * 
 	 * @param no
 	 * @param key
@@ -459,7 +459,7 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * ¸ù¾İÊı¾İ¶ÔÏóidºÍÀàĞÍ·µ»Ø¶ÔÏó
+	 * æ ¹æ®æ•°æ®å¯¹è±¡idå’Œç±»å‹è¿”å›å¯¹è±¡
 	 * 
 	 * @param valueId
 	 * @param key
@@ -493,7 +493,7 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * ¸ù¾İÊı¾İ¶ÔÏóidºÍÀàĞÍ·µ»Ø¶ÔÏó
+	 * æ ¹æ®æ•°æ®å¯¹è±¡idå’Œç±»å‹è¿”å›å¯¹è±¡
 	 * 
 	 * @param valueId
 	 * @param key
@@ -518,12 +518,12 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * ¸ù¾İÊı¾İ¶ÔÏócodeºÍÀàĞÍ·µ»Ø¶ÔÏó
+	 * æ ¹æ®æ•°æ®å¯¹è±¡codeå’Œç±»å‹è¿”å›å¯¹è±¡
 	 * 
 	 * @param code
-	 *            »ù´¡Êı¾İ´úÂë
+	 *            åŸºç¡€æ•°æ®ä»£ç 
 	 * @param key
-	 *            ·ÖÀà´úÂë
+	 *            åˆ†ç±»ä»£ç 
 	 * @return
 	 */
 	public BaseDataInfo getValue(String code, String key) {
@@ -540,7 +540,7 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * ¸ù¾İÊı¾İ¶ÔÏóidºÍÀàĞÍ·µ»Ø¶ÔÏóÏêÏ¸Ä¿Â¼Ãû³Æ£¨°üº¬¸¸ĞÅÏ¢,ÖĞ¼äÓÃÊ¡ÂÔºÅ£©
+	 * æ ¹æ®æ•°æ®å¯¹è±¡idå’Œç±»å‹è¿”å›å¯¹è±¡è¯¦ç»†ç›®å½•åç§°ï¼ˆåŒ…å«çˆ¶ä¿¡æ¯,ä¸­é—´ç”¨çœç•¥å·ï¼‰
 	 * 
 	 * @param valueId
 	 * @param key
@@ -573,7 +573,7 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * »ñÈ¡ÉÏÒ»¼¶¿ÆÄ¿
+	 * è·å–ä¸Šä¸€çº§ç§‘ç›®
 	 * 
 	 * @param valueId
 	 * @param key
@@ -613,7 +613,7 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * ¸ù¾İÊı¾İ¶ÔÏóidºÍÀàĞÍ·µ»Ø¶ÔÏóÏêÏ¸Ä¿Â¼Ãû³Æ£¨°üº¬¸¸ĞÅÏ¢£©
+	 * æ ¹æ®æ•°æ®å¯¹è±¡idå’Œç±»å‹è¿”å›å¯¹è±¡è¯¦ç»†ç›®å½•åç§°ï¼ˆåŒ…å«çˆ¶ä¿¡æ¯ï¼‰
 	 * 
 	 * @param valueId
 	 * @param key
@@ -650,7 +650,7 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * ³õÊ¼»¯ÄÚ´æÖĞ»ù´¡Êı¾İ
+	 * åˆå§‹åŒ–å†…å­˜ä¸­åŸºç¡€æ•°æ®
 	 * 
 	 */
 	protected void initBaseData() {
@@ -662,19 +662,19 @@ public class BaseDataManager {
 			ex.printStackTrace();
 		}
 
-		// ÓÃ»§×Ô¶¨ÒåÊı¾İ
+		// ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®
 		loadCustomInfo();
-		// ÓÃ»§×Ô¶¨ÒåÊı¾İ´¦Àí³ÌĞò
+		// ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®å¤„ç†ç¨‹åº
 		loadCustomHandler();
-		// ÓÃ»§ĞÅÏ¢
+		// ç”¨æˆ·ä¿¡æ¯
 		loadUsers();
-		// ²¿ÃÅ½á¹¹
+		// éƒ¨é—¨ç»“æ„
 		loadDepartments();
-		// Ä£¿é¹¦ÄÜ
+		// æ¨¡å—åŠŸèƒ½
 		loadFunctions();
-		// Êı¾İ×Öµä
+		// æ•°æ®å­—å…¸
 		loadDictInfo();
-		// Êı¾İ±í¶¨ÒåĞÅÏ¢
+		// æ•°æ®è¡¨å®šä¹‰ä¿¡æ¯
 		loadTableMeta();
 	}
 
@@ -704,7 +704,7 @@ public class BaseDataManager {
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			logger.error("ÓÃ»§×Ô¶¨ÒåÊı¾İ´¦Àí³ÌĞò³ö´í£¡");
+			logger.error("ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®å¤„ç†ç¨‹åºå‡ºé”™ï¼");
 		}
 	}
 
@@ -745,12 +745,12 @@ public class BaseDataManager {
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			logger.error("ÌáÈ¡ÓÃ»§×Ô¶¨ÒåÊı¾İÊ§°Ü£¡");
+			logger.error("æå–ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®å¤±è´¥ï¼");
 		}
 	}
 
 	/**
-	 * ×°ÔØ²¿ÃÅĞÅÏ¢
+	 * è£…è½½éƒ¨é—¨ä¿¡æ¯
 	 */
 	private void loadDepartments() {
 		try {
@@ -769,7 +769,7 @@ public class BaseDataManager {
 					deptTreeMap.put(t.getId(), t);
 				}
 			}
-			// ÏÔÊ¾ËùÓĞ²¿ÃÅÁĞ±í
+			// æ˜¾ç¤ºæ‰€æœ‰éƒ¨é—¨åˆ—è¡¨
 			if (list != null) {
 				Iterator<SysTree> iter = list.iterator();
 				List<BaseDataInfo> tmp = new ArrayList<BaseDataInfo>();
@@ -778,17 +778,17 @@ public class BaseDataManager {
 					SysDepartment bean = tree.getDepartment();
 					if (bean != null) {
 						BaseDataInfo bdi = new BaseDataInfo();
-						bdi.setId(bean.getId());// ²¿ÃÅid
-						bdi.setName(bean.getName());// ²¿ÃÅÃû³Æ
-						bdi.setCode(bean.getCode());// ²¿ÃÅ´úÂë
-						bdi.setNo(bean.getNo());// ²¿ÃÅ±àºÅ
+						bdi.setId(bean.getId());// éƒ¨é—¨id
+						bdi.setName(bean.getName());// éƒ¨é—¨åç§°
+						bdi.setCode(bean.getCode());// éƒ¨é—¨ä»£ç 
+						bdi.setNo(bean.getNo());// éƒ¨é—¨ç¼–å·
 						bdi.setDeep(tree.getDeep());
 						// bdi.setParentId((int) tree.getParent());
 						SysTree parentTree = deptTreeMap
 								.get(tree.getParentId());
 						if (parentTree != null
 								&& parentTree.getDepartment() != null
-								&& parent.getId() != parentTree.getId()) {// ²»µÈÓÚ²¿ÃÅ½á¹¹,ÔòÈ¡²¿ÃÅ
+								&& parent.getId() != parentTree.getId()) {// ä¸ç­‰äºéƒ¨é—¨ç»“æ„,åˆ™å–éƒ¨é—¨
 							bdi.setParentId((int) parentTree.getDepartment()
 									.getId());
 						} else {
@@ -802,20 +802,20 @@ public class BaseDataManager {
 				}
 				baseDataMap.put(Constants.SYS_DEPTS, tmp);
 			}
-			logger.info("×°ÔØ²¿ÃÅĞÅÏ¢½áÊø");
+			logger.info("è£…è½½éƒ¨é—¨ä¿¡æ¯ç»“æŸ");
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.error("ÌáÈ¡²¿ÃÅÊı¾İÊ§°Ü£¡");
+			logger.error("æå–éƒ¨é—¨æ•°æ®å¤±è´¥ï¼");
 		}
 	}
 
 	/**
-	 * ×°ÔØ×ÖµäĞÅÏ¢
+	 * è£…è½½å­—å…¸ä¿¡æ¯
 	 */
 	public void loadDictInfo() {
 		try {
-			logger.info("×°ÔØ×ÖµäĞÅÏ¢¿ªÊ¼...");
+			logger.info("è£…è½½å­—å…¸ä¿¡æ¯å¼€å§‹...");
 			List<SysTree> trees = getDictoryService().getAllCategories();
 			for (int i = 0; i < trees.size(); i++) {
 				SysTree treeNode = trees.get(i);
@@ -828,18 +828,18 @@ public class BaseDataManager {
 						while (iter.hasNext()) {
 							Dictory bean = (Dictory) iter.next();
 							BaseDataInfo bdi = new BaseDataInfo();
-							bdi.setId(bean.getId());// ×Öµäid
-							bdi.setName(bean.getName());// ×ÖµäÃû³Æ
-							bdi.setCode(bean.getCode());// ×Öµä´úÂë
-							bdi.setValue(bean.getValue());// ×Öµä´úÂë
-							bdi.setExt1(bean.getExt1());// À©Õ¹×Ö¶Î1
-							bdi.setExt2(bean.getExt2());// À©Õ¹×Ö¶Î2
+							bdi.setId(bean.getId());// å­—å…¸id
+							bdi.setName(bean.getName());// å­—å…¸åç§°
+							bdi.setCode(bean.getCode());// å­—å…¸ä»£ç 
+							bdi.setValue(bean.getValue());// å­—å…¸ä»£ç 
+							bdi.setExt1(bean.getExt1());// æ‰©å±•å­—æ®µ1
+							bdi.setExt2(bean.getExt2());// æ‰©å±•å­—æ®µ2
 
-							bdi.setExt3(bean.getExt3());// À©Õ¹×Ö¶Î3
-							bdi.setExt4(bean.getExt4());// À©Õ¹×Ö¶Î4
+							bdi.setExt3(bean.getExt3());// æ‰©å±•å­—æ®µ3
+							bdi.setExt4(bean.getExt4());// æ‰©å±•å­—æ®µ4
 
-							bdi.setExt5(bean.getExt5());// À©Õ¹×Ö¶Î5
-							bdi.setExt6(bean.getExt6());// À©Õ¹×Ö¶Î6
+							bdi.setExt5(bean.getExt5());// æ‰©å±•å­—æ®µ5
+							bdi.setExt6(bean.getExt6());// æ‰©å±•å­—æ®µ6
 							bdi.setExt7(bean.getExt7());
 							bdi.setExt8(bean.getExt8());
 							bdi.setExt9(bean.getExt9());
@@ -868,22 +868,22 @@ public class BaseDataManager {
 					}
 				}
 			}
-			logger.info("×°ÔØ×ÖµäĞÅÏ¢½áÊø.");
+			logger.info("è£…è½½å­—å…¸ä¿¡æ¯ç»“æŸ.");
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.error("ÌáÈ¡×ÖµäÊı¾İÊ§°Ü£¡");
+			logger.error("æå–å­—å…¸æ•°æ®å¤±è´¥ï¼");
 		}
 	}
 
 	/**
-	 * ×°ÔØÄ£¿éĞÅÏ¢
+	 * è£…è½½æ¨¡å—ä¿¡æ¯
 	 */
 	public void loadFunctions() {
 		try {
-			logger.info("×°ÔØÄ£¿éĞÅÏ¢¿ªÊ¼...");
+			logger.info("è£…è½½æ¨¡å—ä¿¡æ¯å¼€å§‹...");
 			List<SysFunction> list = getSysFunctionService()
 					.getSysFunctionList();
-			// ÏÔÊ¾ËùÓĞÄ£¿éÁĞ±í
+			// æ˜¾ç¤ºæ‰€æœ‰æ¨¡å—åˆ—è¡¨
 			if (list != null && !list.isEmpty()) {
 				Iterator<SysFunction> iter = list.iterator();
 				List<BaseDataInfo> tmp = new ArrayList<BaseDataInfo>();
@@ -891,9 +891,9 @@ public class BaseDataManager {
 					SysFunction bean = (SysFunction) iter.next();
 					if (bean != null) {
 						BaseDataInfo bdi = new BaseDataInfo();
-						bdi.setId(bean.getId());// Ä£¿éid
-						bdi.setName(bean.getName());// Ä£¿éÃû³Æ
-						bdi.setCode(bean.getFuncMethod());// Ä£¿é·½·¨
+						bdi.setId(bean.getId());// æ¨¡å—id
+						bdi.setName(bean.getName());// æ¨¡å—åç§°
+						bdi.setCode(bean.getFuncMethod());// æ¨¡å—æ–¹æ³•
 						logger.debug("id:" + bean.getId() + ",name:"
 								+ bean.getName() + ", method:"
 								+ bean.getFuncMethod());
@@ -902,15 +902,15 @@ public class BaseDataManager {
 				}
 				baseDataMap.put(Constants.SYS_FUNCTIONS, tmp);
 			}
-			logger.info("×°ÔØÄ£¿éĞÅÏ¢½áÊø");
+			logger.info("è£…è½½æ¨¡å—ä¿¡æ¯ç»“æŸ");
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.error("ÌáÈ¡Ä£¿éÊı¾İÊ§°Ü£¡");
+			logger.error("æå–æ¨¡å—æ•°æ®å¤±è´¥ï¼");
 		}
 	}
 
 	private void loadTableMeta() {
-		// ĞèÒªÔÚglaf-base-site.xmlÖĞÅäÖÃload.table.meta=true
+		// éœ€è¦åœ¨glaf-base-site.xmlä¸­é…ç½®load.table.meta=true
 		/**
 		 * 
 		 * <property> <name>load.table.meta</name>
@@ -936,7 +936,7 @@ public class BaseDataManager {
 	}
 
 	/**
-	 * ×°ÔØÓÃ»§ĞÅÏ¢
+	 * è£…è½½ç”¨æˆ·ä¿¡æ¯
 	 */
 	private void loadUsers() {
 		try {
@@ -948,10 +948,10 @@ public class BaseDataManager {
 					SysUser bean = (SysUser) iter.next();
 					if (bean != null) {
 						BaseDataInfo bdi = new BaseDataInfo();
-						bdi.setName(bean.getName());// ÓÃ»§Ãû³Æ
-						bdi.setCode(bean.getAccount());// ÓÃ»§ÕĞÆ¸ºÅ
+						bdi.setName(bean.getName());// ç”¨æˆ·åç§°
+						bdi.setCode(bean.getAccount());// ç”¨æˆ·æ‹›è˜å·
 						bdi.setValue(bean.getAccount());
-						bdi.setExt1(bean.getTelephone());// ÓÃ»§µç»°
+						bdi.setExt1(bean.getTelephone());// ç”¨æˆ·ç”µè¯
 						logger.debug("id:" + bean.getAccount() + ",name:"
 								+ bean.getName() + ",telephone:"
 								+ bean.getTelephone());
@@ -960,20 +960,20 @@ public class BaseDataManager {
 				}
 				baseDataMap.put(Constants.SYS_USERS, tmp);
 			}
-			logger.info("×°ÔØÓÃ»§ĞÅÏ¢½áÊø");
+			logger.info("è£…è½½ç”¨æˆ·ä¿¡æ¯ç»“æŸ");
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.error("ÌáÈ¡ÓÃ»§ĞÅÏ¢Ê§°Ü£¡");
+			logger.error("æå–ç”¨æˆ·ä¿¡æ¯å¤±è´¥ï¼");
 		}
 	}
 
 	/**
-	 * Ë¢ĞÂ»ù´¡ĞÅÏ¢Êı¾İ£¨ÓĞ»ù´¡ĞÅÏ¢±ä¸üÊ±µ÷ÓÃ£©
+	 * åˆ·æ–°åŸºç¡€ä¿¡æ¯æ•°æ®ï¼ˆæœ‰åŸºç¡€ä¿¡æ¯å˜æ›´æ—¶è°ƒç”¨ï¼‰
 	 * 
 	 */
 	public void refreshBaseData() {
 		/**
-		 * È·±£Ö»ÓĞÒ»¸öÏß³ÌÄÜ×°ÔØ»ù´¡Êı¾İ
+		 * ç¡®ä¿åªæœ‰ä¸€ä¸ªçº¿ç¨‹èƒ½è£…è½½åŸºç¡€æ•°æ®
 		 */
 		if (!loading.get()) {
 			try {

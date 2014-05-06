@@ -17,7 +17,7 @@ public class PfileAttTest extends AbstractTest {
 	public void testList() {
 		pfileAttService = super.getBean("pfileAttService");
 		PfileAttQuery query = new PfileAttQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<IsdpPfileAtt> rows = pfileAttService
 				.getPfileAttsByQueryCriteria(0, 10, query);
 		for (IsdpPfileAtt row : rows) {

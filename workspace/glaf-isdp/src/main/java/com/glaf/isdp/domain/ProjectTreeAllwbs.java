@@ -21,7 +21,7 @@ import com.glaf.core.base.JSONable;
 import com.glaf.isdp.util.ProjectTreeAllwbsJsonFactory;
 
 /**
- * WBSÈÎÎñÇé¿ö±í(ÁÙÊ±±í)
+ * WBSä»»åŠ¡æƒ…å†µè¡¨(ä¸´æ—¶è¡¨)
  * 
  */
 @Entity
@@ -82,7 +82,7 @@ public class ProjectTreeAllwbs implements Serializable, ITree, JSONable {
 	protected int listno;
 
 	/**
-	 * ÀàĞÍ: 2-ÈÎÎñ,3-Á÷³Ì,4-ÈË¹¤»î¶¯
+	 * ç±»å‹: 2-ä»»åŠ¡,3-æµç¨‹,4-äººå·¥æ´»åŠ¨
 	 */
 	@Column(name = "type")
 	protected int type;

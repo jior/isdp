@@ -17,7 +17,7 @@ public class CellRepInfoTest extends AbstractTest {
 	public void testList() {
 		cellRepInfoService = super.getBean("cellRepInfoService");
 		CellRepInfoQuery query = new CellRepInfoQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<CellRepInfo> rows = cellRepInfoService
 				.getCellRepInfosByQueryCriteria(0, 10, query);
 		for (CellRepInfo row : rows) {

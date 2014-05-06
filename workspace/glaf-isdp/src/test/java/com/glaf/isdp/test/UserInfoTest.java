@@ -21,7 +21,7 @@ public class UserInfoTest extends AbstractTest {
 	public void testList() {
 		userInfoService = super.getBean("userInfoService");
 		UserInfoQuery query = new UserInfoQuery();
-		// query.nameLike("¹¤³Ì");
+		// query.nameLike("å·¥ç¨‹");
 		List<UserInfo> rows = userInfoService.getUserInfosByQueryCriteria(0,
 				100, query);
 

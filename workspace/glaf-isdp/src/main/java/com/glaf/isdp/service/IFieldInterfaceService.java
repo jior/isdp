@@ -11,7 +11,7 @@ import com.glaf.isdp.query.*;
 public interface IFieldInterfaceService {
 
 	/**
-	 * ¸ù¾İÖ÷¼üÉ¾³ı¼ÇÂ¼
+	 * æ ¹æ®ä¸»é”®åˆ é™¤è®°å½•
 	 * 
 	 * @return
 	 */
@@ -19,35 +19,35 @@ public interface IFieldInterfaceService {
 	void deleteById(String id);
 
 	/**
-	 * ¸ù¾İÖ÷¼ü»ñÈ¡Ò»Ìõ¼ÇÂ¼
+	 * æ ¹æ®ä¸»é”®è·å–ä¸€æ¡è®°å½•
 	 * 
 	 * @return
 	 */
 	FieldInterface getFieldInterface(String id);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
 	int getFieldInterfaceCount(Map<String, Object> parameter);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
 	int getFieldInterfaceCountByQueryCriteria(FieldInterfaceQuery query);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
 	List<FieldInterface> getFieldInterfaces(Map<String, Object> parameter);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡Ò»Ò³µÄÊı¾İ
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–ä¸€é¡µçš„æ•°æ®
 	 * 
 	 * @return
 	 */
@@ -55,7 +55,7 @@ public interface IFieldInterfaceService {
 			int pageSize, FieldInterfaceQuery query);
 
 	/**
-	 * ¸ù¾İ±í¸ñÀàĞÍ»ñÈ¡×Ö¶ÎĞÅÏ¢
+	 * æ ¹æ®è¡¨æ ¼ç±»å‹è·å–å­—æ®µä¿¡æ¯
 	 * 
 	 * @param frmType
 	 * @return
@@ -65,7 +65,7 @@ public interface IFieldInterfaceService {
 	List<FieldInterface> getListShowFields(String frmType, int indexId);
 
 	/**
-	 * ¸ù¾İ±í¸ñÀàĞÍ»ñÈ¡ÁĞ±íÏÔÊ¾×Ö¶ÎĞÅÏ¢
+	 * æ ¹æ®è¡¨æ ¼ç±»å‹è·å–åˆ—è¡¨æ˜¾ç¤ºå­—æ®µä¿¡æ¯
 	 * 
 	 * @param frmType
 	 * @return
@@ -73,21 +73,21 @@ public interface IFieldInterfaceService {
 	List<FieldInterface> getListShowFieldsByFrmType(String frmType);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
 	List<FieldInterface> list(FieldInterfaceQuery query);
 
 	/**
-	 * ×ªÔØ×Ö¶ÎµÄ»ù´¡Êı¾İ¶¨ÒåÁĞ±í
+	 * è½¬è½½å­—æ®µçš„åŸºç¡€æ•°æ®å®šä¹‰åˆ—è¡¨
 	 * 
 	 * @param fields
 	 */
 	void loadFieldHintList(List<FieldInterface> fields);
 
 	/**
-	 * ±£´æÒ»Ìõ¼ÇÂ¼
+	 * ä¿å­˜ä¸€æ¡è®°å½•
 	 * 
 	 * @return
 	 */

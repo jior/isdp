@@ -59,7 +59,7 @@ public class TreepInfoTest extends AbstractTest {
 	public void testList() {
 		treepInfoService = super.getBean("treepInfoService");
 		TreepInfoQuery query = new TreepInfoQuery();
-		// query.nameLike("¹¤³Ì");
+		// query.nameLike("å·¥ç¨‹");
 		List<IsdpTreepInfo> rows = treepInfoService.getTreepInfosByQueryCriteria(0,
 				10, query);
 		for (IsdpTreepInfo row : rows) {

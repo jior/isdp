@@ -82,7 +82,7 @@ public class IsdpTodoController {
 				}
 
 				long times = System.currentTimeMillis() - start;
-				logger.debug("创建任务耗时(毫秒):" + times);
+				logger.debug("鍒涘缓浠诲姟鑰楁椂(姣):" + times);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -97,7 +97,7 @@ public class IsdpTodoController {
 		query.setIndexNameLike(keyword);
 		int total = userTaskService.getUserTaskCountByQueryCriteria(query);
 		request.setAttribute("total", total);
-		logger.debug(actorId + "任务项是" + total);
+		logger.debug(actorId + "浠诲姟椤规槸" + total);
 		if (total > 0) {
 			List<UserTask> rows = userTaskService.list(query);
 			request.setAttribute("tasks", rows);
@@ -209,7 +209,7 @@ public class IsdpTodoController {
 				}
 
 				long times = System.currentTimeMillis() - start;
-				logger.debug("创建任务耗时(毫秒):" + times);
+				logger.debug("鍒涘缓浠诲姟鑰楁椂(姣):" + times);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -224,7 +224,7 @@ public class IsdpTodoController {
 		query.setIndexNameLike(keyword);
 		int total = userTaskService.getUserTaskCountByQueryCriteria(query);
 		request.setAttribute("total", total);
-		logger.debug(actorId + "任务项是" + total);
+		logger.debug(actorId + "浠诲姟椤规槸" + total);
 		if (total > 0) {
 			List<UserTask> rows = userTaskService.list(query);
 			request.setAttribute("tasks", rows);

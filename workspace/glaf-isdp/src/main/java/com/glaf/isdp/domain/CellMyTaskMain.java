@@ -22,7 +22,7 @@ import com.glaf.core.base.JSONable;
 import com.glaf.isdp.util.CellMyTaskMainJsonFactory;
 
 /**
- * 流程任务主表（实例）
+ * 娴佺▼浠诲姟涓昏〃锛堝疄渚嬶級
  */
 @Entity
 @Table(name = "cell_mytaskmain")

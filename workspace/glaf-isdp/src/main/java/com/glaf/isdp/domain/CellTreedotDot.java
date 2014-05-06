@@ -16,7 +16,7 @@ import com.glaf.core.base.JSONable;
 import com.glaf.isdp.util.CellTreedotDotJsonFactory;
 
 /**
- * °´Å¥¹ØÁªµÄ±í¸ñ
+ * æŒ‰é’®å…³è”çš„è¡¨æ ¼
  */
 @Entity
 @Table(name = "cell_treedot_dot")
@@ -34,7 +34,7 @@ public class CellTreedotDot implements Serializable, JSONable {
 	protected int indexId;
 
 	/**
-	 * filedot±íµÄÖ÷¼ü
+	 * filedotè¡¨çš„ä¸»é”®
 	 */
 	@Column(name = "filedot_fileid", length = 50)
 	protected String filedotFileid;

@@ -17,7 +17,7 @@ public class CellCriterionTest extends AbstractTest {
 	public void testList() {
 		cellCriterionService = super.getBean("cellCriterionService");
 		CellCriterionQuery query = new CellCriterionQuery();
-		query.contentLike("¿í¶È");
+		query.contentLike("å®½åº¦");
 		List<CellCriterion> rows = cellCriterionService
 				.getCellCriterionsByQueryCriteria(0, 10, query);
 		for (CellCriterion row : rows) {

@@ -16,7 +16,7 @@ public class CellDottofileTest extends AbstractTest {
 	public void testList() {
 		cellDottofileService = super.getBean("cellDottofileService");
 		CellDottofileQuery query = new CellDottofileQuery();
-		query.nameLike("¹¤³Ì");
+		query.nameLike("å·¥ç¨‹");
 		List<CellDottofile> rows = cellDottofileService
 				.getCellDottofilesByQueryCriteria(0, 10, query);
 		for (CellDottofile row : rows) {

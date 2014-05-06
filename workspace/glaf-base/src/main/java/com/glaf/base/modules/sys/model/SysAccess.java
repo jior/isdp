@@ -13,14 +13,14 @@ public class SysAccess implements Serializable, JSONable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Ó¦ÓÃ±àºÅ
+	 * åº”ç”¨ç¼–å·
 	 */
 	@Id
 	@Column(name = "APPID", nullable = false)
 	protected long appId;
 
 	/**
-	 * ½ÇÉ«±àºÅ
+	 * è§’è‰²ç¼–å·
 	 */
 	@Id
 	@Column(name = "ROLEID", nullable = false)

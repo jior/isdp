@@ -12,7 +12,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- * 文件报审分类
+ * 鏂囦欢鎶ュ鍒嗙被
  */
 @Entity
 @Table(name = "treetop")

@@ -16,7 +16,7 @@ import com.glaf.core.base.JSONable;
 import com.glaf.isdp.util.CellCriterionTreeJsonFactory;
 
 /**
- * ���̹淶
+ * 工程规范
  */
 @Entity
 @Table(name = "cell_criterion_tree")

@@ -17,7 +17,7 @@ public class FlowProcessDefTest extends AbstractTest {
 	public void testList() {
 		flowProcessDefService = super.getBean("flowProcessDefService");
 		FlowProcessDefQuery query = new FlowProcessDefQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<FlowProcessDef> rows = flowProcessDefService
 				.getFlowProcessDefsByQueryCriteria(0, 10, query);
 		for (FlowProcessDef row : rows) {

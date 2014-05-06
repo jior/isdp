@@ -314,12 +314,12 @@ public class IsdpDispatcher {
 				Renderer renderer = null;
 				String rendererName = null;
 				/**
-				 * »ñÈ¡Ã¿¸ö²Ëµ¥Ïî¶¨ÖÆµÄäÖÈ¾Æ÷
+				 * è·å–æ¯ä¸ªèœå•é¡¹å®šåˆ¶çš„æ¸²æŸ“å™¨
 				 */
 				rendererName = conf.get("isdp.renderer." + cellTreedot.getId());
 				if (StringUtils.isEmpty(rendererName)) {
 					/**
-					 * »ñÈ¡Ö¸¶¨Àà±ğµÄäÖÈ¾Æ÷
+					 * è·å–æŒ‡å®šç±»åˆ«çš„æ¸²æŸ“å™¨
 					 */
 					if (cellTreedot.getCustomData() != null) {
 						rendererName = cellTreedot.getCustomData();
@@ -336,13 +336,13 @@ public class IsdpDispatcher {
 
 				if (view == null) {
 					/**
-					 * »ñÈ¡Ã¿¸ö²Ëµ¥Ïî¶¨ÖÆµÄÊÓÍ¼
+					 * è·å–æ¯ä¸ªèœå•é¡¹å®šåˆ¶çš„è§†å›¾
 					 */
 					if (conf.get("isdp.view." + cellTreedot.getId()) != null) {
 						view = conf.get("isdp.view." + cellTreedot.getId());
 					} else {
 						/**
-						 * »ñÈ¡Ö¸¶¨Àà±ğµÄÊÓÍ¼
+						 * è·å–æŒ‡å®šç±»åˆ«çš„è§†å›¾
 						 */
 						if (cellTreedot.getCustomData() != null) {
 							view = "/isdp/dispatcher/"
@@ -401,13 +401,13 @@ public class IsdpDispatcher {
 							node.put("icon", "icon-" + i);
 							node.put("name", child.getIndexName());
 							/**
-							 * À©Õ¹µã1:Í¨¹ıÖ¸¶¨±àºÅ»ñÈ¡ÊÓÍ¼
+							 * æ‰©å±•ç‚¹1:é€šè¿‡æŒ‡å®šç¼–å·è·å–è§†å›¾
 							 */
 							url = conf.get("isdp.url." + indexId);
 							if (StringUtils.isEmpty(url)
 									&& StringUtils.isNotEmpty(customData)) {
 								/**
-								 * À©Õ¹µã2:Í¨¹ıÖ¸¶¨ÀàĞÍ»ñÈ¡ÊÓÍ¼
+								 * æ‰©å±•ç‚¹2:é€šè¿‡æŒ‡å®šç±»å‹è·å–è§†å›¾
 								 */
 								url = conf.get("isdp.url." + customData);
 							}

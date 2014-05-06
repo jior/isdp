@@ -76,7 +76,7 @@ public class SysUserRoleController {
 				.getParameter("processDescriptions");
 		logger.debug("fromUserId:"+fromUserId);
 		logger.debug("toUserId:"+toUserId);
-		if (!sysUserRoleService.isAuthorized(fromUserId, toUserId)) {// ÒÑÊÚÈ¨
+		if (!sysUserRoleService.isAuthorized(fromUserId, toUserId)) {// å·²æˆæƒ
 			sysUserRoleService.addRole(fromUserId, toUserId, startDate,
 					endDate, mark, processNames, processDescriptions);
 			return ResponseUtils.responseJsonResult(true);
@@ -100,7 +100,7 @@ public class SysUserRoleController {
 		for (int i = 0; i < ids.length; i++) {
 			String toUserId = ids[i];
 			toUserId = RequestUtils.decodeString(toUserId);
-			if (!sysUserRoleService.isAuthorized(fromUserId, toUserId)) {// ÒÑÊÚÈ¨
+			if (!sysUserRoleService.isAuthorized(fromUserId, toUserId)) {// å·²æˆæƒ
 				sysUserRoleService.addRole(fromUserId, toUserId, startDate,
 						endDate, mark, processNames, processDescriptions);
 			}
@@ -136,7 +136,7 @@ public class SysUserRoleController {
 	}
 
 	/**
-	 * ±£´æÓÃ»§ÊÚÈ¨
+	 * ä¿å­˜ç”¨æˆ·æˆæƒ
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -151,13 +151,13 @@ public class SysUserRoleController {
 		fromUserId = RequestUtils.decodeString(fromUserId);
 
 		SysUser user = sysUserService.findById(fromUserId);
-		SysUser rootUser = sysUserService.findByAccount("root");// ¹ÜÀíÔ±
+		SysUser rootUser = sysUserService.findByAccount("root");// ç®¡ç†å‘˜
 
 		String msgStr = user.getName() + "[" + user.getAccount()
-				+ "]µÄÊÜÈ¨ÁĞ±íÈçÏÂ:<br><br>";
+				+ "]çš„å—æƒåˆ—è¡¨å¦‚ä¸‹:<br><br>";
 		ViewMessages messages = new ViewMessages();
 		if (fromUserId != null && userIds.length > 0) {
-			// È¡µÃÊÚÈ¨ÁĞ±í
+			// å–å¾—æˆæƒåˆ—è¡¨
 			List userList = sysUserRoleService.getAuthorizedUser(user);
 			logger.info("userList.size()=>" + userList.size());
 
@@ -175,11 +175,11 @@ public class SysUserRoleController {
 						Object[] bean = (Object[]) userList.get(j);
 						SysUser authorUser = (SysUser) bean[0];
 						if (StringUtils.equals(authorUser.getActorId(),
-								sysUser.getActorId())) {// ÒÑÊÚÈ¨
-							msgStr = msgStr + "&nbsp;&nbsp;&nbsp;&nbsp;ĞŞ¸ÄÊÚÈ¨=>"
+								sysUser.getActorId())) {// å·²æˆæƒ
+							msgStr = msgStr + "&nbsp;&nbsp;&nbsp;&nbsp;ä¿®æ”¹æˆæƒ=>"
 									+ sysUser.getName() + "["
 									+ sysUser.getAccount() + "]&nbsp;&nbsp;"
-									+ startDate + "ÖÁ" + endDate + "<br>";
+									+ startDate + "è‡³" + endDate + "<br>";
 							logger.info(msgStr);
 							userList.remove(j);
 
@@ -187,9 +187,9 @@ public class SysUserRoleController {
 						}
 					}
 
-					msgStr = msgStr + "&nbsp;&nbsp;&nbsp;&nbsp;Ìí¼ÓÊÚÈ¨=>"
+					msgStr = msgStr + "&nbsp;&nbsp;&nbsp;&nbsp;æ·»åŠ æˆæƒ=>"
 							+ sysUser.getName() + "[" + sysUser.getAccount()
-							+ "]&nbsp;&nbsp;" + startDate + "ÖÁ" + endDate
+							+ "]&nbsp;&nbsp;" + startDate + "è‡³" + endDate
 							+ "<br>";
 					logger.info(msgStr);
 				} else {
@@ -206,10 +206,10 @@ public class SysUserRoleController {
 				SysUser authorUser = (SysUser) bean[0];
 				Date aStartDate = (Date) bean[1];
 				Date aEndDate = (Date) bean[2];
-				msgStr = msgStr + "&nbsp;&nbsp;&nbsp;&nbsp;È¡ÏûÊÚÈ¨=>"
+				msgStr = msgStr + "&nbsp;&nbsp;&nbsp;&nbsp;å–æ¶ˆæˆæƒ=>"
 						+ authorUser.getName() + "[" + authorUser.getAccount()
 						+ "]&nbsp;&nbsp;" + DateUtils.getDateTime(aStartDate)
-						+ "ÖÁ" + DateUtils.getDateTime(aEndDate) + "<br>";
+						+ "è‡³" + DateUtils.getDateTime(aEndDate) + "<br>";
 				logger.info(msgStr);
 			}
 		} else {
@@ -219,7 +219,7 @@ public class SysUserRoleController {
 			return new ModelAndView("show_msg");
 		}
 
-		if (sendMail(user, rootUser, "ÊÚÈ¨Êé", msgStr)) {
+		if (sendMail(user, rootUser, "æˆæƒä¹¦", msgStr)) {
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"sys.author_success"));
 		} else {
@@ -229,12 +229,12 @@ public class SysUserRoleController {
 
 		MessageUtils.addMessages(request, messages);
 		request.setAttribute("refresh", "false");
-		// ÏÔÊ¾ÁĞ±íÒ³Ãæ
+		// æ˜¾ç¤ºåˆ—è¡¨é¡µé¢
 		return new ModelAndView("show_msg", modelMap);
 	}
 
 	/**
-	 * Ïò¹ÜÀíÔ±·¢ËÍÊÚÈ¨µçÓÊ
+	 * å‘ç®¡ç†å‘˜å‘é€æˆæƒç”µé‚®
 	 * 
 	 * @param fromUser
 	 * @param toUser
@@ -266,7 +266,7 @@ public class SysUserRoleController {
 	}
 
 	/**
-	 * ÏÔÊ¾ÊÚÈ¨Ò³Ãæ
+	 * æ˜¾ç¤ºæˆæƒé¡µé¢
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -286,13 +286,13 @@ public class SysUserRoleController {
 			return new ModelAndView(x_view, modelMap);
 		}
 
-		// ÏÔÊ¾ÁĞ±íÒ³Ãæ
+		// æ˜¾ç¤ºåˆ—è¡¨é¡µé¢
 		return new ModelAndView("/modules/sys/userRole/authorize_list",
 				modelMap);
 	}
 
 	/**
-	 * ÏÔÊ¾ÊÚÈ¨Ò³Ãæ
+	 * æ˜¾ç¤ºæˆæƒé¡µé¢
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -320,13 +320,13 @@ public class SysUserRoleController {
 			return new ModelAndView(x_view, modelMap);
 		}
 
-		// ÏÔÊ¾ÁĞ±íÒ³Ãæ
+		// æ˜¾ç¤ºåˆ—è¡¨é¡µé¢
 		return new ModelAndView("/modules/sys/userRole/authorize_panel",
 				modelMap);
 	}
 
 	/**
-	 * ÏÔÊ¾ÊÚÈ¨Ò³Ãæ
+	 * æ˜¾ç¤ºæˆæƒé¡µé¢
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -344,13 +344,13 @@ public class SysUserRoleController {
 			return new ModelAndView(x_view, modelMap);
 		}
 
-		// ÏÔÊ¾ÁĞ±íÒ³Ãæ
+		// æ˜¾ç¤ºåˆ—è¡¨é¡µé¢
 		return new ModelAndView("/modules/sys/userRole/authorize_users",
 				modelMap);
 	}
 
 	/**
-	 * ÏÔÊ¾ÊÚÈ¨Ò³Ãæ
+	 * æ˜¾ç¤ºæˆæƒé¡µé¢
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -376,7 +376,7 @@ public class SysUserRoleController {
 			return new ModelAndView(x_view, modelMap);
 		}
 
-		// ÏÔÊ¾ÁĞ±íÒ³Ãæ
+		// æ˜¾ç¤ºåˆ—è¡¨é¡µé¢
 		return new ModelAndView("/modules/sys/userRole/authorizeUser_panel",
 				modelMap);
 	}

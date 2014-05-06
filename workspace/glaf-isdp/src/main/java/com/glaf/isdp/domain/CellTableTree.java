@@ -12,7 +12,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- * ÏµÍ³ÄÚÖÃÊı¾İ±í·ÖÀà
+ * ç³»ç»Ÿå†…ç½®æ•°æ®è¡¨åˆ†ç±»
  */
 @Entity
 @Table(name = "cell_utabletree")

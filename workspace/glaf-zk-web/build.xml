@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project name="glaf-zk-web" basedir="." default="jar">
 	<!-- Project settings -->
 	<property name="project.title" value="GLAF ZK Web System" />

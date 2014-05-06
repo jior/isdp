@@ -24,7 +24,7 @@ public class TreedotTest extends AbstractTest {
 	public void testList() {
 		treedotService = super.getBean("treedotService");
 		TreedotQuery query = new TreedotQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<ITree> treeModels = new ArrayList<ITree>();
 		List<Treedot> rows = treedotService
 				.getTreedotsByQueryCriteria(0, 10, query);

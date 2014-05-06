@@ -12,7 +12,7 @@ import com.glaf.isdp.query.*;
 public interface IsdpCellFillFormService {
 
 	/**
-	 * ¸ù¾İÖ÷¼üÉ¾³ı¼ÇÂ¼
+	 * æ ¹æ®ä¸»é”®åˆ é™¤è®°å½•
 	 * 
 	 * @return
 	 */
@@ -20,21 +20,21 @@ public interface IsdpCellFillFormService {
 	void deleteById(String id);
 
 	/**
-	 * ¸ù¾İÖ÷¼ü»ñÈ¡Ò»Ìõ¼ÇÂ¼
+	 * æ ¹æ®ä¸»é”®è·å–ä¸€æ¡è®°å½•
 	 * 
 	 * @return
 	 */
 	IsdpCellFillForm getCellFillForm(String id);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
 	int getCellFillFormCount(Map<String, Object> parameter);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
@@ -42,14 +42,14 @@ public interface IsdpCellFillFormService {
 	
 	
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
 	List<IsdpCellFillForm> getCellFillForms(Map<String, Object> parameter);
 	
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡Ò»Ò³µÄÊı¾İ
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–ä¸€é¡µçš„æ•°æ®
 	 * 
 	 * @return
 	 */
@@ -63,8 +63,8 @@ public interface IsdpCellFillFormService {
 	List<IsdpCellFillForm> getFileCellFillFormList(String idLike, int indexId);
 
 	/**
-	 * »ñÈ¡Ò»Ò³±íµ¥ÌîĞ´¼ÇÂ¼
-	 * @param pageNo Ò³Âë,´Ó1¿ªÊ¼
+	 * è·å–ä¸€é¡µè¡¨å•å¡«å†™è®°å½•
+	 * @param pageNo é¡µç ,ä»1å¼€å§‹
 	 * @param pageSize
 	 * @param idLike
 	 * @param indexId
@@ -73,14 +73,14 @@ public interface IsdpCellFillFormService {
 	Paging getPageFileCellFillForm(int pageNo, int pageSize, String idLike, int indexId);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
 	List<IsdpCellFillForm> list(CellFillFormQuery query);
 
 	/**
-	 * ±£´æÒ»Ìõ¼ÇÂ¼
+	 * ä¿å­˜ä¸€æ¡è®°å½•
 	 * 
 	 * @return
 	 */

@@ -32,13 +32,13 @@ public class SysUserRole implements Serializable, JSONable {
 	private static final long serialVersionUID = 4335486314285694158L;
 
 	/**
-	 * ÊÚÈ¨ÈË
+	 * æˆæƒäºº
 	 */
 	@Column(name = "AUTHORIZED")
-	protected int authorized;// 0-½ÇÉ«ÓÃ»§ 1-´úÀíÓÃ»§
+	protected int authorized;// 0-è§’è‰²ç”¨æˆ· 1-ä»£ç†ç”¨æˆ·
 
 	/**
-	 * Î¯ÍĞÈË
+	 * å§”æ‰˜äºº
 	 */
 	@Column(name = "AUTHORIZEFROM")
 	protected String authorizeFrom;
@@ -47,27 +47,27 @@ public class SysUserRole implements Serializable, JSONable {
 	protected String authorizeFromName;
 
 	/**
-	 * ½áÊøÊ±¼ä
+	 * ç»“æŸæ—¶é—´
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "AVAILDATEEND")
 	protected Date availDateEnd;
 
 	/**
-	 * ¿ªÊ¼Ê±¼ä
+	 * å¼€å§‹æ—¶é—´
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "AVAILDATESTART")
 	protected Date availDateStart;
 
 	/**
-	 * ´´½¨ÈË
+	 * åˆ›å»ºäºº
 	 */
 	@Column(name = "CREATEBY", length = 50)
 	protected String createBy;
 
 	/**
-	 * ´´½¨ÈÕÆÚ
+	 * åˆ›å»ºæ—¥æœŸ
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "CREATEDATE")
@@ -80,7 +80,7 @@ public class SysUserRole implements Serializable, JSONable {
 	private SysRole role;
 
 	/**
-	 * ²¿ÃÅ½ÇÉ«±àºÅ
+	 * éƒ¨é—¨è§’è‰²ç¼–å·
 	 */
 	@Column(name = "ROLEID")
 	protected String roleId;
@@ -90,7 +90,7 @@ public class SysUserRole implements Serializable, JSONable {
 	protected String id;
 
 	/**
-	 * Á÷³ÌÃèÊö
+	 * æµç¨‹æè¿°
 	 */
 	@Column(name = "PROCESSDESCRIPTION", length = 500)
 	protected String processDescription;
@@ -99,7 +99,7 @@ public class SysUserRole implements Serializable, JSONable {
 	private SysUser user;
 
 	/**
-	 * ÓÃ»§Ãû
+	 * ç”¨æˆ·å
 	 */
 	@Column(name = "USERID")
 	protected String userId;

@@ -87,7 +87,7 @@ public class SysTreeResource {
 	}
 
 	/**
-	 * 批量删除信息
+	 * 鎵归噺鍒犻櫎淇℃伅
 	 * 
 	 * @param request
 	 * @param uriInfo
@@ -179,7 +179,7 @@ public class SysTreeResource {
 	}
 
 	/**
-	 * 提交增加信息
+	 * 鎻愪氦澧炲姞淇℃伅
 	 * 
 	 * @param request
 	 * @param uriInfo
@@ -200,10 +200,10 @@ public class SysTreeResource {
 		bean.setUpdateBy(RequestUtils.getActorId(request));
 		boolean ret = sysTreeService.create(bean);
 		ViewMessages messages = new ViewMessages();
-		if (ret) {// 保存成功
+		if (ret) {// 淇濆瓨鎴愬姛
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"tree.add_success"));
-		} else {// 保存失败
+		} else {// 淇濆瓨澶辫触
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"tree.add_failure"));
 		}
@@ -212,7 +212,7 @@ public class SysTreeResource {
 	}
 
 	/**
-	 * 提交修改信息
+	 * 鎻愪氦淇敼淇℃伅
 	 * 
 	 * @param request
 	 * @param uriInfo
@@ -241,15 +241,15 @@ public class SysTreeResource {
 			logger.error(ex);
 		}
 		ViewMessages messages = new ViewMessages();
-		if (ret) {// 保存成功
+		if (ret) {// 淇濆瓨鎴愬姛
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"tree.modify_success"));
-		} else {// 保存失败
+		} else {// 淇濆瓨澶辫触
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"tree.modify_failure"));
 		}
 		MessageUtils.addMessages(request, messages);
-		// 显示列表页面
+		// 鏄剧ず鍒楄〃椤甸潰
 		return new ModelAndView("show_json_msg");
 	}
 

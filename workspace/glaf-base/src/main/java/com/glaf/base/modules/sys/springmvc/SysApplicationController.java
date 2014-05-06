@@ -65,7 +65,7 @@ public class SysApplicationController {
 	private SysTreeService sysTreeService;
 
 	/**
-	 * ÅúÁ¿É¾³ıĞÅÏ¢
+	 * æ‰¹é‡åˆ é™¤ä¿¡æ¯
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -80,10 +80,10 @@ public class SysApplicationController {
 		ret = sysApplicationService.deleteAll(id);
 
 		ViewMessages messages = new ViewMessages();
-		if (ret) {// ±£´æ³É¹¦
+		if (ret) {// ä¿å­˜æˆåŠŸ
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"application.delete_success"));
-		} else {// ±£´æÊ§°Ü
+		} else {// ä¿å­˜å¤±è´¥
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"application.delete_failure"));
 		}
@@ -192,7 +192,7 @@ public class SysApplicationController {
 	}
 
 	/**
-	 * ÏÔÊ¾Ôö¼ÓÒ³Ãæ
+	 * æ˜¾ç¤ºå¢åŠ é¡µé¢
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -211,7 +211,7 @@ public class SysApplicationController {
 	}
 
 	/**
-	 * ÏÔÊ¾ĞŞ¸ÄÒ³Ãæ
+	 * æ˜¾ç¤ºä¿®æ”¹é¡µé¢
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -241,7 +241,7 @@ public class SysApplicationController {
 	}
 
 	/**
-	 * Ìá½»Ôö¼ÓĞÅÏ¢
+	 * æäº¤å¢åŠ ä¿¡æ¯
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -266,10 +266,10 @@ public class SysApplicationController {
 
 		boolean ret = sysApplicationService.create(bean);
 		ViewMessages messages = new ViewMessages();
-		if (ret) {// ±£´æ³É¹¦
+		if (ret) {// ä¿å­˜æˆåŠŸ
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"application.add_success"));
-		} else {// ±£´æÊ§°Ü
+		} else {// ä¿å­˜å¤±è´¥
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"application.add_failure"));
 		}
@@ -278,7 +278,7 @@ public class SysApplicationController {
 	}
 
 	/**
-	 * Ìá½»ĞŞ¸ÄĞÅÏ¢
+	 * æäº¤ä¿®æ”¹ä¿¡æ¯
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -312,10 +312,10 @@ public class SysApplicationController {
 			logger.error(ex);
 		}
 		ViewMessages messages = new ViewMessages();
-		if (ret) {// ±£´æ³É¹¦
+		if (ret) {// ä¿å­˜æˆåŠŸ
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"application.modify_success"));
-		} else {// ±£´æÊ§°Ü
+		} else {// ä¿å­˜å¤±è´¥
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"application.modify_failure"));
 		}
@@ -337,7 +337,7 @@ public class SysApplicationController {
 	}
 
 	/**
-	 * ÏÔÊ¾¿ò¼ÜÒ³Ãæ
+	 * æ˜¾ç¤ºæ¡†æ¶é¡µé¢
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -354,7 +354,7 @@ public class SysApplicationController {
 	}
 
 	/**
-	 * ÏÔÊ¾¿ò¼ÜÒ³Ãæ
+	 * æ˜¾ç¤ºæ¡†æ¶é¡µé¢
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -373,7 +373,7 @@ public class SysApplicationController {
 	}
 
 	/**
-	 * ÏÔÊ¾ËùÓĞÁĞ±í
+	 * æ˜¾ç¤ºæ‰€æœ‰åˆ—è¡¨
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -394,12 +394,12 @@ public class SysApplicationController {
 		if (StringUtils.isNotEmpty(x_view)) {
 			return new ModelAndView(x_view, modelMap);
 		}
-		// ÏÔÊ¾ÁĞ±íÒ³Ãæ
+		// æ˜¾ç¤ºåˆ—è¡¨é¡µé¢
 		return new ModelAndView("/modules/sys/app/app_list", modelMap);
 	}
 
 	/**
-	 * ÏÔÊ¾¶ş¼¶À¸Ä¿µ¼º½²Ëµ¥
+	 * æ˜¾ç¤ºäºŒçº§æ ç›®å¯¼èˆªèœå•
 	 * 
 	 * @param request
 	 * @param modelMap

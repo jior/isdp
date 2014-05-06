@@ -5,7 +5,7 @@ import java.util.*;
 public interface IsdpTaskService {
 
 	/**
-	 * »ñÈ¡Ä³¸öÓÃ»§µÄÈ«²¿ÈÎÎñ
+	 * è·å–æŸä¸ªç”¨æˆ·çš„å…¨éƒ¨ä»»åŠ¡
 	 * 
 	 * @param actorId
 	 * @return
@@ -14,7 +14,7 @@ public interface IsdpTaskService {
 			Map<String, Object> params);
 
 	/**
-	 * »ñÈ¡Ä³¸öÓÃ»§µÄÈ«²¿ÈÎÎñÊı
+	 * è·å–æŸä¸ªç”¨æˆ·çš„å…¨éƒ¨ä»»åŠ¡æ•°
 	 * 
 	 * @param actorId
 	 * @return
@@ -22,7 +22,7 @@ public interface IsdpTaskService {
 	int getAllTaskListCount(String actorId, Map<String, Object> params);
 
 	/**
-	 * »ñÈ¡Ä³¸öÓÃ»§µÄÍË»ØÈÎÎñ
+	 * è·å–æŸä¸ªç”¨æˆ·çš„é€€å›ä»»åŠ¡
 	 * 
 	 * @param actorId
 	 * @return
@@ -31,7 +31,7 @@ public interface IsdpTaskService {
 			Map<String, Object> params);
 
 	/**
-	 * »ñÈ¡Ä³¸öÓÃ»§µÄÍË»ØÈÎÎñÊı
+	 * è·å–æŸä¸ªç”¨æˆ·çš„é€€å›ä»»åŠ¡æ•°
 	 * 
 	 * @param actorId
 	 * @return
@@ -39,7 +39,7 @@ public interface IsdpTaskService {
 	int getFallbackTaskListCount(String actorId, Map<String, Object> params);
 
 	/**
-	 * »ñÈ¡Ä³¸öÓÃ»§µÄ´ı°ìÈÎÎñ
+	 * è·å–æŸä¸ªç”¨æˆ·çš„å¾…åŠä»»åŠ¡
 	 * 
 	 * @param actorId
 	 * @return
@@ -48,7 +48,7 @@ public interface IsdpTaskService {
 			Map<String, Object> params);
 
 	/**
-	 * »ñÈ¡Ä³¸öÓÃ»§µÄ´ı°ìÈÎÎñÊı
+	 * è·å–æŸä¸ªç”¨æˆ·çš„å¾…åŠä»»åŠ¡æ•°
 	 * 
 	 * @param actorId
 	 * @return
@@ -56,7 +56,7 @@ public interface IsdpTaskService {
 	int getTodoTaskListCount(String actorId, Map<String, Object> params);
 
 	/**
-	 * »ñÈ¡Ä³¸öÓÃ»§µÄÒÑ°ìÈÎÎñ
+	 * è·å–æŸä¸ªç”¨æˆ·çš„å·²åŠä»»åŠ¡
 	 * 
 	 * @param actorId
 	 * @return
@@ -65,7 +65,7 @@ public interface IsdpTaskService {
 			Map<String, Object> params);
 
 	/**
-	 * »ñÈ¡Ä³¸öÓÃ»§µÄÒÑ°ìÈÎÎñÊı
+	 * è·å–æŸä¸ªç”¨æˆ·çš„å·²åŠä»»åŠ¡æ•°
 	 * 
 	 * @param actorId
 	 * @return

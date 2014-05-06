@@ -11,7 +11,7 @@ import com.glaf.isdp.query.*;
 public interface IFlowForwardDefService {
 
 	/**
-	 * ¸ù¾İÖ÷¼üÉ¾³ı¼ÇÂ¼
+	 * æ ¹æ®ä¸»é”®åˆ é™¤è®°å½•
 	 * 
 	 * @return
 	 */
@@ -19,28 +19,28 @@ public interface IFlowForwardDefService {
 	void deleteById(String id);
 
 	/**
-	 * ¸ù¾İÖ÷¼ü»ñÈ¡Ò»Ìõ¼ÇÂ¼
+	 * æ ¹æ®ä¸»é”®è·å–ä¸€æ¡è®°å½•
 	 * 
 	 * @return
 	 */
 	FlowForwardDef getFlowForwardDef(String id);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
 	int getFlowForwardDefCount(Map<String, Object> parameter);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
 	int getFlowForwardDefCountByQueryCriteria(FlowForwardDefQuery query);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
@@ -48,7 +48,7 @@ public interface IFlowForwardDefService {
 	
 	
 	/**
-	 * ¸ù¾İÁ÷³Ì±àºÅ»ñÈ¡»î¶¯Ö®¼äµÄ×ªÒÆ¹ØÏµ
+	 * æ ¹æ®æµç¨‹ç¼–å·è·å–æ´»åŠ¨ä¹‹é—´çš„è½¬ç§»å…³ç³»
 	 * @param processDefId
 	 * @return
 	 */
@@ -56,15 +56,15 @@ public interface IFlowForwardDefService {
 	
 	
 	/**
-	 * ¸ù¾İÁ÷³Ì±àºÅ»ñÈ¡ÒÑ¾­´¦ÀíµÄ»î¶¯Ö®¼äµÄ×ªÒÆ¹ØÏµ
-	 * @param processId Á÷³Ì±àºÅ
-	 * @param processInstanceId Á÷³ÌÊµÀı±àºÅ
+	 * æ ¹æ®æµç¨‹ç¼–å·è·å–å·²ç»å¤„ç†çš„æ´»åŠ¨ä¹‹é—´çš„è½¬ç§»å…³ç³»
+	 * @param processId æµç¨‹ç¼–å·
+	 * @param processInstanceId æµç¨‹å®ä¾‹ç¼–å·
 	 * @return
 	 */
 	List<FlowForwardDef> getProcessedFlowForwardDefsByProcessId(String processId, String processInstanceId);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡Ò»Ò³µÄÊı¾İ
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–ä¸€é¡µçš„æ•°æ®
 	 * 
 	 * @return
 	 */
@@ -72,14 +72,14 @@ public interface IFlowForwardDefService {
 			int pageSize, FlowForwardDefQuery query);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
 	List<FlowForwardDef> list(FlowForwardDefQuery query);
 
 	/**
-	 * ±£´æÒ»Ìõ¼ÇÂ¼
+	 * ä¿å­˜ä¸€æ¡è®°å½•
 	 * 
 	 * @return
 	 */

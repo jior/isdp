@@ -18,7 +18,7 @@ import com.glaf.core.base.JSONable;
 import com.glaf.isdp.util.MycellBusiessJsonFactory;
 
 /**
- * ÒµÎñÄ£°å
+ * ä¸šåŠ¡æ¨¡æ¿
  */
 @Entity
 @Table(name = "mycell_busiess")

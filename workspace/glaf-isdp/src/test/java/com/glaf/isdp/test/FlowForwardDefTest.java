@@ -17,7 +17,7 @@ public class FlowForwardDefTest extends AbstractTest {
 	public void testList() {
 		flowForwardDefService = super.getBean("flowForwardDefService");
 		FlowForwardDefQuery query = new FlowForwardDefQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<FlowForwardDef> rows = flowForwardDefService
 				.getFlowForwardDefsByQueryCriteria(0, 10, query);
 		for (FlowForwardDef row : rows) {

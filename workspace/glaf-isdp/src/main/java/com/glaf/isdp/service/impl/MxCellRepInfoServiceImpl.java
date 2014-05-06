@@ -54,7 +54,7 @@ public class MxCellRepInfoServiceImpl implements ICellRepInfoService {
 	}
 
 	/**
-	 * 根据主键返回该对象及各个关联信息
+	 * 鏍规嵁涓婚敭杩斿洖璇ュ璞″強鍚勪釜鍏宠仈淇℃伅
 	 * 
 	 * @param id
 	 * @return
@@ -68,7 +68,7 @@ public class MxCellRepInfoServiceImpl implements ICellRepInfoService {
 	}
 
 	/**
-	 * 根据查询参数获取记录总数
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇璁板綍鎬绘暟
 	 * 
 	 * @return
 	 */
@@ -77,7 +77,7 @@ public class MxCellRepInfoServiceImpl implements ICellRepInfoService {
 	}
 
 	/**
-	 * 根据查询参数获取记录总数
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇璁板綍鎬绘暟
 	 * 
 	 * @return
 	 */
@@ -86,7 +86,7 @@ public class MxCellRepInfoServiceImpl implements ICellRepInfoService {
 	}
 
 	/**
-	 * 根据查询参数获取记录列表
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇璁板綍鍒楄〃
 	 * 
 	 * @return
 	 */
@@ -95,7 +95,7 @@ public class MxCellRepInfoServiceImpl implements ICellRepInfoService {
 	}
 
 	/**
-	 * 获取某个角色某个表格的单元格信息
+	 * 鑾峰彇鏌愪釜瑙掕壊鏌愪釜琛ㄦ牸鐨勫崟鍏冩牸淇℃伅
 	 * 
 	 * @param filedot_fileid
 	 * @param roleid
@@ -112,7 +112,7 @@ public class MxCellRepInfoServiceImpl implements ICellRepInfoService {
 	}
 
 	/**
-	 * 获取某个角色某个表格的单元格信息
+	 * 鑾峰彇鏌愪釜瑙掕壊鏌愪釜琛ㄦ牸鐨勫崟鍏冩牸淇℃伅
 	 * 
 	 * @param filedot_fileid
 	 * @param roleid
@@ -130,7 +130,7 @@ public class MxCellRepInfoServiceImpl implements ICellRepInfoService {
 	}
 
 	/**
-	 * 根据文件编号获取表格定义信息
+	 * 鏍规嵁鏂囦欢缂栧彿鑾峰彇琛ㄦ牸瀹氫箟淇℃伅
 	 * 
 	 * @param filedotId
 	 * @return
@@ -140,7 +140,7 @@ public class MxCellRepInfoServiceImpl implements ICellRepInfoService {
 	}
 
 	/**
-	 * 根据查询参数获取一页的数据
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇涓�椤电殑鏁版嵁
 	 * 
 	 * @return
 	 */

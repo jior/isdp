@@ -19,7 +19,7 @@ import com.glaf.core.base.JSONable;
 import com.glaf.isdp.util.CellMyTaskJsonFactory;
 
 /**
- * Ìî±íÈÎÎñ
+ * å¡«è¡¨ä»»åŠ¡
  */
 @Entity
 @Table(name = "cell_mytask")

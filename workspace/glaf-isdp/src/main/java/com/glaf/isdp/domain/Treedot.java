@@ -17,7 +17,7 @@ import com.glaf.core.base.JSONable;
 import com.glaf.isdp.util.TreedotJsonFactory;
 
 /**
- * ±í¸ñÊ÷
+ * è¡¨æ ¼æ ‘
  */
 @Entity
 @Table(name = "treedot")

@@ -16,7 +16,7 @@ public class CellSysDatalinkTest extends AbstractTest {
 	public void testList() {
 		cellSysDatalinkService = super.getBean("cellSysDatalinkService");
 		CellSysDatalinkQuery query = new CellSysDatalinkQuery();
-		// query.nameLike("¹¤³Ì");
+		// query.nameLike("å·¥ç¨‹");
 		List<CellSysDatalink> rows = cellSysDatalinkService
 				.getCellSysDatalinksByQueryCriteria(0, 10, query);
 		for (CellSysDatalink row : rows) {

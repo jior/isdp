@@ -8,22 +8,22 @@ public class CellForm implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Êı¾İ±íĞÅÏ¢
+	 * æ•°æ®è¡¨ä¿¡æ¯
 	 */
 	protected Collection<CellDataTable> dataTables;
 
 	/**
-	 * ×Ö¶Î¶¨ÒåĞÅÏ¢
+	 * å­—æ®µå®šä¹‰ä¿¡æ¯
 	 */
 	protected Collection<CellDataField> dataFields;
 
 	/**
-	 * ±í¸ñ¶¨ÒåĞÅÏ¢
+	 * è¡¨æ ¼å®šä¹‰ä¿¡æ¯
 	 */
 	protected Collection<CellRepInfo> masterRepInfos;
 
 	/**
-	 * ´Ó±íÇøÓò¶¨ÒåĞÅÏ¢
+	 * ä»è¡¨åŒºåŸŸå®šä¹‰ä¿¡æ¯
 	 */
 	protected Collection<CellRepInfo2> slaveRepInfos;
 

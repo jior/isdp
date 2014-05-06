@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.annotation.Resource;
 
@@ -48,6 +49,7 @@ import com.glaf.base.modules.sys.query.SysDepartmentQuery;
 import com.glaf.base.modules.sys.query.SysTreeQuery;
 import com.glaf.base.modules.sys.query.SysUserQuery;
 import com.glaf.base.modules.sys.service.SysTreeService;
+
 import com.glaf.core.base.ColumnModel;
 import com.glaf.core.base.TableModel;
 import com.glaf.core.id.IdGenerator;
@@ -181,12 +183,12 @@ public class SysTreeServiceImpl implements SysTreeService {
 	}
 
 	/**
-	 * »ñÈ¡¹ØÁª±íÊ÷ĞÍ½á¹¹
+	 * è·å–å…³è”è¡¨æ ‘å‹ç»“æ„
 	 * 
 	 * @param relationTable
-	 *            ±íÃû
+	 *            è¡¨å
 	 * @param relationColumn
-	 *            ¹ØÁª×Ö¶ÎÃû
+	 *            å…³è”å­—æ®µå
 	 * @param query
 	 * @return
 	 */
@@ -198,7 +200,7 @@ public class SysTreeServiceImpl implements SysTreeService {
 	}
 
 	/**
-	 * »ñÈ¡Ä³¸öÓÃ»§Ä³¸ö½ÇÉ«µÄÊ÷½Úµã
+	 * è·å–æŸä¸ªç”¨æˆ·æŸä¸ªè§’è‰²çš„æ ‘èŠ‚ç‚¹
 	 * 
 	 * @param query
 	 * @return
@@ -207,22 +209,23 @@ public class SysTreeServiceImpl implements SysTreeService {
 		return sysTreeMapper.getRoleUserTrees(query);
 	}
 
-	public void getSysTree(List<SysTree> tree, long parentId, int deep) {
-		SysTreeQuery query = new SysTreeQuery();
-		query.setParentId(Long.valueOf(parentId));
-		query.setOrderBy("  E.SORT desc ");
-		List<SysTree> nodes = this.list(query);
-		if (nodes != null && !nodes.isEmpty()) {
-			this.initDepartments(nodes);
-			this.initApplications(nodes);
-			Iterator<SysTree> iter = nodes.iterator();
-			while (iter.hasNext()) {// µİ¹é±éÀú
-				SysTree bean = iter.next();
-				bean.setDeep(deep + 1);
-				tree.add(bean);// ¼ÓÈëµ½Êı×é
-				getSysTree(tree, (int) bean.getId(), bean.getDeep());
-			}
-		}
+	public void getSysTree(List<SysTree> treeList, long parentId, int deep) {
+		// SysTreeQuery query = new SysTreeQuery();
+		// query.setParentId(Long.valueOf(parentId));
+		// query.setOrderBy("  E.SORT desc ");
+		// List<SysTree> nodes = this.list(query);
+		// if (nodes != null && !nodes.isEmpty()) {
+		// this.initDepartments(nodes);
+		// this.initApplications(nodes);
+		// Iterator<SysTree> iter = nodes.iterator();
+		// while (iter.hasNext()) {// é€’å½’éå†
+		// SysTree bean = iter.next();
+		// bean.setDeep(deep + 1);
+		// treeList.add(bean);// åŠ å…¥åˆ°æ•°ç»„
+		// getSysTree(treeList, bean.getId(), bean.getDeep());
+		// }
+		// }
+		this.loadSysTrees(treeList, parentId, deep);
 	}
 
 	public SysTree getSysTree(Long id) {
@@ -259,12 +262,12 @@ public class SysTreeServiceImpl implements SysTreeService {
 	}
 
 	public PageResult getSysTreeList(long parentId, int pageNo, int pageSize) {
-		// ¼ÆËã×ÜÊı
+		// è®¡ç®—æ€»æ•°
 		PageResult pager = new PageResult();
 		SysTreeQuery query = new SysTreeQuery();
 		query.parentId(Long.valueOf(parentId));
 		int count = this.count(query);
-		if (count == 0) {// ½á¹û¼¯Îª¿Õ
+		if (count == 0) {// ç»“æœé›†ä¸ºç©º
 			pager.setPageSize(pageSize);
 			return pager;
 		}
@@ -296,13 +299,13 @@ public class SysTreeServiceImpl implements SysTreeService {
 	}
 
 	/**
-	 * »ñÈ¡¸¸½ÚµãÁĞ±í£¬Èç:¸ùÄ¿Â¼>A>A1>A11
+	 * è·å–çˆ¶èŠ‚ç‚¹åˆ—è¡¨ï¼Œå¦‚:æ ¹ç›®å½•>A>A1>A11
 	 * 
 	 * @param tree
 	 * @param int id
 	 */
 	public void getSysTreeParent(List<SysTree> tree, long id) {
-		// ²éÕÒÊÇ·ñÓĞ¸¸½Úµã
+		// æŸ¥æ‰¾æ˜¯å¦æœ‰çˆ¶èŠ‚ç‚¹
 		SysTree bean = findById(id);
 		if (bean != null) {
 			if (bean.getParentId() != 0) {
@@ -377,31 +380,151 @@ public class SysTreeServiceImpl implements SysTreeService {
 		return list;
 	}
 
-	public void loadChildren(List<SysTree> list, long parentId) {
+	public void loadChildren(List<SysTree> treeList, long parentId) {
+		SysTree root = this.findById(parentId);
+		if (root != null) {
+			if (StringUtils.isNotEmpty(root.getTreeId())) {
+				SysTreeQuery query = new SysTreeQuery();
+				query.treeIdLike(root.getTreeId() + "%");
+				List<SysTree> nodes = this.list(query);
+				if (nodes != null && !nodes.isEmpty()) {
+					Iterator<SysTree> iter = nodes.iterator();
+					while (iter.hasNext()) {
+						SysTree bean = iter.next();
+						treeList.add(bean);
+					}
+				}
+			} else {
+				SysTreeQuery query = new SysTreeQuery();
+				query.setParentId(Long.valueOf(parentId));
+				List<SysTree> nodes = this.list(query);
+				if (nodes != null && !nodes.isEmpty()) {
+					Iterator<SysTree> iter = nodes.iterator();
+					while (iter.hasNext()) {
+						SysTree bean = iter.next();
+						treeList.add(bean);// åŠ å…¥åˆ°æ•°ç»„
+						loadChildren(treeList, bean.getId());// é€’å½’éå†
+					}
+				}
+			}
+		}
+	}
+
+	public void loadChildren2(List<SysTree> list, long parentId) {
 		SysTreeQuery query = new SysTreeQuery();
 		query.setParentId(Long.valueOf(parentId));
 		List<SysTree> nodes = this.list(query);
 		if (nodes != null && !nodes.isEmpty()) {
 			for (SysTree node : nodes) {
 				list.add(node);
-				this.loadChildren(list, node.getId());
+				this.loadChildren2(list, node.getId());
 			}
 		}
 	}
 
-	protected void loadChildrenTreeListForDept(List<SysTree> list,
+	protected void loadChildrenTreeListForDept(List<SysTree> treeList,
+			long parentId, int status) {
+		SysTree root = this.findById(parentId);
+		if (root != null) {
+			if (StringUtils.isNotEmpty(root.getTreeId())) {
+				SysTreeQuery query = new SysTreeQuery();
+				query.treeIdLike(root.getTreeId() + "%");
+				List<SysTree> nodes = this.list(query);
+				if (nodes != null && !nodes.isEmpty()) {
+					this.initDepartments(nodes);
+					Iterator<SysTree> iter = nodes.iterator();
+					while (iter.hasNext()) {
+						SysTree bean = iter.next();
+						treeList.add(bean);
+					}
+				}
+			} else {
+				SysTreeQuery query = new SysTreeQuery();
+				query.setParentId(Long.valueOf(parentId));
+				List<SysTree> nodes = this.list(query);
+				if (nodes != null && !nodes.isEmpty()) {
+					this.initDepartments(nodes);
+					Iterator<SysTree> iter = nodes.iterator();
+					while (iter.hasNext()) {
+						SysTree bean = iter.next();
+						treeList.add(bean);// åŠ å…¥åˆ°æ•°ç»„
+						loadChildrenTreeListForDept(treeList, bean.getId(),
+								status);// é€’å½’éå†
+					}
+				}
+			}
+		}
+	}
+
+	protected void loadChildrenTreeListForDept2(List<SysTree> list,
 			long parentId, int status) {
 		SysTreeQuery query = new SysTreeQuery();
 		query.setParentId(Long.valueOf(parentId));
 		if (status != -1) {
 			query.setDepartmentStatus(status);
 		}
-		query.setOrderBy(" E.SORT desc");
 		List<SysTree> trees = this.list(query);
 		if (trees != null && !trees.isEmpty()) {
 			for (SysTree tt : trees) {
 				list.add(tt);
-				this.loadChildrenTreeListForDept(list, tt.getId(), status);
+				this.loadChildrenTreeListForDept2(list, tt.getId(), status);
+			}
+		}
+	}
+
+	public void loadSysTrees(List<SysTree> treeList, long parentId, int deep) {
+		SysTree root = this.findById(parentId);
+		if (root != null) {
+			if (StringUtils.isNotEmpty(root.getTreeId())) {
+				SysTreeQuery query = new SysTreeQuery();
+				query.treeIdLike(root.getTreeId() + "%");
+				List<SysTree> nodes = this.list(query);
+				if (nodes != null && !nodes.isEmpty()) {
+					this.initDepartments(nodes);
+					this.initApplications(nodes);
+					Iterator<SysTree> iter = nodes.iterator();
+					while (iter.hasNext()) {
+						SysTree bean = iter.next();
+						String treeId = bean.getTreeId();
+						String tmp = treeId.substring(
+								root.getTreeId().length(), treeId.length());
+						StringTokenizer token = new StringTokenizer(tmp, "|");
+						bean.setDeep(token.countTokens());
+						treeList.add(bean);// åŠ å…¥åˆ°æ•°ç»„
+					}
+				}
+			} else {
+				SysTreeQuery query = new SysTreeQuery();
+				query.setParentId(Long.valueOf(parentId));
+				List<SysTree> nodes = this.list(query);
+				if (nodes != null && !nodes.isEmpty()) {
+					this.initDepartments(nodes);
+					this.initApplications(nodes);
+					Iterator<SysTree> iter = nodes.iterator();
+					while (iter.hasNext()) {
+						SysTree bean = iter.next();
+						bean.setDeep(deep + 1);
+						treeList.add(bean);// åŠ å…¥åˆ°æ•°ç»„
+						loadSysTrees(treeList, bean.getId(), bean.getDeep());// é€’å½’éå†
+					}
+				}
+			}
+		}
+	}
+
+	public void loadSysTrees2(List<SysTree> treeList, long parentId, int deep) {
+		SysTreeQuery query = new SysTreeQuery();
+		query.setParentId(Long.valueOf(parentId));
+		List<SysTree> nodes = this.list(query);
+		if (nodes != null && !nodes.isEmpty()) {
+			this.initDepartments(nodes);
+			this.initApplications(nodes);
+			Iterator<SysTree> iter = nodes.iterator();
+			while (iter.hasNext()) {// é€’å½’éå†
+				SysTree bean = iter.next();
+				bean.setDeep(deep + 1);
+				treeList.add(bean);// åŠ å…¥åˆ°æ•°ç»„
+				loadSysTrees2(treeList, bean.getId(), bean.getDeep());
 			}
 		}
 	}
@@ -471,16 +594,16 @@ public class SysTreeServiceImpl implements SysTreeService {
 
 	@Transactional
 	public void sort(long parent, SysTree bean, int operate) {
-		if (operate == SysConstants.SORT_PREVIOUS) {// Ç°ÒÆ
+		if (operate == SysConstants.SORT_PREVIOUS) {// å‰ç§»
 			sortByPrevious(parent, bean);
-		} else if (operate == SysConstants.SORT_FORWARD) {// ºóÒÆ
+		} else if (operate == SysConstants.SORT_FORWARD) {// åç§»
 			sortByForward(parent, bean);
 		}
 
 	}
 
 	/**
-	 * ÏòºóÒÆ¶¯ÅÅĞò
+	 * å‘åç§»åŠ¨æ’åº
 	 * 
 	 * @param bean
 	 */
@@ -489,21 +612,21 @@ public class SysTreeServiceImpl implements SysTreeService {
 		query.parentId(Long.valueOf(parent));
 		query.setSortLessThan(bean.getSort());
 		query.setOrderBy(" E.SORT desc ");
-		// ²éÕÒºóÒ»¸ö¶ÔÏó
+		// æŸ¥æ‰¾åä¸€ä¸ªå¯¹è±¡
 		List<SysTree> list = this.list(query);
-		if (list != null && list.size() > 0) {// ÓĞ¼ÇÂ¼
+		if (list != null && list.size() > 0) {// æœ‰è®°å½•
 			SysTree temp = (SysTree) list.get(0);
 			int i = bean.getSort();
 			bean.setSort(temp.getSort());
-			this.update(bean);// ¸üĞÂbean
+			this.update(bean);// æ›´æ–°bean
 
 			temp.setSort(i);
-			this.update(temp);// ¸üĞÂtemp
+			this.update(temp);// æ›´æ–°temp
 		}
 	}
 
 	/**
-	 * ÏòÇ°ÒÆ¶¯ÅÅĞò
+	 * å‘å‰ç§»åŠ¨æ’åº
 	 * 
 	 * @param bean
 	 */
@@ -513,16 +636,16 @@ public class SysTreeServiceImpl implements SysTreeService {
 		query.setSortGreaterThan(bean.getSort());
 		query.setOrderBy(" E.SORT asc ");
 
-		// ²éÕÒÇ°Ò»¸ö¶ÔÏó
+		// æŸ¥æ‰¾å‰ä¸€ä¸ªå¯¹è±¡
 		List<SysTree> list = this.list(query);
-		if (list != null && list.size() > 0) {// ÓĞ¼ÇÂ¼
+		if (list != null && list.size() > 0) {// æœ‰è®°å½•
 			SysTree temp = (SysTree) list.get(0);
 			int i = bean.getSort();
 			bean.setSort(temp.getSort());
-			this.update(bean);// ¸üĞÂbean
+			this.update(bean);// æ›´æ–°bean
 
 			temp.setSort(i);
-			this.update(temp);// ¸üĞÂtemp
+			this.update(temp);// æ›´æ–°temp
 		}
 	}
 
@@ -530,7 +653,7 @@ public class SysTreeServiceImpl implements SysTreeService {
 	public boolean update(SysTree bean) {
 		SysTree model = this.findById(bean.getId());
 		/**
-		 * Èç¹û½ÚµãÒÆ¶¯ÁËÎ»ÖÃ£¬¼´ÒÆ¶¯µ½±ğµÄ½ÚµãÏÂÃæÈ¥ÁË
+		 * å¦‚æœèŠ‚ç‚¹ç§»åŠ¨äº†ä½ç½®ï¼Œå³ç§»åŠ¨åˆ°åˆ«çš„èŠ‚ç‚¹ä¸‹é¢å»äº†
 		 */
 		if (model.getParentId() != bean.getParentId()) {
 			List<SysTree> list = new ArrayList<SysTree>();
@@ -538,7 +661,7 @@ public class SysTreeServiceImpl implements SysTreeService {
 			if (!list.isEmpty()) {
 				for (SysTree node : list) {
 					/**
-					 * ²»ÄÜÒÆ¶¯µ½ta×Ô¼ºµÄ×Ó½ÚµãÏÂÃæÈ¥
+					 * ä¸èƒ½ç§»åŠ¨åˆ°taè‡ªå·±çš„å­èŠ‚ç‚¹ä¸‹é¢å»
 					 */
 					if (bean.getParentId() == node.getId()) {
 						throw new RuntimeException(
@@ -546,7 +669,7 @@ public class SysTreeServiceImpl implements SysTreeService {
 					}
 				}
 				/**
-				 * ĞŞÕıËùÓĞ×Ó½ÚµãµÄtreeId
+				 * ä¿®æ­£æ‰€æœ‰å­èŠ‚ç‚¹çš„treeId
 				 */
 				SysTree oldParent = this.findById(model.getParentId());
 				SysTree newParent = this.findById(bean.getParentId());
@@ -628,7 +751,7 @@ public class SysTreeServiceImpl implements SysTreeService {
 	}
 
 	/**
-	 * ¸üĞÂÊ÷µÄtreeId×Ö¶Î
+	 * æ›´æ–°æ ‘çš„treeIdå­—æ®µ
 	 * 
 	 * @param treeMap
 	 */

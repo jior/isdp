@@ -19,11 +19,7 @@
 package com.glaf.base.modules.sys.service.mybatis;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -32,14 +28,20 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.glaf.base.modules.sys.SysConstants;
 import com.glaf.base.modules.sys.mapper.DictoryMapper;
-import com.glaf.base.modules.sys.mapper.SysTreeMapper;
 import com.glaf.base.modules.sys.model.Dictory;
 import com.glaf.base.modules.sys.model.SysTree;
 import com.glaf.base.modules.sys.query.DictoryQuery;
 import com.glaf.base.modules.sys.query.SysTreeQuery;
 import com.glaf.base.modules.sys.service.DictoryService;
+import com.glaf.base.modules.sys.service.SysTreeService;
+import com.glaf.base.modules.sys.util.DictoryJsonFactory;
+import com.glaf.core.cache.CacheFactory;
+import com.glaf.core.config.SystemConfig;
 import com.glaf.core.id.IdGenerator;
 import com.glaf.core.util.PageResult;
 
@@ -55,14 +57,13 @@ public class DictoryServiceImpl implements DictoryService {
 
 	protected SqlSessionTemplate sqlSessionTemplate;
 
-	protected SysTreeMapper sysTreeMapper;
+	protected SysTreeService sysTreeService;
 
 	public DictoryServiceImpl() {
 
 	}
 
 	public int count(DictoryQuery query) {
-		query.ensureInitialized();
 		return dictoryMapper.getDictoryCount(query);
 	}
 
@@ -106,7 +107,7 @@ public class DictoryServiceImpl implements DictoryService {
 		if (rowIds != null && !rowIds.isEmpty()) {
 			DictoryQuery query = new DictoryQuery();
 			query.rowIds(rowIds);
-			dictoryMapper.deleteDictorys(query);
+			dictoryMapper.deleteDictories(query);
 		}
 	}
 
@@ -115,23 +116,37 @@ public class DictoryServiceImpl implements DictoryService {
 	}
 
 	/**
-	 * ªÒ»°»´≤øª˘¥° ˝æ›µƒ∑÷¿‡ ˜
+	 * Ëé∑ÂèñÂÖ®ÈÉ®Âü∫Á°ÄÊï∞ÊçÆÁöÑÂàÜÁ±ªÊ†ë
 	 * 
 	 * @return
 	 */
 	public List<SysTree> getAllCategories() {
 		SysTreeQuery query = new SysTreeQuery();
 		query.locked(0);
-		List<SysTree> trees = sysTreeMapper.getDictorySysTrees(query);
+		List<SysTree> trees = sysTreeService.getDictorySysTrees(query);
 		return trees;
 	}
 
 	public List<Dictory> getAvailableDictoryList(long nodeId) {
+		String cacheKey = "sys_dicts_" + nodeId;
+		if (SystemConfig.getBoolean("use_query_cache")
+				&& CacheFactory.getString(cacheKey) != null) {
+			String text = CacheFactory.getString(cacheKey);
+			JSONArray array = JSON.parseArray(text);
+			return DictoryJsonFactory.arrayToList(array);
+		}
 		DictoryQuery query = new DictoryQuery();
 		query.nodeId(nodeId);
 		query.blocked(0);
 		query.setOrderBy(" E.SORT desc");
-		return this.list(query);
+		List<Dictory> list = this.list(query);
+		if (list != null && !list.isEmpty()) {
+			if (SystemConfig.getBoolean("use_query_cache")) {
+				JSONArray array = DictoryJsonFactory.listToArray(list);
+				CacheFactory.put(cacheKey, array.toJSONString());
+			}
+		}
+		return list;
 	}
 
 	public String getCodeById(long id) {
@@ -143,7 +158,21 @@ public class DictoryServiceImpl implements DictoryService {
 		if (id == null) {
 			return null;
 		}
+		String cacheKey = "sys_dict_" + id;
+
+		if (SystemConfig.getBoolean("use_query_cache")
+				&& CacheFactory.getString(cacheKey) != null) {
+			String text = CacheFactory.getString(cacheKey);
+			JSONObject json = JSON.parseObject(text);
+			return DictoryJsonFactory.jsonToObject(json);
+		}
+
 		Dictory dictory = dictoryMapper.getDictoryById(id);
+
+		if (dictory != null && SystemConfig.getBoolean("use_query_cache")) {
+			JSONObject json = dictory.toJsonObject();
+			CacheFactory.put(cacheKey, json.toJSONString());
+		}
 		return dictory;
 	}
 
@@ -152,11 +181,11 @@ public class DictoryServiceImpl implements DictoryService {
 	}
 
 	public PageResult getDictoryList(int pageNo, int pageSize) {
-		// º∆À„◊‹ ˝
+		// ËÆ°ÁÆóÊÄªÊï∞
 		PageResult pager = new PageResult();
 		DictoryQuery query = new DictoryQuery();
 		int count = this.count(query);
-		if (count == 0) {// Ω·π˚ºØŒ™ø’
+		if (count == 0) {// ÁªìÊûúÈõÜ‰∏∫Á©∫
 			pager.setPageSize(pageSize);
 			return pager;
 		}
@@ -181,12 +210,12 @@ public class DictoryServiceImpl implements DictoryService {
 	}
 
 	public PageResult getDictoryList(long nodeId, int pageNo, int pageSize) {
-		// º∆À„◊‹ ˝
+		// ËÆ°ÁÆóÊÄªÊï∞
 		PageResult pager = new PageResult();
 		DictoryQuery query = new DictoryQuery();
 		query.nodeId(nodeId);
 		int count = this.count(query);
-		if (count == 0) {// Ω·π˚ºØŒ™ø’
+		if (count == 0) {// ÁªìÊûúÈõÜ‰∏∫Á©∫
 			pager.setPageSize(pageSize);
 			return pager;
 		}
@@ -204,46 +233,29 @@ public class DictoryServiceImpl implements DictoryService {
 	}
 
 	/**
-	 * ∑µªÿƒ≥∑÷¿‡œ¬µƒÀ˘”–◊÷µ‰¡–±Ì
+	 * ËøîÂõûÊüêÂàÜÁ±ª‰∏ãÁöÑÊâÄÊúâÂ≠óÂÖ∏ÂàóË°®
 	 * 
 	 * @param nodeCode
 	 * @return
 	 */
 	public List<Dictory> getDictoryList(String nodeCode) {
-		SysTreeQuery query = new SysTreeQuery();
-		query.code(nodeCode);
-		List<SysTree> trees = sysTreeMapper.getSysTrees(query);
-		if (trees != null && !trees.isEmpty()) {
-			return getAvailableDictoryList(trees.get(0).getId());
+		SysTree tree = sysTreeService.getSysTreeByCode(nodeCode);
+		if (tree == null) {
+			return null;
 		}
-		return null;
-	}
-
-	public Map<String, String> getDictoryMap(long nodeId) {
-		Map<String, String> dictoryMap = new HashMap<String, String>();
-		DictoryQuery query = new DictoryQuery();
-		query.nodeId(nodeId);
-		query.setOrderBy(" E.SORT desc");
-		List<Dictory> list = this.list(query);
-		if (list != null && !list.isEmpty()) {
-			for (Dictory dictory : list) {
-				dictoryMap.put(dictory.getCode(), dictory.getValue());
-			}
-		}
-		return dictoryMap;
+		return this.getAvailableDictoryList(tree.getId());
 	}
 
 	public List<Dictory> getDictorysByQueryCriteria(int start, int pageSize,
 			DictoryQuery query) {
 		RowBounds rowBounds = new RowBounds(start, pageSize);
-		List<Dictory> rows = sqlSessionTemplate.selectList("getDictorys",
+		List<Dictory> rows = sqlSessionTemplate.selectList("getDictories",
 				query, rowBounds);
 		return rows;
 	}
 
 	public List<Dictory> list(DictoryQuery query) {
-		query.ensureInitialized();
-		List<Dictory> list = dictoryMapper.getDictorys(query);
+		List<Dictory> list = dictoryMapper.getDictories(query);
 		return list;
 	}
 
@@ -257,93 +269,101 @@ public class DictoryServiceImpl implements DictoryService {
 		} else {
 			dictory.setUpdateDate(new Date());
 			dictoryMapper.updateDictory(dictory);
+			if (SystemConfig.getBoolean("use_query_cache")) {
+				String cacheKey = "sys_dict_" + dictory.getId();
+				CacheFactory.remove(cacheKey);
+			}
+		}
+		if (SystemConfig.getBoolean("use_query_cache")) {
+			String cacheKey = "sys_dicts_" + dictory.getNodeId();
+			CacheFactory.remove(cacheKey);
 		}
 	}
 
-	@Resource
+	@javax.annotation.Resource
 	public void setDictoryMapper(DictoryMapper dictoryMapper) {
 		this.dictoryMapper = dictoryMapper;
 	}
 
-	@Resource
+	@javax.annotation.Resource
 	public void setIdGenerator(IdGenerator idGenerator) {
 		this.idGenerator = idGenerator;
 	}
 
-	@Resource
+	@javax.annotation.Resource
 	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
 
-	@Resource
-	public void setSysTreeMapper(SysTreeMapper sysTreeMapper) {
-		this.sysTreeMapper = sysTreeMapper;
+	@javax.annotation.Resource
+	public void setSysTreeService(SysTreeService sysTreeService) {
+		this.sysTreeService = sysTreeService;
 	}
 
 	@Transactional
 	public void sort(long parent, Dictory bean, int operate) {
 		if (bean == null)
 			return;
-		if (operate == SysConstants.SORT_PREVIOUS) {// «∞“∆
+		if (operate == SysConstants.SORT_PREVIOUS) {// ÂâçÁßª
+			logger.debug("ÂâçÁßª:" + bean.getName());
 			sortByPrevious(parent, bean);
-		} else if (operate == SysConstants.SORT_FORWARD) {// ∫Û“∆
+		} else if (operate == SysConstants.SORT_FORWARD) {// ÂêéÁßª
 			sortByForward(parent, bean);
+			logger.debug("ÂêéÁßª:" + bean.getName());
 		}
 	}
 
 	/**
-	 * œÚ∫Û“∆∂Ø≈≈–Ú
+	 * ÂêëÂêéÁßªÂä®ÊéíÂ∫è
 	 * 
 	 * @param bean
 	 */
 	private void sortByForward(long nodeId, Dictory bean) {
 		DictoryQuery query = new DictoryQuery();
 		query.nodeId(nodeId);
-		// query.setSortLessThan(bean.getSort());
 		query.setSortLessThanOrEqual(bean.getSort());
 		query.setIdNotEqual(bean.getId());
-		query.setOrderBy(" E.SORT desc");
+		query.setOrderBy(" E.SORT desc ");
 
 		List<?> list = this.list(query);
-		if (list != null && list.size() > 0) {// ”–º«¬º
+		if (list != null && list.size() > 0) {// ÊúâËÆ∞ÂΩï
 			Dictory temp = (Dictory) list.get(0);
-			int i = bean.getSort();
+			int sort = bean.getSort();
 			bean.setSort(temp.getSort() - 1);
-			if (i != temp.getSort()) {
+			if (sort != temp.getSort()) {
 				bean.setSort(temp.getSort());
 			}
-			this.update(bean);// ∏¸–¬bean
+			this.update(bean);// Êõ¥Êñ∞bean
 
-			temp.setSort(i);
-			this.update(temp);// ∏¸–¬temp
+			temp.setSort(sort + 1);
+			this.update(temp);// Êõ¥Êñ∞temp
 		}
 	}
 
 	/**
-	 * œÚ«∞“∆∂Ø≈≈–Ú
+	 * ÂêëÂâçÁßªÂä®ÊéíÂ∫è
 	 * 
 	 * @param bean
 	 */
 	private void sortByPrevious(long nodeId, Dictory bean) {
 		DictoryQuery query = new DictoryQuery();
 		query.nodeId(nodeId);
-		// query.setSortGreaterThan(bean.getSort());
 		query.setSortGreaterThanOrEqual(bean.getSort());
 		query.setIdNotEqual(bean.getId());
-		query.setOrderBy(" E.SORT asc");
+		query.setOrderBy(" E.SORT asc ");
 
 		List<?> list = this.list(query);
-		if (list != null && list.size() > 0) {// ”–º«¬º
+		if (list != null && list.size() > 0) {// ÊúâËÆ∞ÂΩï
 			Dictory temp = (Dictory) list.get(0);
-			int i = bean.getSort();
+			int sort = bean.getSort();
 			bean.setSort(temp.getSort() + 1);
-			if (i != temp.getSort()) {
+			if (sort != temp.getSort()) {
 				bean.setSort(temp.getSort());
 			}
-			this.update(bean);// ∏¸–¬bean
+			this.update(bean);// Êõ¥Êñ∞bean
 
-			temp.setSort(i);
-			this.update(temp);// ∏¸–¬temp
+			temp.setSort(sort - 1);
+			this.update(temp);// Êõ¥Êñ∞temp
 		}
 	}
 

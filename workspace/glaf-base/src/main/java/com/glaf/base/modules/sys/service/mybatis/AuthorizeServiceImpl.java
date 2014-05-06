@@ -45,7 +45,7 @@ public class AuthorizeServiceImpl implements AuthorizeService {
 	private SysUserService sysUserService;
 
 	/**
-	 * ÓÃ»§µÇÂ½
+	 * ç”¨æˆ·ç™»é™†
 	 * 
 	 * @param account
 	 * @param pwd
@@ -60,8 +60,8 @@ public class AuthorizeServiceImpl implements AuthorizeService {
 			if (bean.isSystemAdmin()) {
 				logger.debug(account + " is system admin");
 			}
-			if (!bean.getPassword().equals(pwd) || // ÃÜÂë²»Æ¥Åä
-					bean.getLocked() == 1) {// ÕÊºÅ½ûÖ¹
+			if (!bean.getPassword().equals(pwd) || // å¯†ç ä¸åŒ¹é…
+					bean.getLocked() == 1) {// å¸å·ç¦æ­¢
 				bean = null;
 			}
 		}
@@ -69,7 +69,7 @@ public class AuthorizeServiceImpl implements AuthorizeService {
 	}
 
 	/**
-	 * ÓÃ»§µÇÂ½
+	 * ç”¨æˆ·ç™»é™†
 	 * 
 	 * @param account
 	 * @param pwd
@@ -85,11 +85,11 @@ public class AuthorizeServiceImpl implements AuthorizeService {
 				logger.debug(account + " is system admin");
 			}
 
-			// È¡³öÓÃ»§¶ÔÓ¦µÄÄ£¿éÈ¨ÏŞ
+			// å–å‡ºç”¨æˆ·å¯¹åº”çš„æ¨¡å—æƒé™
 			bean = sysUserService.getUserPrivileges(bean);
 
 			if (bean.getDepartment() != null) {
-				// È¡³öÓÃ»§µÄ²¿ÃÅÁĞ±í
+				// å–å‡ºç”¨æˆ·çš„éƒ¨é—¨åˆ—è¡¨
 				List<SysDepartment> list = new ArrayList<SysDepartment>();
 				sysDepartmentService.findNestingDepartment(list,
 						bean.getDepartment());
@@ -100,7 +100,7 @@ public class AuthorizeServiceImpl implements AuthorizeService {
 	}
 
 	/**
-	 * ÓÃ»§µÇÂ½
+	 * ç”¨æˆ·ç™»é™†
 	 * 
 	 * @param account
 	 * @param pwd
@@ -116,14 +116,14 @@ public class AuthorizeServiceImpl implements AuthorizeService {
 			if (bean.isSystemAdmin()) {
 				logger.debug(account + " is system admin");
 			}
-			if (!bean.getPassword().equals(pwd) || // ÃÜÂë²»Æ¥Åä
-					bean.getLocked() == 1) {// ÕÊºÅ½ûÖ¹
+			if (!bean.getPassword().equals(pwd) || // å¯†ç ä¸åŒ¹é…
+					bean.getLocked() == 1) {// å¸å·ç¦æ­¢
 				bean = null;
 			} else if (bean.getAccountType() != 1) {
-				// È¡³öÓÃ»§¶ÔÓ¦µÄÄ£¿éÈ¨ÏŞ
+				// å–å‡ºç”¨æˆ·å¯¹åº”çš„æ¨¡å—æƒé™
 				bean = sysUserService.getUserPrivileges(bean);
 
-				// È¡³öÓÃ»§µÄ²¿ÃÅÁĞ±í
+				// å–å‡ºç”¨æˆ·çš„éƒ¨é—¨åˆ—è¡¨
 				List<SysDepartment> list = new ArrayList<SysDepartment>();
 				sysDepartmentService.findNestingDepartment(list,
 						bean.getDepartment());

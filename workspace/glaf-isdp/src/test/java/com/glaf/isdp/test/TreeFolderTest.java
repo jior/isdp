@@ -25,7 +25,7 @@ public class TreeFolderTest extends AbstractTest {
 	public void testList() {
 		treeFolderService = super.getBean("treeFolderService");
 		TreeFolderQuery query = new TreeFolderQuery();
-		// query.nameLike("¹¤³Ì");
+		// query.nameLike("å·¥ç¨‹");
 		List<ITree> treeModels = new ArrayList<ITree>();
 		List<TreeFolder> rows = treeFolderService
 				.getTreeFoldersByQueryCriteria(0, 50, query);

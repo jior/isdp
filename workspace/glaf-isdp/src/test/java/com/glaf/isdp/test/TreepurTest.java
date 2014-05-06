@@ -17,7 +17,7 @@ public class TreepurTest extends AbstractTest {
 	public void testList() {
 		treepurService = super.getBean("treepurService");
 		TreepurQuery query = new TreepurQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<Treepur> rows = treepurService
 				.getTreepursByQueryCriteria(0, 10, query);
 		for (Treepur row : rows) {

@@ -174,14 +174,14 @@ public class IsdpTaskController {
 								}
 								if ("state".equals(name)) {
 									if ("0".equals(value.toString())) {
-										json.put(name, "´ý°ì");
+										json.put(name, "å¾…åŠž");
 										if (dataMap.get("intback") != null
 												&& "1".equals(dataMap.get(
 														"intback").toString())) {
-											json.put(name, "ÍË»Ø");
+											json.put(name, "é€€å›ž");
 										}
 									} else {
-										json.put(name, "ÒÑ°ì");
+										json.put(name, "å·²åŠž");
 									}
 								}
 							}

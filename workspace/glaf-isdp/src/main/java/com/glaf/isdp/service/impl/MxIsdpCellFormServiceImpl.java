@@ -51,7 +51,7 @@ public class MxIsdpCellFormServiceImpl implements IsdpCellFormService {
 	}
 
 	/**
-	 * 根据文件定义编号获取表单定义信息
+	 * 鏍规嵁鏂囦欢瀹氫箟缂栧彿鑾峰彇琛ㄥ崟瀹氫箟淇℃伅
 	 * 
 	 * @param filedotId
 	 * @return

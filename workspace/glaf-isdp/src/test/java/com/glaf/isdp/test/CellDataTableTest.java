@@ -18,7 +18,7 @@ public class CellDataTableTest extends AbstractTest {
 	public void testList() {
 		cellDataTableService = super.getBean("cellDataTableService");
 		CellDataTableQuery query = new CellDataTableQuery();
-		query.nameLike("¹¤³Ì");
+		query.nameLike("å·¥ç¨‹");
 		List<CellDataTable> rows = cellDataTableService
 				.getCellDataTablesByQueryCriteria(0, 10, query);
 		for (CellDataTable row : rows) {
@@ -33,8 +33,8 @@ public class CellDataTableTest extends AbstractTest {
 		for (int i = 0; i < 10; i++) {
 			Map<String, Object> dataMap = new HashMap<String, Object>();
 			dataMap.put("id", String.valueOf(i));
-			dataMap.put("cell_useradd1530_user1", "²âÊÔ1");
-			dataMap.put("cell_useradd1530_user2", "²âÊÔ2");
+			dataMap.put("cell_useradd1530_user1", "æµ‹è¯•1");
+			dataMap.put("cell_useradd1530_user2", "æµ‹è¯•2");
 			cellDataTableService.saveCellUserData("cell_useradd1530", dataMap);
 		}
 	}

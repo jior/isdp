@@ -34,7 +34,7 @@ import com.glaf.core.util.PageResult;
 public interface SysApplicationService {
 
 	/**
-	 * ±£´æ
+	 * ä¿å­˜
 	 * 
 	 * @param bean
 	 *            SysApplication
@@ -43,7 +43,7 @@ public interface SysApplicationService {
 	boolean create(SysApplication bean);
 
 	/**
-	 * É¾³ı
+	 * åˆ é™¤
 	 * 
 	 * @param id
 	 *            int
@@ -52,7 +52,7 @@ public interface SysApplicationService {
 	boolean delete(long id);
 
 	/**
-	 * É¾³ı
+	 * åˆ é™¤
 	 * 
 	 * @param bean
 	 *            SysApplication
@@ -61,7 +61,7 @@ public interface SysApplicationService {
 	boolean delete(SysApplication bean);
 
 	/**
-	 * ÅúÁ¿É¾³ı
+	 * æ‰¹é‡åˆ é™¤
 	 * 
 	 * @param id
 	 * @return
@@ -69,7 +69,7 @@ public interface SysApplicationService {
 	boolean deleteAll(long[] id);
 
 	/**
-	 * °´±àÂë²éÕÒ¶ÔÏó
+	 * æŒ‰ç¼–ç æŸ¥æ‰¾å¯¹è±¡
 	 * 
 	 * @param code
 	 *            String
@@ -78,7 +78,7 @@ public interface SysApplicationService {
 	SysApplication findByCode(String code);
 
 	/**
-	 * »ñÈ¡¶ÔÏó
+	 * è·å–å¯¹è±¡
 	 * 
 	 * @param id
 	 * @return
@@ -86,7 +86,7 @@ public interface SysApplicationService {
 	SysApplication findById(long id);
 
 	/**
-	 * °´Ãû³Æ²éÕÒ¶ÔÏó
+	 * æŒ‰åç§°æŸ¥æ‰¾å¯¹è±¡
 	 * 
 	 * @param name
 	 *            String
@@ -97,7 +97,7 @@ public interface SysApplicationService {
 	SysApplication findByNodeId(long nodeId);
 
 	/**
-	 * »ñÈ¡ÓÃ»§ÄÜ·ÃÎÊµ½µÄÄ£¿éÁĞ±í
+	 * è·å–ç”¨æˆ·èƒ½è®¿é—®åˆ°çš„æ¨¡å—åˆ—è¡¨
 	 * 
 	 * @param userId
 	 *            int
@@ -108,14 +108,14 @@ public interface SysApplicationService {
 	List<SysApplication> getAccessAppList(long parent, SysUser user);
 
 	/**
-	 * »ñÈ¡È«²¿ÁĞ±í
+	 * è·å–å…¨éƒ¨åˆ—è¡¨
 	 * 
 	 * @return List
 	 */
 	List<SysApplication> getApplicationList();
 
 	/**
-	 * »ñÈ¡ÁĞ±í
+	 * è·å–åˆ—è¡¨
 	 * 
 	 * @param parent
 	 *            int
@@ -124,7 +124,7 @@ public interface SysApplicationService {
 	List<SysApplication> getApplicationList(long parent);
 
 	/**
-	 * »ñÈ¡·ÖÒ³ÁĞ±í
+	 * è·å–åˆ†é¡µåˆ—è¡¨
 	 * 
 	 * @param parent
 	 *            int
@@ -137,7 +137,7 @@ public interface SysApplicationService {
 	PageResult getApplicationList(long parent, int pageNo, int pageSize);
 
 	/**
-	 * »ñÈ¡²Ëµ¥
+	 * è·å–èœå•
 	 * 
 	 * @param parent
 	 * @param userId
@@ -148,7 +148,7 @@ public interface SysApplicationService {
 	List<RealmInfo> getRealmInfos();
 
 	/**
-	 * »ñÈ¡½ÇÉ«²Ëµ¥Ö®json¶ÔÏó
+	 * è·å–è§’è‰²èœå•ä¹‹jsonå¯¹è±¡
 	 * 
 	 * @param roleCode
 	 * @return
@@ -156,7 +156,7 @@ public interface SysApplicationService {
 	JSONArray getRoleMenu(String roleCode);
 
 	/**
-	 * »ñÈ¡½ÇÉ«²Ëµ¥Ö®json¶ÔÏó
+	 * è·å–è§’è‰²èœå•ä¹‹jsonå¯¹è±¡
 	 * 
 	 * @param serviceUrl
 	 * @param roleCode
@@ -167,14 +167,14 @@ public interface SysApplicationService {
 	List<SysApplication> getSysApplicationByRoleCode(String roleCode);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
 	int getSysApplicationCountByQueryCriteria(SysApplicationQuery query);
 	
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡Ò»Ò³µÄÊı¾İ
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–ä¸€é¡µçš„æ•°æ®
 	 * 
 	 * @return
 	 */
@@ -184,48 +184,48 @@ public interface SysApplicationService {
 	TreeModel getTreeModelByAppId(long appId);
 
 	/**
-	 * »ñÈ¡ÓÃ»§Ä³¸ö·ÖÀàÏÂµÄÈ«²¿·ÖÀà½Úµã
+	 * è·å–ç”¨æˆ·æŸä¸ªåˆ†ç±»ä¸‹çš„å…¨éƒ¨åˆ†ç±»èŠ‚ç‚¹
 	 * 
 	 * @param parent
-	 *            ¸¸½Úµã±àºÅ
+	 *            çˆ¶èŠ‚ç‚¹ç¼–å·
 	 * @param userId
-	 *            ÓÃ»§µÇÂ¼ÕËºÅ
+	 *            ç”¨æˆ·ç™»å½•è´¦å·
 	 * @return
 	 */
 	List<TreeModel> getTreeModels(long parentId, String userId);
 
 	/**
-	 * »ñÈ¡Ä³¸ö½ÇÉ«±àÂëµÄÈ«²¿·ÖÀà½Úµã£¨°üº¬ÒÑ¾­Ê§Ğ§µÄ²Ëµ¥£©
+	 * è·å–æŸä¸ªè§’è‰²ç¼–ç çš„å…¨éƒ¨åˆ†ç±»èŠ‚ç‚¹ï¼ˆåŒ…å«å·²ç»å¤±æ•ˆçš„èœå•ï¼‰
 	 * 
 	 * @param roleCode
-	 *            ½ÇÉ«±àÂë
+	 *            è§’è‰²ç¼–ç 
 	 * @return
 	 */
 	List<TreeModel> getTreeModels(String roleCode);
 	
 	/**
-	 * »ñÈ¡ÓÃ»§²Ëµ¥Ö®json¶ÔÏó
+	 * è·å–ç”¨æˆ·èœå•ä¹‹jsonå¯¹è±¡
 	 * 
 	 * @param parentId
-	 *            ¸¸½Úµã±àºÅ
+	 *            çˆ¶èŠ‚ç‚¹ç¼–å·
 	 * @param userId
-	 *            ÓÃ»§µÇÂ¼ÕËºÅ
+	 *            ç”¨æˆ·ç™»å½•è´¦å·
 	 * @return
 	 */
 	JSONArray getUserMenu(long parentId, String userId);
 
 	/**
-	 * ÅÅĞò
+	 * æ’åº
 	 * 
 	 * @param bean
 	 *            SysApplication
 	 * @param operate
-	 *            int ²Ù×÷
+	 *            int æ“ä½œ
 	 */
 	void sort(long parent, SysApplication bean, int operate);
 
 	/**
-	 * ¸üĞÂ
+	 * æ›´æ–°
 	 * 
 	 * @param bean
 	 *            SysApplication

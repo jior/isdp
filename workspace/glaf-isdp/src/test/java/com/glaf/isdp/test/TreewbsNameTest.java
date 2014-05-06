@@ -17,7 +17,7 @@ public class TreewbsNameTest extends AbstractTest {
 	public void testList() {
 		treewbsNameService = super.getBean("treewbsNameService");
 		TreewbsNameQuery query = new TreewbsNameQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<TreewbsName> rows = treewbsNameService
 				.getTreewbsNamesByQueryCriteria(0, 10, query);
 		for (TreewbsName row : rows) {

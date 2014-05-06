@@ -17,7 +17,7 @@ import com.glaf.core.base.JSONable;
 import com.glaf.isdp.util.CellRepInfoJsonFactory;
 
 /**
- * 表格定义信息
+ * 琛ㄦ牸瀹氫箟淇℃伅
  */
 @Entity
 @Table(name = "cell_repinfo")
@@ -143,7 +143,7 @@ public class CellRepInfo implements Serializable, JSONable {
 	protected String istname;
 
 	/**
-	 * filedot_fileid 表格文件定义编号
+	 * filedot_fileid 琛ㄦ牸鏂囦欢瀹氫箟缂栧彿
 	 */
 	@Column(name = "filedot_fileid", length = 50)
 	protected String filedotFileid;

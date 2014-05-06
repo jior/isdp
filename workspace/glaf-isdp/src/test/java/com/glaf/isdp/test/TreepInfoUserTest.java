@@ -17,7 +17,7 @@ public class TreepInfoUserTest extends AbstractTest {
 	public void testList() {
 		treepInfoUserService = super.getBean("treepInfoUserService");
 		TreepInfoUserQuery query = new TreepInfoUserQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<TreepInfoUser> rows = treepInfoUserService
 				.getTreepInfoUsersByQueryCriteria(0, 10, query);
 		for (TreepInfoUser row : rows) {

@@ -67,10 +67,10 @@ public class BaseIdentityFactory {
 	protected static volatile SysUserService sysUserService;
 
 	/**
-	 * »ñÈ¡Î¯ÍĞÈË±àºÅ¼¯ºÏ£¨ÓÃ»§µÇÂ¼ÕËºÅµÄ¼¯ºÏ£©
+	 * è·å–å§”æ‰˜äººç¼–å·é›†åˆï¼ˆç”¨æˆ·ç™»å½•è´¦å·çš„é›†åˆï¼‰
 	 * 
 	 * @param assignTo
-	 *            ÊÜÍĞÈË±àºÅ£¨µÇÂ¼ÕËºÅ£©
+	 *            å—æ‰˜äººç¼–å·ï¼ˆç™»å½•è´¦å·ï¼‰
 	 * @return
 	 */
 	public static List<String> getAgentIds(String assignTo) {
@@ -84,7 +84,7 @@ public class BaseIdentityFactory {
 						continue;
 					}
 					switch (agent.getAgentType()) {
-					case 0:// È«¾Ö´úÀí
+					case 0:// å…¨å±€ä»£ç†
 						agentIds.add(agent.getAssignFrom());
 						break;
 					default:
@@ -97,12 +97,12 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * »ñÈ¡Ä³¸ö²¿ÃÅ¼°ËùÓĞÏÂ¼¶²¿ÃÅµÄÄ³¸ö½ÇÉ«µÄÓÃ»§
+	 * è·å–æŸä¸ªéƒ¨é—¨åŠæ‰€æœ‰ä¸‹çº§éƒ¨é—¨çš„æŸä¸ªè§’è‰²çš„ç”¨æˆ·
 	 * 
 	 * @param deptId
-	 *            ²¿ÃÅ±àºÅ
+	 *            éƒ¨é—¨ç¼–å·
 	 * @param roleId
-	 *            ½ÇÉ«±àºÅ
+	 *            è§’è‰²ç¼–å·
 	 * @return
 	 */
 	public static List<SysUser> getChildrenMembershipUsers(Long deptId,
@@ -112,12 +112,12 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * »ñÈ¡Ä³¸ö²¿ÃÅ¼°ËùÓĞÏÂ¼¶²¿ÃÅµÄÄ³¸ö½ÇÉ«µÄÓÃ»§
+	 * è·å–æŸä¸ªéƒ¨é—¨åŠæ‰€æœ‰ä¸‹çº§éƒ¨é—¨çš„æŸä¸ªè§’è‰²çš„ç”¨æˆ·
 	 * 
 	 * @param deptId
-	 *            ²¿ÃÅ±àºÅ
+	 *            éƒ¨é—¨ç¼–å·
 	 * @param roleId
-	 *            ½ÇÉ«±àºÅ
+	 *            è§’è‰²ç¼–å·
 	 * @return
 	 */
 	public static List<SysUser> getChildrenMembershipUsers(Long deptId,
@@ -128,10 +128,10 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * ¸ù¾İ²¿ÃÅ´úÂë»ñÈ¡²¿ÃÅ(sys_department±íµÄcode×Ö¶Î)
+	 * æ ¹æ®éƒ¨é—¨ä»£ç è·å–éƒ¨é—¨(sys_departmentè¡¨çš„codeå­—æ®µ)
 	 * 
 	 * @param code
-	 *            ²¿ÃÅ´úÂë
+	 *            éƒ¨é—¨ä»£ç 
 	 * @return
 	 */
 	public static SysDepartment getDepartmentByCode(String code) {
@@ -140,10 +140,10 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * ¸ù¾İ²¿ÃÅ±àºÅ»ñÈ¡²¿ÃÅ(sys_department±íµÄid×Ö¶Î)
+	 * æ ¹æ®éƒ¨é—¨ç¼–å·è·å–éƒ¨é—¨(sys_departmentè¡¨çš„idå­—æ®µ)
 	 * 
 	 * @param id
-	 *            ²¿ÃÅID
+	 *            éƒ¨é—¨ID
 	 * @return
 	 */
 	public static SysDepartment getDepartmentById(Long id) {
@@ -152,10 +152,10 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * ¸ù¾İ²¿ÃÅ´úÂë»ñÈ¡²¿ÃÅ(sys_department±íµÄdeptno×Ö¶Î)
+	 * æ ¹æ®éƒ¨é—¨ä»£ç è·å–éƒ¨é—¨(sys_departmentè¡¨çš„deptnoå­—æ®µ)
 	 * 
 	 * @param deptno
-	 *            ²¿ÃÅdeptno
+	 *            éƒ¨é—¨deptno
 	 * @return
 	 */
 	public static SysDepartment getDepartmentByNo(String deptno) {
@@ -164,7 +164,7 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * »ñÈ¡²¿ÃÅMap
+	 * è·å–éƒ¨é—¨Map
 	 * 
 	 * @return
 	 */
@@ -181,7 +181,7 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * »ñÈ¡È«²¿²¿ÃÅ
+	 * è·å–å…¨éƒ¨éƒ¨é—¨
 	 * 
 	 * @return
 	 */
@@ -199,7 +199,7 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * »ñÈ¡È«²¿ÓÃ»§
+	 * è·å–å…¨éƒ¨ç”¨æˆ·
 	 * 
 	 * @return
 	 */
@@ -215,12 +215,12 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * »ñÈ¡Ä³¸ö²¿ÃÅÄ³¸ö½ÇÉ«µÄÓÃ»§
+	 * è·å–æŸä¸ªéƒ¨é—¨æŸä¸ªè§’è‰²çš„ç”¨æˆ·
 	 * 
 	 * @param deptIds
-	 *            ²¿ÃÅID
+	 *            éƒ¨é—¨ID
 	 * @param roleId
-	 *            ½ÇÉ«ID
+	 *            è§’è‰²ID
 	 * @return
 	 */
 	public static List<SysUser> getMembershipUsers(List<Long> deptIds,
@@ -229,12 +229,12 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * »ñÈ¡Ä³¸ö²¿ÃÅÄ³¸ö½ÇÉ«µÄÓÃ»§
+	 * è·å–æŸä¸ªéƒ¨é—¨æŸä¸ªè§’è‰²çš„ç”¨æˆ·
 	 * 
 	 * @param deptIds
-	 *            ²¿ÃÅID
+	 *            éƒ¨é—¨ID
 	 * @param roleCode
-	 *            ½ÇÉ«´úÂë
+	 *            è§’è‰²ä»£ç 
 	 * @return
 	 */
 	public static List<SysUser> getMembershipUsers(List<Long> deptIds,
@@ -245,10 +245,10 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * »ñÈ¡Ä³¸ö²¿ÃÅµÄÓÃ»§
+	 * è·å–æŸä¸ªéƒ¨é—¨çš„ç”¨æˆ·
 	 * 
 	 * @param deptId
-	 *            ²¿ÃÅID
+	 *            éƒ¨é—¨ID
 	 * @return
 	 */
 	public static List<SysUser> getMembershipUsers(Long deptId) {
@@ -256,12 +256,12 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * »ñÈ¡Ä³¸ö²¿ÃÅÄ³¸ö½ÇÉ«µÄÓÃ»§
+	 * è·å–æŸä¸ªéƒ¨é—¨æŸä¸ªè§’è‰²çš„ç”¨æˆ·
 	 * 
 	 * @param deptId
-	 *            ²¿ÃÅID
+	 *            éƒ¨é—¨ID
 	 * @param roleId
-	 *            ½ÇÉ«ID
+	 *            è§’è‰²ID
 	 * @return
 	 */
 	public static List<SysUser> getMembershipUsers(Long deptId, Long roleId) {
@@ -269,12 +269,12 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * »ñÈ¡Ä³¸ö²¿ÃÅÄ³¸ö½ÇÉ«µÄÓÃ»§
+	 * è·å–æŸä¸ªéƒ¨é—¨æŸä¸ªè§’è‰²çš„ç”¨æˆ·
 	 * 
 	 * @param deptId
-	 *            ²¿ÃÅID
+	 *            éƒ¨é—¨ID
 	 * @param roleCode
-	 *            ½ÇÉ«´úÂë
+	 *            è§’è‰²ä»£ç 
 	 * @return
 	 */
 	public static List<SysUser> getMembershipUsers(Long deptId, String roleCode) {
@@ -283,12 +283,12 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * »ñÈ¡Ä³¸ö²¿ÃÅÖ¸¶¨¼¶±ğµÄÉÏ¼¶²¿·Ö°üº¬µÄËùÓĞ×Ó²¿ÃÅ
+	 * è·å–æŸä¸ªéƒ¨é—¨æŒ‡å®šçº§åˆ«çš„ä¸Šçº§éƒ¨åˆ†åŒ…å«çš„æ‰€æœ‰å­éƒ¨é—¨
 	 * 
 	 * @param deptId
-	 *            ²¿ÃÅ±àºÅ
+	 *            éƒ¨é—¨ç¼–å·
 	 * @param deptLevel
-	 *            ¼¶±ğ 0-¹«Ë¾,1(B)-²¿,2(K)-¿Æ,3-Ïµ,4-ÊÒ(°à)
+	 *            çº§åˆ« 0-å…¬å¸,1(B)-éƒ¨,2(K)-ç§‘,3-ç³»,4-å®¤(ç­)
 	 * @return
 	 */
 	public static List<SysDepartment> getParentAndChildrenDepartments(
@@ -302,10 +302,10 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * Í¨¹ı½ÇÉ«´úÂë»ñÈ¡½ÇÉ«
+	 * é€šè¿‡è§’è‰²ä»£ç è·å–è§’è‰²
 	 * 
 	 * @param code
-	 *            ½ÇÉ«´úÂë
+	 *            è§’è‰²ä»£ç 
 	 * @return
 	 */
 	public static SysRole getRoleByCode(String code) {
@@ -313,10 +313,10 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * Í¨¹ı½ÇÉ«±àºÅ»ñÈ¡½ÇÉ«
+	 * é€šè¿‡è§’è‰²ç¼–å·è·å–è§’è‰²
 	 * 
 	 * @param id
-	 *            ½ÇÉ«ID
+	 *            è§’è‰²ID
 	 * @return
 	 */
 	public static SysRole getRoleById(Long id) {
@@ -324,7 +324,7 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * »ñÈ¡È«²¿½ÇÉ« Map
+	 * è·å–å…¨éƒ¨è§’è‰² Map
 	 * 
 	 * @return
 	 */
@@ -340,7 +340,7 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * »ñÈ¡½ÇÉ«²Ëµ¥Ö®json¶ÔÏó
+	 * è·å–è§’è‰²èœå•ä¹‹jsonå¯¹è±¡
 	 * 
 	 * @param roleCode
 	 * @return
@@ -356,10 +356,10 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * »ñÈ¡½ÇÉ«²Ëµ¥Ö®json¶ÔÏó
+	 * è·å–è§’è‰²èœå•ä¹‹jsonå¯¹è±¡
 	 * 
 	 * @param serviceUrl
-	 *            ·şÎñµØÖ·,Èç:http://192.168.1.1:8080/glaf
+	 *            æœåŠ¡åœ°å€,å¦‚:http://192.168.1.1:8080/glaf
 	 * @param roleCode
 	 * @return
 	 */
@@ -368,7 +368,7 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * »ñÈ¡È«²¿½ÇÉ«
+	 * è·å–å…¨éƒ¨è§’è‰²
 	 * 
 	 * @return
 	 */
@@ -416,10 +416,10 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * ¸ù¾İÓÃ»§Ãû»ñÈ¡ÓÃ»§¶ÔÏó
+	 * æ ¹æ®ç”¨æˆ·åè·å–ç”¨æˆ·å¯¹è±¡
 	 * 
 	 * @param actorId
-	 *            ÓÃ»§µÇÂ¼ÕËºÅ
+	 *            ç”¨æˆ·ç™»å½•è´¦å·
 	 * @return
 	 */
 	public static SysUser getSysUser(String actorId) {
@@ -441,10 +441,10 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * ¸ù¾İÓÃ»§Ãû»ñÈ¡ÓÃ»§¶ÔÏó
+	 * æ ¹æ®ç”¨æˆ·åè·å–ç”¨æˆ·å¯¹è±¡
 	 * 
 	 * @param actorId
-	 *            ÓÃ»§µÇÂ¼ÕËºÅ
+	 *            ç”¨æˆ·ç™»å½•è´¦å·
 	 * @return
 	 */
 	public static SysUser getSysUserWithAll(String actorId) {
@@ -456,7 +456,7 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * »ñÈ¡È«²¿ÓÃ»§Map
+	 * è·å–å…¨éƒ¨ç”¨æˆ·Map
 	 * 
 	 * @return
 	 */
@@ -472,12 +472,12 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * »ñÈ¡ÓÃ»§²Ëµ¥
+	 * è·å–ç”¨æˆ·èœå•
 	 * 
 	 * @param parentId
-	 *            ¸¸Ó¦ÓÃ±àºÅ
+	 *            çˆ¶åº”ç”¨ç¼–å·
 	 * @param actorId
-	 *            ÓÃ»§µÇÂ¼ÕËºÅ
+	 *            ç”¨æˆ·ç™»å½•è´¦å·
 	 * @return
 	 */
 	public static JSONArray getUserMenu(Long parentId, String actorId) {
@@ -485,7 +485,7 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * »ñÈ¡Ä³Ğ©ÓÃ»§µÄ½ÇÉ«´úÂë
+	 * è·å–æŸäº›ç”¨æˆ·çš„è§’è‰²ä»£ç 
 	 * 
 	 * @param actorIds
 	 * @return
@@ -508,10 +508,10 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * »ñÈ¡Ä³¸öÓÃ»§¼°´úÀíÈËµÄ½ÇÉ«±àºÅ
+	 * è·å–æŸä¸ªç”¨æˆ·åŠä»£ç†äººçš„è§’è‰²ç¼–å·
 	 * 
 	 * @param actorId
-	 *            ÓÃ»§µÇÂ¼ÕËºÅ
+	 *            ç”¨æˆ·ç™»å½•è´¦å·
 	 * @return
 	 */
 	public static List<String> getUserRoles(String actorId) {
@@ -521,7 +521,7 @@ public class BaseIdentityFactory {
 	}
 
 	/**
-	 * »ñÈ¡È«²¿ÓÃ»§
+	 * è·å–å…¨éƒ¨ç”¨æˆ·
 	 * 
 	 * @return
 	 */

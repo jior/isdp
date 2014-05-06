@@ -11,7 +11,7 @@ import com.glaf.isdp.query.*;
 public interface IFlowActivityDefService {
 
 	/**
-	 * ¸ù¾İÖ÷¼üÉ¾³ı¼ÇÂ¼
+	 * æ ¹æ®ä¸»é”®åˆ é™¤è®°å½•
 	 * 
 	 * @return
 	 */
@@ -19,28 +19,28 @@ public interface IFlowActivityDefService {
 	void deleteById(String id);
 
 	/**
-	 * ¸ù¾İÖ÷¼ü»ñÈ¡Ò»Ìõ¼ÇÂ¼
+	 * æ ¹æ®ä¸»é”®è·å–ä¸€æ¡è®°å½•
 	 * 
 	 * @return
 	 */
 	FlowActivityDef getFlowActivityDef(String id);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
 	int getFlowActivityDefCount(Map<String, Object> parameter);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
 	int getFlowActivityDefCountByQueryCriteria(FlowActivityDefQuery query);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
@@ -50,21 +50,21 @@ public interface IFlowActivityDefService {
 	List<FlowActivityDef> getFlowActivityDefsByMainId(String mainId);
 	
 	/**
-	 * ¸ù¾İÁ÷³Ì±àºÅ»ñÈ¡Á÷³ÌµÄ»î¶¯½Úµã
+	 * æ ¹æ®æµç¨‹ç¼–å·è·å–æµç¨‹çš„æ´»åŠ¨èŠ‚ç‚¹
 	 * @param processDefId
 	 * @return
 	 */
 	List<FlowActivityDef> getFlowActivityDefsByProcessDefId(String processDefId);
 	
 	/**
-	 * ¸ù¾İÁ÷³Ì±àºÅ»ñÈ¡Á÷³Ì»îÔ¾½ÚµãµÄĞÅÏ¢(ÕıÔÚÔËĞĞÖĞµÄ½ÚµãĞÅÏ¢)
+	 * æ ¹æ®æµç¨‹ç¼–å·è·å–æµç¨‹æ´»è·ƒèŠ‚ç‚¹çš„ä¿¡æ¯(æ­£åœ¨è¿è¡Œä¸­çš„èŠ‚ç‚¹ä¿¡æ¯)
 	 * @param processId
 	 * @return
 	 */
 	List<FlowActivityDef> getCurrentActiveFlowActivityDefsByProcessId(String processId);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡Ò»Ò³µÄÊı¾İ
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–ä¸€é¡µçš„æ•°æ®
 	 * 
 	 * @return
 	 */
@@ -72,14 +72,14 @@ public interface IFlowActivityDefService {
 			int pageSize, FlowActivityDefQuery query);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
 	List<FlowActivityDef> list(FlowActivityDefQuery query);
 
 	/**
-	 * ±£´æÒ»Ìõ¼ÇÂ¼
+	 * ä¿å­˜ä¸€æ¡è®°å½•
 	 * 
 	 * @return
 	 */

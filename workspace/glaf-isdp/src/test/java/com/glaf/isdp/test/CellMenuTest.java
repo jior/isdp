@@ -16,7 +16,7 @@ public class CellMenuTest extends AbstractTest {
 	public void testList() {
 		cellMenuService = super.getBean("cellMenuService");
 		CellMenuQuery query = new CellMenuQuery();
-		query.nameLike("¹¤³Ì");
+		query.nameLike("å·¥ç¨‹");
 		List<CellMenu> rows = cellMenuService.getCellMenusByQueryCriteria(0,
 				10, query);
 		for (CellMenu row : rows) {

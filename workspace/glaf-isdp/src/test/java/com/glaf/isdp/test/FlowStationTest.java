@@ -17,7 +17,7 @@ public class FlowStationTest extends AbstractTest {
 	public void testList() {
 		flowStationService = super.getBean("flowStationService");
 		FlowStationQuery query = new FlowStationQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<FlowStation> rows = flowStationService
 				.getFlowStationsByQueryCriteria(0, 10, query);
 		for (FlowStation row : rows) {

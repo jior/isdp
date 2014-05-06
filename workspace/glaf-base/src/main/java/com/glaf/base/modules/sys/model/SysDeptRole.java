@@ -38,19 +38,19 @@ public class SysDeptRole implements Serializable, JSONable {
 	protected Set<SysApplication> apps = new HashSet<SysApplication>();
 
 	/**
-	 * ±àÂë
+	 * ç¼–ç 
 	 */
 	@Column(name = "CODE", length = 50)
 	protected String code;
 
 	/**
-	 * ´´½¨ÈË
+	 * åˆ›å»ºäºº
 	 */
 	@Column(name = "CREATEBY", length = 50)
 	protected String createBy;
 
 	/**
-	 * ´´½¨ÈÕÆÚ
+	 * åˆ›å»ºæ—¥æœŸ
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "CREATEDATE")
@@ -60,7 +60,7 @@ public class SysDeptRole implements Serializable, JSONable {
 	protected SysDepartment dept;
 
 	/**
-	 * ²¿ÃÅ±àºÅ
+	 * éƒ¨é—¨ç¼–å·
 	 */
 	@Column(name = "DEPTID")
 	protected long deptId;
@@ -69,7 +69,7 @@ public class SysDeptRole implements Serializable, JSONable {
 	protected Set<SysFunction> functions = new HashSet<SysFunction>();
 
 	/**
-	 * ¼¶±ğ
+	 * çº§åˆ«
 	 */
 	@Column(name = "GRADE")
 	protected int grade;
@@ -82,13 +82,13 @@ public class SysDeptRole implements Serializable, JSONable {
 	protected SysRole role;
 
 	/**
-	 * ĞòºÅ
+	 * åºå·
 	 */
 	@Column(name = "SORT")
 	protected int sort;
 
 	/**
-	 * ½ÇÉ«±àºÅ
+	 * è§’è‰²ç¼–å·
 	 */
 	@Column(name = "ROLEID")
 	protected long roleId;

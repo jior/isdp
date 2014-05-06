@@ -30,6 +30,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.glaf.base.modules.sys.SysConstants;
 import com.glaf.base.modules.sys.mapper.SysDeptRoleMapper;
 import com.glaf.base.modules.sys.mapper.SysRoleMapper;
@@ -37,6 +39,10 @@ import com.glaf.base.modules.sys.model.SysRole;
 import com.glaf.base.modules.sys.query.SysDepartmentQuery;
 import com.glaf.base.modules.sys.query.SysRoleQuery;
 import com.glaf.base.modules.sys.service.SysRoleService;
+import com.glaf.base.modules.sys.util.SysRoleJsonFactory;
+
+import com.glaf.core.cache.CacheFactory;
+import com.glaf.core.config.SystemConfig;
 import com.glaf.core.id.IdGenerator;
 import com.glaf.core.util.PageResult;
 
@@ -131,7 +137,20 @@ public class SysRoleServiceImpl implements SysRoleService {
 	}
 
 	public SysRole findById(long id) {
-		return this.getSysRole(id);
+		String cacheKey = "sys_role_" + id;
+		if (SystemConfig.getBoolean("use_query_cache")
+				&& CacheFactory.getString(cacheKey) != null) {
+			String text = CacheFactory.getString(cacheKey);
+			JSONObject json = JSON.parseObject(text);
+			return SysRoleJsonFactory.jsonToObject(json);
+		}
+
+		SysRole sysRole = sysRoleMapper.getSysRoleById(id);
+		if (sysRole != null && SystemConfig.getBoolean("use_query_cache")) {
+			JSONObject json = sysRole.toJsonObject();
+			CacheFactory.put(cacheKey, json.toJSONString());
+		}
+		return sysRole;
 	}
 
 	public SysRole findByName(String name) {
@@ -151,8 +170,7 @@ public class SysRoleServiceImpl implements SysRoleService {
 		if (id == null) {
 			return null;
 		}
-		SysRole sysRole = sysRoleMapper.getSysRoleById(id);
-		return sysRole;
+		return this.findById(id);
 	}
 
 	public int getSysRoleCountByQueryCriteria(SysRoleQuery query) {
@@ -172,12 +190,12 @@ public class SysRoleServiceImpl implements SysRoleService {
 	}
 
 	public PageResult getSysRoleList(int pageNo, int pageSize) {
-		// ¼ÆËã×ÜÊı
+		// è®¡ç®—æ€»æ•°
 		PageResult pager = new PageResult();
 		SysRoleQuery query = new SysRoleQuery();
 
 		int count = this.count(query);
-		if (count == 0) {// ½á¹û¼¯Îª¿Õ
+		if (count == 0) {// ç»“æœé›†ä¸ºç©º
 			pager.setPageSize(pageSize);
 			return pager;
 		}
@@ -241,26 +259,26 @@ public class SysRoleServiceImpl implements SysRoleService {
 	}
 
 	/**
-	 * ÅÅĞò
+	 * æ’åº
 	 * 
 	 * @param bean
 	 *            SysRole
 	 * @param operate
-	 *            int ²Ù×÷
+	 *            int æ“ä½œ
 	 */
 	@Transactional
 	public void sort(SysRole bean, int operate) {
 		if (bean == null)
 			return;
-		if (operate == SysConstants.SORT_PREVIOUS) {// Ç°ÒÆ
+		if (operate == SysConstants.SORT_PREVIOUS) {// å‰ç§»
 			sortByPrevious(bean);
-		} else if (operate == SysConstants.SORT_FORWARD) {// ºóÒÆ
+		} else if (operate == SysConstants.SORT_FORWARD) {// åç§»
 			sortByForward(bean);
 		}
 	}
 
 	/**
-	 * ÏòºóÒÆ¶¯ÅÅĞò
+	 * å‘åç§»åŠ¨æ’åº
 	 * 
 	 * @param bean
 	 */
@@ -269,36 +287,36 @@ public class SysRoleServiceImpl implements SysRoleService {
 		query.setSortLessThan(bean.getSort());
 		query.setOrderBy(" E.TASKSORT desc ");
 		List<SysRole> list = this.list(query);
-		if (list != null && list.size() > 0) {// ÓĞ¼ÇÂ¼
+		if (list != null && list.size() > 0) {// æœ‰è®°å½•
 			SysRole temp = (SysRole) list.get(0);
 			int i = bean.getSort();
 			bean.setSort(temp.getSort());
-			this.update(bean);// ¸üĞÂbean
+			this.update(bean);// æ›´æ–°bean
 
 			temp.setSort(i);
-			this.update(temp);// ¸üĞÂtemp
+			this.update(temp);// æ›´æ–°temp
 		}
 	}
 
 	/**
-	 * ÏòÇ°ÒÆ¶¯ÅÅĞò
+	 * å‘å‰ç§»åŠ¨æ’åº
 	 * 
 	 * @param bean
 	 */
 	private void sortByPrevious(SysRole bean) {
 		SysRoleQuery query = new SysRoleQuery();
 		query.setSortGreaterThan(bean.getSort());
-		// ²éÕÒÇ°Ò»¸ö¶ÔÏó
+		// æŸ¥æ‰¾å‰ä¸€ä¸ªå¯¹è±¡
 
 		List<SysRole> list = this.list(query);
-		if (list != null && list.size() > 0) {// ÓĞ¼ÇÂ¼
+		if (list != null && list.size() > 0) {// æœ‰è®°å½•
 			SysRole temp = (SysRole) list.get(0);
 			int i = bean.getSort();
 			bean.setSort(temp.getSort());
-			this.update(bean);// ¸üĞÂbean
+			this.update(bean);// æ›´æ–°bean
 
 			temp.setSort(i);
-			this.update(temp);// ¸üĞÂtemp
+			this.update(temp);// æ›´æ–°temp
 		}
 	}
 
@@ -306,6 +324,8 @@ public class SysRoleServiceImpl implements SysRoleService {
 	public boolean update(SysRole bean) {
 		bean.setUpdateDate(new Date());
 		sysRoleMapper.updateSysRole(bean);
+		String cacheKey = "sys_role_" + bean.getId();
+		CacheFactory.remove(cacheKey);
 		return true;
 	}
 }

@@ -17,7 +17,7 @@ public class NetRoleUseTest extends AbstractTest {
 	public void testList() {
 		netRoleUseService = super.getBean("netRoleUseService");
 		NetRoleUseQuery query = new NetRoleUseQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<NetRoleUse> rows = netRoleUseService
 				.getNetRoleUsesByQueryCriteria(0, 10, query);
 		for (NetRoleUse row : rows) {

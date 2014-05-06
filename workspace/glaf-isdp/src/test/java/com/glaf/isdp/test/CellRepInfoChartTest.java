@@ -17,7 +17,7 @@ public class CellRepInfoChartTest extends AbstractTest {
 	public void testList() {
 		cellRepInfoChartService = super.getBean("cellRepInfoChartService");
 		CellRepInfoChartQuery query = new CellRepInfoChartQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<CellRepInfoChart> rows = cellRepInfoChartService
 				.getCellRepInfoChartsByQueryCriteria(0, 10, query);
 		for (CellRepInfoChart row : rows) {

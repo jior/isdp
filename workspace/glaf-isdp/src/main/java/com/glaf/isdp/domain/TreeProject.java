@@ -17,7 +17,7 @@ import com.glaf.core.base.JSONable;
 import com.glaf.isdp.util.TreeProjectJsonFactory;
 
 /**
- * ¹¤³Ì·ÖÀà½á¹¹Ê÷
+ * å·¥ç¨‹åˆ†ç±»ç»“æž„æ ‘
  * 
  */
 @Entity

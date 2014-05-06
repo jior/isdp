@@ -17,7 +17,7 @@ public class TreevmainTest extends AbstractTest {
 	public void testList() {
 		treevmainService = super.getBean("treevmainService");
 		TreevmainQuery query = new TreevmainQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<Treevmain> rows = treevmainService
 				.getTreevmainsByQueryCriteria(0, 10, query);
 		for (Treevmain row : rows) {

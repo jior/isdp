@@ -69,7 +69,7 @@ public class SysUserRoleResource {
 		String processNames = request.getParameter("processNames");
 		String processDescriptions = request
 				.getParameter("processDescriptions");
-		if (!sysUserRoleService.isAuthorized(fromUserId, toUserId)) {// ÒÑÊÚÈ¨
+		if (!sysUserRoleService.isAuthorized(fromUserId, toUserId)) {// å·²æˆæƒ
 			sysUserRoleService.addRole(fromUserId, toUserId, startDate,
 					endDate, mark, processNames, processDescriptions);
 		}
@@ -91,7 +91,7 @@ public class SysUserRoleResource {
 		String[] ids = toUserIds.split(",");
 		for (int i = 0; i < ids.length; i++) {
 			String toUserId = ids[i];
-			if (!sysUserRoleService.isAuthorized(fromUserId, toUserId)) {// ÒÑÊÚÈ¨
+			if (!sysUserRoleService.isAuthorized(fromUserId, toUserId)) {// å·²æˆæƒ
 				sysUserRoleService.addRole(fromUserId, toUserId, startDate,
 						endDate, mark, processNames, processDescriptions);
 			}
@@ -124,7 +124,7 @@ public class SysUserRoleResource {
 	}
 
 	/**
-	 * ±£´æÓÃ»§ÊÚÈ¨
+	 * ä¿å­˜ç”¨æˆ·æˆæƒ
 	 * 
 	 * @param request
 	 * @param uriInfo
@@ -141,13 +141,13 @@ public class SysUserRoleResource {
 		String[] userIds = ParamUtil.getParameterValues(request, "userIds");
 
 		SysUser user = sysUserService.findByAccount(fromUserId);
-		SysUser rootUser = sysUserService.findByAccount("root");// ¹ÜÀíÔ±
+		SysUser rootUser = sysUserService.findByAccount("root");// ç®¡ç†å‘˜
 
 		String msgStr = user.getName() + "[" + user.getAccount()
-				+ "]µÄÊÜÈ¨ÁĞ±íÈçÏÂ:<br><br>";
+				+ "]çš„å—æƒåˆ—è¡¨å¦‚ä¸‹:<br><br>";
 		ViewMessages messages = new ViewMessages();
 		if (fromUserId != null && userIds.length > 0) {
-			// È¡µÃÊÚÈ¨ÁĞ±í
+			// å–å¾—æˆæƒåˆ—è¡¨
 			List userList = sysUserRoleService.getAuthorizedUser(user);
 			logger.info("userList.size()=>" + userList.size());
 
@@ -164,11 +164,11 @@ public class SysUserRoleResource {
 						Object[] bean = (Object[]) userList.get(j);
 						SysUser authorUser = (SysUser) bean[0];
 						if (StringUtils.equals(authorUser.getActorId(),
-								sysUser.getActorId())) {// ÒÑÊÚÈ¨
-							msgStr = msgStr + "&nbsp;&nbsp;&nbsp;&nbsp;ĞŞ¸ÄÊÚÈ¨=>"
+								sysUser.getActorId())) {// å·²æˆæƒ
+							msgStr = msgStr + "&nbsp;&nbsp;&nbsp;&nbsp;ä¿®æ”¹æˆæƒ=>"
 									+ sysUser.getName() + "["
 									+ sysUser.getAccount() + "]&nbsp;&nbsp;"
-									+ startDate + "ÖÁ" + endDate + "<br>";
+									+ startDate + "è‡³" + endDate + "<br>";
 							logger.info(msgStr);
 							userList.remove(j);
 
@@ -176,9 +176,9 @@ public class SysUserRoleResource {
 						}
 					}
 
-					msgStr = msgStr + "&nbsp;&nbsp;&nbsp;&nbsp;Ìí¼ÓÊÚÈ¨=>"
+					msgStr = msgStr + "&nbsp;&nbsp;&nbsp;&nbsp;æ·»åŠ æˆæƒ=>"
 							+ sysUser.getName() + "[" + sysUser.getAccount()
-							+ "]&nbsp;&nbsp;" + startDate + "ÖÁ" + endDate
+							+ "]&nbsp;&nbsp;" + startDate + "è‡³" + endDate
 							+ "<br>";
 					logger.info(msgStr);
 				} else {
@@ -195,10 +195,10 @@ public class SysUserRoleResource {
 				SysUser authorUser = (SysUser) bean[0];
 				Date aStartDate = (Date) bean[1];
 				Date aEndDate = (Date) bean[2];
-				msgStr = msgStr + "&nbsp;&nbsp;&nbsp;&nbsp;È¡ÏûÊÚÈ¨=>"
+				msgStr = msgStr + "&nbsp;&nbsp;&nbsp;&nbsp;å–æ¶ˆæˆæƒ=>"
 						+ authorUser.getName() + "[" + authorUser.getAccount()
 						+ "]&nbsp;&nbsp;" + DateUtils.getDateTime(aStartDate)
-						+ "ÖÁ" + DateUtils.getDateTime(aEndDate) + "<br>";
+						+ "è‡³" + DateUtils.getDateTime(aEndDate) + "<br>";
 				logger.info(msgStr);
 			}
 		} else {
@@ -208,7 +208,7 @@ public class SysUserRoleResource {
 			return new ModelAndView("show_msg");
 		}
 
-		if (sendMail(user, rootUser, "ÊÚÈ¨Êé", msgStr)) {
+		if (sendMail(user, rootUser, "æˆæƒä¹¦", msgStr)) {
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"sys.author_success"));
 		} else {
@@ -218,12 +218,12 @@ public class SysUserRoleResource {
 
 		MessageUtils.addMessages(request, messages);
 		request.setAttribute("refresh", "false");
-		// ÏÔÊ¾ÁĞ±íÒ³Ãæ
+		// æ˜¾ç¤ºåˆ—è¡¨é¡µé¢
 		return new ModelAndView("show_json_msg");
 	}
 
 	/**
-	 * Ïò¹ÜÀíÔ±·¢ËÍÊÚÈ¨µçÓÊ
+	 * å‘ç®¡ç†å‘˜å‘é€æˆæƒç”µé‚®
 	 * 
 	 * @param fromUser
 	 * @param toUser

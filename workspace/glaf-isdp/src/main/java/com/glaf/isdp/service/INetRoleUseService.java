@@ -11,7 +11,7 @@ import com.glaf.isdp.query.*;
 public interface INetRoleUseService {
 
 	/**
-	 * ¸ù¾İÖ÷¼üÉ¾³ı¼ÇÂ¼
+	 * æ ¹æ®ä¸»é”®åˆ é™¤è®°å½•
 	 * 
 	 * @return
 	 */
@@ -19,49 +19,49 @@ public interface INetRoleUseService {
 	void deleteById(int id);
 
 	/**
-	 * ¸ù¾İÖ÷¼ü»ñÈ¡Ò»Ìõ¼ÇÂ¼
+	 * æ ¹æ®ä¸»é”®è·å–ä¸€æ¡è®°å½•
 	 * 
 	 * @return
 	 */
 	NetRoleUse getNetRoleUse(int id);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
 	int getNetRoleUseCount(Map<String, Object> parameter);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
 	int getNetRoleUseCountByQueryCriteria(NetRoleUseQuery query);
 	
 	/**
-	 * »ñÈ¡Ä³¸ö½ÇÉ«µÄ½ÇÉ«Ê÷±íÒıÓÃ
+	 * è·å–æŸä¸ªè§’è‰²çš„è§’è‰²æ ‘è¡¨å¼•ç”¨
 	 * @param roleId
 	 * @return
 	 */
 	List<NetRoleUse> getNetRoleUsesByRoleId(int roleId);
 	
 	/**
-	 * »ñÈ¡Ä³¸öÓÃ»§µÄ½ÇÉ«ÒıÓÃ
+	 * è·å–æŸä¸ªç”¨æˆ·çš„è§’è‰²å¼•ç”¨
 	 * @param userId
 	 * @return
 	 */
 	List<NetRoleUse> getNetRoleUsesByUserId(String userId);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
 	List<NetRoleUse> getNetRoleUses(Map<String, Object> parameter);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡Ò»Ò³µÄÊı¾İ
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–ä¸€é¡µçš„æ•°æ®
 	 * 
 	 * @return
 	 */
@@ -69,14 +69,14 @@ public interface INetRoleUseService {
 			NetRoleUseQuery query);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
 	List<NetRoleUse> list(NetRoleUseQuery query);
 
 	/**
-	 * ±£´æÒ»Ìõ¼ÇÂ¼
+	 * ä¿å­˜ä¸€æ¡è®°å½•
 	 * 
 	 * @return
 	 */

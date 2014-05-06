@@ -16,7 +16,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.glaf.core.base.JSONable;
 
 /**
- * ϵͳ����İ�ť��Ĭ��ģ�壩
+ * 系统定义的按钮（默认模板）
  */
 @Entity
 @Table(name = "cell_treedot_per")

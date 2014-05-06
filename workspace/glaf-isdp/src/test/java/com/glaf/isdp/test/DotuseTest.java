@@ -17,7 +17,7 @@ public class DotuseTest extends AbstractTest {
 	public void testList() {
 		dotuseService = super.getBean("dotuseService");
 		DotuseQuery query = new DotuseQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<IsdpDotuse> rows = dotuseService
 				.getDotusesByQueryCriteria(0, 10, query);
 		for (IsdpDotuse row : rows) {

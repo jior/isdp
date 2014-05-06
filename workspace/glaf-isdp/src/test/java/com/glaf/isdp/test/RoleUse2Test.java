@@ -17,7 +17,7 @@ public class RoleUse2Test extends AbstractTest {
 	public void testList() {
 		roleUse2Service = super.getBean("roleUse2Service");
 		RoleUse2Query query = new RoleUse2Query();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<RoleUse2> rows = roleUse2Service
 				.getRoleUse2sByQueryCriteria(0, 10, query);
 		for (RoleUse2 row : rows) {

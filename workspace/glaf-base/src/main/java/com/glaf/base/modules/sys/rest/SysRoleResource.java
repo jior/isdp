@@ -83,7 +83,7 @@ public class SysRoleResource {
 	protected SysUserRoleService sysUserRoleService;
 
 	/**
-	 * 批量删除信息
+	 * 鎵归噺鍒犻櫎淇℃伅
 	 * 
 	 * @param request
 	 * @param uriInfo
@@ -117,18 +117,18 @@ public class SysRoleResource {
 		}
 
 		ViewMessages messages = new ViewMessages();
-		if (ret) {// 成功
+		if (ret) {// 鎴愬姛
 			request.setAttribute("statusCode", 200);
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"role.delete_success"));
-		} else {// 失败
+		} else {// 澶辫触
 			request.setAttribute("statusCode", 500);
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"role.delete_failure"));
 		}
 		MessageUtils.addMessages(request, messages);
 
-		// 显示列表页面
+		// 鏄剧ず鍒楄〃椤甸潰
 		return new ModelAndView("show_json_msg");
 	}
 
@@ -318,7 +318,7 @@ public class SysRoleResource {
 	}
 
 	/**
-	 * 提交增加信息
+	 * 鎻愪氦澧炲姞淇℃伅
 	 * 
 	 * @param request
 	 * @param uriInfo
@@ -348,23 +348,23 @@ public class SysRoleResource {
 		}
 
 		ViewMessages messages = new ViewMessages();
-		if (ret) {// 保存成功
+		if (ret) {// 淇濆瓨鎴愬姛
 			request.setAttribute("statusCode", 200);
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"role.add_success"));
-		} else {// 保存失败
+		} else {// 淇濆瓨澶辫触
 			request.setAttribute("statusCode", 500);
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"role.add_failure"));
 		}
 		MessageUtils.addMessages(request, messages);
 
-		// 显示列表页面
+		// 鏄剧ず鍒楄〃椤甸潰
 		return new ModelAndView("show_json_msg");
 	}
 
 	/**
-	 * 提交修改信息
+	 * 鎻愪氦淇敼淇℃伅
 	 * 
 	 * @param request
 	 * @param uriInfo
@@ -392,17 +392,17 @@ public class SysRoleResource {
 			ret = false;
 		}
 		ViewMessages messages = new ViewMessages();
-		if (ret) {// 保存成功
+		if (ret) {// 淇濆瓨鎴愬姛
 			request.setAttribute("statusCode", 200);
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"role.modify_success"));
-		} else {// 保存失败
+		} else {// 淇濆瓨澶辫触
 			request.setAttribute("statusCode", 500);
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"role.modify_failure"));
 		}
 		MessageUtils.addMessages(request, messages);
-		// 显示列表页面
+		// 鏄剧ず鍒楄〃椤甸潰
 		return new ModelAndView("show_json_msg");
 	}
 

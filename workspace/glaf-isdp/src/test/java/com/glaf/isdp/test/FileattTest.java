@@ -17,7 +17,7 @@ public class FileattTest extends AbstractTest {
 	public void testList() {
 		fileattService = super.getBean("fileattService");
 		FileattQuery query = new FileattQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<IsdpFileatt> rows = fileattService
 				.getFileattsByQueryCriteria(0, 10, query);
 		for (IsdpFileatt row : rows) {

@@ -37,6 +37,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.glaf.base.modules.sys.mapper.SysAccessMapper;
 import com.glaf.base.modules.sys.mapper.SysApplicationMapper;
 import com.glaf.base.modules.sys.mapper.SysDeptRoleMapper;
@@ -56,9 +58,13 @@ import com.glaf.base.modules.sys.query.SysDeptRoleQuery;
 import com.glaf.base.modules.sys.query.SysUserQuery;
 import com.glaf.base.modules.sys.service.SysDepartmentService;
 import com.glaf.base.modules.sys.service.SysUserService;
+import com.glaf.base.modules.sys.util.SysUserJsonFactory;
+
 import com.glaf.core.base.TableModel;
 import com.glaf.core.domain.Membership;
 import com.glaf.core.id.IdGenerator;
+import com.glaf.core.cache.CacheFactory;
+import com.glaf.core.config.SystemConfig;
 import com.glaf.core.service.ITableDataService;
 import com.glaf.core.service.MembershipService;
 import com.glaf.core.util.PageResult;
@@ -144,7 +150,7 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
 	/**
-	 * É¾³ı²¿ÃÅ½ÇÉ«ÓÃ»§
+	 * åˆ é™¤éƒ¨é—¨è§’è‰²ç”¨æˆ·
 	 * 
 	 * @param deptRole
 	 * @param userIds
@@ -174,7 +180,7 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
 	/**
-	 * É¾³ı½ÇÉ«ÓÃ»§
+	 * åˆ é™¤è§’è‰²ç”¨æˆ·
 	 * 
 	 * @param role
 	 * @param userIds
@@ -245,11 +251,23 @@ public class SysUserServiceImpl implements SysUserService {
 
 	@Override
 	public SysUser findById(String account) {
+		String cacheKey = "sys_user_" + account;
+		if (SystemConfig.getBoolean("use_query_cache")
+				&& CacheFactory.getString(cacheKey) != null) {
+			String text = CacheFactory.getString(cacheKey);
+			JSONObject json = JSON.parseObject(text);
+			return SysUserJsonFactory.jsonToObject(json);
+		}
+
 		SysUser user = sysUserMapper.getSysUserByAccount(account);
 		if (user != null) {
 			if (user.getDeptId() > 0) {
 				user.setDepartment(sysDepartmentService.findById(user
 						.getDeptId()));
+			}
+			if (SystemConfig.getBoolean("use_query_cache")) {
+				JSONObject json = user.toJsonObject();
+				CacheFactory.put(cacheKey, json.toJSONString());
 			}
 		}
 		return user;
@@ -311,13 +329,13 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
 	public PageResult getSysUserList(long deptId, int pageNo, int pageSize) {
-		// ¼ÆËã×ÜÊı
+		// è®¡ç®—æ€»æ•°
 		PageResult pager = new PageResult();
 		SysUserQuery query = new SysUserQuery();
 		query.deptId(Long.valueOf(deptId));
-	
+
 		int count = this.count(query);
-		if (count == 0) {// ½á¹û¼¯Îª¿Õ
+		if (count == 0) {// ç»“æœé›†ä¸ºç©º
 			pager.setPageSize(pageSize);
 			return pager;
 		}
@@ -337,7 +355,7 @@ public class SysUserServiceImpl implements SysUserService {
 
 	public PageResult getSysUserList(long deptId, String fullName, int pageNo,
 			int pageSize) {
-		// ¼ÆËã×ÜÊı
+		// è®¡ç®—æ€»æ•°
 		PageResult pager = new PageResult();
 		SysUserQuery query = new SysUserQuery();
 		query.deptId(Long.valueOf(deptId));
@@ -346,7 +364,7 @@ public class SysUserServiceImpl implements SysUserService {
 			query.nameLike(fullName);
 		}
 		int count = this.count(query);
-		if (count == 0) {// ½á¹û¼¯Îª¿Õ
+		if (count == 0) {// ç»“æœé›†ä¸ºç©º
 			pager.setPageSize(pageSize);
 			return pager;
 		}
@@ -366,12 +384,12 @@ public class SysUserServiceImpl implements SysUserService {
 
 	public PageResult getSysUserList(long deptId, String userName,
 			String account, int pageNo, int pageSize) {
-		// ¼ÆËã×ÜÊı
+		// è®¡ç®—æ€»æ•°
 		PageResult pager = new PageResult();
 		SysUserQuery query = new SysUserQuery();
 		query.deptId(Long.valueOf(deptId));
 		int count = this.count(query);
-		if (count == 0) {// ½á¹û¼¯Îª¿Õ
+		if (count == 0) {// ç»“æœé›†ä¸ºç©º
 			pager.setPageSize(pageSize);
 			return pager;
 		}
@@ -390,7 +408,7 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
 	/**
-	 * »ñÈ¡Ä³¸öÓ¦ÓÃµÄÈ¨ÏŞÓÃ»§
+	 * è·å–æŸä¸ªåº”ç”¨çš„æƒé™ç”¨æˆ·
 	 * 
 	 * @param appId
 	 * @return
@@ -409,7 +427,7 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
 	/**
-	 * »ñÈ¡Ä³¸ö½ÇÉ«´úÂëµÄÓÃ»§
+	 * è·å–æŸä¸ªè§’è‰²ä»£ç çš„ç”¨æˆ·
 	 * 
 	 * @param roleCode
 	 * @return
@@ -424,7 +442,7 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
 	/**
-	 * »ñÈ¡Ä³¸ö½ÇÉ«´úÂëµÄÓÃ»§
+	 * è·å–æŸä¸ªè§’è‰²ä»£ç çš„ç”¨æˆ·
 	 * 
 	 * @param roleCode
 	 * @return
@@ -513,7 +531,7 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
 	/**
-	 * »ñÈ¡Ä³Ğ©ÓÃ»§µÄ½ÇÉ«
+	 * è·å–æŸäº›ç”¨æˆ·çš„è§’è‰²
 	 * 
 	 * @param actorIds
 	 * @return
@@ -575,7 +593,7 @@ public class SysUserServiceImpl implements SysUserService {
 						.getRoleId());
 				if (role != null
 						&& StringUtils.equals(role.getCode(), roleCode)) {
-					// ´úÅĞ¶ÏÓÃ»§ÊÇ·ñÓµÓĞ´Ë½ÇÉ«
+					// ä»£åˆ¤æ–­ç”¨æˆ·æ˜¯å¦æ‹¥æœ‰æ­¤è§’è‰²
 					flag = true;
 					break;
 				}
@@ -589,7 +607,7 @@ public class SysUserServiceImpl implements SysUserService {
 			for (SysRole role : roles) {
 				if (role != null
 						&& StringUtils.equals(role.getCode(), roleCode)) {
-					// ´úÅĞ¶ÏÓÃ»§ÊÇ·ñÓµÓĞ´Ë½ÇÉ«
+					// ä»£åˆ¤æ–­ç”¨æˆ·æ˜¯å¦æ‹¥æœ‰æ­¤è§’è‰²
 					flag = true;
 					break;
 				}
@@ -614,6 +632,8 @@ public class SysUserServiceImpl implements SysUserService {
 		} else {
 			sysUser.setUpdateDate(new Date());
 			sysUserMapper.updateSysUser(sysUser);
+			String cacheKey = "sys_user_" + sysUser.getActorId();
+			CacheFactory.remove(cacheKey);
 		}
 
 		TableModel table = new TableModel();
@@ -739,12 +759,14 @@ public class SysUserServiceImpl implements SysUserService {
 				}
 			}
 		}
+		String cacheKey = "sys_user_" + sysUser.getActorId();
+		CacheFactory.remove(cacheKey);
 		return true;
 	}
 
 	@Transactional
 	public boolean updateRole(SysUser user, Set<SysDeptRole> newRoles) {
-		// ÏÈÉ¾³ıÓÃ»§Ö®Ç°µÄÈ¨ÏŞ
+		// å…ˆåˆ é™¤ç”¨æˆ·ä¹‹å‰çš„æƒé™
 		List<SysUserRole> userRoles = sysUserRoleMapper
 				.getSysUserRolesByUserId(user.getActorId());
 		if (userRoles != null && !userRoles.isEmpty()) {
@@ -759,7 +781,7 @@ public class SysUserServiceImpl implements SysUserService {
 
 		List<Membership> memberships = new ArrayList<Membership>();
 
-		// Ôö¼ÓĞÂÈ¨ÏŞ
+		// å¢åŠ æ–°æƒé™
 		if (newRoles != null && !newRoles.isEmpty()) {
 			Iterator<SysDeptRole> iter = newRoles.iterator();
 			while (iter.hasNext()) {
@@ -793,12 +815,14 @@ public class SysUserServiceImpl implements SysUserService {
 	@Transactional
 	public boolean updateUser(SysUser sysUser) {
 		sysUserMapper.updateSysUser(sysUser);
+		String cacheKey = "sys_user_" + sysUser.getActorId();
+		CacheFactory.remove(cacheKey);
 		return true;
 	}
 
 	@Transactional
 	public boolean updateUserRole(SysUser user, Set<SysRole> newRoles) {
-		// ÏÈÉ¾³ıÓÃ»§Ö®Ç°µÄÈ¨ÏŞ
+		// å…ˆåˆ é™¤ç”¨æˆ·ä¹‹å‰çš„æƒé™
 		List<SysUserRole> userRoles = sysUserRoleMapper
 				.getSysUserRolesByUserId(user.getActorId());
 		if (userRoles != null && !userRoles.isEmpty()) {
@@ -813,7 +837,7 @@ public class SysUserServiceImpl implements SysUserService {
 
 		List<Membership> memberships = new ArrayList<Membership>();
 
-		// Ôö¼ÓĞÂÈ¨ÏŞ
+		// å¢åŠ æ–°æƒé™
 		if (newRoles != null && !newRoles.isEmpty()) {
 			Iterator<SysRole> iter = newRoles.iterator();
 			while (iter.hasNext()) {

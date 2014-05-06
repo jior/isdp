@@ -11,7 +11,7 @@ import com.glaf.isdp.query.*;
 public interface ICellTreedotService {
 
 	/**
-	 * ¸ù¾İidÉ¾³ı¼ÇÂ¼
+	 * æ ¹æ®idåˆ é™¤è®°å½•
 	 * 
 	 * @return
 	 */
@@ -19,7 +19,7 @@ public interface ICellTreedotService {
 	void deleteById(String id);
 
 	/**
-	 * ¸ù¾İidÉ¾³ı¼ÇÂ¼
+	 * æ ¹æ®idåˆ é™¤è®°å½•
 	 * 
 	 * @return
 	 */
@@ -27,42 +27,42 @@ public interface ICellTreedotService {
 	void deleteByPrimaryKey(int indexId);
 
 	/**
-	 * ¸ù¾İid»ñÈ¡Ò»Ìõ¼ÇÂ¼
+	 * æ ¹æ®idè·å–ä¸€æ¡è®°å½•
 	 * 
 	 * @return
 	 */
 	CellTreedot getCellTreedotById(String id);
 
 	/**
-	 * ¸ù¾İindexId»ñÈ¡Ò»Ìõ¼ÇÂ¼
+	 * æ ¹æ®indexIdè·å–ä¸€æ¡è®°å½•
 	 * 
 	 * @return
 	 */
 	CellTreedot getCellTreedotByPrimaryKey(int indexId);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
 	int getCellTreedotCount(Map<String, Object> parameter);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
 	int getCellTreedotCountByQueryCriteria(CellTreedotQuery query);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
 	List<CellTreedot> getCellTreedots(Map<String, Object> parameter);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡Ò»Ò³µÄÊı¾İ
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–ä¸€é¡µçš„æ•°æ®
 	 * 
 	 * @return
 	 */
@@ -70,7 +70,7 @@ public interface ICellTreedotService {
 			CellTreedotQuery query);
 
 	/**
-	 * ¸ù¾İtopId»ñÈ¡²Ëµ¥Ïî
+	 * æ ¹æ®topIdè·å–èœå•é¡¹
 	 * 
 	 * @param topId
 	 * @return
@@ -78,21 +78,21 @@ public interface ICellTreedotService {
 	List<CellTreedot> getCellTreedotsByTopId(String topId);
 	
 	/**
-	 * ¸ù¾İ¸¸ID»ñÈ¡¶ş¼¶²Ëµ¥
+	 * æ ¹æ®çˆ¶IDè·å–äºŒçº§èœå•
 	 * @param parentId
 	 * @return
 	 */
 	List<CellTreedot> getChildrenCellTreedots(int parentId);
 
 	/**
-	 * »ñÈ¡topIdÎªsystem_initµÄÏµÍ³²Ëµ¥Ïî
+	 * è·å–topIdä¸ºsystem_initçš„ç³»ç»Ÿèœå•é¡¹
 	 * 
 	 * @return
 	 */
 	List<CellTreedot> getSystemInitCellTreedots();
 
 	/**
-	 * ¸ù¾İtopId»ñÈ¡¶¥²ã²Ëµ¥
+	 * æ ¹æ®topIdè·å–é¡¶å±‚èœå•
 	 * 
 	 * @param topId
 	 * @return
@@ -100,14 +100,14 @@ public interface ICellTreedotService {
 	List<CellTreedot> getTopLevelCellTreedotsByTopId(String topId);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
 	List<CellTreedot> list(CellTreedotQuery query);
 
 	/**
-	 * ±£´æÒ»Ìõ¼ÇÂ¼
+	 * ä¿å­˜ä¸€æ¡è®°å½•
 	 * 
 	 * @return
 	 */

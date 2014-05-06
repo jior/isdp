@@ -17,7 +17,7 @@ public class ProjectOrganizationTest extends AbstractTest {
 	public void testList() {
 		projectOrganizationService = super.getBean("projectOrganizationService");
 		ProjectOrganizationQuery query = new ProjectOrganizationQuery();
-		query.indexNameLike("π´Àæ");
+		query.indexNameLike("ÂÖ¨Âè∏");
 		List<ProjectOrganization> rows = projectOrganizationService
 				.getProjectOrganizationsByQueryCriteria(0, 10, query);
 		for (ProjectOrganization row : rows) {

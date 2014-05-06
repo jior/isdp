@@ -16,7 +16,7 @@ public class MailSendAttTest extends AbstractTest {
 	public void testList() {
 		mailSendAttService = super.getBean("mailSendAttService");
 		MailSendAttQuery query = new MailSendAttQuery();
-		// query.nameLike("¹¤³Ì");
+		// query.nameLike("å·¥ç¨‹");
 		List<MailSendAtt> rows = mailSendAttService
 				.getMailSendAttsByQueryCriteria(0, 10, query);
 		for (MailSendAtt row : rows) {

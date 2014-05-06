@@ -138,12 +138,12 @@ public class MessageServiceImpl implements MessageService {
 
 	@SuppressWarnings("rawtypes")
 	public PageResult getMessageList(Map params, int pageNo, int pageSize) {
-		// ¼ÆËã×ÜÊı
+		// è®¡ç®—æ€»æ•°
 		PageResult pager = new PageResult();
 		MessageQuery query = new MessageQuery();
 
 		int count = this.count(query);
-		if (count == 0) {// ½á¹û¼¯Îª¿Õ
+		if (count == 0) {// ç»“æœé›†ä¸ºç©º
 			pager.setPageSize(pageSize);
 			return pager;
 		}
@@ -193,7 +193,7 @@ public class MessageServiceImpl implements MessageService {
 	@SuppressWarnings("rawtypes")
 	public PageResult getNoReadList(String userId, Map params, int pageNo,
 			int pageSize) {
-		// ¼ÆËã×ÜÊı
+		// è®¡ç®—æ€»æ•°
 		PageResult pager = new PageResult();
 		MessageQuery query = new MessageQuery();
 		query.setRecverId(userId);
@@ -201,7 +201,7 @@ public class MessageServiceImpl implements MessageService {
 		query.setReaded(0);
 
 		int count = this.count(query);
-		if (count == 0) {// ½á¹û¼¯Îª¿Õ
+		if (count == 0) {// ç»“æœé›†ä¸ºç©º
 			pager.setPageSize(pageSize);
 			return pager;
 		}
@@ -232,14 +232,14 @@ public class MessageServiceImpl implements MessageService {
 	@SuppressWarnings("rawtypes")
 	public PageResult getReceiveList(String userId, Map params, int pageNo,
 			int pageSize) {
-		// ¼ÆËã×ÜÊı
+		// è®¡ç®—æ€»æ•°
 		PageResult pager = new PageResult();
 		MessageQuery query = new MessageQuery();
 		query.setRecverId(userId);
 		query.category(0);
 
 		int count = this.count(query);
-		if (count == 0) {// ½á¹û¼¯Îª¿Õ
+		if (count == 0) {// ç»“æœé›†ä¸ºç©º
 			pager.setPageSize(pageSize);
 			return pager;
 		}
@@ -270,14 +270,14 @@ public class MessageServiceImpl implements MessageService {
 	@SuppressWarnings("rawtypes")
 	public PageResult getSendedList(String userId, Map params, int pageNo,
 			int pageSize) {
-		// ¼ÆËã×ÜÊı
+		// è®¡ç®—æ€»æ•°
 		PageResult pager = new PageResult();
 		MessageQuery query = new MessageQuery();
 		query.senderId(userId);
 		query.category(1);
 
 		int count = this.count(query);
-		if (count == 0) {// ½á¹û¼¯Îª¿Õ
+		if (count == 0) {// ç»“æœé›†ä¸ºç©º
 			pager.setPageSize(pageSize);
 			return pager;
 		}
@@ -332,10 +332,10 @@ public class MessageServiceImpl implements MessageService {
 	public boolean saveSendMessage(Message message, String[] recverIds) {
 		boolean rst = true;
 
-		// ÊÕ¼şÈËÁĞ±í
+		// æ”¶ä»¶äººåˆ—è¡¨
 		StringBuffer recverList = new StringBuffer("");
 
-		// ·¢ËÍÏûÏ¢¸øÊÕ¼şÈË
+		// å‘é€æ¶ˆæ¯ç»™æ”¶ä»¶äºº
 		for (int i = 0; i < recverIds.length; i++) {
 			if (recverIds[i] == null || recverIds[i].trim().length() == 0) {
 				continue;
@@ -361,7 +361,7 @@ public class MessageServiceImpl implements MessageService {
 			}
 		}
 
-		// ·¢ËÍÏûÏ¢¸ø×Ô¼º,±£´æÔÚ·¢¼şÏä
+		// å‘é€æ¶ˆæ¯ç»™è‡ªå·±,ä¿å­˜åœ¨å‘ä»¶ç®±
 		if (rst) {
 			sendToSelf(message, recverList.toString());
 		}
@@ -373,10 +373,10 @@ public class MessageServiceImpl implements MessageService {
 	public boolean saveSendMessageToDept(Message message, String[] recverIds) {
 		boolean rst = true;
 
-		// ÊÕ¼ş²¿ÃÅÁĞ±í
+		// æ”¶ä»¶éƒ¨é—¨åˆ—è¡¨
 		StringBuffer recverList = new StringBuffer("");
 
-		// ·¢ËÍÏûÏ¢¸øÊÕ¼şÈË
+		// å‘é€æ¶ˆæ¯ç»™æ”¶ä»¶äºº
 		for (int i = 0; i < recverIds.length; i++) {
 			if (recverIds[i] == null || recverIds[i].trim().length() == 0) {
 				continue;
@@ -393,7 +393,7 @@ public class MessageServiceImpl implements MessageService {
 			int index = 0;
 			while (iter.hasNext()) {
 				SysUser recver = (SysUser) iter.next();
-				if (index == 0) {// È¡²¿ÃÅÃû³Æ
+				if (index == 0) {// å–éƒ¨é—¨åç§°
 					recverList.append(recver.getDepartment().getName()).append(
 							",");
 				}
@@ -416,7 +416,7 @@ public class MessageServiceImpl implements MessageService {
 
 		}
 
-		// ·¢ËÍÏûÏ¢¸ø×Ô¼º,±£´æÔÚ·¢¼şÏä
+		// å‘é€æ¶ˆæ¯ç»™è‡ªå·±,ä¿å­˜åœ¨å‘ä»¶ç®±
 		if (rst) {
 			sendToSelf(message, recverList.toString());
 		}
@@ -425,7 +425,7 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	/**
-	 * ·¢ËÍÏûÏ¢¸ø×Ô¼º,±£´æÔÚ·¢¼şÏä
+	 * å‘é€æ¶ˆæ¯ç»™è‡ªå·±,ä¿å­˜åœ¨å‘ä»¶ç®±
 	 * 
 	 * @param message
 	 * @param recverLists
@@ -440,7 +440,7 @@ public class MessageServiceImpl implements MessageService {
 					message);
 		}
 
-		newMessage.setCategory(1);// ·¢¼şÏä
+		newMessage.setCategory(1);// å‘ä»¶ç®±
 		newMessage.setRecver(message.getSender());
 		newMessage.setRecverId(message.getSender().getActorId());
 
@@ -483,7 +483,7 @@ public class MessageServiceImpl implements MessageService {
 	@Transactional
 	public Message updateReadMessage(long id) {
 		Message message = find(id);
-		message.setReaded(1);// ÉèÖÃÒÑ¶Á
+		message.setReaded(1);// è®¾ç½®å·²è¯»
 		update(message);
 		return message;
 	}

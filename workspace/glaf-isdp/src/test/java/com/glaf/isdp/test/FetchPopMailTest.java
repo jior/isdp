@@ -33,7 +33,7 @@ public class FetchPopMailTest {
 		pop.setState(POP3Client.TRANSACTION_STATE);
 		POP3MessageInfo[] messages = pop.listUniqueIdentifiers();
 		if (messages == null) {
-			throw new RuntimeException("ÓÃ»§Ã»ÓĞÍ¨¹ıÈÏÖ¤£¬Çë¼ì²éÄúµÄÓÃ»§ÃûºÍÃÜÂë¡£");
+			throw new RuntimeException("ç”¨æˆ·æ²¡æœ‰é€šè¿‡è®¤è¯ï¼Œè¯·æ£€æŸ¥æ‚¨çš„ç”¨æˆ·åå’Œå¯†ç ã€‚");
 		}
 		List<POP3MessageInfo> received = new ArrayList<POP3MessageInfo>();
 		for (int i = 0; i < messages.length; i++) {

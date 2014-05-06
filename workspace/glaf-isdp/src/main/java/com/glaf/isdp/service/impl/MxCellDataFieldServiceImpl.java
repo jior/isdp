@@ -55,7 +55,7 @@ public class MxCellDataFieldServiceImpl implements ICellDataFieldService {
 	}
 
 	/**
-	 * 根据查询参数获取记录总数
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇璁板綍鎬绘暟
 	 * 
 	 * @return
 	 */
@@ -64,7 +64,7 @@ public class MxCellDataFieldServiceImpl implements ICellDataFieldService {
 	}
 
 	/**
-	 * 根据查询参数获取记录总数
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇璁板綍鎬绘暟
 	 * 
 	 * @return
 	 */
@@ -74,7 +74,7 @@ public class MxCellDataFieldServiceImpl implements ICellDataFieldService {
 	}
 
 	/**
-	 * 根据查询参数获取记录列表
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇璁板綍鍒楄〃
 	 * 
 	 * @return
 	 */
@@ -83,7 +83,7 @@ public class MxCellDataFieldServiceImpl implements ICellDataFieldService {
 	}
 
 	/**
-	 * 根据表ID获取字段信息
+	 * 鏍规嵁琛↖D鑾峰彇瀛楁淇℃伅
 	 * 
 	 * @param tableId
 	 * @return
@@ -93,7 +93,7 @@ public class MxCellDataFieldServiceImpl implements ICellDataFieldService {
 	}
 
 	/**
-	 * 根据表单文件编号获取字段信息
+	 * 鏍规嵁琛ㄥ崟鏂囦欢缂栧彿鑾峰彇瀛楁淇℃伅
 	 * 
 	 * @param filedotId
 	 * @return
@@ -103,7 +103,7 @@ public class MxCellDataFieldServiceImpl implements ICellDataFieldService {
 	}
 
 	/**
-	 * 根据查询参数获取一页的数据
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇涓�椤电殑鏁版嵁
 	 * 
 	 * @return
 	 */

@@ -45,6 +45,7 @@ import com.glaf.base.modules.sys.query.SysTreeQuery;
 import com.glaf.base.modules.sys.service.SysDepartmentService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
+ 
 import com.glaf.core.id.IdGenerator;
 import com.glaf.core.util.PageResult;
 
@@ -129,7 +130,7 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	}
 
 	/**
-	 * Í¨¹ı½Úµã±àºÅ»ñÈ¡²¿ÃÅĞÅÏ¢
+	 * é€šè¿‡èŠ‚ç‚¹ç¼–å·è·å–éƒ¨é—¨ä¿¡æ¯
 	 * 
 	 * @param nodeId
 	 * @return
@@ -198,7 +199,7 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	}
 
 	/**
-	 * »ñÈ¡ÓÃ»§²¿ÃÅÁĞ±í
+	 * è·å–ç”¨æˆ·éƒ¨é—¨åˆ—è¡¨
 	 * 
 	 * @param list
 	 * @param node
@@ -209,7 +210,7 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 			return;
 		}
 		SysTree tree = node.getNode();
-		if (tree.getParentId() == 0) {// ÕÒµ½¸ù½Úµã
+		if (tree.getParentId() == 0) {// æ‰¾åˆ°æ ¹èŠ‚ç‚¹
 			logger.debug("findFirstNode:" + node.getId());
 			list.add(node);
 		} else {
@@ -258,12 +259,12 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 
 	@Override
 	public PageResult getSysDepartmentList(long parent, int pageNo, int pageSize) {
-		// ¼ÆËã×ÜÊı
+		// è®¡ç®—æ€»æ•°
 		PageResult pager = new PageResult();
 		SysDepartmentQuery query = new SysDepartmentQuery();
 		query.parentId(Long.valueOf(parent));
 		int count = this.count(query);
-		if (count == 0) {// ½á¹û¼¯Îª¿Õ
+		if (count == 0) {// ç»“æœé›†ä¸ºç©º
 			pager.setPageSize(pageSize);
 			return pager;
 		}
@@ -358,26 +359,26 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	}
 
 	/**
-	 * ÅÅĞò
+	 * æ’åº
 	 * 
 	 * @param bean
 	 *            SysDepartment
 	 * @param operate
-	 *            int ²Ù×÷
+	 *            int æ“ä½œ
 	 */
 	@Transactional
 	public void sort(long parent, SysDepartment bean, int operate) {
 		if (bean == null)
 			return;
-		if (operate == SysConstants.SORT_PREVIOUS) {// Ç°ÒÆ
+		if (operate == SysConstants.SORT_PREVIOUS) {// å‰ç§»
 			sortByPrevious(parent, bean);
-		} else if (operate == SysConstants.SORT_FORWARD) {// ºóÒÆ
+		} else if (operate == SysConstants.SORT_FORWARD) {// åç§»
 			sortByForward(parent, bean);
 		}
 	}
 
 	/**
-	 * ÏòºóÒÆ¶¯ÅÅĞò
+	 * å‘åç§»åŠ¨æ’åº
 	 * 
 	 * @param bean
 	 */
@@ -387,20 +388,20 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 		query.setSortLessThan(bean.getSort());
 		query.setOrderBy(" E.SORT desc ");
 
-		// ²éÕÒºóÒ»¸ö¶ÔÏó
+		// æŸ¥æ‰¾åä¸€ä¸ªå¯¹è±¡
 
 		List<SysDepartment> list = this.list(query);
-		if (list != null && list.size() > 0) {// ÓĞ¼ÇÂ¼
+		if (list != null && list.size() > 0) {// æœ‰è®°å½•
 			SysDepartment temp = (SysDepartment) list.get(0);
 			int i = bean.getSort();
 			bean.setSort(temp.getSort());
-			this.update(bean);// ¸üĞÂbean
+			this.update(bean);// æ›´æ–°bean
 			SysTree node = bean.getNode();
 			node.setSort(bean.getSort());
 			sysTreeService.update(node);
 
 			temp.setSort(i);
-			this.update(temp);// ¸üĞÂtemp
+			this.update(temp);// æ›´æ–°temp
 			node = temp.getNode();
 			node.setSort(temp.getSort());
 			sysTreeService.update(node);
@@ -408,7 +409,7 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	}
 
 	/**
-	 * ÏòÇ°ÒÆ¶¯ÅÅĞò
+	 * å‘å‰ç§»åŠ¨æ’åº
 	 * 
 	 * @param bean
 	 */
@@ -418,20 +419,20 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 		query.setSortGreaterThan(bean.getSort());
 		query.setOrderBy(" E.SORT asc ");
 
-		// ²éÕÒºóÒ»¸ö¶ÔÏó
+		// æŸ¥æ‰¾åä¸€ä¸ªå¯¹è±¡
 
 		List<SysDepartment> list = this.list(query);
-		if (list != null && list.size() > 0) {// ÓĞ¼ÇÂ¼
+		if (list != null && list.size() > 0) {// æœ‰è®°å½•
 			SysDepartment temp = (SysDepartment) list.get(0);
 			int i = bean.getSort();
 			bean.setSort(temp.getSort());
-			this.update(bean);// ¸üĞÂbean
+			this.update(bean);// æ›´æ–°bean
 			SysTree node = bean.getNode();
 			node.setSort(bean.getSort());
 			sysTreeService.update(node);
 
 			temp.setSort(i);
-			this.update(temp);// ¸üĞÂtemp
+			this.update(temp);// æ›´æ–°temp
 			node = temp.getNode();
 			node.setSort(temp.getSort());
 			sysTreeService.update(node);
@@ -454,7 +455,7 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	}
 
 	/**
-	 * ĞŞ¸Ä×Ó²¿ÃÅµÄ×´Ì¬
+	 * ä¿®æ”¹å­éƒ¨é—¨çš„çŠ¶æ€
 	 * 
 	 * @param list
 	 * @param status

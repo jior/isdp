@@ -76,7 +76,7 @@ public class MxCellUpicInfoServiceImpl implements ICellUpicInfoService {
 	}
 
 	/**
-	 * 根据查询参数获取记录总数
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇璁板綍鎬绘暟
 	 * 
 	 * @return
 	 */
@@ -85,7 +85,7 @@ public class MxCellUpicInfoServiceImpl implements ICellUpicInfoService {
 	}
 
 	/**
-	 * 根据查询参数获取记录总数
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇璁板綍鎬绘暟
 	 * 
 	 * @return
 	 */
@@ -101,7 +101,7 @@ public class MxCellUpicInfoServiceImpl implements ICellUpicInfoService {
 	}
 
 	/**
-	 * 根据查询参数获取记录列表
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇璁板綍鍒楄〃
 	 * 
 	 * @return
 	 */
@@ -110,7 +110,7 @@ public class MxCellUpicInfoServiceImpl implements ICellUpicInfoService {
 	}
 
 	/**
-	 * 根据查询参数获取一页的数据
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇涓�椤电殑鏁版嵁
 	 * 
 	 * @return
 	 */

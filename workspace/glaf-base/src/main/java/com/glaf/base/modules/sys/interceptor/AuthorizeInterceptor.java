@@ -106,20 +106,20 @@ public class AuthorizeInterceptor implements MethodBeforeAdvice {
 		//logger.debug("account:" + account);
 		//logger.debug("methodName:" + methodName);
 
-		// À¹½ØµÄ¹¦ÄÜÔÚÏµÍ³¹¦ÄÜÁĞ±íÖĞ
+		// æ‹¦æˆªçš„åŠŸèƒ½åœ¨ç³»ç»ŸåŠŸèƒ½åˆ—è¡¨ä¸­
 		if (findSysFunction(methodName)) {
-			// ÔÚÓÃ»§¹¦ÄÜÁĞ±íÖĞ£¬Í¨¹ı
+			// åœ¨ç”¨æˆ·åŠŸèƒ½åˆ—è¡¨ä¸­ï¼Œé€šè¿‡
 			if (findUserFunction(account, methodName)) {
 				// logger.debug("method is in user functions");
 				authorized = true;
 			}
-		} else {// À¹½ØµÄ¹¦ÄÜ²»ÔÚÏµÍ³¹¦ÄÜÁĞ±íÖĞ£¬Í¨¹ı
+		} else {// æ‹¦æˆªçš„åŠŸèƒ½ä¸åœ¨ç³»ç»ŸåŠŸèƒ½åˆ—è¡¨ä¸­ï¼Œé€šè¿‡
 			// logger.debug("method isn't in sys functions");
 			authorized = true;
 		}
 
 		if (conf.getBoolean("sys.interceptor.log", false)) {
-			// ¼ÇÂ¼ÓÃ»§²Ù×÷
+			// è®°å½•ç”¨æˆ·æ“ä½œ
 			createLog(account, methodName, ip, authorized ? 1 : 0);
 		}
 
@@ -129,7 +129,7 @@ public class AuthorizeInterceptor implements MethodBeforeAdvice {
 	}
 
 	/**
-	 * ¼ÇÂ¼ÈÕÖ¾
+	 * è®°å½•æ—¥å¿—
 	 * 
 	 * @param methodName
 	 * @param ip
@@ -161,7 +161,7 @@ public class AuthorizeInterceptor implements MethodBeforeAdvice {
 	}
 
 	/**
-	 * ¼ì²é¹¦ÄÜÊÇ·ñ´æÔÚÏµÍ³¹¦ÄÜÁĞ±íÖĞ
+	 * æ£€æŸ¥åŠŸèƒ½æ˜¯å¦å­˜åœ¨ç³»ç»ŸåŠŸèƒ½åˆ—è¡¨ä¸­
 	 * 
 	 * @param methodName
 	 * @return
@@ -170,14 +170,14 @@ public class AuthorizeInterceptor implements MethodBeforeAdvice {
 	private boolean findSysFunction(String methodName) {
 		boolean ret = false;
 		try {
-			// ÏµÍ³¹¦ÄÜÁĞ±í£¬ÔÚ³õÊ¼»¯servletÖĞ¼ÓÔØ
+			// ç³»ç»ŸåŠŸèƒ½åˆ—è¡¨ï¼Œåœ¨åˆå§‹åŒ–servletä¸­åŠ è½½
 			Iterator<BaseDataInfo> iter = ((List<BaseDataInfo>) ContextUtil
 					.get("function")).iterator();
 			// logger.debug("function:" + iter);
 			while (iter.hasNext()) {
 				BaseDataInfo bdi = (BaseDataInfo) iter.next();
 				// logger.debug("sys function:" + bdi.getCode());
-				if (bdi.getCode().equals(methodName)) {// ÕÒµ½
+				if (bdi.getCode().equals(methodName)) {// æ‰¾åˆ°
 					ret = true;
 					break;
 				}
@@ -191,14 +191,14 @@ public class AuthorizeInterceptor implements MethodBeforeAdvice {
 	}
 
 	/**
-	 * ¼ì²é¹¦ÄÜÊÇ·ñ´æÔÚÓÃ»§¹¦ÄÜÁĞ±íÖĞ
+	 * æ£€æŸ¥åŠŸèƒ½æ˜¯å¦å­˜åœ¨ç”¨æˆ·åŠŸèƒ½åˆ—è¡¨ä¸­
 	 * 
 	 * @param methodName
 	 * @return
 	 */
 	private boolean findUserFunction(String account, String methodName) {
 		boolean ret = false;
-		// ÓÃ»§¶ÔÏó£¬ÔÚµÇÂ½ºó¼ÓÔØ
+		// ç”¨æˆ·å¯¹è±¡ï¼Œåœ¨ç™»é™†ååŠ è½½
 		SysUser user = (SysUser) ContextUtil.get(account);
 		if (user == null) {
 			user = BaseIdentityFactory.getSysUserWithAll(account);
@@ -208,7 +208,7 @@ public class AuthorizeInterceptor implements MethodBeforeAdvice {
 		}
 		// logger.debug("user:" + user);
 		// logger.debug("user function size:" + user.getFunctions().size());
-		Iterator<SysFunction> iter = user.getFunctions().iterator();// ÓÃ»§¹¦ÄÜÁĞ±í
+		Iterator<SysFunction> iter = user.getFunctions().iterator();// ç”¨æˆ·åŠŸèƒ½åˆ—è¡¨
 		while (iter.hasNext()) {
 			SysFunction function = (SysFunction) iter.next();
 			// logger.debug("function method:" + function.getFuncMethod());

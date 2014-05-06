@@ -16,7 +16,7 @@ public class MyCellBusiessTest extends AbstractTest {
 	public void testList() {
 		myCellBusiessService = super.getBean("myCellBusiessService");
 		MyCellBusiessQuery query = new MyCellBusiessQuery();
-		// query.nameLike("¹¤³Ì");
+		// query.nameLike("å·¥ç¨‹");
 		List<MyCellBusiess> rows = myCellBusiessService
 				.getMyCellBusiesssByQueryCriteria(0, 10, query);
 		for (MyCellBusiess row : rows) {

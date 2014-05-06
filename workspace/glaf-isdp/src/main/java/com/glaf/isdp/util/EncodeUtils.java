@@ -30,9 +30,9 @@ public class EncodeUtils {
 	}
 
 	public static String decode(String value) {
-		value = RequestUtils.decodeString(value);// ½âÂë
-		value = StringTools.replaceIgnoreCase(value, SALT, "");// È¥µôSALT
-		value = value.substring(32, value.length());// È¥µô¶¨³¤32ÎªUUID
+		value = RequestUtils.decodeString(value);// è§£ç 
+		value = StringTools.replaceIgnoreCase(value, SALT, "");// å»æ‰SALT
+		value = value.substring(32, value.length());// å»æ‰å®šé•¿32ä¸ºUUID
 		return value;
 	}
 
@@ -48,7 +48,7 @@ public class EncodeUtils {
 		sb.append(UUID32.getUUID());
 		Random random = new Random();
 		int r = Math.abs(random.nextInt(32));
-		sb.insert(r, SALT);// ½«SALTËæ»ú²åÈëµ½×Ö·û´®ÖĞ
+		sb.insert(r, SALT);// å°†SALTéšæœºæ’å…¥åˆ°å­—ç¬¦ä¸²ä¸­
 		sb.append(value);
 		// System.out.println(sb.toString());
 		return RequestUtils.encodeString(sb.toString());

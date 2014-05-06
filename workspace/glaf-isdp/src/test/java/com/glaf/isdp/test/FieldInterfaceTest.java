@@ -17,7 +17,7 @@ public class FieldInterfaceTest extends AbstractTest {
 	public void testList() {
 		fieldInterfaceService = super.getBean("fieldInterfaceService");
 		FieldInterfaceQuery query = new FieldInterfaceQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<FieldInterface> rows = fieldInterfaceService
 				.getFieldInterfacesByQueryCriteria(0, 10, query);
 		for (FieldInterface row : rows) {

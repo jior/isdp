@@ -17,7 +17,7 @@ public class UserRoleTest extends AbstractTest {
 	public void testList() {
 		userRoleService = super.getBean("userRoleService");
 		UserRoleQuery query = new UserRoleQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<UserRole> rows = userRoleService
 				.getUserRolesByQueryCriteria(0, 10, query);
 		for (UserRole row : rows) {

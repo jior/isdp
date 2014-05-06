@@ -11,7 +11,7 @@ import com.glaf.isdp.query.*;
 public interface IProjectCellAndFileService {
 
 	/**
-	 * ¸ù¾İÖ÷¼üÉ¾³ı¼ÇÂ¼
+	 * æ ¹æ®ä¸»é”®åˆ é™¤è®°å½•
 	 * 
 	 * @return
 	 */
@@ -19,28 +19,28 @@ public interface IProjectCellAndFileService {
 	void deleteById(String id);
 
 	/**
-	 * ¸ù¾İÖ÷¼ü»ñÈ¡Ò»Ìõ¼ÇÂ¼
+	 * æ ¹æ®ä¸»é”®è·å–ä¸€æ¡è®°å½•
 	 * 
 	 * @return
 	 */
 	ProjectCellAndFile getProjectCellAndFile(String id);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
 	int getProjectCellAndFileCount(Map<String, Object> parameter);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
 	int getProjectCellAndFileCountByQueryCriteria(ProjectCellAndFileQuery query);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
@@ -48,7 +48,7 @@ public interface IProjectCellAndFileService {
 			Map<String, Object> parameter);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡Ò»Ò³µÄÊı¾İ
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–ä¸€é¡µçš„æ•°æ®
 	 * 
 	 * @return
 	 */
@@ -56,7 +56,7 @@ public interface IProjectCellAndFileService {
 			int pageSize, ProjectCellAndFileQuery query);
 
 	/**
-	 * »ñÈ¡WBSÖĞÎÄ¼ş¼ì²éĞÅÏ¢
+	 * è·å–WBSä¸­æ–‡ä»¶æ£€æŸ¥ä¿¡æ¯
 	 * 
 	 * @param indexId
 	 * @return
@@ -64,7 +64,7 @@ public interface IProjectCellAndFileService {
 	List<ProjectCellAndFile> getWbsFileProjectCellAndFileByIndexId(int indexId);
 
 	/**
-	 * »ñÈ¡WBSÖĞ±í¸ñ¼ì²éĞÅÏ¢
+	 * è·å–WBSä¸­è¡¨æ ¼æ£€æŸ¥ä¿¡æ¯
 	 * 
 	 * @param indexId
 	 * @return
@@ -72,14 +72,14 @@ public interface IProjectCellAndFileService {
 	List<ProjectCellAndFile> getWbsProjectCellAndFileByIndexId(int indexId);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
 	List<ProjectCellAndFile> list(ProjectCellAndFileQuery query);
 
 	/**
-	 * ±£´æÒ»Ìõ¼ÇÂ¼
+	 * ä¿å­˜ä¸€æ¡è®°å½•
 	 * 
 	 * @return
 	 */

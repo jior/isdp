@@ -16,7 +16,7 @@ public class TreetopTest extends AbstractTest {
 	public void testList() {
 		treetopService = super.getBean("treetopService");
 		TreetopQuery query = new TreetopQuery();
-		query.nameLike("¹¤³Ì");
+		query.nameLike("å·¥ç¨‹");
 		List<Treetop> rows = treetopService.getTreetopsByQueryCriteria(0, 10,
 				query);
 		for (Treetop row : rows) {

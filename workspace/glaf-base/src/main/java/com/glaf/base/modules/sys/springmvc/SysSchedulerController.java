@@ -160,12 +160,12 @@ public class SysSchedulerController {
 			scheduler = sysSchedulerService.getSchedulerByTaskId(taskId);
 			if (scheduler != null) {
 				if (StringUtils.equals(startup, "1")) {
-					logger.debug("停止调度......");
+					logger.debug("鍋滄璋冨害......");
 					QuartzUtils.stop(taskId);
-					logger.debug("重启调度......");
+					logger.debug("閲嶅惎璋冨害......");
 					QuartzUtils.restart(taskId);
 				} else {
-					logger.debug("停止调度......");
+					logger.debug("鍋滄璋冨害......");
 					QuartzUtils.stop(taskId);
 				}
 			}

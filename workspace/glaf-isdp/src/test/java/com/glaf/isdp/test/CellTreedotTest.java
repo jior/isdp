@@ -22,7 +22,7 @@ public class CellTreedotTest extends AbstractTest {
 	public void testList() {
 		cellTreedotService = super.getBean("cellTreedotService");
 		CellTreedotQuery query = new CellTreedotQuery();
-		// query.nameLike("¹¤³Ì");
+		// query.nameLike("å·¥ç¨‹");
 		List<ITree> treeModels = new ArrayList<ITree>();
 		List<CellTreedot> rows = cellTreedotService
 				.getCellTreedotsByQueryCriteria(0, 500, query);

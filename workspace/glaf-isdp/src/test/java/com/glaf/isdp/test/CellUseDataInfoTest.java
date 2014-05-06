@@ -16,7 +16,7 @@ public class CellUseDataInfoTest extends AbstractTest {
 	public void testList() {
 		cellUseDataInfoService = super.getBean("cellUseDataInfoService");
 		CellUseDataInfoQuery query = new CellUseDataInfoQuery();
-		// query.nameLike("¹¤³Ì");
+		// query.nameLike("å·¥ç¨‹");
 		List<CellUseDataInfo> rows = cellUseDataInfoService
 				.getCellUseDataInfosByQueryCriteria(0, 10, query);
 		for (CellUseDataInfo row : rows) {

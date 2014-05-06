@@ -22,10 +22,10 @@ public class UserTaskTestByTime extends AbstractTest {
 	@Test
 	public void testUserAllTaskByTime() {
 		System.out
-				.println("开始测试testUserAllTaskByTime..................................");
+				.println("寮�濮嬫祴璇晅estUserAllTaskByTime..................................");
 		start = System.currentTimeMillis();
 		userTaskService = super.getBean("userTaskService");
-		String actorId = "薛萌";
+		String actorId = "钖涜悓";
 		String taskType = "ALL";
 		userTaskService.deleteUserTasks(actorId);
 		userTaskService.reloadUserTasksGroupByTime(actorId, taskType);
@@ -57,10 +57,10 @@ public class UserTaskTestByTime extends AbstractTest {
 
 		int total = userTaskService.getUserTaskCountByQueryCriteria(query2);
 
-		logger.debug(actorId + "任务项是:" + total);
+		logger.debug(actorId + "浠诲姟椤规槸:" + total);
 
 		long times = System.currentTimeMillis() - start;
-		System.out.println("testUserAllTaskByTime总共耗时(毫秒):" + times);
+		System.out.println("testUserAllTaskByTime鎬诲叡鑰楁椂(姣):" + times);
 	}
 
 }

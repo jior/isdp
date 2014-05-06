@@ -5,12 +5,12 @@ import java.util.Collection;
 public class IsdpDataTable {
 
 	/**
-	 * Êı¾İ±íĞÅÏ¢
+	 * æ•°æ®è¡¨ä¿¡æ¯
 	 */
 	protected CellDataTable cellDataTable;
 
 	/**
-	 * ×Ö¶Î¶¨ÒåĞÅÏ¢
+	 * å­—æ®µå®šä¹‰ä¿¡æ¯
 	 */
 	protected Collection<CellDataField> dataFields;
 

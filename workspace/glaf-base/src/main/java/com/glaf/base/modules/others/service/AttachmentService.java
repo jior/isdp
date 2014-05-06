@@ -29,7 +29,7 @@ import com.glaf.base.modules.others.model.Attachment;
 public interface AttachmentService {
 
 	/**
-	 * ±£´æ
+	 * ä¿å­˜
 	 * 
 	 * @param bean
 	 *            Attachment
@@ -39,7 +39,7 @@ public interface AttachmentService {
 	boolean create(Attachment bean);
 
 	/**
-	 * É¾³ı
+	 * åˆ é™¤
 	 * 
 	 * @param bean
 	 *            Attachment
@@ -49,7 +49,7 @@ public interface AttachmentService {
 	boolean delete(Attachment bean);
 
 	/**
-	 * É¾³ı
+	 * åˆ é™¤
 	 * 
 	 * @param id
 	 *            int
@@ -59,7 +59,7 @@ public interface AttachmentService {
 	boolean delete(long id);
 
 	/**
-	 * ÅúÁ¿É¾³ı
+	 * æ‰¹é‡åˆ é™¤
 	 * 
 	 * @param ids
 	 * @return
@@ -68,7 +68,7 @@ public interface AttachmentService {
 	boolean deleteAll(long[] ids);
 
 	/**
-	 * »ñÈ¡¶ÔÏó
+	 * è·å–å¯¹è±¡
 	 * 
 	 * @param id
 	 * @return
@@ -76,7 +76,7 @@ public interface AttachmentService {
 	Attachment find(long id);
 
 	/**
-	 * ·µ»Ø¸½¼ş
+	 * è¿”å›é™„ä»¶
 	 * 
 	 * @param referId
 	 * @param referType
@@ -85,7 +85,7 @@ public interface AttachmentService {
 	Attachment find(long referId, int referType);
 
 	/**
-	 * ·µ»Ø¸½¼ş
+	 * è¿”å›é™„ä»¶
 	 * 
 	 * @param referId
 	 * @param referType
@@ -95,7 +95,7 @@ public interface AttachmentService {
 	Attachment find(long referId, int referType, String name);
 
 	/**
-	 * ·µ»Ø¸½¼ş
+	 * è¿”å›é™„ä»¶
 	 * 
 	 * @param referId
 	 * @param referType
@@ -104,7 +104,7 @@ public interface AttachmentService {
 	Attachment find(long id, long referId, int referType);
 
 	/**
-	 * ·µ»Ø¸½¼ş¸öÊı
+	 * è¿”å›é™„ä»¶ä¸ªæ•°
 	 * 
 	 * @param referId
 	 * @param referType
@@ -115,7 +115,7 @@ public interface AttachmentService {
 	int getAttachmentCount(long[] referIds, int referType, String createId);
 
 	/**
-	 * ·µ»ØËùÓĞ¸½¼şÁĞ±í
+	 * è¿”å›æ‰€æœ‰é™„ä»¶åˆ—è¡¨
 	 * 
 	 * @param parent
 	 * @return
@@ -126,7 +126,7 @@ public interface AttachmentService {
 			String createId);
 
 	/**
-	 * ·µ»ØËùÓĞ¸½¼şÁĞ±í
+	 * è¿”å›æ‰€æœ‰é™„ä»¶åˆ—è¡¨
 	 * 
 	 * @param referId
 	 * @param referType
@@ -135,7 +135,7 @@ public interface AttachmentService {
 	List<Attachment> getAttachmentList(long[] referIds, int referType);
 
 	/**
-	 * ·µ»ØËùÓĞ¸½¼şÃû³ÆÁĞ±í
+	 * è¿”å›æ‰€æœ‰é™„ä»¶åç§°åˆ—è¡¨
 	 * 
 	 * @param parent
 	 * @return
@@ -143,7 +143,7 @@ public interface AttachmentService {
 	Map<String, String> getNameMap(long referId, int referType);
 
 	/**
-	 * ¸üĞÂ
+	 * æ›´æ–°
 	 * 
 	 * @param bean
 	 *            Attachment

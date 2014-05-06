@@ -67,7 +67,7 @@ public class UserResource {
 	protected ITableDataService tableDataService;
 
 	/**
-	 * 提交修改信息
+	 * 鎻愪氦淇敼淇℃伅
 	 * 
 	 * @param request
 	 * @param uriInfo
@@ -101,10 +101,10 @@ public class UserResource {
 		}
 
 		ViewMessages messages = new ViewMessages();
-		if (ret) {// 保存成功
+		if (ret) {// 淇濆瓨鎴愬姛
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"user.modify_success"));
-		} else {// 保存失败
+		} else {// 淇濆瓨澶辫触
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"user.modify_failure"));
 		}
@@ -113,7 +113,7 @@ public class UserResource {
 	}
 
 	/**
-	 * 提交修改信息
+	 * 鎻愪氦淇敼淇℃伅
 	 * 
 	 * @param request
 	 * @param uriInfo
@@ -138,10 +138,10 @@ public class UserResource {
 		}
 
 		ViewMessages messages = new ViewMessages();
-		if (ret) {// 保存成功
+		if (ret) {// 淇濆瓨鎴愬姛
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"user.modify_success"));
-		} else {// 保存失败
+		} else {// 淇濆瓨澶辫触
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"user.modify_failure"));
 		}
@@ -150,7 +150,7 @@ public class UserResource {
 	}
 
 	/**
-	 * 修改用户密码
+	 * 淇敼鐢ㄦ埛瀵嗙爜
 	 * 
 	 * @param request
 	 * @param uriInfo
@@ -182,10 +182,10 @@ public class UserResource {
 		}
 
 		ViewMessages messages = new ViewMessages();
-		if (ret) {// 保存成功
+		if (ret) {// 淇濆瓨鎴愬姛
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"user.modify_success"));
-		} else {// 保存失败
+		} else {// 淇濆瓨澶辫触
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"user.modify_failure"));
 		}

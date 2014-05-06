@@ -17,7 +17,7 @@ import com.glaf.core.base.JSONable;
 import com.glaf.isdp.util.CellTreedotViewJsonFactory;
 
 /**
- * ·ÖÀàÊôĞÔ£¨¹¤³ÌÊÓÍ¼£©
+ * åˆ†ç±»å±æ€§ï¼ˆå·¥ç¨‹è§†å›¾ï¼‰
  */
 @Entity
 @Table(name = "cell_treedot_view")

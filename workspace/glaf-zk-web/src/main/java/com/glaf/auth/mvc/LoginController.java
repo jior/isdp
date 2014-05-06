@@ -72,7 +72,7 @@ public class LoginController extends SelectorComposer<Component> {
 		String pd = password.getValue();
 
 		if (getAuthorizeService().login(actorId, pd) == null) {
-			message.setValue("�û�������벻��ȷ.");
+			message.setValue("用户名或密码不正确！");
 			return;
 		}
 
@@ -87,12 +87,12 @@ public class LoginController extends SelectorComposer<Component> {
 
 		SysUser user = getAuthorizeService().login(actorId);
 
-		// ��¼�ɹ����޸����һ�ε�¼ʱ��
+ 
 		user.setLastLoginDate(new Date());
 		user.setLastLoginIP(Executions.getCurrent().getRemoteAddr());
 		getSysUserService().updateUser(user);
 
-		ContextUtil.put(user.getAccount(), user);// ����ȫ�ֱ���
+		ContextUtil.put(user.getAccount(), user); 
 		HttpServletRequest request = (HttpServletRequest) Executions
 				.getCurrent().getNativeRequest();
 		HttpServletResponse response = (HttpServletResponse) Executions

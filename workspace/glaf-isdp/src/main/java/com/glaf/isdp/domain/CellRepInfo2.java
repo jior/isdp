@@ -17,7 +17,7 @@ import com.glaf.core.base.JSONable;
 import com.glaf.isdp.util.CellRepInfo2JsonFactory;
 
 /**
- * ±í¸ñĞÅÏ¢£¨´Ó±íÇøÓò£©
+ * è¡¨æ ¼ä¿¡æ¯ï¼ˆä»è¡¨åŒºåŸŸï¼‰
  */
 @Entity
 @Table(name = "cell_repinfo2")
@@ -61,25 +61,25 @@ public class CellRepInfo2 implements Serializable, JSONable {
 	protected String ostTablename;
 
 	/**
-	 * ost_row ¿ªÊ¼ĞĞºÅ£¬´Ó1¿ªÊ¼
+	 * ost_row å¼€å§‹è¡Œå·ï¼Œä»1å¼€å§‹
 	 */
 	@Column(name = "ost_row")
 	protected int ostRow;
 
 	/**
-	 * ost_col ¿ªÊ¼ÁĞºÅ£¬´Ó1¿ªÊ¼
+	 * ost_col å¼€å§‹åˆ—å·ï¼Œä»1å¼€å§‹
 	 */
 	@Column(name = "ost_col")
 	protected int ostCol;
 
 	/**
-	 * ost_rowend ½áÊøĞĞºÅ
+	 * ost_rowend ç»“æŸè¡Œå·
 	 */
 	@Column(name = "ost_rowend")
 	protected int ostRowend;
 
 	/**
-	 * ost_colend ½áÊøÁĞºÅ
+	 * ost_colend ç»“æŸåˆ—å·
 	 */
 	@Column(name = "ost_colend")
 	protected int ostColend;
@@ -91,7 +91,7 @@ public class CellRepInfo2 implements Serializable, JSONable {
 	protected String ostCellid;
 
 	/**
-	 * filedot_fileid ±í¸ñÎÄ¼ş¶¨Òå±àºÅ
+	 * filedot_fileid è¡¨æ ¼æ–‡ä»¶å®šä¹‰ç¼–å·
 	 */
 	@Column(name = "filedot_fileid", length = 50)
 	protected String filedotFileid;

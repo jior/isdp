@@ -11,7 +11,7 @@ import com.glaf.isdp.query.*;
 public interface ICellDataTableService {
 
 	/**
-	 * ¸ù¾İÖ÷¼üÉ¾³ı¼ÇÂ¼
+	 * æ ¹æ®ä¸»é”®åˆ é™¤è®°å½•
 	 * 
 	 * @return
 	 */
@@ -19,14 +19,14 @@ public interface ICellDataTableService {
 	void deleteById(String id);
 
 	/**
-	 * ¸ù¾İÖ÷¼ü»ñÈ¡Ò»Ìõ¼ÇÂ¼
+	 * æ ¹æ®ä¸»é”®è·å–ä¸€æ¡è®°å½•
 	 * 
 	 * @return
 	 */
 	CellDataTable getCellDataTable(String id);
 
 	/**
-	 * ¸ù¾İ±íÃû»ñÈ¡±í¶¨ÒåĞÅÏ¢
+	 * æ ¹æ®è¡¨åè·å–è¡¨å®šä¹‰ä¿¡æ¯
 	 * 
 	 * @param tablename
 	 * @return
@@ -34,7 +34,7 @@ public interface ICellDataTableService {
 	CellDataTable getCellDataTableByTablename(String tablename);
 
 	/**
-	 * »ñÈ¡Ä³¸ö±íµÄÏÂÒ»¸öÖ÷¼üÖµ
+	 * è·å–æŸä¸ªè¡¨çš„ä¸‹ä¸€ä¸ªä¸»é”®å€¼
 	 * 
 	 * @param tablename
 	 * @param actorId
@@ -43,28 +43,28 @@ public interface ICellDataTableService {
 	String getNextId(String tablename, String actorId);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
 	int getCellDataTableCount(Map<String, Object> parameter);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
 	int getCellDataTableCountByQueryCriteria(CellDataTableQuery query);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
 	List<CellDataTable> getCellDataTables(Map<String, Object> parameter);
 
 	/**
-	 * ¸ù¾İÎÄ¼ş±àºÅ»ñÈ¡±í¸ñ¶¨ÒåĞÅÏ¢£¨Ò»¸öCellÎÄ¼ş¶¨Òå·Ö½âµ½¶à¸öCellDataTable£©
+	 * æ ¹æ®æ–‡ä»¶ç¼–å·è·å–è¡¨æ ¼å®šä¹‰ä¿¡æ¯ï¼ˆä¸€ä¸ªCellæ–‡ä»¶å®šä¹‰åˆ†è§£åˆ°å¤šä¸ªCellDataTableï¼‰
 	 * 
 	 * @param filedotFileId
 	 * @return
@@ -72,7 +72,7 @@ public interface ICellDataTableService {
 	List<CellDataTable> getCellDataTablesByFiledotId(String filedotId);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡Ò»Ò³µÄÊı¾İ
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–ä¸€é¡µçš„æ•°æ®
 	 * 
 	 * @return
 	 */
@@ -80,14 +80,14 @@ public interface ICellDataTableService {
 			int pageSize, CellDataTableQuery query);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
 	List<CellDataTable> list(CellDataTableQuery query);
 
 	/**
-	 * ±£´æÒ»Ìõ¼ÇÂ¼
+	 * ä¿å­˜ä¸€æ¡è®°å½•
 	 * 
 	 * @return
 	 */
@@ -95,7 +95,7 @@ public interface ICellDataTableService {
 	void save(CellDataTable cellDataTable);
 
 	/**
-	 * ±£´æÊı¾İ
+	 * ä¿å­˜æ•°æ®
 	 * @param tablename
 	 * @param dataMap
 	 */

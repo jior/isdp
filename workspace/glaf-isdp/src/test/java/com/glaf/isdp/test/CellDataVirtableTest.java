@@ -17,7 +17,7 @@ public class CellDataVirtableTest extends AbstractTest {
 	public void testList() {
 		cellDataVirtableService = super.getBean("cellDataVirtableService");
 		CellDataVirtableQuery query = new CellDataVirtableQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<CellDataVirtable> rows = cellDataVirtableService
 				.getCellDataVirtablesByQueryCriteria(0, 10, query);
 		for (CellDataVirtable row : rows) {

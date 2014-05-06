@@ -21,7 +21,7 @@ import com.glaf.isdp.service.IFieldInterfaceService;
 import com.glaf.isdp.util.EncodeUtils;
 
 /**
- * 清单信息
+ * 娓呭崟淇℃伅
  * 
  */
 @Controller

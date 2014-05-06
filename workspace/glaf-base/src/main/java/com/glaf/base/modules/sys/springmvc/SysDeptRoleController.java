@@ -64,7 +64,7 @@ public class SysDeptRoleController {
 	private SysTreeService sysTreeService;
 
 	/**
-	 * ÉèÖÃÈ¨ÏŞ
+	 * è®¾ç½®æƒé™
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -87,10 +87,10 @@ public class SysDeptRoleController {
 		boolean ret = sysDeptRoleService.saveRoleApplication(roleId, appId,
 				funcId);
 		ViewMessages messages = new ViewMessages();
-		if (ret) {// ±£´æ³É¹¦
+		if (ret) {// ä¿å­˜æˆåŠŸ
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"role.app_success"));
-		} else {// ±£´æÊ§°Ü
+		} else {// ä¿å­˜å¤±è´¥
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"role.app_failure"));
 		}
@@ -100,7 +100,7 @@ public class SysDeptRoleController {
 	}
 
 	/**
-	 * ÉèÖÃ²¿ÃÅ½ÇÉ«
+	 * è®¾ç½®éƒ¨é—¨è§’è‰²
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -110,20 +110,20 @@ public class SysDeptRoleController {
 	public ModelAndView setRole(HttpServletRequest request, ModelMap modelMap) {
 		ViewMessages messages = new ViewMessages();
 		long deptId = ParamUtil.getIntParameter(request, "deptId", 0);
-		SysDepartment dept = sysDepartmentService.findById(deptId);// ²éÕÒ²¿ÃÅ¶ÔÏó
-		if (dept != null) {// ²¿ÃÅ´æÔÚ
-			long[] id = ParamUtil.getLongParameterValues(request, "id");// »ñÈ¡roleId
+		SysDepartment dept = sysDepartmentService.findById(deptId);// æŸ¥æ‰¾éƒ¨é—¨å¯¹è±¡
+		if (dept != null) {// éƒ¨é—¨å­˜åœ¨
+			long[] id = ParamUtil.getLongParameterValues(request, "id");// è·å–roleId
 			if (id != null) {
-				// ÏÈÈ·¶¨ÒªÉ¾³ıµÄ½ÇÉ«
+				// å…ˆç¡®å®šè¦åˆ é™¤çš„è§’è‰²
 
-				// ÔÙÈ·¶¨ÒªÔö¼ÓµÄ½ÇÉ«
+				// å†ç¡®å®šè¦å¢åŠ çš„è§’è‰²
 
-				// ÏÈ°Ñ²¿ÃÅÏÂÃæµÄ½ÇÉ«Çå¿Õ
+				// å…ˆæŠŠéƒ¨é—¨ä¸‹é¢çš„è§’è‰²æ¸…ç©º
 				Iterator<?> iter = dept.getRoles().iterator();
 				while (iter.hasNext()) {
 					sysDeptRoleService.delete((SysDeptRole) iter.next());
 				}
-				// ´´½¨ĞÂ½ÇÉ«
+				// åˆ›å»ºæ–°è§’è‰²
 				for (int i = 0; i < id.length; i++) {
 					SysRole role = sysRoleService.findById(id[i]);
 					if (role == null)
@@ -166,7 +166,7 @@ public class SysDeptRoleController {
 	}
 
 	/**
-	 * ÏÔÊ¾ËùÓĞÁĞ±í
+	 * æ˜¾ç¤ºæ‰€æœ‰åˆ—è¡¨
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -184,12 +184,12 @@ public class SysDeptRoleController {
 		if (StringUtils.isNotEmpty(x_view)) {
 			return new ModelAndView(x_view, modelMap);
 		}
-		// ÏÔÊ¾ÁĞ±íÒ³Ãæ
+		// æ˜¾ç¤ºåˆ—è¡¨é¡µé¢
 		return new ModelAndView("/modules/sys/deptRole/deptRole_list", modelMap);
 	}
 
 	/**
-	 * ÏÔÊ¾½ÇÉ«È¨ÏŞÓ³ÉäÒ³Ãæ
+	 * æ˜¾ç¤ºè§’è‰²æƒé™æ˜ å°„é¡µé¢
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -202,7 +202,7 @@ public class SysDeptRoleController {
 		long deptId = ParamUtil.getLongParameter(request, "deptId", 0);
 		long roleId = ParamUtil.getLongParameter(request, "roleId", 0);
 		SysDeptRole deptRole = sysDeptRoleService.find(deptId, roleId);
-		if (deptRole == null) {// Èç¹ûÃ»ÓĞÕÒµ½Ôò´´½¨Ò»¸ö
+		if (deptRole == null) {// å¦‚æœæ²¡æœ‰æ‰¾åˆ°åˆ™åˆ›å»ºä¸€ä¸ª
 			deptRole = new SysDeptRole();
 			deptRole.setDept(sysDepartmentService.findById(deptId));
 			deptRole.setDeptId(deptId);

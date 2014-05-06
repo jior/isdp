@@ -22,10 +22,10 @@ public class UserTaskTestByWbs extends AbstractTest {
 	@Test
 	public void testUserAllTaskByWbs() {
 		System.out
-				.println("开始测试testUserAllTaskByWbs..................................");
+				.println("寮�濮嬫祴璇晅estUserAllTaskByWbs..................................");
 		start = System.currentTimeMillis();
 		userTaskService = super.getBean("userTaskService");
-		String actorId = "薛萌";
+		String actorId = "钖涜悓";
 		String taskType = "ALL";
 		userTaskService.deleteUserTasks(actorId);
 		userTaskService.reloadUserTasksGroupByWBS(actorId, taskType);
@@ -57,10 +57,10 @@ public class UserTaskTestByWbs extends AbstractTest {
 
 		int total = userTaskService.getUserTaskCountByQueryCriteria(query2);
 
-		logger.debug(actorId + "任务项是:" + total);
+		logger.debug(actorId + "浠诲姟椤规槸:" + total);
 
 		long times = System.currentTimeMillis() - start;
-		System.out.println("testUserAllTaskByWbs总共耗时(毫秒):" + times);
+		System.out.println("testUserAllTaskByWbs鎬诲叡鑰楁椂(姣):" + times);
 	}
 
 }

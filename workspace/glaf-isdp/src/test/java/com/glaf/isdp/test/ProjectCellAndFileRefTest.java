@@ -17,7 +17,7 @@ public class ProjectCellAndFileRefTest extends AbstractTest {
 	public void testList() {
 		projectCellAndFileRefService = super.getBean("projectCellAndFileRefService");
 		ProjectCellAndFileRefQuery query = new ProjectCellAndFileRefQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<ProjectCellAndFileRef> rows = projectCellAndFileRefService
 				.getProjectCellAndFileRefsByQueryCriteria(0, 10, query);
 		for (ProjectCellAndFileRef row : rows) {

@@ -11,7 +11,7 @@ import com.glaf.isdp.query.*;
 public interface ICellDataFieldService {
 
 	/**
-	 * ¸ù¾İÖ÷¼üÉ¾³ı¼ÇÂ¼
+	 * æ ¹æ®ä¸»é”®åˆ é™¤è®°å½•
 	 * 
 	 * @return
 	 */
@@ -19,49 +19,49 @@ public interface ICellDataFieldService {
 	void deleteById(String id);
 
 	/**
-	 * ¸ù¾İÖ÷¼ü»ñÈ¡Ò»Ìõ¼ÇÂ¼
+	 * æ ¹æ®ä¸»é”®è·å–ä¸€æ¡è®°å½•
 	 * 
 	 * @return
 	 */
 	CellDataField getCellDataField(String id);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
 	int getCellDataFieldCount(Map<String, Object> parameter);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
 	int getCellDataFieldCountByQueryCriteria(CellDataFieldQuery query);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
 	List<CellDataField> getCellDataFields(Map<String, Object> parameter);
 	
 	/**
-	 * ¸ù¾İ±íID»ñÈ¡×Ö¶ÎĞÅÏ¢
+	 * æ ¹æ®è¡¨IDè·å–å­—æ®µä¿¡æ¯
 	 * @param tableId
 	 * @return
 	 */
 	List<CellDataField> getCellDataFieldsByTableId(String tableId);
 	
 	/**
-	 * ¸ù¾İ±íµ¥ÎÄ¼ş±àºÅ»ñÈ¡×Ö¶ÎĞÅÏ¢
+	 * æ ¹æ®è¡¨å•æ–‡ä»¶ç¼–å·è·å–å­—æ®µä¿¡æ¯
 	 * @param filedotId
 	 * @return
 	 */
 	List<CellDataField> getCellDataFieldsByFiledotId(String filedotId);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡Ò»Ò³µÄÊı¾İ
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–ä¸€é¡µçš„æ•°æ®
 	 * 
 	 * @return
 	 */
@@ -69,14 +69,14 @@ public interface ICellDataFieldService {
 			int pageSize, CellDataFieldQuery query);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
 	List<CellDataField> list(CellDataFieldQuery query);
 
 	/**
-	 * ±£´æÒ»Ìõ¼ÇÂ¼
+	 * ä¿å­˜ä¸€æ¡è®°å½•
 	 * 
 	 * @return
 	 */

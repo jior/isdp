@@ -17,7 +17,7 @@ import com.glaf.core.base.JSONable;
 import com.glaf.isdp.util.MycellTaskJsonFactory;
 
 /**
- * 流程定义主表
+ * 娴佺▼瀹氫箟涓昏〃
  */
 @Entity
 @Table(name = "mycell_tasks")

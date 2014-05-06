@@ -32,7 +32,7 @@ public class RoleTest extends AbstractTest {
 	public void testList() {
 		roleService = super.getBean("isdpRoleService");
 		RoleQuery query = new RoleQuery();
-		// query.nameLike("¹¤³Ì");
+		// query.nameLike("å·¥ç¨‹");
 		List<Role> rows = roleService.getRolesByQueryCriteria(0, 10, query);
 		for (Role row : rows) {
 			roleService.save(row);

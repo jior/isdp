@@ -51,7 +51,7 @@ public class ReceiveMailTest {
 	}
 
 	/**
-	 * »ñÈ¡·¢ËÍÓÊ¼şÕßĞÅÏ¢
+	 * è·å–å‘é€é‚®ä»¶è€…ä¿¡æ¯
 	 * 
 	 * @return
 	 * @throws MessagingException
@@ -71,7 +71,7 @@ public class ReceiveMailTest {
 	}
 
 	/**
-	 * »ñÈ¡ÓÊ¼şÊÕ¼şÈË£¬³­ËÍ£¬ÃÜËÍµÄµØÖ·ºÍĞÅÏ¢¡£¸ù¾İËù´«µİµÄ²ÎÊı²»Í¬ "to"-->ÊÕ¼şÈË,"cc"-->³­ËÍÈËµØÖ·,"bcc"-->ÃÜËÍµØÖ·
+	 * è·å–é‚®ä»¶æ”¶ä»¶äººï¼ŒæŠ„é€ï¼Œå¯†é€çš„åœ°å€å’Œä¿¡æ¯ã€‚æ ¹æ®æ‰€ä¼ é€’çš„å‚æ•°ä¸åŒ "to"-->æ”¶ä»¶äºº,"cc"-->æŠ„é€äººåœ°å€,"bcc"-->å¯†é€åœ°å€
 	 * 
 	 * @param type
 	 * @return
@@ -126,7 +126,7 @@ public class ReceiveMailTest {
 	}
 
 	/**
-	 * »ñÈ¡ÓÊ¼şÖ÷Ìâ
+	 * è·å–é‚®ä»¶ä¸»é¢˜
 	 * 
 	 * @return
 	 * @throws UnsupportedEncodingException
@@ -151,7 +151,7 @@ public class ReceiveMailTest {
 	}
 
 	/**
-	 * »ñÈ¡ÓÊ¼ş·¢ËÍÈÕÆÚ
+	 * è·å–é‚®ä»¶å‘é€æ—¥æœŸ
 	 * 
 	 * @return
 	 * @throws MessagingException
@@ -163,7 +163,7 @@ public class ReceiveMailTest {
 	}
 
 	/**
-	 * »ñÈ¡ÓÊ¼şÕıÎÄÄÚÈİ
+	 * è·å–é‚®ä»¶æ­£æ–‡å†…å®¹
 	 * 
 	 * @return
 	 */
@@ -172,7 +172,7 @@ public class ReceiveMailTest {
 	}
 
 	/**
-	 * ½âÎöÓÊ¼ş£¬½«µÃµ½µÄÓÊ¼şÄÚÈİ±£´æµ½Ò»¸östringBuffer¶ÔÏóÖĞ£¬½âÎöÓÊ¼ş Ö÷Òª¸ù¾İMimeTypeµÄ²»Í¬Ö´ĞĞ²»Í¬µÄ²Ù×÷£¬Ò»²½Ò»²½µÄ½âÎö
+	 * è§£æé‚®ä»¶ï¼Œå°†å¾—åˆ°çš„é‚®ä»¶å†…å®¹ä¿å­˜åˆ°ä¸€ä¸ªstringBufferå¯¹è±¡ä¸­ï¼Œè§£æé‚®ä»¶ ä¸»è¦æ ¹æ®MimeTypeçš„ä¸åŒæ‰§è¡Œä¸åŒçš„æ“ä½œï¼Œä¸€æ­¥ä¸€æ­¥çš„è§£æ
 	 * 
 	 * @param part
 	 * @throws MessagingException
@@ -204,7 +204,7 @@ public class ReceiveMailTest {
 	}
 
 	/**
-	 * ÅĞ¶ÏÓÊ¼şÊÇ·ñĞèÒª»ØÖ´£¬ÈçĞè»ØÖ´·µ»Øtrue£¬·ñÔò·µ»Øfalse
+	 * åˆ¤æ–­é‚®ä»¶æ˜¯å¦éœ€è¦å›æ‰§ï¼Œå¦‚éœ€å›æ‰§è¿”å›trueï¼Œå¦åˆ™è¿”å›false
 	 * 
 	 * @return
 	 * @throws MessagingException
@@ -219,7 +219,7 @@ public class ReceiveMailTest {
 	}
 
 	/**
-	 * »ñÈ¡´ËÓÊ¼şµÄmessage-id
+	 * è·å–æ­¤é‚®ä»¶çš„message-id
 	 * 
 	 * @return
 	 * @throws MessagingException
@@ -229,7 +229,7 @@ public class ReceiveMailTest {
 	}
 
 	/**
-	 * ÅĞ¶Ï´ËÓÊ¼şÊÇ·ñÒÑ¶Á£¬Èç¹ûÎ´¶ÁÔò·µ»Øfalse£¬ÒÑ¶Á·µ»Øtrue
+	 * åˆ¤æ–­æ­¤é‚®ä»¶æ˜¯å¦å·²è¯»ï¼Œå¦‚æœæœªè¯»åˆ™è¿”å›falseï¼Œå·²è¯»è¿”å›true
 	 * 
 	 * @return
 	 * @throws MessagingException
@@ -251,7 +251,7 @@ public class ReceiveMailTest {
 	}
 
 	/**
-	 * ÅĞ¶ÏÊÇÊÇ·ñ°üº¬¸½¼ş
+	 * åˆ¤æ–­æ˜¯æ˜¯å¦åŒ…å«é™„ä»¶
 	 * 
 	 * @param part
 	 * @return
@@ -291,7 +291,7 @@ public class ReceiveMailTest {
 	}
 
 	/**
-	 * ±£´æ¸½¼ş
+	 * ä¿å­˜é™„ä»¶
 	 * 
 	 * @param part
 	 * @throws MessagingException
@@ -335,7 +335,7 @@ public class ReceiveMailTest {
 	}
 
 	/**
-	 * »ñµÃ±£´æ¸½¼şµÄµØÖ·
+	 * è·å¾—ä¿å­˜é™„ä»¶çš„åœ°å€
 	 * 
 	 * @return
 	 */
@@ -344,7 +344,7 @@ public class ReceiveMailTest {
 	}
 
 	/**
-	 * ÉèÖÃ±£´æ¸½¼şµØÖ·
+	 * è®¾ç½®ä¿å­˜é™„ä»¶åœ°å€
 	 * 
 	 * @param saveAttchPath
 	 */
@@ -353,7 +353,7 @@ public class ReceiveMailTest {
 	}
 
 	/**
-	 * ÉèÖÃÈÕÆÚ¸ñÊ½
+	 * è®¾ç½®æ—¥æœŸæ ¼å¼
 	 * 
 	 * @param dateFormat
 	 */
@@ -362,7 +362,7 @@ public class ReceiveMailTest {
 	}
 
 	/**
-	 * ±£´æÎÄ¼şÄÚÈİ
+	 * ä¿å­˜æ–‡ä»¶å†…å®¹
 	 * 
 	 * @param filename
 	 * @param inputStream

@@ -21,7 +21,7 @@ public class NetRoleTest extends AbstractTest {
 	public void testList() {
 		netRoleService = super.getBean("netRoleService");
 		NetRoleQuery query = new NetRoleQuery();
-		// query.nameLike("¹¤³Ì");
+		// query.nameLike("å·¥ç¨‹");
 		List<NetRole> rows = netRoleService.getNetRolesByQueryCriteria(0, 100,
 				query);
 		int listno = 1;

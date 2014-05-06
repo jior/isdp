@@ -17,7 +17,7 @@ public class PfileTest extends AbstractTest {
 	public void testList() {
 		pfileService = super.getBean("pfileService");
 		PfileQuery query = new PfileQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<IsdpPfile> rows = pfileService
 				.getPfilesByQueryCriteria(0, 10, query);
 		for (IsdpPfile row : rows) {

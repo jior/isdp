@@ -69,14 +69,14 @@ public class IsdpLoginController {
 			user = IdentityFactory.getUser(actorId);
 			if (user != null) {
 				if (user.getLocked() != 0) {
-					request.setAttribute("error_message", "ÓÃ»§ÃûÒÑ¾­Í£ÓÃ£¡");
+					request.setAttribute("error_message", "ç”¨æˆ·åå·²ç»åœç”¨ï¼");
 					return "/modules/login";
 				}
 				boolean isAuthenticated = false;
 				isAuthenticated = IdentityFactory.checkPassword(actorId,
 						password);
 				if (!isAuthenticated) {
-					request.setAttribute("error_message", "ÃÜÂë²»ÕıÈ·£¡");
+					request.setAttribute("error_message", "å¯†ç ä¸æ­£ç¡®ï¼");
 					return "/modules/login";
 				}
 			}
@@ -116,7 +116,7 @@ public class IsdpLoginController {
 
 			RequestUtils.setLoginUser(request, response, systemName, actorId);
 
-			logger.info(user.getName() + "ÒÑ¾­µÇÂ¼ÏµÍ³");
+			logger.info(user.getName() + "å·²ç»ç™»å½•ç³»ç»Ÿ");
 
 			Properties props = CallbackProperties.getProperties();
 			if (props != null && props.keys().hasMoreElements()) {
@@ -182,7 +182,7 @@ public class IsdpLoginController {
 			}
 			return view;
 		} else {
-			request.setAttribute("error_message", "ÓÃ»§Ãû²»´æÔÚ£¡");
+			request.setAttribute("error_message", "ç”¨æˆ·åä¸å­˜åœ¨ï¼");
 			String view = "/modules/login";
 			String x_view = ViewProperties.getString("sys_login.login");
 			if (StringUtils.isNotEmpty(x_view)) {

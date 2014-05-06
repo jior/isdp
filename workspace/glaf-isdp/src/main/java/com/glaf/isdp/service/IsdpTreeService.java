@@ -9,14 +9,14 @@ import com.glaf.isdp.query.IsdpTreeQuery;
 public interface IsdpTreeService {
 
 	/**
-	 * 根据查询获取节点树，其中查询Sql是必须的
+	 * 鏍规嵁鏌ヨ鑾峰彇鑺傜偣鏍戯紝鍏朵腑鏌ヨSql鏄繀椤荤殑
 	 * @param query
 	 * @return
 	 */
 	List<ITree> getIsdpTreesByQueryCriteria(IsdpTreeQuery query);
 	
 	/**
-	 * 根据查询获取节点树，其中表名是必须的
+	 * 鏍规嵁鏌ヨ鑾峰彇鑺傜偣鏍戯紝鍏朵腑琛ㄥ悕鏄繀椤荤殑
 	 * @param query
 	 * @return
 	 */

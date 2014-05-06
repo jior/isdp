@@ -200,10 +200,10 @@ public class InputType {
 	}
 
 	/**
-	 * ¸ù¾İÀàĞÍÃû³Æ»ñÈ¡Êı¾İÀàĞÍ
+	 * æ ¹æ®ç±»å‹åç§°è·å–æ•°æ®ç±»å‹
 	 * 
 	 * @param typeName
-	 *            ÀàĞÍÃû³Æ
+	 *            ç±»å‹åç§°
 	 * @return
 	 */
 	public static int getInputType(String typeName) {
@@ -219,11 +219,11 @@ public class InputType {
 	}
 
 	/**
-	 * ¸ù¾İÖµ·µ»ØÀàĞÍÃû³Æ
+	 * æ ¹æ®å€¼è¿”å›ç±»å‹åç§°
 	 * 
 	 * @param dataType
 	 * 
-	 * @return ÀàĞÍÃû³Æ
+	 * @return ç±»å‹åç§°
 	 */
 	public static String getType(int dataType) {
 		Iterator<String> iterator = dataMap.keySet().iterator();

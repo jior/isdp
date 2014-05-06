@@ -13,14 +13,14 @@ public class SysPermission implements Serializable, JSONable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * ¹¦ÄÜ±àºÅ
+	 * åŠŸèƒ½ç¼–å·
 	 */
 	@Id
 	@Column(name = "FUNCID", nullable = false)
 	protected long funcId;
 
 	/**
-	 * ½ÇÉ«±àºÅ
+	 * è§’è‰²ç¼–å·
 	 */
 	@Id
 	@Column(name = "ROLEID", nullable = false)

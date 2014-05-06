@@ -17,7 +17,7 @@ public class PinfoTest extends AbstractTest {
 	public void testList() {
 		pinfoService = super.getBean("pinfoService");
 		PinfoQuery query = new PinfoQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<IsdpPinfo> rows = pinfoService
 				.getPinfosByQueryCriteria(0, 10, query);
 		for (IsdpPinfo row : rows) {

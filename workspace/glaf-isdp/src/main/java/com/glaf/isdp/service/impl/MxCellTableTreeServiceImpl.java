@@ -47,7 +47,7 @@ public class MxCellTableTreeServiceImpl implements ICellTableTreeService {
 	}
 
 	/**
-	 * 获取管理大类结构定义
+	 * 鑾峰彇绠＄悊澶х被缁撴瀯瀹氫箟
 	 * 
 	 * @return
 	 */
@@ -65,7 +65,7 @@ public class MxCellTableTreeServiceImpl implements ICellTableTreeService {
 	}
 
 	/**
-	 * 根据查询参数获取记录总数
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇璁板綍鎬绘暟
 	 * 
 	 * @return
 	 */
@@ -74,7 +74,7 @@ public class MxCellTableTreeServiceImpl implements ICellTableTreeService {
 	}
 
 	/**
-	 * 根据查询参数获取记录总数
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇璁板綍鎬绘暟
 	 * 
 	 * @return
 	 */
@@ -84,7 +84,7 @@ public class MxCellTableTreeServiceImpl implements ICellTableTreeService {
 	}
 
 	/**
-	 * 根据查询参数获取一页的数据
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇涓�椤电殑鏁版嵁
 	 * 
 	 * @return
 	 */
@@ -97,7 +97,7 @@ public class MxCellTableTreeServiceImpl implements ICellTableTreeService {
 	}
 
 	/**
-	 * 根据查询参数获取记录列表
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇璁板綍鍒楄〃
 	 * 
 	 * @return
 	 */

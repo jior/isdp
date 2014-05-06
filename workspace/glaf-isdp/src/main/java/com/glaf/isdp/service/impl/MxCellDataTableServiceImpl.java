@@ -84,7 +84,7 @@ public class MxCellDataTableServiceImpl implements ICellDataTableService {
 	}
 
 	/**
-	 * ¸ù¾İ±íÃû»ñÈ¡±í¶¨ÒåĞÅÏ¢
+	 * æ ¹æ®è¡¨åè·å–è¡¨å®šä¹‰ä¿¡æ¯
 	 * 
 	 * @param tablename
 	 * @return
@@ -105,7 +105,7 @@ public class MxCellDataTableServiceImpl implements ICellDataTableService {
 	}
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
@@ -114,7 +114,7 @@ public class MxCellDataTableServiceImpl implements ICellDataTableService {
 	}
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
@@ -124,7 +124,7 @@ public class MxCellDataTableServiceImpl implements ICellDataTableService {
 	}
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
@@ -133,7 +133,7 @@ public class MxCellDataTableServiceImpl implements ICellDataTableService {
 	}
 
 	/**
-	 * ¸ù¾İÎÄ¼ş±àºÅ»ñÈ¡±í¸ñ¶¨ÒåĞÅÏ¢£¨Ò»¸öCellÎÄ¼ş¶¨Òå·Ö½âµ½¶à¸öCellDataTable£©
+	 * æ ¹æ®æ–‡ä»¶ç¼–å·è·å–è¡¨æ ¼å®šä¹‰ä¿¡æ¯ï¼ˆä¸€ä¸ªCellæ–‡ä»¶å®šä¹‰åˆ†è§£åˆ°å¤šä¸ªCellDataTableï¼‰
 	 * 
 	 * @param filedotFileId
 	 * @return
@@ -144,7 +144,7 @@ public class MxCellDataTableServiceImpl implements ICellDataTableService {
 	}
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡Ò»Ò³µÄÊı¾İ
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–ä¸€é¡µçš„æ•°æ®
 	 * 
 	 * @return
 	 */
@@ -378,7 +378,7 @@ public class MxCellDataTableServiceImpl implements ICellDataTableService {
 	}
 
 	/**
-	 * ±£´æÊı¾İ
+	 * ä¿å­˜æ•°æ®
 	 * 
 	 * @param tablename
 	 * @param dataMap

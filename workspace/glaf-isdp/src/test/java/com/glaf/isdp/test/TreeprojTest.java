@@ -17,7 +17,7 @@ public class TreeprojTest extends AbstractTest {
 	public void testList() {
 		treeProjectService = super.getBean("treeProjectService");
 		TreeProjectQuery query = new TreeProjectQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<TreeProject> rows = treeProjectService
 				.getTreeProjectsByQueryCriteria(0, 10, query);
 		for (TreeProject row : rows) {

@@ -11,7 +11,7 @@ import com.glaf.isdp.query.*;
 public interface ICellRepInfoService {
 
 	/**
-	 * ¸ù¾İÖ÷¼üÉ¾³ı¼ÇÂ¼
+	 * æ ¹æ®ä¸»é”®åˆ é™¤è®°å½•
 	 * 
 	 * @return
 	 */
@@ -19,21 +19,21 @@ public interface ICellRepInfoService {
 	void deleteById(String id);
 
 	/**
-	 * ¸ù¾İÖ÷¼ü»ñÈ¡Ò»Ìõ¼ÇÂ¼
+	 * æ ¹æ®ä¸»é”®è·å–ä¸€æ¡è®°å½•
 	 * 
 	 * @return
 	 */
 	CellRepInfo getCellRepInfo(String id);
 	
 	/**
-	 * ¸ù¾İÖ÷¼ü·µ»Ø¸Ã¶ÔÏó¼°¸÷¸ö¹ØÁªĞÅÏ¢
+	 * æ ¹æ®ä¸»é”®è¿”å›è¯¥å¯¹è±¡åŠå„ä¸ªå…³è”ä¿¡æ¯
 	 * @param id
 	 * @return
 	 */
 	CellRepInfo getCellRepInfoWithAll(String id);
 	
 	/**
-	 * »ñÈ¡Ä³¸ö½ÇÉ«Ä³¸ö±í¸ñµÄµ¥Ôª¸ñĞÅÏ¢
+	 * è·å–æŸä¸ªè§’è‰²æŸä¸ªè¡¨æ ¼çš„å•å…ƒæ ¼ä¿¡æ¯
 	 * @param filedot_fileid
 	 * @param roleid
 	 * @param celltreedot_index
@@ -42,7 +42,7 @@ public interface ICellRepInfoService {
 	List<CellRepInfo> getRoleUseExistsCellRepInfos(String filedot_fileid, int roleid, int celltreedot_index);
 	
 	/**
-	 * »ñÈ¡Ä³¸ö½ÇÉ«Ä³¸ö±í¸ñµÄµ¥Ôª¸ñĞÅÏ¢
+	 * è·å–æŸä¸ªè§’è‰²æŸä¸ªè¡¨æ ¼çš„å•å…ƒæ ¼ä¿¡æ¯
 	 * @param filedot_fileid
 	 * @param roleid
 	 * @param celltreedot_index
@@ -51,28 +51,28 @@ public interface ICellRepInfoService {
 	List<CellRepInfo> getRoleUseNotExistsCellRepInfos(String filedot_fileid, int roleid, int celltreedot_index);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
 	int getCellRepInfoCount(Map<String, Object> parameter);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
 	int getCellRepInfoCountByQueryCriteria(CellRepInfoQuery query);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
 	List<CellRepInfo> getCellRepInfos(Map<String, Object> parameter);
 
 	/**
-	 * ¸ù¾İÎÄ¼ş±àºÅ»ñÈ¡±í¸ñ¶¨ÒåĞÅÏ¢
+	 * æ ¹æ®æ–‡ä»¶ç¼–å·è·å–è¡¨æ ¼å®šä¹‰ä¿¡æ¯
 	 * 
 	 * @param filedotId
 	 * @return
@@ -80,7 +80,7 @@ public interface ICellRepInfoService {
 	List<CellRepInfo> getCellRepInfosByFiledotId(String filedotId);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡Ò»Ò³µÄÊı¾İ
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–ä¸€é¡µçš„æ•°æ®
 	 * 
 	 * @return
 	 */
@@ -88,14 +88,14 @@ public interface ICellRepInfoService {
 			CellRepInfoQuery query);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
 	List<CellRepInfo> list(CellRepInfoQuery query);
 
 	/**
-	 * ±£´æÒ»Ìõ¼ÇÂ¼
+	 * ä¿å­˜ä¸€æ¡è®°å½•
 	 * 
 	 * @return
 	 */

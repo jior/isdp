@@ -17,7 +17,7 @@ public class NetDotRoleTest extends AbstractTest {
 	public void testList() {
 		netDotRoleService = super.getBean("netDotRoleService");
 		NetDotRoleQuery query = new NetDotRoleQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<NetDotRole> rows = netDotRoleService
 				.getNetDotRolesByQueryCriteria(0, 10, query);
 		for (NetDotRole row : rows) {

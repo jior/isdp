@@ -60,7 +60,7 @@ public class MxCellTreedotServiceImpl implements ICellTreedotService {
 	}
 
 	/**
-	 * 根据查询参数获取记录总数
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇璁板綍鎬绘暟
 	 * 
 	 * @return
 	 */
@@ -69,7 +69,7 @@ public class MxCellTreedotServiceImpl implements ICellTreedotService {
 	}
 
 	/**
-	 * 根据查询参数获取记录总数
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇璁板綍鎬绘暟
 	 * 
 	 * @return
 	 */
@@ -78,7 +78,7 @@ public class MxCellTreedotServiceImpl implements ICellTreedotService {
 	}
 
 	/**
-	 * 根据查询参数获取记录列表
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇璁板綍鍒楄〃
 	 * 
 	 * @return
 	 */
@@ -87,7 +87,7 @@ public class MxCellTreedotServiceImpl implements ICellTreedotService {
 	}
 
 	/**
-	 * 根据查询参数获取一页的数据
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇涓�椤电殑鏁版嵁
 	 * 
 	 * @return
 	 */
@@ -104,7 +104,7 @@ public class MxCellTreedotServiceImpl implements ICellTreedotService {
 	}
 
 	/**
-	 * 根据父ID获取二级菜单
+	 * 鏍规嵁鐖禝D鑾峰彇浜岀骇鑿滃崟
 	 * 
 	 * @param parentId
 	 * @return
@@ -118,7 +118,7 @@ public class MxCellTreedotServiceImpl implements ICellTreedotService {
 	}
 
 	/**
-	 * 根据topId获取顶层菜单
+	 * 鏍规嵁topId鑾峰彇椤跺眰鑿滃崟
 	 * 
 	 * @param topId
 	 * @return

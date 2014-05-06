@@ -16,7 +16,7 @@ public class TreewbsTabTest extends AbstractTest {
 	public void testList() {
 		treewbsTabService = super.getBean("treewbsTabService");
 		TreewbsTabQuery query = new TreewbsTabQuery();
-		// query.nameLike("¹¤³Ì");
+		// query.nameLike("å·¥ç¨‹");
 		List<TreewbsTab> rows = treewbsTabService
 				.getTreewbsTabsByQueryCriteria(0, 10, query);
 		for (TreewbsTab row : rows) {

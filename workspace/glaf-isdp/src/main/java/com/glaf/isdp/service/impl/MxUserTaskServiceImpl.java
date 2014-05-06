@@ -79,7 +79,7 @@ public class MxUserTaskServiceImpl implements IUserTaskService {
 	}
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
@@ -88,7 +88,7 @@ public class MxUserTaskServiceImpl implements IUserTaskService {
 	}
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
@@ -97,7 +97,7 @@ public class MxUserTaskServiceImpl implements IUserTaskService {
 	}
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
@@ -106,7 +106,7 @@ public class MxUserTaskServiceImpl implements IUserTaskService {
 	}
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡Ò»Ò³µÄÊı¾İ
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–ä¸€é¡µçš„æ•°æ®
 	 * 
 	 * @return
 	 */
@@ -126,7 +126,7 @@ public class MxUserTaskServiceImpl implements IUserTaskService {
 	}
 
 	/**
-	 * ÖØĞÂ×°ÔØÓÃ»§µÄÈÎÎñ£¬°´ÕÕ´«ÈëÊ±¼ä×ö·Ö×é
+	 * é‡æ–°è£…è½½ç”¨æˆ·çš„ä»»åŠ¡ï¼ŒæŒ‰ç…§ä¼ å…¥æ—¶é—´åšåˆ†ç»„
 	 * 
 	 * @param actorId
 	 * @param taskType
@@ -136,7 +136,7 @@ public class MxUserTaskServiceImpl implements IUserTaskService {
 		logger.debug("-----------------reloadUserTasksGroupByTime-----------------");
 		logger.debug(actorId + " " + taskType);
 		/**
-		 * Ê×ÏÈÉ¾³ıÓÃ»§µÄÈÎÎñ
+		 * é¦–å…ˆåˆ é™¤ç”¨æˆ·çš„ä»»åŠ¡
 		 */
 		// userTaskMapper.deleteUserTasks(actorId);
 
@@ -145,18 +145,18 @@ public class MxUserTaskServiceImpl implements IUserTaskService {
 		params.put("roleIds", this.getUserNetRoleIds(actorId));
 		if ("RN".equals(taskType)) {
 			/**
-			 * ´ı°ì
+			 * å¾…åŠ
 			 */
 			params.put("state", 0);
 		} else if ("FB".equals(taskType)) {
 			/**
-			 * ÒÑÍË»Ø
+			 * å·²é€€å›
 			 */
 			params.put("state", 0);
 			params.put("intback", 1);
 		} else if ("WD".equals(taskType)) {
 			/**
-			 * ÒÑ´¦Àí
+			 * å·²å¤„ç†
 			 */
 			params.put("state", 1);
 		}
@@ -314,7 +314,7 @@ public class MxUserTaskServiceImpl implements IUserTaskService {
 	@Transactional
 	public void reloadUserTasksGroupByWBS(String actorId, String taskType) {
 		/**
-		 * Ê×ÏÈÉ¾³ıÓÃ»§µÄÈÎÎñ
+		 * é¦–å…ˆåˆ é™¤ç”¨æˆ·çš„ä»»åŠ¡
 		 */
 		// userTaskMapper.deleteUserTasks(actorId);
 
@@ -323,18 +323,18 @@ public class MxUserTaskServiceImpl implements IUserTaskService {
 		params.put("roleIds", this.getUserNetRoleIds(actorId));
 		if ("RN".equals(taskType)) {
 			/**
-			 * ´ı°ì
+			 * å¾…åŠ
 			 */
 			params.put("state", 0);
 		} else if ("FB".equals(taskType)) {
 			/**
-			 * ÒÑÍË»Ø
+			 * å·²é€€å›
 			 */
 			params.put("state", 0);
 			params.put("intback", 1);
 		} else if ("WD".equals(taskType)) {
 			/**
-			 * ÒÑ´¦Àí
+			 * å·²å¤„ç†
 			 */
 			params.put("state", 1);
 		}
@@ -489,7 +489,7 @@ public class MxUserTaskServiceImpl implements IUserTaskService {
 		logger.debug("-----------------reloadUserTasksGroupByWBS-----------------");
 		logger.debug(actorId + " " + taskType);
 		/**
-		 * Ê×ÏÈÉ¾³ıÓÃ»§µÄÈÎÎñ
+		 * é¦–å…ˆåˆ é™¤ç”¨æˆ·çš„ä»»åŠ¡
 		 */
 		// userTaskMapper.deleteUserTasks(actorId);
 
@@ -498,18 +498,18 @@ public class MxUserTaskServiceImpl implements IUserTaskService {
 		params.put("roleIds", this.getUserNetRoleIds(actorId));
 		if ("RN".equals(taskType)) {
 			/**
-			 * ´ı°ì
+			 * å¾…åŠ
 			 */
 			params.put("state", 0);
 		} else if ("FB".equals(taskType)) {
 			/**
-			 * ÒÑÍË»Ø
+			 * å·²é€€å›
 			 */
 			params.put("state", 0);
 			params.put("intback", 1);
 		} else if ("WD".equals(taskType)) {
 			/**
-			 * ÒÑ´¦Àí
+			 * å·²å¤„ç†
 			 */
 			params.put("state", 1);
 		}

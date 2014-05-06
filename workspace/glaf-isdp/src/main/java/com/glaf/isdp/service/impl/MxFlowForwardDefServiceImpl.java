@@ -56,7 +56,7 @@ public class MxFlowForwardDefServiceImpl implements IFlowForwardDefService {
 	}
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
@@ -65,7 +65,7 @@ public class MxFlowForwardDefServiceImpl implements IFlowForwardDefService {
 	}
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
@@ -75,7 +75,7 @@ public class MxFlowForwardDefServiceImpl implements IFlowForwardDefService {
 	}
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
@@ -84,7 +84,7 @@ public class MxFlowForwardDefServiceImpl implements IFlowForwardDefService {
 	}
 
 	/**
-	 * ¸ù¾İÁ÷³Ì±àºÅ»ñÈ¡»î¶¯Ö®¼äµÄ×ªÒÆ¹ØÏµ
+	 * æ ¹æ®æµç¨‹ç¼–å·è·å–æ´»åŠ¨ä¹‹é—´çš„è½¬ç§»å…³ç³»
 	 * 
 	 * @param processDefId
 	 * @return
@@ -96,12 +96,12 @@ public class MxFlowForwardDefServiceImpl implements IFlowForwardDefService {
 	}
 
 	/**
-	 * ¸ù¾İÁ÷³Ì±àºÅ»ñÈ¡ÒÑ¾­´¦ÀíµÄ»î¶¯Ö®¼äµÄ×ªÒÆ¹ØÏµ
+	 * æ ¹æ®æµç¨‹ç¼–å·è·å–å·²ç»å¤„ç†çš„æ´»åŠ¨ä¹‹é—´çš„è½¬ç§»å…³ç³»
 	 * 
 	 * @param processId
-	 *            Á÷³Ì±àºÅ
+	 *            æµç¨‹ç¼–å·
 	 * @param processInstanceId
-	 *            Á÷³ÌÊµÀı±àºÅ
+	 *            æµç¨‹å®ä¾‹ç¼–å·
 	 * @return
 	 */
 	public List<FlowForwardDef> getProcessedFlowForwardDefsByProcessId(
@@ -114,7 +114,7 @@ public class MxFlowForwardDefServiceImpl implements IFlowForwardDefService {
 	}
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡Ò»Ò³µÄÊı¾İ
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–ä¸€é¡µçš„æ•°æ®
 	 * 
 	 * @return
 	 */

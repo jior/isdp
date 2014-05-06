@@ -52,7 +52,7 @@ public class MxNetRoleUseServiceImpl implements INetRoleUseService {
 	}
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
@@ -61,7 +61,7 @@ public class MxNetRoleUseServiceImpl implements INetRoleUseService {
 	}
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
@@ -70,7 +70,7 @@ public class MxNetRoleUseServiceImpl implements INetRoleUseService {
 	}
 
 	/**
-	 * »ñÈ¡Ä³¸ö½ÇÉ«µÄ½ÇÉ«Ê÷±íÒıÓÃ
+	 * è·å–æŸä¸ªè§’è‰²çš„è§’è‰²æ ‘è¡¨å¼•ç”¨
 	 * 
 	 * @param roleId
 	 * @return
@@ -82,7 +82,7 @@ public class MxNetRoleUseServiceImpl implements INetRoleUseService {
 	}
 
 	/**
-	 * »ñÈ¡Ä³¸öÓÃ»§µÄ½ÇÉ«ÒıÓÃ
+	 * è·å–æŸä¸ªç”¨æˆ·çš„è§’è‰²å¼•ç”¨
 	 * 
 	 * @param userId
 	 * @return
@@ -92,7 +92,7 @@ public class MxNetRoleUseServiceImpl implements INetRoleUseService {
 	}
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
@@ -101,7 +101,7 @@ public class MxNetRoleUseServiceImpl implements INetRoleUseService {
 	}
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡Ò»Ò³µÄÊı¾İ
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–ä¸€é¡µçš„æ•°æ®
 	 * 
 	 * @return
 	 */

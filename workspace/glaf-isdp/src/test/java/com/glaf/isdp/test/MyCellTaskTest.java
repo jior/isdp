@@ -16,7 +16,7 @@ public class MyCellTaskTest extends AbstractTest {
 	public void testList() {
 		myCellTaskService = super.getBean("myCellTaskService");
 		MyCellTaskQuery query = new MyCellTaskQuery();
-		// query.nameLike("¹¤³Ì");
+		// query.nameLike("å·¥ç¨‹");
 		List<MyCellTask> rows = myCellTaskService
 				.getMyCellTasksByQueryCriteria(0, 10, query);
 		for (MyCellTask row : rows) {

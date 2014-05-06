@@ -93,7 +93,7 @@ public class MxProjectTreeAllwbsServiceImpl implements
 	}
 
 	/**
-	 * 根据查询参数获取记录总数
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇璁板綍鎬绘暟
 	 * 
 	 * @return
 	 */
@@ -102,7 +102,7 @@ public class MxProjectTreeAllwbsServiceImpl implements
 	}
 
 	/**
-	 * 根据查询参数获取记录总数
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇璁板綍鎬绘暟
 	 * 
 	 * @return
 	 */
@@ -113,7 +113,7 @@ public class MxProjectTreeAllwbsServiceImpl implements
 	}
 
 	/**
-	 * 根据查询参数获取记录列表
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇璁板綍鍒楄〃
 	 * 
 	 * @return
 	 */
@@ -123,7 +123,7 @@ public class MxProjectTreeAllwbsServiceImpl implements
 	}
 
 	/**
-	 * 根据查询参数获取一页的数据
+	 * 鏍规嵁鏌ヨ鍙傛暟鑾峰彇涓�椤电殑鏁版嵁
 	 * 
 	 * @return
 	 */
@@ -143,7 +143,7 @@ public class MxProjectTreeAllwbsServiceImpl implements
 	}
 
 	/**
-	 * 重载执行情况
+	 * 閲嶈浇鎵ц鎯呭喌
 	 * 
 	 * @param taskmainIndexId
 	 * @param cellTaskIndexId
@@ -171,7 +171,7 @@ public class MxProjectTreeAllwbsServiceImpl implements
 				m.setIndexName(t.getName());
 				m.setId(String.valueOf(m.getIndexId()) + "|");
 				if (t.getIntflowortask() == 1) {
-					m.setType(2);// 任务
+					m.setType(2);// 浠诲姟
 					m.setNodeico(2);
 				}
 
@@ -214,7 +214,7 @@ public class MxProjectTreeAllwbsServiceImpl implements
 						mm.setParentId(m.getIndexId());
 						mm.setIndexName(def.getName());
 						mm.setId(m.getId() + mm.getIndexId() + "|");
-						mm.setType(3);// 流程
+						mm.setType(3);// 娴佺▼
 						mm.setNodeico(3);
 
 						projectTreeAllwbsMapper.insertProjectTreeAllwbs(mm);
@@ -233,7 +233,7 @@ public class MxProjectTreeAllwbsServiceImpl implements
 									mmm.setIndexName(f.getName());
 									mmm.setId(mm.getId() + mmm.getIndexId()
 											+ "|");
-									mmm.setType(4);// 人工活动
+									mmm.setType(4);// 浜哄伐娲诲姩
 									mmm.setNodeico(4);
 
 									if (f.getNetroleid() != null

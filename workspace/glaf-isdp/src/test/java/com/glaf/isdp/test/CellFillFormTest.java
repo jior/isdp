@@ -16,7 +16,7 @@ public class CellFillFormTest extends AbstractTest {
 	public void testList() {
 		cellFillFormService = super.getBean("cellFillFormService");
 		CellFillFormQuery query = new CellFillFormQuery();
-		query.nameLike("≤ƒ¡œ");
+		query.nameLike("ÊùêÊñô");
 		List<IsdpCellFillForm> rows = cellFillFormService
 				.getCellFillFormsByQueryCriteria(0, 10, query);
 		for (IsdpCellFillForm row : rows) {

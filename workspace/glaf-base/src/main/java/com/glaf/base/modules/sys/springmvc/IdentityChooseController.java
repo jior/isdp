@@ -72,7 +72,7 @@ public class IdentityChooseController {
 	protected SysRoleService sysRoleService;
 
 	/**
-	 * 显示选择部门页面
+	 * 鏄剧ず閫夋嫨閮ㄩ棬椤甸潰
 	 * 
 	 * @param modelMap
 	 * @param request
@@ -91,7 +91,7 @@ public class IdentityChooseController {
 	}
 
 	/**
-	 * 显示选择角色页面
+	 * 鏄剧ず閫夋嫨瑙掕壊椤甸潰
 	 * 
 	 * @param modelMap
 	 * @param request
@@ -116,7 +116,7 @@ public class IdentityChooseController {
 	}
 
 	/**
-	 * 显示选择部门页面
+	 * 鏄剧ず閫夋嫨閮ㄩ棬椤甸潰
 	 * 
 	 * @param modelMap
 	 * @param request
@@ -135,7 +135,7 @@ public class IdentityChooseController {
 	}
 
 	/**
-	 * 显示选择用户页面
+	 * 鏄剧ず閫夋嫨鐢ㄦ埛椤甸潰
 	 * 
 	 * @param modelMap
 	 * @param request

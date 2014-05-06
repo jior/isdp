@@ -34,7 +34,7 @@ import com.glaf.core.util.PageResult;
 public interface SysUserService {
 
 	/**
-	 * ±£´æ
+	 * ä¿å­˜
 	 * 
 	 * @param bean
 	 *            SysUser
@@ -44,7 +44,7 @@ public interface SysUserService {
 	boolean create(SysUser bean);
 
 	/**
-	 * É¾³ı
+	 * åˆ é™¤
 	 * 
 	 * @param id
 	 *            int
@@ -54,7 +54,7 @@ public interface SysUserService {
 	boolean delete(long id);
 
 	/**
-	 * É¾³ı
+	 * åˆ é™¤
 	 * 
 	 * @param bean
 	 *            SysUser
@@ -64,7 +64,7 @@ public interface SysUserService {
 	boolean delete(SysUser bean);
 
 	/**
-	 * ÅúÁ¿É¾³ı
+	 * æ‰¹é‡åˆ é™¤
 	 * 
 	 * @param id
 	 * @return
@@ -73,7 +73,7 @@ public interface SysUserService {
 	boolean deleteAll(long[] id);
 
 	/**
-	 * É¾³ı²¿ÃÅ½ÇÉ«ÓÃ»§
+	 * åˆ é™¤éƒ¨é—¨è§’è‰²ç”¨æˆ·
 	 * 
 	 * @param deptRole
 	 * @param userIds
@@ -82,7 +82,7 @@ public interface SysUserService {
 	void deleteRoleUsers(SysRole role, String[] userIds);
 
 	/**
-	 * É¾³ı²¿ÃÅ½ÇÉ«ÓÃ»§
+	 * åˆ é™¤éƒ¨é—¨è§’è‰²ç”¨æˆ·
 	 * 
 	 * @param deptRole
 	 * @param userIds
@@ -91,7 +91,7 @@ public interface SysUserService {
 	void deleteRoleUsers(SysDeptRole deptRole, String[] userIds);
 
 	/**
-	 * °´Ãû³Æ²éÕÒ¶ÔÏó
+	 * æŒ‰åç§°æŸ¥æ‰¾å¯¹è±¡
 	 * 
 	 * @param name
 	 *            String
@@ -100,7 +100,7 @@ public interface SysUserService {
 	SysUser findByAccount(String account);
 
 	/**
-	 * °´Ãû³Æ²éÕÒ¶ÔÏó
+	 * æŒ‰åç§°æŸ¥æ‰¾å¯¹è±¡
 	 * 
 	 * @param name
 	 *            String
@@ -109,7 +109,7 @@ public interface SysUserService {
 	SysUser findByAccountWithAll(String account);
 
 	/**
-	 * °´Ãû³Æ²éÕÒ¶ÔÏó
+	 * æŒ‰åç§°æŸ¥æ‰¾å¯¹è±¡
 	 * 
 	 * @param actorId
 	 *            String
@@ -125,7 +125,7 @@ public interface SysUserService {
 	Collection<SysDeptRole> getDeptRoles(SysUser user);
 
 	/**
-	 * »ñÈ¡Ä³¸öÓÃ»§µÄÉÏ¼¶
+	 * è·å–æŸä¸ªç”¨æˆ·çš„ä¸Šçº§
 	 * 
 	 * @param account
 	 * @return
@@ -133,7 +133,7 @@ public interface SysUserService {
 	List<SysUser> getSuperiors(String account);
 
 	/**
-	 * ²éÕÒ¹©Ó¦ÉÌÓÃ»§ flag = true ±íÊ¾¸ÃÓÃ»§´æÔÚ£¬·ñÔòÎª²»´æÔÚ
+	 * æŸ¥æ‰¾ä¾›åº”å•†ç”¨æˆ· flag = true è¡¨ç¤ºè¯¥ç”¨æˆ·å­˜åœ¨ï¼Œå¦åˆ™ä¸ºä¸å­˜åœ¨
 	 * 
 	 * @param supplierNo
 	 * @return
@@ -141,14 +141,14 @@ public interface SysUserService {
 	List<SysUser> getSupplierUser(String supplierNo);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
 	int getSysUserCountByQueryCriteria(SysUserQuery query);
 
 	/**
-	 * »ñÈ¡ÁĞ±í
+	 * è·å–åˆ—è¡¨
 	 * 
 	 * @param deptId
 	 *            int
@@ -157,7 +157,7 @@ public interface SysUserService {
 	List<SysUser> getSysUserList();
 
 	/**
-	 * »ñÈ¡ÁĞ±í
+	 * è·å–åˆ—è¡¨
 	 * 
 	 * @param deptId
 	 *            int
@@ -166,7 +166,7 @@ public interface SysUserService {
 	List<SysUser> getSysUserList(long deptId);
 
 	/**
-	 * »ñÈ¡ÌØ¶¨²¿ÃÅµÄÔ±¹¤Êı¾İ¼¯ ·ÖÒ³ÁĞ±í
+	 * è·å–ç‰¹å®šéƒ¨é—¨çš„å‘˜å·¥æ•°æ®é›† åˆ†é¡µåˆ—è¡¨
 	 * 
 	 * @param deptId
 	 *            int
@@ -179,7 +179,7 @@ public interface SysUserService {
 	PageResult getSysUserList(long deptId, int pageNo, int pageSize);
 
 	/**
-	 * ²éÑ¯»ñÈ¡sysUserÁĞ±í
+	 * æŸ¥è¯¢è·å–sysUseråˆ—è¡¨
 	 * 
 	 * @param deptId
 	 * @param fullName
@@ -191,14 +191,14 @@ public interface SysUserService {
 			int pageSize);
 
 	/**
-	 * »ñÈ¡ÁĞ±í
+	 * è·å–åˆ—è¡¨
 	 * 
 	 */
 	PageResult getSysUserList(long deptId, String userName, String account,
 			int pageNo, int pageSize);
 
 	/**
-	 * »ñÈ¡Ä³¸öÓ¦ÓÃµÄÈ¨ÏŞÓÃ»§
+	 * è·å–æŸä¸ªåº”ç”¨çš„æƒé™ç”¨æˆ·
 	 * 
 	 * @param appId
 	 * @return
@@ -206,7 +206,7 @@ public interface SysUserService {
 	List<SysUser> getSysUsersByAppId(Long appId);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡Ò»Ò³µÄÊı¾İ
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–ä¸€é¡µçš„æ•°æ®
 	 * 
 	 * @return
 	 */
@@ -214,7 +214,7 @@ public interface SysUserService {
 			SysUserQuery query);
 
 	/**
-	 * »ñÈ¡Ä³¸ö½ÇÉ«´úÂëµÄÓÃ»§
+	 * è·å–æŸä¸ªè§’è‰²ä»£ç çš„ç”¨æˆ·
 	 * 
 	 * @param roleCode
 	 * @return
@@ -222,7 +222,7 @@ public interface SysUserService {
 	List<SysUser> getSysUsersByRoleCode(String roleCode);
 
 	/**
-	 * »ñÈ¡Ä³¸ö½ÇÉ«±àºÅµÄÓÃ»§
+	 * è·å–æŸä¸ªè§’è‰²ç¼–å·çš„ç”¨æˆ·
 	 * 
 	 * @param roleId
 	 * @return
@@ -230,7 +230,7 @@ public interface SysUserService {
 	List<SysUser> getSysUsersByRoleId(long roleId);
 
 	/**
-	 * »ñÈ¡ÁĞ±í
+	 * è·å–åˆ—è¡¨
 	 * 
 	 * @param deptId
 	 *            int
@@ -241,7 +241,7 @@ public interface SysUserService {
 	SysUser getUserAndPrivileges(SysUser user);
 
 	/**
-	 * ÆäÓÃ»§È¨ÏŞ
+	 * å…¶ç”¨æˆ·æƒé™
 	 * 
 	 * @param user
 	 * @return
@@ -249,7 +249,7 @@ public interface SysUserService {
 	SysUser getUserPrivileges(SysUser user);
 
 	/**
-	 * »ñÈ¡Ä³Ğ©ÓÃ»§µÄ½ÇÉ«
+	 * è·å–æŸäº›ç”¨æˆ·çš„è§’è‰²
 	 * 
 	 * @param actorIds
 	 * @return
@@ -257,7 +257,7 @@ public interface SysUserService {
 	List<SysRole> getUserRoles(List<String> actorIds);
 
 	/**
-	 * »ñÈ¡Ä³¸öÓÃ»§µÄ½ÇÉ«
+	 * è·å–æŸä¸ªç”¨æˆ·çš„è§’è‰²
 	 * 
 	 * @param actorId
 	 * @return
@@ -265,7 +265,7 @@ public interface SysUserService {
 	List<SysRole> getUserRoles(String actorId);
 
 	/**
-	 * ÅĞ¶ÏÓÃ»§ÊÇ·ñÓĞÈ¨ÏŞ
+	 * åˆ¤æ–­ç”¨æˆ·æ˜¯å¦æœ‰æƒé™
 	 * 
 	 * @param user
 	 * @param code
@@ -274,7 +274,7 @@ public interface SysUserService {
 	boolean isPermission(SysUser user, String roleCode);
 
 	/**
-	 * ¸üĞÂ
+	 * æ›´æ–°
 	 * 
 	 * @param bean
 	 *            SysUser
@@ -284,20 +284,20 @@ public interface SysUserService {
 	boolean update(SysUser bean);
 
 	/**
-	 * ÉèÖÃÓÃ»§È¨ÏŞ
+	 * è®¾ç½®ç”¨æˆ·æƒé™
 	 * 
 	 * @param user
-	 *            ÏµÍ³ÓÃ»§
+	 *            ç³»ç»Ÿç”¨æˆ·
 	 * @param delRoles
-	 *            ÒªÉ¾³ıµÄÓÃ»§È¨ÏŞ
+	 *            è¦åˆ é™¤çš„ç”¨æˆ·æƒé™
 	 * @param newRoles
-	 *            ÒªÔö¼ÓµÄÓÃ»§È¨ÏŞ
+	 *            è¦å¢åŠ çš„ç”¨æˆ·æƒé™
 	 */
 	@Transactional
 	boolean updateRole(SysUser user, Set<SysDeptRole> newRoles);
 
 	/**
-	 * ĞŞ¸ÄÓÃ»§ĞÅÏ¢
+	 * ä¿®æ”¹ç”¨æˆ·ä¿¡æ¯
 	 * 
 	 * @param bean
 	 * @return
@@ -306,12 +306,12 @@ public interface SysUserService {
 	boolean updateUser(SysUser bean);
 
 	/**
-	 * ÉèÖÃÓÃ»§½ÇÉ«
+	 * è®¾ç½®ç”¨æˆ·è§’è‰²
 	 * 
 	 * @param user
-	 *            ÓÃ»§
+	 *            ç”¨æˆ·
 	 * @param newRoles
-	 *            ½ÇÉ«¼¯ºÏ
+	 *            è§’è‰²é›†åˆ
 	 * @return
 	 */
 	@Transactional

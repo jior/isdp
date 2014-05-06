@@ -22,7 +22,7 @@ public class UserTaskTest extends AbstractTest {
 	public void testList() {
 		userTaskService = super.getBean("userTaskService");
 		UserTaskQuery query = new UserTaskQuery();
-		// query.nameLike("π§≥Ã");
+		// query.nameLike("Â∑•Á®ã");
 		List<UserTask> rows = userTaskService.getUserTasksByQueryCriteria(0,
 				10, query);
 		for (UserTask row : rows) {
@@ -33,7 +33,7 @@ public class UserTaskTest extends AbstractTest {
 	@Test
 	public void testUserAllTaskByTime() {
 		userTaskService = super.getBean("userTaskService");
-		String actorId = "—¶√»";
+		String actorId = "ËñõËêå";
 		String taskType = "ALL";
 		userTaskService.reloadUserTasksGroupByTime(actorId, taskType);
 		UserTaskQuery query = new UserTaskQuery();
@@ -59,7 +59,7 @@ public class UserTaskTest extends AbstractTest {
 	@Test
 	public void testUserFBTaskByTime() {
 		userTaskService = super.getBean("userTaskService");
-		String actorId = "—¶√»";
+		String actorId = "ËñõËêå";
 		String taskType = "FB";
 		userTaskService.reloadUserTasksGroupByTime(actorId, taskType);
 		UserTaskQuery query = new UserTaskQuery();
@@ -85,7 +85,7 @@ public class UserTaskTest extends AbstractTest {
 	@Test
 	public void testUserRNTaskByTime() {
 		userTaskService = super.getBean("userTaskService");
-		String actorId = "—¶√»";
+		String actorId = "ËñõËêå";
 		String taskType = "RN";
 		userTaskService.reloadUserTasksGroupByTime(actorId, taskType);
 		UserTaskQuery query = new UserTaskQuery();
@@ -111,7 +111,7 @@ public class UserTaskTest extends AbstractTest {
 	@Test
 	public void testUserWDTaskByTime() {
 		userTaskService = super.getBean("userTaskService");
-		String actorId = "—¶√»";
+		String actorId = "ËñõËêå";
 		String taskType = "WD";
 		userTaskService.reloadUserTasksGroupByTime(actorId, taskType);
 		UserTaskQuery query = new UserTaskQuery();

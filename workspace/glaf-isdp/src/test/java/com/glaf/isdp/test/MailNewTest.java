@@ -16,7 +16,7 @@ public class MailNewTest extends AbstractTest {
 	public void testList() {
 		mailNewService = super.getBean("mailNewService");
 		MailNewQuery query = new MailNewQuery();
-		// query.nameLike("¹¤³Ì");
+		// query.nameLike("å·¥ç¨‹");
 		List<MailNew> rows = mailNewService.getMailNewsByQueryCriteria(0, 10,
 				query);
 		for (MailNew row : rows) {

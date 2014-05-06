@@ -77,7 +77,7 @@ public class DictoryController {
 	private SysTreeService sysTreeService;
 
 	/**
-	 * Ìá½»É¾³ı
+	 * æäº¤åˆ é™¤
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -91,10 +91,10 @@ public class DictoryController {
 		long[] id = ParamUtil.getLongParameterValues(request, "id");
 		ret = dictoryService.deleteAll(id);
 		ViewMessages messages = new ViewMessages();
-		if (ret) {// ±£´æ³É¹¦
+		if (ret) {// ä¿å­˜æˆåŠŸ
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"dictory.delete_success"));
-		} else { // É¾³ıÊ§°Ü
+		} else { // åˆ é™¤å¤±è´¥
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"dictory.delete_failure"));
 		}
@@ -203,7 +203,7 @@ public class DictoryController {
 	}
 
 	/**
-	 * ÏÔÊ¾¿ò¼ÜÒ³Ãæ
+	 * æ˜¾ç¤ºæ¡†æ¶é¡µé¢
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -223,7 +223,7 @@ public class DictoryController {
 	}
 
 	/**
-	 * ÏÔÊ¾Ôö¼Ó×ÖµäÒ³Ãæ
+	 * æ˜¾ç¤ºå¢åŠ å­—å…¸é¡µé¢
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -231,7 +231,7 @@ public class DictoryController {
 	 */
 	@RequestMapping("/prepareAdd")
 	public ModelAndView prepareAdd(HttpServletRequest request, ModelMap modelMap) {
-		// ÏÔÊ¾ÁĞ±íÒ³Ãæ
+		// æ˜¾ç¤ºåˆ—è¡¨é¡µé¢
 		RequestUtils.setRequestParameterToAttribute(request);
 		Map<String, Object> params = RequestUtils.getParameterMap(request);
 		Long nodeId = ParamUtils.getLong(params, "parent");
@@ -253,7 +253,7 @@ public class DictoryController {
 	}
 
 	/**
-	 * ÏÔÊ¾ĞŞ¸ÄÒ³Ãæ
+	 * æ˜¾ç¤ºä¿®æ”¹é¡µé¢
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -302,7 +302,7 @@ public class DictoryController {
 	}
 
 	/**
-	 * Ìá½»Ôö¼Ó×ÖµäĞÅÏ¢
+	 * æäº¤å¢åŠ å­—å…¸ä¿¡æ¯
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -322,11 +322,11 @@ public class DictoryController {
 		bean.setCreateBy(RequestUtils.getActorId(request));
 
 		ViewMessages messages = new ViewMessages();
-		if (dictoryService.create(bean)) {// ±£´æ³É¹¦
+		if (dictoryService.create(bean)) {// ä¿å­˜æˆåŠŸ
 			BaseDataManager.getInstance().loadDictInfo();
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"dictory.add_success"));
-		} else {// ±£´æÊ§°Ü
+		} else {// ä¿å­˜å¤±è´¥
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"dictory.add_failure"));
 		}
@@ -337,7 +337,7 @@ public class DictoryController {
 	}
 
 	/**
-	 * ÏÔÊ¾ÖØÔØÊı¾İ
+	 * æ˜¾ç¤ºé‡è½½æ•°æ®
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -357,12 +357,12 @@ public class DictoryController {
 		if (StringUtils.isNotEmpty(x_view)) {
 			return new ModelAndView(x_view, modelMap);
 		}
-		// ÏÔÊ¾ÁĞ±íÒ³Ãæ
+		// æ˜¾ç¤ºåˆ—è¡¨é¡µé¢
 		return new ModelAndView("/modules/base/dictory/dictory_load", modelMap);
 	}
 
 	/**
-	 * Ìá½»ĞŞ¸Ä×ÖµäĞÅÏ¢
+	 * æäº¤ä¿®æ”¹å­—å…¸ä¿¡æ¯
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -381,11 +381,11 @@ public class DictoryController {
 		}
 		bean.setUpdateBy(RequestUtils.getActorId(request));
 		ViewMessages messages = new ViewMessages();
-		if (dictoryService.update(bean)) {// ±£´æ³É¹¦
+		if (dictoryService.update(bean)) {// ä¿å­˜æˆåŠŸ
 			BaseDataManager.getInstance().loadDictInfo();
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"dictory.modify_success"));
-		} else {// ±£´æÊ§°Ü
+		} else {// ä¿å­˜å¤±è´¥
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"dictory.modify_failure"));
 		}
@@ -414,7 +414,7 @@ public class DictoryController {
 	}
 
 	/**
-	 * ÏÔÊ¾×ÖµäÊı¾İ
+	 * æ˜¾ç¤ºå­—å…¸æ•°æ®
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -437,12 +437,12 @@ public class DictoryController {
 		}
 		request.setAttribute("list", iter);
 
-		// ÏÔÊ¾ÁĞ±íÒ³Ãæ
+		// æ˜¾ç¤ºåˆ—è¡¨é¡µé¢
 		return view;
 	}
 
 	/**
-	 * ÏÔÊ¾¿ò¼ÜÒ³Ãæ
+	 * æ˜¾ç¤ºæ¡†æ¶é¡µé¢
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -463,7 +463,7 @@ public class DictoryController {
 	}
 
 	/**
-	 * ÏÔÊ¾ËùÓĞÁĞ±í
+	 * æ˜¾ç¤ºæ‰€æœ‰åˆ—è¡¨
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -483,7 +483,7 @@ public class DictoryController {
 		if (StringUtils.isNotEmpty(x_view)) {
 			return new ModelAndView(x_view, modelMap);
 		}
-		// ÏÔÊ¾ÁĞ±íÒ³Ãæ
+		// æ˜¾ç¤ºåˆ—è¡¨é¡µé¢
 		return new ModelAndView("/modules/base/dictory/dictory_list", modelMap);
 	}
 

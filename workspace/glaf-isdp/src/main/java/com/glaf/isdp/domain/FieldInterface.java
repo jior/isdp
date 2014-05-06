@@ -152,7 +152,7 @@ public class FieldInterface implements Serializable, JSONable {
 	protected String align;
 
 	/**
-	 * 基础数据,当intype类型未cmb时对应的基础数据
+	 * 鍩虹鏁版嵁,褰搃ntype绫诲瀷鏈猚mb鏃跺搴旂殑鍩虹鏁版嵁
 	 */
 	@javax.persistence.Transient
 	protected Collection<HintList> dataItems = new ArrayList<HintList>();

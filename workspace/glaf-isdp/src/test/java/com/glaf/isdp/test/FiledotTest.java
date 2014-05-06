@@ -17,7 +17,7 @@ public class FiledotTest extends AbstractTest {
 	public void testList() {
 		filedotService = super.getBean("filedotService");
 		FiledotQuery query = new FiledotQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<IsdpFiledot> rows = filedotService
 				.getFiledotsByQueryCriteria(0, 10, query);
 		for (IsdpFiledot row : rows) {

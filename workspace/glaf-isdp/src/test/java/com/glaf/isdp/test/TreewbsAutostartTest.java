@@ -17,7 +17,7 @@ public class TreewbsAutostartTest extends AbstractTest {
 	public void testList() {
 		treewbsAutostartService = super.getBean("treewbsAutostartService");
 		TreewbsAutostartQuery query = new TreewbsAutostartQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<TreewbsAutostart> rows = treewbsAutostartService
 				.getTreewbsAutostartsByQueryCriteria(0, 10, query);
 		for (TreewbsAutostart row : rows) {

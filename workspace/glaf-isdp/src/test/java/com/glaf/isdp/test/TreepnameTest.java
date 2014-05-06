@@ -17,7 +17,7 @@ public class TreepnameTest extends AbstractTest {
 	public void testList() {
 		treepnameService = super.getBean("treepnameService");
 		TreepnameQuery query = new TreepnameQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<IsdpTreepname> rows = treepnameService
 				.getTreepnamesByQueryCriteria(0, 10, query);
 		for (IsdpTreepname row : rows) {

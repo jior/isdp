@@ -21,7 +21,7 @@ public class TreewbsTest extends AbstractTest {
 	public void testList() {
 		treewbsService = super.getBean("treewbsService");
 		TreewbsQuery query = new TreewbsQuery();
-		// query.nameLike("¹¤³Ì");
+		// query.nameLike("å·¥ç¨‹");
 		List<Treewbs> rows = treewbsService.getTreewbssByQueryCriteria(0, 1000,
 				query);
 		List<ITree> treeModels = new ArrayList<ITree>();

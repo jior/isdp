@@ -17,7 +17,7 @@ import com.glaf.core.base.JSONable;
 import com.glaf.isdp.util.TreeFolderJsonFactory;
 
 /**
- * 资料管理分类
+ * 璧勬枡绠＄悊鍒嗙被
  */
 @Entity
 @Table(name = "s_treefolder")

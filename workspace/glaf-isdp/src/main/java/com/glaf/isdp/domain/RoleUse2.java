@@ -51,7 +51,7 @@ public class RoleUse2 implements Serializable, JSONable {
 	protected String userchk;
 
 	/**
-	 * treeId µ±roleIdÈ¡ÖµÊÇ½ÇÉ«£¨net_roleµÄid×Ö¶Î£©Ê±¹ØÁªcell_setmymenu±íµÄid×Ö¶Î£¨»òbusiess_id?£©
+	 * treeId å½“roleIdå–å€¼æ˜¯è§’è‰²ï¼ˆnet_roleçš„idå­—æ®µï¼‰æ—¶å…³è”cell_setmymenuè¡¨çš„idå­—æ®µï¼ˆæˆ–busiess_id?ï¼‰
 	 */
 	@Column(name = "treeid", length = 250)
 	protected String treeId;

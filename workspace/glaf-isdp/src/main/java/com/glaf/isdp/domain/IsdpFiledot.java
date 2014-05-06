@@ -22,7 +22,7 @@ import com.glaf.core.base.JSONable;
 import com.glaf.isdp.util.FiledotJsonFactory;
 
 /**
- * 表格文件信息
+ * 琛ㄦ牸鏂囦欢淇℃伅
  */
 @Entity
 @Table(name = "filedot")

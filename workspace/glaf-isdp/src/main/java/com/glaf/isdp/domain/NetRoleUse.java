@@ -17,7 +17,7 @@ import com.glaf.core.base.JSONable;
 import com.glaf.isdp.util.NetRoleUseJsonFactory;
 
 /**
- * ½ÇÉ«ÓÃ»§¹ØÁª±í
+ * è§’è‰²ç”¨æˆ·å…³è”è¡¨
  */
 @Entity
 @Table(name = "net_roleuse")
@@ -29,13 +29,13 @@ public class NetRoleUse implements Serializable, JSONable {
 	protected int id;
 
 	/**
-	 * roleid ½ÇÉ«±àºÅ
+	 * roleid è§’è‰²ç¼–å·
 	 */
 	@Column(name = "roleid")
 	protected int roleid;
 
 	/**
-	 * cell_treedot±í£¨²Ëµ¥Ê÷£©µÄindex_id£¨Ö÷¼ü£©
+	 * cell_treedotè¡¨ï¼ˆèœå•æ ‘ï¼‰çš„index_idï¼ˆä¸»é”®ï¼‰
 	 */
 	@Column(name = "celltreedot_index")
 	protected int celltreedotIndex;

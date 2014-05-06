@@ -17,7 +17,7 @@ public class FlowActivityDefTest extends AbstractTest {
 	public void testList() {
 		flowActivityDefService = super.getBean("flowActivityDefService");
 		FlowActivityDefQuery query = new FlowActivityDefQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<FlowActivityDef> rows = flowActivityDefService
 				.getFlowActivityDefsByQueryCriteria(0, 10, query);
 		for (FlowActivityDef row : rows) {

@@ -30,7 +30,7 @@ import com.glaf.core.util.PageResult;
 public interface SysDepartmentService {
 
 	/**
-	 * ±£´æ
+	 * ä¿å­˜
 	 * 
 	 * @param bean
 	 *            SysDepartment
@@ -40,7 +40,7 @@ public interface SysDepartmentService {
 	boolean create(SysDepartment bean);
 
 	/**
-	 * É¾³ı
+	 * åˆ é™¤
 	 * 
 	 * @param id
 	 *            int
@@ -50,7 +50,7 @@ public interface SysDepartmentService {
 	boolean delete(long id);
 
 	/**
-	 * É¾³ı
+	 * åˆ é™¤
 	 * 
 	 * @param bean
 	 *            SysDepartment
@@ -60,7 +60,7 @@ public interface SysDepartmentService {
 	boolean delete(SysDepartment bean);
 
 	/**
-	 * ÅúÁ¿É¾³ı
+	 * æ‰¹é‡åˆ é™¤
 	 * 
 	 * @param ids
 	 * @return
@@ -69,7 +69,7 @@ public interface SysDepartmentService {
 	boolean deleteAll(long[] ids);
 
 	/**
-	 * °´±àÂë²éÕÒ¶ÔÏó
+	 * æŒ‰ç¼–ç æŸ¥æ‰¾å¯¹è±¡
 	 * 
 	 * @param code
 	 * 
@@ -78,7 +78,7 @@ public interface SysDepartmentService {
 	SysDepartment findByCode(String code);
 
 	/**
-	 * »ñÈ¡¶ÔÏó
+	 * è·å–å¯¹è±¡
 	 * 
 	 * @param id
 	 * @return
@@ -86,7 +86,7 @@ public interface SysDepartmentService {
 	SysDepartment findById(long id);
 
 	/**
-	 * °´Ãû³Æ²éÕÒ¶ÔÏó
+	 * æŒ‰åç§°æŸ¥æ‰¾å¯¹è±¡
 	 * 
 	 * @param name
 	 *            String
@@ -95,7 +95,7 @@ public interface SysDepartmentService {
 	SysDepartment findByName(String name);
 
 	/**
-	 * °´²¿ÃÅ±àºÅ²éÕÒ¶ÔÏó
+	 * æŒ‰éƒ¨é—¨ç¼–å·æŸ¥æ‰¾å¯¹è±¡
 	 * 
 	 * @param deptno
 	 * 
@@ -105,7 +105,7 @@ public interface SysDepartmentService {
 	SysDepartment findByNo(String deptno);
 
 	/**
-	 * »ñÈ¡Ä³¸ö²¿ÃÅ¼°ÏÂ¼¶²¿ÃÅÁĞ±í
+	 * è·å–æŸä¸ªéƒ¨é—¨åŠä¸‹çº§éƒ¨é—¨åˆ—è¡¨
 	 * 
 	 * @param list
 	 * @param deptId
@@ -113,7 +113,7 @@ public interface SysDepartmentService {
 	void findNestingDepartment(List<SysDepartment> list, long deptId);
 
 	/**
-	 * »ñÈ¡Ä³¸ö²¿ÃÅ¼°ÏÂ¼¶²¿ÃÅÁĞ±í
+	 * è·å–æŸä¸ªéƒ¨é—¨åŠä¸‹çº§éƒ¨é—¨åˆ—è¡¨
 	 * 
 	 * @param list
 	 * @param node
@@ -121,7 +121,7 @@ public interface SysDepartmentService {
 	void findNestingDepartment(List<SysDepartment> list, SysDepartment node);
 
 	/**
-	 * Í¨¹ı½Úµã±àºÅ»ñÈ¡²¿ÃÅĞÅÏ¢
+	 * é€šè¿‡èŠ‚ç‚¹ç¼–å·è·å–éƒ¨é—¨ä¿¡æ¯
 	 * 
 	 * @param nodeId
 	 * @return
@@ -129,21 +129,21 @@ public interface SysDepartmentService {
 	SysDepartment getSysDepartmentByNodeId(long nodeId);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
 	int getSysDepartmentCountByQueryCriteria(SysDepartmentQuery query);
 
 	/**
-	 * »ñÈ¡ÁĞ±í
+	 * è·å–åˆ—è¡¨
 	 * 
 	 * @return List
 	 */
 	List<SysDepartment> getSysDepartmentList();
 
 	/**
-	 * »ñÈ¡ÁĞ±í
+	 * è·å–åˆ—è¡¨
 	 * 
 	 * @param parent
 	 *            int
@@ -152,7 +152,7 @@ public interface SysDepartmentService {
 	List<SysDepartment> getSysDepartmentList(long parent);
 
 	/**
-	 * »ñÈ¡·ÖÒ³ÁĞ±í
+	 * è·å–åˆ†é¡µåˆ—è¡¨
 	 * 
 	 * @param parent
 	 *            int
@@ -165,7 +165,7 @@ public interface SysDepartmentService {
 	PageResult getSysDepartmentList(long parent, int pageNo, int pageSize);
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡Ò»Ò³µÄÊı¾İ
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–ä¸€é¡µçš„æ•°æ®
 	 * 
 	 * @return
 	 */
@@ -173,7 +173,7 @@ public interface SysDepartmentService {
 			int pageSize, SysDepartmentQuery query);
 
 	/**
-	 * »ñÈ¡²¿ÃÅÁĞ±íĞÅÏ¢
+	 * è·å–éƒ¨é—¨åˆ—è¡¨ä¿¡æ¯
 	 * 
 	 * @param query
 	 * @return
@@ -181,18 +181,18 @@ public interface SysDepartmentService {
 	List<SysDepartment> list(SysDepartmentQuery query);
 
 	/**
-	 * ÅÅĞò
+	 * æ’åº
 	 * 
 	 * @param bean
 	 *            SysDepartment
 	 * @param operate
-	 *            int ²Ù×÷
+	 *            int æ“ä½œ
 	 */
 	@Transactional
 	void sort(long parent, SysDepartment bean, int operate);
 
 	/**
-	 * ¸üĞÂ
+	 * æ›´æ–°
 	 * 
 	 * @param bean
 	 *            SysDepartment

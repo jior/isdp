@@ -17,7 +17,7 @@ public class VolumeTest extends AbstractTest {
 	public void testList() {
 		volumeService = super.getBean("volumeService");
 		VolumeQuery query = new VolumeQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<Volume> rows = volumeService
 				.getVolumesByQueryCriteria(0, 10, query);
 		for (Volume row : rows) {

@@ -17,7 +17,7 @@ public class CellTreedotViewTest extends AbstractTest {
 	public void testList() {
 		cellTreedotViewService = super.getBean("cellTreedotViewService");
 		CellTreedotViewQuery query = new CellTreedotViewQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<CellTreedotView> rows = cellTreedotViewService
 				.getCellTreedotViewsByQueryCriteria(0, 10, query);
 		for (CellTreedotView row : rows) {

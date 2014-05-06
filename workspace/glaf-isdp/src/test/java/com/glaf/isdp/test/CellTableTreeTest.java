@@ -16,7 +16,7 @@ public class CellTableTreeTest extends AbstractTest {
 	public void testList() {
 		cellTableTreeService = super.getBean("cellTableTreeService");
 		CellTableTreeQuery query = new CellTableTreeQuery();
-		// query.nameLike("¹¤³Ì");
+		// query.nameLike("å·¥ç¨‹");
 		List<CellTableTree> rows = cellTableTreeService
 				.getCellTableTreesByQueryCriteria(0, 10, query);
 		for (CellTableTree row : rows) {

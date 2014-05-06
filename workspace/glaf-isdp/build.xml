@@ -13,7 +13,7 @@
 	<target name="build">
 		<echo message="编译应用程序......" />
 		<javac srcdir="${build.home}/src" destdir="${build.dest}" 
-			source="1.6" target="1.6" nowarn="false"
+			source="1.6" target="1.6" nowarn="false" encoding="UTF-8"
 			debug="true" debuglevel="lines,vars,source">
 			<include name="main/java/com/**/*.java" />
 			<include name="test/java/com/**/*.java" />

@@ -17,7 +17,7 @@ public class ProjTreeAllwbsTest extends AbstractTest {
 		projectTreeAllwbsService = super.getBean("projectTreeAllwbsService");
 		projectTreeAllwbsService.reloadExecution(16134);
 		ProjectTreeAllwbsQuery query = new ProjectTreeAllwbsQuery();
-		// query.nameLike("¹¤³Ì");
+		// query.nameLike("å·¥ç¨‹");
 		List<ProjectTreeAllwbs> rows = projectTreeAllwbsService
 				.getProjectTreeAllwbssByQueryCriteria(0, 10, query);
 		for (ProjectTreeAllwbs row : rows) {

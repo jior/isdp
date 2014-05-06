@@ -49,7 +49,7 @@ public class MxFlowActivityDefServiceImpl implements IFlowActivityDefService {
 	}
 
 	/**
-	 * ¸ù¾İÁ÷³Ì±àºÅ»ñÈ¡Á÷³Ì»îÔ¾½ÚµãµÄĞÅÏ¢(ÕıÔÚÔËĞĞÖĞµÄ½ÚµãĞÅÏ¢)
+	 * æ ¹æ®æµç¨‹ç¼–å·è·å–æµç¨‹æ´»è·ƒèŠ‚ç‚¹çš„ä¿¡æ¯(æ­£åœ¨è¿è¡Œä¸­çš„èŠ‚ç‚¹ä¿¡æ¯)
 	 * 
 	 * @param processId
 	 * @return
@@ -67,7 +67,7 @@ public class MxFlowActivityDefServiceImpl implements IFlowActivityDefService {
 	}
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
@@ -76,7 +76,7 @@ public class MxFlowActivityDefServiceImpl implements IFlowActivityDefService {
 	}
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼×ÜÊı
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•æ€»æ•°
 	 * 
 	 * @return
 	 */
@@ -86,7 +86,7 @@ public class MxFlowActivityDefServiceImpl implements IFlowActivityDefService {
 	}
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡¼ÇÂ¼ÁĞ±í
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–è®°å½•åˆ—è¡¨
 	 * 
 	 * @return
 	 */
@@ -106,7 +106,7 @@ public class MxFlowActivityDefServiceImpl implements IFlowActivityDefService {
 	}
 
 	/**
-	 * ¸ù¾İ²éÑ¯²ÎÊı»ñÈ¡Ò»Ò³µÄÊı¾İ
+	 * æ ¹æ®æŸ¥è¯¢å‚æ•°è·å–ä¸€é¡µçš„æ•°æ®
 	 * 
 	 * @return
 	 */

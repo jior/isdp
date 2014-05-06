@@ -62,7 +62,7 @@ public class TreeController {
 	private SysTreeService sysTreeService;
 
 	/**
-	 * ÅúÁ¿É¾³ıĞÅÏ¢
+	 * æ‰¹é‡åˆ é™¤ä¿¡æ¯
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -80,7 +80,7 @@ public class TreeController {
 	}
 
 	/**
-	 * ÏÔÊ¾ÏÂ¼¶½Úµã
+	 * æ˜¾ç¤ºä¸‹çº§èŠ‚ç‚¹
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -204,7 +204,7 @@ public class TreeController {
 	}
 
 	/**
-	 * ÏÔÊ¾Ôö¼ÓÒ³Ãæ
+	 * æ˜¾ç¤ºå¢åŠ é¡µé¢
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -223,7 +223,7 @@ public class TreeController {
 	}
 
 	/**
-	 * ÏÔÊ¾ĞŞ¸ÄÒ³Ãæ
+	 * æ˜¾ç¤ºä¿®æ”¹é¡µé¢
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -253,7 +253,7 @@ public class TreeController {
 	}
 
 	/**
-	 * Ìá½»Ôö¼ÓĞÅÏ¢
+	 * æäº¤å¢åŠ ä¿¡æ¯
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -268,10 +268,10 @@ public class TreeController {
 		bean.setCode(ParamUtil.getParameter(request, "code"));
 		boolean ret = sysTreeService.create(bean);
 		ViewMessages messages = new ViewMessages();
-		if (ret) {// ±£´æ³É¹¦
+		if (ret) {// ä¿å­˜æˆåŠŸ
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"tree.add_success"));
-		} else {// ±£´æÊ§°Ü
+		} else {// ä¿å­˜å¤±è´¥
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"tree.add_failure"));
 		}
@@ -280,7 +280,7 @@ public class TreeController {
 	}
 
 	/**
-	 * Ìá½»ĞŞ¸ÄĞÅÏ¢
+	 * æäº¤ä¿®æ”¹ä¿¡æ¯
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -304,15 +304,15 @@ public class TreeController {
 			logger.error(ex);
 		}
 		ViewMessages messages = new ViewMessages();
-		if (ret) {// ±£´æ³É¹¦
+		if (ret) {// ä¿å­˜æˆåŠŸ
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"tree.modify_success"));
-		} else {// ±£´æÊ§°Ü
+		} else {// ä¿å­˜å¤±è´¥
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 					"tree.modify_failure"));
 		}
 		MessageUtils.addMessages(request, messages);
-		// ÏÔÊ¾ÁĞ±íÒ³Ãæ
+		// æ˜¾ç¤ºåˆ—è¡¨é¡µé¢
 		return new ModelAndView("show_msg", modelMap);
 	}
 
@@ -323,7 +323,7 @@ public class TreeController {
 	}
 
 	/**
-	 * ÏÔÊ¾×ó±ß²Ëµ¥
+	 * æ˜¾ç¤ºå·¦è¾¹èœå•
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -346,12 +346,12 @@ public class TreeController {
 
 		request.setAttribute("url", url);
 
-		// ÏÔÊ¾ÁĞ±íÒ³Ãæ
+		// æ˜¾ç¤ºåˆ—è¡¨é¡µé¢
 		return forward;
 	}
 
 	/**
-	 * ÏÔÊ¾ËùÓĞÁĞ±í
+	 * æ˜¾ç¤ºæ‰€æœ‰åˆ—è¡¨
 	 * 
 	 * @param request
 	 * @param modelMap
@@ -381,7 +381,7 @@ public class TreeController {
 	}
 
 	/**
-	 * ÏÔÊ¾Ö÷Ò³Ãæ
+	 * æ˜¾ç¤ºä¸»é¡µé¢
 	 * 
 	 * @param request
 	 * @param modelMap

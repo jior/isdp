@@ -17,7 +17,7 @@ public class CellTcadbmpTest extends AbstractTest {
 	public void testList() {
 		cellTcadbmpService = super.getBean("cellTcadbmpService");
 		CellTcadbmpQuery query = new CellTcadbmpQuery();
-		//query.nameLike("¹¤³Ì");
+		//query.nameLike("å·¥ç¨‹");
 		List<CellTcadbmp> rows = cellTcadbmpService
 				.getCellTcadbmpsByQueryCriteria(0, 10, query);
 		for (CellTcadbmp row : rows) {
