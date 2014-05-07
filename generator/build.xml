@@ -1,0 +1,65 @@
+<project name="glaf-generator" basedir="." >
+	<!-- Project settings -->
+	<property name="project.title" value="GLAF Generator System" />
+	<property name="project.distname" value="glaf-generator" />
+
+	<!-- 路径设置 -->
+	<property name="lib.dir" value="../workspace/glaf-core/lib" />
+
+	<!-- 类路径 -->
+	<path id="compile.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir=".">
+			<include name="*.jar" />
+		</fileset>
+		<pathelement location="./conf" />
+	</path>
+
+
+	<target name="Database2XmlMapping" >
+	     <java classname="com.glaf.generator.tools.Database2XmlMapping" fork="true">
+			<classpath refid="compile.classpath"/>
+			<arg line=" codegen/mapping "/>
+		</java> 
+	</target>
+
+
+	<target name="JPAEntityToXmlMapping" >
+	     <java classname="com.glaf.generator.tools.JPAEntityToXmlMapping" fork="true">
+			<classpath refid="compile.classpath"/>
+			<arg line=" codegen/jpa/mapping "/>
+		</java> 
+	</target>
+
+
+	<target name="GenMore">
+		<java classname="com.glaf.generator.GenMore" fork="true">
+			<classpath refid="compile.classpath"/>
+			<arg line="  mapping codegen/gen-more "/>
+			<jvmarg line="-Dcodegen.cfg=templates/codegen/codegen_springmvc.xml"/>
+		</java>
+	</target>
+
+
+	<target name="Pdm2XmlMapping" >
+	     <java classname="com.glaf.generator.tools.Pdm2XmlMapping" fork="true">
+			<classpath refid="compile.classpath"/>
+			<arg line=" codegen/pdm codegen/mapping "/>
+		</java> 
+	</target>
+
+
+	<target name="GenAll" >
+         <java classname="com.glaf.generator.GenAll" fork="true">
+			<classpath refid="compile.classpath"/>
+			<arg line=" mapping codegen/gen "/>
+			<jvmarg line="-Dcodegen.cfg=templates/codegen/codegen_springmvc.xml"/>
+		</java>
+	</target>
+
+</project>
