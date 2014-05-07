@@ -26,6 +26,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.glaf.core.cache.CacheFactory;
+import com.glaf.core.config.SystemConfig;
 import com.glaf.core.context.ContextFactory;
 import com.glaf.core.util.Constants;
 import com.glaf.base.modules.sys.model.SysUser;
@@ -90,14 +91,16 @@ public class AuthorizeBean {
 		SysUser sysUser = null;
 		if (account != null) {
 			String cacheKey = Constants.USER_CACHE + account;
-			String content = (String) CacheFactory.get(cacheKey);
-			if (StringUtils.isNotEmpty(content)) {
+			String content = CacheFactory.getString(cacheKey);
+			if (SystemConfig.getBoolean("use_query_cache")
+					&& StringUtils.isNotEmpty(content)) {
 				JSONObject jsonObject = JSON.parseObject(content);
 				sysUser = SysUserJsonFactory.jsonToObject(jsonObject);
 			}
 			if (sysUser == null) {
 				sysUser = getSysUserService().findByAccountWithAll(account);
-				if (sysUser != null) {
+				if (SystemConfig.getBoolean("use_query_cache")
+						&& sysUser != null) {
 					CacheFactory.put(cacheKey, sysUser.toJsonObject()
 							.toJSONString());
 				}

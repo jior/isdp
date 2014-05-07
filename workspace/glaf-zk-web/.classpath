@@ -71,7 +71,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jetty-util.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jfreechart.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/joda-time.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/json-lib-2.4-jdk15.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/json.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jtds.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jxl.jar"/>
