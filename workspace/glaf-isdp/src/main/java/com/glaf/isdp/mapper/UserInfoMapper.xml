@@ -4,100 +4,99 @@
 
 <mapper namespace="com.glaf.isdp.mapper.UserInfoMapper">
 
-	<resultMap id="userInfoResultMap"	type="com.glaf.isdp.domain.UserInfo">
-		<id property="actorId" column="userId" jdbcType="VARCHAR"/>
-		<result property="name" column="username" jdbcType="VARCHAR"/>
-		<result property="password" column="password" jdbcType="VARCHAR"/>
-		<result property="createDate" column="ctime" jdbcType="TIMESTAMP"/>
-		<result property="etime" column="etime" jdbcType="TIMESTAMP"/>
-		<result property="status" column="status" jdbcType="VARCHAR"/>
-		<result property="isSystem" column="issystem" jdbcType="VARCHAR"/>
-		<result property="setpruv" column="setpruv" jdbcType="VARCHAR"/>
-		<result property="remark" column="note" jdbcType="VARCHAR"/>
-		<result property="slevel" column="slevel" jdbcType="INTEGER"/>
-		<result property="deptId" column="depid" jdbcType="INTEGER"/>
-		<result property="isBind" column="isbind" jdbcType="VARCHAR"/>
-		<result property="computerId" column="computerid" jdbcType="VARCHAR"/>
-		<result property="mail" column="email" jdbcType="VARCHAR"/>
-		<result property="mailUser" column="email_user" jdbcType="VARCHAR"/>
-		<result property="mailPwd" column="email_psw" jdbcType="VARCHAR"/>
-		<result property="mobile" column="mobile" jdbcType="VARCHAR"/>
-		<result property="intRemote" column="intRemote" jdbcType="INTEGER"/>
-		<result property="domainIndex" column="domain_index" jdbcType="INTEGER"/>
-		<result property="intallwbs" column="intallwbs" jdbcType="INTEGER"/>
-		<result property="intVirtual" column="intVirtual" jdbcType="INTEGER"/>
+	<resultMap id="userInfoResultMap" type="com.glaf.isdp.domain.UserInfo">
+		<id property="actorId" column="userId" jdbcType="VARCHAR" />
+		<result property="name" column="username" jdbcType="VARCHAR" />
+		<result property="createDate" column="ctime" jdbcType="TIMESTAMP" />
+		<result property="etime" column="etime" jdbcType="TIMESTAMP" />
+		<result property="status" column="status" jdbcType="VARCHAR" />
+		<result property="isSystem" column="issystem" jdbcType="VARCHAR" />
+		<result property="setpruv" column="setpruv" jdbcType="VARCHAR" />
+		<result property="remark" column="note" jdbcType="VARCHAR" />
+		<result property="slevel" column="slevel" jdbcType="INTEGER" />
+		<result property="deptId" column="depid" jdbcType="INTEGER" />
+		<result property="isBind" column="isbind" jdbcType="VARCHAR" />
+		<result property="computerId" column="computerid" jdbcType="VARCHAR" />
+		<result property="mail" column="email" jdbcType="VARCHAR" />
+		<result property="mailUser" column="email_user" jdbcType="VARCHAR" />
+		<result property="mailPwd" column="email_psw" jdbcType="VARCHAR" />
+		<result property="mobile" column="mobile" jdbcType="VARCHAR" />
+		<result property="intRemote" column="intRemote" jdbcType="INTEGER" />
+		<result property="domainIndex" column="domain_index" jdbcType="INTEGER" />
+		<result property="intallwbs" column="intallwbs" jdbcType="INTEGER" />
+		<result property="intVirtual" column="intVirtual" jdbcType="INTEGER" />
 	</resultMap>
 
- 
+
 	<insert id="insertUserInfo" parameterType="com.glaf.isdp.domain.UserInfo">
-		insert into userinfo 
+		insert into userinfo
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-		    userId
+			userId
 			<if test="usernme != null">
-				,username 
+				,username
 			</if>
 			<if test="password != null">
-				,password 
+				,password
 			</if>
 			<if test="createDate != null">
-				,ctime 
+				,ctime
 			</if>
 			<if test="etime != null">
-				,etime 
+				,etime
 			</if>
 			<if test="status != null">
-				,status 
+				,status
 			</if>
 			<if test="isSystem != null">
-				,issystem 
+				,issystem
 			</if>
 			<if test="setpruv != null">
-				,setpruv 
+				,setpruv
 			</if>
 			<if test="remark != null">
-				,note 
+				,note
 			</if>
 			<if test="slevel != null">
-				,slevel 
+				,slevel
 			</if>
 			<if test="deptId != null">
-				,depid 
+				,depid
 			</if>
 			<if test="isBind != null">
-				,isbind 
+				,isbind
 			</if>
 			<if test="computerId != null">
-				,computerid 
+				,computerid
 			</if>
 			<if test="mail != null">
-				,email 
+				,email
 			</if>
 			<if test="mailUser != null">
-				,email_user 
+				,email_user
 			</if>
 			<if test="mailPwd != null">
-				,email_psw 
+				,email_psw
 			</if>
 			<if test="mobile != null">
-				,mobile 
+				,mobile
 			</if>
 			<if test="intRemote != null">
-				,intRemote 
+				,intRemote
 			</if>
 			<if test="domainIndex != null">
-				,domain_index 
+				,domain_index
 			</if>
 			<if test="intallwbs != null">
-				,intallwbs 
+				,intallwbs
 			</if>
 			<if test="intVirtual != null">
-				,intVirtual 
+				,intVirtual
 			</if>
 		</trim>
 
 		<trim prefix=" values (" suffix=")" suffixOverrides=",">
-			  #{actorId, jdbcType=VARCHAR}
-	     
+			#{actorId, jdbcType=VARCHAR}
+
 			<if test="username != null">
 				,#{name, jdbcType=VARCHAR}
 			</if>
@@ -161,12 +160,12 @@
 		</trim>
 	</insert>
 
-	 
+
 	<update id="updateUserInfo" parameterType="com.glaf.isdp.domain.UserInfo">
 		update
-		    userinfo
+		userinfo
 		set
-        <trim prefix="" suffix="" suffixOverrides=",">		
+		<trim prefix="" suffix="" suffixOverrides=",">
 			<if test="name != null">
 				userName = #{name, jdbcType=VARCHAR},
 			</if>
@@ -227,24 +226,25 @@
 			<if test="intVirtual != null">
 				intVirtual = #{intVirtual, jdbcType=INTEGER},
 			</if>
-        </trim>
+		</trim>
 		where
-          userId = #{actorId, jdbcType=VARCHAR}
-		
-    </update>
+		userId = #{actorId, jdbcType=VARCHAR}
 
- 
-	<delete id="deleteUserInfoById" parameterType="string"> 
-        delete from userinfo
-        where userID = #{actorId}
+	</update>
+
+
+	<delete id="deleteUserInfoById" parameterType="string">
+		delete from userinfo
+		where userID = #{actorId}
 	</delete>
-	
+
 
 	<delete id="deleteUserInfos" parameterType="com.glaf.isdp.query.UserInfoQuery">
 		delete from userinfo
 		where ( userID IN
-		<foreach item="x_rowId" index="index" collection="rowIds" open="(" separator="," close=")">
-              #{x_rowId}
+		<foreach item="x_rowId" index="index" collection="rowIds"
+			open="(" separator="," close=")">
+			#{x_rowId}
 		</foreach>
 		)
 	</delete>
@@ -255,58 +255,53 @@
 	</select>
 
 
-	<select id="getUserInfoCount" 
-		parameterType="map"
+	<select id="getUserInfoCount" parameterType="map" resultType="int">
+		select count(*)
+		<include refid="selectUserInfosSql" />
+	</select>
+
+
+	<select id="getUserInfoCountByQueryCriteria" parameterType="com.glaf.isdp.query.UserInfoQuery"
 		resultType="int">
 		select count(*)
 		<include refid="selectUserInfosSql" />
 	</select>
 
 
-	<select id="getUserInfoCountByQueryCriteria" 
-		parameterType="com.glaf.isdp.query.UserInfoQuery"
-		resultType="int">
-		select count(*)
-		<include refid="selectUserInfosSql" />
-	</select>
-
-
-	<select id="getUserInfos" 
-		parameterType="java.util.HashMap"
+	<select id="getUserInfos" parameterType="java.util.HashMap"
 		resultMap="userInfoResultMap">
 		select E.*
 		<include refid="selectUserInfosSql" />
 		<if test="orderBy != null">
-		   order by ${orderBy}
+			order by ${orderBy}
 		</if>
 	</select>
-	
-	
+
+
 	<select id="searchUsers" parameterType="string" resultMap="userInfoResultMap">
-		
+
 		select E.* from userinfo E
 		where 1=1
 		and (
-		   E.userId like #{searchWord}
-		   or 
-		   E.username like #{searchWord}
-		   or
-		   E.email like #{searchWord}
-		   or
-		   E.mobile like #{searchWord}
+		E.userId like #{searchWord}
+		or
+		E.username like #{searchWord}
+		or
+		E.email like #{searchWord}
+		or
+		E.mobile like #{searchWord}
 		)
-		 order by E.userID asc
-		 
-	</select>
-	
+		order by E.userID asc
 
-	<select id="getUserInfosByQueryCriteria" 
-		parameterType="com.glaf.isdp.query.UserInfoQuery"
+	</select>
+
+
+	<select id="getUserInfosByQueryCriteria" parameterType="com.glaf.isdp.query.UserInfoQuery"
 		resultMap="userInfoResultMap">
 		select E.*
 		<include refid="selectUserInfosSql" />
 		<if test="orderBy != null">
-		   order by ${orderBy}
+			order by ${orderBy}
 		</if>
 	</select>
 
@@ -314,10 +309,10 @@
 	<sql id="selectUserInfosSql">
 
 		from userinfo E
-		 
+
 		<where>
 
-		       1 = 1  
+			1 = 1
 
 			<if test="name != null and name != '' ">
 				and E.userName = #{name}
@@ -338,7 +333,7 @@
 			<if test="status != null and status != '' ">
 				and E.status = #{status}
 			</if>
-	        
+
 			<if test="isSystem != null and isSystem != '' ">
 				and E.issystem = #{isSystem}
 			</if>
@@ -360,25 +355,25 @@
 			</if>
 
 			<if test="slevels != null and slevels.size != 0">
-			    and E.slevel IN
-				<foreach item="x_slevel" index="index" collection="slevels" 
+				and E.slevel IN
+				<foreach item="x_slevel" index="index" collection="slevels"
 					open="(" separator="," close=")">
-                  #{x_slevel}
+					#{x_slevel}
 				</foreach>
 			</if>
 
 			<if test="deptId != null">
 				and E.depid = #{deptId}
 			</if>
- 
+
 			<if test="deptIds != null and deptIds.size != 0">
-			    and E.depid IN
-				<foreach item="x_deptId" index="index" collection="deptIds" 
+				and E.depid IN
+				<foreach item="x_deptId" index="index" collection="deptIds"
 					open="(" separator="," close=")">
-                  #{x_deptId}
+					#{x_deptId}
 				</foreach>
 			</if>
-	        
+
 			<if test="computerId != null and computerId != '' ">
 				and E.computerid = #{computerId}
 			</if>
@@ -412,17 +407,17 @@
 			</if>
 
 			<if test="domainIndexs != null and domainIndexs.size != 0">
-			    and E.domain_index IN
-				<foreach item="x_domainIndex" index="index" collection="domainIndexs" 
+				and E.domain_index IN
+				<foreach item="x_domainIndex" index="index" collection="domainIndexs"
 					open="(" separator="," close=")">
-                  #{x_domainIndex}
+					#{x_domainIndex}
 				</foreach>
 			</if>
 
 			<if test="intallwbs != null">
 				and E.intallwbs = #{intallwbs}
 			</if>
-			
+
 			<if test="intVirtual != null">
 				and E.intVirtual = #{intVirtual}
 			</if>

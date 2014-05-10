@@ -59,7 +59,6 @@ import com.glaf.base.modules.sys.query.SysUserQuery;
 import com.glaf.base.modules.sys.service.SysDepartmentService;
 import com.glaf.base.modules.sys.service.SysUserService;
 import com.glaf.base.modules.sys.util.SysUserJsonFactory;
-
 import com.glaf.core.base.TableModel;
 import com.glaf.core.domain.Membership;
 import com.glaf.core.id.IdGenerator;
@@ -271,6 +270,10 @@ public class SysUserServiceImpl implements SysUserService {
 			}
 		}
 		return user;
+	}
+	
+	public String getPasswordByAccount(String account){
+		return sysUserMapper.getPasswordByAccount(account);
 	}
 
 	protected Map<Long, SysDepartment> getDepartmentMap() {
@@ -818,6 +821,11 @@ public class SysUserServiceImpl implements SysUserService {
 		String cacheKey = "sys_user_" + sysUser.getActorId();
 		CacheFactory.remove(cacheKey);
 		return true;
+	}
+	
+	@Transactional
+	public void updateUserPassword(SysUser sysUser) {
+		sysUserMapper.updateUserPassword(sysUser);
 	}
 
 	@Transactional

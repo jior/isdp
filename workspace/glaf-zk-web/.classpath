@@ -3,7 +3,6 @@
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/glaf-core"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/antlr.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aopalliance.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/asm.jar"/>

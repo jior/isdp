@@ -6,7 +6,6 @@
 
 	<resultMap id="sysUserResultMap" type="com.glaf.base.modules.sys.model.SysUser">
 		<id property="account" column="USERID" jdbcType="BIGINT" />
-		<result property="password" column="PASSWORD" jdbcType="VARCHAR" />
 		<result property="name" column="USERNAME" jdbcType="VARCHAR" />
 		<result property="status" column="STATUS" jdbcType="INTEGER" />
 		<result property="createTime" column="CTIME" jdbcType="TIMESTAMP" />
@@ -117,9 +116,6 @@
 		update UserInfo
 		set
 		<trim prefix="" suffix="" suffixOverrides=",">
-			<if test="password != null">
-				PASSWORD = #{password, jdbcType=VARCHAR},
-			</if>
 			<if test="name != null">
 				USERNAME = #{name, jdbcType=VARCHAR},
 			</if>
@@ -164,6 +160,15 @@
 		USERID = #{account, jdbcType=VARCHAR}
 
 	</update>
+	
+	
+	<update id="updateUserPassword" parameterType="com.glaf.base.modules.sys.model.SysUser">
+		
+		update UserInfo
+		set PASSWORD = #{password, jdbcType=VARCHAR}
+		where USERID = #{account, jdbcType=VARCHAR}
+
+	</update>
 
 
 	<delete id="deleteSysUserById" parameterType="string">
@@ -202,6 +207,12 @@
 	<select id="getSysUserByAccount" parameterType="String"
 		resultMap="sysUserResultMap">
 		select * from UserInfo where UserID = #{account}
+	</select>
+	
+	
+	<select id="getPasswordByAccount" parameterType="String"
+		resultType="String">
+		select PASSWORD from UserInfo where UserID = #{account}
 	</select>
 
 

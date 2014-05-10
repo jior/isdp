@@ -53,9 +53,7 @@ public class UserInfoJsonFactory {
 		if (jsonObject.containsKey("mailUser")) {
 			model.setMailUser(jsonObject.getString("mailUser"));
 		}
-		if (jsonObject.containsKey("mailPwd")) {
-			model.setMailPwd(jsonObject.getString("mailPwd"));
-		}
+
 		if (jsonObject.containsKey("mobile")) {
 			model.setMobile(jsonObject.getString("mobile"));
 		}
@@ -135,9 +133,7 @@ public class UserInfoJsonFactory {
 		if (model.getMailUser() != null) {
 			jsonObject.put("mailUser", model.getMailUser());
 		}
-		if (model.getMailPwd() != null) {
-			jsonObject.put("mailPwd", model.getMailPwd());
-		}
+
 		if (model.getMobile() != null) {
 			jsonObject.put("mobile", model.getMobile());
 		}
@@ -211,9 +207,7 @@ public class UserInfoJsonFactory {
 		if (model.getMailUser() != null) {
 			jsonObject.put("mailUser", model.getMailUser());
 		}
-		if (model.getMailPwd() != null) {
-			jsonObject.put("mailPwd", model.getMailPwd());
-		}
+
 		if (model.getMobile() != null) {
 			jsonObject.put("mobile", model.getMobile());
 		}

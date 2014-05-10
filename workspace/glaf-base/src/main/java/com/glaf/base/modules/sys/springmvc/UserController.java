@@ -237,7 +237,8 @@ public class UserController {
 				if (StringUtils.equals(encPwd, user.getPassword())) {
 					user.setPassword(DigestUtil.digestString(newPwd, "MD5"));
 					user.setUpdateBy(RequestUtils.getActorId(request));
-					ret = sysUserService.update(user);
+					sysUserService.updateUserPassword(user);
+					ret = true;
 				}
 			} catch (Exception ex) {
 				ex.printStackTrace();

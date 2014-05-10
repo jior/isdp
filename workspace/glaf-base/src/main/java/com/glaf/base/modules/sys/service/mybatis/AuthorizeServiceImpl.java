@@ -23,6 +23,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
@@ -60,7 +61,8 @@ public class AuthorizeServiceImpl implements AuthorizeService {
 			if (bean.isSystemAdmin()) {
 				logger.debug(account + " is system admin");
 			}
-			if (!bean.getPassword().equals(pwd) || // 密码不匹配
+			String password = sysUserService.getPasswordByAccount(account);
+			if (!StringUtils.equals(password, pwd) || // 密码不匹配
 					bean.getLocked() == 1) {// 帐号禁止
 				bean = null;
 			}
@@ -116,7 +118,8 @@ public class AuthorizeServiceImpl implements AuthorizeService {
 			if (bean.isSystemAdmin()) {
 				logger.debug(account + " is system admin");
 			}
-			if (!bean.getPassword().equals(pwd) || // 密码不匹配
+			String password = sysUserService.getPasswordByAccount(account);
+			if (!StringUtils.equals(password, pwd) || // 密码不匹配
 					bean.getLocked() == 1) {// 帐号禁止
 				bean = null;
 			} else if (bean.getAccountType() != 1) {
@@ -142,7 +145,6 @@ public class AuthorizeServiceImpl implements AuthorizeService {
 	@Resource
 	public void setSysUserService(SysUserService sysUserService) {
 		this.sysUserService = sysUserService;
-		logger.info("setSysUserService");
 	}
 
 }

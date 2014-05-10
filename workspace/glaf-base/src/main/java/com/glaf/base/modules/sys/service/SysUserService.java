@@ -247,6 +247,8 @@ public interface SysUserService {
 	 * @return
 	 */
 	SysUser getUserPrivileges(SysUser user);
+	
+	String getPasswordByAccount(String account);
 
 	/**
 	 * 获取某些用户的角色
@@ -304,6 +306,9 @@ public interface SysUserService {
 	 */
 	@Transactional
 	boolean updateUser(SysUser bean);
+	
+	@Transactional
+	void updateUserPassword(SysUser sysUser);
 
 	/**
 	 * 设置用户角色

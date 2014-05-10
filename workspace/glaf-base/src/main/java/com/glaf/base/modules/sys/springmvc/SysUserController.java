@@ -587,7 +587,8 @@ public class SysUserController {
 						ex.printStackTrace();
 					}
 					bean.setUpdateBy(bean.getAccount());
-					ret = sysUserService.update(bean);
+					sysUserService.updateUserPassword(bean);
+					ret = true;
 				}
 			}
 		}
@@ -687,9 +688,9 @@ public class SysUserController {
 		logger.debug(RequestUtils.getParameterMap(request));
 		String id = ParamUtil.getParameter(request, "id");
 		id = RequestUtils.decodeString(id);
-		logger.debug("id = "+id);
+		logger.debug("id = " + id);
 		SysUser bean = sysUserService.findById(id);
-		logger.debug("user = "+bean);
+		logger.debug("user = " + bean);
 		boolean ret = false;
 		if (bean != null) {
 			SysDepartment department = sysDepartmentService.findById(ParamUtil
@@ -776,7 +777,8 @@ public class SysUserController {
 				if (StringUtils.equals(encPwd, user.getPassword())) {
 					user.setPassword(DigestUtil.digestString(newPwd, "MD5"));
 					user.setUpdateBy(RequestUtils.getActorId(request));
-					ret = sysUserService.update(user);
+					sysUserService.updateUserPassword(user);
+					ret = true;
 				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
