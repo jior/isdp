@@ -53,7 +53,6 @@ import com.glaf.core.res.MessageUtils;
 import com.glaf.core.res.ViewMessage;
 import com.glaf.core.res.ViewMessages;
 import com.glaf.core.security.DigestUtil;
-import com.glaf.core.service.ISystemPropertyService;
 import com.glaf.core.util.ClassUtils;
 import com.glaf.core.util.Constants;
 import com.glaf.core.util.RequestUtils;
@@ -74,8 +73,6 @@ public class LoginController {
 	private SysUserService sysUserService;
 
 	private UserOnlineService userOnlineService;
-
-	private ISystemPropertyService systemPropertyService;
 
 	/**
 	 * 登录
@@ -133,14 +130,13 @@ public class LoginController {
 		} else {
 
 			String ipAddr = RequestUtils.getIPAddress(request);
-
+			SystemProperty p = SystemConfig.getProperty("login_limit");
 			if (!(StringUtils.equals(account, "root") || StringUtils.equals(
 					account, "admin"))) {
 				logger.debug("#################check login limit#####################");
-				SystemProperty p = systemPropertyService.getSystemProperty(
-						"SYS", "login_limit");
-				SystemProperty pt = systemPropertyService.getSystemProperty(
-						"SYS", "login_time_check");
+
+				SystemProperty pt = SystemConfig
+						.getProperty("login_time_check");
 				int timeoutSeconds = 300;
 
 				if (pt != null && pt.getValue() != null
@@ -226,14 +222,20 @@ public class LoginController {
 			RequestUtils.setLoginUser(request, response, systemName,
 					bean.getAccount());
 
-			UserOnline online = new UserOnline();
-			online.setActorId(bean.getActorId());
-			online.setName(bean.getName());
-			online.setCheckDate(new Date());
-			online.setLoginDate(new Date());
-			online.setLoginIP(ipAddr);
-			online.setSessionId(session.getId());
-			userOnlineService.login(online);
+			if (p != null && StringUtils.equals(p.getValue(), "true")) {
+				try {
+					UserOnline online = new UserOnline();
+					online.setActorId(bean.getActorId());
+					online.setName(bean.getName());
+					online.setCheckDate(new Date());
+					online.setLoginDate(new Date());
+					online.setLoginIP(ipAddr);
+					online.setSessionId(session.getId());
+					userOnlineService.login(online);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+			}
 
 			if (bean.getAccountType() == 1) {// 供应商用户
 				return new ModelAndView("/modules/sp_main", modelMap);
@@ -300,7 +302,10 @@ public class LoginController {
 		// 退出系统，清除session对象
 		request.getSession().removeAttribute(SysConstants.LOGIN);
 		try {
-			userOnlineService.logout(actorId);
+			SystemProperty p = SystemConfig.getProperty("login_limit");
+			if (p != null && StringUtils.equals(p.getValue(), "true")) {
+				userOnlineService.logout(actorId);
+			}
 			String cacheKey = Constants.LOGIN_USER_CACHE + actorId;
 			CacheFactory.remove(cacheKey);
 			cacheKey = Constants.USER_CACHE + actorId;
@@ -330,12 +335,6 @@ public class LoginController {
 	@javax.annotation.Resource
 	public void setAuthorizeService(AuthorizeService authorizeService) {
 		this.authorizeService = authorizeService;
-	}
-
-	@javax.annotation.Resource
-	public void setSystemPropertyService(
-			ISystemPropertyService systemPropertyService) {
-		this.systemPropertyService = systemPropertyService;
 	}
 
 	@javax.annotation.Resource
