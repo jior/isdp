@@ -86,6 +86,9 @@ public class SpringDispatcherServlet extends DispatcherServlet {
 		} finally {
 			Environment.setCurrentSystemName(null);
 			Environment.removeCurrentSystemName();
+			ThreadContextHolder.clear();
+			Authentication.clear();
+			com.glaf.core.security.Authentication.clear();
 		}
 
 	}

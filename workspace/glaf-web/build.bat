@@ -1,3 +1,3 @@
 rem set JAVA_HOME=C:\jdk1.6.0
-start ..\..\ant\bin\ant
+start %ANT_HOME%\bin\ant
 
