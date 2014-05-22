@@ -10,7 +10,6 @@
 <%@ page import="com.glaf.core.security.*"%>
 <%@ page import="com.glaf.core.util.*"%>
 <%
-    
 	String theme = com.glaf.core.util.RequestUtils.getTheme(request);
 	request.setAttribute("theme", theme);
  	request.setAttribute("nowDate", new java.util.Date());
@@ -23,14 +22,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title><%=SystemConfig.getString("res_system_name")%></title>
-<link href="<%=request.getContextPath()%>/layout/css/styles.css" rel="stylesheet" type="text/css" />
+<link href="<%=request.getContextPath()%>/scripts/layout/css/styles.css" rel="stylesheet" type="text/css" />
 <link href="<%=request.getContextPath()%>/scripts/easyui/themes/${theme}/easyui.css" rel="stylesheet" type="text/css" />
 <link href="<%=request.getContextPath()%>/themes/${theme}/styles.css" rel="stylesheet" type="text/css" />
 <link href="<%=request.getContextPath()%>/css/icons.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/easyui/locale/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src='<%=request.getContextPath()%>/layout/js/outlook3.js'> </script>
+<script type="text/javascript" src='<%=request.getContextPath()%>/scripts/layout/js/outlook3.js'></script>
 <script type="text/javascript">
 
    var contextPath = "<%=request.getContextPath()%>";
@@ -90,7 +89,7 @@
 <body class="easyui-layout" style="overflow-y: hidden"  fit="true"   scroll="no">
 <noscript>
 <div style=" position:absolute; z-index:100000; height:2046px;top:0px;left:0px; width:100%; background:white; text-align:center;">
-    <img src="<%=request.getContextPath()%>/layout/images/noscript.gif" alt='抱歉，请开启脚本支持！' />
+    <img src="<%=request.getContextPath()%>/scripts/layout/images/noscript.gif" alt='抱歉，请开启脚本支持！' />
 </div>
 </noscript>
 
@@ -108,7 +107,7 @@
 		<a href="#" id="loginOut">退出</a>
         </span>
         <span style="padding-left:10px; font-size: 24px; ">
-		<img src="<%=request.getContextPath()%>/layout/images/logo.gif" border="0" align="absmiddle" /> 
+		<img src="<%=request.getContextPath()%>/images/logo.gif" border="0" align="absmiddle" /> 
 		<span class="sys_name" style="padding-left:10px; font-size: 24px; ">
 		<%=SystemConfig.getString("res_system_name")%></span>&nbsp;
 	   <span class="sys_version"><%=SystemConfig.getString("res_version")%></span>
