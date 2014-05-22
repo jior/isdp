@@ -11,13 +11,14 @@ import org.apache.commons.logging.LogFactory;
 import com.alibaba.fastjson.util.IOUtils;
 import com.glaf.core.config.SystemProperties;
 import com.glaf.template.Template;
-import com.glaf.template.TemplateXmlReader;
+import com.glaf.template.TemplateReader;
 import com.glaf.core.util.FileUtils;
 
 public class IsdpTemplateConfig {
-	protected final static Log LOG = LogFactory.getLog(IsdpTemplateConfig.class);
+	protected final static Log LOG = LogFactory
+			.getLog(IsdpTemplateConfig.class);
 
-	private static final String DEFAULT_CONFIG = "/config/isdp/templates.xml";
+	private static final String DEFAULT_CONFIG = "/conf/isdp/templates.xml";
 
 	private static final Map<String, Template> templates = new java.util.concurrent.ConcurrentHashMap<String, Template>();
 
@@ -48,7 +49,7 @@ public class IsdpTemplateConfig {
 	public static void reload() {
 		LOG.debug("---------------IsdpTemplateConfig.reload()----------");
 		String configDir = SystemProperties.getConfigRootPath()
-				+ "/config/isdp/templates";
+				+ "/conf/isdp/templates";
 		try {
 			java.io.File dir = new java.io.File(configDir);
 			if (dir.exists()) {
@@ -76,7 +77,7 @@ public class IsdpTemplateConfig {
 		try {
 			inputStream = FileUtils.getInputStream(filename);
 			if (inputStream != null) {
-				TemplateXmlReader reader = new TemplateXmlReader();
+				TemplateReader reader = new TemplateReader();
 				Map<String, Template> tplMap = reader.getTemplates(inputStream);
 				if (tplMap != null && !tplMap.isEmpty()) {
 					Set<Entry<String, Template>> entrySet = tplMap.entrySet();
