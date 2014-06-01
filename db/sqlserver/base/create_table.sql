@@ -17,7 +17,7 @@ CREATE TABLE sys_application(
         id bigint not null,
         name nvarchar(255),
 	code nvarchar(255),
-        appdesc nvarchar(255),
+        appdesc nvarchar(500),
         url nvarchar(255),
         sort int,
         showmenu int,
@@ -30,7 +30,7 @@ CREATE TABLE sys_application(
 CREATE TABLE sys_department(
         id bigint not null,
         name nvarchar(255),
-        deptdesc nvarchar(255),
+        deptdesc nvarchar(500),
         createtime datetime,
         sort int,
         deptno nvarchar(255),
@@ -47,7 +47,7 @@ CREATE TABLE sys_function(
         id bigint not null,
         name nvarchar(255),
 	code nvarchar(50),
-        funcdesc nvarchar(255),
+        funcdesc nvarchar(500),
         funcmethod nvarchar(255),
         sort int,
         appid bigint NOT NULL,
@@ -56,11 +56,14 @@ CREATE TABLE sys_function(
 
 CREATE TABLE sys_log(
         id bigint not null,
-        account nvarchar(255),
+        account nvarchar(50),
+	moduleid nvarchar(50),
         ip nvarchar(255),
         createtime datetime,
         operate nvarchar(255),
+	content nvarchar(2000),
         flag int,
+	timems int,
         PRIMARY KEY (id)
 );
 
@@ -69,7 +72,7 @@ CREATE TABLE sys_tree (
         id bigint not null,
         parent bigint,
         name nvarchar(255),
-        nodedesc nvarchar(255),
+        nodedesc nvarchar(500),
 	cacheFlag nvarchar(1),
 	discriminator nvarchar(1),
 	moveable nvarchar(1),
@@ -88,7 +91,7 @@ CREATE TABLE sys_dictory (
         id bigint not null,
         typeId bigint,
         name nvarchar(50),
-        dictDesc nvarchar(200),
+        dictDesc nvarchar(500),
         code nvarchar(50),
 	value_ nvarchar(2000),
         sort int,
@@ -117,7 +120,7 @@ CREATE TABLE sys_dictory (
 );
 
 create table sys_dictory_def (
-        id bigint NOT NULL,
+        id bigint not null,
         nodeId bigint,
         name nvarchar(50),
         columnName nvarchar(50),
@@ -233,7 +236,7 @@ CREATE TABLE message(
         recver bigint,
         recverList nvarchar(2000) ,
         title nvarchar(500) ,
-        content nvarchar(2000) ,
+        content nvarchar(max) ,
         createDate datetime,
         readed int,
         category int,
@@ -256,65 +259,23 @@ CREATE TABLE mymenu(
         edDate datetime,
         PRIMARY KEY (id)
 );
-
-CREATE TABLE subjectcode(
-        id bigint not null ,
-        parent bigint,
-        subjectCode nvarchar(20),
-        subjectName nvarchar(100),
-        feeSum double precision ,
-        month1 double precision ,
-        month2 double precision ,
-        month3 double precision ,
-        month4 double precision ,
-        month5 double precision ,
-        month6 double precision ,
-        month7 double precision ,
-        month8 double precision ,
-        month9 double precision ,
-        month10 double precision ,
-        month11 double precision ,
-        month12 double precision ,
-        feeYear int ,
-        sort int ,
-        PRIMARY KEY (id)
-    );
-
+ 
 
 CREATE TABLE  attachment (
 	id bigint  not null,
-	referId bigint  ,
-	referType int  ,
-	name nvarchar (100)   ,
-	url nvarchar (200)   ,
-	createDate datetime  ,
-	createId bigint  ,
-	crUser nvarchar (20)   ,
-	crDate datetime  ,
-	edUser nvarchar (20)   ,
-	edDate datetime ,
+	referId bigint,
+	referType int,
+	name nvarchar (100),
+	url nvarchar (200),
+	createDate datetime,
+	createId bigint,
+	crUser nvarchar (20),
+	crDate datetime,
+	edUser nvarchar (20),
+	edDate datetime,
 	PRIMARY KEY (id)
 );
 
-
-  CREATE TABLE  myaudit (
-	id bigint not null,
-	referId bigint ,
-	referType int ,
-	deptId bigint ,
-	deptName nvarchar (50) ,
-	headship nvarchar (100) ,
-	leaderName nvarchar (100) ,
-	leaderId bigint ,
-	createDate datetime ,
-	memo nvarchar(max) ,
-	flag int ,
-	crUser nvarchar (20) ,
-	crDate datetime ,
-	edUser nvarchar (20) ,
-	edDate datetime , 
-	PRIMARY KEY (id)
-);
 
 create table sys_dbid(
         name_ nvarchar(50)  not null,
@@ -500,34 +461,31 @@ create table sys_input_def (
 
     alter table UserInfo add  telephone varchar(200);
 
- 
-
     alter table net_role add  code varchar(200) null;
 
-    alter table userrole add AUTHORIZED int;
+    alter table userrole add authorized int;
 
-    alter table userrole add AUTHORIZEFROM varchar(200) null;
+    alter table userrole add authorizeFrom varchar(200) null;
 
-    alter table userrole add AVAILDATESTART datetime null;
+    alter table userrole add availdateStart datetime null;
 
-    alter table userrole add AVAILDATEEND datetime null;
+    alter table userrole add availdateEnd datetime null;
 
+    create index idx_tree_name on sys_tree (name);
 
-    create index IDX_TREE_NAME on SYS_TREE (NAME);
+    create index idx_tree_code on sys_tree (code);
 
-    create index IDX_TREE_CODE on SYS_TREE (CODE);
+    create index sys_dept_name on sys_department (name);
 
-    create index SYS_DEPT_NAME on SYS_DEPARTMENT (NAME);
+    create index sys_dept_code on sys_department (code);
 
-    create index SYS_DEPT_CODE on SYS_DEPARTMENT (CODE);
+    create index sys_dept_node on sys_department (nodeid);
 
-    create index SYS_DEPT_NODE on SYS_DEPARTMENT (NODEID);
+    create index sys_app_name on sys_application (name);
 
-    create index SYS_APP_NAME on SYS_APPLICATION (NAME);
+    create index sys_app_code on sys_application (code);
 
-    create index SYS_APP_CODE on SYS_APPLICATION (CODE);
-
-    create index SYS_APP_NODE on SYS_APPLICATION (NODEID);
+    create index sys_app_node on sys_application (nodeid);
 
     alter table sys_access 
         add constraint FK_ACCESS_APP 
