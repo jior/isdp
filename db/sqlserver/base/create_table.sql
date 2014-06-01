@@ -352,7 +352,6 @@ create table sys_input_def (
         primary key (id)
 );
 
-
     create table sys_table (
         tablename_ varchar(50) not null,
         parenttablename_ varchar(50),
