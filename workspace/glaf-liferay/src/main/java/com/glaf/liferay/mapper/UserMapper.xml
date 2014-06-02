@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.liferay.mapper.UserMapper">
+
+	<resultMap id="userLiferayResultMap" type="com.glaf.liferay.domain.User">
+		<id property="userId" column="USERID" jdbcType="BIGINT" />
+		<result property="uuid" column="UUID_" jdbcType="VARCHAR" />
+		<result property="companyId" column="COMPANYID" jdbcType="BIGINT" />
+		<result property="createDate" column="CREATEDATE" jdbcType="TIMESTAMP" />
+		<result property="modifiedDate" column="MODIFIEDDATE" jdbcType="TIMESTAMP" />
+		<result property="defaultUser" column="DEFAULTUSER" jdbcType="VARCHAR" />
+		<result property="contactId" column="CONTACTID" jdbcType="BIGINT" />
+		<result property="password" column="PASSWORD_" jdbcType="VARCHAR" />
+		<result property="passwordEncrypted" column="PASSWORDENCRYPTED"
+			jdbcType="VARCHAR" />
+		<result property="passwordReset" column="PASSWORDRESET"
+			jdbcType="VARCHAR" />
+		<result property="passwordModifiedDate" column="PASSWORDMODIFIEDDATE"
+			jdbcType="TIMESTAMP" />
+		<result property="digest" column="DIGEST" jdbcType="VARCHAR" />
+		<result property="reminderQueryQuestion" column="REMINDERQUERYQUESTION"
+			jdbcType="VARCHAR" />
+		<result property="reminderQueryAnswer" column="REMINDERQUERYANSWER"
+			jdbcType="VARCHAR" />
+		<result property="graceLoginCount" column="GRACELOGINCOUNT"
+			jdbcType="INTEGER" />
+		<result property="screenName" column="SCREENNAME" jdbcType="VARCHAR" />
+		<result property="emailAddress" column="EMAILADDRESS" jdbcType="VARCHAR" />
+		<result property="facebookId" column="FACEBOOKID" jdbcType="BIGINT" />
+		<result property="ldapServerId" column="LDAPSERVERID" jdbcType="BIGINT" />
+		<result property="openId" column="OPENID" jdbcType="VARCHAR" />
+		<result property="portraitId" column="PORTRAITID" jdbcType="BIGINT" />
+		<result property="languageId" column="LANGUAGEID" jdbcType="VARCHAR" />
+		<result property="timeZoneId" column="TIMEZONEID" jdbcType="VARCHAR" />
+		<result property="greeting" column="GREETING" jdbcType="VARCHAR" />
+		<result property="comments" column="COMMENTS" jdbcType="VARCHAR" />
+		<result property="firstName" column="FIRSTNAME" jdbcType="VARCHAR" />
+		<result property="middleName" column="MIDDLENAME" jdbcType="VARCHAR" />
+		<result property="lastName" column="LASTNAME" jdbcType="VARCHAR" />
+		<result property="jobTitle" column="JOBTITLE" jdbcType="VARCHAR" />
+		<result property="loginDate" column="LOGINDATE" jdbcType="TIMESTAMP" />
+		<result property="loginIP" column="LOGINIP" jdbcType="VARCHAR" />
+		<result property="lastLoginDate" column="LASTLOGINDATE"
+			jdbcType="TIMESTAMP" />
+		<result property="lastLoginIP" column="LASTLOGINIP" jdbcType="VARCHAR" />
+		<result property="lastFailedLoginDate" column="LASTFAILEDLOGINDATE"
+			jdbcType="TIMESTAMP" />
+		<result property="failedLoginAttempts" column="FAILEDLOGINATTEMPTS"
+			jdbcType="INTEGER" />
+		<result property="lockout" column="LOCKOUT" jdbcType="VARCHAR" />
+		<result property="lockoutDate" column="LOCKOUTDATE" jdbcType="TIMESTAMP" />
+		<result property="agreedToTermsOfUse" column="AGREEDTOTERMSOFUSE"
+			jdbcType="VARCHAR" />
+		<result property="emailAddressVerified" column="EMAILADDRESSVERIFIED"
+			jdbcType="VARCHAR" />
+		<result property="status" column="STATUS" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertLiferayUser" parameterType="com.glaf.liferay.domain.User">
+		insert into USER_
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			USERID
+			<if test="uuid != null">
+				,UUID_
+			</if>
+			<if test="companyId != null">
+				,COMPANYID
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE
+			</if>
+			<if test="modifiedDate != null">
+				,MODIFIEDDATE
+			</if>
+			<if test="defaultUser != null">
+				,DEFAULTUSER
+			</if>
+			<if test="contactId != null">
+				,CONTACTID
+			</if>
+			<if test="password != null">
+				,PASSWORD_
+			</if>
+			<if test="passwordEncrypted != null">
+				,PASSWORDENCRYPTED
+			</if>
+			<if test="passwordReset != null">
+				,PASSWORDRESET
+			</if>
+			<if test="passwordModifiedDate != null">
+				,PASSWORDMODIFIEDDATE
+			</if>
+			<if test="digest != null">
+				,DIGEST
+			</if>
+			<if test="reminderQueryQuestion != null">
+				,REMINDERQUERYQUESTION
+			</if>
+			<if test="reminderQueryAnswer != null">
+				,REMINDERQUERYANSWER
+			</if>
+			<if test="graceLoginCount != null">
+				,GRACELOGINCOUNT
+			</if>
+			<if test="screenName != null">
+				,SCREENNAME
+			</if>
+			<if test="emailAddress != null">
+				,EMAILADDRESS
+			</if>
+			<if test="facebookId != null">
+				,FACEBOOKID
+			</if>
+			<if test="ldapServerId != null">
+				,LDAPSERVERID
+			</if>
+			<if test="openId != null">
+				,OPENID
+			</if>
+			<if test="portraitId != null">
+				,PORTRAITID
+			</if>
+			<if test="languageId != null">
+				,LANGUAGEID
+			</if>
+			<if test="timeZoneId != null">
+				,TIMEZONEID
+			</if>
+			<if test="greeting != null">
+				,GREETING
+			</if>
+			<if test="comments != null">
+				,COMMENTS
+			</if>
+			<if test="firstName != null">
+				,FIRSTNAME
+			</if>
+			<if test="middleName != null">
+				,MIDDLENAME
+			</if>
+			<if test="lastName != null">
+				,LASTNAME
+			</if>
+			<if test="jobTitle != null">
+				,JOBTITLE
+			</if>
+			<if test="loginDate != null">
+				,LOGINDATE
+			</if>
+			<if test="loginIP != null">
+				,LOGINIP
+			</if>
+			<if test="lastLoginDate != null">
+				,LASTLOGINDATE
+			</if>
+			<if test="lastLoginIP != null">
+				,LASTLOGINIP
+			</if>
+			<if test="lastFailedLoginDate != null">
+				,LASTFAILEDLOGINDATE
+			</if>
+			<if test="failedLoginAttempts != null">
+				,FAILEDLOGINATTEMPTS
+			</if>
+			<if test="lockout != null">
+				,LOCKOUT
+			</if>
+			<if test="lockoutDate != null">
+				,LOCKOUTDATE
+			</if>
+			<if test="agreedToTermsOfUse != null">
+				,AGREEDTOTERMSOFUSE
+			</if>
+			<if test="emailAddressVerified != null">
+				,EMAILADDRESSVERIFIED
+			</if>
+			<if test="status != null">
+				,STATUS
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{userId, jdbcType=BIGINT}
+
+			<if test="uuid != null">
+				,#{uuid, jdbcType=VARCHAR}
+			</if>
+			<if test="companyId != null">
+				,#{companyId, jdbcType=BIGINT}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifiedDate != null">
+				,#{modifiedDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="defaultUser != null">
+				,#{defaultUser, jdbcType=VARCHAR}
+			</if>
+			<if test="contactId != null">
+				,#{contactId, jdbcType=BIGINT}
+			</if>
+			<if test="password != null">
+				,#{password, jdbcType=VARCHAR}
+			</if>
+			<if test="passwordEncrypted != null">
+				,#{passwordEncrypted, jdbcType=VARCHAR}
+			</if>
+			<if test="passwordReset != null">
+				,#{passwordReset, jdbcType=VARCHAR}
+			</if>
+			<if test="passwordModifiedDate != null">
+				,#{passwordModifiedDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="digest != null">
+				,#{digest, jdbcType=VARCHAR}
+			</if>
+			<if test="reminderQueryQuestion != null">
+				,#{reminderQueryQuestion, jdbcType=VARCHAR}
+			</if>
+			<if test="reminderQueryAnswer != null">
+				,#{reminderQueryAnswer, jdbcType=VARCHAR}
+			</if>
+			<if test="graceLoginCount != null">
+				,#{graceLoginCount, jdbcType=INTEGER}
+			</if>
+			<if test="screenName != null">
+				,#{screenName, jdbcType=VARCHAR}
+			</if>
+			<if test="emailAddress != null">
+				,#{emailAddress, jdbcType=VARCHAR}
+			</if>
+			<if test="facebookId != null">
+				,#{facebookId, jdbcType=BIGINT}
+			</if>
+			<if test="ldapServerId != null">
+				,#{ldapServerId, jdbcType=BIGINT}
+			</if>
+			<if test="openId != null">
+				,#{openId, jdbcType=VARCHAR}
+			</if>
+			<if test="portraitId != null">
+				,#{portraitId, jdbcType=BIGINT}
+			</if>
+			<if test="languageId != null">
+				,#{languageId, jdbcType=VARCHAR}
+			</if>
+			<if test="timeZoneId != null">
+				,#{timeZoneId, jdbcType=VARCHAR}
+			</if>
+			<if test="greeting != null">
+				,#{greeting, jdbcType=VARCHAR}
+			</if>
+			<if test="comments != null">
+				,#{comments, jdbcType=VARCHAR}
+			</if>
+			<if test="firstName != null">
+				,#{firstName, jdbcType=VARCHAR}
+			</if>
+			<if test="middleName != null">
+				,#{middleName, jdbcType=VARCHAR}
+			</if>
+			<if test="lastName != null">
+				,#{lastName, jdbcType=VARCHAR}
+			</if>
+			<if test="jobTitle != null">
+				,#{jobTitle, jdbcType=VARCHAR}
+			</if>
+			<if test="loginDate != null">
+				,#{loginDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="loginIP != null">
+				,#{loginIP, jdbcType=VARCHAR}
+			</if>
+			<if test="lastLoginDate != null">
+				,#{lastLoginDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="lastLoginIP != null">
+				,#{lastLoginIP, jdbcType=VARCHAR}
+			</if>
+			<if test="lastFailedLoginDate != null">
+				,#{lastFailedLoginDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="failedLoginAttempts != null">
+				,#{failedLoginAttempts, jdbcType=INTEGER}
+			</if>
+			<if test="lockout != null">
+				,#{lockout, jdbcType=VARCHAR}
+			</if>
+			<if test="lockoutDate != null">
+				,#{lockoutDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="agreedToTermsOfUse != null">
+				,#{agreedToTermsOfUse, jdbcType=VARCHAR}
+			</if>
+			<if test="emailAddressVerified != null">
+				,#{emailAddressVerified, jdbcType=VARCHAR}
+			</if>
+			<if test="status != null">
+				,#{status, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateLiferayUser" parameterType="com.glaf.liferay.domain.User">
+		update USER_
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="companyId != null">
+				COMPANYID = #{companyId, jdbcType=BIGINT},
+			</if>
+			<if test="modifiedDate != null">
+				MODIFIEDDATE = #{modifiedDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="defaultUser != null">
+				DEFAULTUSER = #{defaultUser, jdbcType=VARCHAR},
+			</if>
+			<if test="contactId != null">
+				CONTACTID = #{contactId, jdbcType=BIGINT},
+			</if>
+			<if test="password != null">
+				PASSWORD_ = #{password, jdbcType=VARCHAR},
+			</if>
+			<if test="passwordEncrypted != null">
+				PASSWORDENCRYPTED = #{passwordEncrypted,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="passwordReset != null">
+				PASSWORDRESET = #{passwordReset, jdbcType=VARCHAR},
+			</if>
+			<if test="passwordModifiedDate != null">
+				PASSWORDMODIFIEDDATE = #{passwordModifiedDate,
+				jdbcType=TIMESTAMP},
+			</if>
+			<if test="digest != null">
+				DIGEST = #{digest, jdbcType=VARCHAR},
+			</if>
+			<if test="reminderQueryQuestion != null">
+				REMINDERQUERYQUESTION = #{reminderQueryQuestion,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="reminderQueryAnswer != null">
+				REMINDERQUERYANSWER = #{reminderQueryAnswer,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="graceLoginCount != null">
+				GRACELOGINCOUNT = #{graceLoginCount, jdbcType=INTEGER},
+			</if>
+			<if test="screenName != null">
+				SCREENNAME = #{screenName, jdbcType=VARCHAR},
+			</if>
+			<if test="emailAddress != null">
+				EMAILADDRESS = #{emailAddress, jdbcType=VARCHAR},
+			</if>
+			<if test="facebookId != null">
+				FACEBOOKID = #{facebookId, jdbcType=BIGINT},
+			</if>
+			<if test="ldapServerId != null">
+				LDAPSERVERID = #{ldapServerId, jdbcType=BIGINT},
+			</if>
+			<if test="openId != null">
+				OPENID = #{openId, jdbcType=VARCHAR},
+			</if>
+			<if test="portraitId != null">
+				PORTRAITID = #{portraitId, jdbcType=BIGINT},
+			</if>
+			<if test="languageId != null">
+				LANGUAGEID = #{languageId, jdbcType=VARCHAR},
+			</if>
+			<if test="timeZoneId != null">
+				TIMEZONEID = #{timeZoneId, jdbcType=VARCHAR},
+			</if>
+			<if test="greeting != null">
+				GREETING = #{greeting, jdbcType=VARCHAR},
+			</if>
+			<if test="comments != null">
+				COMMENTS = #{comments, jdbcType=VARCHAR},
+			</if>
+			<if test="firstName != null">
+				FIRSTNAME = #{firstName, jdbcType=VARCHAR},
+			</if>
+			<if test="middleName != null">
+				MIDDLENAME = #{middleName, jdbcType=VARCHAR},
+			</if>
+			<if test="lastName != null">
+				LASTNAME = #{lastName, jdbcType=VARCHAR},
+			</if>
+			<if test="jobTitle != null">
+				JOBTITLE = #{jobTitle, jdbcType=VARCHAR},
+			</if>
+			<if test="loginDate != null">
+				LOGINDATE = #{loginDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="loginIP != null">
+				LOGINIP = #{loginIP, jdbcType=VARCHAR},
+			</if>
+			<if test="lastLoginDate != null">
+				LASTLOGINDATE = #{lastLoginDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastLoginIP != null">
+				LASTLOGINIP = #{lastLoginIP, jdbcType=VARCHAR},
+			</if>
+			<if test="lastFailedLoginDate != null">
+				LASTFAILEDLOGINDATE = #{lastFailedLoginDate,
+				jdbcType=TIMESTAMP},
+			</if>
+			<if test="failedLoginAttempts != null">
+				FAILEDLOGINATTEMPTS = #{failedLoginAttempts,
+				jdbcType=INTEGER},
+			</if>
+			<if test="lockout != null">
+				LOCKOUT = #{lockout, jdbcType=VARCHAR},
+			</if>
+			<if test="lockoutDate != null">
+				LOCKOUTDATE = #{lockoutDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="agreedToTermsOfUse != null">
+				AGREEDTOTERMSOFUSE = #{agreedToTermsOfUse,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="emailAddressVerified != null">
+				EMAILADDRESSVERIFIED = #{emailAddressVerified,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS = #{status, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		USERID = #{userId, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteLiferayUserById" parameterType="long">
+		delete from
+		USER_
+		where USERID = #{userId}
+	</delete>
+
+
+	<delete id="deleteLiferayUsers" parameterType="com.glaf.liferay.query.UserQuery">
+		delete from USER_
+		where (
+		USERID IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getLiferayUserById" parameterType="long"
+		resultMap="userLiferayResultMap">
+		select * from USER_ where USERID = #{userId}
+	</select>
+
+
+	<select id="getLiferayUsers" parameterType="com.glaf.liferay.query.UserQuery"
+		resultMap="userLiferayResultMap">
+		select distinct E.*
+		<include refid="selectLiferayUsersSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.CREATEDATE desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getLiferayUserCount" parameterType="com.glaf.liferay.query.UserQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectLiferayUsersSql" />
+	</select>
+
+
+	<sql id="selectLiferayUsersSql">
+
+		from USER_ E
+
+		<where>
+			1 = 1
+
+			<if test="uuid != null and uuid != '' ">
+				and E.UUID_ = #{uuid}
+			</if>
+
+			<if test="uuids != null and uuids.size != 0">
+				and E.UUID_ IN
+				<foreach item="x_uuid" index="index" collection="uuids"
+					open="(" separator="," close=")">
+					#{x_uuid}
+				</foreach>
+			</if>
+
+			<if test="userId != null">
+				and E.USERID = #{userId}
+			</if>
+
+			<if test="userIds != null and userIds.size != 0">
+				and E.USERID IN
+				<foreach item="x_userId" index="index" collection="userIds"
+					open="(" separator="," close=")">
+					#{x_userId}
+				</foreach>
+			</if>
+
+			<if test="companyId != null">
+				and E.COMPANYID = #{companyId}
+			</if>
+
+			<if test="companyIds != null and companyIds.size != 0">
+				and E.COMPANYID IN
+				<foreach item="x_companyId" index="index" collection="companyIds"
+					open="(" separator="," close=")">
+					#{x_companyId}
+				</foreach>
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE &gt;= #{createDateGreaterThanOrEqual}
+			</if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE &lt;= #{createDateLessThanOrEqual}
+			</if>
+
+			<if test="modifiedDateGreaterThanOrEqual != null">
+				and E.MODIFIEDDATE &gt;=
+				#{modifiedDateGreaterThanOrEqual}
+			</if>
+
+			<if test="modifiedDateLessThanOrEqual != null">
+				and E.MODIFIEDDATE &lt;= #{modifiedDateLessThanOrEqual}
+			</if>
+
+			<if test="defaultUser != null and defaultUser != '' ">
+				and E.DEFAULTUSER = #{defaultUser}
+			</if>
+
+			<if test="contactId != null">
+				and E.CONTACTID = #{contactId}
+			</if>
+
+			<if test="contactIds != null and contactIds.size != 0">
+				and E.CONTACTID IN
+				<foreach item="x_contactId" index="index" collection="contactIds"
+					open="(" separator="," close=")">
+					#{x_contactId}
+				</foreach>
+			</if>
+
+			<if test="passwordEncrypted != null and passwordEncrypted != '' ">
+				and E.PASSWORDENCRYPTED = #{passwordEncrypted}
+			</if>
+
+			<if test="passwordReset != null and passwordReset != '' ">
+				and E.PASSWORDRESET = #{passwordReset}
+			</if>
+
+			<if test="passwordModifiedDateGreaterThanOrEqual != null">
+				and E.PASSWORDMODIFIEDDATE &gt;=
+				#{passwordModifiedDateGreaterThanOrEqual}
+			</if>
+
+			<if test="passwordModifiedDateLessThanOrEqual != null">
+				and E.PASSWORDMODIFIEDDATE &lt;=
+				#{passwordModifiedDateLessThanOrEqual}
+			</if>
+
+			<if test="screenName != null and screenName != '' ">
+				and E.SCREENNAME = #{screenName}
+			</if>
+
+			<if test="screenNameLike != null and screenNameLike != '' ">
+				and E.SCREENNAME like #{screenNameLike}
+			</if>
+
+			<if test="emailAddressLike != null and emailAddressLike != '' ">
+				and E.EMAILADDRESS like #{emailAddressLike}
+			</if>
+
+			<if test="openId != null and openId != '' ">
+				and E.OPENID = #{openId}
+			</if>
+
+			<if test="openIds != null and openIds.size != 0">
+				and E.OPENID IN
+				<foreach item="x_openId" index="index" collection="openIds"
+					open="(" separator="," close=")">
+					#{x_openId}
+				</foreach>
+			</if>
+
+			<if test="portraitId != null">
+				and E.PORTRAITID = #{portraitId}
+			</if>
+
+			<if test="portraitIds != null and portraitIds.size != 0">
+				and E.PORTRAITID IN
+				<foreach item="x_portraitId" index="index" collection="portraitIds"
+					open="(" separator="," close=")">
+					#{x_portraitId}
+				</foreach>
+			</if>
+
+			<if test="languageId != null and languageId != '' ">
+				and E.LANGUAGEID = #{languageId}
+			</if>
+
+			<if test="languageIds != null and languageIds.size != 0">
+				and E.LANGUAGEID IN
+				<foreach item="x_languageId" index="index" collection="languageIds"
+					open="(" separator="," close=")">
+					#{x_languageId}
+				</foreach>
+			</if>
+
+			<if test="timeZoneId != null and timeZoneId != '' ">
+				and E.TIMEZONEID = #{timeZoneId}
+			</if>
+
+			<if test="firstNameLike != null and firstNameLike != '' ">
+				and E.FIRSTNAME like #{firstNameLike}
+			</if>
+
+			<if test="middleNameLike != null and middleNameLike != '' ">
+				and E.MIDDLENAME like #{middleNameLike}
+			</if>
+
+			<if test="lastNameLike != null and lastNameLike != '' ">
+				and E.LASTNAME like #{lastNameLike}
+			</if>
+
+			<if test="jobTitleLike != null and jobTitleLike != '' ">
+				and E.JOBTITLE like #{jobTitleLike}
+			</if>
+
+			<if test="loginDateGreaterThanOrEqual != null">
+				and E.LOGINDATE &gt;= #{loginDateGreaterThanOrEqual}
+			</if>
+
+			<if test="loginDateLessThanOrEqual != null">
+				and E.LOGINDATE &lt;= #{loginDateLessThanOrEqual}
+			</if>
+
+			<if test="loginIP != null and loginIP != '' ">
+				and E.LOGINIP = #{loginIP}
+			</if>
+
+			<if test="loginIPLike != null and loginIPLike != '' ">
+				and E.LOGINIP like #{loginIPLike}
+			</if>
+
+			<if test="lastLoginDateGreaterThanOrEqual != null">
+				and E.LASTLOGINDATE &gt;=
+				#{lastLoginDateGreaterThanOrEqual}
+			</if>
+
+			<if test="lastLoginDateLessThanOrEqual != null">
+				and E.LASTLOGINDATE &lt;= #{lastLoginDateLessThanOrEqual}
+			</if>
+
+			<if test="lastLoginIP != null and lastLoginIP != '' ">
+				and E.LASTLOGINIP = #{lastLoginIP}
+			</if>
+
+			<if test="lastLoginIPLike != null and lastLoginIPLike != '' ">
+				and E.LASTLOGINIP like #{lastLoginIPLike}
+			</if>
+
+			<if test="lockout != null and lockout != '' ">
+				and E.LOCKOUT = #{lockout}
+			</if>
+			
+			<if test="lockouts != null and lockouts.size != 0">
+				and E.LOCKOUT IN
+				<foreach item="x_lockout" index="index" collection="lockouts"
+					open="(" separator="," close=")">
+					#{x_lockout}
+				</foreach>
+			</if>
+
+			<if test="lockoutDateGreaterThanOrEqual != null">
+				and E.LOCKOUTDATE &gt;= #{lockoutDateGreaterThanOrEqual}
+			</if>
+
+			<if test="lockoutDateLessThanOrEqual != null">
+				and E.LOCKOUTDATE &lt;= #{lockoutDateLessThanOrEqual}
+			</if>
+
+			<if test="emailAddressVerified != null and emailAddressVerified != '' ">
+				and E.EMAILADDRESSVERIFIED = #{emailAddressVerified}
+			</if>
+
+			<if test="status != null">
+				and E.STATUS = #{status}
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>
