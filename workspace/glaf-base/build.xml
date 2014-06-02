@@ -56,7 +56,8 @@
 		</jar>
 		<jar jarfile="glaf-base.jar">
 			<fileset dir="bin" 
-			   includes="com/glaf/base/**/*.class,com/glaf/base/**/*.xml,com/glaf/base/**/*.properties"  />
+			   includes="com/glaf/base/**/*.class,com/glaf/base/**/*.xml,com/glaf/base/**/*.properties" 
+			   excludes="**/*.cvs,**/*.bak,**/*.tmp,**/*.scc,**/*.svn,**/test/**/*.*"/>
 			<fileset dir="jar-conf" includes="**/*.xml,**/*.properties"  />
 		</jar>
     </target>

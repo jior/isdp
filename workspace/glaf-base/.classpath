@@ -98,9 +98,18 @@
 	<classpathentry kind="lib" path="/glaf-commons/lib/glaf-core.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/glaf-j2cache.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/glaf-mail.jar"/>
-	<classpathentry kind="lib" path="/glaf-commons/lib/glaf-shiro.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/glaf-ui.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/glaf-template.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/glaf-test.jar"/>
+	<classpathentry kind="lib" path="/glaf-commons/lib/classmate.jar"/>
+	<classpathentry kind="lib" path="/glaf-commons/lib/hazelcast-all.jar"/>
+	<classpathentry kind="lib" path="/glaf-commons/lib/hamcrest-core.jar"/>
+	<classpathentry kind="lib" path="/glaf-commons/lib/mybatis-2.3.5.jar"/>
+	<classpathentry kind="lib" path="/glaf-commons/lib/curator-client.jar"/>
+	<classpathentry kind="lib" path="/glaf-commons/lib/curator-framework.jar"/>
+	<classpathentry kind="lib" path="/glaf-commons/lib/curator-recipes.jar"/>
+	<classpathentry kind="lib" path="/glaf-commons/lib/curator-x-discovery-server.jar"/>
+	<classpathentry kind="lib" path="/glaf-commons/lib/curator-x-discovery.jar"/>
+	<classpathentry kind="lib" path="/glaf-commons/lib/zookeeper.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

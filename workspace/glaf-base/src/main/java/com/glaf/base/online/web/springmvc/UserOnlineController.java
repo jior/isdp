@@ -37,7 +37,7 @@ import com.glaf.core.domain.SystemProperty;
 import com.glaf.core.security.*;
 import com.glaf.core.service.ISystemPropertyService;
 import com.glaf.core.util.*;
-import com.glaf.shiro.ShiroSecurity;
+
 import com.glaf.base.modules.sys.SysConstants;
 import com.glaf.base.online.domain.*;
 import com.glaf.base.online.query.*;
@@ -95,8 +95,8 @@ public class UserOnlineController {
 						CacheFactory.remove(cacheKey);
 						cacheKey = Constants.USER_CACHE + actorId;
 						CacheFactory.remove(cacheKey);
-						ShiroSecurity.logout();
-						logger.info("用户"+actorId+"已经下线！");
+						// com.glaf.shiro.ShiroSecurity.logout();
+						logger.info("用户" + actorId + "已经下线！");
 					} catch (Exception ex) {
 						ex.printStackTrace();
 					}

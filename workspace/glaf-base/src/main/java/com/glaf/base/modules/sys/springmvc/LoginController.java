@@ -59,7 +59,6 @@ import com.glaf.core.util.RequestUtils;
 import com.glaf.core.util.StringTools;
 import com.glaf.core.web.callback.CallbackProperties;
 import com.glaf.core.web.callback.LoginCallback;
-import com.glaf.shiro.ShiroSecurity;
 
 @Controller("/login")
 @RequestMapping("/login")
@@ -310,7 +309,7 @@ public class LoginController {
 			CacheFactory.remove(cacheKey);
 			cacheKey = Constants.USER_CACHE + actorId;
 			CacheFactory.remove(cacheKey);
-			ShiroSecurity.logout();
+			// com.glaf.shiro.ShiroSecurity.logout();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
