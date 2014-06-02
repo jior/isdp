@@ -56,7 +56,6 @@ public class UserQuery extends DataQuery {
 	protected Date lockoutDateGreaterThanOrEqual;
 	protected Date lockoutDateLessThanOrEqual;
 	protected String emailAddressVerified;
-	protected Integer status;
 
 	public UserQuery() {
 
@@ -493,10 +492,6 @@ public class UserQuery extends DataQuery {
 		this.emailAddressVerified = emailAddressVerified;
 	}
 
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
 	public UserQuery uuid(String uuid) {
 		if (uuid == null) {
 			throw new RuntimeException("uuid is null");
@@ -863,30 +858,6 @@ public class UserQuery extends DataQuery {
 			throw new RuntimeException("emailAddressVerified is null");
 		}
 		this.emailAddressVerified = emailAddressVerified;
-		return this;
-	}
-
-	public UserQuery status(Integer status) {
-		if (status == null) {
-			throw new RuntimeException("status is null");
-		}
-		this.status = status;
-		return this;
-	}
-
-	public UserQuery statusGreaterThanOrEqual(Integer statusGreaterThanOrEqual) {
-		if (statusGreaterThanOrEqual == null) {
-			throw new RuntimeException("status is null");
-		}
-		this.statusGreaterThanOrEqual = statusGreaterThanOrEqual;
-		return this;
-	}
-
-	public UserQuery statusLessThanOrEqual(Integer statusLessThanOrEqual) {
-		if (statusLessThanOrEqual == null) {
-			throw new RuntimeException("status is null");
-		}
-		this.statusLessThanOrEqual = statusLessThanOrEqual;
 		return this;
 	}
 
