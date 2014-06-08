@@ -80,7 +80,7 @@ public class SpringDispatcherServlet extends DispatcherServlet {
 
 		ThreadContextHolder.setHttpRequest(request);
 		ThreadContextHolder.setHttpResponse(response);
-		
+		ThreadContextHolder.setServletContext(request.getServletContext());
 		try {
 			super.doService(request, response);
 		} finally {
