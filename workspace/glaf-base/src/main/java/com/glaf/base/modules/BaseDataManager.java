@@ -37,8 +37,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-
 import com.glaf.core.config.*;
 import com.glaf.core.business.DbTableChecker;
 import com.glaf.core.context.ContextFactory;
@@ -47,7 +47,6 @@ import com.glaf.core.service.ITableDefinitionService;
 import com.glaf.core.startup.BootstrapManager;
 import com.glaf.core.util.ThreadContextHolder;
 import com.glaf.core.util.Tools;
-
 import com.glaf.base.config.BaseConfiguration;
 import com.glaf.base.modules.sys.SysConstants;
 import com.glaf.base.modules.sys.business.UpdateTreeBean;
@@ -73,15 +72,18 @@ public class BaseDataManager {
 		public static BaseDataManager instance = new BaseDataManager();
 	}
 
-	private static Map<String, List<BaseDataInfo>> baseDataMap = new ConcurrentHashMap<String, List<BaseDataInfo>>();
+	protected static final Map<String, List<BaseDataInfo>> baseDataMap = new ConcurrentHashMap<String, List<BaseDataInfo>>();
 
-	private static Map<String, List<Object>> dataMap = new ConcurrentHashMap<String, List<Object>>();
+	protected static final Map<String, List<Object>> dataListMap = new ConcurrentHashMap<String, List<Object>>();
 
-	protected static Configuration conf = BaseConfiguration.create();
+	protected static final Map<String, String> jsonDataMap = new java.util.concurrent.ConcurrentHashMap<String, String>();
 
-	protected static Log logger = LogFactory.getLog(BaseDataManager.class);
+	protected static final Configuration conf = BaseConfiguration.create();
 
-	protected static AtomicBoolean loading = new AtomicBoolean(false);
+	protected static final Log logger = LogFactory
+			.getLog(BaseDataManager.class);
+
+	protected static final AtomicBoolean loading = new AtomicBoolean(false);
 
 	protected static final String CUSTOM_CONFIG = "/conf/props/base_data.properties";
 
@@ -127,21 +129,9 @@ public class BaseDataManager {
 	 * @return
 	 */
 	public List<BaseDataInfo> getBaseData(String key) {
-		if (baseDataMap.containsKey(key)) {
-			return (List<BaseDataInfo>) baseDataMap.get(key);
-		}
-		return null;
-	}
-
-	/**
-	 * 获取某种类型的基础数据
-	 * 
-	 * @param key
-	 * @return
-	 */
-	public List<Object> getListData(String key) {
-		if (dataMap.containsKey(key)) {
-			return (List<Object>) dataMap.get(key);
+		String complexKey = Environment.getCurrentSystemName() + "_" + key;
+		if (baseDataMap.containsKey(complexKey)) {
+			return (List<BaseDataInfo>) baseDataMap.get(complexKey);
 		}
 		return null;
 	}
@@ -226,6 +216,15 @@ public class BaseDataManager {
 		return entityService;
 	}
 
+	public JSONArray getJSONArray(String key) {
+		String complexKey = Environment.getCurrentSystemName() + "_" + key;
+		if (jsonDataMap.containsKey(complexKey)) {
+			String text = jsonDataMap.get(complexKey);
+			return JSON.parseArray(text);
+		}
+		return null;
+	}
+
 	/**
 	 * 根据类型返回对象列表
 	 * 
@@ -239,6 +238,20 @@ public class BaseDataManager {
 		} else {
 			return null;
 		}
+	}
+
+	/**
+	 * 获取某种类型的基础数据
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public List<Object> getListData(String key) {
+		String complexKey = Environment.getCurrentSystemName() + "_" + key;
+		if (dataListMap.containsKey(complexKey)) {
+			return (List<Object>) dataListMap.get(complexKey);
+		}
+		return null;
 	}
 
 	/**
@@ -666,6 +679,8 @@ public class BaseDataManager {
 		loadCustomInfo();
 		// 用户自定义数据处理程序
 		loadCustomHandler();
+		// 用户自定义JSON数据处理程序
+		loadCustomJsonData();
 		// 用户信息
 		loadUsers();
 		// 部门结构
@@ -694,11 +709,17 @@ public class BaseDataManager {
 					if (object instanceof BaseDataHandler) {
 						BaseDataHandler handler = (BaseDataHandler) object;
 						List<BaseDataInfo> list = handler.loadData();
-						baseDataMap.put(key, list);
+						// baseDataMap.put(key, list);
+						String complexKey = Environment.getCurrentSystemName()
+								+ "_" + key;
+						baseDataMap.put(complexKey, list);
 					} else if (object instanceof DataHandler) {
 						DataHandler handler = (DataHandler) object;
 						List<Object> list = handler.loadData();
-						dataMap.put(key, list);
+						// dataMap.put(key, list);
+						String complexKey = Environment.getCurrentSystemName()
+								+ "_" + key;
+						dataListMap.put(complexKey, list);
 					}
 				}
 			}
@@ -739,7 +760,41 @@ public class BaseDataManager {
 								dataList.add(bdf);
 							}
 						}
-						baseDataMap.put(key, dataList);
+						// baseDataMap.put(key, dataList);
+						String complexKey = Environment.getCurrentSystemName()
+								+ "_" + key;
+						baseDataMap.put(complexKey, dataList);
+					}
+				}
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			logger.error("提取用户自定义数据失败！");
+		}
+	}
+
+	private void loadCustomJsonData() {
+		try {
+			File file = new File(SystemProperties.getConfigRootPath()
+					+ CUSTOM_HANDLER);
+			if (file.exists() && file.isFile()) {
+				Properties props = com.glaf.core.util.PropertiesUtils
+						.loadFilePathResource(file);
+				Enumeration<?> e = props.keys();
+				while (e.hasMoreElements()) {
+					String key = (String) e.nextElement();
+					String value = props.getProperty(key);
+					Object object = com.glaf.core.util.ReflectUtils
+							.instantiate(value);
+					if (object instanceof JsonDataHandler) {
+						JsonDataHandler handler = (JsonDataHandler) object;
+						JSONArray jsonArray = handler.loadData();
+						if (jsonArray != null) {
+							String complexKey = Environment
+									.getCurrentSystemName() + "_" + key;
+							jsonDataMap.put(complexKey,
+									jsonArray.toJSONString());
+						}
 					}
 				}
 			}
@@ -800,7 +855,10 @@ public class BaseDataManager {
 						tmp.add(bdi);
 					}
 				}
-				baseDataMap.put(Constants.SYS_DEPTS, tmp);
+				// baseDataMap.put(Constants.SYS_DEPTS, tmp);
+				String complexKey = Environment.getCurrentSystemName() + "_"
+						+ Constants.SYS_DEPTS;
+				baseDataMap.put(complexKey, tmp);
 			}
 			logger.info("装载部门信息结束");
 
@@ -864,7 +922,10 @@ public class BaseDataManager {
 									+ bean.getValue());
 							tmp.add(bdi);
 						}
-						baseDataMap.put(treeNode.getCode(), tmp);
+						// baseDataMap.put(treeNode.getCode(), tmp);
+						String complexKey = Environment.getCurrentSystemName()
+								+ "_" + treeNode.getCode();
+						baseDataMap.put(complexKey, tmp);
 					}
 				}
 			}
@@ -900,7 +961,10 @@ public class BaseDataManager {
 						tmp.add(bdi);
 					}
 				}
-				baseDataMap.put(Constants.SYS_FUNCTIONS, tmp);
+				// baseDataMap.put(Constants.SYS_FUNCTIONS, tmp);
+				String complexKey = Environment.getCurrentSystemName() + "_"
+						+ Constants.SYS_FUNCTIONS;
+				baseDataMap.put(complexKey, tmp);
 			}
 			logger.info("装载模块信息结束");
 		} catch (Exception e) {
@@ -958,7 +1022,10 @@ public class BaseDataManager {
 						tmp.add(bdi);
 					}
 				}
-				baseDataMap.put(Constants.SYS_USERS, tmp);
+				// baseDataMap.put(Constants.SYS_USERS, tmp);
+				String complexKey = Environment.getCurrentSystemName() + "_"
+						+ Constants.SYS_USERS;
+				baseDataMap.put(complexKey, tmp);
 			}
 			logger.info("装载用户信息结束");
 		} catch (Exception e) {

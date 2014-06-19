@@ -382,7 +382,7 @@ public class SysUserJsonFactory {
 			for (SysUserRole sysUserRole : user.getUserRoles()) {
 				array.add(sysUserRole.toObjectNode());
 			}
-			jsonObject.put("userRoles", array);
+			jsonObject.set("userRoles", array);
 		}
 
 		if (user.getRoles() != null && !user.getRoles().isEmpty()) {
@@ -390,7 +390,7 @@ public class SysUserJsonFactory {
 			for (SysRole sysRole : user.getRoles()) {
 				array.add(sysRole.toObjectNode());
 			}
-			jsonObject.put("roles", array);
+			jsonObject.set("roles", array);
 		}
 
 		if (user.getRoles() != null && !user.getRoles().isEmpty()) {
@@ -398,7 +398,7 @@ public class SysUserJsonFactory {
 			for (SysDeptRole sysDeptRole : user.getDeptRoles()) {
 				array.add(sysDeptRole.toObjectNode());
 			}
-			jsonObject.put("deptRoles", array);
+			jsonObject.set("deptRoles", array);
 		}
 
 		if (user.getFunctions() != null && !user.getFunctions().isEmpty()) {
@@ -406,7 +406,7 @@ public class SysUserJsonFactory {
 			for (SysFunction sysFunction : user.getFunctions()) {
 				array.add(sysFunction.toObjectNode());
 			}
-			jsonObject.put("functions", array);
+			jsonObject.set("functions", array);
 		}
 
 		if (user.getApps() != null && !user.getApps().isEmpty()) {
@@ -414,7 +414,7 @@ public class SysUserJsonFactory {
 			for (SysApplication app : user.getApps()) {
 				array.add(app.toObjectNode());
 			}
-			jsonObject.put("apps", array);
+			jsonObject.set("apps", array);
 		}
 
 		return jsonObject;
