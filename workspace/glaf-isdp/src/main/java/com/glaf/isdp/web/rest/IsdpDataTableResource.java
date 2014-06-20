@@ -184,7 +184,7 @@ public class IsdpDataTableResource {
 					for (FieldInterface f : fields) {
 						array.add(f.toObjectNode());
 					}
-					responseJSON.put("fields", array);
+					responseJSON.set("fields", array);
 				}
 			}
 		}

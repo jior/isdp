@@ -110,7 +110,7 @@ public class PermissionTest extends AbstractTest {
 					for (CellRepInfo rep : reps) {
 						array.add(rep.toObjectNode());
 					}
-					row.put("cellRepInfos", array);
+					row.set("cellRepInfos", array);
 				}
 				arrayJSON.add(row);
 			}
@@ -165,7 +165,7 @@ public class PermissionTest extends AbstractTest {
 						arrayJSON.add(m.toObjectNode());
 					}
 				}
-				responseJSON.put("sysMenus", arrayJSON);
+				responseJSON.set("sysMenus", arrayJSON);
 			}
 
 			List<NetRoleUse> roles = netRoleUseService
@@ -177,7 +177,7 @@ public class PermissionTest extends AbstractTest {
 					arrayJSON.add(r.toObjectNode());
 					indexIds.add(r.getCelltreedotIndex());
 				}
-				responseJSON.put("roles", arrayJSON);
+				responseJSON.set("roles", arrayJSON);
 			}
 
 			List<CellTreedot> dots = cellTreedotService
@@ -193,7 +193,7 @@ public class PermissionTest extends AbstractTest {
 					trees.add(d);
 				}
 				ObjectNode treeNode = treeHelper.getTreeJson(trees);
-				responseJSON.put("treedots", treeNode);
+				responseJSON.set("treedots", treeNode);
 
 				ArrayNode array = treeHelper.getTreeArrayNode(trees);
 
@@ -227,7 +227,7 @@ public class PermissionTest extends AbstractTest {
 			for (MyCellBusiess m : rows) {
 				array.add(m.toObjectNode());
 			}
-			responseJSON.put("cellBusiesses", array);
+			responseJSON.set("cellBusiesses", array);
 		}
 
 		IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
@@ -240,7 +240,7 @@ public class PermissionTest extends AbstractTest {
 				arrayJSON.add(r.toObjectNode());
 				indexIds.add(r.getCelltreedotIndex());
 			}
-			responseJSON.put("roles", arrayJSON);
+			responseJSON.set("roles", arrayJSON);
 		}
 
 		List<CellTreedot> treedots = cellTreedotService
@@ -254,7 +254,7 @@ public class PermissionTest extends AbstractTest {
 				trees.add(p);
 			}
 			ObjectNode treeNode = treeHelper.getTreeJson(trees);
-			responseJSON.put("treedots", treeNode);
+			responseJSON.set("treedots", treeNode);
 		}
 		logger.info(responseJSON.toString());
 	}

@@ -64,7 +64,7 @@ public class IsdpJacksonTreeHelper {
 					Iterator<String> iterator = objectNode.fieldNames();
 					while (iterator.hasNext()) {
 						String nodeName = iterator.next();
-						row.put(nodeName, objectNode.get(nodeName));
+						row.set(nodeName, objectNode.get(nodeName));
 					}
 				}
 
@@ -158,7 +158,7 @@ public class IsdpJacksonTreeHelper {
 				array.add(child);
 				this.buildTree(child, component, checkedNodes, nodeMap);
 			}
-			row.put("children", array);
+			row.set("children", array);
 		}
 
 	}
@@ -188,7 +188,7 @@ public class IsdpJacksonTreeHelper {
 					array.add(child);
 				}
 			}
-			row.put("children", array);
+			row.set("children", array);
 		}
 	}
 
@@ -251,7 +251,7 @@ public class IsdpJacksonTreeHelper {
 								row.put("checked", Boolean.valueOf(false));
 							}
 							array.add(row);
-							object.put("children", array);
+							object.set("children", array);
 							this.buildTree(row, menu, checkedNodes, nodeMap);
 						}
 					} else {
@@ -283,7 +283,7 @@ public class IsdpJacksonTreeHelper {
 							array.add(row);
 							this.buildTree(row, menu, checkedNodes, nodeMap);
 						}
-						object.put("children", array);
+						object.set("children", array);
 					}
 				}
 			}
@@ -400,7 +400,7 @@ public class IsdpJacksonTreeHelper {
 								}
 							}
 						}
-						object.put("children", array);
+						object.set("children", array);
 					}
 				}
 			}

@@ -36,7 +36,7 @@ public class UserInfoTest extends AbstractTest {
 				objectNode.put("listno", listno++);
 				arrayJSON.add(objectNode);
 			}
-			result.put("rows", arrayJSON);
+			result.set("rows", arrayJSON);
 		}
 
 		try {

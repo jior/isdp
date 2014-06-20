@@ -34,7 +34,7 @@ public class NetRoleTest extends AbstractTest {
 			objectNode.put("listno", listno++);
 			array.add(objectNode);
 		}
-		responseJSON.put("rows", array);
+		responseJSON.set("rows", array);
 		responseJSON.put("total", rows.size());
 
 		try {

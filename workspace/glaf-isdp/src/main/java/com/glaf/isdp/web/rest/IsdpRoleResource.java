@@ -275,7 +275,7 @@ public class IsdpRoleResource {
 				objectNode.put("startIndex", r.getSortNo());
 				arrayJSON.add(objectNode);
 			}
-			responseJSON.put("rows", arrayJSON);
+			responseJSON.set("rows", arrayJSON);
 		}
 		try {
 			return responseJSON.toString().getBytes("UTF-8");

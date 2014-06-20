@@ -128,7 +128,7 @@ public class RolePrivilege implements Serializable, JSONable {
 	public ObjectNode toObjectNode() {
 		ObjectNode jsonObject = new ObjectMapper().createObjectNode();
 		if (cellMenu != null) {
-			jsonObject.put("cellMenu", cellMenu.toObjectNode());
+			jsonObject.set("cellMenu", cellMenu.toObjectNode());
 		}
 
 		if (mycellBusiesses != null) {
@@ -136,7 +136,7 @@ public class RolePrivilege implements Serializable, JSONable {
 			for (MyCellBusiess m : mycellBusiesses) {
 				array.add(m.toObjectNode());
 			}
-			jsonObject.put("mycellBusiesses", array);
+			jsonObject.set("mycellBusiesses", array);
 		}
 
 		if (cellTreedots != null) {
@@ -144,7 +144,7 @@ public class RolePrivilege implements Serializable, JSONable {
 			for (CellTreedot m : cellTreedots) {
 				array.add(m.toObjectNode());
 			}
-			jsonObject.put("cellTreedots", array);
+			jsonObject.set("cellTreedots", array);
 		}
 
 		if (netRoleUses != null) {
@@ -152,7 +152,7 @@ public class RolePrivilege implements Serializable, JSONable {
 			for (NetRoleUse m : netRoleUses) {
 				array.add(m.toObjectNode());
 			}
-			jsonObject.put("netRoleUses", array);
+			jsonObject.set("netRoleUses", array);
 		}
 
 		if (roleUse2s != null) {
@@ -160,7 +160,7 @@ public class RolePrivilege implements Serializable, JSONable {
 			for (RoleUse2 m : roleUse2s) {
 				array.add(m.toObjectNode());
 			}
-			jsonObject.put("roleUse2s", array);
+			jsonObject.set("roleUse2s", array);
 		}
 
 		if (roleUses != null) {
@@ -168,7 +168,7 @@ public class RolePrivilege implements Serializable, JSONable {
 			for (RoleUse m : roleUses) {
 				array.add(m.toObjectNode());
 			}
-			jsonObject.put("roleUses", array);
+			jsonObject.set("roleUses", array);
 		}
 
 		return jsonObject;

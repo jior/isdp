@@ -65,7 +65,7 @@ public class IsdpCellCriterionResource {
 				node.put("sortNo", sortNo++);
 				arrayJSON.add(node);
 			}
-			responseJSON.put("rows", arrayJSON);
+			responseJSON.set("rows", arrayJSON);
 			responseJSON.put("total", arrayJSON.size());
 		} else {
 			responseJSON.put("rows", "[]");

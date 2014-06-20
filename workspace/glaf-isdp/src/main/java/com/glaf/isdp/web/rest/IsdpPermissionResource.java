@@ -162,7 +162,7 @@ public class IsdpPermissionResource {
 			for (FieldInterface f : fields) {
 				arrayJSON.add(f.toObjectNode());
 			}
-			responseJSON.put("fields", arrayJSON);
+			responseJSON.set("fields", arrayJSON);
 		}
 		List<IsdpFiledot> filedots = isdpFiledotService.getFiledotsOfTreedot(indexId);
 		if (filedots != null && !filedots.isEmpty()) {
@@ -170,7 +170,7 @@ public class IsdpPermissionResource {
 			for (IsdpFiledot dot : filedots) {
 				arrayJSON.add(dot.toObjectNode());
 			}
-			responseJSON.put("filedots", arrayJSON);
+			responseJSON.set("filedots", arrayJSON);
 		}
 
 		List<CellRepInfo> notExistCellRepInfos = cellRepInfoService
@@ -180,7 +180,7 @@ public class IsdpPermissionResource {
 			for (CellRepInfo f : notExistCellRepInfos) {
 				arrayJSON.add(f.toObjectNode());
 			}
-			responseJSON.put("notExistCellRepInfos", arrayJSON);
+			responseJSON.set("notExistCellRepInfos", arrayJSON);
 		}
 
 		List<CellRepInfo> existCellRepInfos = cellRepInfoService
@@ -190,7 +190,7 @@ public class IsdpPermissionResource {
 			for (CellRepInfo f : existCellRepInfos) {
 				arrayJSON.add(f.toObjectNode());
 			}
-			responseJSON.put("existCellRepInfos", arrayJSON);
+			responseJSON.set("existCellRepInfos", arrayJSON);
 		}
 
 		try {
@@ -248,7 +248,7 @@ public class IsdpPermissionResource {
 				objectNode.put("startIndex", r.getSortNo());
 				arrayJSON.add(objectNode);
 			}
-			responseJSON.put("rows", arrayJSON);
+			responseJSON.set("rows", arrayJSON);
 		}
 		try {
 			return responseJSON.toString().getBytes("UTF-8");
@@ -267,7 +267,7 @@ public class IsdpPermissionResource {
 		String topId = request.getParameter("topId");
 		ObjectNode responseJSON = new ObjectMapper().createObjectNode();
 		NetRole netRole = netRoleService.getNetRole(roleId);
-		responseJSON.put("netRole", netRole.toObjectNode());
+		responseJSON.set("netRole", netRole.toObjectNode());
 		MyCellBusiessQuery query = new MyCellBusiessQuery();
 		List<MyCellBusiess> rows = myCellBusiessService.list(query);
 		if (rows != null && !rows.isEmpty()) {
@@ -275,7 +275,7 @@ public class IsdpPermissionResource {
 			for (MyCellBusiess m : rows) {
 				array.add(m.toObjectNode());
 			}
-			responseJSON.put("cellBusiesses", array);
+			responseJSON.set("cellBusiesses", array);
 		}
 
 		IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
@@ -288,7 +288,7 @@ public class IsdpPermissionResource {
 				arrayJSON.add(r.toObjectNode());
 				indexIds.add(r.getCelltreedotIndex());
 			}
-			responseJSON.put("roles", arrayJSON);
+			responseJSON.set("roles", arrayJSON);
 		}
 
 		List<CellTreedot> treedots = cellTreedotService
@@ -302,7 +302,7 @@ public class IsdpPermissionResource {
 				trees.add(p);
 			}
 			ObjectNode treeNode = treeHelper.getTreeJson(trees);
-			responseJSON.put("treedots", treeNode);
+			responseJSON.set("treedots", treeNode);
 		}
 
 		try {

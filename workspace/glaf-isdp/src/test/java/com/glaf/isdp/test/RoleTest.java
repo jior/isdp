@@ -56,7 +56,7 @@ public class RoleTest extends AbstractTest {
 				arrayJSON.add(r.toObjectNode());
 				indexIds.add(r.getCelltreedotIndex());
 			}
-			responseJSON.put("roles", arrayJSON);
+			responseJSON.set("roles", arrayJSON);
 		}
 
 		CellTreedotPerQuery query = new CellTreedotPerQuery();
@@ -70,7 +70,7 @@ public class RoleTest extends AbstractTest {
 				trees.add(p);
 			}
 			ObjectNode treeNode = treeHelper.getTreeJson(trees);
-			responseJSON.put("treedots", treeNode);
+			responseJSON.set("treedots", treeNode);
 		}
 
 		logger.info(responseJSON.toString());

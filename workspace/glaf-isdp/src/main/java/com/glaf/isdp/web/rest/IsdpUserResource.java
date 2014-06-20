@@ -171,7 +171,7 @@ public class IsdpUserResource {
 					arrayJSON.add(role.toObjectNode());
 					sb.append(role.getName()).append(FileUtils.newline);
 				}
-				responseJSON.put("roles", arrayJSON);
+				responseJSON.set("roles", arrayJSON);
 				responseJSON.put("roleNames", sb.toString());
 			} else {
 				responseJSON.put("roleNames", " ");
@@ -210,7 +210,7 @@ public class IsdpUserResource {
 					arrayJSON.add(role.toObjectNode());
 					sb.append(role.getName()).append(FileUtils.newline);
 				}
-				responseJSON.put("roles", arrayJSON);
+				responseJSON.set("roles", arrayJSON);
 				responseJSON.put("roleNames", sb.toString());
 			} else {
 				responseJSON.put("roleNames", " ");
@@ -320,7 +320,7 @@ public class IsdpUserResource {
 				objectNode.put("startIndex", user.getSortNo());
 				arrayJSON.add(objectNode);
 			}
-			responseJSON.put("rows", arrayJSON);
+			responseJSON.set("rows", arrayJSON);
 		}
 		try {
 			return responseJSON.toString().getBytes("UTF-8");
