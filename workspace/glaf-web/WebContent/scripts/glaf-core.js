@@ -20,8 +20,7 @@ function getOpener() {
     return this.replace(/(^\s*)|(\s*$)/g, "");
   }
 
-function openWindow(URL, parent, x, y, width, height)
-{
+function openWindow(URL, parent, x, y, width, height){
   if(is_ie){
      window.showModalDialog(URL,parent,"edge:raised;scroll:0;status:0;help:0;resizable:0;dialogWidth:"+width+"px;dialogHeight:"+height+"px;dialogTop:"+y+"px;dialogLeft:"+x+"px",true);
   }
@@ -31,6 +30,32 @@ function openWindow(URL, parent, x, y, width, height)
   }
 }
 
+
+function openMaxWin(link, parent){
+	var x=50;
+	var y=50;
+	if(is_ie) {
+		//x=document.body.scrollLeft+event.clientX-event.offsetX-50;
+		//y=document.body.scrollTop+event.clientY-event.offsetY-50;
+	}
+	var x_height = Math.floor(window.screen.height * 0.80);
+	var x_width = Math.floor(window.screen.width * 0.96);
+	openWindow(link,parent,x, y, x_width, x_height);
+}
+
+function openMMWin(link, parent){
+	var x=50;
+	var y=50;
+	if(is_ie) {
+		//x=document.body.scrollLeft+event.clientX-event.offsetX-50;
+		//y=document.body.scrollTop+event.clientY-event.offsetY-50;
+	}
+	//var x_height = Math.floor(window.screen.height * 0.72);
+	//var x_width = Math.floor(window.screen.width*0.58);
+	x_height=595;
+    x_width=715;
+	openWindow(link,parent,x, y, x_width, x_height);
+}
 
 function selectDate(formName, elementId, elementName){
     var x_selected =  document.getElementById(elementId);
