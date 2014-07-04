@@ -88,6 +88,7 @@ public class SpringDispatcherServlet extends DispatcherServlet {
 			Environment.removeCurrentSystemName();
 			ThreadContextHolder.clear();
 			Authentication.clear();
+			com.glaf.core.jdbc.ConnectionThreadHolder.closeAndClear();
 			com.glaf.core.security.Authentication.clear();
 		}
 

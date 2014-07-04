@@ -91,8 +91,6 @@
 	<classpathentry kind="lib" path="/glaf-commons/lib/slf4j-api.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/slf4j-log4j.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/sqljdbc4.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/commons-lang3.jar"/>
 	<classpathentry kind="lib" path="lib/aspriseTIFF.jar"/>
 	<classpathentry kind="lib" path="lib/fontbox.jar"/>
@@ -103,5 +101,6 @@
 	<classpathentry kind="lib" path="/glaf-commons/lib/glaf-template.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/glaf-test.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/glaf-ui.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.7.0"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
