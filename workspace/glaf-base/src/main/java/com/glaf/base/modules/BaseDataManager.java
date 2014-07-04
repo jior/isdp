@@ -40,7 +40,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.glaf.core.config.*;
-import com.glaf.core.business.DbTableChecker;
+import com.glaf.core.db.DbTableChecker;
 import com.glaf.core.context.ContextFactory;
 import com.glaf.core.service.EntityService;
 import com.glaf.core.service.ITableDefinitionService;
