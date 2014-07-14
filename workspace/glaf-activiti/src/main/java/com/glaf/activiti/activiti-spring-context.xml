@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="processEngineConfiguration"
+		class="com.glaf.activiti.spring.SpringProcessEngineConfigurationBean">
+		<property name="databaseSchemaUpdate" value="true" />
+		<property name="dataSource" ref="dataSource" />
+		<!-- property name="sqlSessionFactory" ref="sqlSessionFactory" / -->
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="jobExecutorActivate" value="false" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:com/glaf/**/mapper/*Mapper.xml</value>
+				<value>classpath:resources/mybatis/mapper/*Mapper.xml</value>
+			</list>
+		</property>
+		<property name="customFormTypes">
+			<list>
+				<bean class="org.activiti.explorer.form.UserFormType" />
+				<bean class="org.activiti.explorer.form.ProcessDefinitionFormType" />
+				<bean class="org.activiti.explorer.form.MonthFormType" />
+			</list>
+		</property>
+		<property name="activityFontName" value="宋体" />
+		<property name="labelFontName" value="宋体" />
+	</bean>
+
+	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+		<property name="processEngineConfiguration" ref="processEngineConfiguration" />
+	</bean>
+
+	<bean id="identityService" factory-bean="processEngine"
+		factory-method="getIdentityService" />
+
+	<bean id="formService" factory-bean="processEngine"
+		factory-method="getFormService" />
+
+	<bean id="repositoryService" factory-bean="processEngine"
+		factory-method="getRepositoryService" />
+
+	<bean id="runtimeService" factory-bean="processEngine"
+		factory-method="getRuntimeService" />
+
+	<bean id="taskService" factory-bean="processEngine"
+		factory-method="getTaskService" />
+
+	<bean id="historyService" factory-bean="processEngine"
+		factory-method="getHistoryService" />
+
+	<bean id="managementService" factory-bean="processEngine"
+		factory-method="getManagementService" />
+
+</beans>
