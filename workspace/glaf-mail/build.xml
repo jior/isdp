@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project basedir="." default="run">
+<project basedir="." default="build">
 	<property name="build.home" location="." />
 	<property name="build.dest" location="bin" />
 	<property name="build.src" location="src" />
@@ -48,10 +48,5 @@
 
 	<target name="run" depends="build">
 		<echo message="运行应用程序......" />
-
-		<copy todir="bin">
-			<fileset dir="src" includes="**/*.properties,**/*.xsd, **/*.xml" />
-		</copy>
-
 	</target>
 </project>
