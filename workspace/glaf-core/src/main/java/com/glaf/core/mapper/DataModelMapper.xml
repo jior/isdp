@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.core.mapper.DataModelMapper">
+
+	<select id="getTableDataByDataModelQuery" parameterType="com.glaf.core.query.DataModelQuery"
+		resultType="map">
+		select E.*
+		<include refid="selectDataModelQuerySql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getTableCountByDataModelQuery" parameterType="com.glaf.core.query.DataModelQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDataModelQuerySql" />
+	</select>
+
+
+	<sql id="selectDataModelQuerySql">
+
+		from ${tableName} E
+
+		<where>
+			1 = 1
+
+			<if test="processInstanceIds != null and processInstanceIds.size != 0">
+				and E.PROCESSINSTANCEID_ IN
+				<foreach item="x_processInstanceId" index="index"
+					collection="processInstanceIds" open="(" separator="," close=")">
+					#{x_processInstanceId}
+				</foreach>
+			</if>
+
+			<if test="parentId != null">
+				and E.PARENTID_ = #{parentId}
+			</if>
+
+			<if test="businessKey != null">
+				and E.BUSINESSKEY_ = #{businessKey}
+			</if>
+
+			<if test="processName != null">
+				and E.PROCESSNAME_ = #{processName}
+			</if>
+
+			<if test="processInstanceId != null">
+				and E.PROCESSINSTANCEID_ = #{processInstanceId}
+			</if>
+
+			<if test="subjectLike != null">
+				and E.SUBJECT_ like #{subjectLike}
+			</if>
+
+			<if test="deleteFlag != null">
+				and E.DELETEFLAG_ = #{deleteFlag}
+			</if>
+
+			<if test="locked != null">
+				and E.LOCKED_ = #{locked}
+			</if>
+
+			<if test="status != null">
+				and E.STATUS_ = #{status}
+			</if>
+
+			<if test="wfStatus != null">
+				and E.WFSTATUS_ = #{wfStatus}
+			</if>
+
+			<if test="beforeCreateDate != null">
+				and E.CREATEDATE_ &lt;= #{beforeCreateDate}
+			</if>
+
+			<if test="afterCreateDate != null">
+				and E.CREATEDATE_ &gt;= #{afterCreateDate}
+			</if>
+
+			<if test="createBy != null">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="processInstanceIsNull">
+				and E.PROCESSINSTANCEID_ is null
+			</if>
+
+			<if test="processInstanceIsNotNull">
+				and E.PROCESSINSTANCEID_ is not null
+			</if>
+
+			<if test="isFilterPermission">
+				<choose>
+					<when test="createBy != null">
+					</when>
+					<when test="actorId != null">
+						and E.CREATEBY_ is not null
+						and E.CREATEBY_ =
+						#{actorId}
+					</when>
+					<when test="actorIds != null and actorIds.size !=0">
+						and E.CREATEBY_ is not null
+						and (
+						<foreach item="actorId" collection="actorIds" index="xa">
+							<if test=" xa != 0 ">
+								or
+							</if>
+							( E.CREATEBY_ = #{actorId} )
+						</foreach>
+						)
+					</when>
+					<otherwise>
+						and 1 = 0
+					</otherwise>
+				</choose>
+			</if>
+
+			<foreach item="condition" collection="conditions" index="index">
+				and E.${condition.column}
+				<choose>
+					<when test="condition.operator.equals('LIKE')">LIKE</when>
+					<when test="condition.operator.equals('NOT_LIKE')">NOT LIKE</when>
+					<otherwise>
+						<include refid="variableOperator" />
+					</otherwise>
+				</choose>
+				#{condition.value}
+			</foreach>
+
+		</where>
+	</sql>
+
+	<sql id="variableOperator">
+		<choose>
+			<when test="condition.operator.equals('EQUALS')">=</when>
+			<when test="condition.operator.equals('NOT_EQUALS')">&lt;&gt;</when>
+			<when test="condition.operator.equals('GREATER_THAN')">&gt;</when>
+			<when test="condition.operator.equals('GREATER_THAN_OR_EQUAL')">&gt;=</when>
+			<when test="condition.operator.equals('LESS_THAN')">&lt;</when>
+			<when test="condition.operator.equals('LESS_THAN_OR_EQUAL')">&lt;=</when>
+		</choose>
+	</sql>
+
+</mapper>

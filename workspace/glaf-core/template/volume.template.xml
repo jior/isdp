@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="GBK"?>
+<工程档案>
+    <DataSet id="ds01">
+	    <sql>
+			SELECT v.*, v.id AS volumeid,  tm.index_name AS cat_index_name, tm.num AS cat_num, 
+				 tm.filenum AS cat_filenum
+			FROM volume v , treevmain tm
+			WHERE (v.topid = #{tree_topid}) AND (tm.index_id IN
+					 (SELECT fromid
+				   FROM treevmain_comm
+				   WHERE nodetype = 0 AND index_id IN
+							 (SELECT fromid
+						   FROM treevmain_u
+						   WHERE index_id IN
+									 (SELECT topid
+								   FROM volume
+								   WHERE topid = #{tree_topid}))))
+		</sql>
+	</DataSet>
+
+    <DataSet id="ds03" splits="volumeid">
+	    <sql>
+		    select p.*, p.id as pfileid, p.vid as volumeid 
+			from pfile p 
+			inner join volume v 
+			on p.vid = v.id 
+			inner join treevmain_u u 
+			on u.index_id = v.topid 
+			where v.topid =  #{tree_topid}
+		</sql>
+	</DataSet>
+
+	<DataSet id="ds04" splits="volumeid,pfileid">
+	    <sql> 
+		   select f.fileID as fileid, p.tname as name, p.publishdiskid as publishdiskid, v.id as volumeid,
+		          f.file_name as filename, f.ctime as ctime, f.filesize as filesize, p.id as pfileid,
+				  f.topid as topid
+		   from fileatt f 
+		   inner join pfile p 
+		   on f.topid = p.id 
+		   inner join volume v 
+		   on p.vid = v.id 
+		   inner join treevmain_u u 
+		   on u.index_id = v.topid 
+		   where v.topid =  #{tree_topid}
+		 </sql>
+		<FieldConverter fromName="fileid" toName="fileid" provider="com.glaf.core.xml.FileIdConverter"/>
+		<FieldConverter fromName="filename" toName="fileext" provider="com.glaf.core.xml.FileExtConverter"/>
+	</DataSet>
+
+	<DataSet id="meta_ds01">
+	    <sql>
+		     select * from interface 
+			 where frmtype='v'
+             and issystem='1'   
+			 order by listno
+		</sql>
+		<FieldConverter fromName="dtype" toName="dtype" provider="com.glaf.core.xml.DataTypeConverter"/>
+	</DataSet>
+
+	<DataSet id="meta_ds02">
+	    <sql>
+		     select * from interface 
+			 where frmtype='pfile'
+             and issystem='1'   
+			 order by listno
+		</sql>
+		<FieldConverter fromName="dtype" toName="dtype" provider="com.glaf.core.xml.DataTypeConverter"/>
+	</DataSet>
+
+    <元数据定义>
+	   <表定义 表名="treevmain" 节点名称="档案分类" >
+            <字段 名称="档案分类编号" 字段名="num" 字段类型="string" 字段长度="50"/>
+			<字段 名称="档案分类码" 字段名="filenum" 字段类型="string" />
+			<字段 名称="档案分类名" 字段名="index_name" 字段类型="string" 字段长度="50"/> 
+	   </表定义>
+	   <表定义 表名="volume" 节点名称="档案著录" >
+            <字段 名称="编号" 字段名="id" 字段类型="string" 字段长度="50"/>
+			<字段 名称="档案分类" 字段名="topid" 字段类型="string" 字段长度="50"/>
+			<foreach DataSetId="meta_ds01">
+			<字段 名称="#{fname}" 字段名="#{dname}" 字段类型="#{dtype}" 字段长度="50"/>
+			</foreach>
+	   </表定义>
+	   <表定义 表名="pfile" 节点名称="文件著录" >
+            <字段 名称="编号" 字段名="id" 字段类型="string" 字段长度="50"/>
+			<字段 名称="档案编号" 字段名="vid" 字段类型="string" 字段长度="50"/>
+			<foreach DataSetId="meta_ds02">
+			<字段 名称="#{fname}" 字段名="#{dname}" 字段类型="#{dtype}" 字段长度="50" />
+			</foreach>
+	   </表定义>
+	   <表定义 表名="fileatt" 节点名称="电子附件" >
+            <字段 名称="编号" 字段名="fileid" 字段类型="string" 字段长度="50"/>
+			<字段 名称="文件编号" 字段名="topid" 字段类型="string" 字段长度="50"/>
+			<字段 名称="文件名" 字段名="file_name" 字段类型="string" 字段长度="50"/> 
+	   </表定义>
+	   <表关系>
+	        <关系 主表名称="档案分类" 从表名称="档案著录" 主表主键="档案分类号" 从表外键="档案分类号"  />
+	        <关系 主表名称="档案著录" 从表名称="文件著录" 主表主键="编号" 从表外键="档案编号"  />
+			<关系 主表名称="文件著录" 从表名称="电子附件" 主表主键="编号" 从表外键="文件编号"  />
+	   </表关系>
+	</元数据定义>
+
+	<档案著录 DataSetId="ds01">
+	    <编号>#{id}</编号>
+		<档号>#{vid}</档号>
+		<档案分类编号>#{cat_num}</档案分类编号>
+		<档案分类>#{topid}</档案分类>
+		<案卷题名>#{vname}</案卷题名>
+		<编制单位>#{wcompany}</编制单位>
+		<载体类型>#{carriertype}</载体类型>
+		<数量单位>#{numunit}</数量单位>
+		<文件起始时间>#{startday}</文件起始时间>
+		<文件终止时间>#{endday}</文件终止时间>
+		<保管期限>#{savetime}</保管期限>
+		<密级>#{slevel}</密级>
+		<主题词>#{thematic}</主题词>
+		<立卷人>#{cman}</立卷人>
+		<立卷日期>#{wdate}</立卷日期>
+		<规格>#{spec}</规格>
+		<缩微号>#{zoonum}</缩微号>
+		<附注>#{annotations}</附注>
+		<审核人>#{assessor}</审核人>
+		<审核日期>#{atime}</审核日期>
+		<归档日期>#{finishday}</归档日期>
+		<缩微号>#{zoonum}</缩微号>
+		<存放位置>#{place}</存放位置>
+		<录制说明>#{lcontent}</录制说明>
+		<录制单位>#{lcompany}</录制单位>
+		<录制人>#{lman}</录制人>
+		<带长>#{llen}</带长>
+		<时间>#{ldate}</时间>
+		<事由>#{jconten}</事由>
+		<地点>#{place}</地点>
+		<人物>#{jman}</人物>
+		<背景>#{jback}</背景>
+		<摄影者>#{jactor}</摄影者>
+
+		<档案分类>
+			<档案分类编号>#{cat_num}</档案分类编号>
+			<档案分类码>#{cat_filenum}</档案分类码>
+			<档案分类名>#{cat_index_name}</档案分类名>
+		</档案分类>
+
+	    <卷内文件 DataSetId="ds03" 序号="#{sortNo}">
+		  <文件著录>
+		    <编号>#{id}</编号>
+			<档案编号>#{vid}</档案编号>
+			<档号>#{vnum}</档号>
+			<文件题名>#{tname}</文件题名>
+			<责任者>#{duty}</责任者>
+			<密级>#{slevel}</密级>
+			<文件时间>#{ctime}</文件时间>
+			<文件编号>#{tagnum}</文件编号>
+			<保管期限>#{savetime}</保管期限>
+			<页数>#{page}</页数>
+			<编制单位>#{wcompany}</编制单位>
+			<载体类型>#{carriertype}</载体类型>
+			<密级>#{slevel}</密级>
+			<纸张类型>#{pagetype}</纸张类型>
+			<目录号>#{listnum}</目录号>
+			<附注>#{annotations}</附注>
+			<摘要>#{summary}</摘要>
+			<主题词>#{thematic}</主题词>
+			<附件>#{fileatt}</附件>
+			<排序号>#{sys_listno}</排序号>
+		  </文件著录>
+		
+		  <电子附件 DataSetId="ds04" 序号="#{sortNo}">
+		    <电子附件编号>#{fileid}</电子附件编号>
+		    <文件编号>#{topid}</文件编号>
+			<文件名称>#{name}</文件名称>
+			<文件名>#{filename}</文件名>
+			<保存位置>disk#{publishdiskid}/files/#{volumeid}/#{fileid}.#{fileext}</保存位置>
+		  </电子附件>
+
+	    </卷内文件>
+
+	</档案著录>
+
+    
+</工程档案>

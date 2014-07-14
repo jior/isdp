@@ -1,0 +1,2114 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.dms.mapper.DmsVolumeMapper">
+
+	<resultMap id="dmsVolumeResultMap" type="com.glaf.dms.domain.DmsVolume">
+		<id property="id" column="ID" jdbcType="VARCHAR" />
+		<result property="listno" column="LISTNO" jdbcType="INTEGER" />
+		<result property="oldid" column="OLDID" jdbcType="VARCHAR" />
+		<result property="ruleID" column="RULEID" jdbcType="VARCHAR" />
+		<result property="ruleflag" column="RULEFLAG" jdbcType="VARCHAR" />
+		<result property="rulepid" column="RULEPID" jdbcType="VARCHAR" />
+		<result property="vid" column="VID" jdbcType="VARCHAR" />
+		<result property="sumflag" column="SUMFLAG" jdbcType="VARCHAR" />
+		<result property="topid" column="TOPID" jdbcType="INTEGER" />
+		<result property="indexId" column="INDEX_ID" jdbcType="INTEGER" />
+		<result property="projid" column="PROJID" jdbcType="INTEGER" />
+		<result property="pid" column="PID" jdbcType="INTEGER" />
+		<result property="pname" column="PNAME" jdbcType="VARCHAR" />
+		<result property="vflag" column="VFLAG" jdbcType="VARCHAR" />
+		<result property="vname" column="VNAME" jdbcType="VARCHAR" />
+		<result property="year" column="YEAR" jdbcType="INTEGER" />
+		<result property="glidenum" column="GLIDENUM" jdbcType="VARCHAR" />
+		<result property="filingflag" column="FILINGFLAG" jdbcType="VARCHAR" />
+		<result property="checkupflag" column="CHECKUPFLAG" jdbcType="VARCHAR" />
+		<result property="openflag" column="OPENFLAG" jdbcType="VARCHAR" />
+		<result property="finishflag" column="FINISHFLAG" jdbcType="VARCHAR" />
+		<result property="vtagnum" column="VTAGNUM" jdbcType="VARCHAR" />
+		<result property="vtype" column="VTYPE" jdbcType="VARCHAR" />
+		<result property="vnum" column="VNUM" jdbcType="VARCHAR" />
+		<result property="vtmpnum" column="VTMPNUM" jdbcType="VARCHAR" />
+		<result property="roomnum" column="ROOMNUM" jdbcType="VARCHAR" />
+		<result property="zoonum" column="ZOONUM" jdbcType="VARCHAR" />
+		<result property="efilenum" column="EFILENUM" jdbcType="VARCHAR" />
+		<result property="boxnum" column="BOXNUM" jdbcType="VARCHAR" />
+		<result property="place" column="PLACE" jdbcType="VARCHAR" />
+		<result property="tname" column="TNAME" jdbcType="VARCHAR" />
+		<result property="wcompany" column="WCOMPANY" jdbcType="VARCHAR" />
+		<result property="wdate" column="WDATE" jdbcType="TIMESTAMP" />
+		<result property="carriertype" column="CARRIERTYPE" jdbcType="VARCHAR" />
+		<result property="numunit" column="NUMUNIT" jdbcType="VARCHAR" />
+		<result property="spec" column="SPEC" jdbcType="VARCHAR" />
+		<result property="startday" column="STARTDAY" jdbcType="TIMESTAMP" />
+		<result property="endday" column="ENDDAY" jdbcType="TIMESTAMP" />
+		<result property="savetime" column="SAVETIME" jdbcType="VARCHAR" />
+		<result property="slevel" column="SLEVEL" jdbcType="VARCHAR" />
+		<result property="thematic" column="THEMATIC" jdbcType="VARCHAR" />
+		<result property="annotations" column="ANNOTATIONS" jdbcType="VARCHAR" />
+		<result property="totalfile" column="TOTALFILE" jdbcType="INTEGER" />
+		<result property="totalpage" column="TOTALPAGE" jdbcType="INTEGER" />
+		<result property="txtpage" column="TXTPAGE" jdbcType="INTEGER" />
+		<result property="picpage" column="PICPAGE" jdbcType="INTEGER" />
+		<result property="photopage" column="PHOTOPAGE" jdbcType="INTEGER" />
+		<result property="cman" column="CMAN" jdbcType="VARCHAR" />
+		<result property="ctime" column="CTIME" jdbcType="TIMESTAMP" />
+		<result property="assessor" column="ASSESSOR" jdbcType="VARCHAR" />
+		<result property="atime" column="ATIME" jdbcType="TIMESTAMP" />
+		<result property="content" column="CONTENT" jdbcType="VARCHAR" />
+		<result property="islocate" column="ISLOCATE" jdbcType="VARCHAR" />
+		<result property="topnode" column="TOPNODE" jdbcType="VARCHAR" />
+		<result property="lcontent" column="LCONTENT" jdbcType="VARCHAR" />
+		<result property="lcompany" column="LCOMPANY" jdbcType="VARCHAR" />
+		<result property="lman" column="LMAN" jdbcType="VARCHAR" />
+		<result property="llen" column="LLEN" jdbcType="VARCHAR" />
+		<result property="ldate" column="LDATE" jdbcType="TIMESTAMP" />
+		<result property="jconten" column="JCONTEN" jdbcType="VARCHAR" />
+		<result property="jplace" column="JPLACE" jdbcType="VARCHAR" />
+		<result property="jman" column="JMAN" jdbcType="VARCHAR" />
+		<result property="jback" column="JBACK" jdbcType="VARCHAR" />
+		<result property="jactor" column="JACTOR" jdbcType="VARCHAR" />
+		<result property="tnum" column="TNUM" jdbcType="VARCHAR" />
+		<result property="tzoom" column="TZOOM" jdbcType="VARCHAR" />
+		<result property="tflag" column="TFLAG" jdbcType="VARCHAR" />
+		<result property="tdesigner" column="TDESIGNER" jdbcType="VARCHAR" />
+		<result property="tviewer" column="TVIEWER" jdbcType="VARCHAR" />
+		<result property="tassessor" column="TASSESSOR" jdbcType="VARCHAR" />
+		<result property="tvision" column="TVISION" jdbcType="VARCHAR" />
+		<result property="finishday" column="FINISHDAY" jdbcType="TIMESTAMP" />
+		<result property="choosePublishFlag" column="CHOOSEPUBLISHFLAG"
+			jdbcType="VARCHAR" />
+		<result property="choosePublishTime" column="CHOOSEPUBLISHTIME"
+			jdbcType="BIGINT" />
+		<result property="publishdiskid" column="PUBLISHDISKID"
+			jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertDmsVolume" parameterType="com.glaf.dms.domain.DmsVolume">
+		insert into VOLUME
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID
+			<if test="listno != null">
+				,LISTNO
+			</if>
+			<if test="oldid != null">
+				,OLDID
+			</if>
+			<if test="ruleID != null">
+				,RULEID
+			</if>
+			<if test="ruleflag != null">
+				,RULEFLAG
+			</if>
+			<if test="rulepid != null">
+				,RULEPID
+			</if>
+			<if test="vid != null">
+				,VID
+			</if>
+			<if test="sumflag != null">
+				,SUMFLAG
+			</if>
+			<if test="topid != null">
+				,TOPID
+			</if>
+			<if test="indexId != null">
+				,INDEX_ID
+			</if>
+			<if test="projid != null">
+				,PROJID
+			</if>
+			<if test="pid != null">
+				,PID
+			</if>
+			<if test="pname != null">
+				,PNAME
+			</if>
+			<if test="vflag != null">
+				,VFLAG
+			</if>
+			<if test="vname != null">
+				,VNAME
+			</if>
+			<if test="year != null">
+				,YEAR
+			</if>
+			<if test="glidenum != null">
+				,GLIDENUM
+			</if>
+			<if test="filingflag != null">
+				,FILINGFLAG
+			</if>
+			<if test="checkupflag != null">
+				,CHECKUPFLAG
+			</if>
+			<if test="openflag != null">
+				,OPENFLAG
+			</if>
+			<if test="finishflag != null">
+				,FINISHFLAG
+			</if>
+			<if test="vtagnum != null">
+				,VTAGNUM
+			</if>
+			<if test="vtype != null">
+				,VTYPE
+			</if>
+			<if test="vnum != null">
+				,VNUM
+			</if>
+			<if test="vtmpnum != null">
+				,VTMPNUM
+			</if>
+			<if test="roomnum != null">
+				,ROOMNUM
+			</if>
+			<if test="zoonum != null">
+				,ZOONUM
+			</if>
+			<if test="efilenum != null">
+				,EFILENUM
+			</if>
+			<if test="boxnum != null">
+				,BOXNUM
+			</if>
+			<if test="place != null">
+				,PLACE
+			</if>
+			<if test="tname != null">
+				,TNAME
+			</if>
+			<if test="wcompany != null">
+				,WCOMPANY
+			</if>
+			<if test="wdate != null">
+				,WDATE
+			</if>
+			<if test="carriertype != null">
+				,CARRIERTYPE
+			</if>
+			<if test="numunit != null">
+				,NUMUNIT
+			</if>
+			<if test="spec != null">
+				,SPEC
+			</if>
+			<if test="startday != null">
+				,STARTDAY
+			</if>
+			<if test="endday != null">
+				,ENDDAY
+			</if>
+			<if test="savetime != null">
+				,SAVETIME
+			</if>
+			<if test="slevel != null">
+				,SLEVEL
+			</if>
+			<if test="thematic != null">
+				,THEMATIC
+			</if>
+			<if test="annotations != null">
+				,ANNOTATIONS
+			</if>
+			<if test="totalfile != null">
+				,TOTALFILE
+			</if>
+			<if test="totalpage != null">
+				,TOTALPAGE
+			</if>
+			<if test="txtpage != null">
+				,TXTPAGE
+			</if>
+			<if test="picpage != null">
+				,PICPAGE
+			</if>
+			<if test="photopage != null">
+				,PHOTOPAGE
+			</if>
+			<if test="cman != null">
+				,CMAN
+			</if>
+			<if test="ctime != null">
+				,CTIME
+			</if>
+			<if test="assessor != null">
+				,ASSESSOR
+			</if>
+			<if test="atime != null">
+				,ATIME
+			</if>
+			<if test="content != null">
+				,CONTENT
+			</if>
+			<if test="islocate != null">
+				,ISLOCATE
+			</if>
+			<if test="topnode != null">
+				,TOPNODE
+			</if>
+			<if test="lcontent != null">
+				,LCONTENT
+			</if>
+			<if test="lcompany != null">
+				,LCOMPANY
+			</if>
+			<if test="lman != null">
+				,LMAN
+			</if>
+			<if test="llen != null">
+				,LLEN
+			</if>
+			<if test="ldate != null">
+				,LDATE
+			</if>
+			<if test="jconten != null">
+				,JCONTEN
+			</if>
+			<if test="jplace != null">
+				,JPLACE
+			</if>
+			<if test="jman != null">
+				,JMAN
+			</if>
+			<if test="jback != null">
+				,JBACK
+			</if>
+			<if test="jactor != null">
+				,JACTOR
+			</if>
+			<if test="tnum != null">
+				,TNUM
+			</if>
+			<if test="tzoom != null">
+				,TZOOM
+			</if>
+			<if test="tflag != null">
+				,TFLAG
+			</if>
+			<if test="tdesigner != null">
+				,TDESIGNER
+			</if>
+			<if test="tviewer != null">
+				,TVIEWER
+			</if>
+			<if test="tassessor != null">
+				,TASSESSOR
+			</if>
+			<if test="tvision != null">
+				,TVISION
+			</if>
+			<if test="finishday != null">
+				,FINISHDAY
+			</if>
+			<if test="choosePublishFlag != null">
+				,CHOOSEPUBLISHFLAG
+			</if>
+			<if test="choosePublishTime != null">
+				,CHOOSEPUBLISHTIME
+			</if>
+			<if test="publishdiskid != null">
+				,PUBLISHDISKID
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+			<if test="oldid != null">
+				,#{oldid, jdbcType=VARCHAR}
+			</if>
+			<if test="ruleID != null">
+				,#{ruleID, jdbcType=VARCHAR}
+			</if>
+			<if test="ruleflag != null">
+				,#{ruleflag, jdbcType=VARCHAR}
+			</if>
+			<if test="rulepid != null">
+				,#{rulepid, jdbcType=VARCHAR}
+			</if>
+			<if test="vid != null">
+				,#{vid, jdbcType=VARCHAR}
+			</if>
+			<if test="sumflag != null">
+				,#{sumflag, jdbcType=VARCHAR}
+			</if>
+			<if test="topid != null">
+				,#{topid, jdbcType=INTEGER}
+			</if>
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="projid != null">
+				,#{projid, jdbcType=INTEGER}
+			</if>
+			<if test="pid != null">
+				,#{pid, jdbcType=INTEGER}
+			</if>
+			<if test="pname != null">
+				,#{pname, jdbcType=VARCHAR}
+			</if>
+			<if test="vflag != null">
+				,#{vflag, jdbcType=VARCHAR}
+			</if>
+			<if test="vname != null">
+				,#{vname, jdbcType=VARCHAR}
+			</if>
+			<if test="year != null">
+				,#{year, jdbcType=INTEGER}
+			</if>
+			<if test="glidenum != null">
+				,#{glidenum, jdbcType=VARCHAR}
+			</if>
+			<if test="filingflag != null">
+				,#{filingflag, jdbcType=VARCHAR}
+			</if>
+			<if test="checkupflag != null">
+				,#{checkupflag, jdbcType=VARCHAR}
+			</if>
+			<if test="openflag != null">
+				,#{openflag, jdbcType=VARCHAR}
+			</if>
+			<if test="finishflag != null">
+				,#{finishflag, jdbcType=VARCHAR}
+			</if>
+			<if test="vtagnum != null">
+				,#{vtagnum, jdbcType=VARCHAR}
+			</if>
+			<if test="vtype != null">
+				,#{vtype, jdbcType=VARCHAR}
+			</if>
+			<if test="vnum != null">
+				,#{vnum, jdbcType=VARCHAR}
+			</if>
+			<if test="vtmpnum != null">
+				,#{vtmpnum, jdbcType=VARCHAR}
+			</if>
+			<if test="roomnum != null">
+				,#{roomnum, jdbcType=VARCHAR}
+			</if>
+			<if test="zoonum != null">
+				,#{zoonum, jdbcType=VARCHAR}
+			</if>
+			<if test="efilenum != null">
+				,#{efilenum, jdbcType=VARCHAR}
+			</if>
+			<if test="boxnum != null">
+				,#{boxnum, jdbcType=VARCHAR}
+			</if>
+			<if test="place != null">
+				,#{place, jdbcType=VARCHAR}
+			</if>
+			<if test="tname != null">
+				,#{tname, jdbcType=VARCHAR}
+			</if>
+			<if test="wcompany != null">
+				,#{wcompany, jdbcType=VARCHAR}
+			</if>
+			<if test="wdate != null">
+				,#{wdate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="carriertype != null">
+				,#{carriertype, jdbcType=VARCHAR}
+			</if>
+			<if test="numunit != null">
+				,#{numunit, jdbcType=VARCHAR}
+			</if>
+			<if test="spec != null">
+				,#{spec, jdbcType=VARCHAR}
+			</if>
+			<if test="startday != null">
+				,#{startday, jdbcType=TIMESTAMP}
+			</if>
+			<if test="endday != null">
+				,#{endday, jdbcType=TIMESTAMP}
+			</if>
+			<if test="savetime != null">
+				,#{savetime, jdbcType=VARCHAR}
+			</if>
+			<if test="slevel != null">
+				,#{slevel, jdbcType=VARCHAR}
+			</if>
+			<if test="thematic != null">
+				,#{thematic, jdbcType=VARCHAR}
+			</if>
+			<if test="annotations != null">
+				,#{annotations, jdbcType=VARCHAR}
+			</if>
+			<if test="totalfile != null">
+				,#{totalfile, jdbcType=INTEGER}
+			</if>
+			<if test="totalpage != null">
+				,#{totalpage, jdbcType=INTEGER}
+			</if>
+			<if test="txtpage != null">
+				,#{txtpage, jdbcType=INTEGER}
+			</if>
+			<if test="picpage != null">
+				,#{picpage, jdbcType=INTEGER}
+			</if>
+			<if test="photopage != null">
+				,#{photopage, jdbcType=INTEGER}
+			</if>
+			<if test="cman != null">
+				,#{cman, jdbcType=VARCHAR}
+			</if>
+			<if test="ctime != null">
+				,#{ctime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="assessor != null">
+				,#{assessor, jdbcType=VARCHAR}
+			</if>
+			<if test="atime != null">
+				,#{atime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="islocate != null">
+				,#{islocate, jdbcType=VARCHAR}
+			</if>
+			<if test="topnode != null">
+				,#{topnode, jdbcType=VARCHAR}
+			</if>
+			<if test="lcontent != null">
+				,#{lcontent, jdbcType=VARCHAR}
+			</if>
+			<if test="lcompany != null">
+				,#{lcompany, jdbcType=VARCHAR}
+			</if>
+			<if test="lman != null">
+				,#{lman, jdbcType=VARCHAR}
+			</if>
+			<if test="llen != null">
+				,#{llen, jdbcType=VARCHAR}
+			</if>
+			<if test="ldate != null">
+				,#{ldate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="jconten != null">
+				,#{jconten, jdbcType=VARCHAR}
+			</if>
+			<if test="jplace != null">
+				,#{jplace, jdbcType=VARCHAR}
+			</if>
+			<if test="jman != null">
+				,#{jman, jdbcType=VARCHAR}
+			</if>
+			<if test="jback != null">
+				,#{jback, jdbcType=VARCHAR}
+			</if>
+			<if test="jactor != null">
+				,#{jactor, jdbcType=VARCHAR}
+			</if>
+			<if test="tnum != null">
+				,#{tnum, jdbcType=VARCHAR}
+			</if>
+			<if test="tzoom != null">
+				,#{tzoom, jdbcType=VARCHAR}
+			</if>
+			<if test="tflag != null">
+				,#{tflag, jdbcType=VARCHAR}
+			</if>
+			<if test="tdesigner != null">
+				,#{tdesigner, jdbcType=VARCHAR}
+			</if>
+			<if test="tviewer != null">
+				,#{tviewer, jdbcType=VARCHAR}
+			</if>
+			<if test="tassessor != null">
+				,#{tassessor, jdbcType=VARCHAR}
+			</if>
+			<if test="tvision != null">
+				,#{tvision, jdbcType=VARCHAR}
+			</if>
+			<if test="finishday != null">
+				,#{finishday, jdbcType=TIMESTAMP}
+			</if>
+			<if test="choosePublishFlag != null">
+				,#{choosePublishFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="choosePublishTime != null">
+				,#{choosePublishTime, jdbcType=BIGINT}
+			</if>
+			<if test="publishdiskid != null">
+				,#{publishdiskid, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateDmsVolume" parameterType="com.glaf.dms.domain.DmsVolume">
+		update VOLUME
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="listno != null">
+				LISTNO = #{listno, jdbcType=INTEGER},
+			</if>
+			<if test="oldid != null">
+				OLDID = #{oldid, jdbcType=VARCHAR},
+			</if>
+			<if test="ruleID != null">
+				RULEID = #{ruleID, jdbcType=VARCHAR},
+			</if>
+			<if test="ruleflag != null">
+				RULEFLAG = #{ruleflag, jdbcType=VARCHAR},
+			</if>
+			<if test="rulepid != null">
+				RULEPID = #{rulepid, jdbcType=VARCHAR},
+			</if>
+			<if test="vid != null">
+				VID = #{vid, jdbcType=VARCHAR},
+			</if>
+			<if test="sumflag != null">
+				SUMFLAG = #{sumflag, jdbcType=VARCHAR},
+			</if>
+			<if test="topid != null">
+				TOPID = #{topid, jdbcType=INTEGER},
+			</if>
+			<if test="indexId != null">
+				INDEX_ID = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="projid != null">
+				PROJID = #{projid, jdbcType=INTEGER},
+			</if>
+			<if test="pid != null">
+				PID = #{pid, jdbcType=INTEGER},
+			</if>
+			<if test="pname != null">
+				PNAME = #{pname, jdbcType=VARCHAR},
+			</if>
+			<if test="vflag != null">
+				VFLAG = #{vflag, jdbcType=VARCHAR},
+			</if>
+			<if test="vname != null">
+				VNAME = #{vname, jdbcType=VARCHAR},
+			</if>
+			<if test="year != null">
+				YEAR = #{year, jdbcType=INTEGER},
+			</if>
+			<if test="glidenum != null">
+				GLIDENUM = #{glidenum, jdbcType=VARCHAR},
+			</if>
+			<if test="filingflag != null">
+				FILINGFLAG = #{filingflag, jdbcType=VARCHAR},
+			</if>
+			<if test="checkupflag != null">
+				CHECKUPFLAG = #{checkupflag, jdbcType=VARCHAR},
+			</if>
+			<if test="openflag != null">
+				OPENFLAG = #{openflag, jdbcType=VARCHAR},
+			</if>
+			<if test="finishflag != null">
+				FINISHFLAG = #{finishflag, jdbcType=VARCHAR},
+			</if>
+			<if test="vtagnum != null">
+				VTAGNUM = #{vtagnum, jdbcType=VARCHAR},
+			</if>
+			<if test="vtype != null">
+				VTYPE = #{vtype, jdbcType=VARCHAR},
+			</if>
+			<if test="vnum != null">
+				VNUM = #{vnum, jdbcType=VARCHAR},
+			</if>
+			<if test="vtmpnum != null">
+				VTMPNUM = #{vtmpnum, jdbcType=VARCHAR},
+			</if>
+			<if test="roomnum != null">
+				ROOMNUM = #{roomnum, jdbcType=VARCHAR},
+			</if>
+			<if test="zoonum != null">
+				ZOONUM = #{zoonum, jdbcType=VARCHAR},
+			</if>
+			<if test="efilenum != null">
+				EFILENUM = #{efilenum, jdbcType=VARCHAR},
+			</if>
+			<if test="boxnum != null">
+				BOXNUM = #{boxnum, jdbcType=VARCHAR},
+			</if>
+			<if test="place != null">
+				PLACE = #{place, jdbcType=VARCHAR},
+			</if>
+			<if test="tname != null">
+				TNAME = #{tname, jdbcType=VARCHAR},
+			</if>
+			<if test="wcompany != null">
+				WCOMPANY = #{wcompany, jdbcType=VARCHAR},
+			</if>
+			<if test="wdate != null">
+				WDATE = #{wdate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="carriertype != null">
+				CARRIERTYPE = #{carriertype, jdbcType=VARCHAR},
+			</if>
+			<if test="numunit != null">
+				NUMUNIT = #{numunit, jdbcType=VARCHAR},
+			</if>
+			<if test="spec != null">
+				SPEC = #{spec, jdbcType=VARCHAR},
+			</if>
+			<if test="startday != null">
+				STARTDAY = #{startday, jdbcType=TIMESTAMP},
+			</if>
+			<if test="endday != null">
+				ENDDAY = #{endday, jdbcType=TIMESTAMP},
+			</if>
+			<if test="savetime != null">
+				SAVETIME = #{savetime, jdbcType=VARCHAR},
+			</if>
+			<if test="slevel != null">
+				SLEVEL = #{slevel, jdbcType=VARCHAR},
+			</if>
+			<if test="thematic != null">
+				THEMATIC = #{thematic, jdbcType=VARCHAR},
+			</if>
+			<if test="annotations != null">
+				ANNOTATIONS = #{annotations, jdbcType=VARCHAR},
+			</if>
+			<if test="totalfile != null">
+				TOTALFILE = #{totalfile, jdbcType=INTEGER},
+			</if>
+			<if test="totalpage != null">
+				TOTALPAGE = #{totalpage, jdbcType=INTEGER},
+			</if>
+			<if test="txtpage != null">
+				TXTPAGE = #{txtpage, jdbcType=INTEGER},
+			</if>
+			<if test="picpage != null">
+				PICPAGE = #{picpage, jdbcType=INTEGER},
+			</if>
+			<if test="photopage != null">
+				PHOTOPAGE = #{photopage, jdbcType=INTEGER},
+			</if>
+			<if test="cman != null">
+				CMAN = #{cman, jdbcType=VARCHAR},
+			</if>
+			<if test="ctime != null">
+				CTIME = #{ctime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="assessor != null">
+				ASSESSOR = #{assessor, jdbcType=VARCHAR},
+			</if>
+			<if test="atime != null">
+				ATIME = #{atime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="content != null">
+				CONTENT = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="islocate != null">
+				ISLOCATE = #{islocate, jdbcType=VARCHAR},
+			</if>
+			<if test="topnode != null">
+				TOPNODE = #{topnode, jdbcType=VARCHAR},
+			</if>
+			<if test="lcontent != null">
+				LCONTENT = #{lcontent, jdbcType=VARCHAR},
+			</if>
+			<if test="lcompany != null">
+				LCOMPANY = #{lcompany, jdbcType=VARCHAR},
+			</if>
+			<if test="lman != null">
+				LMAN = #{lman, jdbcType=VARCHAR},
+			</if>
+			<if test="llen != null">
+				LLEN = #{llen, jdbcType=VARCHAR},
+			</if>
+			<if test="ldate != null">
+				LDATE = #{ldate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="jconten != null">
+				JCONTEN = #{jconten, jdbcType=VARCHAR},
+			</if>
+			<if test="jplace != null">
+				JPLACE = #{jplace, jdbcType=VARCHAR},
+			</if>
+			<if test="jman != null">
+				JMAN = #{jman, jdbcType=VARCHAR},
+			</if>
+			<if test="jback != null">
+				JBACK = #{jback, jdbcType=VARCHAR},
+			</if>
+			<if test="jactor != null">
+				JACTOR = #{jactor, jdbcType=VARCHAR},
+			</if>
+			<if test="tnum != null">
+				TNUM = #{tnum, jdbcType=VARCHAR},
+			</if>
+			<if test="tzoom != null">
+				TZOOM = #{tzoom, jdbcType=VARCHAR},
+			</if>
+			<if test="tflag != null">
+				TFLAG = #{tflag, jdbcType=VARCHAR},
+			</if>
+			<if test="tdesigner != null">
+				TDESIGNER = #{tdesigner, jdbcType=VARCHAR},
+			</if>
+			<if test="tviewer != null">
+				TVIEWER = #{tviewer, jdbcType=VARCHAR},
+			</if>
+			<if test="tassessor != null">
+				TASSESSOR = #{tassessor, jdbcType=VARCHAR},
+			</if>
+			<if test="tvision != null">
+				TVISION = #{tvision, jdbcType=VARCHAR},
+			</if>
+			<if test="finishday != null">
+				FINISHDAY = #{finishday, jdbcType=TIMESTAMP},
+			</if>
+			<if test="choosePublishFlag != null">
+				CHOOSEPUBLISHFLAG = #{choosePublishFlag,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="choosePublishTime != null">
+				CHOOSEPUBLISHTIME = #{choosePublishTime,
+				jdbcType=BIGINT},
+			</if>
+			<if test="publishdiskid != null">
+				PUBLISHDISKID = #{publishdiskid, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		ID = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteDmsVolumeById" parameterType="string">
+		delete from
+		VOLUME
+		where ID = #{id}
+	</delete>
+
+
+	<delete id="deleteDmsVolumes" parameterType="com.glaf.dms.query.DmsVolumeQuery">
+		delete from VOLUME
+		where (
+		ID IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getDmsVolumeById" parameterType="string" resultMap="dmsVolumeResultMap">
+		select * from VOLUME where ID = #{id}
+	</select>
+
+
+	<select id="getDmsVolumes" parameterType="com.glaf.dms.query.DmsVolumeQuery"
+		resultMap="dmsVolumeResultMap">
+		select distinct E.*
+		<include refid="selectDmsVolumesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getDmsVolumeCount" parameterType="com.glaf.dms.query.DmsVolumeQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDmsVolumesSql" />
+	</select>
+
+
+	<sql id="selectDmsVolumesSql">
+
+		from VOLUME E
+
+		<choose>
+			<when test="treenodeLike != null and treenodeLike != '' ">
+				inner join treevmain_u u
+				on E.topid = u.index_id
+			</when>
+			<when test="dmsTreenodes != null and dmsTreenodes != '' ">
+				inner join treevmain_u u
+				on E.topid = u.index_id
+			</when>
+		</choose>
+
+		<where>
+			1 = 1
+
+			<if test="dmsTreenodes != null and dmsTreenodes != '' ">
+				${dms_treenodes}
+			</if>
+
+			<if test="topnodeLike != null and topnodeLike != '' ">
+				and E.topnode like #{topnodeLike}
+			</if>
+
+			<if test="treenodeLike != null and treenodeLike != '' ">
+				and u.id like #{treenodeLike}
+			</if>
+
+			<if test="listno != null">
+				and E.LISTNO = #{listno}
+			</if>
+
+			<if test="listnoGreaterThanOrEqual != null">
+				and E.LISTNO &gt;= #{listnoGreaterThanOrEqual}
+			</if>
+
+			<if test="listnoLessThanOrEqual != null">
+				and E.LISTNO &lt;= #{listnoLessThanOrEqual}
+			</if>
+
+			<if test="ruleID != null and ruleID != '' ">
+				and E.RULEID = #{ruleID}
+			</if>
+
+			<if test="ruleIDLike != null and ruleIDLike != '' ">
+				and E.RULEID like #{ruleIDLike}
+			</if>
+
+			<if test="ruleflag != null and ruleflag != '' ">
+				and E.RULEFLAG = #{ruleflag}
+			</if>
+
+			<if test="ruleflagLike != null and ruleflagLike != '' ">
+				and E.RULEFLAG like #{ruleflagLike}
+			</if>
+
+			<if test="ruleflags != null and ruleflags.size != 0">
+				and E.RULEFLAG IN
+				<foreach item="x_ruleflag" index="index" collection="ruleflags"
+					open="(" separator="," close=")">
+					#{x_ruleflag}
+				</foreach>
+			</if>
+
+			<if test="rulepid != null and rulepid != '' ">
+				and E.RULEPID = #{rulepid}
+			</if>
+
+			<if test="rulepidLike != null and rulepidLike != '' ">
+				and E.RULEPID like #{rulepidLike}
+			</if>
+
+			<if test="rulepids != null and rulepids.size != 0">
+				and E.RULEPID IN
+				<foreach item="x_rulepid" index="index" collection="rulepids"
+					open="(" separator="," close=")">
+					#{x_rulepid}
+				</foreach>
+			</if>
+
+			<if test="vid != null and vid != '' ">
+				and E.VID = #{vid}
+			</if>
+
+			<if test="vidLike != null and vidLike != '' ">
+				and E.VID like #{vidLike}
+			</if>
+
+			<if test="vids != null and vids.size != 0">
+				and E.VID IN
+				<foreach item="x_vid" index="index" collection="vids" open="("
+					separator="," close=")">
+					#{x_vid}
+				</foreach>
+			</if>
+
+			<if test="sumflag != null and sumflag != '' ">
+				and E.SUMFLAG = #{sumflag}
+			</if>
+
+			<if test="sumflagLike != null and sumflagLike != '' ">
+				and E.SUMFLAG like #{sumflagLike}
+			</if>
+
+			<if test="sumflags != null and sumflags.size != 0">
+				and E.SUMFLAG IN
+				<foreach item="x_sumflag" index="index" collection="sumflags"
+					open="(" separator="," close=")">
+					#{x_sumflag}
+				</foreach>
+			</if>
+
+			<if test="topid != null and topid != -1">
+				and E.TOPID = #{topid}
+			</if>
+
+			<if test="topidGreaterThanOrEqual != null">
+				and E.TOPID &gt;= #{topidGreaterThanOrEqual}
+			</if>
+
+			<if test="topidLessThanOrEqual != null">
+				and E.TOPID &lt;= #{topidLessThanOrEqual}
+			</if>
+
+			<if test="topids != null and topids.size != 0">
+				and E.TOPID IN
+				<foreach item="x_topid" index="index" collection="topids"
+					open="(" separator="," close=")">
+					#{x_topid}
+				</foreach>
+			</if>
+
+
+			<if test="indexId != null">
+				and E.INDEX_ID = #{indexId}
+			</if>
+
+			<if test="indexIdGreaterThanOrEqual != null">
+				and E.INDEX_ID &gt;= #{indexIdGreaterThanOrEqual}
+			</if>
+
+			<if test="indexIdLessThanOrEqual != null">
+				and E.INDEX_ID &lt;= #{indexIdLessThanOrEqual}
+			</if>
+
+			<if test="indexIds != null and indexIds.size != 0">
+				and E.INDEX_ID IN
+				<foreach item="x_indexId" index="index" collection="indexIds"
+					open="(" separator="," close=")">
+					#{x_indexId}
+				</foreach>
+			</if>
+
+
+			<if test="projid != null">
+				and E.PROJID = #{projid}
+			</if>
+
+			<if test="projidGreaterThanOrEqual != null">
+				and E.PROJID &gt;= #{projidGreaterThanOrEqual}
+			</if>
+
+			<if test="projidLessThanOrEqual != null">
+				and E.PROJID &lt;= #{projidLessThanOrEqual}
+			</if>
+
+			<if test="projids != null and projids.size != 0">
+				and E.PROJID IN
+				<foreach item="x_projid" index="index" collection="projids"
+					open="(" separator="," close=")">
+					#{x_projid}
+				</foreach>
+			</if>
+
+
+			<if test="pid != null">
+				and E.PID = #{pid}
+			</if>
+
+			<if test="pidGreaterThanOrEqual != null">
+				and E.PID &gt;= #{pidGreaterThanOrEqual}
+			</if>
+
+			<if test="pidLessThanOrEqual != null">
+				and E.PID &lt;= #{pidLessThanOrEqual}
+			</if>
+
+			<if test="pids != null and pids.size != 0">
+				and E.PID IN
+				<foreach item="x_pid" index="index" collection="pids" open="("
+					separator="," close=")">
+					#{x_pid}
+				</foreach>
+			</if>
+
+
+			<if test="pname != null and pname != '' ">
+				and E.PNAME = #{pname}
+			</if>
+
+			<if test="pnameLike != null and pnameLike != '' ">
+				and E.PNAME like #{pnameLike}
+			</if>
+
+			<if test="pnames != null and pnames.size != 0">
+				and E.PNAME IN
+				<foreach item="x_pname" index="index" collection="pnames"
+					open="(" separator="," close=")">
+					#{x_pname}
+				</foreach>
+			</if>
+
+			<if test="vflag != null and vflag != '' ">
+				and E.VFLAG = #{vflag}
+			</if>
+
+			<if test="vflagLike != null and vflagLike != '' ">
+				and E.VFLAG like #{vflagLike}
+			</if>
+
+			<if test="vflags != null and vflags.size != 0">
+				and E.VFLAG IN
+				<foreach item="x_vflag" index="index" collection="vflags"
+					open="(" separator="," close=")">
+					#{x_vflag}
+				</foreach>
+			</if>
+
+			<if test="vname != null and vname != '' ">
+				and E.VNAME = #{vname}
+			</if>
+
+			<if test="vnameLike != null and vnameLike != '' ">
+				and E.VNAME like #{vnameLike}
+			</if>
+
+			<if test="vnames != null and vnames.size != 0">
+				and E.VNAME IN
+				<foreach item="x_vname" index="index" collection="vnames"
+					open="(" separator="," close=")">
+					#{x_vname}
+				</foreach>
+			</if>
+
+			<if test="year != null">
+				and E.YEAR = #{year}
+			</if>
+
+			<if test="yearGreaterThanOrEqual != null">
+				and E.YEAR &gt;= #{yearGreaterThanOrEqual}
+			</if>
+
+			<if test="yearLessThanOrEqual != null">
+				and E.YEAR &lt;= #{yearLessThanOrEqual}
+			</if>
+
+			<if test="years != null and years.size != 0">
+				and E.YEAR IN
+				<foreach item="x_year" index="index" collection="years"
+					open="(" separator="," close=")">
+					#{x_year}
+				</foreach>
+			</if>
+
+
+			<if test="glidenum != null and glidenum != '' ">
+				and E.GLIDENUM = #{glidenum}
+			</if>
+
+			<if test="glidenumLike != null and glidenumLike != '' ">
+				and E.GLIDENUM like #{glidenumLike}
+			</if>
+
+			<if test="glidenums != null and glidenums.size != 0">
+				and E.GLIDENUM IN
+				<foreach item="x_glidenum" index="index" collection="glidenums"
+					open="(" separator="," close=")">
+					#{x_glidenum}
+				</foreach>
+			</if>
+
+			<if test="filingflag != null and filingflag != '' ">
+				and E.FILINGFLAG = #{filingflag}
+			</if>
+
+			<if test="filingflagLike != null and filingflagLike != '' ">
+				and E.FILINGFLAG like #{filingflagLike}
+			</if>
+
+			<if test="filingflags != null and filingflags.size != 0">
+				and E.FILINGFLAG IN
+				<foreach item="x_filingflag" index="index" collection="filingflags"
+					open="(" separator="," close=")">
+					#{x_filingflag}
+				</foreach>
+			</if>
+
+			<if test="checkupflag != null and checkupflag != '' ">
+				and E.CHECKUPFLAG = #{checkupflag}
+			</if>
+
+			<if test="checkupflagLike != null and checkupflagLike != '' ">
+				and E.CHECKUPFLAG like #{checkupflagLike}
+			</if>
+
+			<if test="checkupflags != null and checkupflags.size != 0">
+				and E.CHECKUPFLAG IN
+				<foreach item="x_checkupflag" index="index" collection="checkupflags"
+					open="(" separator="," close=")">
+					#{x_checkupflag}
+				</foreach>
+			</if>
+
+			<if test="openflag != null and openflag != '' ">
+				and E.OPENFLAG = #{openflag}
+			</if>
+
+			<if test="openflagLike != null and openflagLike != '' ">
+				and E.OPENFLAG like #{openflagLike}
+			</if>
+
+			<if test="openflags != null and openflags.size != 0">
+				and E.OPENFLAG IN
+				<foreach item="x_openflag" index="index" collection="openflags"
+					open="(" separator="," close=")">
+					#{x_openflag}
+				</foreach>
+			</if>
+
+			<if test="finishflag != null and finishflag != '' ">
+				and E.FINISHFLAG = #{finishflag}
+			</if>
+
+			<if test="finishflagLike != null and finishflagLike != '' ">
+				and E.FINISHFLAG like #{finishflagLike}
+			</if>
+
+			<if test="finishflags != null and finishflags.size != 0">
+				and E.FINISHFLAG IN
+				<foreach item="x_finishflag" index="index" collection="finishflags"
+					open="(" separator="," close=")">
+					#{x_finishflag}
+				</foreach>
+			</if>
+
+			<if test="vtagnum != null and vtagnum != '' ">
+				and E.VTAGNUM = #{vtagnum}
+			</if>
+
+			<if test="vtagnumLike != null and vtagnumLike != '' ">
+				and E.VTAGNUM like #{vtagnumLike}
+			</if>
+
+			<if test="vtagnums != null and vtagnums.size != 0">
+				and E.VTAGNUM IN
+				<foreach item="x_vtagnum" index="index" collection="vtagnums"
+					open="(" separator="," close=")">
+					#{x_vtagnum}
+				</foreach>
+			</if>
+
+			<if test="vtype != null and vtype != '' ">
+				and E.VTYPE = #{vtype}
+			</if>
+
+			<if test="vtypeLike != null and vtypeLike != '' ">
+				and E.VTYPE like #{vtypeLike}
+			</if>
+
+			<if test="vtypes != null and vtypes.size != 0">
+				and E.VTYPE IN
+				<foreach item="x_vtype" index="index" collection="vtypes"
+					open="(" separator="," close=")">
+					#{x_vtype}
+				</foreach>
+			</if>
+
+			<if test="vnum != null and vnum != '' ">
+				and E.VNUM = #{vnum}
+			</if>
+
+			<if test="vnumLike != null and vnumLike != '' ">
+				and E.VNUM like #{vnumLike}
+			</if>
+
+			<if test="vnums != null and vnums.size != 0">
+				and E.VNUM IN
+				<foreach item="x_vnum" index="index" collection="vnums"
+					open="(" separator="," close=")">
+					#{x_vnum}
+				</foreach>
+			</if>
+
+			<if test="vtmpnum != null and vtmpnum != '' ">
+				and E.VTMPNUM = #{vtmpnum}
+			</if>
+
+			<if test="vtmpnumLike != null and vtmpnumLike != '' ">
+				and E.VTMPNUM like #{vtmpnumLike}
+			</if>
+
+			<if test="vtmpnums != null and vtmpnums.size != 0">
+				and E.VTMPNUM IN
+				<foreach item="x_vtmpnum" index="index" collection="vtmpnums"
+					open="(" separator="," close=")">
+					#{x_vtmpnum}
+				</foreach>
+			</if>
+
+			<if test="roomnum != null and roomnum != '' ">
+				and E.ROOMNUM = #{roomnum}
+			</if>
+
+			<if test="roomnumLike != null and roomnumLike != '' ">
+				and E.ROOMNUM like #{roomnumLike}
+			</if>
+
+			<if test="roomnums != null and roomnums.size != 0">
+				and E.ROOMNUM IN
+				<foreach item="x_roomnum" index="index" collection="roomnums"
+					open="(" separator="," close=")">
+					#{x_roomnum}
+				</foreach>
+			</if>
+
+			<if test="zoonum != null and zoonum != '' ">
+				and E.ZOONUM = #{zoonum}
+			</if>
+
+			<if test="zoonumLike != null and zoonumLike != '' ">
+				and E.ZOONUM like #{zoonumLike}
+			</if>
+
+			<if test="zoonums != null and zoonums.size != 0">
+				and E.ZOONUM IN
+				<foreach item="x_zoonum" index="index" collection="zoonums"
+					open="(" separator="," close=")">
+					#{x_zoonum}
+				</foreach>
+			</if>
+
+			<if test="efilenum != null and efilenum != '' ">
+				and E.EFILENUM = #{efilenum}
+			</if>
+
+			<if test="efilenumLike != null and efilenumLike != '' ">
+				and E.EFILENUM like #{efilenumLike}
+			</if>
+
+			<if test="efilenums != null and efilenums.size != 0">
+				and E.EFILENUM IN
+				<foreach item="x_efilenum" index="index" collection="efilenums"
+					open="(" separator="," close=")">
+					#{x_efilenum}
+				</foreach>
+			</if>
+
+			<if test="boxnum != null and boxnum != '' ">
+				and E.BOXNUM = #{boxnum}
+			</if>
+
+			<if test="boxnumLike != null and boxnumLike != '' ">
+				and E.BOXNUM like #{boxnumLike}
+			</if>
+
+			<if test="boxnums != null and boxnums.size != 0">
+				and E.BOXNUM IN
+				<foreach item="x_boxnum" index="index" collection="boxnums"
+					open="(" separator="," close=")">
+					#{x_boxnum}
+				</foreach>
+			</if>
+
+			<if test="place != null and place != '' ">
+				and E.PLACE = #{place}
+			</if>
+
+			<if test="placeLike != null and placeLike != '' ">
+				and E.PLACE like #{placeLike}
+			</if>
+
+			<if test="places != null and places.size != 0">
+				and E.PLACE IN
+				<foreach item="x_place" index="index" collection="places"
+					open="(" separator="," close=")">
+					#{x_place}
+				</foreach>
+			</if>
+
+			<if test="tname != null and tname != '' ">
+				and E.TNAME = #{tname}
+			</if>
+
+			<if test="tnameLike != null and tnameLike != '' ">
+				and E.TNAME like #{tnameLike}
+			</if>
+
+			<if test="tnames != null and tnames.size != 0">
+				and E.TNAME IN
+				<foreach item="x_tname" index="index" collection="tnames"
+					open="(" separator="," close=")">
+					#{x_tname}
+				</foreach>
+			</if>
+
+			<if test="wcompany != null and wcompany != '' ">
+				and E.WCOMPANY = #{wcompany}
+			</if>
+
+			<if test="wcompanyLike != null and wcompanyLike != '' ">
+				and E.WCOMPANY like #{wcompanyLike}
+			</if>
+
+			<if test="wcompanys != null and wcompanys.size != 0">
+				and E.WCOMPANY IN
+				<foreach item="x_wcompany" index="index" collection="wcompanys"
+					open="(" separator="," close=")">
+					#{x_wcompany}
+				</foreach>
+			</if>
+
+			<if test="wdate != null">
+				and E.WDATE = #{wdate}
+			</if>
+
+			<if test="wdateGreaterThanOrEqual != null">
+				and E.WDATE &gt;= #{wdateGreaterThanOrEqual}
+			</if>
+
+			<if test="wdateLessThanOrEqual != null">
+				and E.WDATE &lt;= #{wdateLessThanOrEqual}
+			</if>
+
+			<if test="wdates != null and wdates.size != 0">
+				and E.WDATE IN
+				<foreach item="x_wdate" index="index" collection="wdates"
+					open="(" separator="," close=")">
+					#{x_wdate}
+				</foreach>
+			</if>
+
+
+			<if test="carriertype != null and carriertype != '' ">
+				and E.CARRIERTYPE = #{carriertype}
+			</if>
+
+			<if test="carriertypeLike != null and carriertypeLike != '' ">
+				and E.CARRIERTYPE like #{carriertypeLike}
+			</if>
+
+			<if test="carriertypes != null and carriertypes.size != 0">
+				and E.CARRIERTYPE IN
+				<foreach item="x_carriertype" index="index" collection="carriertypes"
+					open="(" separator="," close=")">
+					#{x_carriertype}
+				</foreach>
+			</if>
+
+			<if test="numunit != null and numunit != '' ">
+				and E.NUMUNIT = #{numunit}
+			</if>
+
+			<if test="numunitLike != null and numunitLike != '' ">
+				and E.NUMUNIT like #{numunitLike}
+			</if>
+
+			<if test="numunits != null and numunits.size != 0">
+				and E.NUMUNIT IN
+				<foreach item="x_numunit" index="index" collection="numunits"
+					open="(" separator="," close=")">
+					#{x_numunit}
+				</foreach>
+			</if>
+
+			<if test="spec != null and spec != '' ">
+				and E.SPEC = #{spec}
+			</if>
+
+			<if test="specLike != null and specLike != '' ">
+				and E.SPEC like #{specLike}
+			</if>
+
+			<if test="specs != null and specs.size != 0">
+				and E.SPEC IN
+				<foreach item="x_spec" index="index" collection="specs"
+					open="(" separator="," close=")">
+					#{x_spec}
+				</foreach>
+			</if>
+
+			<if test="startday != null">
+				and E.STARTDAY = #{startday}
+			</if>
+
+			<if test="startdayGreaterThanOrEqual != null">
+				and E.STARTDAY &gt;= #{startdayGreaterThanOrEqual}
+			</if>
+
+			<if test="startdayLessThanOrEqual != null">
+				and E.STARTDAY &lt;= #{startdayLessThanOrEqual}
+			</if>
+
+			<if test="startdays != null and startdays.size != 0">
+				and E.STARTDAY IN
+				<foreach item="x_startday" index="index" collection="startdays"
+					open="(" separator="," close=")">
+					#{x_startday}
+				</foreach>
+			</if>
+
+
+			<if test="endday != null">
+				and E.ENDDAY = #{endday}
+			</if>
+
+			<if test="enddayGreaterThanOrEqual != null">
+				and E.ENDDAY &gt;= #{enddayGreaterThanOrEqual}
+			</if>
+
+			<if test="enddayLessThanOrEqual != null">
+				and E.ENDDAY &lt;= #{enddayLessThanOrEqual}
+			</if>
+
+			<if test="enddays != null and enddays.size != 0">
+				and E.ENDDAY IN
+				<foreach item="x_endday" index="index" collection="enddays"
+					open="(" separator="," close=")">
+					#{x_endday}
+				</foreach>
+			</if>
+
+
+			<if test="savetime != null and savetime != '' ">
+				and E.SAVETIME = #{savetime}
+			</if>
+
+			<if test="savetimeLike != null and savetimeLike != '' ">
+				and E.SAVETIME like #{savetimeLike}
+			</if>
+
+			<if test="savetimes != null and savetimes.size != 0">
+				and E.SAVETIME IN
+				<foreach item="x_savetime" index="index" collection="savetimes"
+					open="(" separator="," close=")">
+					#{x_savetime}
+				</foreach>
+			</if>
+
+			<if test="slevel != null and slevel != '' ">
+				and E.SLEVEL = #{slevel}
+			</if>
+
+			<if test="slevelLike != null and slevelLike != '' ">
+				and E.SLEVEL like #{slevelLike}
+			</if>
+
+			<if test="slevels != null and slevels.size != 0">
+				and E.SLEVEL IN
+				<foreach item="x_slevel" index="index" collection="slevels"
+					open="(" separator="," close=")">
+					#{x_slevel}
+				</foreach>
+			</if>
+
+			<if test="thematic != null and thematic != '' ">
+				and E.THEMATIC = #{thematic}
+			</if>
+
+			<if test="thematicLike != null and thematicLike != '' ">
+				and E.THEMATIC like #{thematicLike}
+			</if>
+
+			<if test="thematics != null and thematics.size != 0">
+				and E.THEMATIC IN
+				<foreach item="x_thematic" index="index" collection="thematics"
+					open="(" separator="," close=")">
+					#{x_thematic}
+				</foreach>
+			</if>
+
+			<if test="annotations != null and annotations != '' ">
+				and E.ANNOTATIONS = #{annotations}
+			</if>
+
+			<if test="annotationsLike != null and annotationsLike != '' ">
+				and E.ANNOTATIONS like #{annotationsLike}
+			</if>
+
+			<if test="annotationss != null and annotationss.size != 0">
+				and E.ANNOTATIONS IN
+				<foreach item="x_annotations" index="index" collection="annotationss"
+					open="(" separator="," close=")">
+					#{x_annotations}
+				</foreach>
+			</if>
+
+			<if test="totalfile != null">
+				and E.TOTALFILE = #{totalfile}
+			</if>
+
+			<if test="totalfileGreaterThanOrEqual != null">
+				and E.TOTALFILE &gt;= #{totalfileGreaterThanOrEqual}
+			</if>
+
+			<if test="totalfileLessThanOrEqual != null">
+				and E.TOTALFILE &lt;= #{totalfileLessThanOrEqual}
+			</if>
+
+			<if test="totalfiles != null and totalfiles.size != 0">
+				and E.TOTALFILE IN
+				<foreach item="x_totalfile" index="index" collection="totalfiles"
+					open="(" separator="," close=")">
+					#{x_totalfile}
+				</foreach>
+			</if>
+
+
+			<if test="totalpage != null">
+				and E.TOTALPAGE = #{totalpage}
+			</if>
+
+			<if test="totalpageGreaterThanOrEqual != null">
+				and E.TOTALPAGE &gt;= #{totalpageGreaterThanOrEqual}
+			</if>
+
+			<if test="totalpageLessThanOrEqual != null">
+				and E.TOTALPAGE &lt;= #{totalpageLessThanOrEqual}
+			</if>
+
+			<if test="totalpages != null and totalpages.size != 0">
+				and E.TOTALPAGE IN
+				<foreach item="x_totalpage" index="index" collection="totalpages"
+					open="(" separator="," close=")">
+					#{x_totalpage}
+				</foreach>
+			</if>
+
+
+			<if test="txtpage != null">
+				and E.TXTPAGE = #{txtpage}
+			</if>
+
+			<if test="txtpageGreaterThanOrEqual != null">
+				and E.TXTPAGE &gt;= #{txtpageGreaterThanOrEqual}
+			</if>
+
+			<if test="txtpageLessThanOrEqual != null">
+				and E.TXTPAGE &lt;= #{txtpageLessThanOrEqual}
+			</if>
+
+			<if test="txtpages != null and txtpages.size != 0">
+				and E.TXTPAGE IN
+				<foreach item="x_txtpage" index="index" collection="txtpages"
+					open="(" separator="," close=")">
+					#{x_txtpage}
+				</foreach>
+			</if>
+
+
+			<if test="picpage != null">
+				and E.PICPAGE = #{picpage}
+			</if>
+
+			<if test="picpageGreaterThanOrEqual != null">
+				and E.PICPAGE &gt;= #{picpageGreaterThanOrEqual}
+			</if>
+
+			<if test="picpageLessThanOrEqual != null">
+				and E.PICPAGE &lt;= #{picpageLessThanOrEqual}
+			</if>
+
+			<if test="picpages != null and picpages.size != 0">
+				and E.PICPAGE IN
+				<foreach item="x_picpage" index="index" collection="picpages"
+					open="(" separator="," close=")">
+					#{x_picpage}
+				</foreach>
+			</if>
+
+
+			<if test="photopage != null">
+				and E.PHOTOPAGE = #{photopage}
+			</if>
+
+			<if test="photopageGreaterThanOrEqual != null">
+				and E.PHOTOPAGE &gt;= #{photopageGreaterThanOrEqual}
+			</if>
+
+			<if test="photopageLessThanOrEqual != null">
+				and E.PHOTOPAGE &lt;= #{photopageLessThanOrEqual}
+			</if>
+
+			<if test="photopages != null and photopages.size != 0">
+				and E.PHOTOPAGE IN
+				<foreach item="x_photopage" index="index" collection="photopages"
+					open="(" separator="," close=")">
+					#{x_photopage}
+				</foreach>
+			</if>
+
+
+			<if test="cman != null and cman != '' ">
+				and E.CMAN = #{cman}
+			</if>
+
+			<if test="cmanLike != null and cmanLike != '' ">
+				and E.CMAN like #{cmanLike}
+			</if>
+
+			<if test="cmans != null and cmans.size != 0">
+				and E.CMAN IN
+				<foreach item="x_cman" index="index" collection="cmans"
+					open="(" separator="," close=")">
+					#{x_cman}
+				</foreach>
+			</if>
+
+			<if test="ctime != null">
+				and E.CTIME = #{ctime}
+			</if>
+
+			<if test="ctimeGreaterThanOrEqual != null">
+				and E.CTIME &gt;= #{ctimeGreaterThanOrEqual}
+			</if>
+
+			<if test="ctimeLessThanOrEqual != null">
+				and E.CTIME &lt;= #{ctimeLessThanOrEqual}
+			</if>
+
+			<if test="ctimes != null and ctimes.size != 0">
+				and E.CTIME IN
+				<foreach item="x_ctime" index="index" collection="ctimes"
+					open="(" separator="," close=")">
+					#{x_ctime}
+				</foreach>
+			</if>
+
+
+			<if test="assessor != null and assessor != '' ">
+				and E.ASSESSOR = #{assessor}
+			</if>
+
+			<if test="assessorLike != null and assessorLike != '' ">
+				and E.ASSESSOR like #{assessorLike}
+			</if>
+
+			<if test="assessors != null and assessors.size != 0">
+				and E.ASSESSOR IN
+				<foreach item="x_assessor" index="index" collection="assessors"
+					open="(" separator="," close=")">
+					#{x_assessor}
+				</foreach>
+			</if>
+
+			<if test="atime != null">
+				and E.ATIME = #{atime}
+			</if>
+
+			<if test="atimeGreaterThanOrEqual != null">
+				and E.ATIME &gt;= #{atimeGreaterThanOrEqual}
+			</if>
+
+			<if test="atimeLessThanOrEqual != null">
+				and E.ATIME &lt;= #{atimeLessThanOrEqual}
+			</if>
+
+			<if test="atimes != null and atimes.size != 0">
+				and E.ATIME IN
+				<foreach item="x_atime" index="index" collection="atimes"
+					open="(" separator="," close=")">
+					#{x_atime}
+				</foreach>
+			</if>
+
+
+			<if test="content != null and content != '' ">
+				and E.CONTENT = #{content}
+			</if>
+
+			<if test="contentLike != null and contentLike != '' ">
+				and E.CONTENT like #{contentLike}
+			</if>
+
+			<if test="contents != null and contents.size != 0">
+				and E.CONTENT IN
+				<foreach item="x_content" index="index" collection="contents"
+					open="(" separator="," close=")">
+					#{x_content}
+				</foreach>
+			</if>
+
+			<if test="islocate != null and islocate != '' ">
+				and E.ISLOCATE = #{islocate}
+			</if>
+
+			<if test="islocateLike != null and islocateLike != '' ">
+				and E.ISLOCATE like #{islocateLike}
+			</if>
+
+			<if test="islocates != null and islocates.size != 0">
+				and E.ISLOCATE IN
+				<foreach item="x_islocate" index="index" collection="islocates"
+					open="(" separator="," close=")">
+					#{x_islocate}
+				</foreach>
+			</if>
+
+			<if test="topnode != null and topnode != '' ">
+				and E.TOPNODE = #{topnode}
+			</if>
+
+			<if test="topnodeLike != null and topnodeLike != '' ">
+				and E.TOPNODE like #{topnodeLike}
+			</if>
+
+			<if test="topnodes != null and topnodes.size != 0">
+				and E.TOPNODE IN
+				<foreach item="x_topnode" index="index" collection="topnodes"
+					open="(" separator="," close=")">
+					#{x_topnode}
+				</foreach>
+			</if>
+
+			<if test="lcontent != null and lcontent != '' ">
+				and E.LCONTENT = #{lcontent}
+			</if>
+
+			<if test="lcontentLike != null and lcontentLike != '' ">
+				and E.LCONTENT like #{lcontentLike}
+			</if>
+
+			<if test="lcontents != null and lcontents.size != 0">
+				and E.LCONTENT IN
+				<foreach item="x_lcontent" index="index" collection="lcontents"
+					open="(" separator="," close=")">
+					#{x_lcontent}
+				</foreach>
+			</if>
+
+			<if test="lcompany != null and lcompany != '' ">
+				and E.LCOMPANY = #{lcompany}
+			</if>
+
+			<if test="lcompanyLike != null and lcompanyLike != '' ">
+				and E.LCOMPANY like #{lcompanyLike}
+			</if>
+
+			<if test="lcompanys != null and lcompanys.size != 0">
+				and E.LCOMPANY IN
+				<foreach item="x_lcompany" index="index" collection="lcompanys"
+					open="(" separator="," close=")">
+					#{x_lcompany}
+				</foreach>
+			</if>
+
+			<if test="lman != null and lman != '' ">
+				and E.LMAN = #{lman}
+			</if>
+
+			<if test="lmanLike != null and lmanLike != '' ">
+				and E.LMAN like #{lmanLike}
+			</if>
+
+			<if test="lmans != null and lmans.size != 0">
+				and E.LMAN IN
+				<foreach item="x_lman" index="index" collection="lmans"
+					open="(" separator="," close=")">
+					#{x_lman}
+				</foreach>
+			</if>
+
+			<if test="llen != null and llen != '' ">
+				and E.LLEN = #{llen}
+			</if>
+
+			<if test="llenLike != null and llenLike != '' ">
+				and E.LLEN like #{llenLike}
+			</if>
+
+			<if test="llens != null and llens.size != 0">
+				and E.LLEN IN
+				<foreach item="x_llen" index="index" collection="llens"
+					open="(" separator="," close=")">
+					#{x_llen}
+				</foreach>
+			</if>
+
+			<if test="ldate != null">
+				and E.LDATE = #{ldate}
+			</if>
+
+			<if test="ldateGreaterThanOrEqual != null">
+				and E.LDATE &gt;= #{ldateGreaterThanOrEqual}
+			</if>
+
+			<if test="ldateLessThanOrEqual != null">
+				and E.LDATE &lt;= #{ldateLessThanOrEqual}
+			</if>
+
+			<if test="ldates != null and ldates.size != 0">
+				and E.LDATE IN
+				<foreach item="x_ldate" index="index" collection="ldates"
+					open="(" separator="," close=")">
+					#{x_ldate}
+				</foreach>
+			</if>
+
+
+			<if test="jconten != null and jconten != '' ">
+				and E.JCONTEN = #{jconten}
+			</if>
+
+			<if test="jcontenLike != null and jcontenLike != '' ">
+				and E.JCONTEN like #{jcontenLike}
+			</if>
+
+			<if test="jcontens != null and jcontens.size != 0">
+				and E.JCONTEN IN
+				<foreach item="x_jconten" index="index" collection="jcontens"
+					open="(" separator="," close=")">
+					#{x_jconten}
+				</foreach>
+			</if>
+
+			<if test="jplace != null and jplace != '' ">
+				and E.JPLACE = #{jplace}
+			</if>
+
+			<if test="jplaceLike != null and jplaceLike != '' ">
+				and E.JPLACE like #{jplaceLike}
+			</if>
+
+			<if test="jplaces != null and jplaces.size != 0">
+				and E.JPLACE IN
+				<foreach item="x_jplace" index="index" collection="jplaces"
+					open="(" separator="," close=")">
+					#{x_jplace}
+				</foreach>
+			</if>
+
+			<if test="jman != null and jman != '' ">
+				and E.JMAN = #{jman}
+			</if>
+
+			<if test="jmanLike != null and jmanLike != '' ">
+				and E.JMAN like #{jmanLike}
+			</if>
+
+			<if test="jmans != null and jmans.size != 0">
+				and E.JMAN IN
+				<foreach item="x_jman" index="index" collection="jmans"
+					open="(" separator="," close=")">
+					#{x_jman}
+				</foreach>
+			</if>
+
+			<if test="jback != null and jback != '' ">
+				and E.JBACK = #{jback}
+			</if>
+
+			<if test="jbackLike != null and jbackLike != '' ">
+				and E.JBACK like #{jbackLike}
+			</if>
+
+			<if test="jbacks != null and jbacks.size != 0">
+				and E.JBACK IN
+				<foreach item="x_jback" index="index" collection="jbacks"
+					open="(" separator="," close=")">
+					#{x_jback}
+				</foreach>
+			</if>
+
+			<if test="jactor != null and jactor != '' ">
+				and E.JACTOR = #{jactor}
+			</if>
+
+			<if test="jactorLike != null and jactorLike != '' ">
+				and E.JACTOR like #{jactorLike}
+			</if>
+
+			<if test="jactors != null and jactors.size != 0">
+				and E.JACTOR IN
+				<foreach item="x_jactor" index="index" collection="jactors"
+					open="(" separator="," close=")">
+					#{x_jactor}
+				</foreach>
+			</if>
+
+			<if test="tnum != null and tnum != '' ">
+				and E.TNUM = #{tnum}
+			</if>
+
+			<if test="tnumLike != null and tnumLike != '' ">
+				and E.TNUM like #{tnumLike}
+			</if>
+
+			<if test="tnums != null and tnums.size != 0">
+				and E.TNUM IN
+				<foreach item="x_tnum" index="index" collection="tnums"
+					open="(" separator="," close=")">
+					#{x_tnum}
+				</foreach>
+			</if>
+
+			<if test="tzoom != null and tzoom != '' ">
+				and E.TZOOM = #{tzoom}
+			</if>
+
+			<if test="tzoomLike != null and tzoomLike != '' ">
+				and E.TZOOM like #{tzoomLike}
+			</if>
+
+			<if test="tzooms != null and tzooms.size != 0">
+				and E.TZOOM IN
+				<foreach item="x_tzoom" index="index" collection="tzooms"
+					open="(" separator="," close=")">
+					#{x_tzoom}
+				</foreach>
+			</if>
+
+			<if test="tflag != null and tflag != '' ">
+				and E.TFLAG = #{tflag}
+			</if>
+
+			<if test="tflagLike != null and tflagLike != '' ">
+				and E.TFLAG like #{tflagLike}
+			</if>
+
+			<if test="tflags != null and tflags.size != 0">
+				and E.TFLAG IN
+				<foreach item="x_tflag" index="index" collection="tflags"
+					open="(" separator="," close=")">
+					#{x_tflag}
+				</foreach>
+			</if>
+
+			<if test="tdesigner != null and tdesigner != '' ">
+				and E.TDESIGNER = #{tdesigner}
+			</if>
+
+			<if test="tdesignerLike != null and tdesignerLike != '' ">
+				and E.TDESIGNER like #{tdesignerLike}
+			</if>
+
+			<if test="tdesigners != null and tdesigners.size != 0">
+				and E.TDESIGNER IN
+				<foreach item="x_tdesigner" index="index" collection="tdesigners"
+					open="(" separator="," close=")">
+					#{x_tdesigner}
+				</foreach>
+			</if>
+
+			<if test="tviewer != null and tviewer != '' ">
+				and E.TVIEWER = #{tviewer}
+			</if>
+
+			<if test="tviewerLike != null and tviewerLike != '' ">
+				and E.TVIEWER like #{tviewerLike}
+			</if>
+
+			<if test="tviewers != null and tviewers.size != 0">
+				and E.TVIEWER IN
+				<foreach item="x_tviewer" index="index" collection="tviewers"
+					open="(" separator="," close=")">
+					#{x_tviewer}
+				</foreach>
+			</if>
+
+			<if test="tassessor != null and tassessor != '' ">
+				and E.TASSESSOR = #{tassessor}
+			</if>
+
+			<if test="tassessorLike != null and tassessorLike != '' ">
+				and E.TASSESSOR like #{tassessorLike}
+			</if>
+
+			<if test="tassessors != null and tassessors.size != 0">
+				and E.TASSESSOR IN
+				<foreach item="x_tassessor" index="index" collection="tassessors"
+					open="(" separator="," close=")">
+					#{x_tassessor}
+				</foreach>
+			</if>
+
+			<if test="tvision != null and tvision != '' ">
+				and E.TVISION = #{tvision}
+			</if>
+
+			<if test="tvisionLike != null and tvisionLike != '' ">
+				and E.TVISION like #{tvisionLike}
+			</if>
+
+			<if test="tvisions != null and tvisions.size != 0">
+				and E.TVISION IN
+				<foreach item="x_tvision" index="index" collection="tvisions"
+					open="(" separator="," close=")">
+					#{x_tvision}
+				</foreach>
+			</if>
+
+			<if test="finishday != null">
+				and E.FINISHDAY = #{finishday}
+			</if>
+
+			<if test="finishdayGreaterThanOrEqual != null">
+				and E.FINISHDAY &gt;= #{finishdayGreaterThanOrEqual}
+			</if>
+
+			<if test="finishdayLessThanOrEqual != null">
+				and E.FINISHDAY &lt;= #{finishdayLessThanOrEqual}
+			</if>
+
+			<if test="finishdays != null and finishdays.size != 0">
+				and E.FINISHDAY IN
+				<foreach item="x_finishday" index="index" collection="finishdays"
+					open="(" separator="," close=")">
+					#{x_finishday}
+				</foreach>
+			</if>
+
+
+			<if test="choosePublishFlag != null and choosePublishFlag != '' ">
+				and E.CHOOSEPUBLISHFLAG = #{choosePublishFlag}
+			</if>
+
+			<if test="choosePublishFlagLike != null and choosePublishFlagLike != '' ">
+				and E.CHOOSEPUBLISHFLAG like #{choosePublishFlagLike}
+			</if>
+
+			<if test="choosePublishFlags != null and choosePublishFlags.size != 0">
+				and E.CHOOSEPUBLISHFLAG IN
+				<foreach item="x_choosePublishFlag" index="index"
+					collection="choosePublishFlags" open="(" separator="," close=")">
+					#{x_choosePublishFlag}
+				</foreach>
+			</if>
+
+			<if test="choosePublishTime != null">
+				and E.CHOOSEPUBLISHTIME = #{choosePublishTime}
+			</if>
+
+			<if test="choosePublishTimeGreaterThanOrEqual != null">
+				and E.CHOOSEPUBLISHTIME &gt;=
+				#{choosePublishTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="choosePublishTimeLessThanOrEqual != null">
+				and E.CHOOSEPUBLISHTIME &lt;=
+				#{choosePublishTimeLessThanOrEqual}
+			</if>
+
+			<if test="choosePublishTimes != null and choosePublishTimes.size != 0">
+				and E.CHOOSEPUBLISHTIME IN
+				<foreach item="x_choosePublishTime" index="index"
+					collection="choosePublishTimes" open="(" separator="," close=")">
+					#{x_choosePublishTime}
+				</foreach>
+			</if>
+
+
+			<if test="publishdiskid != null">
+				and E.PUBLISHDISKID = #{publishdiskid}
+			</if>
+
+			<if test="publishdiskidGreaterThanOrEqual != null">
+				and E.PUBLISHDISKID &gt;=
+				#{publishdiskidGreaterThanOrEqual}
+			</if>
+
+			<if test="publishdiskidLessThanOrEqual != null">
+				and E.PUBLISHDISKID &lt;= #{publishdiskidLessThanOrEqual}
+			</if>
+
+			<if test="publishdiskids != null and publishdiskids.size != 0">
+				and E.PUBLISHDISKID IN
+				<foreach item="x_publishdiskid" index="index" collection="publishdiskids"
+					open="(" separator="," close=")">
+					#{x_publishdiskid}
+				</foreach>
+			</if>
+
+
+		</where>
+	</sql>
+
+</mapper>

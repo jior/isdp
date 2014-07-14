@@ -1,0 +1,1322 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.dms.mapper.DmsMapper">
+
+	<resultMap id="myDmsVolumeResultMap" type="com.glaf.dms.domain.DmsVolume">
+		<id property="id" column="ID" jdbcType="VARCHAR" />
+		<result property="listno" column="LISTNO" jdbcType="INTEGER" />
+		<result property="oldid" column="OLDID" jdbcType="VARCHAR" />
+		<result property="ruleID" column="RULEID" jdbcType="VARCHAR" />
+		<result property="ruleflag" column="RULEFLAG" jdbcType="VARCHAR" />
+		<result property="rulepid" column="RULEPID" jdbcType="VARCHAR" />
+		<result property="vid" column="VID" jdbcType="VARCHAR" />
+		<result property="sumflag" column="SUMFLAG" jdbcType="VARCHAR" />
+		<result property="topid" column="TOPID" jdbcType="INTEGER" />
+		<result property="indexId" column="INDEX_ID" jdbcType="INTEGER" />
+		<result property="projid" column="PROJID" jdbcType="INTEGER" />
+		<result property="pid" column="PID" jdbcType="INTEGER" />
+		<result property="pname" column="PNAME" jdbcType="VARCHAR" />
+		<result property="vflag" column="VFLAG" jdbcType="VARCHAR" />
+		<result property="vname" column="VNAME" jdbcType="VARCHAR" />
+		<result property="year" column="YEAR" jdbcType="INTEGER" />
+		<result property="glidenum" column="GLIDENUM" jdbcType="VARCHAR" />
+		<result property="filingflag" column="FILINGFLAG" jdbcType="VARCHAR" />
+		<result property="checkupflag" column="CHECKUPFLAG" jdbcType="VARCHAR" />
+		<result property="openflag" column="OPENFLAG" jdbcType="VARCHAR" />
+		<result property="finishflag" column="FINISHFLAG" jdbcType="VARCHAR" />
+		<result property="vtagnum" column="VTAGNUM" jdbcType="VARCHAR" />
+		<result property="vtype" column="VTYPE" jdbcType="VARCHAR" />
+		<result property="vnum" column="VNUM" jdbcType="VARCHAR" />
+		<result property="vtmpnum" column="VTMPNUM" jdbcType="VARCHAR" />
+		<result property="roomnum" column="ROOMNUM" jdbcType="VARCHAR" />
+		<result property="zoonum" column="ZOONUM" jdbcType="VARCHAR" />
+		<result property="efilenum" column="EFILENUM" jdbcType="VARCHAR" />
+		<result property="boxnum" column="BOXNUM" jdbcType="VARCHAR" />
+		<result property="place" column="PLACE" jdbcType="VARCHAR" />
+		<result property="tname" column="TNAME" jdbcType="VARCHAR" />
+		<result property="wcompany" column="WCOMPANY" jdbcType="VARCHAR" />
+		<result property="wdate" column="WDATE" jdbcType="TIMESTAMP" />
+		<result property="carriertype" column="CARRIERTYPE" jdbcType="VARCHAR" />
+		<result property="numunit" column="NUMUNIT" jdbcType="VARCHAR" />
+		<result property="spec" column="SPEC" jdbcType="VARCHAR" />
+		<result property="startday" column="STARTDAY" jdbcType="TIMESTAMP" />
+		<result property="endday" column="ENDDAY" jdbcType="TIMESTAMP" />
+		<result property="savetime" column="SAVETIME" jdbcType="VARCHAR" />
+		<result property="slevel" column="SLEVEL" jdbcType="VARCHAR" />
+		<result property="thematic" column="THEMATIC" jdbcType="VARCHAR" />
+		<result property="annotations" column="ANNOTATIONS" jdbcType="VARCHAR" />
+		<result property="totalfile" column="TOTALFILE" jdbcType="INTEGER" />
+		<result property="totalpage" column="TOTALPAGE" jdbcType="INTEGER" />
+		<result property="txtpage" column="TXTPAGE" jdbcType="INTEGER" />
+		<result property="picpage" column="PICPAGE" jdbcType="INTEGER" />
+		<result property="photopage" column="PHOTOPAGE" jdbcType="INTEGER" />
+		<result property="cman" column="CMAN" jdbcType="VARCHAR" />
+		<result property="ctime" column="CTIME" jdbcType="TIMESTAMP" />
+		<result property="assessor" column="ASSESSOR" jdbcType="VARCHAR" />
+		<result property="atime" column="ATIME" jdbcType="TIMESTAMP" />
+		<result property="content" column="CONTENT" jdbcType="VARCHAR" />
+		<result property="islocate" column="ISLOCATE" jdbcType="VARCHAR" />
+		<result property="topnode" column="TOPNODE" jdbcType="VARCHAR" />
+		<result property="lcontent" column="LCONTENT" jdbcType="VARCHAR" />
+		<result property="lcompany" column="LCOMPANY" jdbcType="VARCHAR" />
+		<result property="lman" column="LMAN" jdbcType="VARCHAR" />
+		<result property="llen" column="LLEN" jdbcType="VARCHAR" />
+		<result property="ldate" column="LDATE" jdbcType="TIMESTAMP" />
+		<result property="jconten" column="JCONTEN" jdbcType="VARCHAR" />
+		<result property="jplace" column="JPLACE" jdbcType="VARCHAR" />
+		<result property="jman" column="JMAN" jdbcType="VARCHAR" />
+		<result property="jback" column="JBACK" jdbcType="VARCHAR" />
+		<result property="jactor" column="JACTOR" jdbcType="VARCHAR" />
+		<result property="tnum" column="TNUM" jdbcType="VARCHAR" />
+		<result property="tzoom" column="TZOOM" jdbcType="VARCHAR" />
+		<result property="tflag" column="TFLAG" jdbcType="VARCHAR" />
+		<result property="tdesigner" column="TDESIGNER" jdbcType="VARCHAR" />
+		<result property="tviewer" column="TVIEWER" jdbcType="VARCHAR" />
+		<result property="tassessor" column="TASSESSOR" jdbcType="VARCHAR" />
+		<result property="tvision" column="TVISION" jdbcType="VARCHAR" />
+		<result property="finishday" column="FINISHDAY" jdbcType="TIMESTAMP" />
+		<result property="choosePublishFlag" column="CHOOSEPUBLISHFLAG"
+			jdbcType="VARCHAR" />
+		<result property="choosePublishTime" column="CHOOSEPUBLISHTIME"
+			jdbcType="BIGINT" />
+		<result property="publishdiskid" column="PUBLISHDISKID"
+			jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<resultMap id="myFileAttResultMap2" type="com.glaf.dms.domain.DmsFileatt">
+		<id property="fileId" column="fileID" jdbcType="VARCHAR" />
+		<result property="fileName" column="file_name" jdbcType="VARCHAR" />
+		<result property="fileContent" column="file_content" jdbcType="BLOB" />
+		<result property="filesize" column="filesize" jdbcType="INTEGER" />
+	</resultMap>
+
+	<select id="selectMyVolumes" parameterType="com.glaf.dms.query.DmsVolumeQuery"
+		resultMap="myDmsVolumeResultMap">
+
+		select E.* from volume E
+
+		where E.choosepublishflag = '1'
+
+		<if test="topid != null ">
+			and E.topid = #{topid}
+		</if>
+
+		<if test="diskNo != null and diskNo != -1 ">
+			and E.publishdiskid = #{diskNo}
+		</if>
+
+		order by E.listno
+
+	</select>
+
+	<select id="selectMyMapVolumes" parameterType="com.glaf.dms.query.DmsVolumeQuery"
+		resultType="map">
+
+		select E.* from volume E
+
+		where E.choosepublishflag = '1'
+
+		<if test="topid != null ">
+			and E.topid = #{topid}
+		</if>
+
+		<if test="publishdiskid != null and publishdiskid != -1 ">
+			and E.publishdiskid = #{diskNo}
+		</if>
+
+		order by E.listno
+
+	</select>
+
+
+	<select id="selectVolumeByVolumeId" parameterType="string"
+		resultMap="myDmsVolumeResultMap">
+		select *
+		from volume
+		where
+		id=#{id}
+	</select>
+
+
+	<select id="selectFileAttByFileId" parameterType="java.lang.String"
+		resultMap="myFileAttResultMap2">
+		select a.*
+		from fileatt a
+		where
+		a.fileID = #{id,
+		jdbcType=VARCHAR}
+		and
+		a.file_content is not null
+	</select>
+
+	<select id="selectDmsQueryList" parameterType="map"
+		resultType="com.glaf.core.domain.ColumnDefinition">
+		select fname as title, dname as columnName, dname as name,
+		dtype as javaType, listno as ordinal
+		from interface
+		where
+		frmtype=#{frmtype}
+		and issystem='1'
+		order by listno
+	</select>
+
+	<select id="dms_queryLoopList" parameterType="map" resultType="map">
+		${queryString}
+	</select>
+
+	<select id="dms_queryLoopTotal" parameterType="map" resultType="int">
+		${queryString}
+	</select>
+
+
+	<select id="selectDmsUserInfo" parameterType="map" resultType="map">
+		select *
+		from userinfo where username = #{userId}
+	</select>
+
+	<select id="selectTreepname" parameterType="map" resultType="map">
+		select * from treepname E
+		<where>
+			1 = 1
+
+			<if test="index_id != null and index_id != '' ">
+				and E.index_id = #{index_id}
+			</if>
+
+			<if test="index_name_like != null and index_name_like != '' ">
+				and E.index_name like #{index_name_like}
+			</if>
+
+		</where>
+	</select>
+
+	<select id="selectTreepinfo" parameterType="map" resultType="map">
+		select * from treepinfo E
+		<where>
+			1 = 1
+
+			<if test="top_id != null and top_id != '' ">
+				and E.top_id = #{top_id}
+			</if>
+
+			<if test="parent_id != null and parent_id != '' ">
+				and E.parent_id = #{parent_id}
+			</if>
+
+			<if test="index_id != null and index_id != '' ">
+				and E.index_id = #{index_id}
+			</if>
+
+			<if test="index_name_like != null and index_name_like != '' ">
+				and E.index_name like #{index_name_like}
+			</if>
+
+			<if test="nodetype != null and nodetype != '' ">
+				and E.nodetype = #{nodetype}
+			</if>
+
+		</where>
+
+		order by parent_id,listno
+
+	</select>
+
+	<select id="selectSingleTreevmain" parameterType="string"
+		resultType="map">
+
+		select parent_id as parentId, index_name as text, id as id
+		from treevmain_u
+		where index_id = #{index_id}
+
+	</select>
+
+	<select id="selectTreeModelTreevmain_u" parameterType="map"
+		resultType="com.glaf.core.base.BaseTree">
+
+		select E.index_id as id, E.parent_id as parentId, E.index_name as
+		name, E.id as code
+		from treevmain_u E
+
+		<where>
+			1 = 1
+
+			<if test="parentId != null and parentId != '' ">
+				and E.parent_id = #{parentId}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.index_name like #{nameLike}
+			</if>
+
+			<if test="nodetype != null and nodetype != '' ">
+				and E.nodetype = #{nodetype}
+			</if>
+
+			<if test="nodeIds != null and nodeIds.size !=0">
+				AND E.index_id IN
+				<foreach item="x_nodeId" index="index" collection="nodeIds"
+					open="(" separator="," close=")">
+					#{x_nodeId}
+				</foreach>
+			</if>
+
+			<if test="indexIds != null and indexIds.size !=0">
+				AND E.index_id IN
+				<foreach item="x_indexId" index="index" collection="indexIds"
+					open="(" separator="," close=")">
+					#{x_indexId}
+				</foreach>
+			</if>
+
+			<if test="parentIds != null and parentIds.size !=0">
+				AND E.parent_id IN
+				<foreach item="x_parentId" index="index" collection="parentIds"
+					open="(" separator="," close=")">
+					#{x_parentId}
+				</foreach>
+			</if>
+
+		</where>
+
+		order by E.parent_id, E.comm_listno, E.tree_dliststr, E.proj_listno,
+		E.num
+
+	</select>
+
+	<select id="selectTreeModelTreevmainU" parameterType="map"
+		resultType="com.glaf.core.base.BaseTree">
+
+		select E.index_id as id, E.parent_id as parentId, E.index_name as
+		name, E.id as code
+		from treevmain_u E
+		where 1=1
+
+		<choose>
+			<when
+				test=" parentId != null and ( parentId == '-1' or  @org.apache.commons.lang3.StringUtils@isNumeric(parentId) ) ">
+				and E.parent_id = #{parentId}
+			</when>
+			<otherwise>
+				and 1=0
+			</otherwise>
+		</choose>
+
+		order by E.parent_id, E.comm_listno, E.tree_dliststr, E.proj_listno,
+		E.num
+
+	</select>
+
+	<select id="selectSingleVolume" parameterType="string"
+		resultType="map">
+		select * from volume
+		where id = #{id}
+	</select>
+
+
+	<select id="selectTreeModelVolume" parameterType="map"
+		resultType="com.glaf.core.base.BaseTree">
+
+		select v.id as id, v.topid as parentId, v.vname as name
+		from volume v
+		where 1=1
+
+		<choose>
+			<when
+				test=" parentId != null and ( parentId == '-1' or  @org.apache.commons.lang3.StringUtils@isNumeric(parentId) ) ">
+				and v.topid = #{parentId}
+			</when>
+			<otherwise>
+				and 1=0
+			</otherwise>
+		</choose>
+
+	</select>
+
+	<select id="selectTreeModelPfile" parameterType="map"
+		resultType="com.glaf.core.base.BaseTree">
+
+		select p.id as id, p.vid as parentId, p.tname as name
+		from pfile p
+		where 1=1
+
+		<choose>
+			<when test=" parentId != null and parentId != '' ">
+				and p.vid = #{parentId}
+			</when>
+			<otherwise>
+				and 1=0
+			</otherwise>
+		</choose>
+
+	</select>
+
+	<select id="selectFileAttTree" parameterType="map" resultType="map">
+
+		select distinct a.fileid as fileid, p.index_id as index_id, p.vid as
+		vid, a.topid as topid,
+		p.tname as name, a.fname as fname, a.file_name
+		as filename, a.filesize as
+		filesize,
+		p.publishdiskid as publishdiskid
+		from fileatt a
+		inner join pfile p
+		on a.topid = p.id
+		where 1=1
+
+		<choose>
+			<when test=" parentId != null and parentId != '' ">
+				and p.vid = #{parentId}
+			</when>
+			<otherwise>
+				and 1=0
+			</otherwise>
+		</choose>
+
+	</select>
+
+	<select id="selectTreevmain_u" parameterType="map" resultType="map">
+
+		select E.index_id as id, E.parent_id as parentId, E.index_name as
+		text, E.id as nodecode
+		from treevmain_u E
+
+		<where>
+			1 = 1
+
+			<if test="parent_id != null and parent_id != '' ">
+				and E.parent_id = #{parent_id}
+			</if>
+
+			<if test="index_id != null and index_id != '' ">
+				and E.index_id = #{index_id}
+			</if>
+
+			<if test="index_name_like != null and index_name_like != '' ">
+				and E.index_name like #{index_name_like}
+			</if>
+
+			<if test="nodetype != null and nodetype != '' ">
+				and E.nodetype = #{nodetype}
+			</if>
+
+			<if test="filterNode != null and filterNode != '' ">
+				${filterNode}
+			</if>
+
+		</where>
+
+		order by parent_id,comm_listno,tree_dliststr,proj_listno,num
+
+	</select>
+
+
+	<select id="selectPfiles" parameterType="map" resultType="map">
+		select E.*, a.fileID as fileid, a.file_name, v.vnum as volumenum
+		<include refid="selectPfileSql" />
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="selectPfileCount" parameterType="map" resultType="int">
+		select count(*)
+		<include refid="selectPfileSql" />
+	</select>
+
+	<sql id="selectPfileSql">
+
+		from pfile E
+		inner join volume v
+		on E.vid = v.id
+		left outer join fileatt
+		a
+		on E.id = a.topid
+
+		<choose>
+			<when test="treenode_like != null and treenode_like != '' ">
+				inner join treevmain_u u
+				on v.topid = u.index_id
+			</when>
+			<when test="dms_treenodes != null and dms_treenodes != '' ">
+				inner join treevmain_u u
+				on v.topid = u.index_id
+			</when>
+		</choose>
+
+		<where>
+			1 = 1
+
+			<if test="treenode_like != null and treenode_like != '' ">
+				and u.id like #{treenode_like}
+			</if>
+
+			<if test="dms_treenodes != null and dms_treenodes != '' ">
+				${dms_treenodes}
+			</if>
+
+			<if test="id != null and id != '' ">
+				and E.pid = #{id}
+			</if>
+
+			<if test="filingflag != null and filingflag != '' ">
+				and E.filingflag = #{filingflag}
+			</if>
+
+			<if test="tname_like != null and tname_like != '' ">
+				and E.tname like #{tname_like}
+			</if>
+
+			<if test="vnum_like != null and vnum_like != '' ">
+				and v.vnum like #{vnum_like}
+			</if>
+
+			<if test="slevel_like != null and slevel_like != '' ">
+				and E.slevel like #{slevel_like}
+			</if>
+
+			<if test="savetime_like != null and savetime_like != '' ">
+				and E.savetime like #{savetime_like}
+			</if>
+
+			<if test="thematic_like != null and thematic_like != '' ">
+				and E.thematic like #{thematic_like}
+			</if>
+
+			<if test="tagnum_like != null and tagnum_like != '' ">
+				and E.tagnum like #{tagnum_like}
+			</if>
+
+			<if test="listnum_like != null and listnum_like != '' ">
+				and E.listnum like #{listnum_like}
+			</if>
+
+			<if test="duty_like != null and duty_like != '' ">
+				and E.duty like #{duty_like}
+			</if>
+
+			<if test="start_ctime != null and start_ctime != '' ">
+				and E.ctime &gt;= #{start_ctime}
+			</if>
+
+			<if test="end_ctime != null and end_ctime != '' ">
+				and E.ctime &lt;= #{end_ctime}
+			</if>
+
+		</where>
+	</sql>
+
+
+	<select id="selectVolumes" parameterType="map" resultType="map">
+
+		select E.*
+		<include refid="selectVolumeSql" />
+
+		<choose>
+			<when test="orderByPublishDate != null">
+				order by E.choosepublishtime desc
+			</when>
+			<when test="leaf == 'true' ">
+				order by E.listno
+			</when>
+			<otherwise>
+				order by vtmpnum, vnum, E.listno
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="selectVolumeIds" parameterType="map" resultType="string">
+		select E.id
+		<include refid="selectVolumeSql" />
+	</select>
+
+	<select id="selectVolumeCount" parameterType="map" resultType="int">
+		select count(*)
+		<include refid="selectVolumeSql" />
+	</select>
+
+	<sql id="selectVolumeSql">
+
+		from volume E
+
+		<choose>
+			<when test="treenode_like != null and treenode_like != '' ">
+				inner join treevmain_u u
+				on E.topid = u.index_id
+			</when>
+			<when test="dms_treenodes != null and dms_treenodes != '' ">
+				inner join treevmain_u u
+				on E.topid = u.index_id
+			</when>
+		</choose>
+
+		<where>
+			1 = 1
+
+			<if test="dms_treenodes != null and dms_treenodes != '' ">
+				${dms_treenodes}
+			</if>
+
+			<if test="id != null and id != '' ">
+				and E.topnode = #{id}
+			</if>
+
+			<if test="topid != null and topid != '' ">
+				and E.topid = #{topid}
+			</if>
+
+			<if test="topnode_like != null and topnode_like != '' ">
+				and E.topnode like #{topnode_like}
+			</if>
+
+			<if test="treenode_like != null and treenode_like != '' ">
+				and u.id like #{treenode_like}
+			</if>
+
+			<if test="filingflag != null and filingflag != '' ">
+				and E.filingflag = #{filingflag}
+			</if>
+
+			<if test="nofilingflag != null and nofilingflag != '' ">
+				and E.filingflag != #{nofilingflag}
+			</if>
+
+			<if test="finishflag != null and finishflag != '' ">
+				and E.finishflag = #{finishflag}
+			</if>
+
+			<if test="nofinishflag != null and nofinishflag != '' ">
+				and E.finishflag != #{nofinishflag}
+			</if>
+
+			<if test="vnum_like != null and vnum_like != '' ">
+				and E.vnum like #{vnum_like}
+			</if>
+
+			<if test="vname_like != null and vname_like != '' ">
+				and E.vname like #{vname_like}
+			</if>
+
+			<if test="slevel_like != null and slevel_like != '' ">
+				and E.slevel like #{slevel_like}
+			</if>
+
+			<if test="savetime_like != null and savetime_like != '' ">
+				and E.savetime like #{savetime_like}
+			</if>
+
+			<if test="cman_like != null and cman_like != '' ">
+				and E.cman like #{cman_like}
+			</if>
+
+			<if test="wcompany_like != null and wcompany_like != '' ">
+				and E.wcompany like #{wcompany_like}
+			</if>
+
+			<if test="assessor_like != null and assessor_like != '' ">
+				and E.assessor like #{assessor_like}
+			</if>
+
+			<if test="lcompany_like != null and lcompany_like != '' ">
+				and E.lcompany like #{lcompany_like}
+			</if>
+
+			<if test="start_wdate != null and start_wdate != '' ">
+				and E.wdate &gt;= #{start_wdate}
+			</if>
+
+			<if test="end_wdate != null and end_wdate != '' ">
+				and E.wdate &lt;= #{end_wdate}
+			</if>
+
+			<if test="startday != null and startday != '' ">
+				and E.startday &gt;= #{startday}
+			</if>
+
+			<if test="endday != null and endday != '' ">
+				and E.endday &lt;= #{endday}
+			</if>
+
+			<if test="choosepublishflag != null and choosepublishflag != '' ">
+				and E.choosepublishflag = #{choosepublishflag}
+			</if>
+
+		</where>
+	</sql>
+
+
+	<select id="dms_query_201" parameterType="map" resultType="map">
+		select E.*
+		<include refid="selectPfileSql" />
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="dms_query_202" parameterType="map" resultType="int">
+		select count(*)
+		<include refid="selectPfileSql" />
+	</select>
+
+
+	<select id="dms_query_203" parameterType="map" resultType="map">
+		select *
+		from pfile
+		where ( vid = #{id} )
+		or ( oldvid = #{oldid} )
+	</select>
+
+	<select id="dms_query_204" parameterType="map" resultType="int">
+		select
+		count(id) from pfile
+		where ( vid = #{id} )
+		or ( oldvid = #{oldid}
+		)
+	</select>
+
+
+	<select id="dms_query_205" parameterType="map" resultType="map">
+		select a.*
+		from pfile a, fileline b
+		where b.lineid = a.id
+		and ( b.fid =
+		#{id} )
+	</select>
+
+	<select id="dms_query_206" parameterType="map" resultType="int">
+		select
+		count(*) from pfile a, fileline b
+		where b.lineid = a.id
+		and (
+		b.fid =
+		#{id} )
+	</select>
+
+
+	<select id="dms_query_301" parameterType="map" resultType="map">
+		select E.*
+		<include refid="selectVolumeSql" />
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="dms_query_302" parameterType="map" resultType="int">
+		select count(*)
+		<include refid="selectVolumeSql" />
+	</select>
+
+	<select id="dms_query_303" parameterType="map" resultType="map">
+		select *
+		from volume
+		where ( id = #{id} )
+	</select>
+
+	<select id="dms_query_304" parameterType="map" resultType="map">
+		select *
+		from pfile
+		where ( vid = #{id} )
+		or ( oldvid = #{oldid} )
+	</select>
+
+	<select id="dms_query_305" parameterType="map" resultType="int">
+		select
+		count(id) from pfile
+		where ( vid = #{id} )
+		or ( oldvid = #{oldid}
+		)
+	</select>
+
+	<select id="dms_query_306" parameterType="map" resultType="map">
+		select a.*
+		from pfile a, fileline b
+		where b.lineid = a.id
+		and ( b.fid =
+		#{id} )
+	</select>
+
+	<select id="dms_query_307" parameterType="map" resultType="int">
+		select
+		count(*) from pfile a, fileline b
+		where b.lineid = a.id
+		and (
+		b.fid =
+		#{id} )
+	</select>
+
+	<select id="dms_query_350" parameterType="map" resultType="map">
+		SELECT
+		dname, fname FROM interface b, listshow a
+		where ( a.listid =
+		b.listid )
+		AND ( a.index_id = #{treeId} )
+		AND ( a.frmtype = 'v' )
+		ORDER
+		BY a.listno
+	</select>
+
+	<select id="dms_query_351" parameterType="map" resultType="int">
+		SELECT
+		COUNT(*) FROM interface b, listshow a
+		WHERE ( a.listid = b.listid
+		)
+		AND
+		( a.index_id = #{treeId} )
+		AND ( a.frmtype = 'v' )
+	</select>
+
+	<select id="dms_query_401" parameterType="map" resultType="map">
+		select E.*
+		<include refid="selectVolumeSql" />
+		<if test="orderBy != null">
+			order by listno,vnum
+		</if>
+	</select>
+
+	<select id="dms_query_402" parameterType="map" resultType="int">
+		select count(*)
+		<include refid="selectVolumeSql" />
+	</select>
+
+	<select id="dms_query_701" parameterType="map" resultType="map">
+		select
+		dname, fname from interface
+		where ( frmtype = #{frmtype} )
+		and (
+		ztype =
+		#{ztype} )
+		order by listno
+	</select>
+
+	<select id="dms_query_702" parameterType="map" resultType="map">
+		select
+		b.dname, b.fname from listshow a,interface b
+		where ( a.listid =
+		b.listid )
+		and ( a.index_id = #{fromid} )
+		and ( a.frmtype = 'v' )
+		order
+		by a.listno
+	</select>
+
+	<select id="dms_query_801" parameterType="map" resultType="map">
+		select E.*
+		<include refid="selectVolumeSql" />
+		<if test="orderBy != null">
+			order by listno,vnum
+		</if>
+	</select>
+
+	<select id="dms_query_802" parameterType="map" resultType="int">
+		select count(*)
+		<include refid="selectVolumeSql" />
+	</select>
+
+	<select id="dms_query_803" parameterType="map" resultType="map">
+		select *
+		from volume where id = #{id}
+	</select>
+
+	<select id="dms_query_804" parameterType="map" resultType="map">
+		select *
+		from pfile
+		where ( vid = #{id} )
+		or ( oldvid = #{oldid} )
+	</select>
+
+	<select id="dms_query_805" parameterType="map" resultType="int">
+		select
+		count(id) from pfile
+		where ( vid = #{id} )
+		or ( oldvid = #{oldid}
+		)
+	</select>
+
+	<select id="dms_query_806" parameterType="map" resultType="map">
+		select a.*
+		from pfile a, fileline b
+		where b.lineid = a.id
+		and ( b.fid =
+		#{id} )
+	</select>
+
+	<select id="dms_query_807" parameterType="map" resultType="int">
+		select
+		count(*) from pfile a, fileline b
+		where b.lineid = a.id
+		and (
+		b.fid =
+		#{id} )
+	</select>
+
+	<select id="dms_query_3101" parameterType="map" resultType="map">
+		select *
+		from pfile where ( id = #{id} )
+	</select>
+
+
+	<select id="dms_query_3102" parameterType="map" resultType="map">
+		select
+		b.dname , b.fname from listshow a,interface b
+		where a.listid =
+		b.listid
+		and ( a.index_id = #{index_id} )
+		and a.frmtype = 'pfile'
+		order
+		by
+		a.listno
+	</select>
+
+	<select id="dms_query_3201" parameterType="map" resultType="map">
+		select *
+		from volume where ( id = #{id} )
+	</select>
+
+
+	<select id="dms_query_3202" parameterType="map" resultType="map">
+		select
+		b.dname , b.fname from listshow a,interface b
+		where
+		a.listid=b.listid
+		and ( a.index_id = #{index_id} )
+		and a.frmtype = 'v'
+		order by a.listno
+	</select>
+
+	<select id="dms_query_3301" parameterType="map" resultType="map">
+		select
+		fileId, file_name from fileatt
+		where ( fileId = #{id} )
+	</select>
+
+	<select id="dms_query_3302" parameterType="map" resultType="map">
+		select
+		topid, fileId, file_name from fileatt
+		where ( topid = #{id} )
+	</select>
+
+	<select id="dms_query_5001" parameterType="map" resultType="map">
+		select *
+		from pfile
+	</select>
+
+	<select id="dms_query_5002" parameterType="map" resultType="int">
+		select
+		count(*) from pfile
+	</select>
+
+	<select id="dms_query_9901" parameterType="map" resultType="int">
+		select
+		count(*) from volume
+		where choosepublishflag = '1'
+	</select>
+
+	<select id="dms_query_9902" parameterType="map" resultType="int">
+		select
+		count(p.id) from pfile p
+		inner join volume v
+		on p.vid = v.id
+		where
+		v.choosepublishflag = '1'
+	</select>
+
+	<select id="dms_query_9903" parameterType="map" resultType="int">
+		select
+		count(*) from fileatt a
+		inner join pfile p
+		on a.topid = p.id
+		inner
+		join
+		volume v
+		on p.vid = v.id
+		where v.choosepublishflag = '1'
+	</select>
+
+	<select id="dms_query_9904" parameterType="map" resultType="long">
+		select
+		sum(a.filesize*1.0) from fileatt a
+		inner join pfile p on p.id =
+		a.topid
+		inner join volume v on p.vid = v.id
+		where v.choosepublishflag =
+		'1'
+	</select>
+
+	<select id="dms_query_9910" parameterType="map" resultType="long">
+
+		select sum(a.filesize*1.0) as fileSize
+		from
+		volume v
+		left outer join
+		pfile p
+		on v.id = p.vid
+		left outer join fileatt
+		a
+		on a.topid = p.id
+		where
+		v.choosepublishflag = '1'
+		group by v.topid,
+		v.listno, v.id
+		order by
+		v.topid, v.listno
+
+	</select>
+
+	<select id="selectVolumeDisplayFields" parameterType="map"
+		resultType="map">
+		select * from interface
+		where frmtype='v' and issystem='1'
+		<if test="isListShow != null and isListShow != '' ">
+			and isListShow = #{isListShow}
+		</if>
+		order by listno
+	</select>
+
+	<select id="selectPfileDisplayFields" parameterType="map"
+		resultType="map">
+		select * from interface
+		where frmtype='pfile' and issystem='1'
+		<if test="isListShow != null and isListShow != '' ">
+			and isListShow = #{isListShow}
+		</if>
+		order by listno
+	</select>
+
+
+	<select id="selectSingleVolumeSql" parameterType="string"
+		resultType="map">
+		select * from volume where id = #{value}
+	</select>
+
+
+	<select id="selectVolumeTreevMainSql" parameterType="map"
+		resultType="map">
+		select index_id as id, parent_id as pId, index_name as name
+		from treevmain_u
+		where nodetype = '0'
+		order by
+		parent_id,comm_listno,tree_dliststr,proj_listno,num
+	</select>
+
+	<select id="selectFileTreeSql" parameterType="map" resultType="map">
+		select p.id as id, p.tname as name, p.vid as vid, p.oldvid as oldvid,
+		v.topid as topid, a.fileId as fileId, a.file_name as filename, v.vnum
+		as volumenum
+		from pfile p
+		left outer join fileatt a
+		on p.id = a.topid
+		inner join volume v
+		on p.vid = v.id
+		order by p.vid asc
+	</select>
+
+
+	<select id="selectVolumeCategoryDatagridSql" parameterType="map"
+		resultType="map">
+		select v.id as id, v.listno as listno, v.vid as vid,
+		v.topid as topid,
+		v.index_id as index_id, v.publishdiskid as
+		publishdiskid,
+		v.pid as pid, v.vname as vname, v.vnum as vnum,
+		v.wcompany as wcompany,
+		v.wdate as wdate, v.startday as startday,
+		v.endday as endday, v.slevel,
+		v.numunit as numunit,
+		v.savetime as
+		savetime, v.ctime as ctime
+		from volume v
+		inner join treevmain_u u
+		on
+		v.topid = u.index_id
+		where u.nodetype = '0'
+		order by v.topid asc
+	</select>
+
+
+	<select id="selectAllVolumeDatagridSql" parameterType="map"
+		resultType="map">
+		select v.id as id, v.listno as listno, v.vid as vid,
+		v.topid as topid,
+		v.index_id as index_id, v.publishdiskid as
+		publishdiskid,
+		v.pid as pid, v.vname as vname, v.vnum
+		as vnum,
+		v.wcompany as wcompany,
+		v.wdate as wdate, v.startday as
+		startday,
+		v.endday as endday, v.slevel,
+		v.numunit as numunit,
+		v.savetime as
+		savetime, v.ctime as ctime
+		from volume v
+		inner join treevmain_u u
+		on
+		v.topid = u.index_id
+		where u.nodetype = '0'
+		order by v.topid asc
+	</select>
+
+
+	<select id="selectAllPfileDatagridSql" parameterType="map"
+		resultType="map">
+		select f.id, v.topid, f.tname, f.duty, f.savetime, f.ctime,
+		f.tagnum, v.vnum as volumenum,
+		f.pageno, f.page, f.publishdiskid as
+		publishdiskid,
+		f.vid, f.vnum, f.slevel, f.thematic
+		from pfile f
+		inner
+		join volume v
+		on f.vid =
+		v.id
+	</select>
+
+
+	<select id="selectFileAtts" parameterType="string" resultType="map">
+		select a.fileId as fileId , a.file_name as filename,
+		f.tname as name,
+		a.filesize as filesize,
+		v.topid as topid, f.vid as vid, v.vnum as
+		volumenum
+		from pfile f
+		left outer join fileatt a
+		on f.id = a.topid
+		inner
+		join volume v
+		on f.vid = v.id
+		where 1=1
+		and v.id = #{id}
+		order by
+		f.vid asc
+	</select>
+
+	<select id="selectFileAttSql" parameterType="map" resultType="map">
+		select a.fileId as fileId , a.file_name as filename,
+		f.tname as name,
+		a.filesize as filesize,
+		v.topid as topid, f.vid as vid, v.vnum as
+		volumenum
+		from pfile f
+		left outer join fileatt a
+		on f.id = a.topid
+		inner
+		join volume v
+		on f.vid = v.id
+		where v.choosepublishflag = '1'
+		<if test="publishdiskid != null and publishdiskid != '' ">
+			and v.publishdiskid = #{publishdiskid}
+		</if>
+		<if test="vnum != null and vnum != '' ">
+			and v.vnum = #{vnum}
+		</if>
+		order by f.vid asc
+	</select>
+
+	<select id="selectMaxDiskId" parameterType="map" resultType="int">
+		select max(publishdiskid) from volume
+	</select>
+
+
+	<select id="selectFileAttContentSql" parameterType="string"
+		resultType="map">
+		select file_content from fileatt where fileID = #{value}
+	</select>
+
+
+	<update id="updateVolumePublishflag" parameterType="map">
+		update volume set choosepublishflag = #{choosepublishflag} ,
+		choosepublishtime = #{choosepublishtime}, publishdiskid = 1
+		where 1=1
+		<if test="rowIds != null and rowIds.size() &gt; 0">
+			and id IN
+			<foreach item="x_rowId" index="index" collection="rowIds"
+				open="(" separator="," close=")">
+				#{x_rowId}
+			</foreach>
+		</if>
+	</update>
+
+	<update id="updateAllVolumeToPublish" parameterType="map">
+		update
+		volume set choosepublishflag = #{choosepublishflag} ,
+		choosepublishtime = #{choosepublishtime}, publishdiskid = 1
+	</update>
+
+	<update id="updateAllPfileToPublish" parameterType="map">
+		update pfile
+		set choosepublishflag = #{choosepublishflag}, publishdiskid = 1
+	</update>
+
+	<update id="updatePfilePublishflag" parameterType="map">
+		update pfile set choosepublishflag = #{choosepublishflag},
+		publishdiskid = 1
+		where 1=1
+		<if test="rowIds != null and rowIds.size() &gt; 0">
+			and vid IN
+			<foreach item="x_rowId" index="index" collection="rowIds"
+				open="(" separator="," close=")">
+				#{x_rowId}
+			</foreach>
+		</if>
+	</update>
+
+	<update id="updateVolumePublishAllflag" parameterType="map">
+		update
+		volume set choosepublishflag = '1', publishdiskid = 1
+		where
+		choosepublishflag is null
+	</update>
+
+	<update id="resetVolumePublishflag" parameterType="map">
+		update volume
+		set choosepublishflag = null, choosepublishtime=null,
+		publishdiskid =
+		null
+		where publishdiskid is not null
+	</update>
+
+	<update id="resetPfilePublishflag" parameterType="map">
+		update pfile
+		set choosepublishflag = null, choosepublishtime=null,
+		publishdiskid =
+		null
+		where publishdiskid is not null
+	</update>
+
+	<update id="resetTreevmainPublishflag" parameterType="map">
+		update
+		treevmain set choosepublishflag = null, choosepublishtime=null,
+		publishdiskid = null
+		where publishdiskid is not null
+	</update>
+
+	<update id="resetTreevmainUPublishflag" parameterType="map">
+		update
+		treevmain_u set choosepublishflag = null, choosepublishtime=null,
+		publishdiskid = null
+		where publishdiskid is not null
+	</update>
+
+	<update id="updatePfilePublishflagSyncVolume" parameterType="map">
+		update pfile set publishdiskid = t2.publishdiskid,
+		choosepublishflag =
+		t2.choosepublishflag,
+		choosepublishtime = t2.choosepublishtime
+		from
+		pfile as t1 ,volume as t2
+		where t1.vid = t2.id
+		and t2.publishdiskid is
+		not null
+		and t2.choosepublishflag = '1'
+	</update>
+
+	<update id="updateTreevmainUPublishflagSyncVolume"
+		parameterType="map">
+		update treevmain_u set publishdiskid = t2.publishdiskid,
+		choosepublishflag =
+		t2.choosepublishflag,
+		choosepublishtime =
+		t2.choosepublishtime
+		from
+		treevmain_u as t1 ,volume as t2
+		where
+		t1.index_id = t2.topid
+		and t2.publishdiskid is not null
+		and
+		t2.choosepublishflag = '1'
+	</update>
+
+	<update id="updateTreevmainPublishflagSyncTreevmainU"
+		parameterType="map">
+		update treevmain set publishdiskid = t2.publishdiskid,
+		choosepublishflag =
+		t2.choosepublishflag,
+		choosepublishtime =
+		t2.choosepublishtime
+		from
+		treevmain as t1 ,treevmain_u as t2
+		where
+		t1.index_id = t2.fromid
+		and t2.publishdiskid is not null
+		and
+		t2.choosepublishflag = '1'
+	</update>
+
+	<update id="updateVolumePublishDisks" parameterType="map">
+		update volume set publishdiskid = #{diskId}
+		where id in
+		<foreach item="x_rowId" index="index" collection="rowIds"
+			open="(" separator="," close=")">
+			#{x_rowId}
+		</foreach>
+	</update>
+
+	<update id="updatePfilePublishDisks" parameterType="map">
+		update pfile set publishdiskid = #{diskId}
+		where vid in
+		<foreach item="x_rowId" index="index" collection="rowIds"
+			open="(" separator="," close=")">
+			#{x_rowId}
+		</foreach>
+	</update>
+
+
+	<select id="dms_q01" parameterType="map" resultType="map">
+		select v.*,
+		v.id
+		as volumeId, u.id as catid, u.index_id as cat_index_id,
+		u.index_name as
+		cat_index_name
+		from volume v
+		inner join treevmain_u u
+		on
+		u.index_id =
+		v.topid
+		where v.topid = #{tree_topid}
+	</select>
+
+	<select id="dms_q03" parameterType="map" resultType="map">
+		select p.*,
+		p.id
+		as pfileId, p.vid as volumeId, v.vnum as volumenum
+		from pfile p
+		inner
+		join volume v
+		on p.vid = v.id
+		inner join treevmain_u u
+		on u.index_id
+		=
+		v.topid
+		where v.topid =
+		#{tree_topid}
+	</select>
+
+
+	<select id="dms_q04" parameterType="map" resultType="map">
+
+		select
+		f.fileID
+		as fileid, p.tname as name, p.publishdiskid as
+		publishdiskid,
+		v.id as
+		volumeId,
+		f.file_name as filename, f.ctime as ctime, f.filesize
+		as
+		filesize, p.id as pfileId
+		from fileatt f
+		inner join pfile p
+		on f.topid
+		=
+		p.id
+		inner join volume v
+		on p.vid = v.id
+		inner join treevmain_u u
+		on
+		u.index_id = v.topid
+		where v.topid = #{tree_topid}
+
+	</select>
+
+</mapper>

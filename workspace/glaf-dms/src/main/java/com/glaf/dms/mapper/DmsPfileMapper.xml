@@ -1,0 +1,1927 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.dms.mapper.DmsPfileMapper">
+
+	<resultMap id="dmsPfileResultMap" type="com.glaf.dms.domain.DmsPfile">
+		<id property="id" column="ID" jdbcType="VARCHAR" />
+		<result property="efilenum" column="EFILENUM" jdbcType="INTEGER" />
+		<result property="listnum" column="LISTNUM" jdbcType="VARCHAR" />
+		<result property="listId" column="LIST_ID" jdbcType="DOUBLE" />
+		<result property="indexId" column="INDEX_ID" jdbcType="INTEGER" />
+		<result property="pid" column="PID" jdbcType="INTEGER" />
+		<result property="projid" column="PROJID" jdbcType="INTEGER" />
+		<result property="dwid" column="DWID" jdbcType="INTEGER" />
+		<result property="fbid" column="FBID" jdbcType="INTEGER" />
+		<result property="fxid" column="FXID" jdbcType="INTEGER" />
+		<result property="jid" column="JID" jdbcType="VARCHAR" />
+		<result property="flid" column="FLID" jdbcType="VARCHAR" />
+		<result property="topnode" column="TOPNODE" jdbcType="VARCHAR" />
+		<result property="topnodem" column="TOPNODEM" jdbcType="VARCHAR" />
+		<result property="vid" column="VID" jdbcType="VARCHAR" />
+		<result property="oldvid" column="OLDVID" jdbcType="VARCHAR" />
+		<result property="visflag" column="VISFLAG" jdbcType="VARCHAR" />
+		<result property="listno" column="LISTNO" jdbcType="INTEGER" />
+		<result property="filingflag" column="FILINGFLAG" jdbcType="VARCHAR" />
+		<result property="saveflag" column="SAVEFLAG" jdbcType="VARCHAR" />
+		<result property="openflag" column="OPENFLAG" jdbcType="VARCHAR" />
+		<result property="checkupflag" column="CHECKUPFLAG" jdbcType="VARCHAR" />
+		<result property="finishflag" column="FINISHFLAG" jdbcType="VARCHAR" />
+		<result property="fromID" column="FROMID" jdbcType="VARCHAR" />
+		<result property="tname" column="TNAME" jdbcType="VARCHAR" />
+		<result property="duty" column="DUTY" jdbcType="VARCHAR" />
+		<result property="tagnum" column="TAGNUM" jdbcType="VARCHAR" />
+		<result property="filenum" column="FILENUM" jdbcType="VARCHAR" />
+		<result property="thematic" column="THEMATIC" jdbcType="VARCHAR" />
+		<result property="ctime" column="CTIME" jdbcType="TIMESTAMP" />
+		<result property="pageno" column="PAGENO" jdbcType="VARCHAR" />
+		<result property="slevel" column="SLEVEL" jdbcType="VARCHAR" />
+		<result property="page" column="PAGE" jdbcType="INTEGER" />
+		<result property="filetype" column="FILETYPE" jdbcType="VARCHAR" />
+		<result property="fontsnum" column="FONTSNUM" jdbcType="VARCHAR" />
+		<result property="savetime" column="SAVETIME" jdbcType="VARCHAR" />
+		<result property="company" column="COMPANY" jdbcType="VARCHAR" />
+		<result property="year" column="YEAR" jdbcType="INTEGER" />
+		<result property="fileatt" column="FILEATT" jdbcType="VARCHAR" />
+		<result property="annotations" column="ANNOTATIONS" jdbcType="VARCHAR" />
+		<result property="carriertype" column="CARRIERTYPE" jdbcType="VARCHAR" />
+		<result property="summary" column="SUMMARY" jdbcType="VARCHAR" />
+		<result property="ptext" column="PTEXT" jdbcType="VARCHAR" />
+		<result property="carrieru" column="CARRIERU" jdbcType="VARCHAR" />
+		<result property="glidenum" column="GLIDENUM" jdbcType="VARCHAR" />
+		<result property="efile" column="EFILE" jdbcType="VARCHAR" />
+		<result property="ftime" column="FTIME" jdbcType="TIMESTAMP" />
+		<result property="totalnum" column="TOTALNUM" jdbcType="VARCHAR" />
+		<result property="inputman" column="INPUTMAN" jdbcType="VARCHAR" />
+		<result property="etime" column="ETIME" jdbcType="TIMESTAMP" />
+		<result property="dotnum" column="DOTNUM" jdbcType="VARCHAR" />
+		<result property="picnum" column="PICNUM" jdbcType="VARCHAR" />
+		<result property="recnum" column="RECNUM" jdbcType="VARCHAR" />
+		<result property="total" column="TOTAL" jdbcType="INTEGER" />
+		<result property="pagetype" column="PAGETYPE" jdbcType="VARCHAR" />
+		<result property="iscom" column="ISCOM" jdbcType="VARCHAR" />
+		<result property="islocate" column="ISLOCATE" jdbcType="VARCHAR" />
+		<result property="wcompany" column="WCOMPANY" jdbcType="VARCHAR" />
+		<result property="wcompanyID" column="WCOMPANYID" jdbcType="VARCHAR" />
+		<result property="sendflag" column="SENDFLAG" jdbcType="VARCHAR" />
+		<result property="lcontent" column="LCONTENT" jdbcType="VARCHAR" />
+		<result property="lcompany" column="LCOMPANY" jdbcType="VARCHAR" />
+		<result property="lman" column="LMAN" jdbcType="VARCHAR" />
+		<result property="llen" column="LLEN" jdbcType="VARCHAR" />
+		<result property="ldate" column="LDATE" jdbcType="TIMESTAMP" />
+		<result property="jconten" column="JCONTEN" jdbcType="VARCHAR" />
+		<result property="jplace" column="JPLACE" jdbcType="VARCHAR" />
+		<result property="jman" column="JMAN" jdbcType="VARCHAR" />
+		<result property="jback" column="JBACK" jdbcType="VARCHAR" />
+		<result property="jactor" column="JACTOR" jdbcType="VARCHAR" />
+		<result property="jnum" column="JNUM" jdbcType="VARCHAR" />
+		<result property="jbnum" column="JBNUM" jdbcType="VARCHAR" />
+		<result property="tnum" column="TNUM" jdbcType="VARCHAR" />
+		<result property="tzoom" column="TZOOM" jdbcType="VARCHAR" />
+		<result property="tflag" column="TFLAG" jdbcType="VARCHAR" />
+		<result property="tdesigner" column="TDESIGNER" jdbcType="VARCHAR" />
+		<result property="tviewer" column="TVIEWER" jdbcType="VARCHAR" />
+		<result property="tassessor" column="TASSESSOR" jdbcType="VARCHAR" />
+		<result property="tvision" column="TVISION" jdbcType="VARCHAR" />
+		<result property="clistno" column="CLISTNO" jdbcType="INTEGER" />
+		<result property="cpageno" column="CPAGENO" jdbcType="VARCHAR" />
+		<result property="vnum" column="VNUM" jdbcType="VARCHAR" />
+		<result property="cvnum" column="CVNUM" jdbcType="VARCHAR" />
+		<result property="ctimeEnd" column="CTIME_END" jdbcType="TIMESTAMP" />
+		<result property="sysListno" column="SYS_LISTNO" jdbcType="INTEGER" />
+		<result property="sysaddint" column="SYSADDINT" jdbcType="INTEGER" />
+		<result property="chkefileint" column="CHKEFILEINT" jdbcType="INTEGER" />
+		<result property="projIndex" column="PROJ_INDEX" jdbcType="INTEGER" />
+		<result property="noscan" column="NOSCAN" jdbcType="INTEGER" />
+		<result property="treeParent" column="TREE_PARENT" jdbcType="INTEGER" />
+		<result property="treeList" column="TREE_LIST" jdbcType="INTEGER" />
+		<result property="treeDliststr" column="TREE_DLISTSTR"
+			jdbcType="VARCHAR" />
+		<result property="choosePublishFlag" column="CHOOSEPUBLISHFLAG"
+			jdbcType="VARCHAR" />
+		<result property="choosePublishTime" column="CHOOSEPUBLISHTIME"
+			jdbcType="BIGINT" />
+		<result property="publishdiskid" column="PUBLISHDISKID"
+			jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertDmsPfile" parameterType="com.glaf.dms.domain.DmsPfile">
+		insert into PFILE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID
+			<if test="efilenum != null">
+				,EFILENUM
+			</if>
+			<if test="listnum != null">
+				,LISTNUM
+			</if>
+			<if test="listId != null">
+				,LIST_ID
+			</if>
+			<if test="indexId != null">
+				,INDEX_ID
+			</if>
+			<if test="pid != null">
+				,PID
+			</if>
+			<if test="projid != null">
+				,PROJID
+			</if>
+			<if test="dwid != null">
+				,DWID
+			</if>
+			<if test="fbid != null">
+				,FBID
+			</if>
+			<if test="fxid != null">
+				,FXID
+			</if>
+			<if test="jid != null">
+				,JID
+			</if>
+			<if test="flid != null">
+				,FLID
+			</if>
+			<if test="topnode != null">
+				,TOPNODE
+			</if>
+			<if test="topnodem != null">
+				,TOPNODEM
+			</if>
+			<if test="vid != null">
+				,VID
+			</if>
+			<if test="oldvid != null">
+				,OLDVID
+			</if>
+			<if test="visflag != null">
+				,VISFLAG
+			</if>
+			<if test="listno != null">
+				,LISTNO
+			</if>
+			<if test="filingflag != null">
+				,FILINGFLAG
+			</if>
+			<if test="saveflag != null">
+				,SAVEFLAG
+			</if>
+			<if test="openflag != null">
+				,OPENFLAG
+			</if>
+			<if test="checkupflag != null">
+				,CHECKUPFLAG
+			</if>
+			<if test="finishflag != null">
+				,FINISHFLAG
+			</if>
+			<if test="fromID != null">
+				,FROMID
+			</if>
+			<if test="tname != null">
+				,TNAME
+			</if>
+			<if test="duty != null">
+				,DUTY
+			</if>
+			<if test="tagnum != null">
+				,TAGNUM
+			</if>
+			<if test="filenum != null">
+				,FILENUM
+			</if>
+			<if test="thematic != null">
+				,THEMATIC
+			</if>
+			<if test="ctime != null">
+				,CTIME
+			</if>
+			<if test="pageno != null">
+				,PAGENO
+			</if>
+			<if test="slevel != null">
+				,SLEVEL
+			</if>
+			<if test="page != null">
+				,PAGE
+			</if>
+			<if test="filetype != null">
+				,FILETYPE
+			</if>
+			<if test="fontsnum != null">
+				,FONTSNUM
+			</if>
+			<if test="savetime != null">
+				,SAVETIME
+			</if>
+			<if test="company != null">
+				,COMPANY
+			</if>
+			<if test="year != null">
+				,YEAR
+			</if>
+			<if test="fileatt != null">
+				,FILEATT
+			</if>
+			<if test="annotations != null">
+				,ANNOTATIONS
+			</if>
+			<if test="carriertype != null">
+				,CARRIERTYPE
+			</if>
+			<if test="summary != null">
+				,SUMMARY
+			</if>
+			<if test="ptext != null">
+				,PTEXT
+			</if>
+			<if test="carrieru != null">
+				,CARRIERU
+			</if>
+			<if test="glidenum != null">
+				,GLIDENUM
+			</if>
+			<if test="efile != null">
+				,EFILE
+			</if>
+			<if test="ftime != null">
+				,FTIME
+			</if>
+			<if test="totalnum != null">
+				,TOTALNUM
+			</if>
+			<if test="inputman != null">
+				,INPUTMAN
+			</if>
+			<if test="etime != null">
+				,ETIME
+			</if>
+			<if test="dotnum != null">
+				,DOTNUM
+			</if>
+			<if test="picnum != null">
+				,PICNUM
+			</if>
+			<if test="recnum != null">
+				,RECNUM
+			</if>
+			<if test="total != null">
+				,TOTAL
+			</if>
+			<if test="pagetype != null">
+				,PAGETYPE
+			</if>
+			<if test="iscom != null">
+				,ISCOM
+			</if>
+			<if test="islocate != null">
+				,ISLOCATE
+			</if>
+			<if test="wcompany != null">
+				,WCOMPANY
+			</if>
+			<if test="wcompanyID != null">
+				,WCOMPANYID
+			</if>
+			<if test="sendflag != null">
+				,SENDFLAG
+			</if>
+			<if test="lcontent != null">
+				,LCONTENT
+			</if>
+			<if test="lcompany != null">
+				,LCOMPANY
+			</if>
+			<if test="lman != null">
+				,LMAN
+			</if>
+			<if test="llen != null">
+				,LLEN
+			</if>
+			<if test="ldate != null">
+				,LDATE
+			</if>
+			<if test="jconten != null">
+				,JCONTEN
+			</if>
+			<if test="jplace != null">
+				,JPLACE
+			</if>
+			<if test="jman != null">
+				,JMAN
+			</if>
+			<if test="jback != null">
+				,JBACK
+			</if>
+			<if test="jactor != null">
+				,JACTOR
+			</if>
+			<if test="jnum != null">
+				,JNUM
+			</if>
+			<if test="jbnum != null">
+				,JBNUM
+			</if>
+			<if test="tnum != null">
+				,TNUM
+			</if>
+			<if test="tzoom != null">
+				,TZOOM
+			</if>
+			<if test="tflag != null">
+				,TFLAG
+			</if>
+			<if test="tdesigner != null">
+				,TDESIGNER
+			</if>
+			<if test="tviewer != null">
+				,TVIEWER
+			</if>
+			<if test="tassessor != null">
+				,TASSESSOR
+			</if>
+			<if test="tvision != null">
+				,TVISION
+			</if>
+			<if test="clistno != null">
+				,CLISTNO
+			</if>
+			<if test="cpageno != null">
+				,CPAGENO
+			</if>
+			<if test="vnum != null">
+				,VNUM
+			</if>
+			<if test="cvnum != null">
+				,CVNUM
+			</if>
+			<if test="ctimeEnd != null">
+				,CTIME_END
+			</if>
+			<if test="sysListno != null">
+				,SYS_LISTNO
+			</if>
+			<if test="sysaddint != null">
+				,SYSADDINT
+			</if>
+			<if test="chkefileint != null">
+				,CHKEFILEINT
+			</if>
+			<if test="projIndex != null">
+				,PROJ_INDEX
+			</if>
+			<if test="noscan != null">
+				,NOSCAN
+			</if>
+			<if test="treeParent != null">
+				,TREE_PARENT
+			</if>
+			<if test="treeList != null">
+				,TREE_LIST
+			</if>
+			<if test="treeDliststr != null">
+				,TREE_DLISTSTR
+			</if>
+			<if test="choosePublishFlag != null">
+				,CHOOSEPUBLISHFLAG
+			</if>
+			<if test="choosePublishTime != null">
+				,CHOOSEPUBLISHTIME
+			</if>
+			<if test="publishdiskid != null">
+				,PUBLISHDISKID
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="efilenum != null">
+				,#{efilenum, jdbcType=INTEGER}
+			</if>
+			<if test="listnum != null">
+				,#{listnum, jdbcType=VARCHAR}
+			</if>
+			<if test="listId != null">
+				,#{listId, jdbcType=DOUBLE}
+			</if>
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="pid != null">
+				,#{pid, jdbcType=INTEGER}
+			</if>
+			<if test="projid != null">
+				,#{projid, jdbcType=INTEGER}
+			</if>
+			<if test="dwid != null">
+				,#{dwid, jdbcType=INTEGER}
+			</if>
+			<if test="fbid != null">
+				,#{fbid, jdbcType=INTEGER}
+			</if>
+			<if test="fxid != null">
+				,#{fxid, jdbcType=INTEGER}
+			</if>
+			<if test="jid != null">
+				,#{jid, jdbcType=VARCHAR}
+			</if>
+			<if test="flid != null">
+				,#{flid, jdbcType=VARCHAR}
+			</if>
+			<if test="topnode != null">
+				,#{topnode, jdbcType=VARCHAR}
+			</if>
+			<if test="topnodem != null">
+				,#{topnodem, jdbcType=VARCHAR}
+			</if>
+			<if test="vid != null">
+				,#{vid, jdbcType=VARCHAR}
+			</if>
+			<if test="oldvid != null">
+				,#{oldvid, jdbcType=VARCHAR}
+			</if>
+			<if test="visflag != null">
+				,#{visflag, jdbcType=VARCHAR}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+			<if test="filingflag != null">
+				,#{filingflag, jdbcType=VARCHAR}
+			</if>
+			<if test="saveflag != null">
+				,#{saveflag, jdbcType=VARCHAR}
+			</if>
+			<if test="openflag != null">
+				,#{openflag, jdbcType=VARCHAR}
+			</if>
+			<if test="checkupflag != null">
+				,#{checkupflag, jdbcType=VARCHAR}
+			</if>
+			<if test="finishflag != null">
+				,#{finishflag, jdbcType=VARCHAR}
+			</if>
+			<if test="fromID != null">
+				,#{fromID, jdbcType=VARCHAR}
+			</if>
+			<if test="tname != null">
+				,#{tname, jdbcType=VARCHAR}
+			</if>
+			<if test="duty != null">
+				,#{duty, jdbcType=VARCHAR}
+			</if>
+			<if test="tagnum != null">
+				,#{tagnum, jdbcType=VARCHAR}
+			</if>
+			<if test="filenum != null">
+				,#{filenum, jdbcType=VARCHAR}
+			</if>
+			<if test="thematic != null">
+				,#{thematic, jdbcType=VARCHAR}
+			</if>
+			<if test="ctime != null">
+				,#{ctime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="pageno != null">
+				,#{pageno, jdbcType=VARCHAR}
+			</if>
+			<if test="slevel != null">
+				,#{slevel, jdbcType=VARCHAR}
+			</if>
+			<if test="page != null">
+				,#{page, jdbcType=INTEGER}
+			</if>
+			<if test="filetype != null">
+				,#{filetype, jdbcType=VARCHAR}
+			</if>
+			<if test="fontsnum != null">
+				,#{fontsnum, jdbcType=VARCHAR}
+			</if>
+			<if test="savetime != null">
+				,#{savetime, jdbcType=VARCHAR}
+			</if>
+			<if test="company != null">
+				,#{company, jdbcType=VARCHAR}
+			</if>
+			<if test="year != null">
+				,#{year, jdbcType=INTEGER}
+			</if>
+			<if test="fileatt != null">
+				,#{fileatt, jdbcType=VARCHAR}
+			</if>
+			<if test="annotations != null">
+				,#{annotations, jdbcType=VARCHAR}
+			</if>
+			<if test="carriertype != null">
+				,#{carriertype, jdbcType=VARCHAR}
+			</if>
+			<if test="summary != null">
+				,#{summary, jdbcType=VARCHAR}
+			</if>
+			<if test="ptext != null">
+				,#{ptext, jdbcType=VARCHAR}
+			</if>
+			<if test="carrieru != null">
+				,#{carrieru, jdbcType=VARCHAR}
+			</if>
+			<if test="glidenum != null">
+				,#{glidenum, jdbcType=VARCHAR}
+			</if>
+			<if test="efile != null">
+				,#{efile, jdbcType=VARCHAR}
+			</if>
+			<if test="ftime != null">
+				,#{ftime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="totalnum != null">
+				,#{totalnum, jdbcType=VARCHAR}
+			</if>
+			<if test="inputman != null">
+				,#{inputman, jdbcType=VARCHAR}
+			</if>
+			<if test="etime != null">
+				,#{etime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="dotnum != null">
+				,#{dotnum, jdbcType=VARCHAR}
+			</if>
+			<if test="picnum != null">
+				,#{picnum, jdbcType=VARCHAR}
+			</if>
+			<if test="recnum != null">
+				,#{recnum, jdbcType=VARCHAR}
+			</if>
+			<if test="total != null">
+				,#{total, jdbcType=INTEGER}
+			</if>
+			<if test="pagetype != null">
+				,#{pagetype, jdbcType=VARCHAR}
+			</if>
+			<if test="iscom != null">
+				,#{iscom, jdbcType=VARCHAR}
+			</if>
+			<if test="islocate != null">
+				,#{islocate, jdbcType=VARCHAR}
+			</if>
+			<if test="wcompany != null">
+				,#{wcompany, jdbcType=VARCHAR}
+			</if>
+			<if test="wcompanyID != null">
+				,#{wcompanyID, jdbcType=VARCHAR}
+			</if>
+			<if test="sendflag != null">
+				,#{sendflag, jdbcType=VARCHAR}
+			</if>
+			<if test="lcontent != null">
+				,#{lcontent, jdbcType=VARCHAR}
+			</if>
+			<if test="lcompany != null">
+				,#{lcompany, jdbcType=VARCHAR}
+			</if>
+			<if test="lman != null">
+				,#{lman, jdbcType=VARCHAR}
+			</if>
+			<if test="llen != null">
+				,#{llen, jdbcType=VARCHAR}
+			</if>
+			<if test="ldate != null">
+				,#{ldate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="jconten != null">
+				,#{jconten, jdbcType=VARCHAR}
+			</if>
+			<if test="jplace != null">
+				,#{jplace, jdbcType=VARCHAR}
+			</if>
+			<if test="jman != null">
+				,#{jman, jdbcType=VARCHAR}
+			</if>
+			<if test="jback != null">
+				,#{jback, jdbcType=VARCHAR}
+			</if>
+			<if test="jactor != null">
+				,#{jactor, jdbcType=VARCHAR}
+			</if>
+			<if test="jnum != null">
+				,#{jnum, jdbcType=VARCHAR}
+			</if>
+			<if test="jbnum != null">
+				,#{jbnum, jdbcType=VARCHAR}
+			</if>
+			<if test="tnum != null">
+				,#{tnum, jdbcType=VARCHAR}
+			</if>
+			<if test="tzoom != null">
+				,#{tzoom, jdbcType=VARCHAR}
+			</if>
+			<if test="tflag != null">
+				,#{tflag, jdbcType=VARCHAR}
+			</if>
+			<if test="tdesigner != null">
+				,#{tdesigner, jdbcType=VARCHAR}
+			</if>
+			<if test="tviewer != null">
+				,#{tviewer, jdbcType=VARCHAR}
+			</if>
+			<if test="tassessor != null">
+				,#{tassessor, jdbcType=VARCHAR}
+			</if>
+			<if test="tvision != null">
+				,#{tvision, jdbcType=VARCHAR}
+			</if>
+			<if test="clistno != null">
+				,#{clistno, jdbcType=INTEGER}
+			</if>
+			<if test="cpageno != null">
+				,#{cpageno, jdbcType=VARCHAR}
+			</if>
+			<if test="vnum != null">
+				,#{vnum, jdbcType=VARCHAR}
+			</if>
+			<if test="cvnum != null">
+				,#{cvnum, jdbcType=VARCHAR}
+			</if>
+			<if test="ctimeEnd != null">
+				,#{ctimeEnd, jdbcType=TIMESTAMP}
+			</if>
+			<if test="sysListno != null">
+				,#{sysListno, jdbcType=INTEGER}
+			</if>
+			<if test="sysaddint != null">
+				,#{sysaddint, jdbcType=INTEGER}
+			</if>
+			<if test="chkefileint != null">
+				,#{chkefileint, jdbcType=INTEGER}
+			</if>
+			<if test="projIndex != null">
+				,#{projIndex, jdbcType=INTEGER}
+			</if>
+			<if test="noscan != null">
+				,#{noscan, jdbcType=INTEGER}
+			</if>
+			<if test="treeParent != null">
+				,#{treeParent, jdbcType=INTEGER}
+			</if>
+			<if test="treeList != null">
+				,#{treeList, jdbcType=INTEGER}
+			</if>
+			<if test="treeDliststr != null">
+				,#{treeDliststr, jdbcType=VARCHAR}
+			</if>
+			<if test="choosePublishFlag != null">
+				,#{choosePublishFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="choosePublishTime != null">
+				,#{choosePublishTime, jdbcType=BIGINT}
+			</if>
+			<if test="publishdiskid != null">
+				,#{publishdiskid, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateDmsPfile" parameterType="com.glaf.dms.domain.DmsPfile">
+		update PFILE
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="efilenum != null">
+				EFILENUM = #{efilenum, jdbcType=INTEGER},
+			</if>
+			<if test="listnum != null">
+				LISTNUM = #{listnum, jdbcType=VARCHAR},
+			</if>
+			<if test="listId != null">
+				LIST_ID = #{listId, jdbcType=DOUBLE},
+			</if>
+			<if test="indexId != null">
+				INDEX_ID = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="pid != null">
+				PID = #{pid, jdbcType=INTEGER},
+			</if>
+			<if test="projid != null">
+				PROJID = #{projid, jdbcType=INTEGER},
+			</if>
+			<if test="dwid != null">
+				DWID = #{dwid, jdbcType=INTEGER},
+			</if>
+			<if test="fbid != null">
+				FBID = #{fbid, jdbcType=INTEGER},
+			</if>
+			<if test="fxid != null">
+				FXID = #{fxid, jdbcType=INTEGER},
+			</if>
+			<if test="jid != null">
+				JID = #{jid, jdbcType=VARCHAR},
+			</if>
+			<if test="flid != null">
+				FLID = #{flid, jdbcType=VARCHAR},
+			</if>
+			<if test="topnode != null">
+				TOPNODE = #{topnode, jdbcType=VARCHAR},
+			</if>
+			<if test="topnodem != null">
+				TOPNODEM = #{topnodem, jdbcType=VARCHAR},
+			</if>
+			<if test="vid != null">
+				VID = #{vid, jdbcType=VARCHAR},
+			</if>
+			<if test="oldvid != null">
+				OLDVID = #{oldvid, jdbcType=VARCHAR},
+			</if>
+			<if test="visflag != null">
+				VISFLAG = #{visflag, jdbcType=VARCHAR},
+			</if>
+			<if test="listno != null">
+				LISTNO = #{listno, jdbcType=INTEGER},
+			</if>
+			<if test="filingflag != null">
+				FILINGFLAG = #{filingflag, jdbcType=VARCHAR},
+			</if>
+			<if test="saveflag != null">
+				SAVEFLAG = #{saveflag, jdbcType=VARCHAR},
+			</if>
+			<if test="openflag != null">
+				OPENFLAG = #{openflag, jdbcType=VARCHAR},
+			</if>
+			<if test="checkupflag != null">
+				CHECKUPFLAG = #{checkupflag, jdbcType=VARCHAR},
+			</if>
+			<if test="finishflag != null">
+				FINISHFLAG = #{finishflag, jdbcType=VARCHAR},
+			</if>
+			<if test="fromID != null">
+				FROMID = #{fromID, jdbcType=VARCHAR},
+			</if>
+			<if test="tname != null">
+				TNAME = #{tname, jdbcType=VARCHAR},
+			</if>
+			<if test="duty != null">
+				DUTY = #{duty, jdbcType=VARCHAR},
+			</if>
+			<if test="tagnum != null">
+				TAGNUM = #{tagnum, jdbcType=VARCHAR},
+			</if>
+			<if test="filenum != null">
+				FILENUM = #{filenum, jdbcType=VARCHAR},
+			</if>
+			<if test="thematic != null">
+				THEMATIC = #{thematic, jdbcType=VARCHAR},
+			</if>
+			<if test="ctime != null">
+				CTIME = #{ctime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="pageno != null">
+				PAGENO = #{pageno, jdbcType=VARCHAR},
+			</if>
+			<if test="slevel != null">
+				SLEVEL = #{slevel, jdbcType=VARCHAR},
+			</if>
+			<if test="page != null">
+				PAGE = #{page, jdbcType=INTEGER},
+			</if>
+			<if test="filetype != null">
+				FILETYPE = #{filetype, jdbcType=VARCHAR},
+			</if>
+			<if test="fontsnum != null">
+				FONTSNUM = #{fontsnum, jdbcType=VARCHAR},
+			</if>
+			<if test="savetime != null">
+				SAVETIME = #{savetime, jdbcType=VARCHAR},
+			</if>
+			<if test="company != null">
+				COMPANY = #{company, jdbcType=VARCHAR},
+			</if>
+			<if test="year != null">
+				YEAR = #{year, jdbcType=INTEGER},
+			</if>
+			<if test="fileatt != null">
+				FILEATT = #{fileatt, jdbcType=VARCHAR},
+			</if>
+			<if test="annotations != null">
+				ANNOTATIONS = #{annotations, jdbcType=VARCHAR},
+			</if>
+			<if test="carriertype != null">
+				CARRIERTYPE = #{carriertype, jdbcType=VARCHAR},
+			</if>
+			<if test="summary != null">
+				SUMMARY = #{summary, jdbcType=VARCHAR},
+			</if>
+			<if test="ptext != null">
+				PTEXT = #{ptext, jdbcType=VARCHAR},
+			</if>
+			<if test="carrieru != null">
+				CARRIERU = #{carrieru, jdbcType=VARCHAR},
+			</if>
+			<if test="glidenum != null">
+				GLIDENUM = #{glidenum, jdbcType=VARCHAR},
+			</if>
+			<if test="efile != null">
+				EFILE = #{efile, jdbcType=VARCHAR},
+			</if>
+			<if test="ftime != null">
+				FTIME = #{ftime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="totalnum != null">
+				TOTALNUM = #{totalnum, jdbcType=VARCHAR},
+			</if>
+			<if test="inputman != null">
+				INPUTMAN = #{inputman, jdbcType=VARCHAR},
+			</if>
+			<if test="etime != null">
+				ETIME = #{etime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="dotnum != null">
+				DOTNUM = #{dotnum, jdbcType=VARCHAR},
+			</if>
+			<if test="picnum != null">
+				PICNUM = #{picnum, jdbcType=VARCHAR},
+			</if>
+			<if test="recnum != null">
+				RECNUM = #{recnum, jdbcType=VARCHAR},
+			</if>
+			<if test="total != null">
+				TOTAL = #{total, jdbcType=INTEGER},
+			</if>
+			<if test="pagetype != null">
+				PAGETYPE = #{pagetype, jdbcType=VARCHAR},
+			</if>
+			<if test="iscom != null">
+				ISCOM = #{iscom, jdbcType=VARCHAR},
+			</if>
+			<if test="islocate != null">
+				ISLOCATE = #{islocate, jdbcType=VARCHAR},
+			</if>
+			<if test="wcompany != null">
+				WCOMPANY = #{wcompany, jdbcType=VARCHAR},
+			</if>
+			<if test="wcompanyID != null">
+				WCOMPANYID = #{wcompanyID, jdbcType=VARCHAR},
+			</if>
+			<if test="sendflag != null">
+				SENDFLAG = #{sendflag, jdbcType=VARCHAR},
+			</if>
+			<if test="lcontent != null">
+				LCONTENT = #{lcontent, jdbcType=VARCHAR},
+			</if>
+			<if test="lcompany != null">
+				LCOMPANY = #{lcompany, jdbcType=VARCHAR},
+			</if>
+			<if test="lman != null">
+				LMAN = #{lman, jdbcType=VARCHAR},
+			</if>
+			<if test="llen != null">
+				LLEN = #{llen, jdbcType=VARCHAR},
+			</if>
+			<if test="ldate != null">
+				LDATE = #{ldate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="jconten != null">
+				JCONTEN = #{jconten, jdbcType=VARCHAR},
+			</if>
+			<if test="jplace != null">
+				JPLACE = #{jplace, jdbcType=VARCHAR},
+			</if>
+			<if test="jman != null">
+				JMAN = #{jman, jdbcType=VARCHAR},
+			</if>
+			<if test="jback != null">
+				JBACK = #{jback, jdbcType=VARCHAR},
+			</if>
+			<if test="jactor != null">
+				JACTOR = #{jactor, jdbcType=VARCHAR},
+			</if>
+			<if test="jnum != null">
+				JNUM = #{jnum, jdbcType=VARCHAR},
+			</if>
+			<if test="jbnum != null">
+				JBNUM = #{jbnum, jdbcType=VARCHAR},
+			</if>
+			<if test="tnum != null">
+				TNUM = #{tnum, jdbcType=VARCHAR},
+			</if>
+			<if test="tzoom != null">
+				TZOOM = #{tzoom, jdbcType=VARCHAR},
+			</if>
+			<if test="tflag != null">
+				TFLAG = #{tflag, jdbcType=VARCHAR},
+			</if>
+			<if test="tdesigner != null">
+				TDESIGNER = #{tdesigner, jdbcType=VARCHAR},
+			</if>
+			<if test="tviewer != null">
+				TVIEWER = #{tviewer, jdbcType=VARCHAR},
+			</if>
+			<if test="tassessor != null">
+				TASSESSOR = #{tassessor, jdbcType=VARCHAR},
+			</if>
+			<if test="tvision != null">
+				TVISION = #{tvision, jdbcType=VARCHAR},
+			</if>
+			<if test="clistno != null">
+				CLISTNO = #{clistno, jdbcType=INTEGER},
+			</if>
+			<if test="cpageno != null">
+				CPAGENO = #{cpageno, jdbcType=VARCHAR},
+			</if>
+			<if test="vnum != null">
+				VNUM = #{vnum, jdbcType=VARCHAR},
+			</if>
+			<if test="cvnum != null">
+				CVNUM = #{cvnum, jdbcType=VARCHAR},
+			</if>
+			<if test="ctimeEnd != null">
+				CTIME_END = #{ctimeEnd, jdbcType=TIMESTAMP},
+			</if>
+			<if test="sysListno != null">
+				SYS_LISTNO = #{sysListno, jdbcType=INTEGER},
+			</if>
+			<if test="sysaddint != null">
+				SYSADDINT = #{sysaddint, jdbcType=INTEGER},
+			</if>
+			<if test="chkefileint != null">
+				CHKEFILEINT = #{chkefileint, jdbcType=INTEGER},
+			</if>
+			<if test="projIndex != null">
+				PROJ_INDEX = #{projIndex, jdbcType=INTEGER},
+			</if>
+			<if test="noscan != null">
+				NOSCAN = #{noscan, jdbcType=INTEGER},
+			</if>
+			<if test="treeParent != null">
+				TREE_PARENT = #{treeParent, jdbcType=INTEGER},
+			</if>
+			<if test="treeList != null">
+				TREE_LIST = #{treeList, jdbcType=INTEGER},
+			</if>
+			<if test="treeDliststr != null">
+				TREE_DLISTSTR = #{treeDliststr, jdbcType=VARCHAR},
+			</if>
+			<if test="choosePublishFlag != null">
+				CHOOSEPUBLISHFLAG = #{choosePublishFlag,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="choosePublishTime != null">
+				CHOOSEPUBLISHTIME = #{choosePublishTime,
+				jdbcType=BIGINT},
+			</if>
+			<if test="publishdiskid != null">
+				PUBLISHDISKID = #{publishdiskid, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		ID = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteDmsPfileById" parameterType="string">
+		delete from PFILE
+		where ID = #{id}
+	</delete>
+
+
+	<delete id="deleteDmsPfiles" parameterType="com.glaf.dms.query.DmsPfileQuery">
+		delete from PFILE
+		where (
+		ID IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getDmsPfileById" parameterType="string" resultMap="dmsPfileResultMap">
+		select * from PFILE where ID = #{id}
+	</select>
+
+
+	<select id="getDmsPfiles" parameterType="com.glaf.dms.query.DmsPfileQuery"
+		resultMap="dmsPfileResultMap">
+		select distinct E.*
+		<include refid="selectDmsPfilesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getDmsPfileCount" parameterType="com.glaf.dms.query.DmsPfileQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDmsPfilesSql" />
+	</select>
+
+
+	<sql id="selectDmsPfilesSql">
+
+		from PFILE E
+
+		<choose>
+			<when test="treenodeLike != null and treenodeLike != '' ">
+				inner join volume v
+				on E.vid = v.vid
+				inner join
+				treevmain_u u
+				on v.topid = u.index_id
+			</when>
+			<when test="dmsTreenodes != null and dmsTreenodes != '' ">
+				inner join volume v
+				on E.vid = v.vid
+				inner join
+				treevmain_u u
+				on v.topid = u.index_id
+			</when>
+		</choose>
+
+		<where>
+			1 = 1
+
+			<if test="dmsTreenodes != null and dmsTreenodes != '' ">
+				${dms_treenodes}
+			</if>
+
+			<if test="treenodeLike != null and treenodeLike != '' ">
+				and u.id like #{treenodeLike}
+			</if>
+
+			<if test="efilenum != null">
+				and E.EFILENUM = #{efilenum}
+			</if>
+
+			<if test="listnum != null and listnum != '' ">
+				and E.LISTNUM = #{listnum}
+			</if>
+
+			<if test="listnumLike != null and listnumLike != '' ">
+				and E.LISTNUM like #{listnumLike}
+			</if>
+
+			<if test="listId != null">
+				and E.LIST_ID = #{listId}
+			</if>
+
+			<if test="listIdGreaterThanOrEqual != null">
+				and E.LIST_ID &gt;= #{listIdGreaterThanOrEqual}
+			</if>
+
+			<if test="listIdLessThanOrEqual != null">
+				and E.LIST_ID &lt;= #{listIdLessThanOrEqual}
+			</if>
+
+			<if test="listIds != null and listIds.size != 0">
+				and E.LIST_ID IN
+				<foreach item="x_listId" index="index" collection="listIds"
+					open="(" separator="," close=")">
+					#{x_listId}
+				</foreach>
+			</if>
+
+
+			<if test="indexId != null">
+				and E.INDEX_ID = #{indexId}
+			</if>
+
+			<if test="indexIdGreaterThanOrEqual != null">
+				and E.INDEX_ID &gt;= #{indexIdGreaterThanOrEqual}
+			</if>
+
+			<if test="indexIdLessThanOrEqual != null">
+				and E.INDEX_ID &lt;= #{indexIdLessThanOrEqual}
+			</if>
+
+			<if test="indexIds != null and indexIds.size != 0">
+				and E.INDEX_ID IN
+				<foreach item="x_indexId" index="index" collection="indexIds"
+					open="(" separator="," close=")">
+					#{x_indexId}
+				</foreach>
+			</if>
+
+
+			<if test="pid != null">
+				and E.PID = #{pid}
+			</if>
+
+			<if test="pidGreaterThanOrEqual != null">
+				and E.PID &gt;= #{pidGreaterThanOrEqual}
+			</if>
+
+			<if test="pidLessThanOrEqual != null">
+				and E.PID &lt;= #{pidLessThanOrEqual}
+			</if>
+
+			<if test="pids != null and pids.size != 0">
+				and E.PID IN
+				<foreach item="x_pid" index="index" collection="pids" open="("
+					separator="," close=")">
+					#{x_pid}
+				</foreach>
+			</if>
+
+
+			<if test="projid != null">
+				and E.PROJID = #{projid}
+			</if>
+
+			<if test="projidGreaterThanOrEqual != null">
+				and E.PROJID &gt;= #{projidGreaterThanOrEqual}
+			</if>
+
+			<if test="projidLessThanOrEqual != null">
+				and E.PROJID &lt;= #{projidLessThanOrEqual}
+			</if>
+
+			<if test="projids != null and projids.size != 0">
+				and E.PROJID IN
+				<foreach item="x_projid" index="index" collection="projids"
+					open="(" separator="," close=")">
+					#{x_projid}
+				</foreach>
+			</if>
+
+			<if test="topnode != null and topnode != '' ">
+				and E.TOPNODE = #{topnode}
+			</if>
+
+			<if test="topnodeLike != null and topnodeLike != '' ">
+				and E.TOPNODE like #{topnodeLike}
+			</if>
+
+			<if test="topnodes != null and topnodes.size != 0">
+				and E.TOPNODE IN
+				<foreach item="x_topnode" index="index" collection="topnodes"
+					open="(" separator="," close=")">
+					#{x_topnode}
+				</foreach>
+			</if>
+
+			<if test="vid != null and vid != '' ">
+				and E.VID = #{vid}
+			</if>
+
+			<if test="vidLike != null and vidLike != '' ">
+				and E.VID like #{vidLike}
+			</if>
+
+			<if test="vids != null and vids.size != 0">
+				and E.VID IN
+				<foreach item="x_vid" index="index" collection="vids" open="("
+					separator="," close=")">
+					#{x_vid}
+				</foreach>
+			</if>
+
+			<if test="visflag != null and visflag != '' ">
+				and E.VISFLAG = #{visflag}
+			</if>
+
+			<if test="visflagLike != null and visflagLike != '' ">
+				and E.VISFLAG like #{visflagLike}
+			</if>
+
+
+			<if test="listno != null">
+				and E.LISTNO = #{listno}
+			</if>
+
+			<if test="listnoGreaterThanOrEqual != null">
+				and E.LISTNO &gt;= #{listnoGreaterThanOrEqual}
+			</if>
+
+			<if test="listnoLessThanOrEqual != null">
+				and E.LISTNO &lt;= #{listnoLessThanOrEqual}
+			</if>
+
+
+			<if test="filingflag != null and filingflag != '' ">
+				and E.FILINGFLAG = #{filingflag}
+			</if>
+
+			<if test="filingflagLike != null and filingflagLike != '' ">
+				and E.FILINGFLAG like #{filingflagLike}
+			</if>
+
+			<if test="saveflag != null and saveflag != '' ">
+				and E.SAVEFLAG = #{saveflag}
+			</if>
+
+			<if test="saveflagLike != null and saveflagLike != '' ">
+				and E.SAVEFLAG like #{saveflagLike}
+			</if>
+
+			<if test="openflag != null and openflag != '' ">
+				and E.OPENFLAG = #{openflag}
+			</if>
+
+			<if test="openflagLike != null and openflagLike != '' ">
+				and E.OPENFLAG like #{openflagLike}
+			</if>
+
+			<if test="checkupflag != null and checkupflag != '' ">
+				and E.CHECKUPFLAG = #{checkupflag}
+			</if>
+
+			<if test="checkupflagLike != null and checkupflagLike != '' ">
+				and E.CHECKUPFLAG like #{checkupflagLike}
+			</if>
+
+			<if test="finishflag != null and finishflag != '' ">
+				and E.FINISHFLAG = #{finishflag}
+			</if>
+
+			<if test="finishflagLike != null and finishflagLike != '' ">
+				and E.FINISHFLAG like #{finishflagLike}
+			</if>
+
+			<if test="fromID != null and fromID != '' ">
+				and E.FROMID = #{fromID}
+			</if>
+
+			<if test="fromIDLike != null and fromIDLike != '' ">
+				and E.FROMID like #{fromIDLike}
+			</if>
+
+			<if test="fromIDs != null and fromIDs.size != 0">
+				and E.FROMID IN
+				<foreach item="x_fromID" index="index" collection="fromIDs"
+					open="(" separator="," close=")">
+					#{x_fromID}
+				</foreach>
+			</if>
+
+			<if test="tname != null and tname != '' ">
+				and E.TNAME = #{tname}
+			</if>
+
+			<if test="tnameLike != null and tnameLike != '' ">
+				and E.TNAME like #{tnameLike}
+			</if>
+
+			<if test="duty != null and duty != '' ">
+				and E.DUTY = #{duty}
+			</if>
+
+			<if test="dutyLike != null and dutyLike != '' ">
+				and E.DUTY like #{dutyLike}
+			</if>
+
+			<if test="tagnum != null and tagnum != '' ">
+				and E.TAGNUM = #{tagnum}
+			</if>
+
+			<if test="tagnumLike != null and tagnumLike != '' ">
+				and E.TAGNUM like #{tagnumLike}
+			</if>
+
+			<if test="filenum != null and filenum != '' ">
+				and E.FILENUM = #{filenum}
+			</if>
+
+			<if test="filenumLike != null and filenumLike != '' ">
+				and E.FILENUM like #{filenumLike}
+			</if>
+
+			<if test="thematic != null and thematic != '' ">
+				and E.THEMATIC = #{thematic}
+			</if>
+
+			<if test="thematicLike != null and thematicLike != '' ">
+				and E.THEMATIC like #{thematicLike}
+			</if>
+
+			<if test="ctimeGreaterThanOrEqual != null">
+				and E.CTIME &gt;= #{ctimeGreaterThanOrEqual}
+			</if>
+
+			<if test="ctimeLessThanOrEqual != null">
+				and E.CTIME &lt;= #{ctimeLessThanOrEqual}
+			</if>
+
+			<if test="pageno != null and pageno != '' ">
+				and E.PAGENO = #{pageno}
+			</if>
+
+			<if test="pagenoLike != null and pagenoLike != '' ">
+				and E.PAGENO like #{pagenoLike}
+			</if>
+
+			<if test="slevel != null and slevel != '' ">
+				and E.SLEVEL = #{slevel}
+			</if>
+
+			<if test="slevelLike != null and slevelLike != '' ">
+				and E.SLEVEL like #{slevelLike}
+			</if>
+
+			<if test="pageGreaterThanOrEqual != null">
+				and E.PAGE &gt;= #{pageGreaterThanOrEqual}
+			</if>
+
+			<if test="pageLessThanOrEqual != null">
+				and E.PAGE &lt;= #{pageLessThanOrEqual}
+			</if>
+
+			<if test="filetype != null and filetype != '' ">
+				and E.FILETYPE = #{filetype}
+			</if>
+
+			<if test="filetypeLike != null and filetypeLike != '' ">
+				and E.FILETYPE like #{filetypeLike}
+			</if>
+
+			<if test="filetypes != null and filetypes.size != 0">
+				and E.FILETYPE IN
+				<foreach item="x_filetype" index="index" collection="filetypes"
+					open="(" separator="," close=")">
+					#{x_filetype}
+				</foreach>
+			</if>
+
+			<if test="fontsnum != null and fontsnum != '' ">
+				and E.FONTSNUM = #{fontsnum}
+			</if>
+
+			<if test="fontsnumLike != null and fontsnumLike != '' ">
+				and E.FONTSNUM like #{fontsnumLike}
+			</if>
+
+			<if test="savetime != null and savetime != '' ">
+				and E.SAVETIME = #{savetime}
+			</if>
+
+			<if test="savetimeLike != null and savetimeLike != '' ">
+				and E.SAVETIME like #{savetimeLike}
+			</if>
+
+			<if test="company != null and company != '' ">
+				and E.COMPANY = #{company}
+			</if>
+
+			<if test="companyLike != null and companyLike != '' ">
+				and E.COMPANY like #{companyLike}
+			</if>
+
+			<if test="year != null">
+				and E.YEAR = #{year}
+			</if>
+
+			<if test="yearGreaterThanOrEqual != null">
+				and E.YEAR &gt;= #{yearGreaterThanOrEqual}
+			</if>
+
+			<if test="yearLessThanOrEqual != null">
+				and E.YEAR &lt;= #{yearLessThanOrEqual}
+			</if>
+
+			<if test="years != null and years.size != 0">
+				and E.YEAR IN
+				<foreach item="x_year" index="index" collection="years"
+					open="(" separator="," close=")">
+					#{x_year}
+				</foreach>
+			</if>
+
+
+			<if test="fileatt != null and fileatt != '' ">
+				and E.FILEATT = #{fileatt}
+			</if>
+
+			<if test="fileattLike != null and fileattLike != '' ">
+				and E.FILEATT like #{fileattLike}
+			</if>
+
+			<if test="annotations != null and annotations != '' ">
+				and E.ANNOTATIONS = #{annotations}
+			</if>
+
+			<if test="annotationsLike != null and annotationsLike != '' ">
+				and E.ANNOTATIONS like #{annotationsLike}
+			</if>
+
+			<if test="carriertype != null and carriertype != '' ">
+				and E.CARRIERTYPE = #{carriertype}
+			</if>
+
+			<if test="carriertypeLike != null and carriertypeLike != '' ">
+				and E.CARRIERTYPE like #{carriertypeLike}
+			</if>
+
+			<if test="summary != null and summary != '' ">
+				and E.SUMMARY = #{summary}
+			</if>
+
+			<if test="summaryLike != null and summaryLike != '' ">
+				and E.SUMMARY like #{summaryLike}
+			</if>
+
+			<if test="ptext != null and ptext != '' ">
+				and E.PTEXT = #{ptext}
+			</if>
+
+			<if test="ptextLike != null and ptextLike != '' ">
+				and E.PTEXT like #{ptextLike}
+			</if>
+
+			<if test="carrieru != null and carrieru != '' ">
+				and E.CARRIERU = #{carrieru}
+			</if>
+
+			<if test="carrieruLike != null and carrieruLike != '' ">
+				and E.CARRIERU like #{carrieruLike}
+			</if>
+
+			<if test="glidenum != null and glidenum != '' ">
+				and E.GLIDENUM = #{glidenum}
+			</if>
+
+			<if test="glidenumLike != null and glidenumLike != '' ">
+				and E.GLIDENUM like #{glidenumLike}
+			</if>
+
+			<if test="efile != null and efile != '' ">
+				and E.EFILE = #{efile}
+			</if>
+
+			<if test="efileLike != null and efileLike != '' ">
+				and E.EFILE like #{efileLike}
+			</if>
+
+			<if test="ftime != null">
+				and E.FTIME = #{ftime}
+			</if>
+
+			<if test="ftimeGreaterThanOrEqual != null">
+				and E.FTIME &gt;= #{ftimeGreaterThanOrEqual}
+			</if>
+
+			<if test="ftimeLessThanOrEqual != null">
+				and E.FTIME &lt;= #{ftimeLessThanOrEqual}
+			</if>
+
+			<if test="totalnum != null and totalnum != '' ">
+				and E.TOTALNUM = #{totalnum}
+			</if>
+
+			<if test="totalnumLike != null and totalnumLike != '' ">
+				and E.TOTALNUM like #{totalnumLike}
+			</if>
+
+			<if test="inputman != null and inputman != '' ">
+				and E.INPUTMAN = #{inputman}
+			</if>
+
+			<if test="inputmanLike != null and inputmanLike != '' ">
+				and E.INPUTMAN like #{inputmanLike}
+			</if>
+
+			<if test="etime != null">
+				and E.ETIME = #{etime}
+			</if>
+
+			<if test="etimeGreaterThanOrEqual != null">
+				and E.ETIME &gt;= #{etimeGreaterThanOrEqual}
+			</if>
+
+			<if test="etimeLessThanOrEqual != null">
+				and E.ETIME &lt;= #{etimeLessThanOrEqual}
+			</if>
+
+			<if test="dotnum != null and dotnum != '' ">
+				and E.DOTNUM = #{dotnum}
+			</if>
+
+			<if test="dotnumLike != null and dotnumLike != '' ">
+				and E.DOTNUM like #{dotnumLike}
+			</if>
+
+			<if test="picnum != null and picnum != '' ">
+				and E.PICNUM = #{picnum}
+			</if>
+
+			<if test="picnumLike != null and picnumLike != '' ">
+				and E.PICNUM like #{picnumLike}
+			</if>
+
+			<if test="recnum != null and recnum != '' ">
+				and E.RECNUM = #{recnum}
+			</if>
+
+			<if test="recnumLike != null and recnumLike != '' ">
+				and E.RECNUM like #{recnumLike}
+			</if>
+
+			<if test="total != null">
+				and E.TOTAL = #{total}
+			</if>
+
+			<if test="totalGreaterThanOrEqual != null">
+				and E.TOTAL &gt;= #{totalGreaterThanOrEqual}
+			</if>
+
+			<if test="totalLessThanOrEqual != null">
+				and E.TOTAL &lt;= #{totalLessThanOrEqual}
+			</if>
+
+			<if test="pagetype != null and pagetype != '' ">
+				and E.PAGETYPE = #{pagetype}
+			</if>
+
+			<if test="pagetypeLike != null and pagetypeLike != '' ">
+				and E.PAGETYPE like #{pagetypeLike}
+			</if>
+
+			<if test="iscom != null and iscom != '' ">
+				and E.ISCOM = #{iscom}
+			</if>
+
+			<if test="iscomLike != null and iscomLike != '' ">
+				and E.ISCOM like #{iscomLike}
+			</if>
+
+			<if test="islocate != null and islocate != '' ">
+				and E.ISLOCATE = #{islocate}
+			</if>
+
+			<if test="islocateLike != null and islocateLike != '' ">
+				and E.ISLOCATE like #{islocateLike}
+			</if>
+
+			<if test="wcompany != null and wcompany != '' ">
+				and E.WCOMPANY = #{wcompany}
+			</if>
+
+			<if test="wcompanyLike != null and wcompanyLike != '' ">
+				and E.WCOMPANY like #{wcompanyLike}
+			</if>
+
+			<if test="wcompanyID != null and wcompanyID != '' ">
+				and E.WCOMPANYID = #{wcompanyID}
+			</if>
+
+			<if test="wcompanyIDLike != null and wcompanyIDLike != '' ">
+				and E.WCOMPANYID like #{wcompanyIDLike}
+			</if>
+
+			<if test="wcompanyIDs != null and wcompanyIDs.size != 0">
+				and E.WCOMPANYID IN
+				<foreach item="x_wcompanyID" index="index" collection="wcompanyIDs"
+					open="(" separator="," close=")">
+					#{x_wcompanyID}
+				</foreach>
+			</if>
+
+			<if test="sendflag != null and sendflag != '' ">
+				and E.SENDFLAG = #{sendflag}
+			</if>
+
+			<if test="sendflagLike != null and sendflagLike != '' ">
+				and E.SENDFLAG like #{sendflagLike}
+			</if>
+
+			<if test="lcontent != null and lcontent != '' ">
+				and E.LCONTENT = #{lcontent}
+			</if>
+
+			<if test="lcontentLike != null and lcontentLike != '' ">
+				and E.LCONTENT like #{lcontentLike}
+			</if>
+
+			<if test="lcompany != null and lcompany != '' ">
+				and E.LCOMPANY = #{lcompany}
+			</if>
+
+			<if test="lcompanyLike != null and lcompanyLike != '' ">
+				and E.LCOMPANY like #{lcompanyLike}
+			</if>
+
+			<if test="lman != null and lman != '' ">
+				and E.LMAN = #{lman}
+			</if>
+
+			<if test="lmanLike != null and lmanLike != '' ">
+				and E.LMAN like #{lmanLike}
+			</if>
+
+			<if test="llen != null and llen != '' ">
+				and E.LLEN = #{llen}
+			</if>
+
+			<if test="llenLike != null and llenLike != '' ">
+				and E.LLEN like #{llenLike}
+			</if>
+
+			<if test="ldateGreaterThanOrEqual != null">
+				and E.LDATE &gt;= #{ldateGreaterThanOrEqual}
+			</if>
+
+			<if test="ldateLessThanOrEqual != null">
+				and E.LDATE &lt;= #{ldateLessThanOrEqual}
+			</if>
+
+			<if test="jconten != null and jconten != '' ">
+				and E.JCONTEN = #{jconten}
+			</if>
+
+			<if test="jcontenLike != null and jcontenLike != '' ">
+				and E.JCONTEN like #{jcontenLike}
+			</if>
+
+			<if test="jplace != null and jplace != '' ">
+				and E.JPLACE = #{jplace}
+			</if>
+
+			<if test="jplaceLike != null and jplaceLike != '' ">
+				and E.JPLACE like #{jplaceLike}
+			</if>
+
+			<if test="jman != null and jman != '' ">
+				and E.JMAN = #{jman}
+			</if>
+
+			<if test="jmanLike != null and jmanLike != '' ">
+				and E.JMAN like #{jmanLike}
+			</if>
+
+			<if test="jback != null and jback != '' ">
+				and E.JBACK = #{jback}
+			</if>
+
+			<if test="jbackLike != null and jbackLike != '' ">
+				and E.JBACK like #{jbackLike}
+			</if>
+
+			<if test="jactor != null and jactor != '' ">
+				and E.JACTOR = #{jactor}
+			</if>
+
+			<if test="jactorLike != null and jactorLike != '' ">
+				and E.JACTOR like #{jactorLike}
+			</if>
+
+			<if test="jnum != null and jnum != '' ">
+				and E.JNUM = #{jnum}
+			</if>
+
+			<if test="jnumLike != null and jnumLike != '' ">
+				and E.JNUM like #{jnumLike}
+			</if>
+
+			<if test="jbnum != null and jbnum != '' ">
+				and E.JBNUM = #{jbnum}
+			</if>
+
+			<if test="jbnumLike != null and jbnumLike != '' ">
+				and E.JBNUM like #{jbnumLike}
+			</if>
+
+			<if test="tnum != null and tnum != '' ">
+				and E.TNUM = #{tnum}
+			</if>
+
+			<if test="tnumLike != null and tnumLike != '' ">
+				and E.TNUM like #{tnumLike}
+			</if>
+
+			<if test="tzoom != null and tzoom != '' ">
+				and E.TZOOM = #{tzoom}
+			</if>
+
+			<if test="tzoomLike != null and tzoomLike != '' ">
+				and E.TZOOM like #{tzoomLike}
+			</if>
+
+			<if test="tflag != null and tflag != '' ">
+				and E.TFLAG = #{tflag}
+			</if>
+
+			<if test="tflagLike != null and tflagLike != '' ">
+				and E.TFLAG like #{tflagLike}
+			</if>
+
+			<if test="tdesigner != null and tdesigner != '' ">
+				and E.TDESIGNER = #{tdesigner}
+			</if>
+
+			<if test="tdesignerLike != null and tdesignerLike != '' ">
+				and E.TDESIGNER like #{tdesignerLike}
+			</if>
+
+			<if test="tviewer != null and tviewer != '' ">
+				and E.TVIEWER = #{tviewer}
+			</if>
+
+			<if test="tviewerLike != null and tviewerLike != '' ">
+				and E.TVIEWER like #{tviewerLike}
+			</if>
+
+			<if test="tassessor != null and tassessor != '' ">
+				and E.TASSESSOR = #{tassessor}
+			</if>
+
+			<if test="tassessorLike != null and tassessorLike != '' ">
+				and E.TASSESSOR like #{tassessorLike}
+			</if>
+
+			<if test="tvision != null and tvision != '' ">
+				and E.TVISION = #{tvision}
+			</if>
+
+			<if test="tvisionLike != null and tvisionLike != '' ">
+				and E.TVISION like #{tvisionLike}
+			</if>
+
+			<if test="clistno != null">
+				and E.CLISTNO = #{clistno}
+			</if>
+
+			<if test="clistnoGreaterThanOrEqual != null">
+				and E.CLISTNO &gt;= #{clistnoGreaterThanOrEqual}
+			</if>
+
+			<if test="clistnoLessThanOrEqual != null">
+				and E.CLISTNO &lt;= #{clistnoLessThanOrEqual}
+			</if>
+
+			<if test="cpageno != null and cpageno != '' ">
+				and E.CPAGENO = #{cpageno}
+			</if>
+
+			<if test="cpagenoLike != null and cpagenoLike != '' ">
+				and E.CPAGENO like #{cpagenoLike}
+			</if>
+
+			<if test="vnum != null and vnum != '' ">
+				and E.VNUM = #{vnum}
+			</if>
+
+			<if test="vnumLike != null and vnumLike != '' ">
+				and E.VNUM like #{vnumLike}
+			</if>
+
+			<if test="cvnum != null and cvnum != '' ">
+				and E.CVNUM = #{cvnum}
+			</if>
+
+			<if test="cvnumLike != null and cvnumLike != '' ">
+				and E.CVNUM like #{cvnumLike}
+			</if>
+
+			<if test="ctimeEndGreaterThanOrEqual != null">
+				and E.CTIME_END &gt;= #{ctimeEndGreaterThanOrEqual}
+			</if>
+
+			<if test="ctimeEndLessThanOrEqual != null">
+				and E.CTIME_END &lt;= #{ctimeEndLessThanOrEqual}
+			</if>
+
+			<if test="sysListno != null">
+				and E.SYS_LISTNO = #{sysListno}
+			</if>
+
+			<if test="sysListnoGreaterThanOrEqual != null">
+				and E.SYS_LISTNO &gt;= #{sysListnoGreaterThanOrEqual}
+			</if>
+
+			<if test="sysListnoLessThanOrEqual != null">
+				and E.SYS_LISTNO &lt;= #{sysListnoLessThanOrEqual}
+			</if>
+
+			<if test="sysaddint != null">
+				and E.SYSADDINT = #{sysaddint}
+			</if>
+
+			<if test="sysaddintGreaterThanOrEqual != null">
+				and E.SYSADDINT &gt;= #{sysaddintGreaterThanOrEqual}
+			</if>
+
+			<if test="sysaddintLessThanOrEqual != null">
+				and E.SYSADDINT &lt;= #{sysaddintLessThanOrEqual}
+			</if>
+
+			<if test="chkefileint != null">
+				and E.CHKEFILEINT = #{chkefileint}
+			</if>
+
+			<if test="chkefileintGreaterThanOrEqual != null">
+				and E.CHKEFILEINT &gt;= #{chkefileintGreaterThanOrEqual}
+			</if>
+
+			<if test="chkefileintLessThanOrEqual != null">
+				and E.CHKEFILEINT &lt;= #{chkefileintLessThanOrEqual}
+			</if>
+
+			<if test="projIndex != null">
+				and E.PROJ_INDEX = #{projIndex}
+			</if>
+
+			<if test="projIndexGreaterThanOrEqual != null">
+				and E.PROJ_INDEX &gt;= #{projIndexGreaterThanOrEqual}
+			</if>
+
+			<if test="projIndexLessThanOrEqual != null">
+				and E.PROJ_INDEX &lt;= #{projIndexLessThanOrEqual}
+			</if>
+
+			<if test="noscan != null">
+				and E.NOSCAN = #{noscan}
+			</if>
+
+			<if test="noscanGreaterThanOrEqual != null">
+				and E.NOSCAN &gt;= #{noscanGreaterThanOrEqual}
+			</if>
+
+			<if test="noscanLessThanOrEqual != null">
+				and E.NOSCAN &lt;= #{noscanLessThanOrEqual}
+			</if>
+
+			<if test="treeParent != null">
+				and E.TREE_PARENT = #{treeParent}
+			</if>
+
+			<if test="treeParentGreaterThanOrEqual != null">
+				and E.TREE_PARENT &gt;= #{treeParentGreaterThanOrEqual}
+			</if>
+
+			<if test="treeParentLessThanOrEqual != null">
+				and E.TREE_PARENT &lt;= #{treeParentLessThanOrEqual}
+			</if>
+
+			<if test="treeParents != null and treeParents.size != 0">
+				and E.TREE_PARENT IN
+				<foreach item="x_treeParent" index="index" collection="treeParents"
+					open="(" separator="," close=")">
+					#{x_treeParent}
+				</foreach>
+			</if>
+
+			<if test="treeList != null">
+				and E.TREE_LIST = #{treeList}
+			</if>
+
+			<if test="treeListGreaterThanOrEqual != null">
+				and E.TREE_LIST &gt;= #{treeListGreaterThanOrEqual}
+			</if>
+
+			<if test="treeListLessThanOrEqual != null">
+				and E.TREE_LIST &lt;= #{treeListLessThanOrEqual}
+			</if>
+
+			<if test="treeDliststr != null and treeDliststr != '' ">
+				and E.TREE_DLISTSTR = #{treeDliststr}
+			</if>
+
+			<if test="treeDliststrLike != null and treeDliststrLike != '' ">
+				and E.TREE_DLISTSTR like #{treeDliststrLike}
+			</if>
+
+			<if test="choosePublishFlag != null and choosePublishFlag != '' ">
+				and E.CHOOSEPUBLISHFLAG = #{choosePublishFlag}
+			</if>
+
+			<if test="choosePublishFlagLike != null and choosePublishFlagLike != '' ">
+				and E.CHOOSEPUBLISHFLAG like #{choosePublishFlagLike}
+			</if>
+
+			<if test="choosePublishTime != null">
+				and E.CHOOSEPUBLISHTIME = #{choosePublishTime}
+			</if>
+
+			<if test="choosePublishTimeGreaterThanOrEqual != null">
+				and E.CHOOSEPUBLISHTIME &gt;=
+				#{choosePublishTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="choosePublishTimeLessThanOrEqual != null">
+				and E.CHOOSEPUBLISHTIME &lt;=
+				#{choosePublishTimeLessThanOrEqual}
+			</if>
+
+			<if test="publishdiskid != null">
+				and E.PUBLISHDISKID = #{publishdiskid}
+			</if>
+
+			<if test="publishdiskidGreaterThanOrEqual != null">
+				and E.PUBLISHDISKID &gt;=
+				#{publishdiskidGreaterThanOrEqual}
+			</if>
+
+			<if test="publishdiskidLessThanOrEqual != null">
+				and E.PUBLISHDISKID &lt;= #{publishdiskidLessThanOrEqual}
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

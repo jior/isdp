@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<configuration>
+
+	<property>
+		<name>dms.rootdir</name>
+		<value>d:\dms</value>
+	</property>
+
+	<!--发布档案详细信息的JSON，包含封面，备考表等 -->
+	<property>
+		<name>getSingleVolumeSql</name>
+		<value>select * from volume</value>
+	</property>
+
+	<!-- <property>
+		<name>volume.single.json.field.folder</name>
+		<value>topid</value>
+	</property> -->
+
+	<property>
+		<name>volume.single.json.field.rowId</name>
+		<value>id</value>
+	</property>
+
+	<!--发布档案树JSON -->
+	<property>
+		<name>getVolumeTreevMainSql</name>
+		<value>
+			select index_id as id, parent_id as pId, index_name as name
+			from treevmain_u
+			where nodetype = '0'
+			order by parent_id,comm_listno,tree_dliststr,proj_listno,num
+		</value>
+	</property>
+
+
+	<!--发布卷内目录文件树JSON -->
+	<property>
+		<name>getFileTreeSql</name>
+		<value>
+			select a.fileId as id, f.tname as name, f.vid as vid, f.oldvid as oldvid,
+				v.topid as topid, a.fileId as fileId, a.file_name as filename
+			from pfile f
+			inner join fileatt a
+			on f.id = a.topid
+			inner join volume v
+			on f.vid = v.id
+			order by f.vid asc
+		</value>
+	</property>
+
+	<property>
+		<name>file.tree.json.field.groupby</name>
+		<value>vid</value>
+	</property>
+
+	<property>
+		<name>file.tree.json.field.subfolder</name>
+		<value>topid</value>
+	</property>
+
+
+	<!--发布档案分类网格控件JSON -->
+	<property>
+		<name>getVolumeCategoryDatagridSql</name>
+		<value>
+			select v.id as id, v.listno as listno, v.vid as vid, v.topid as topid,
+				v.index_id as index_id, v.publishdiskid as publishdiskid,
+				v.pid as pid, v.vname as vname, v.vnum
+				as vnum, v.wcompany as wcompany,
+				v.wdate as wdate, v.startday as
+				startday, v.endday as endday, v.slevel,
+				v.numunit as numunit,
+				v.savetime as savetime, v.ctime as ctime
+			from volume v
+			inner join treevmain_u u
+			on v.topid = u.index_id
+			where u.nodetype = '0'
+			order by v.topid asc
+		</value>
+	</property>
+
+	<property>
+		<name>volume.category.datagrid.json.field.groupby</name>
+		<value>topid</value>
+	</property>
+
+	<property>
+		<name>volume.category.datagrid.json.field.subfolder</name>
+		<value>topid</value>
+	</property>
+
+	<property>
+		<name>volume.category.datagrid.json.pagesize</name>
+		<value>20</value>
+	</property>
+
+
+	<!--发布全部类别档案网格控件JSON -->
+	<property>
+		<name>getAllVolumeDatagridSql</name>
+		<value>
+			select v.id as id, v.listno as listno, v.vid as vid, v.topid as topid,
+				v.index_id as index_id, v.publishdiskid as publishdiskid,
+				v.pid as pid, v.vname as vname, v.vnum
+				as vnum, v.wcompany as wcompany,
+				v.wdate as wdate, v.startday as
+				startday, v.endday as endday, v.slevel,
+				v.numunit as numunit,
+				v.savetime as savetime, v.ctime as ctime
+			from volume v
+			inner join treevmain_u u
+			on v.topid = u.index_id
+			where u.nodetype = '0'
+			order by v.topid asc
+		</value>
+	</property>
+
+	<property>
+		<name>volume.all.datagrid.json.pagesize</name>
+		<value>20</value>
+	</property>
+
+	<!--发布全部类别文件网格控件JSON -->
+	<property>
+		<name>getAllPfileDatagridSql</name>
+		<value>
+			select f.id, v.topid, f.tname, f.duty, f.savetime, f.ctime, f.tagnum,
+				f.pageno, f.page, f.publishdiskid as publishdiskid,
+				f.vid, f.vnum, f.slevel, f.thematic
+			from pfile f 
+			inner join volume v
+			on f.vid = v.id
+		</value>
+	</property>
+
+	<property>
+		<name>pfile.all.datagrid.json.pagesize</name>
+		<value>20</value>
+	</property>
+
+	<!--发布电子原文 -->
+	<property>
+		<name>getFileAttSql</name>
+		<value>
+			select a.fileId as fileId , a.file_name as filename,
+				f.tname as name, v.topid as topid, f.vid as vid
+			from pfile f
+			inner join fileatt a
+			on f.id = a.topid
+			inner join volume v
+			on f.vid = v.id
+			where v.choosepublishflag = '1'
+			and v.publishdiskid = #{publishdiskid}
+			order by f.vid asc
+		</value>
+	</property>
+
+	<property>
+		<name>efile.fileid</name>
+		<value>fileId</value>
+	</property>
+
+	<property>
+		<name>efile.fileidcolumn</name>
+		<value>fileId</value>
+	</property>
+
+	<property>
+		<name>efile.filename</name>
+		<value>filename</value>
+	</property>
+
+	<property>
+		<name>efile.filecontent</name>
+		<value>fileContent</value>
+	</property>
+
+	<property>
+		<name>efile.filecontentcolumn</name>
+		<value>file_content</value>
+	</property>
+
+	<property>
+		<name>efile.folder</name>
+		<value>vid</value>
+	</property>
+
+	<!-- <property> <name>efile.subfolder</name> <value>vid</value> </property> -->
+
+	<property>
+		<name>getFileAttContentSql</name>
+		<value>
+			select file_content from fileatt where fileID = ?
+		</value>
+	</property>
+
+</configuration>

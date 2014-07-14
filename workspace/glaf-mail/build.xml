@@ -7,8 +7,7 @@
 
 	<path id="classpath">
 		<fileset dir="../glaf-core" includes="*.jar" />
-		<fileset dir="../glaf-core/lib" includes="*.jar" />
-		<fileset dir="../glaf-jbpm" includes="*.jar" />
+		<fileset dir="../glaf-commons/lib" includes="*.jar" />
 		<pathelement location="${build.home}/bin" />
 	</path>
 

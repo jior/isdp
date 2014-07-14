@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.dms.mapper.DmsTreevmainCommMapper">
+
+	<resultMap id="dmsTreevmainCommResultMap" type="com.glaf.dms.domain.DmsTreevmainComm">
+		<id property="indexId" column="INDEX_ID" jdbcType="INTEGER" />
+		<result property="id" column="ID" jdbcType="VARCHAR" />
+		<result property="parentId" column="PARENT_ID" jdbcType="INTEGER" />
+		<result property="indexName" column="INDEX_NAME" jdbcType="VARCHAR" />
+		<result property="nlevel" column="NLEVEL" jdbcType="INTEGER" />
+		<result property="nodetype" column="NODETYPE" jdbcType="INTEGER" />
+		<result property="fromid" column="FROMID" jdbcType="INTEGER" />
+		<result property="nodeico" column="NODEICO" jdbcType="INTEGER" />
+		<result property="listno" column="LISTNO" jdbcType="INTEGER" />
+		<result property="choosePublishFlag" column="CHOOSEPUBLISHFLAG"
+			jdbcType="VARCHAR" />
+		<result property="choosePublishTime" column="CHOOSEPUBLISHTIME"
+			jdbcType="BIGINT" />
+		<result property="publishdiskid" column="PUBLISHDISKID"
+			jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertDmsTreevmainComm" parameterType="com.glaf.dms.domain.DmsTreevmainComm">
+		insert into TREEVMAIN_COMM
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			INDEX_ID
+			<if test="id != null">
+				,ID
+			</if>
+			<if test="parentId != null">
+				,PARENT_ID
+			</if>
+			<if test="indexName != null">
+				,INDEX_NAME
+			</if>
+			<if test="nlevel != null">
+				,NLEVEL
+			</if>
+			<if test="nodetype != null">
+				,NODETYPE
+			</if>
+			<if test="fromid != null">
+				,FROMID
+			</if>
+			<if test="nodeico != null">
+				,NODEICO
+			</if>
+			<if test="listno != null">
+				,LISTNO
+			</if>
+			<if test="choosePublishFlag != null">
+				,CHOOSEPUBLISHFLAG
+			</if>
+			<if test="choosePublishTime != null">
+				,CHOOSEPUBLISHTIME
+			</if>
+			<if test="publishdiskid != null">
+				,PUBLISHDISKID
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{indexId, jdbcType=INTEGER}
+
+			<if test="id != null">
+				,#{id, jdbcType=VARCHAR}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=INTEGER}
+			</if>
+			<if test="indexName != null">
+				,#{indexName, jdbcType=VARCHAR}
+			</if>
+			<if test="nlevel != null">
+				,#{nlevel, jdbcType=INTEGER}
+			</if>
+			<if test="nodetype != null">
+				,#{nodetype, jdbcType=INTEGER}
+			</if>
+			<if test="fromid != null">
+				,#{fromid, jdbcType=INTEGER}
+			</if>
+			<if test="nodeico != null">
+				,#{nodeico, jdbcType=INTEGER}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+			<if test="choosePublishFlag != null">
+				,#{choosePublishFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="choosePublishTime != null">
+				,#{choosePublishTime, jdbcType=BIGINT}
+			</if>
+			<if test="publishdiskid != null">
+				,#{publishdiskid, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateDmsTreevmainComm" parameterType="com.glaf.dms.domain.DmsTreevmainComm">
+		update TREEVMAIN_COMM
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="id != null">
+				ID = #{id, jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				PARENT_ID = #{parentId, jdbcType=INTEGER},
+			</if>
+			<if test="indexName != null">
+				INDEX_NAME = #{indexName, jdbcType=VARCHAR},
+			</if>
+			<if test="nlevel != null">
+				NLEVEL = #{nlevel, jdbcType=INTEGER},
+			</if>
+			<if test="nodetype != null">
+				NODETYPE = #{nodetype, jdbcType=INTEGER},
+			</if>
+			<if test="fromid != null">
+				FROMID = #{fromid, jdbcType=INTEGER},
+			</if>
+			<if test="nodeico != null">
+				NODEICO = #{nodeico, jdbcType=INTEGER},
+			</if>
+			<if test="listno != null">
+				LISTNO = #{listno, jdbcType=INTEGER},
+			</if>
+			<if test="choosePublishFlag != null">
+				CHOOSEPUBLISHFLAG = #{choosePublishFlag,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="choosePublishTime != null">
+				CHOOSEPUBLISHTIME = #{choosePublishTime,
+				jdbcType=BIGINT},
+			</if>
+			<if test="publishdiskid != null">
+				PUBLISHDISKID = #{publishdiskid, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		INDEX_ID = #{indexId, jdbcType=INTEGER}
+
+	</update>
+
+
+	<delete id="deleteDmsTreevmainCommById" parameterType="integer">
+		delete from TREEVMAIN_COMM
+		where INDEX_ID = #{id}
+	</delete>
+
+
+	<delete id="deleteDmsTreevmainComms" parameterType="com.glaf.dms.query.DmsTreevmainCommQuery">
+		delete from TREEVMAIN_COMM
+		where (
+		INDEX_ID IN
+		<foreach item="x_indexId" index="index" collection="indexIds"
+			open="(" separator="," close=")">
+			#{x_indexId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getDmsTreevmainCommById" parameterType="integer"
+		resultMap="dmsTreevmainCommResultMap">
+		select * from TREEVMAIN_COMM where INDEX_ID = #{id}
+	</select>
+
+
+	<select id="getDmsTreevmainComms" parameterType="com.glaf.dms.query.DmsTreevmainCommQuery"
+		resultMap="dmsTreevmainCommResultMap">
+		select distinct E.*
+		<include refid="selectDmsTreevmainCommsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.INDEX_ID desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getDmsTreevmainCommCount" parameterType="com.glaf.dms.query.DmsTreevmainCommQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDmsTreevmainCommsSql" />
+	</select>
+
+
+	<sql id="selectDmsTreevmainCommsSql">
+
+		from TREEVMAIN_COMM E
+
+
+		<where>
+			1 = 1
+
+
+			<if test="id != null and id != '' ">
+				and E.ID = #{id}
+			</if>
+
+			<if test="idLike != null and idLike != '' ">
+				and E.ID like #{idLike}
+			</if>
+
+			<if test="ids != null and ids.size != 0">
+				and E.ID IN
+				<foreach item="x_id" index="index" collection="ids" open="("
+					separator="," close=")">
+					#{x_id}
+				</foreach>
+			</if>
+
+			<if test="parentId != null">
+				and E.PARENT_ID = #{parentId}
+			</if>
+
+			<if test="parentIdGreaterThanOrEqual != null">
+				and E.PARENT_ID &gt;= #{parentIdGreaterThanOrEqual}
+			</if>
+
+			<if test="parentIdLessThanOrEqual != null">
+				and E.PARENT_ID &lt;= #{parentIdLessThanOrEqual}
+			</if>
+
+			<if test="parentIds != null and parentIds.size != 0">
+				and E.PARENT_ID IN
+				<foreach item="x_parentId" index="index" collection="parentIds"
+					open="(" separator="," close=")">
+					#{x_parentId}
+				</foreach>
+			</if>
+
+
+			<if test="indexName != null and indexName != '' ">
+				and E.INDEX_NAME = #{indexName}
+			</if>
+
+			<if test="indexNameLike != null and indexNameLike != '' ">
+				and E.INDEX_NAME like #{indexNameLike}
+			</if>
+
+			<if test="indexNames != null and indexNames.size != 0">
+				and E.INDEX_NAME IN
+				<foreach item="x_indexName" index="index" collection="indexNames"
+					open="(" separator="," close=")">
+					#{x_indexName}
+				</foreach>
+			</if>
+
+			<if test="nlevel != null">
+				and E.NLEVEL = #{nlevel}
+			</if>
+
+			<if test="nlevelGreaterThanOrEqual != null">
+				and E.NLEVEL &gt;= #{nlevelGreaterThanOrEqual}
+			</if>
+
+			<if test="nlevelLessThanOrEqual != null">
+				and E.NLEVEL &lt;= #{nlevelLessThanOrEqual}
+			</if>
+
+			<if test="nlevels != null and nlevels.size != 0">
+				and E.NLEVEL IN
+				<foreach item="x_nlevel" index="index" collection="nlevels"
+					open="(" separator="," close=")">
+					#{x_nlevel}
+				</foreach>
+			</if>
+
+
+			<if test="nodetype != null">
+				and E.NODETYPE = #{nodetype}
+			</if>
+
+			<if test="nodetypeGreaterThanOrEqual != null">
+				and E.NODETYPE &gt;= #{nodetypeGreaterThanOrEqual}
+			</if>
+
+			<if test="nodetypeLessThanOrEqual != null">
+				and E.NODETYPE &lt;= #{nodetypeLessThanOrEqual}
+			</if>
+
+			<if test="nodetypes != null and nodetypes.size != 0">
+				and E.NODETYPE IN
+				<foreach item="x_nodetype" index="index" collection="nodetypes"
+					open="(" separator="," close=")">
+					#{x_nodetype}
+				</foreach>
+			</if>
+
+
+			<if test="fromid != null">
+				and E.FROMID = #{fromid}
+			</if>
+
+			<if test="fromidGreaterThanOrEqual != null">
+				and E.FROMID &gt;= #{fromidGreaterThanOrEqual}
+			</if>
+
+			<if test="fromidLessThanOrEqual != null">
+				and E.FROMID &lt;= #{fromidLessThanOrEqual}
+			</if>
+
+			<if test="fromids != null and fromids.size != 0">
+				and E.FROMID IN
+				<foreach item="x_fromid" index="index" collection="fromids"
+					open="(" separator="," close=")">
+					#{x_fromid}
+				</foreach>
+			</if>
+
+
+			<if test="nodeico != null">
+				and E.NODEICO = #{nodeico}
+			</if>
+
+			<if test="nodeicoGreaterThanOrEqual != null">
+				and E.NODEICO &gt;= #{nodeicoGreaterThanOrEqual}
+			</if>
+
+			<if test="nodeicoLessThanOrEqual != null">
+				and E.NODEICO &lt;= #{nodeicoLessThanOrEqual}
+			</if>
+
+			<if test="nodeicos != null and nodeicos.size != 0">
+				and E.NODEICO IN
+				<foreach item="x_nodeico" index="index" collection="nodeicos"
+					open="(" separator="," close=")">
+					#{x_nodeico}
+				</foreach>
+			</if>
+
+
+			<if test="listno != null">
+				and E.LISTNO = #{listno}
+			</if>
+
+			<if test="listnoGreaterThanOrEqual != null">
+				and E.LISTNO &gt;= #{listnoGreaterThanOrEqual}
+			</if>
+
+			<if test="listnoLessThanOrEqual != null">
+				and E.LISTNO &lt;= #{listnoLessThanOrEqual}
+			</if>
+
+			<if test="listnos != null and listnos.size != 0">
+				and E.LISTNO IN
+				<foreach item="x_listno" index="index" collection="listnos"
+					open="(" separator="," close=")">
+					#{x_listno}
+				</foreach>
+			</if>
+
+
+			<if test="choosePublishFlag != null and choosePublishFlag != '' ">
+				and E.CHOOSEPUBLISHFLAG = #{choosePublishFlag}
+			</if>
+
+			<if test="choosePublishFlagLike != null and choosePublishFlagLike != '' ">
+				and E.CHOOSEPUBLISHFLAG like #{choosePublishFlagLike}
+			</if>
+
+			<if test="choosePublishFlags != null and choosePublishFlags.size != 0">
+				and E.CHOOSEPUBLISHFLAG IN
+				<foreach item="x_choosePublishFlag" index="index"
+					collection="choosePublishFlags" open="(" separator="," close=")">
+					#{x_choosePublishFlag}
+				</foreach>
+			</if>
+
+			<if test="choosePublishTime != null">
+				and E.CHOOSEPUBLISHTIME = #{choosePublishTime}
+			</if>
+
+			<if test="choosePublishTimeGreaterThanOrEqual != null">
+				and E.CHOOSEPUBLISHTIME &gt;=
+				#{choosePublishTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="choosePublishTimeLessThanOrEqual != null">
+				and E.CHOOSEPUBLISHTIME &lt;=
+				#{choosePublishTimeLessThanOrEqual}
+			</if>
+
+			<if test="choosePublishTimes != null and choosePublishTimes.size != 0">
+				and E.CHOOSEPUBLISHTIME IN
+				<foreach item="x_choosePublishTime" index="index"
+					collection="choosePublishTimes" open="(" separator="," close=")">
+					#{x_choosePublishTime}
+				</foreach>
+			</if>
+
+
+			<if test="publishdiskid != null">
+				and E.PUBLISHDISKID = #{publishdiskid}
+			</if>
+
+			<if test="publishdiskidGreaterThanOrEqual != null">
+				and E.PUBLISHDISKID &gt;=
+				#{publishdiskidGreaterThanOrEqual}
+			</if>
+
+			<if test="publishdiskidLessThanOrEqual != null">
+				and E.PUBLISHDISKID &lt;= #{publishdiskidLessThanOrEqual}
+			</if>
+
+			<if test="publishdiskids != null and publishdiskids.size != 0">
+				and E.PUBLISHDISKID IN
+				<foreach item="x_publishdiskid" index="index" collection="publishdiskids"
+					open="(" separator="," close=")">
+					#{x_publishdiskid}
+				</foreach>
+			</if>
+
+
+		</where>
+	</sql>
+
+</mapper>

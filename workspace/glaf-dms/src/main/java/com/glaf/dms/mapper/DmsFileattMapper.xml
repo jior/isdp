@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.dms.mapper.DmsFileattMapper">
+
+	<resultMap id="dmsFileattResultMap" type="com.glaf.dms.domain.DmsFileatt">
+		<id property="fileId" column="FILEID" jdbcType="VARCHAR" />
+		<result property="topid" column="TOPID" jdbcType="VARCHAR" />
+		<result property="num" column="NUM" jdbcType="VARCHAR" />
+		<result property="actor" column="ACTOR" jdbcType="VARCHAR" />
+		<result property="fname" column="FNAME" jdbcType="VARCHAR" />
+		<result property="fileName" column="FILE_NAME" jdbcType="VARCHAR" />
+		<result property="fileContent" column="FILE_CONTENT" jdbcType="BLOB" />
+		<result property="vision" column="VISION" jdbcType="VARCHAR" />
+		<result property="ctime" column="CTIME" jdbcType="TIMESTAMP" />
+		<result property="filesize" column="FILESIZE" jdbcType="INTEGER" />
+		<result property="visID" column="VISID" jdbcType="VARCHAR" />
+		<result property="attID" column="ATTID" jdbcType="VARCHAR" />
+		<result property="isTextContent" column="ISTEXTCONTENT"
+			jdbcType="INTEGER" />
+		<result property="choosePublishFlag" column="CHOOSEPUBLISHFLAG"
+			jdbcType="VARCHAR" />
+		<result property="choosePublishTime" column="CHOOSEPUBLISHTIME"
+			jdbcType="BIGINT" />
+		<result property="publishdiskid" column="PUBLISHDISKID"
+			jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertDmsFileatt" parameterType="com.glaf.dms.domain.DmsFileatt">
+		insert into FILEATT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			FILEID
+			<if test="topid != null">
+				,TOPID
+			</if>
+			<if test="num != null">
+				,NUM
+			</if>
+			<if test="actor != null">
+				,ACTOR
+			</if>
+			<if test="fname != null">
+				,FNAME
+			</if>
+			<if test="fileName != null">
+				,FILE_NAME
+			</if>
+			<if test="fileContent != null">
+				,FILE_CONTENT
+			</if>
+			<if test="vision != null">
+				,VISION
+			</if>
+			<if test="ctime != null">
+				,CTIME
+			</if>
+			<if test="filesize != null">
+				,FILESIZE
+			</if>
+			<if test="visID != null">
+				,VISID
+			</if>
+			<if test="attID != null">
+				,ATTID
+			</if>
+			<if test="isTextContent != null">
+				,ISTEXTCONTENT
+			</if>
+			<if test="textcontent != null">
+				,TEXTCONTENT
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{fileId, jdbcType=VARCHAR}
+
+			<if test="topid != null">
+				,#{topid, jdbcType=VARCHAR}
+			</if>
+			<if test="num != null">
+				,#{num, jdbcType=VARCHAR}
+			</if>
+			<if test="actor != null">
+				,#{actor, jdbcType=VARCHAR}
+			</if>
+			<if test="fname != null">
+				,#{fname, jdbcType=VARCHAR}
+			</if>
+			<if test="fileName != null">
+				,#{fileName, jdbcType=VARCHAR}
+			</if>
+			<if test="fileContent != null">
+				,#{fileContent, jdbcType=BLOB}
+			</if>
+			<if test="vision != null">
+				,#{vision, jdbcType=VARCHAR}
+			</if>
+			<if test="ctime != null">
+				,#{ctime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="filesize != null">
+				,#{filesize, jdbcType=INTEGER}
+			</if>
+			<if test="visID != null">
+				,#{visID, jdbcType=VARCHAR}
+			</if>
+			<if test="attID != null">
+				,#{attID, jdbcType=VARCHAR}
+			</if>
+			<if test="isTextContent != null">
+				,#{isTextContent, jdbcType=INTEGER}
+			</if>
+			<if test="textcontent != null">
+				,#{textcontent, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateDmsFileatt" parameterType="com.glaf.dms.domain.DmsFileatt">
+		update FILEATT
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="topid != null">
+				TOPID = #{topid, jdbcType=VARCHAR},
+			</if>
+			<if test="num != null">
+				NUM = #{num, jdbcType=VARCHAR},
+			</if>
+			<if test="actor != null">
+				ACTOR = #{actor, jdbcType=VARCHAR},
+			</if>
+			<if test="fname != null">
+				FNAME = #{fname, jdbcType=VARCHAR},
+			</if>
+			<if test="fileName != null">
+				FILE_NAME = #{fileName, jdbcType=VARCHAR},
+			</if>
+			<if test="fileContent != null">
+				FILE_CONTENT = #{fileContent, jdbcType=BLOB},
+			</if>
+			<if test="vision != null">
+				VISION = #{vision, jdbcType=VARCHAR},
+			</if>
+			<if test="ctime != null">
+				CTIME = #{ctime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="filesize != null">
+				FILESIZE = #{filesize, jdbcType=INTEGER},
+			</if>
+			<if test="visID != null">
+				VISID = #{visID, jdbcType=VARCHAR},
+			</if>
+			<if test="attID != null">
+				ATTID = #{attID, jdbcType=VARCHAR},
+			</if>
+			<if test="isTextContent != null">
+				ISTEXTCONTENT = #{isTextContent, jdbcType=INTEGER},
+			</if>
+			<if test="textcontent != null">
+				TEXTCONTENT = #{textcontent, jdbcType=VARCHAR},
+			</if>
+			<if test="choosePublishFlag != null">
+				CHOOSEPUBLISHFLAG = #{choosePublishFlag,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="choosePublishTime != null">
+				CHOOSEPUBLISHTIME = #{choosePublishTime,
+				jdbcType=BIGINT},
+			</if>
+			<if test="publishdiskid != null">
+				PUBLISHDISKID = #{publishdiskid, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		FILEID = #{fileId, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteDmsFileattById" parameterType="string">
+		delete from
+		FILEATT
+		where FILEID = #{id}
+	</delete>
+
+
+	<delete id="deleteDmsFileatts" parameterType="com.glaf.dms.query.DmsFileattQuery">
+		delete from FILEATT
+		where (
+		FILEID IN
+		<foreach item="x_fileId" index="index" collection="fileIds"
+			open="(" separator="," close=")">
+			#{x_fileId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getDmsFileattById" parameterType="string"
+		resultMap="dmsFileattResultMap">
+		select * from FILEATT where FILEID = #{id}
+	</select>
+
+
+	<select id="getDmsFileatts" parameterType="com.glaf.dms.query.DmsFileattQuery"
+		resultMap="dmsFileattResultMap">
+		select E.FILEID, E.TOPID, E.NUM, E.ACTOR, E.FNAME, E.FILE_NAME,
+		E.CTIME, E.FILESIZE, E.VISID, E.ATTID, E.ISTEXTCONTENT,
+		E.TEXTCONTENT,
+		E.CHOOSEPUBLISHFLAG,E.CHOOSEPUBLISHTIME,
+		E.PUBLISHDISKID, E.VISION
+		<include refid="selectDmsFileattsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.FILEID desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getDmsFileattCount" parameterType="com.glaf.dms.query.DmsFileattQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDmsFileattsSql" />
+	</select>
+
+
+	<sql id="selectDmsFileattsSql">
+
+		from FILEATT E
+
+		<where>
+			1 = 1
+
+			<if test="topid != null and topid != '' ">
+				and E.TOPID = #{topid}
+			</if>
+
+			<if test="topidLike != null and topidLike != '' ">
+				and E.TOPID like #{topidLike}
+			</if>
+
+			<if test="topids != null and topids.size != 0">
+				and E.TOPID IN
+				<foreach item="x_topid" index="index" collection="topids"
+					open="(" separator="," close=")">
+					#{x_topid}
+				</foreach>
+			</if>
+
+			<if test="num != null and num != '' ">
+				and E.NUM = #{num}
+			</if>
+
+			<if test="numLike != null and numLike != '' ">
+				and E.NUM like #{numLike}
+			</if>
+
+			<if test="actor != null and actor != '' ">
+				and E.ACTOR = #{actor}
+			</if>
+
+			<if test="actorLike != null and actorLike != '' ">
+				and E.ACTOR like #{actorLike}
+			</if>
+
+			<if test="fname != null and fname != '' ">
+				and E.FNAME = #{fname}
+			</if>
+
+			<if test="fnameLike != null and fnameLike != '' ">
+				and E.FNAME like #{fnameLike}
+			</if>
+
+			<if test="fileName != null and fileName != '' ">
+				and E.FILE_NAME = #{fileName}
+			</if>
+
+			<if test="fileNameLike != null and fileNameLike != '' ">
+				and E.FILE_NAME like #{fileNameLike}
+			</if>
+
+			<if test="ctimeGreaterThanOrEqual != null">
+				and E.CTIME &gt;= #{ctimeGreaterThanOrEqual}
+			</if>
+
+			<if test="ctimeLessThanOrEqual != null">
+				and E.CTIME &lt;= #{ctimeLessThanOrEqual}
+			</if>
+
+			<if test="filesizeGreaterThanOrEqual != null">
+				and E.FILESIZE &gt;= #{filesizeGreaterThanOrEqual}
+			</if>
+
+			<if test="filesizeLessThanOrEqual != null">
+				and E.FILESIZE &lt;= #{filesizeLessThanOrEqual}
+			</if>
+
+			<if test="choosePublishFlag != null and choosePublishFlag != '' ">
+				and E.CHOOSEPUBLISHFLAG = #{choosePublishFlag}
+			</if>
+
+			<if test="choosePublishTimeGreaterThanOrEqual != null">
+				and E.CHOOSEPUBLISHTIME &gt;=
+				#{choosePublishTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="choosePublishTimeLessThanOrEqual != null">
+				and E.CHOOSEPUBLISHTIME &lt;=
+				#{choosePublishTimeLessThanOrEqual}
+			</if>
+
+			<if test="publishdiskid != null">
+				and E.PUBLISHDISKID = #{publishdiskid}
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

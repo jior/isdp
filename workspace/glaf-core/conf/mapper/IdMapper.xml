@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.core.mapper.IdMapper">
+
+	<resultMap id="dbidResultMap" type="com.glaf.core.id.Dbid">
+		<id property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="version" column="VERSION_" jdbcType="INTEGER" />
+		<result property="value" column="VALUE_" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<insert id="inertNextDbId" parameterType="com.glaf.core.id.Dbid">
+
+		insert into SYS_DBID(NAME_, TITLE_, VALUE_, VERSION_) values (
+		#{name,jdbcType=VARCHAR},
+		#{title, jdbcType=VARCHAR},
+		#{value,jdbcType=VARCHAR},
+		#{version, jdbcType=INTEGER})
+
+	</insert>
+
+	<update id="updateNextDbId" parameterType="com.glaf.core.id.Dbid">
+
+		update SYS_DBID set
+		TITLE_ = #{title, jdbcType=VARCHAR},
+		VALUE_ = #{value,
+		jdbcType=VARCHAR},
+		VERSION_ = #{version, jdbcType=INTEGER}
+		where NAME_ =
+		#{name, jdbcType=VARCHAR}
+
+	</update>
+
+	<select id="getNextDbId" parameterType="string" resultMap="dbidResultMap">
+		select * from SYS_DBID
+		where NAME_ = #{name, jdbcType=VARCHAR}
+	</select>
+
+	<select id="getAllDbids" resultMap="dbidResultMap">
+		select * from SYS_DBID
+	</select>
+
+</mapper>
