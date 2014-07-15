@@ -165,5 +165,7 @@
 	<classpathentry kind="lib" path="/glaf-commons/lib/curator-x-discovery.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/netty4.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/sqlite-jdbc.jar"/>
+	<classpathentry kind="lib" path="/glaf-commons/lib/h2.jar"/>
+	<classpathentry kind="lib" path="/glaf-commons/lib/mchange-commons-java.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
