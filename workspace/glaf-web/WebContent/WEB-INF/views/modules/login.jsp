@@ -94,7 +94,6 @@
 			document.getElementById("y").focus();
             return;
 		}
-		//alert("${contextPath}/mx/login/doLogin?x="+x+"&y=<%=rand%>"+y);
         location.href="${contextPath}/mx/login/doLogin?x="+x+"&y=${sessionScope.x_y}"+y;
 	}
 

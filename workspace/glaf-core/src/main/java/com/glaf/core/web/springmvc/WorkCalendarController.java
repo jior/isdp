@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package com.glaf.base.modules.sys.springmvc;
+package com.glaf.core.web.springmvc;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -34,10 +34,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.glaf.base.modules.sys.model.WorkCalendar;
-import com.glaf.base.modules.sys.service.WorkCalendarService;
-import com.glaf.base.utils.ParamUtil;
+import com.glaf.core.domain.WorkCalendar;
+import com.glaf.core.service.WorkCalendarService;
 import com.glaf.core.config.ViewProperties;
+import com.glaf.core.util.RequestUtils;
 import com.glaf.core.util.ResponseUtils;
 
 @Controller("/sys/workCalendar")
@@ -119,9 +119,9 @@ public class WorkCalendarController {
 	public ModelAndView showCalendar(HttpServletRequest request,
 			ModelMap modelMap) {
 		Calendar cal = Calendar.getInstance();
-		int month = ParamUtil.getIntParameter(request, "month",
+		int month = RequestUtils.getIntParameter(request, "month",
 				cal.get(Calendar.MONTH));
-		int year = ParamUtil.getIntParameter(request, "year",
+		int year = RequestUtils.getIntParameter(request, "year",
 				cal.get(Calendar.YEAR));
 
 		cal.set(Calendar.MONTH, month); // 设置月份
@@ -179,7 +179,7 @@ public class WorkCalendarController {
 	@RequestMapping("/showList")
 	public ModelAndView showList(HttpServletRequest request, ModelMap modelMap) {
 		Calendar cal = Calendar.getInstance();
-		int year = ParamUtil.getIntParameter(request, "year",
+		int year = RequestUtils.getIntParameter(request, "year",
 				cal.get(Calendar.YEAR));
 		request.setAttribute("year", String.valueOf(year));
 
