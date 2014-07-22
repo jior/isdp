@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-
-<mapping>
-    <bean name="Audit" title="审核记录">
-        <property name="sql" value="select * from Audit"/>
-    </bean>
-</mapping>
