@@ -20,6 +20,7 @@ package com.glaf.base.modules;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -39,6 +40,7 @@ import org.apache.commons.logging.LogFactory;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.glaf.core.base.ConnectionDefinition;
 import com.glaf.core.config.*;
 import com.glaf.core.db.DbTableChecker;
 import com.glaf.core.context.ContextFactory;
@@ -247,6 +249,8 @@ public class BaseDataManager {
 	 * @return
 	 */
 	public List<Object> getListData(String key) {
+		logger.debug("Environment.getCurrentSystemName():"
+				+ Environment.getCurrentSystemName());
 		String complexKey = Environment.getCurrentSystemName() + "_" + key;
 		if (dataListMap.containsKey(complexKey)) {
 			return (List<Object>) dataListMap.get(complexKey);
@@ -675,6 +679,7 @@ public class BaseDataManager {
 			ex.printStackTrace();
 		}
 
+		Environment.setCurrentSystemName(Environment.DEFAULT_SYSTEM_NAME);
 		// 用户自定义数据
 		loadCustomInfo();
 		// 用户自定义数据处理程序
@@ -691,6 +696,35 @@ public class BaseDataManager {
 		loadDictInfo();
 		// 数据表定义信息
 		loadTableMeta();
+
+		Collection<ConnectionDefinition> list = DBConfiguration
+				.getConnectionDefinitions();
+		if (list != null && !list.isEmpty()) {
+			for (ConnectionDefinition def : list) {
+				String name = def.getName();
+				if (name != null && name.trim().length() > 0) {
+					Environment.setCurrentSystemName(name);
+					// 用户自定义数据
+					loadCustomInfo();
+					// 用户自定义数据处理程序
+					loadCustomHandler();
+					// 用户自定义JSON数据处理程序
+					loadCustomJsonData();
+					// 用户信息
+					loadUsers();
+					// 部门结构
+					loadDepartments();
+					// 模块功能
+					loadFunctions();
+					// 数据字典
+					loadDictInfo();
+					// 数据表定义信息
+					loadTableMeta();
+				}
+			}
+		}
+
+		Environment.setCurrentSystemName(Environment.DEFAULT_SYSTEM_NAME);
 	}
 
 	private void loadCustomHandler() {
@@ -717,6 +751,8 @@ public class BaseDataManager {
 						DataHandler handler = (DataHandler) object;
 						List<Object> list = handler.loadData();
 						// dataMap.put(key, list);
+						logger.debug("Environment.getCurrentSystemName():"
+								+ Environment.getCurrentSystemName());
 						String complexKey = Environment.getCurrentSystemName()
 								+ "_" + key;
 						dataListMap.put(complexKey, list);
