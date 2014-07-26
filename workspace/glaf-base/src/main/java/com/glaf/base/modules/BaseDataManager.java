@@ -135,6 +135,9 @@ public class BaseDataManager {
 		if (baseDataMap.containsKey(complexKey)) {
 			return (List<BaseDataInfo>) baseDataMap.get(complexKey);
 		}
+		if (baseDataMap.containsKey(key)) {
+			return (List<BaseDataInfo>) baseDataMap.get(key);
+		}
 		return null;
 	}
 
@@ -224,6 +227,10 @@ public class BaseDataManager {
 			String text = jsonDataMap.get(complexKey);
 			return JSON.parseArray(text);
 		}
+		if (jsonDataMap.containsKey(key)) {
+			String text = jsonDataMap.get(key);
+			return JSON.parseArray(text);
+		}
 		return null;
 	}
 
@@ -254,6 +261,9 @@ public class BaseDataManager {
 		String complexKey = Environment.getCurrentSystemName() + "_" + key;
 		if (dataListMap.containsKey(complexKey)) {
 			return (List<Object>) dataListMap.get(complexKey);
+		}
+		if (dataListMap.containsKey(key)) {
+			return (List<Object>) dataListMap.get(key);
 		}
 		return null;
 	}
