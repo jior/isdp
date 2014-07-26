@@ -697,12 +697,19 @@ public class BaseDataManager {
 		// 数据表定义信息
 		loadTableMeta();
 
+		Environment.removeCurrentSystemName();
+
 		Collection<ConnectionDefinition> list = DBConfiguration
 				.getConnectionDefinitions();
 		if (list != null && !list.isEmpty()) {
 			for (ConnectionDefinition def : list) {
 				String name = def.getName();
 				if (name != null && name.trim().length() > 0) {
+					if (StringUtils.equals(name,
+							Environment.DEFAULT_SYSTEM_NAME)) {
+						continue;
+					}
+					logger.info("swtich system name:" + name);
 					Environment.setCurrentSystemName(name);
 					// 用户自定义数据
 					loadCustomInfo();
@@ -720,6 +727,8 @@ public class BaseDataManager {
 					loadDictInfo();
 					// 数据表定义信息
 					loadTableMeta();
+
+					Environment.removeCurrentSystemName();
 				}
 			}
 		}
@@ -746,15 +755,19 @@ public class BaseDataManager {
 						// baseDataMap.put(key, list);
 						String complexKey = Environment.getCurrentSystemName()
 								+ "_" + key;
+						logger.debug("Environment.getCurrentSystemName():"
+								+ Environment.getCurrentSystemName());
+						logger.debug("complexKey:" + complexKey);
 						baseDataMap.put(complexKey, list);
 					} else if (object instanceof DataHandler) {
 						DataHandler handler = (DataHandler) object;
 						List<Object> list = handler.loadData();
 						// dataMap.put(key, list);
-						logger.debug("Environment.getCurrentSystemName():"
-								+ Environment.getCurrentSystemName());
 						String complexKey = Environment.getCurrentSystemName()
 								+ "_" + key;
+						logger.debug("Environment.getCurrentSystemName():"
+								+ Environment.getCurrentSystemName());
+						logger.debug("complexKey:" + complexKey);
 						dataListMap.put(complexKey, list);
 					}
 				}
@@ -799,6 +812,9 @@ public class BaseDataManager {
 						// baseDataMap.put(key, dataList);
 						String complexKey = Environment.getCurrentSystemName()
 								+ "_" + key;
+						logger.debug("Environment.getCurrentSystemName():"
+								+ Environment.getCurrentSystemName());
+						logger.debug("complexKey:" + complexKey);
 						baseDataMap.put(complexKey, dataList);
 					}
 				}
@@ -828,6 +844,9 @@ public class BaseDataManager {
 						if (jsonArray != null) {
 							String complexKey = Environment
 									.getCurrentSystemName() + "_" + key;
+							logger.debug("Environment.getCurrentSystemName():"
+									+ Environment.getCurrentSystemName());
+							logger.debug("complexKey:" + complexKey);
 							jsonDataMap.put(complexKey,
 									jsonArray.toJSONString());
 						}
@@ -847,6 +866,9 @@ public class BaseDataManager {
 		try {
 			SysTree parent = getSysTreeService().getSysTreeByCode(
 					SysConstants.TREE_DEPT);
+			if (parent == null) {
+				return;
+			}
 			List<SysTree> list = new ArrayList<SysTree>();
 			getSysTreeService().getSysTree(list, (int) parent.getId(), 0);
 			SysTreeQuery query = new SysTreeQuery();
