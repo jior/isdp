@@ -737,6 +737,8 @@ public class BaseDataManager {
 	}
 
 	private void loadCustomHandler() {
+		logger.debug("Environment.getCurrentSystemName():"
+				+ Environment.getCurrentSystemName());
 		try {
 			File file = new File(SystemProperties.getConfigRootPath()
 					+ CUSTOM_HANDLER);
@@ -749,36 +751,38 @@ public class BaseDataManager {
 					String value = props.getProperty(key);
 					Object object = com.glaf.core.util.ReflectUtils
 							.instantiate(value);
+					logger.debug("object:" + object.getClass().getName());
 					if (object instanceof BaseDataHandler) {
 						BaseDataHandler handler = (BaseDataHandler) object;
 						List<BaseDataInfo> list = handler.loadData();
 						// baseDataMap.put(key, list);
 						String complexKey = Environment.getCurrentSystemName()
 								+ "_" + key;
-						logger.debug("Environment.getCurrentSystemName():"
-								+ Environment.getCurrentSystemName());
 						logger.debug("complexKey:" + complexKey);
 						baseDataMap.put(complexKey, list);
+						baseDataMap.put(key, list);
 					} else if (object instanceof DataHandler) {
 						DataHandler handler = (DataHandler) object;
 						List<Object> list = handler.loadData();
 						// dataMap.put(key, list);
 						String complexKey = Environment.getCurrentSystemName()
 								+ "_" + key;
-						logger.debug("Environment.getCurrentSystemName():"
-								+ Environment.getCurrentSystemName());
 						logger.debug("complexKey:" + complexKey);
 						dataListMap.put(complexKey, list);
+						dataListMap.put(key, list);
 					}
 				}
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			logger.error("用户自定义数据处理程序出错！");
+			logger.error(ex);
 		}
 	}
 
 	private void loadCustomInfo() {
+		logger.debug("Environment.getCurrentSystemName():"
+				+ Environment.getCurrentSystemName());
 		try {
 			File file = new File(SystemProperties.getConfigRootPath()
 					+ CUSTOM_CONFIG);
@@ -812,20 +816,22 @@ public class BaseDataManager {
 						// baseDataMap.put(key, dataList);
 						String complexKey = Environment.getCurrentSystemName()
 								+ "_" + key;
-						logger.debug("Environment.getCurrentSystemName():"
-								+ Environment.getCurrentSystemName());
 						logger.debug("complexKey:" + complexKey);
 						baseDataMap.put(complexKey, dataList);
+						baseDataMap.put(key, dataList);
 					}
 				}
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
+			logger.error(ex);
 			logger.error("提取用户自定义数据失败！");
 		}
 	}
 
 	private void loadCustomJsonData() {
+		logger.debug("Environment.getCurrentSystemName():"
+				+ Environment.getCurrentSystemName());
 		try {
 			File file = new File(SystemProperties.getConfigRootPath()
 					+ CUSTOM_HANDLER);
@@ -844,17 +850,17 @@ public class BaseDataManager {
 						if (jsonArray != null) {
 							String complexKey = Environment
 									.getCurrentSystemName() + "_" + key;
-							logger.debug("Environment.getCurrentSystemName():"
-									+ Environment.getCurrentSystemName());
 							logger.debug("complexKey:" + complexKey);
 							jsonDataMap.put(complexKey,
 									jsonArray.toJSONString());
+							jsonDataMap.put(key, jsonArray.toJSONString());
 						}
 					}
 				}
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
+			logger.error(ex);
 			logger.error("提取用户自定义数据失败！");
 		}
 	}
@@ -863,6 +869,8 @@ public class BaseDataManager {
 	 * 装载部门信息
 	 */
 	private void loadDepartments() {
+		logger.debug("Environment.getCurrentSystemName():"
+				+ Environment.getCurrentSystemName());
 		try {
 			SysTree parent = getSysTreeService().getSysTreeByCode(
 					SysConstants.TREE_DEPT);
@@ -920,8 +928,9 @@ public class BaseDataManager {
 			}
 			logger.info("装载部门信息结束");
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			logger.error(ex);
 			logger.error("提取部门数据失败！");
 		}
 	}
@@ -930,6 +939,8 @@ public class BaseDataManager {
 	 * 装载字典信息
 	 */
 	public void loadDictInfo() {
+		logger.debug("Environment.getCurrentSystemName():"
+				+ Environment.getCurrentSystemName());
 		try {
 			logger.info("装载字典信息开始...");
 			List<SysTree> trees = getDictoryService().getAllCategories();
@@ -988,8 +999,9 @@ public class BaseDataManager {
 				}
 			}
 			logger.info("装载字典信息结束.");
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			logger.error(ex);
+			ex.printStackTrace();
 			logger.error("提取字典数据失败！");
 		}
 	}
@@ -1025,8 +1037,9 @@ public class BaseDataManager {
 				baseDataMap.put(complexKey, tmp);
 			}
 			logger.info("装载模块信息结束");
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			logger.error(ex);
+			ex.printStackTrace();
 			logger.error("提取模块数据失败！");
 		}
 	}
@@ -1051,6 +1064,7 @@ public class BaseDataManager {
 					checker.checkTables();
 				}
 			} catch (Exception ex) {
+				logger.error(ex);
 				ex.printStackTrace();
 			}
 			logger.debug("load table meta finish.");
@@ -1086,8 +1100,9 @@ public class BaseDataManager {
 				baseDataMap.put(complexKey, tmp);
 			}
 			logger.info("装载用户信息结束");
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			logger.error(ex);
+			ex.printStackTrace();
 			logger.error("提取用户信息失败！");
 		}
 	}
