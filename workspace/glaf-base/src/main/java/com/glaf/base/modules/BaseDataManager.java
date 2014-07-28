@@ -709,36 +709,38 @@ public class BaseDataManager {
 
 		Environment.removeCurrentSystemName();
 
-		Collection<ConnectionDefinition> list = DBConfiguration
-				.getConnectionDefinitions();
-		if (list != null && !list.isEmpty()) {
-			for (ConnectionDefinition def : list) {
-				String name = def.getName();
-				if (name != null && name.trim().length() > 0) {
-					if (StringUtils.equals(name,
-							Environment.DEFAULT_SYSTEM_NAME)) {
-						continue;
-					}
-					logger.info("swtich system name:" + name);
-					Environment.setCurrentSystemName(name);
-					// 用户自定义数据
-					loadCustomInfo();
-					// 用户自定义数据处理程序
-					loadCustomHandler();
-					// 用户自定义JSON数据处理程序
-					loadCustomJsonData();
-					// 用户信息
-					loadUsers();
-					// 部门结构
-					loadDepartments();
-					// 模块功能
-					loadFunctions();
-					// 数据字典
-					loadDictInfo();
-					// 数据表定义信息
-					loadTableMeta();
+		if (conf.getBoolean("multi.project.support", false)) {
+			Collection<ConnectionDefinition> list = DBConfiguration
+					.getConnectionDefinitions();
+			if (list != null && !list.isEmpty()) {
+				for (ConnectionDefinition def : list) {
+					String name = def.getName();
+					if (name != null && name.trim().length() > 0) {
+						if (StringUtils.equals(name,
+								Environment.DEFAULT_SYSTEM_NAME)) {
+							continue;
+						}
+						logger.info("swtich system name:" + name);
+						Environment.setCurrentSystemName(name);
+						// 用户自定义数据
+						loadCustomInfo();
+						// 用户自定义数据处理程序
+						loadCustomHandler();
+						// 用户自定义JSON数据处理程序
+						loadCustomJsonData();
+						// 用户信息
+						loadUsers();
+						// 部门结构
+						loadDepartments();
+						// 模块功能
+						loadFunctions();
+						// 数据字典
+						loadDictInfo();
+						// 数据表定义信息
+						loadTableMeta();
 
-					Environment.removeCurrentSystemName();
+						Environment.removeCurrentSystemName();
+					}
 				}
 			}
 		}
