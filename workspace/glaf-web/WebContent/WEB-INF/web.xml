@@ -95,6 +95,12 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
+	<servlet>
+		<servlet-name>FrReportServlet</servlet-name>
+		<servlet-class>com.glaf.fr.web.FrReportServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>/mx/*</url-pattern>

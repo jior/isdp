@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project basedir="." default="build">
+	<property name="build.home" location="." />
+	<property name="build.dest" location="bin" />
+	<property name="build.src" location="src" />
+
+	<path id="classpath">
+		<fileset dir="lib" includes="*.jar" />
+		<fileset dir="../glaf-commons/lib" includes="*.jar" />
+		<pathelement location="${build.home}/bin" />
+	</path>
+
+	<target name="build">
+		<echo message="编译应用程序......" />
+		<mkdir dir="bin" />
+		<javac srcdir="src" destdir="bin" debug="on" deprecation="on" encoding="UTF-8">
+			<include name="main/java/**/*.java" />
+			<include name="test/java/**/*.java" />
+			<classpath refid="classpath" />
+		</javac>
+		<copy todir="bin">
+			<fileset dir="src/main/java" includes="com/**/*.conf,com/**/*.sql,com/**/*.properties,com/**/*.xml" />
+		</copy>
+	</target>
+
+	<target name="jar"  >
+		<jar jarfile="glaf-fr-src.zip">
+			<fileset dir="." excludes="**/*.cvs,**/*.bak,**/*.tmp,**/*.scc,**/*.svn"
+			    includes=".classpath, .project, .settings/**, *.bat, *.xml, *.txt, config/**/*.*, mapping/**/*.*, sql/**/*.*, src/**/*.*, bpmn/**/*.*"  />
+		</jar>
+		 
+		<jar jarfile="glaf-fr.jar">
+			<fileset dir="bin" includes="com/glaf/fr/**/*.*" 
+			             excludes="**/*.cvs,**/*.bak,**/*.tmp,**/*.scc,**/*.svn" />
+		</jar>
+
+	</target>
+
+	<target name="copy">
+		<copy todir="../glaf-web/WebContent/WEB-INF/classes">
+			<fileset dir="bin" includes="com/**/*.class,com/**/*.properties,com/**/*.xml" />
+		</copy>
+	</target>
+	 
+</project>
