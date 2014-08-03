@@ -213,7 +213,7 @@ for(; i<pageSize; i++){
       <input name="btn_del" type="button" value="删除" class="button" onClick="javascript:del();" disabled>
       <input name="btn_modify" type="button" value="修改" class="button" onClick="javascript:modify(this.form);" disabled>
 	  <input name="btn_reset_pwd" type="button" value="重置密码" class="button" onClick="javascript:resetPwd(this.form);" disabled>
-      <input name="btn_role" type="button" value="角色设置" class="button" onClick="javascript:roles(this.form);" disabled>
+      <!-- <input name="btn_role" type="button" value="角色设置" class="button" onClick="javascript:roles(this.form);" disabled> -->
 	</td>
     <td  width="54%"> 
       <%
