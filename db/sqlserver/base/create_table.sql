@@ -228,6 +228,30 @@ CREATE TABLE sys_todo_instance(
         PRIMARY KEY (id)
     );
 
+CREATE TABLE sys_lob (
+        id_ varchar(50) not null,
+        businesskey_ varchar(50),
+        contenttype_ varchar(50),
+        createby_ varchar(50),
+        createdate_ datetime,
+        data_ varbinary,
+        deleteflag_ int,
+        deviceid_ varchar(20),
+        fileid_ varchar(50),
+        filename_ varchar(500),
+        lastmodified_ bigint,
+        locked_ int,
+        name_ varchar(50),
+        objectid_ varchar(255),
+        objectvalue_ varchar(255),
+        path_ varchar(500),
+        servicekey_ varchar(50),
+        size_ bigint,
+        status_ int,
+        type_ varchar(50),
+        primary key (id_)
+);
+
 CREATE TABLE message(
         id bigint not null,
         type int,
