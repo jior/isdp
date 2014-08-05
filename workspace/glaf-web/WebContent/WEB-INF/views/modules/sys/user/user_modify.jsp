@@ -145,7 +145,7 @@ function setValue(obj){
         <td>
 		    <select id="accountType" name="accountType">
 			  <option value="0">----请选择----</option>
-			  <c:forEach items="${accounts}" var="a">
+			  <c:forEach items="${accountTypeDictories}" var="a">
 				<option value="${a.code}">${a.name} [${a.code}]</option>
 			  </c:forEach>
 		   </select>
