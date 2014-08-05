@@ -236,9 +236,7 @@ public class LoginController {
 				}
 			}
 
-			if (bean.getAccountType() == 1) {// 供应商用户
-				return new ModelAndView("/modules/sp_main", modelMap);
-			} else if (bean.getAccountType() == 2) {// 微信用户
+			if (bean.getAccountType() == 2) {// 微信用户
 				return new ModelAndView("/modules/wx_main", modelMap);
 			} else {
 				return new ModelAndView("/modules/main", modelMap);

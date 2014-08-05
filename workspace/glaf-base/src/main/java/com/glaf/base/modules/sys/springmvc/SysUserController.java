@@ -395,6 +395,10 @@ public class SysUserController {
 		List<Dictory> dictories = dictoryService
 				.getDictoryList(SysConstants.USER_HEADSHIP);
 		modelMap.put("dictories", dictories);
+		
+		List<Dictory> accounts = dictoryService
+				.getDictoryList(SysConstants.USER_ACCOUNTTYPE);
+		modelMap.put("accountTypeDictories", accounts);
 
 		String x_view = ViewProperties.getString("user.prepareAdd");
 		if (StringUtils.isNotEmpty(x_view)) {
