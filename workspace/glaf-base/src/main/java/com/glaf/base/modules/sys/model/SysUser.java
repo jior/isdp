@@ -44,19 +44,19 @@ public class SysUser implements Serializable, User, JSONable {
 	 * 用户名
 	 */
 	@Id
-	@Column(name = "UserID", length = 50)
+	@Column(name = "USERID", length = 50)
 	protected String account;
 
 	/**
 	 * 账号类型
 	 */
-	@Column(name = "accountType")
+	@Column(name = "ACCOUNTTYPE")
 	protected int accountType;
 
 	/**
 	 * 管理员标识
 	 */
-	@Column(name = "issystem", length = 10)
+	@Column(name = "ISSYSTEM", length = 10)
 	protected String adminFlag;
 
 	@javax.persistence.Transient
@@ -65,7 +65,7 @@ public class SysUser implements Serializable, User, JSONable {
 	/**
 	 * 启用标记
 	 */
-	@Column(name = "status")
+	@Column(name = "STATUS")
 	protected String status;
 
 	/**
@@ -154,7 +154,7 @@ public class SysUser implements Serializable, User, JSONable {
 	/**
 	 * 姓名
 	 */
-	@Column(name = "UserName", length = 50)
+	@Column(name = "USERNAME", length = 50)
 	protected String name;
 
 	@javax.persistence.Transient

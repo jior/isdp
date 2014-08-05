@@ -50,4 +50,6 @@ public class SysConstants {
 	public static int TREE_ROOT = 1;// 目录根节点
 
 	public static String USER_HEADSHIP = "UserHeadship";// 用户职位代码，取值为SYS_DICTORY表的code
+
+	public static String USER_ACCOUNTTYPE = "AccountType";// 账户类型，取值为SYS_DICTORY表的code
 }

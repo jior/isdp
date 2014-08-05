@@ -439,6 +439,10 @@ public class SysUserController {
 				.getDictoryList(SysConstants.USER_HEADSHIP);
 		modelMap.put("dictories", dictories);
 
+		List<Dictory> accounts = dictoryService
+				.getDictoryList(SysConstants.USER_ACCOUNTTYPE);
+		modelMap.put("accountTypeDictories", accounts);
+
 		SysTree parent = sysTreeService.getSysTreeByCode(Constants.TREE_DEPT);
 		List<SysTree> list = new ArrayList<SysTree>();
 		parent.setDeep(0);
