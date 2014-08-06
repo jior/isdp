@@ -27,8 +27,8 @@ public class ${entityName}DomainFactory {
         tableDefinition.setIdColumn(idColumn);
 
 
-  <#if pojo_fields?exists>
-<#list  pojo_fields as field>	
+<#if pojo_fields?exists>
+<#list pojo_fields as field>	
   <#if field.type?exists >
     <#if field.columnName?exists >
 	ColumnDefinition ${field.name} = new ColumnDefinition();
