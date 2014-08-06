@@ -1130,6 +1130,7 @@ public class BaseDataManager {
 		if (!loading.get()) {
 			try {
 				loading.set(true);
+
 				initBaseData();
 				HttpServletRequest request = ThreadContextHolder
 						.getHttpRequest();

@@ -41,6 +41,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.glaf.core.config.ViewProperties;
+import com.glaf.core.execution.MultiDBHibernateSchemaUpdate;
 import com.glaf.core.res.MessageUtils;
 import com.glaf.core.res.ViewMessage;
 import com.glaf.core.res.ViewMessages;
@@ -347,6 +348,8 @@ public class SysDictoryController {
 	@RequestMapping(value = "/saveLoadDictory", method = RequestMethod.POST)
 	public ModelAndView saveLoadDictory(HttpServletRequest request,
 			ModelMap modelMap) {
+		MultiDBHibernateSchemaUpdate schema = new MultiDBHibernateSchemaUpdate();
+		schema.execute();
 		BaseDataManager.getInstance().refreshBaseData();
 		ViewMessages messages = new ViewMessages();
 		messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
