@@ -235,9 +235,9 @@ insert into sys_dictory (id, typeId, code, name, sort, dictDesc, blocked, ext1, 
 insert into sys_dictory (id, typeId, code, name, sort, dictDesc, blocked, ext1, ext2) values (4, 498, 'HKD', '港币', 4, null, 0, '', '');
 insert into sys_dictory (id, typeId, code, name, sort, dictDesc, blocked, ext1, ext2) values (5, 498, 'EUR', '欧元', 5, null, 0, '', '');
  
-insert into sys_dictory (id, typeId, code, name, sort, dictDesc, blocked, value) values (11, 499, '0', '默认', 1, null, 0, '/mx/my/main');
-insert into sys_dictory (id, typeId, code, name, sort, dictDesc, blocked, value) values (12, 499, '1', '网站', 2, null, 0, '/website/main');
-insert into sys_dictory (id, typeId, code, name, sort, dictDesc, blocked, value) values (13, 499, '2', '微信', 3, null, 0, '/mx/wechat/main');
+insert into sys_dictory (id, typeId, code, name, sort, dictDesc, blocked, value_) values (11, 499, '0', '默认', 1, null, 0, '/mx/my/main');
+insert into sys_dictory (id, typeId, code, name, sort, dictDesc, blocked, value_) values (12, 499, '1', '网站', 2, null, 0, '/website/main');
+insert into sys_dictory (id, typeId, code, name, sort, dictDesc, blocked, value_) values (13, 499, '2', '微信', 3, null, 0, '/mx/wechat/main');
 
 
 
