@@ -194,100 +194,11 @@
 
 		from ${tableName} E
 		
-		<#if classDefinition.jbpmSupport >
-		<if test=" workedProcessFlag == 'WD' and appActorIds != null and appActorIds.size != 0  ">
-           inner join JBPM_TASKINSTANCE T
-		   on E.PROCESSINSTANCEID_ = T.PROCINST_
-		</if>
-		</#if>
-		 
 		<where>
 		       1 = 1  
-			  <#if classDefinition.jbpmSupport >
-			   <if test="workedProcessFlag == 'WD' and appActorIds != null and appActorIds.size != 0 ">
-			     and ( T.END_ IS NOT NULL)
-                 and ( T.ACTORID_ in
-                 <foreach item="x_actorId" index="index" collection="appActorIds" 
-						open="(" separator="," close=")">
-					#GG{x_actorId}
-				 </foreach>
-				 )
-			   </if>
-
-			   <if test="workedProcessFlag == 'PD' and appActorIds != null and appActorIds.size != 0 ">
-			      and E.PROCESSINSTANCEID_ in (
-				          SELECT a.PROCINST_
-						  FROM JBPM_TASKINSTANCE a 
-						  WHERE (1 = 1) 
-						  AND (a.END_ IS NULL)
-						  AND (a.ACTORID_ IS NOT NULL) 
-						  AND (a.ACTORID_ in 
-						    <foreach item="x_actorId2" index="index" collection="appActorIds" 
-						          open="(" separator="," close=")">
-					              #GG{x_actorId2}
-				            </foreach>
-						  )
-				        union
-				          SELECT a.PROCINST_
-						  FROM JBPM_TASKINSTANCE a 
-						  INNER JOIN JBPM_TASKACTORPOOL t
-						  ON a.ID_ = t.TASKINSTANCE_
-						  INNER JOIN JBPM_POOLEDACTOR p  
-						  ON p.ID_ = t.POOLEDACTOR_ 
-						  WHERE (1 = 1)  
-						  AND (a.END_ IS NULL)
-						  AND (a.ACTORID_ IS NULL)
-						  AND (p.ACTORID_ in 
-                            <foreach item="x_actorId3" index="index" collection="appActorIds" 
-						             open="(" separator="," close=")">
-					              #GG{x_actorId3}
-				            </foreach>
-						  )  
-                 )
-			   </if>
-
-			   <if test="workedProcessFlag == 'ALL' and appActorIds != null and appActorIds.size != 0 ">
-			      and E.PROCESSINSTANCEID_ in (
-				          SELECT a.PROCINST_
-						  FROM JBPM_TASKINSTANCE a 
-						  WHERE (1 = 1) 
-						  AND (a.ACTORID_ IS NOT NULL) 
-						  AND (a.ACTORID_ in 
-						    <foreach item="x_actorId2" index="index" collection="appActorIds" 
-						          open="(" separator="," close=")">
-					              #GG{x_actorId2}
-				            </foreach>
-						  )
-				        union
-				          SELECT a.PROCINST_
-						  FROM JBPM_TASKINSTANCE a 
-						  INNER JOIN JBPM_TASKACTORPOOL t
-						  ON a.ID_ = t.TASKINSTANCE_
-						  INNER JOIN JBPM_POOLEDACTOR p  
-						  ON p.ID_ = t.POOLEDACTOR_ 
-						  WHERE (1 = 1) 
-						  AND (a.ACTORID_ IS NULL)
-						  AND (p.ACTORID_ in 
-                            <foreach item="x_actorId3" index="index" collection="appActorIds" 
-						             open="(" separator="," close=")">
-					              #GG{x_actorId3}
-				            </foreach>
-						  )  
-                 )
-			   </if>
-
-
-			<if test="processInstanceIds != null and processInstanceIds.size != 0">
-				and E.PROCESSINSTANCEID_ IN
-				<foreach item="x_processInstanceId" index="index"
-					collection="processInstanceIds" open="(" separator="," close=")">
-					#GG{x_processInstanceId}
-                </foreach>
-			</if>
-		  </#if>
-
+			 
 <#if pojo_fields?exists>
-  <#list  pojo_fields as field>
+ <#list  pojo_fields as field>
   <#if field.name?exists && field.columnName?exists && field.type?exists>
    <#if field.name != 'processInstanceId'>
 	<#if field.type?exists && ( field.type== 'Integer' || field.type== 'Long' )>
@@ -304,7 +215,7 @@
 				and E.${field.columnName} &lt;= #GG{${field.name}LessThanOrEqual}
             </if>
 
-			<if test="${field.name}s != null and ${field.name}s.size != 0">
+			<if test="${field.name}s != null and ${field.name}s.size() &gt; 0">
 			    and E.${field.columnName} IN
                 <foreach item="x_${field.name}" index="index" collection="${field.name}s" 
                      open="(" separator="," close=")">
@@ -332,7 +243,7 @@
 				and E.${field.columnName} like #GG{${field.name}Like}
             </if>
 
-			<if test="${field.name}s != null and ${field.name}s.size != 0">
+			<if test="${field.name}s != null and ${field.name}s.size() &gt; 0">
 			    and E.${field.columnName} IN
                 <foreach item="x_${field.name}" index="index" collection="${field.name}s" 
                      open="(" separator="," close=")">
@@ -342,7 +253,7 @@
       </#if>
 	 </#if>
 	</#if>
-  </#list>
+ </#list>
 </#if>			 
 			 
 		</where>
