@@ -167,11 +167,30 @@ public class CellTreedot implements Serializable, ITree, JSONable {
 	protected String picfile;
 
 	/**
+	 * file_name
+	 */
+	@Column(name = "file_name", length = 255)
+	protected String fileName;
+
+	/**
 	 * file_content
 	 */
 	@Lob
 	@Column(name = "file_content")
 	protected byte[] fileContent;
+
+	/**
+	 * link_file_name
+	 */
+	@Column(name = "link_file_name", length = 255)
+	protected String linkFileName;
+
+	/**
+	 * link_file_content
+	 */
+	@Lob
+	@Column(name = "link_file_content")
+	protected byte[] linkFileContent;
 
 	/**
 	 * intMuiFrm
@@ -250,6 +269,10 @@ public class CellTreedot implements Serializable, ITree, JSONable {
 		return this.fileContent;
 	}
 
+	public String getFileName() {
+		return fileName;
+	}
+
 	public String getGid() {
 		return this.gid;
 	}
@@ -300,6 +323,14 @@ public class CellTreedot implements Serializable, ITree, JSONable {
 
 	public int getLevel() {
 		return this.nlevel;
+	}
+
+	public byte[] getLinkFileContent() {
+		return linkFileContent;
+	}
+
+	public String getLinkFileName() {
+		return linkFileName;
 	}
 
 	public int getListno() {
@@ -362,6 +393,10 @@ public class CellTreedot implements Serializable, ITree, JSONable {
 		return checked;
 	}
 
+	public CellTreedot jsonToObject(JSONObject jsonObject) {
+		return CellTreedotJsonFactory.jsonToObject(jsonObject);
+	}
+
 	public void removeChild(CellTreedot child) {
 		if (children != null) {
 			children.remove(child);
@@ -386,6 +421,10 @@ public class CellTreedot implements Serializable, ITree, JSONable {
 
 	public void setFileContent(byte[] fileContent) {
 		this.fileContent = fileContent;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 	public void setGid(String gid) {
@@ -440,6 +479,14 @@ public class CellTreedot implements Serializable, ITree, JSONable {
 		this.nlevel = nlevel;
 	}
 
+	public void setLinkFileContent(byte[] linkFileContent) {
+		this.linkFileContent = linkFileContent;
+	}
+
+	public void setLinkFileName(String linkFileName) {
+		this.linkFileName = linkFileName;
+	}
+
 	public void setListno(int listno) {
 		this.listno = listno;
 	}
@@ -486,10 +533,6 @@ public class CellTreedot implements Serializable, ITree, JSONable {
 
 	public void setViewtype(int viewtype) {
 		this.viewtype = viewtype;
-	}
-
-	public CellTreedot jsonToObject(JSONObject jsonObject) {
-		return CellTreedotJsonFactory.jsonToObject(jsonObject);
 	}
 
 	public JSONObject toJsonObject() {

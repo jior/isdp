@@ -106,6 +106,12 @@ public class CellTreedotJsonFactory {
 		if (jsonObject.containsKey("gid")) {
 			model.setGid(jsonObject.getString("gid"));
 		}
+		if (jsonObject.containsKey("fileName")) {
+			model.setFileName(jsonObject.getString("fileName"));
+		}
+		if (jsonObject.containsKey("linkFileName")) {
+			model.setLinkFileName(jsonObject.getString("linkFileName"));
+		}
 
 		return model;
 	}
@@ -165,6 +171,12 @@ public class CellTreedotJsonFactory {
 		if (model.getGid() != null) {
 			jsonObject.put("gid", model.getGid());
 		}
+		if (model.getFileName() != null) {
+			jsonObject.put("fileName", model.getFileName());
+		}
+		if (model.getLinkFileName() != null) {
+			jsonObject.put("linkFileName", model.getLinkFileName());
+		}
 		return jsonObject;
 	}
 
@@ -222,6 +234,12 @@ public class CellTreedotJsonFactory {
 		jsonObject.put("typeIndex", model.getTypeIndex());
 		if (model.getGid() != null) {
 			jsonObject.put("gid", model.getGid());
+		}
+		if (model.getFileName() != null) {
+			jsonObject.put("fileName", model.getFileName());
+		}
+		if (model.getLinkFileName() != null) {
+			jsonObject.put("linkFileName", model.getLinkFileName());
 		}
 		return jsonObject;
 	}
