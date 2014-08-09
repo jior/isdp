@@ -66,7 +66,7 @@
 	</resultMap>
 
  
-	<resultMap id="idStringResultMap54"	type="com.glaf.isdp.domain.ObjectEntity">
+	<resultMap id="idStringResultMap54"	type="com.glaf.base.modules.sys.model.ObjectEntity">
 		<id property="stringValue" column="id" jdbcType="VARCHAR" />
 	</resultMap>
 	

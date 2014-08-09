@@ -15,6 +15,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.glaf.base.modules.sys.model.Filedot;
 import com.glaf.core.base.JSONable;
 import com.glaf.isdp.util.CellCriterionJsonFactory;
 
@@ -290,7 +291,7 @@ public class CellCriterion implements Serializable, JSONable {
 	protected String clevel;
 
 	@javax.persistence.Transient
-	protected List<IsdpFiledot> filedots = new ArrayList<IsdpFiledot>();
+	protected List<Filedot> filedots = new ArrayList<Filedot>();
 
 	public CellCriterion() {
 
@@ -372,7 +373,7 @@ public class CellCriterion implements Serializable, JSONable {
 		return this.content;
 	}
 
-	public List<IsdpFiledot> getFiledots() {
+	public List<Filedot> getFiledots() {
 		return filedots;
 	}
 
@@ -548,7 +549,7 @@ public class CellCriterion implements Serializable, JSONable {
 		this.content = content;
 	}
 
-	public void setFiledots(List<IsdpFiledot> filedots) {
+	public void setFiledots(List<Filedot> filedots) {
 		this.filedots = filedots;
 	}
 

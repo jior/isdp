@@ -10,26 +10,29 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.glaf.test.AbstractTest;
-
+import com.glaf.base.modules.sys.model.CellTreedot;
+import com.glaf.base.modules.sys.model.Filedot;
+import com.glaf.base.modules.sys.model.ITree;
+import com.glaf.base.modules.sys.service.ICellTreedotService;
+import com.glaf.base.modules.sys.service.IFiledotService;
+import com.glaf.base.modules.sys.service.ITreedotService;
 import com.glaf.core.util.FileUtils;
 import com.glaf.isdp.domain.CellMenu;
 import com.glaf.isdp.domain.CellRepInfo;
-import com.glaf.isdp.domain.CellTreedot;
-import com.glaf.isdp.domain.IsdpFiledot;
-import com.glaf.isdp.domain.ITree;
+ 
+ 
 import com.glaf.isdp.domain.MyCellBusiess;
 import com.glaf.isdp.domain.NetRoleUse;
 import com.glaf.isdp.domain.UserInfo;
-import com.glaf.isdp.helper.IsdpJacksonTreeHelper;
+import com.glaf.base.helper.JacksonTreeHelper;
 import com.glaf.isdp.query.CellMenuQuery;
 import com.glaf.isdp.query.MyCellBusiessQuery;
 import com.glaf.isdp.service.ICellMenuService;
 import com.glaf.isdp.service.ICellRepInfoService;
-import com.glaf.isdp.service.ICellTreedotService;
-import com.glaf.isdp.service.IsdpFiledotService;
+ 
+ 
 import com.glaf.isdp.service.IMyCellBusiessService;
 import com.glaf.isdp.service.INetRoleUseService;
-import com.glaf.isdp.service.ITreedotService;
 import com.glaf.isdp.service.IUserInfoService;
 
 public class PermissionTest extends AbstractTest {
@@ -38,7 +41,7 @@ public class PermissionTest extends AbstractTest {
 
 	protected ICellTreedotService cellTreedotService;
 
-	protected IsdpFiledotService filedotService;
+	protected IFiledotService filedotService;
 
 	protected IMyCellBusiessService mycellBusiessService;
 
@@ -80,7 +83,7 @@ public class PermissionTest extends AbstractTest {
 				arrayJSON.add(d.toObjectNode());
 				trees.add(d);
 			}
-			IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
+			JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 			ArrayNode array = treeHelper.getTreeArrayNode(trees);
 			try {
 				FileUtils.save("data/treedots.json",
@@ -99,9 +102,9 @@ public class PermissionTest extends AbstractTest {
 		filedotService = super.getBean("filedotService");
 		ArrayNode arrayJSON = new ObjectMapper().createArrayNode();
 		int indexId = 256;
-		List<IsdpFiledot> filedots = filedotService.getFiledotsOfTreedot(indexId);
+		List<Filedot> filedots = filedotService.getFiledotsOfTreedot(indexId);
 		if (filedots != null && !filedots.isEmpty()) {
-			for (IsdpFiledot dot : filedots) {
+			for (Filedot dot : filedots) {
 				ObjectNode row = dot.toObjectNode();
 				List<CellRepInfo> reps = cellRepInfoService
 						.getCellRepInfosByFiledotId(dot.getFileID());
@@ -131,7 +134,7 @@ public class PermissionTest extends AbstractTest {
 				arrayJSON.add(d.toObjectNode());
 				trees.add(d);
 			}
-			IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
+			JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 			ArrayNode array = treeHelper.getTreeArrayNode(trees);
 			try {
 				FileUtils.save("data/data_perms.json", array.toString()
@@ -155,7 +158,7 @@ public class PermissionTest extends AbstractTest {
 		ObjectNode responseJSON = new ObjectMapper().createObjectNode();
 		if (user != null) {
 			responseJSON = user.toObjectNode();
-			IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
+			JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 			CellMenuQuery query = new CellMenuQuery();
 			List<CellMenu> menus = cellMenuService.list(query);
 			if (menus != null && !menus.isEmpty()) {
@@ -230,7 +233,7 @@ public class PermissionTest extends AbstractTest {
 			responseJSON.set("cellBusiesses", array);
 		}
 
-		IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
+		JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 		List<NetRoleUse> roles = netRoleUseService
 				.getNetRoleUsesByRoleId(roleId);
 		List<Integer> indexIds = new ArrayList<Integer>();

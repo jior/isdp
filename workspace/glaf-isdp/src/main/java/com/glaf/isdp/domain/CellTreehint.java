@@ -1,10 +1,12 @@
 package com.glaf.isdp.domain;
 
 import java.io.*;
+
 import javax.persistence.*;
 
 import com.alibaba.fastjson.*;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.glaf.base.modules.sys.model.ITree;
 import com.glaf.core.base.JSONable;
 import com.glaf.isdp.util.CellTreehintJsonFactory;
 

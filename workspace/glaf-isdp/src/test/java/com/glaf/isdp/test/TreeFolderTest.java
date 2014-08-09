@@ -10,10 +10,12 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.glaf.test.AbstractTest;
 import com.glaf.core.util.FileUtils;
-import com.glaf.isdp.domain.BaseTree;
-import com.glaf.isdp.domain.ITree;
+ 
+import com.glaf.base.helper.TreeHelper;
+import com.glaf.base.modules.sys.model.BaseTree;
+import com.glaf.base.modules.sys.model.ITree;
 import com.glaf.isdp.domain.TreeFolder;
-import com.glaf.isdp.helper.IsdpTreeHelper;
+ 
 import com.glaf.isdp.query.TreeFolderQuery;
 import com.glaf.isdp.service.ITreeFolderService;
 
@@ -34,7 +36,7 @@ public class TreeFolderTest extends AbstractTest {
 			treeFolderService.save(row);
 			logger.debug(row.toJsonObject().toJSONString());
 		}
-		IsdpTreeHelper treeHelper = new IsdpTreeHelper();
+		TreeHelper treeHelper = new TreeHelper();
 		JSONArray array = treeHelper.getTreeJSONArray(treeModels);
 		logger.debug(array.toJSONString());
 		logger.debug("-----------------------------------------");

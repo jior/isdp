@@ -15,24 +15,25 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-
+import com.glaf.base.helper.JacksonTreeHelper;
+import com.glaf.base.modules.sys.model.Filedot;
+import com.glaf.base.modules.sys.model.ITree;
+import com.glaf.base.modules.sys.service.ICellTreedotPerService;
+import com.glaf.base.modules.sys.service.ICellTreedotService;
+import com.glaf.base.modules.sys.service.IFiledotService;
 import com.glaf.core.util.LogUtils;
 import com.glaf.core.util.RequestUtils;
 import com.glaf.core.util.Tools;
 import com.glaf.isdp.domain.CellCriterionTree;
-import com.glaf.isdp.domain.IsdpFiledot;
-import com.glaf.isdp.domain.ITree;
+import com.glaf.isdp.domain.IsdpTreepInfo;
 import com.glaf.isdp.domain.ProjectCellAndFile;
 import com.glaf.isdp.domain.ProjectTreeAllwbs;
-import com.glaf.isdp.domain.IsdpTreepInfo;
 import com.glaf.isdp.domain.TreewbsTab;
-import com.glaf.isdp.helper.IsdpJacksonTreeHelper;
 import com.glaf.isdp.query.ProjectTreeAllwbsQuery;
 import com.glaf.isdp.query.TreepInfoQuery;
 import com.glaf.isdp.query.TreewbsTabQuery;
@@ -40,17 +41,14 @@ import com.glaf.isdp.service.ICellCriterionService;
 import com.glaf.isdp.service.ICellCriterionTreeService;
 import com.glaf.isdp.service.ICellMenuService;
 import com.glaf.isdp.service.ICellMyTaskMainService;
-import com.glaf.isdp.service.ICellTreedotPerService;
-import com.glaf.isdp.service.ICellTreedotService;
-import com.glaf.isdp.service.IsdpFiledotService;
 import com.glaf.isdp.service.IMyCellBusiessService;
 import com.glaf.isdp.service.INetRoleService;
 import com.glaf.isdp.service.INetRoleUseService;
 import com.glaf.isdp.service.IProjectCellAndFileService;
 import com.glaf.isdp.service.IProjectTreeAllwbsService;
-import com.glaf.isdp.service.IsdpTreepInfoService;
 import com.glaf.isdp.service.ITreewbsTabService;
 import com.glaf.isdp.service.IUserInfoService;
+import com.glaf.isdp.service.IsdpTreepInfoService;
 
 @Controller
 @Path("/rs/isdp/wbs")
@@ -76,7 +74,7 @@ public class IsdpWbsResource {
 
 	protected ICellTreedotPerService cellTreedotPerService;
 
-	protected IsdpFiledotService isdpFiledotService;
+	protected IFiledotService filedotService;
 
 	protected IMyCellBusiessService myCellBusiessService;
 
@@ -107,7 +105,7 @@ public class IsdpWbsResource {
 				for (ProjectTreeAllwbs m : rows) {
 					trees.add(m);
 				}
-				IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
+				JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 				responseJSON = treeHelper.getTreeArrayNode(trees);
 				trees.clear();
 				trees = null;
@@ -163,10 +161,10 @@ public class IsdpWbsResource {
 		LogUtils.debug("params:" + params);
 		int indexId = RequestUtils.getInt(request, "indexId", -1);
 		ArrayNode responseJSON = new ObjectMapper().createArrayNode();
-		List<IsdpFiledot> filedots = isdpFiledotService
+		List<Filedot> filedots = filedotService
 				.getMyCellTaskFiles(indexId, 101);
 		if (filedots != null && !filedots.isEmpty()) {
-			for (IsdpFiledot dot : filedots) {
+			for (Filedot dot : filedots) {
 				responseJSON.add(dot.toObjectNode());
 			}
 		}
@@ -201,7 +199,7 @@ public class IsdpWbsResource {
 
 		LogUtils.debug("treeModels size:" + treeModels.size());
 
-		IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
+		JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 		responseJSON = treeHelper.getTreeArrayNode(treeModels);
 		// LogUtils.debug(responseJSON.toString());
 
@@ -247,8 +245,8 @@ public class IsdpWbsResource {
 	}
 
 	@javax.annotation.Resource
-	public void setIsdpFiledotService(IsdpFiledotService isdpFiledotService) {
-		this.isdpFiledotService = isdpFiledotService;
+	public void setIFiledotService(IFiledotService filedotService) {
+		this.filedotService = filedotService;
 	}
 
 	@javax.annotation.Resource
@@ -375,7 +373,7 @@ public class IsdpWbsResource {
 
 		LogUtils.debug("treeModels size:" + treeModels.size());
 
-		IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
+		JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 		responseJSON = treeHelper.getTreeArrayNode(treeModels);
 		// LogUtils.debug(responseJSON.toString());
 

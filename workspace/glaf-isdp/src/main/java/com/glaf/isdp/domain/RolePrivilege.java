@@ -8,6 +8,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.glaf.base.modules.sys.model.CellTreedot;
 import com.glaf.core.base.JSONable;
 
 public class RolePrivilege implements Serializable, JSONable {

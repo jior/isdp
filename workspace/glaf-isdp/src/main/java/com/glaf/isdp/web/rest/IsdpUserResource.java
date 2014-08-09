@@ -28,19 +28,22 @@ import com.glaf.core.util.RequestUtils;
 import com.glaf.core.util.Tools;
 import com.glaf.core.util.UUID32;
 import com.glaf.isdp.domain.CellMenu;
-import com.glaf.isdp.domain.CellTreedot;
-import com.glaf.isdp.domain.CellTreedotPer;
-import com.glaf.isdp.domain.ITree;
+
+import com.glaf.base.modules.sys.model.CellTreedot;
+import com.glaf.base.modules.sys.model.CellTreedotPer;
+import com.glaf.base.modules.sys.model.ITree;
+import com.glaf.base.modules.sys.query.CellTreedotPerQuery;
+import com.glaf.base.modules.sys.service.ICellTreedotPerService;
+import com.glaf.base.modules.sys.service.ICellTreedotService;
 import com.glaf.isdp.domain.NetRole;
 import com.glaf.isdp.domain.NetRoleUse;
 import com.glaf.isdp.domain.UserInfo;
-import com.glaf.isdp.helper.IsdpJacksonTreeHelper;
+import com.glaf.base.helper.JacksonTreeHelper;
 import com.glaf.isdp.query.CellMenuQuery;
-import com.glaf.isdp.query.CellTreedotPerQuery;
+
 import com.glaf.isdp.query.UserInfoQuery;
 import com.glaf.isdp.service.ICellMenuService;
-import com.glaf.isdp.service.ICellTreedotPerService;
-import com.glaf.isdp.service.ICellTreedotService;
+
 import com.glaf.isdp.service.INetRoleService;
 import com.glaf.isdp.service.INetRoleUseService;
 import com.glaf.isdp.service.IUserInfoService;
@@ -109,7 +112,7 @@ public class IsdpUserResource {
 						}
 						trees.add(d);
 					}
-					IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
+					JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 					responseJSON = treeHelper.getTreeArrayNode(trees);
 					trees.clear();
 					trees = null;
@@ -126,7 +129,7 @@ public class IsdpUserResource {
 					}
 					trees.add(d);
 				}
-				IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
+				JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 				responseJSON = treeHelper.getTreeArrayNode(trees);
 				trees.clear();
 				trees = null;
@@ -250,7 +253,7 @@ public class IsdpUserResource {
 		logger.debug("user=" + user);
 		ArrayNode responseJSON = new ObjectMapper().createArrayNode();
 		if (user != null) {
-			IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
+			JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 
 			List<NetRoleUse> roles = netRoleUseService
 					.getNetRoleUsesByUserId(actorId);

@@ -15,13 +15,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-
+import com.glaf.base.modules.sys.model.CellTreedot;
+import com.glaf.base.modules.sys.service.ICellTreedotDotService;
+import com.glaf.base.modules.sys.service.ICellTreedotPerService;
+import com.glaf.base.modules.sys.service.ICellTreedotService;
+import com.glaf.base.modules.sys.service.ICellTreedotViewService;
+import com.glaf.base.modules.sys.service.IFiledotService;
+import com.glaf.base.modules.sys.service.ITreedotService;
 import com.glaf.core.config.Configuration;
 import com.glaf.core.util.RequestUtils;
 import com.glaf.core.util.Tools;
 import com.glaf.isdp.config.IsdpBaseConfiguration;
 import com.glaf.isdp.domain.CellMenu;
-import com.glaf.isdp.domain.CellTreedot;
 import com.glaf.isdp.domain.IsdpTreepname;
 import com.glaf.isdp.query.TreepnameQuery;
 import com.glaf.isdp.render.RenderContainer;
@@ -51,7 +56,7 @@ public class IsdpDispatcher {
 
 	protected volatile ICellTreedotPerService cellTreedotPerService;
 
-	protected volatile IsdpFiledotService isdpFiledotService;
+	protected volatile IFiledotService filedotService;
 
 	protected volatile IFieldInterfaceService fieldInterfaceService;
 
@@ -244,7 +249,7 @@ public class IsdpDispatcher {
 				// F
 				ctx.setFieldInterfaceService(fieldInterfaceService);
 				ctx.setIsdpFileattService(isdpFileattService);
-				ctx.setIsdpFiledotService(isdpFiledotService);
+				ctx.setIFiledotService(filedotService);
 				ctx.setFlowActivityDefService(flowActivityDefService);
 				ctx.setFlowActivityService(flowActivityService);
 				ctx.setFlowForwardDefService(flowForwardDefService);
@@ -569,8 +574,8 @@ public class IsdpDispatcher {
 	}
 
 	@javax.annotation.Resource
-	public void setIsdpFiledotService(IsdpFiledotService isdpFiledotService) {
-		this.isdpFiledotService = isdpFiledotService;
+	public void setIFiledotService(IFiledotService filedotService) {
+		this.filedotService = filedotService;
 	}
 
 	@javax.annotation.Resource

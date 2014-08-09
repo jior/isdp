@@ -21,7 +21,6 @@ import com.glaf.isdp.domain.UserInfo;
 import com.glaf.isdp.query.NetRoleQuery;
 import com.glaf.isdp.query.UserInfoQuery;
 import com.glaf.isdp.service.ICellMenuService;
-import com.glaf.isdp.service.ICellTreedotService;
 import com.glaf.isdp.service.INetRoleService;
 import com.glaf.isdp.service.INetRoleUseService;
 import com.glaf.isdp.service.IUserInfoService;
@@ -37,8 +36,6 @@ public class IsdpUserController {
 	protected INetRoleService netRoleService;
 
 	protected ICellMenuService cellMenuService;
-
-	protected ICellTreedotService cellTreedotService;
 
 	protected INetRoleUseService netRoleUseService;
 
@@ -98,11 +95,6 @@ public class IsdpUserController {
 	@javax.annotation.Resource
 	public void setCellMenuService(ICellMenuService cellMenuService) {
 		this.cellMenuService = cellMenuService;
-	}
-
-	@javax.annotation.Resource
-	public void setCellTreedotService(ICellTreedotService cellTreedotService) {
-		this.cellTreedotService = cellTreedotService;
 	}
 
 	@javax.annotation.Resource

@@ -9,6 +9,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.glaf.base.modules.sys.model.CellTreedot;
+import com.glaf.base.modules.sys.service.ICellTreedotService;
 import com.glaf.core.dao.EntityDAO;
 import com.glaf.isdp.domain.*;
 import com.glaf.isdp.mapper.*;

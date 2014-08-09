@@ -7,14 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.glaf.base.modules.sys.service.IFiledotService;
+import com.glaf.base.modules.sys.service.ITreedotService;
 import com.glaf.core.util.RequestUtils;
 import com.glaf.core.util.Tools;
-
 import com.glaf.isdp.domain.IsdpTreepname;
 import com.glaf.isdp.query.TreepnameQuery;
 import com.glaf.isdp.service.*;
@@ -32,11 +32,7 @@ public class IsdpWbsPlanController {
 
 	protected ICellRepInfoService cellRepInfoService;
 
-	protected ICellTreedotService cellTreedotService;
-
-	protected ICellTreedotPerService cellTreedotPerService;
-
-	protected IsdpFiledotService isdpFiledotService;
+	protected IFiledotService filedotService;
 
 	protected IFieldInterfaceService fieldInterfaceService;
 
@@ -71,10 +67,6 @@ public class IsdpWbsPlanController {
 	protected ICellRepInfo2Service cellRepInfo2Service;
 
 	protected ICellTableTreeService cellTableTreeService;
-
-	protected ICellTreedotDotService cellTreedotDotService;
-
-	protected ICellTreedotViewService cellTreedotViewService;
 
 	protected ICellTreehintService cellTreehintService;
 
@@ -213,7 +205,8 @@ public class IsdpWbsPlanController {
 	}
 
 	@javax.annotation.Resource
-	public void setIsdpCellFillformService(IsdpCellFillFormService isdpCellFillformService) {
+	public void setIsdpCellFillformService(
+			IsdpCellFillFormService isdpCellFillformService) {
 		this.isdpCellFillformService = isdpCellFillformService;
 	}
 
@@ -250,29 +243,6 @@ public class IsdpWbsPlanController {
 	}
 
 	@javax.annotation.Resource
-	public void setCellTreedotDotService(
-			ICellTreedotDotService cellTreedotDotService) {
-		this.cellTreedotDotService = cellTreedotDotService;
-	}
-
-	@javax.annotation.Resource
-	public void setCellTreedotPerService(
-			ICellTreedotPerService cellTreedotPerService) {
-		this.cellTreedotPerService = cellTreedotPerService;
-	}
-
-	@javax.annotation.Resource
-	public void setCellTreedotService(ICellTreedotService cellTreedotService) {
-		this.cellTreedotService = cellTreedotService;
-	}
-
-	@javax.annotation.Resource
-	public void setCellTreedotViewService(
-			ICellTreedotViewService cellTreedotViewService) {
-		this.cellTreedotViewService = cellTreedotViewService;
-	}
-
-	@javax.annotation.Resource
 	public void setCellTreehintService(ICellTreehintService cellTreehintService) {
 		this.cellTreehintService = cellTreehintService;
 	}
@@ -294,8 +264,8 @@ public class IsdpWbsPlanController {
 	}
 
 	@javax.annotation.Resource
-	public void setIsdpFiledotService(IsdpFiledotService isdpFiledotService) {
-		this.isdpFiledotService = isdpFiledotService;
+	public void setIFiledotService(IFiledotService filedotService) {
+		this.filedotService = filedotService;
 	}
 
 	@javax.annotation.Resource
@@ -463,7 +433,8 @@ public class IsdpWbsPlanController {
 	}
 
 	@javax.annotation.Resource
-	public void setIsdpTreepInfoService(IsdpTreepInfoService isdpTreepInfoService) {
+	public void setIsdpTreepInfoService(
+			IsdpTreepInfoService isdpTreepInfoService) {
 		this.isdpTreepInfoService = isdpTreepInfoService;
 	}
 
@@ -474,7 +445,8 @@ public class IsdpWbsPlanController {
 	}
 
 	@javax.annotation.Resource
-	public void setIsdpTreepnameService(IsdpTreepnameService isdpTreepnameService) {
+	public void setIsdpTreepnameService(
+			IsdpTreepnameService isdpTreepnameService) {
 		this.isdpTreepnameService = isdpTreepnameService;
 	}
 

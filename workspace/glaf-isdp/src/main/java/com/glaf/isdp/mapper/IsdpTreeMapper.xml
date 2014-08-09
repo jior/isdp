@@ -4,7 +4,7 @@
 
 <mapper namespace="com.glaf.isdp.mapper.IsdpTreeMapper">
 
-	<resultMap id="isdpBaseTreeResultMap" type="com.glaf.isdp.domain.BaseTree">
+	<resultMap id="isdpBaseTreeResultMap" type="com.glaf.base.modules.sys.model.BaseTree">
 		<id property="id" column="id" jdbcType="VARCHAR"/>
 		<result property="indexId" column="index_id" jdbcType="INTEGER"/>
 		<result property="parentId" column="parent_id" jdbcType="INTEGER"/>

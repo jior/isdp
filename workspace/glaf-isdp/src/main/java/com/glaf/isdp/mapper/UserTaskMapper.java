@@ -1,7 +1,11 @@
 package com.glaf.isdp.mapper;
 
 import java.util.*;
+
 import org.springframework.stereotype.Component;
+
+import com.glaf.base.modules.sys.model.BaseTree;
+import com.glaf.base.modules.sys.model.ObjectEntity;
 import com.glaf.isdp.domain.*;
 import com.glaf.isdp.query.*;
 

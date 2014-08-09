@@ -10,13 +10,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.glaf.base.modules.sys.model.ObjectEntity;
 import com.glaf.core.dao.EntityDAO;
 import com.glaf.core.id.IdGenerator;
-import com.glaf.isdp.domain.ObjectEntity;
 import com.glaf.isdp.domain.IsdpTreepInfo;
 import com.glaf.isdp.mapper.IsdpTreepInfoMapper;
 import com.glaf.isdp.query.TreepInfoQuery;

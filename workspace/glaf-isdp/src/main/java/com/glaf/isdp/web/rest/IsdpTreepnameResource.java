@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
-import com.glaf.isdp.domain.ITree;
+import com.glaf.base.modules.sys.model.ITree;
 import com.glaf.isdp.domain.IsdpTreepname;
-import com.glaf.isdp.helper.IsdpJacksonTreeHelper;
+import com.glaf.base.helper.JacksonTreeHelper;
 import com.glaf.isdp.service.IsdpTreepnameService;
 
 @Controller
@@ -45,7 +45,7 @@ public class IsdpTreepnameResource {
 			treeModels.add(row);
 			// logger.debug(row.toJsonObject().toJSONString());
 		}
-		IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
+		JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 		ArrayNode responseJSON = treeHelper.getTreeArrayNode(treeModels);
 		try {
 			return responseJSON.toString().getBytes("UTF-8");

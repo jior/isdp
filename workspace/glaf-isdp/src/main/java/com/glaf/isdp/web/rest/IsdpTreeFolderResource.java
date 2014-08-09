@@ -32,9 +32,9 @@ import com.glaf.core.util.RequestUtils;
 import com.glaf.core.util.StringTools;
 import com.glaf.core.util.Tools;
 
-import com.glaf.isdp.domain.ITree;
+import com.glaf.base.modules.sys.model.ITree;
 import com.glaf.isdp.domain.TreeFolder;
-import com.glaf.isdp.helper.IsdpJacksonTreeHelper;
+import com.glaf.base.helper.JacksonTreeHelper;
 import com.glaf.isdp.query.TreeFolderQuery;
 import com.glaf.isdp.service.ITreeFolderService;
 
@@ -61,7 +61,7 @@ public class IsdpTreeFolderResource {
 			treeModels.add(row);
 			// logger.debug(row.toJsonObject().toJSONString());
 		}
-		IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
+		JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 		ArrayNode responseJSON = treeHelper.getTreeArrayNode(treeModels);
 		try {
 			return responseJSON.toString().getBytes("UTF-8");
@@ -140,7 +140,7 @@ public class IsdpTreeFolderResource {
 			treeModels.add(row);
 			// logger.debug(row.toJsonObject().toJSONString());
 		}
-		IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
+		JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 		ArrayNode responseJSON = treeHelper.getTreeArrayNode(treeModels);
 		try {
 			return responseJSON.toString().getBytes("UTF-8");

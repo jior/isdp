@@ -8,9 +8,9 @@ import org.junit.Test;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.glaf.test.AbstractTest;
 import com.glaf.core.util.FileUtils;
-import com.glaf.isdp.domain.ITree;
+import com.glaf.base.modules.sys.model.ITree;
 import com.glaf.isdp.domain.IsdpTreepInfo;
-import com.glaf.isdp.helper.IsdpJacksonTreeHelper;
+import com.glaf.base.helper.JacksonTreeHelper;
 import com.glaf.isdp.query.TreepInfoQuery;
 import com.glaf.isdp.service.IsdpTreepInfoService;
 
@@ -32,7 +32,7 @@ public class TreepInfoTest extends AbstractTest {
 			treeModels.add(row);
 		}
 
-		IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
+		JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 		ArrayNode result = treeHelper.getTreeArrayNode(treeModels);
 		try {
 			FileUtils.save("data/treepinfo.json",

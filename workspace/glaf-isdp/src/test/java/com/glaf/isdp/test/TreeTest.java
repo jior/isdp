@@ -6,8 +6,9 @@ import org.junit.Test;
 
 import com.alibaba.fastjson.JSONArray;
 import com.glaf.core.util.FileUtils;
-import com.glaf.isdp.domain.ITree;
-import com.glaf.isdp.helper.IsdpTreeHelper;
+import com.glaf.base.helper.TreeHelper;
+import com.glaf.base.modules.sys.model.ITree;
+
 import com.glaf.isdp.query.BaseTreeQuery;
 import com.glaf.isdp.service.IsdpTreeService;
 import com.glaf.test.AbstractTest;
@@ -21,12 +22,12 @@ public class TreeTest extends AbstractTest {
 		isdpTreeService = super.getBean("isdpTreeService");
 		BaseTreeQuery query = new BaseTreeQuery();
 		query.setTableName("treetop");
-		//query.setOrderBy("listno");
+		// query.setOrderBy("listno");
 		List<ITree> treeModels = isdpTreeService.getTreesByQueryCriteria(query);
-		
-		logger.debug("treeModels size:"+treeModels.size());
-		
-		IsdpTreeHelper treeHelper = new IsdpTreeHelper();
+
+		logger.debug("treeModels size:" + treeModels.size());
+
+		TreeHelper treeHelper = new TreeHelper();
 		JSONArray json = treeHelper.getTreeJSONArray(treeModels);
 
 		try {

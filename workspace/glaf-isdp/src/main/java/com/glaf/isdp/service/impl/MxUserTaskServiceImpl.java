@@ -12,6 +12,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.glaf.base.modules.sys.model.BaseTree;
+import com.glaf.base.modules.sys.model.ITree;
+import com.glaf.base.modules.sys.model.ObjectEntity;
 import com.glaf.core.dao.EntityDAO;
 import com.glaf.core.id.*;
 import com.glaf.core.util.DateUtils;

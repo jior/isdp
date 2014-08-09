@@ -7,9 +7,9 @@ import org.junit.Test;
 
 import com.alibaba.fastjson.JSONArray;
 import com.glaf.test.AbstractTest;
-import com.glaf.isdp.domain.ITree;
+import com.glaf.base.helper.TreeHelper;
+import com.glaf.base.modules.sys.model.ITree;
 import com.glaf.isdp.domain.Treewbs;
-import com.glaf.isdp.helper.IsdpTreeHelper;
 import com.glaf.isdp.query.TreewbsQuery;
 import com.glaf.isdp.service.ITreewbsService;
 
@@ -30,7 +30,7 @@ public class TreewbsTest extends AbstractTest {
 			logger.debug(row.toJsonObject().toJSONString());
 			treeModels.add(row);
 		}
-		IsdpTreeHelper treeHelper = new IsdpTreeHelper();
+		TreeHelper treeHelper = new TreeHelper();
 		JSONArray json = treeHelper.getTreeJSONArray(treeModels);
 		System.out.println(json.toJSONString());
 	}

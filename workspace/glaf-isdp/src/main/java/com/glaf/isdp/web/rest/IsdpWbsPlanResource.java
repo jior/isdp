@@ -25,13 +25,13 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.glaf.core.util.LogUtils;
 import com.glaf.core.util.RequestUtils;
 import com.glaf.core.util.Tools;
-import com.glaf.isdp.domain.ITree;
+import com.glaf.base.modules.sys.model.ITree;
+import com.glaf.base.modules.sys.service.ICellTreedotPerService;
+import com.glaf.base.modules.sys.service.ICellTreedotService;
 import com.glaf.isdp.domain.IsdpTreepInfo;
-import com.glaf.isdp.helper.IsdpJacksonTreeHelper;
+import com.glaf.base.helper.JacksonTreeHelper;
 import com.glaf.isdp.query.TreepInfoQuery;
 import com.glaf.isdp.service.ICellMenuService;
-import com.glaf.isdp.service.ICellTreedotPerService;
-import com.glaf.isdp.service.ICellTreedotService;
 import com.glaf.isdp.service.IMyCellBusiessService;
 import com.glaf.isdp.service.INetRoleService;
 import com.glaf.isdp.service.INetRoleUseService;
@@ -86,7 +86,7 @@ public class IsdpWbsPlanResource {
 
 		LogUtils.debug("treeModels size:" + treeModels.size());
 
-		IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
+		JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 		responseJSON = treeHelper.getTreeArrayNode(treeModels);
 		// LogUtils.debug(responseJSON.toString());
 

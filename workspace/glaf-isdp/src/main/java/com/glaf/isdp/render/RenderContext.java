@@ -6,8 +6,14 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.glaf.base.modules.sys.model.CellTreedot;
+import com.glaf.base.modules.sys.service.ICellTreedotDotService;
+import com.glaf.base.modules.sys.service.ICellTreedotPerService;
+import com.glaf.base.modules.sys.service.ICellTreedotService;
+import com.glaf.base.modules.sys.service.ICellTreedotViewService;
+import com.glaf.base.modules.sys.service.IFiledotService;
+import com.glaf.base.modules.sys.service.ITreedotService;
 import com.glaf.core.security.LoginContext;
-import com.glaf.isdp.domain.CellTreedot;
 import com.glaf.isdp.service.*;
 
 public class RenderContext {
@@ -36,7 +42,7 @@ public class RenderContext {
 
 	protected ICellUseDataInfoService cellUseDataInfoService;
 
-	protected IsdpFiledotService isdpFiledotService;
+	protected IFiledotService isdpFiledotService;
 
 	protected IFieldInterfaceService fieldInterfaceService;
 
@@ -270,7 +276,7 @@ public class RenderContext {
 		return isdpFileattService;
 	}
 
-	public IsdpFiledotService getIsdpFiledotService() {
+	public IFiledotService getIFiledotService() {
 		return isdpFiledotService;
 	}
 
@@ -596,7 +602,7 @@ public class RenderContext {
 		this.isdpFileattService = isdpFileattService;
 	}
 
-	public void setIsdpFiledotService(IsdpFiledotService isdpFiledotService) {
+	public void setIFiledotService(IFiledotService isdpFiledotService) {
 		this.isdpFiledotService = isdpFiledotService;
 	}
 

@@ -31,13 +31,14 @@ import com.glaf.core.util.RequestUtils;
 import com.glaf.core.util.StringTools;
 import com.glaf.core.util.Tools;
 
-import com.glaf.isdp.domain.CellTreedot;
-import com.glaf.isdp.domain.ITree;
+import com.glaf.base.modules.sys.model.CellTreedot;
+import com.glaf.base.modules.sys.model.ITree;
+import com.glaf.base.modules.sys.service.ICellTreedotService;
 import com.glaf.isdp.domain.IsdpTreepInfo;
 import com.glaf.isdp.domain.UserInfo;
-import com.glaf.isdp.helper.IsdpJacksonTreeHelper;
+import com.glaf.base.helper.JacksonTreeHelper;
 import com.glaf.isdp.query.TreepInfoQuery;
-import com.glaf.isdp.service.ICellTreedotService;
+
 import com.glaf.isdp.service.IsdpTreepInfoService;
 import com.glaf.isdp.service.IUserInfoService;
 
@@ -133,7 +134,7 @@ public class IsdpTreepInfoResource {
 			for (IsdpTreepInfo treepInfo : list) {
 				treeModels.add(treepInfo);
 			}
-			IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
+			JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 			responseJSON = treeHelper.getTreeArrayNode(treeModels);
 		}
 		try {
@@ -188,7 +189,8 @@ public class IsdpTreepInfoResource {
 		}
 
 		ObjectNode responseJSON = new ObjectMapper().createObjectNode();
-		int total = isdpTreepInfoService.getTreepInfoCountByQueryCriteria(query);
+		int total = isdpTreepInfoService
+				.getTreepInfoCountByQueryCriteria(query);
 		if (total > 0) {
 			responseJSON.put("total", total);
 			responseJSON.put("totalCount", total);
@@ -258,7 +260,8 @@ public class IsdpTreepInfoResource {
 	}
 
 	@javax.annotation.Resource
-	public void setIsdpTreepInfoService(IsdpTreepInfoService isdpTreepInfoService) {
+	public void setIsdpTreepInfoService(
+			IsdpTreepInfoService isdpTreepInfoService) {
 		this.isdpTreepInfoService = isdpTreepInfoService;
 	}
 
@@ -333,7 +336,7 @@ public class IsdpTreepInfoResource {
 				treeModels.add(treepInfo);
 			}
 			logger.debug("treeModels:" + treeModels.size());
-			IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
+			JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 			responseJSON = treeHelper.getTreeArrayNode(treeModels);
 		}
 		try {

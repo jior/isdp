@@ -9,14 +9,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.glaf.test.AbstractTest;
-import com.glaf.isdp.domain.CellTreedotPer;
-import com.glaf.isdp.domain.ITree;
+ 
+import com.glaf.base.modules.sys.model.CellTreedotPer;
+import com.glaf.base.modules.sys.model.ITree;
+import com.glaf.base.modules.sys.query.CellTreedotPerQuery;
+import com.glaf.base.modules.sys.service.ICellTreedotPerService;
 import com.glaf.isdp.domain.NetRoleUse;
 import com.glaf.isdp.domain.Role;
-import com.glaf.isdp.helper.IsdpJacksonTreeHelper;
-import com.glaf.isdp.query.CellTreedotPerQuery;
+import com.glaf.base.helper.JacksonTreeHelper;
+ 
 import com.glaf.isdp.query.RoleQuery;
-import com.glaf.isdp.service.ICellTreedotPerService;
+ 
 import com.glaf.isdp.service.INetRoleUseService;
 import com.glaf.isdp.service.IsdpRoleService;
 
@@ -46,7 +49,7 @@ public class RoleTest extends AbstractTest {
 		cellTreedotPerService = super.getBean("cellTreedotPerService");
 		int roleId = 3;
 		ObjectNode responseJSON = new ObjectMapper().createObjectNode();
-		IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
+		JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 		List<NetRoleUse> roles = netRoleUseService
 				.getNetRoleUsesByRoleId(roleId);
 		List<Integer> indexIds = new ArrayList<Integer>();

@@ -9,9 +9,9 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.glaf.test.AbstractTest;
 import com.glaf.core.util.FileUtils;
  
-import com.glaf.isdp.domain.ITree;
+import com.glaf.base.modules.sys.model.ITree;
 import com.glaf.isdp.domain.UserTask;
-import com.glaf.isdp.helper.IsdpJacksonTreeHelper;
+import com.glaf.base.helper.JacksonTreeHelper;
 import com.glaf.isdp.query.UserTaskQuery;
 import com.glaf.isdp.service.IUserTaskService;
 
@@ -41,7 +41,7 @@ public class UserTaskTestByTime extends AbstractTest {
 
 		logger.debug("size=" + rows.size());
 
-		IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
+		JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 		ArrayNode result = treeHelper.getTreeArrayNode(treeModels);
 		try {
 			FileUtils.save("data/tasklist_all.json", result.toString()

@@ -23,9 +23,9 @@ import com.glaf.core.service.EntityService;
 import com.glaf.core.util.ParamUtils;
 import com.glaf.core.util.RequestUtils;
 import com.glaf.core.util.Tools;
-import com.glaf.isdp.domain.ITree;
+import com.glaf.base.modules.sys.model.ITree;
 import com.glaf.isdp.domain.UserTask;
-import com.glaf.isdp.helper.IsdpJacksonTreeHelper;
+import com.glaf.base.helper.JacksonTreeHelper;
 import com.glaf.isdp.query.UserTaskQuery;
 import com.glaf.isdp.service.IUserTaskService;
 
@@ -161,7 +161,7 @@ public class IsdpTodoController {
 		}
 
 		logger.debug("treeModels size:" + treeModels.size());
-		IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
+		JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 		ArrayNode result = treeHelper.getTreeArrayNode(treeModels, false);
 		try {
 			// logger.debug(result.toString());

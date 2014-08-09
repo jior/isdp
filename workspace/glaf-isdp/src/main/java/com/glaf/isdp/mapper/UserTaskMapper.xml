@@ -23,23 +23,23 @@
 	</resultMap>
 	
 
-	<resultMap id="treepInfoResultMap2"	type="com.glaf.isdp.domain.BaseTree">
+	<resultMap id="treepInfoResultMap2"	type="com.glaf.base.modules.sys.model.BaseTree">
 		<id property="indexId" column="index_id" jdbcType="INTEGER" />
 		<id property="parentId" column="parent_id" jdbcType="INTEGER" />
 		<result property="indexName" column="index_name" jdbcType="VARCHAR"/>
 	</resultMap>
 	
 	
-	<resultMap id="idStringResultMap"	type="com.glaf.isdp.domain.ObjectEntity">
+	<resultMap id="idStringResultMap"	type="com.glaf.base.modules.sys.model.ObjectEntity">
 		<id property="stringValue" column="id" jdbcType="VARCHAR" />
 	</resultMap>
 	
 	
-	<resultMap id="indexIdIntResultMap"	type="com.glaf.isdp.domain.ObjectEntity">
+	<resultMap id="indexIdIntResultMap"	type="com.glaf.base.modules.sys.model.ObjectEntity">
 		<id property="intValue" column="index_id" jdbcType="VARCHAR" />
 	</resultMap>
 	
-	<resultMap id="ctimeDateResultMap"	type="com.glaf.isdp.domain.ObjectEntity">
+	<resultMap id="ctimeDateResultMap"	type="com.glaf.base.modules.sys.model.ObjectEntity">
 		<id property="dateValue" column="ctime" jdbcType="VARCHAR" />
 	</resultMap>
 	
@@ -243,7 +243,7 @@
 
 	</select>
 	
-	<select id="getMyBaseTaskTrees" parameterType="com.glaf.isdp.domain.ObjectEntity" resultMap="treepInfoResultMap2">
+	<select id="getMyBaseTaskTrees" parameterType="com.glaf.base.modules.sys.model.ObjectEntity" resultMap="treepInfoResultMap2">
 
         SELECT index_name, index_id, parent_id
 		FROM treepinfo

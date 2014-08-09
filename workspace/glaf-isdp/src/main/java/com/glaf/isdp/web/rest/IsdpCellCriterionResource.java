@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.glaf.base.modules.sys.model.Filedot;
 import com.glaf.core.util.RequestUtils;
 import com.glaf.isdp.domain.CellCriterion;
-import com.glaf.isdp.domain.IsdpFiledot;
 import com.glaf.isdp.service.ICellCriterionService;
 
 @Controller
@@ -52,10 +52,10 @@ public class IsdpCellCriterionResource {
 			ArrayNode arrayJSON = new ObjectMapper().createArrayNode();
 			for (CellCriterion cell : list) {
 				ObjectNode node = cell.toObjectNode();
-				List<IsdpFiledot> filedots = cell.getFiledots();
+				List<Filedot> filedots = cell.getFiledots();
 				if (filedots != null && !filedots.isEmpty()) {
 					str = "";
-					for (IsdpFiledot dot : filedots) {
+					for (Filedot dot : filedots) {
 						if (dot.getNum() != null) {
 							str += dot.getNum();
 						}

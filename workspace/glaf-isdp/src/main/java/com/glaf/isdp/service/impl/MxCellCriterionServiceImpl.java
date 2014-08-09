@@ -9,18 +9,18 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.glaf.base.modules.sys.model.Filedot;
+import com.glaf.base.modules.sys.service.IFiledotService;
 import com.glaf.core.dao.EntityDAO;
 import com.glaf.core.id.IdGenerator;
 import com.glaf.isdp.domain.CellCriterion;
-import com.glaf.isdp.domain.IsdpFiledot;
 import com.glaf.isdp.mapper.CellCriterionMapper;
 import com.glaf.isdp.query.CellCriterionQuery;
 import com.glaf.isdp.service.ICellCriterionService;
-import com.glaf.isdp.service.IsdpFiledotService;
+ 
 
 @Service("cellCriterionService")
 @Transactional(readOnly = true)
@@ -36,7 +36,7 @@ public class MxCellCriterionServiceImpl implements ICellCriterionService {
 
 	protected CellCriterionMapper cellCriterionMapper;
 
-	protected IsdpFiledotService filedotService;
+	protected IFiledotService filedotService;
 
 	public MxCellCriterionServiceImpl() {
 
@@ -96,7 +96,7 @@ public class MxCellCriterionServiceImpl implements ICellCriterionService {
 				.getCellCriterionByWBS(parameter);
 		if (list != null && !list.isEmpty()) {
 			for (CellCriterion cell : list) {
-				List<IsdpFiledot> files = filedotService
+				List<Filedot> files = filedotService
 						.getFiledotsByCheckItemId(cell.getId());
 				cell.setFiledots(files);
 			}
@@ -263,7 +263,7 @@ public class MxCellCriterionServiceImpl implements ICellCriterionService {
 	}
 
 	@javax.annotation.Resource
-	public void setFiledotService(IsdpFiledotService filedotService) {
+	public void setFiledotService(IFiledotService filedotService) {
 		this.filedotService = filedotService;
 	}
 

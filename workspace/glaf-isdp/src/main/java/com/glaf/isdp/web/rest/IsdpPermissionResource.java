@@ -18,41 +18,40 @@ import javax.ws.rs.core.MediaType;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.glaf.base.helper.JacksonTreeHelper;
+import com.glaf.base.modules.sys.model.CellTreedot;
+import com.glaf.base.modules.sys.model.Filedot;
+import com.glaf.base.modules.sys.model.ITree;
+import com.glaf.base.modules.sys.service.ICellTreedotPerService;
+import com.glaf.base.modules.sys.service.ICellTreedotService;
+import com.glaf.base.modules.sys.service.IFiledotService;
+import com.glaf.base.modules.sys.service.ITreedotService;
 import com.glaf.core.util.LogUtils;
 import com.glaf.core.util.RequestUtils;
 import com.glaf.core.util.Tools;
-
 import com.glaf.isdp.domain.CellRepInfo;
-import com.glaf.isdp.domain.CellTreedot;
 import com.glaf.isdp.domain.FieldInterface;
-import com.glaf.isdp.domain.IsdpFiledot;
-import com.glaf.isdp.domain.ITree;
 import com.glaf.isdp.domain.MyCellBusiess;
 import com.glaf.isdp.domain.NetRole;
 import com.glaf.isdp.domain.NetRoleUse;
 import com.glaf.isdp.domain.RoleUse2;
-import com.glaf.isdp.helper.IsdpJacksonTreeHelper;
 import com.glaf.isdp.query.MyCellBusiessQuery;
 import com.glaf.isdp.query.NetRoleQuery;
 import com.glaf.isdp.query.RoleUse2Query;
 import com.glaf.isdp.service.ICellMenuService;
 import com.glaf.isdp.service.ICellRepInfoService;
-import com.glaf.isdp.service.ICellTreedotPerService;
-import com.glaf.isdp.service.ICellTreedotService;
 import com.glaf.isdp.service.IFieldInterfaceService;
-import com.glaf.isdp.service.IsdpFiledotService;
 import com.glaf.isdp.service.IMyCellBusiessService;
 import com.glaf.isdp.service.INetRoleService;
 import com.glaf.isdp.service.INetRoleUseService;
 import com.glaf.isdp.service.IRoleUse2Service;
-import com.glaf.isdp.service.ITreedotService;
+ 
 
 @Controller
 @Path("/rs/isdp/sys/permission")
@@ -68,7 +67,7 @@ public class IsdpPermissionResource {
 
 	protected ICellTreedotPerService cellTreedotPerService;
 
-	protected IsdpFiledotService isdpFiledotService;
+	protected IFiledotService filedotService;
 
 	protected IFieldInterfaceService fieldInterfaceService;
 
@@ -131,7 +130,7 @@ public class IsdpPermissionResource {
 					}
 					trees.add(d);
 				}
-				IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
+				JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 				responseJSON = treeHelper.getTreeArrayNode(trees);
 				trees.clear();
 				trees = null;
@@ -164,10 +163,10 @@ public class IsdpPermissionResource {
 			}
 			responseJSON.set("fields", arrayJSON);
 		}
-		List<IsdpFiledot> filedots = isdpFiledotService.getFiledotsOfTreedot(indexId);
+		List<Filedot> filedots = filedotService.getFiledotsOfTreedot(indexId);
 		if (filedots != null && !filedots.isEmpty()) {
 			ArrayNode arrayJSON = new ObjectMapper().createArrayNode();
-			for (IsdpFiledot dot : filedots) {
+			for (Filedot dot : filedots) {
 				arrayJSON.add(dot.toObjectNode());
 			}
 			responseJSON.set("filedots", arrayJSON);
@@ -208,9 +207,9 @@ public class IsdpPermissionResource {
 	public byte[] dataPermSet(@Context HttpServletRequest request) {
 		ArrayNode arrayJSON = new ObjectMapper().createArrayNode();
 		int indexId = RequestUtils.getInt(request, "indexId");
-		List<IsdpFiledot> filedots = isdpFiledotService.getFiledotsOfTreedot(indexId);
+		List<Filedot> filedots = filedotService.getFiledotsOfTreedot(indexId);
 		if (filedots != null && !filedots.isEmpty()) {
-			for (IsdpFiledot dot : filedots) {
+			for (Filedot dot : filedots) {
 				List<CellRepInfo> reps = cellRepInfoService
 						.getCellRepInfosByFiledotId(dot.getFileID());
 				if (reps != null && !reps.isEmpty()) {
@@ -278,7 +277,7 @@ public class IsdpPermissionResource {
 			responseJSON.set("cellBusiesses", array);
 		}
 
-		IsdpJacksonTreeHelper treeHelper = new IsdpJacksonTreeHelper();
+		JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 		List<NetRoleUse> roles = netRoleUseService
 				.getNetRoleUsesByRoleId(roleId);
 		List<Integer> indexIds = new ArrayList<Integer>();
@@ -340,8 +339,8 @@ public class IsdpPermissionResource {
 	}
 
 	@javax.annotation.Resource
-	public void setIsdpFiledotService(IsdpFiledotService isdpFiledotService) {
-		this.isdpFiledotService = isdpFiledotService;
+	public void setIFiledotService(IFiledotService filedotService) {
+		this.filedotService = filedotService;
 	}
 
 	@javax.annotation.Resource

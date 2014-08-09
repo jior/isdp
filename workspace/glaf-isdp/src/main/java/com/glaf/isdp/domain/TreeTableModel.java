@@ -5,6 +5,7 @@ import java.util.Map.Entry;
 
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.glaf.base.modules.sys.model.BaseTree;
 import com.glaf.core.util.DateUtils;
 
 public class TreeTableModel extends BaseTree {
