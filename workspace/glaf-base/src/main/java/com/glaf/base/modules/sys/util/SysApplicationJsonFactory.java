@@ -91,6 +91,10 @@ public class SysApplicationJsonFactory {
 			model.setLinkFileName(jsonObject.getString("linkFileName"));
 		}
 
+		if (jsonObject.containsKey("linkFileId")) {
+			model.setLinkFileId(jsonObject.getString("linkFileId"));
+		}
+
 		if (jsonObject.containsKey("functions")) {
 			JSONArray array = jsonObject.getJSONArray("functions");
 			if (array != null && !array.isEmpty()) {
@@ -140,6 +144,10 @@ public class SysApplicationJsonFactory {
 
 		if (model.getLinkType() != null) {
 			jsonObject.put("linkType", model.getLinkType());
+		}
+
+		if (model.getLinkFileId() != null) {
+			jsonObject.put("linkFileId", model.getLinkFileId());
 		}
 
 		if (model.getLinkFileName() != null) {
@@ -204,6 +212,10 @@ public class SysApplicationJsonFactory {
 
 		if (model.getLinkType() != null) {
 			jsonObject.put("linkType", model.getLinkType());
+		}
+
+		if (model.getLinkFileId() != null) {
+			jsonObject.put("linkFileId", model.getLinkFileId());
 		}
 
 		if (model.getLinkFileName() != null) {

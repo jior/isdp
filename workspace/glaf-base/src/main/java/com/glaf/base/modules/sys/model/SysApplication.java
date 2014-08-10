@@ -131,6 +131,12 @@ public class SysApplication implements Serializable, JSONable {
 	/**
 	 * linkFileName
 	 */
+	@Column(name = "LINKFILEID", length = 200)
+	protected String linkFileId;
+
+	/**
+	 * linkFileName
+	 */
 	@Column(name = "LINKFILENAME", length = 200)
 	protected String linkFileName;
 
@@ -183,6 +189,10 @@ public class SysApplication implements Serializable, JSONable {
 
 	public byte[] getLinkFileContent() {
 		return linkFileContent;
+	}
+
+	public String getLinkFileId() {
+		return linkFileId;
 	}
 
 	public String getLinkFileName() {
@@ -263,6 +273,10 @@ public class SysApplication implements Serializable, JSONable {
 
 	public void setLinkFileContent(byte[] linkFileContent) {
 		this.linkFileContent = linkFileContent;
+	}
+
+	public void setLinkFileId(String linkFileId) {
+		this.linkFileId = linkFileId;
 	}
 
 	public void setLinkFileName(String linkFileName) {

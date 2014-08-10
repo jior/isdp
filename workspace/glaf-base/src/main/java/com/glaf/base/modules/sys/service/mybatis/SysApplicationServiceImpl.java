@@ -65,6 +65,7 @@ import com.glaf.core.identity.Agent;
 import com.glaf.core.service.EntityService;
 import com.glaf.core.service.IBlobService;
 import com.glaf.core.util.PageResult;
+import com.glaf.core.util.UUID32;
 
 @Service("sysApplicationService")
 @Transactional(readOnly = true)
@@ -112,12 +113,15 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		}
 		bean.setSort((int) bean.getId());// 设置排序号为刚插入的id值
 		bean.setCreateDate(new Date());
+		if (bean.getLinkFileContent() != null) {
+			bean.setLinkFileId("sys_application_" + UUID32.getUUID());
+		}
 		sysApplicationMapper.insertSysApplication(bean);
 		if (bean.getLinkFileContent() != null) {
 			BlobItem dataFile = new BlobItemEntity();
 			dataFile.setLastModified(System.currentTimeMillis());
 			dataFile.setCreateBy(bean.getCreateBy());
-			dataFile.setFileId("sys_application_" + bean.getId());
+			dataFile.setFileId(bean.getLinkFileId());
 			dataFile.setData(bean.getLinkFileContent());
 			dataFile.setFilename(bean.getLinkFileName());
 			dataFile.setName(bean.getLinkFileName());
@@ -865,6 +869,9 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	@Transactional
 	public boolean update(SysApplication bean) {
 		bean.setUpdateDate(new Date());
+		if (bean.getLinkFileContent() != null) {
+			bean.setLinkFileId("sys_application_" + UUID32.getUUID());
+		}
 		this.sysApplicationMapper.updateSysApplication(bean);
 		String cacheKey = "sys_app_" + bean.getId();
 		CacheFactory.remove(cacheKey);
@@ -879,7 +886,7 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 			BlobItem dataFile = new BlobItemEntity();
 			dataFile.setLastModified(System.currentTimeMillis());
 			dataFile.setCreateBy(bean.getUpdateBy());
-			dataFile.setFileId("sys_application_" + bean.getId());
+			dataFile.setFileId(bean.getLinkFileId());
 			dataFile.setData(bean.getLinkFileContent());
 			dataFile.setFilename(bean.getLinkFileName());
 			dataFile.setName(bean.getLinkFileName());

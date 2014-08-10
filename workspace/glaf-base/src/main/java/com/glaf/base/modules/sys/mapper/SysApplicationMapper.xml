@@ -20,6 +20,7 @@
 		<result property="updateBy" column="UPDATEBY" jdbcType="VARCHAR" />
 		<result property="updateDate" column="UPDATEDATE" jdbcType="TIMESTAMP" />
 		<result property="linkType" column="LINKTYPE" jdbcType="VARCHAR" />
+		<result property="linkFileId" column="LINKFILEID" jdbcType="VARCHAR" />
 		<result property="linkFileName" column="LINKFILENAME" jdbcType="VARCHAR" />
 	</resultMap>
 
@@ -60,6 +61,9 @@
 			</if>
 			<if test="linkType != null">
 				,LINKTYPE
+			</if>
+			<if test="linkFileId != null">
+				,LINKFILEID
 			</if>
 			<if test="linkFileName != null">
 				,LINKFILENAME
@@ -107,6 +111,9 @@
 			</if>
 			<if test="linkType != null">
 				,#{linkType, jdbcType=VARCHAR}
+			</if>
+			<if test="linkFileId != null">
+				,#{linkFileId, jdbcType=VARCHAR}
 			</if>
 			<if test="linkFileName != null">
 				,#{linkFileName, jdbcType=VARCHAR}
@@ -157,6 +164,9 @@
 			</if>
 			<if test="linkType != null">
 				LINKTYPE = #{linkType, jdbcType=VARCHAR},
+			</if>
+			<if test="linkFileId != null">
+				LINKFILEID = #{linkFileId, jdbcType=VARCHAR},
 			</if>
 			<if test="linkFileName != null">
 				LINKFILENAME = #{linkFileName, jdbcType=VARCHAR},

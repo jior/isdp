@@ -141,8 +141,9 @@
 			<div id="divDir" style="display:none;">
 		        <input type="file" id="linkFileName" name="linkFileName"  class="input " size="35">
 				<c:if test="${bean.linkType == 'T'}">
-				<br><br>如需更换链接文件，请重新上传。
+				<br><br>如需更换链接文件<a href="<%=request.getContextPath()%>/mx/lob/lob/download?fileId=${bean.linkFileId}" target="newFrame">${bean.linkFileName}</a>，请重新上传。
                 </c:if>
+				<iframe id="newFrame" name="newFrame" width="0" height="0"></iframe>
 			</div>
 		</td>
 	</tr>
