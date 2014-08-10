@@ -23,6 +23,9 @@ CREATE TABLE sys_application(
         showmenu int,
         nodeid bigint NOT NULL,
 	locked int default 0,
+	linkfileid varchar(100),
+	linkfilename varchar(200),
+        linktype varchar(50),
         PRIMARY KEY (id)
 );
 
