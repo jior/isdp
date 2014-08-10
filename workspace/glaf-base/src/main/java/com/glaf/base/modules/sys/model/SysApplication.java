@@ -73,7 +73,7 @@ public class SysApplication implements Serializable, JSONable {
 	/**
 	 * 是否启用
 	 */
-	@Column(name = "locked")
+	@Column(name = "LOCKED")
 	protected int locked;
 
 	/**
@@ -122,6 +122,21 @@ public class SysApplication implements Serializable, JSONable {
 	@Column(name = "URL", length = 500)
 	protected String url;
 
+	/**
+	 * linkType
+	 */
+	@Column(name = "LINKTYPE", length = 50)
+	protected String linkType;
+
+	/**
+	 * linkFileName
+	 */
+	@Column(name = "LINKFILENAME", length = 200)
+	protected String linkFileName;
+
+	@javax.persistence.Transient
+	protected byte[] linkFileContent;
+
 	@javax.persistence.Transient
 	protected List<ColumnModel> extendedColumns = new ArrayList<ColumnModel>();
 
@@ -164,6 +179,18 @@ public class SysApplication implements Serializable, JSONable {
 
 	public long getId() {
 		return id;
+	}
+
+	public byte[] getLinkFileContent() {
+		return linkFileContent;
+	}
+
+	public String getLinkFileName() {
+		return linkFileName;
+	}
+
+	public String getLinkType() {
+		return linkType;
 	}
 
 	public int getLocked() {
@@ -232,6 +259,18 @@ public class SysApplication implements Serializable, JSONable {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public void setLinkFileContent(byte[] linkFileContent) {
+		this.linkFileContent = linkFileContent;
+	}
+
+	public void setLinkFileName(String linkFileName) {
+		this.linkFileName = linkFileName;
+	}
+
+	public void setLinkType(String linkType) {
+		this.linkType = linkType;
 	}
 
 	public void setLocked(int locked) {

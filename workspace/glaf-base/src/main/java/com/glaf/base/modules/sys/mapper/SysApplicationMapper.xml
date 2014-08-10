@@ -19,6 +19,8 @@
 		<result property="createBy" column="CREATEBY" jdbcType="VARCHAR" />
 		<result property="updateBy" column="UPDATEBY" jdbcType="VARCHAR" />
 		<result property="updateDate" column="UPDATEDATE" jdbcType="TIMESTAMP" />
+		<result property="linkType" column="LINKTYPE" jdbcType="VARCHAR" />
+		<result property="linkFileName" column="LINKFILENAME" jdbcType="VARCHAR" />
 	</resultMap>
 
 
@@ -55,6 +57,12 @@
 			</if>
 			<if test="locked != null">
 				,LOCKED
+			</if>
+			<if test="linkType != null">
+				,LINKTYPE
+			</if>
+			<if test="linkFileName != null">
+				,LINKFILENAME
 			</if>
 			<if test="createDate != null">
 				,CREATEDATE
@@ -96,6 +104,12 @@
 			</if>
 			<if test="locked != null">
 				,#{locked, jdbcType=INTEGER}
+			</if>
+			<if test="linkType != null">
+				,#{linkType, jdbcType=VARCHAR}
+			</if>
+			<if test="linkFileName != null">
+				,#{linkFileName, jdbcType=VARCHAR}
 			</if>
 			<if test="createDate != null">
 				,#{createDate, jdbcType=TIMESTAMP}
@@ -140,6 +154,12 @@
 			</if>
 			<if test="locked != null">
 				LOCKED = #{locked, jdbcType=INTEGER},
+			</if>
+			<if test="linkType != null">
+				LINKTYPE = #{linkType, jdbcType=VARCHAR},
+			</if>
+			<if test="linkFileName != null">
+				LINKFILENAME = #{linkFileName, jdbcType=VARCHAR},
 			</if>
 			<if test="updateBy != null">
 				UPDATEBY = #{updateBy, jdbcType=VARCHAR},
@@ -190,8 +210,8 @@
 		where A.ROLEID = #{roleId}
 
 	</select>
-	
-	
+
+
 	<select id="getSysApplicationByRoleCode" parameterType="String"
 		resultMap="sysApplicationResultMap">
 
@@ -200,8 +220,9 @@
 		on
 		E.id = A.appId
 		where A.roleId in (
-		    select R.id from net_role R
-		    where R.code = #{roleCode}
+		select R.id from net_role R
+		where
+		R.code = #{roleCode}
 		)
 
 	</select>
@@ -216,7 +237,8 @@
 		E.id = A.appId
 		where A.roleId in (
 		select R.id from net_role R
-		inner join userrole UR
+		inner join
+		userrole UR
 		on R.id = UR.roleid
 		where UR.userid = #{userId}
 		)

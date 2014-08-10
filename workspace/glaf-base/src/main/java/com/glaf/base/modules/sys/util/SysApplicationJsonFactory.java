@@ -83,6 +83,14 @@ public class SysApplicationJsonFactory {
 			model.setUpdateDate(jsonObject.getDate("updateDate"));
 		}
 
+		if (jsonObject.containsKey("linkType")) {
+			model.setLinkType(jsonObject.getString("linkType"));
+		}
+
+		if (jsonObject.containsKey("linkFileName")) {
+			model.setLinkFileName(jsonObject.getString("linkFileName"));
+		}
+
 		if (jsonObject.containsKey("functions")) {
 			JSONArray array = jsonObject.getJSONArray("functions");
 			if (array != null && !array.isEmpty()) {
@@ -129,6 +137,14 @@ public class SysApplicationJsonFactory {
 		jsonObject.put("showMenu", model.getShowMenu());
 		jsonObject.put("nodeId", model.getNodeId());
 		jsonObject.put("locked", model.getLocked());
+
+		if (model.getLinkType() != null) {
+			jsonObject.put("linkType", model.getLinkType());
+		}
+
+		if (model.getLinkFileName() != null) {
+			jsonObject.put("linkFileName", model.getLinkFileName());
+		}
 
 		if (model.getCreateDate() != null) {
 			jsonObject.put("createDate",
@@ -185,6 +201,14 @@ public class SysApplicationJsonFactory {
 		jsonObject.put("showMenu", model.getShowMenu());
 		jsonObject.put("nodeId", model.getNodeId());
 		jsonObject.put("locked", model.getLocked());
+
+		if (model.getLinkType() != null) {
+			jsonObject.put("linkType", model.getLinkType());
+		}
+
+		if (model.getLinkFileName() != null) {
+			jsonObject.put("linkFileName", model.getLinkFileName());
+		}
 
 		if (model.getCreateBy() != null) {
 			jsonObject.put("createBy", model.getCreateBy());

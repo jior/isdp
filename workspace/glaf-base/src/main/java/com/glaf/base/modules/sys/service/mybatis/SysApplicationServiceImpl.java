@@ -54,13 +54,16 @@ import com.glaf.base.modules.sys.service.SysUserService;
 import com.glaf.base.modules.sys.util.SysApplicationJsonFactory;
 
 import com.glaf.core.base.BaseTree;
+import com.glaf.core.base.BlobItem;
 import com.glaf.core.base.TreeModel;
 import com.glaf.core.context.ApplicationContext;
 import com.glaf.core.cache.CacheFactory;
 import com.glaf.core.config.SystemConfig;
+import com.glaf.core.domain.BlobItemEntity;
 import com.glaf.core.id.IdGenerator;
 import com.glaf.core.identity.Agent;
 import com.glaf.core.service.EntityService;
+import com.glaf.core.service.IBlobService;
 import com.glaf.core.util.PageResult;
 
 @Service("sysApplicationService")
@@ -85,12 +88,13 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 
 	protected EntityService entityService;
 
+	protected IBlobService blobService;
+
 	public SysApplicationServiceImpl() {
 
 	}
 
 	public int count(SysApplicationQuery query) {
-		query.ensureInitialized();
 		return sysApplicationMapper.getSysApplicationCount(query);
 	}
 
@@ -109,6 +113,22 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		bean.setSort((int) bean.getId());// 设置排序号为刚插入的id值
 		bean.setCreateDate(new Date());
 		sysApplicationMapper.insertSysApplication(bean);
+		if (bean.getLinkFileContent() != null) {
+			BlobItem dataFile = new BlobItemEntity();
+			dataFile.setLastModified(System.currentTimeMillis());
+			dataFile.setCreateBy(bean.getCreateBy());
+			dataFile.setFileId("sys_application_" + bean.getId());
+			dataFile.setData(bean.getLinkFileContent());
+			dataFile.setFilename(bean.getLinkFileName());
+			dataFile.setName(bean.getLinkFileName());
+			dataFile.setSize(bean.getLinkFileContent().length);
+			dataFile.setType(bean.getLinkType());
+			dataFile.setStatus(9);
+			dataFile.setObjectId("sys_application");
+			dataFile.setObjectValue("sys_application_" + bean.getId());
+			dataFile.setServiceKey("sys_application_file");
+			blobService.insertBlob(dataFile);
+		}
 		ret = true;
 		return ret;
 	}
@@ -679,7 +699,6 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	}
 
 	public List<SysApplication> list(SysApplicationQuery query) {
-		query.ensureInitialized();
 		List<SysApplication> list = sysApplicationMapper
 				.getSysApplications(query);
 		return list;
@@ -725,6 +744,11 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 				treeModels.add(treeModel);
 			}
 		}
+	}
+
+	@javax.annotation.Resource
+	public void setBlobService(IBlobService blobService) {
+		this.blobService = blobService;
 	}
 
 	@Resource
@@ -850,6 +874,22 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 			sysTreeService.update(bean.getNode());
 			cacheKey = "sys_tree_" + bean.getNode().getId();
 			CacheFactory.remove(cacheKey);
+		}
+		if (bean.getLinkFileContent() != null) {
+			BlobItem dataFile = new BlobItemEntity();
+			dataFile.setLastModified(System.currentTimeMillis());
+			dataFile.setCreateBy(bean.getUpdateBy());
+			dataFile.setFileId("sys_application_" + bean.getId());
+			dataFile.setData(bean.getLinkFileContent());
+			dataFile.setFilename(bean.getLinkFileName());
+			dataFile.setName(bean.getLinkFileName());
+			dataFile.setSize(bean.getLinkFileContent().length);
+			dataFile.setType(bean.getLinkType());
+			dataFile.setStatus(9);
+			dataFile.setObjectId("sys_application");
+			dataFile.setObjectValue("sys_application_" + bean.getId());
+			dataFile.setServiceKey("sys_application_file");
+			blobService.insertBlob(dataFile);
 		}
 		return true;
 	}

@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -30,6 +32,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -249,20 +253,39 @@ public class SysApplicationController {
 	 */
 	@RequestMapping("/saveAdd")
 	public ModelAndView saveAdd(HttpServletRequest request, ModelMap modelMap) {
+		MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
+
 		SysApplication bean = new SysApplication();
-		bean.setName(ParamUtil.getParameter(request, "name"));
-		bean.setCode(ParamUtil.getParameter(request, "code"));
-		bean.setDesc(ParamUtil.getParameter(request, "desc"));
-		bean.setUrl(ParamUtil.getParameter(request, "url"));
-		bean.setShowMenu(ParamUtil.getIntParameter(request, "showMenu", 0));
+		bean.setName(ParamUtil.getParameter(req, "name"));
+		bean.setCode(ParamUtil.getParameter(req, "code"));
+		bean.setDesc(ParamUtil.getParameter(req, "desc"));
+		bean.setUrl(ParamUtil.getParameter(req, "url"));
+		bean.setShowMenu(ParamUtil.getIntParameter(req, "showMenu", 0));
 		bean.setCreateBy(RequestUtils.getActorId(request));
 		SysTree node = new SysTree();
 		node.setName(bean.getName());
 		node.setDesc(bean.getName());
 		node.setCode(bean.getCode());
 		node.setCreateBy(RequestUtils.getActorId(request));
-		node.setParentId((long) ParamUtil.getIntParameter(request, "parent", 0));
+		node.setParentId((long) ParamUtil.getIntParameter(req, "parent", 0));
 		bean.setNode(node);
+
+		Map<String, MultipartFile> fileMap = req.getFileMap();
+		Set<Entry<String, MultipartFile>> entrySet = fileMap.entrySet();
+		for (Entry<String, MultipartFile> entry : entrySet) {
+			MultipartFile mFile = entry.getValue();
+			if (mFile.getOriginalFilename() != null && mFile.getSize() > 0) {
+				String filename = mFile.getOriginalFilename();
+				bean.setLinkFileName(filename);
+				bean.setLinkType("T");
+				try {
+					bean.setLinkFileContent(mFile.getBytes());
+				} catch (IOException ex) {
+					ex.printStackTrace();
+				}
+				break;
+			}
+		}
 
 		boolean ret = sysApplicationService.create(bean);
 		ViewMessages messages = new ViewMessages();
@@ -286,23 +309,41 @@ public class SysApplicationController {
 	 */
 	@RequestMapping("/saveModify")
 	public ModelAndView saveModify(HttpServletRequest request, ModelMap modelMap) {
-		long id = ParamUtil.getIntParameter(request, "id", 0);
+		MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
+		long id = ParamUtil.getIntParameter(req, "id", 0);
 		SysApplication bean = sysApplicationService.findById(id);
 		if (bean != null) {
-			bean.setName(ParamUtil.getParameter(request, "name"));
-			bean.setCode(ParamUtil.getParameter(request, "code"));
-			bean.setDesc(ParamUtil.getParameter(request, "desc"));
-			bean.setUrl(ParamUtil.getParameter(request, "url"));
-			bean.setShowMenu(ParamUtil.getIntParameter(request, "showMenu", 0));
+			bean.setName(ParamUtil.getParameter(req, "name"));
+			bean.setCode(ParamUtil.getParameter(req, "code"));
+			bean.setDesc(ParamUtil.getParameter(req, "desc"));
+			bean.setUrl(ParamUtil.getParameter(req, "url"));
+			bean.setShowMenu(ParamUtil.getIntParameter(req, "showMenu", 0));
 			bean.setUpdateBy(RequestUtils.getActorId(request));
-			bean.setLocked(ParamUtil.getIntParameter(request, "locked", 0));
+			bean.setLocked(ParamUtil.getIntParameter(req, "locked", 0));
 
 			SysTree node = bean.getNode();
 			node.setName(bean.getName());
 			node.setCode(bean.getCode());
 			node.setDesc(bean.getName());
-			node.setParentId(ParamUtil.getLongParameter(request, "parent", 0));
+			node.setParentId(ParamUtil.getLongParameter(req, "parent", 0));
 			bean.setNode(node);
+
+			Map<String, MultipartFile> fileMap = req.getFileMap();
+			Set<Entry<String, MultipartFile>> entrySet = fileMap.entrySet();
+			for (Entry<String, MultipartFile> entry : entrySet) {
+				MultipartFile mFile = entry.getValue();
+				if (mFile.getOriginalFilename() != null && mFile.getSize() > 0) {
+					String filename = mFile.getOriginalFilename();
+					bean.setLinkFileName(filename);
+					bean.setLinkType("T");
+					try {
+						bean.setLinkFileContent(mFile.getBytes());
+					} catch (IOException ex) {
+						ex.printStackTrace();
+					}
+					break;
+				}
+			}
 		}
 		boolean ret = false;
 		try {
@@ -327,13 +368,11 @@ public class SysApplicationController {
 	public void setSysApplicationService(
 			SysApplicationService sysApplicationService) {
 		this.sysApplicationService = sysApplicationService;
-
 	}
 
 	@javax.annotation.Resource
 	public void setSysTreeService(SysTreeService sysTreeService) {
 		this.sysTreeService = sysTreeService;
-
 	}
 
 	/**

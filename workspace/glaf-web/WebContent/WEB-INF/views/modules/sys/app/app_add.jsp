@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="html"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.glaf.base.modules.sys.*"%>
@@ -24,9 +26,50 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/easyui/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src='<%=context%>/scripts/main.js'></script>
 <script type="text/javascript" src='<%=context%>/scripts/verify.js'></script> 
+<script type="text/javascript">
+
+    function changeXDiv(state){
+		if(state=='L'){
+			jQuery("#urlDir").show();
+			jQuery("#divDir").hide();
+			document.getElementById("type").value = state;
+		}
+		if(state=='T'){
+			jQuery("#divDir").show();
+			jQuery("#urlDir").hide();
+			document.getElementById("type").value = state;
+		}
+	}
+
+    function verifyApplicationForm(form){
+		if(verifyAll(form)){
+		  var type = document.getElementById("type").value;
+		  if("L" == type){
+			  var link = document.getElementById("url").value;
+			  if(link == ""){
+				alert("链接地址是必须的！");
+				document.getElementById("url").focus();
+				return false;
+			  }
+		  }
+
+		  if("T" == type){
+			  var content = document.getElementById("linkFileName").value;
+			  if(content == ""){
+				alert("文件是必须的！");
+				document.getElementById("linkFileName").focus();
+				return false;
+			  }
+		  }
+		}
+		return true;
+    }
+
+</script>
 </head>
 <body style="margin:10px;">
-<html:form action="${contextPath}/mx/sys/application/saveAdd" method="post" onsubmit="return verifyAll(this);" > 
+<html:form action="${contextPath}/mx/sys/application/saveAdd" method="post" enctype="multipart/form-data"
+           onsubmit="return verifyApplicationForm(this);"  > 
 <div class="easyui-panel" title="增加模块" style="width:550px;padding:10px">
 <input type="hidden" name="parent" value="<%=parent%>">
  <table width="95%" align="center" border="0" cellspacing="0" cellpadding="5">
@@ -42,13 +85,23 @@
         <td class="input-box2" valign="top">描　　述</td>
         <td><textarea name="desc" cols="38" rows="6" class="input-multi " datatype="string" nullable="yes" maxsize="100" chname="描述"></textarea></td>
       </tr>
-      <tr>
-        <td class="input-box2" valign="top">链　　接</td>
-        <td>
-		<textarea name="url" cols="38" rows="5" class="input-multi " datatype="string" nullable="yes" maxsize="100" chname="链接"></textarea>
+
+	  <tr>
+		<td width="30%" align="left" valign="top">链接类型</td>
+		<td width="70%" align="left" valign="top" >  
+			<input id="type" name="type" type="radio" value="L" onclick="javascript:changeXDiv('L');" >链接地址
+			<input id="type" name="type" type="radio" value="T" onclick="javascript:changeXDiv('T');" >链接文件
+			<br>
+			<div id="urlDir" style="display:block;">
+		      <textarea id="url" name="url" cols="38" rows="5" class="input-multi " datatype="string" nullable="yes" maxsize="100" chname="链接"></textarea>
+			</div>
+			<div id="divDir" style="display:none;">
+		        <input type="file" id="linkFileName" name="linkFileName"  class="input " size="35">
+			</div>
 		</td>
-      </tr>
-      <tr>
+	</tr>
+      
+    <tr>
         <td class="input-box2" valign="top">是否弹出窗</td>
         <td><span class="fontlist">
           <input type="radio" name="showMenu" value="2">是
@@ -57,7 +110,8 @@
       </tr>
       <tr>
         <td colspan="2" align="center" valign="bottom" height="30">&nbsp;
-              <input name="btn_save" type="submit" value="保存" class="button"></td>
+              <input name="btn_save" type="submit" value="保存" class="button">
+	    </td>
       </tr>
   </table> 
 </div>

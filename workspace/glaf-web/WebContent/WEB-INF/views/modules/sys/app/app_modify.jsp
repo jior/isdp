@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="html"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.glaf.base.modules.sys.*"%>
@@ -25,24 +27,64 @@
 <script type="text/javascript" src='<%=context%>/scripts/main.js'></script>
 <script type="text/javascript" src='<%=context%>/scripts/verify.js'></script> 
 <script language="javascript">
-function checkForm(form){
-  if(verifyAll(form)){
-     if(form.parent.value=='<%=bean.getId()%>'){
-	   alert("当前模块不能选择为所属模块");
-	 }else{
-	   return true;
-	 }
-  }
-   return false;
-}
-function setValue(obj){
-  obj.value=obj[obj.selectedIndex].value;
-}
+
+    function changeXDiv(state){
+		if(state=='L'){
+			jQuery("#urlDir").show();
+			jQuery("#divDir").hide();
+			document.getElementById("type").value = state;
+		}
+		if(state=='T'){
+			jQuery("#divDir").show();
+			jQuery("#urlDir").hide();
+			document.getElementById("type").value = state;
+		}
+	}
+
+	function checkForm(form){
+	  if(verifyAll(form)){
+		 if(form.parent.value=='<%=bean.getId()%>'){
+		   alert("当前模块不能选择为所属模块");
+		 } else{
+		   return true;
+		 }
+	  }
+	   return false;
+	}
+
+	function setValue(obj){
+	  obj.value=obj[obj.selectedIndex].value;
+	}
+
+    function verifyApplicationForm(form){
+	   if(checkForm(form)){
+		  var type = document.getElementById("type").value;
+		  if("L" == type){
+			  var link = document.getElementById("url").value;
+			  if(link == ""){
+				alert("链接地址是必须的！");
+				document.getElementById("url").focus();
+				return false;
+			  }
+		  }
+
+		  if("T" == type){
+			  var content = document.getElementById("linkFileName").value;
+			  if(content == ""){
+				alert("文件是必须的！");
+				document.getElementById("linkFileName").focus();
+				return false;
+			  }
+		  }
+	    }
+    }
+
 </script>
 </head>
 
 <body style="margin:10px;">
-<html:form action="${contextPath}/mx/sys/application/saveModify" method="post"  onsubmit="return checkForm(this);"> 
+<html:form action="${contextPath}/mx/sys/application/saveModify" method="post" enctype="multipart/form-data" 
+           onsubmit="return verifyApplicationForm(this);"> 
 <div class="easyui-panel" title="修改模块" style="width:550px;padding:10px">
 <input type="hidden" name="id" value="<%=bean.getId()%>">
 <table width="95%" align="center" border="0" cellspacing="0" cellpadding="5">
@@ -85,12 +127,25 @@ function setValue(obj){
         <td class="input-box2" valign="top">描　　述</td>
         <td><textarea name="desc" cols="38" rows="6" class="input-multi" datatype="string" nullable="yes" maxsize="100" chname="描述"><%=bean.getDesc() != null ? bean.getDesc() : ""%></textarea></td>
       </tr>
-      <tr>
-        <td class="input-box2" valign="top">链　　接</td>
-        <td> 
-		<textarea name="url" cols="38" rows="5" class="input-multi" datatype="string" nullable="yes" maxsize="100" chname="链接"><%=bean.getUrl() != null ? bean.getUrl() :""%></textarea>
+	  <tr>
+		<td width="30%" align="left" valign="top">链接类型</td>
+		<td width="70%" align="left" valign="top" >  
+			<input id="type" name="type" type="radio" value="L" onclick="javascript:changeXDiv('L');" 
+			<c:if test="${bean.linkType == 'L'}">checked</c:if> />链接地址
+			<input id="type" name="type" type="radio" value="T" onclick="javascript:changeXDiv('T');" 
+			<c:if test="${bean.linkType == 'T'}">checked</c:if> />链接文件
+			<br>
+			<div id="urlDir" style="display:block;">
+		      <textarea  id="url" name="url" cols="38" rows="5" class="input-multi" datatype="string" nullable="yes" maxsize="100" chname="链接"><%=bean.getUrl() != null ? bean.getUrl() :""%></textarea>
+			</div>
+			<div id="divDir" style="display:none;">
+		        <input type="file" id="linkFileName" name="linkFileName"  class="input " size="35">
+				<c:if test="${bean.linkType == 'T'}">
+				<br><br>如需更换链接文件，请重新上传。
+                </c:if>
+			</div>
 		</td>
-      </tr>
+	</tr>
       <tr>
         <td class="input-box2" valign="top">是否弹出窗</td>
         <td>
@@ -107,10 +162,16 @@ function setValue(obj){
       </tr>
       <tr>
         <td colspan="2" align="center" valign="bottom" height="30">&nbsp;
-              <input name="btn_save" type="submit" value="保存" class="button"></td>
+              <input name="btn_save" type="submit" value="保存" class="button">
+		</td>
       </tr>
     </table>
 </div>
 </html:form>
+<script type="text/javascript">
+    <c:if test="${bean.linkType == 'T'}">
+	    changeXDiv("${bean.linkType}");
+    </c:if>
+</script>
 </body>
 </html>
