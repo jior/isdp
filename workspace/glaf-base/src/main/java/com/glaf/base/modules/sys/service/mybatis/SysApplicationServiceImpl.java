@@ -59,11 +59,13 @@ import com.glaf.core.base.TreeModel;
 import com.glaf.core.context.ApplicationContext;
 import com.glaf.core.cache.CacheFactory;
 import com.glaf.core.config.SystemConfig;
+import com.glaf.core.config.SystemProperties;
 import com.glaf.core.domain.BlobItemEntity;
 import com.glaf.core.id.IdGenerator;
 import com.glaf.core.identity.Agent;
 import com.glaf.core.service.EntityService;
 import com.glaf.core.service.IBlobService;
+import com.glaf.core.util.FileUtils;
 import com.glaf.core.util.PageResult;
 import com.glaf.core.util.UUID32;
 
@@ -132,6 +134,16 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 			dataFile.setObjectValue("sys_application_" + bean.getId());
 			dataFile.setServiceKey("sys_application_file");
 			blobService.insertBlob(dataFile);
+			if (StringUtils.endsWithIgnoreCase(bean.getLinkFileName(), ".cpt")) {
+				String path = SystemProperties.getConfigRootPath()
+						+ "/reportlets/";
+				if (SystemProperties.getDeploymentSystemName() != null) {
+					path = path + SystemProperties.getDeploymentSystemName()
+							+ "/";
+				}
+				path = path + bean.getId() + ".cpt";
+				FileUtils.save(path, bean.getLinkFileContent());
+			}
 		}
 		ret = true;
 		return ret;
@@ -897,6 +909,17 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 			dataFile.setObjectValue("sys_application_" + bean.getId());
 			dataFile.setServiceKey("sys_application_file");
 			blobService.insertBlob(dataFile);
+
+			if (StringUtils.endsWithIgnoreCase(bean.getLinkFileName(), ".cpt")) {
+				String path = SystemProperties.getConfigRootPath()
+						+ "/reportlets/";
+				if (SystemProperties.getDeploymentSystemName() != null) {
+					path = path + SystemProperties.getDeploymentSystemName()
+							+ "/";
+				}
+				path = path + bean.getId() + ".cpt";
+				FileUtils.save(path, bean.getLinkFileContent());
+			}
 		}
 		return true;
 	}
