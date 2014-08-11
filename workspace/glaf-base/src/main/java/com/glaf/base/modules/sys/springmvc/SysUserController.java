@@ -652,6 +652,7 @@ public class SysUserController {
 		bean.setTelephone(ParamUtil.getParameter(request, "telephone"));
 		bean.setStatus(ParamUtil.getParameter(request, "status"));
 		bean.setHeadship(ParamUtil.getParameter(request, "headship"));
+		bean.setAccountType(ParamUtil.getIntParameter(request, "accountType", 0));
 		bean.setUserType(ParamUtil.getIntParameter(request, "userType", 0));
 		bean.setEvection(0);
 		bean.setCreateTime(new Date());
@@ -713,6 +714,7 @@ public class SysUserController {
 			bean.setEvection(ParamUtil.getIntParameter(request, "evection", 0));
 			bean.setStatus(ParamUtil.getParameter(request, "status"));
 			bean.setHeadship(ParamUtil.getParameter(request, "headship"));
+			bean.setAccountType(ParamUtil.getIntParameter(request, "accountType", 0));
 			bean.setUserType(ParamUtil.getIntParameter(request, "userType", 0));
 			bean.setUpdateBy(RequestUtils.getActorId(request));
 			ret = sysUserService.update(bean);

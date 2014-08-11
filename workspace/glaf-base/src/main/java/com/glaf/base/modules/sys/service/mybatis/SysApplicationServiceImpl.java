@@ -52,7 +52,6 @@ import com.glaf.base.modules.sys.service.SysApplicationService;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.service.SysUserService;
 import com.glaf.base.modules.sys.util.SysApplicationJsonFactory;
-
 import com.glaf.core.base.BaseTree;
 import com.glaf.core.base.BlobItem;
 import com.glaf.core.base.TreeModel;
@@ -110,6 +109,7 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		if (bean.getNode() != null) {
 			bean.getNode().setDiscriminator("A");
 			bean.getNode().setCreateBy(bean.getCreateBy());
+			bean.getNode().setUrl(bean.getUrl());
 			sysTreeService.create(bean.getNode());
 			bean.setNodeId(bean.getNode().getId());
 		}
@@ -500,6 +500,44 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		return rows;
 	}
 
+	/**
+	 * 获取用户某个分类下的全部分类节点
+	 * 
+	 * @param parent
+	 *            父节点编号
+	 * @param actorId
+	 *            用户登录账号
+	 * @return
+	 */
+	public List<TreeModel> getTopLevelTreeModels(long parentId, String actorId) {
+		List<TreeModel> treeModels = new ArrayList<TreeModel>();
+		SysUser user = sysUserService.findByAccountWithAll(actorId);
+		if (user != null) {
+			this.loadTreeModels(treeModels, parentId, user);
+		}
+		return treeModels;
+	}
+
+	/**
+	 * 获取用户某个分类下的顶级菜单节点
+	 * 
+	 * @param appCode
+	 *            应用编码
+	 * @param userId
+	 *            用户登录账号
+	 * @return
+	 */
+	public List<TreeModel> getTopLevelTreeModels(String appCode, String actorId) {
+		List<TreeModel> treeModels = new ArrayList<TreeModel>();
+		SysApplication sysApplication = this.findByCode(appCode);
+		long parentId = sysApplication.getId();
+		SysUser user = sysUserService.findByAccountWithAll(actorId);
+		if (user != null) {
+			this.loadTreeModels(treeModels, parentId, user);
+		}
+		return treeModels;
+	}
+
 	public TreeModel getTreeModelByAppId(long appId) {
 		SysApplication bean = this.findById(appId);
 		if (bean != null) {
@@ -762,6 +800,38 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		}
 	}
 
+	protected void loadTreeModels(List<TreeModel> treeModels, long parentId,
+			SysUser user) {
+		List<SysApplication> list = null;
+		if (user.isSystemAdmin()) {
+			logger.debug("#admin user=" + user.getName());
+			list = getApplicationList((int) parentId);
+		} else {
+			logger.debug("#user=" + user.getName());
+			list = getAccessAppList(parentId, user);
+			logger.debug("#app list=" + list);
+		}
+		if (list != null && list.size() > 0) {
+			Iterator<SysApplication> iter = list.iterator();
+			while (iter.hasNext()) {
+				SysApplication bean = (SysApplication) iter.next();
+				if (bean.getLocked() == 1) {
+					continue;
+				}
+				TreeModel treeModel = new BaseTree();
+				treeModel.setCode(bean.getCode());
+				treeModel.setId(bean.getId());
+				treeModel.setParentId(parentId);
+				treeModel.setName(bean.getName());
+				treeModel.setLocked(bean.getLocked());
+				treeModel.setDescription(bean.getDesc());
+				treeModel.setUrl(bean.getUrl());
+				treeModel.setSortNo(bean.getSort());
+				treeModels.add(treeModel);
+			}
+		}
+	}
+
 	@javax.annotation.Resource
 	public void setBlobService(IBlobService blobService) {
 		this.blobService = blobService;
@@ -890,6 +960,7 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		if (bean.getNode() != null) {
 			bean.getNode().setLocked(bean.getLocked());
 			bean.getNode().setUpdateBy(bean.getUpdateBy());
+			bean.getNode().setUrl(bean.getUrl());
 			sysTreeService.update(bean.getNode());
 			cacheKey = "sys_tree_" + bean.getNode().getId();
 			CacheFactory.remove(cacheKey);

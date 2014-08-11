@@ -181,8 +181,30 @@ public interface SysApplicationService {
 	List<SysApplication> getSysApplicationsByQueryCriteria(int start,
 			int pageSize, SysApplicationQuery query);
 
-	TreeModel getTreeModelByAppId(long appId);
+	/**
+	 * 获取用户某个分类下的顶级菜单节点
+	 * 
+	 * @param parent
+	 *            父节点编号
+	 * @param userId
+	 *            用户登录账号
+	 * @return
+	 */
+	List<TreeModel> getTopLevelTreeModels(long parentId, String userId);
 
+	/**
+	 * 获取用户某个分类下的顶级菜单节点
+	 * 
+	 * @param appCode
+	 *            应用编码
+	 * @param userId
+	 *            用户登录账号
+	 * @return
+	 */
+	List<TreeModel> getTopLevelTreeModels(String appCode, String userId);
+	
+	TreeModel getTreeModelByAppId(long appId);
+	
 	/**
 	 * 获取用户某个分类下的全部分类节点
 	 * 

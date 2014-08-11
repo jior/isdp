@@ -6,7 +6,11 @@
 	com.glaf.core.util.ContextUtils.setContextPath(contextPath);
 	SysUser user = com.glaf.base.utils.RequestUtil.getLoginUser(request);
 	if (user != null) {
-		response.sendRedirect(request.getContextPath() + "/mx/my/main");
+		if(user.getAccountType() == 1){
+		    response.sendRedirect(request.getContextPath() + "/mx/website/main");
+		} else {
+			response.sendRedirect(request.getContextPath() + "/mx/my/home");
+		}
 	} else {
 		response.sendRedirect(request.getContextPath() + "/mx/login");
 	}

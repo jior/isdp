@@ -24,6 +24,8 @@
 		<result property="password" column="Password" jdbcType="VARCHAR" />
 		<result property="adminFlag" column="issystem" jdbcType="VARCHAR" />
 		<result property="domainIndex" column="domain_index" jdbcType="INTEGER" />
+		<result property="accountType" column="ACCOUNTTYPE" jdbcType="INTEGER" />
+		<result property="userType" column="USERTYPE" jdbcType="INTEGER" />
 	</resultMap>
 
 	<resultMap id="baseTreeResultMap" type="com.glaf.core.base.BaseTree">

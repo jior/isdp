@@ -236,7 +236,7 @@ insert into sys_dictory (id, typeId, code, name, sort, dictDesc, blocked, ext1, 
 insert into sys_dictory (id, typeId, code, name, sort, dictDesc, blocked, ext1, ext2) values (5, 498, 'EUR', '欧元', 5, null, 0, '', '');
  
 insert into sys_dictory (id, typeId, code, name, sort, dictDesc, blocked, value_) values (11, 499, '0', '默认', 1, null, 0, '/mx/my/main');
-insert into sys_dictory (id, typeId, code, name, sort, dictDesc, blocked, value_) values (12, 499, '1', '网站', 2, null, 0, '/website/main');
+insert into sys_dictory (id, typeId, code, name, sort, dictDesc, blocked, value_) values (12, 499, '1', '网站', 2, null, 0, '/mx/website/main');
 insert into sys_dictory (id, typeId, code, name, sort, dictDesc, blocked, value_) values (13, 499, '2', '微信', 3, null, 0, '/mx/wechat/main');
 
 
@@ -275,6 +275,7 @@ insert into sys_property (id_, category_, description_, initvalue_, locked_, nam
 insert into sys_property (id_, category_, description_, initvalue_, locked_, name_, title_, type_, value_, inputtype_) values ('10', 'SYS', '存储备份到Mongodb', '[{"name":"是","value":"true"},{"name":"否","value":"false"}]', 0, 'fs_storage_mongodb', '存储备份到Mongodb', null, 'false', 'combobox');
 insert into sys_property (id_, category_, description_, initvalue_, locked_, name_, title_, type_, value_, inputtype_) values ('11', 'SYS', '启用查询缓存', '[{"name":"是","value":"true"},{"name":"否","value":"false"}]', 0, 'use_query_cache', '启用查询缓存', null, 'false', 'combobox');
 insert into sys_property (id_, description_, locked_, name_, title_, type_, value_, category_, initvalue_) values ('14', null, 0, 'res_mail_to_dev', '问题报告接收邮箱', null, 'jior2008@gmail.com', 'SYS', null);
+insert into sys_property (id_, description_, locked_, name_, title_, type_, value_, category_, initvalue_) values ('15', null, 0, 'report_service_url', '报表服务器地址', null, 'http://127.0.0.1:8080/glaf/ReportServer', 'SYS', null);
 
 insert into sys_property (id_, description_, locked_, name_, title_, type_, value_, category_, initvalue_) values ('101', '当天的6位年月格式（YYYYMM），如201312', 0, 'curr_yyyymm', '当前年月', null, '', 'RPT', '${curr_yyyymm}');
 insert into sys_property (id_, description_, locked_, name_, title_, type_, value_, category_, initvalue_) values ('102', '当天的8位日期格式（YYYYMMDD），如20130630', 0, 'curr_yyyymmdd', '当前日期', null, '', 'RPT', '${curr_yyyymmdd}');

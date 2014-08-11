@@ -37,6 +37,10 @@ import com.glaf.core.base.TreeModel;
 public class SysTree implements Serializable, TreeModel, JSONable {
 	private static final long serialVersionUID = 2666681837822864771L;
 
+	@Id
+	@Column(name = "ID", nullable = false)
+	protected long id;
+
 	@javax.persistence.Transient
 	protected SysApplication app;
 
@@ -97,10 +101,6 @@ public class SysTree implements Serializable, TreeModel, JSONable {
 	 */
 	@Column(name = "iconCls", length = 50)
 	protected String iconCls;
-
-	@Id
-	@Column(name = "ID", nullable = false)
-	protected long id;
 
 	/**
 	 * 是否启用
