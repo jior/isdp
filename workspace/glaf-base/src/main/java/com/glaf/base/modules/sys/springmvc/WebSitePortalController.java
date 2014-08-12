@@ -102,11 +102,16 @@ public class WebSitePortalController {
 		logger.debug("-----------------------home--------------------------------");
 		logger.debug("currentSystemName:" + Environment.getCurrentSystemName());
 
-		String appCode = RequestUtils.getString(request, "appCode", "website");
+		long appId = RequestUtils.getLong(request, "appId", 0);
 
-		SysApplication sysApplication = sysApplicationService
-				.findByCode(appCode);
-		long appId = sysApplication.getId();
+		if (appId == 0) {
+			String appCode = RequestUtils.getString(request, "appCode",
+					"website");
+			SysApplication sysApplication = sysApplicationService
+					.findByCode(appCode);
+			appId = sysApplication.getId();
+		}
+
 		String scripts = "";
 		try {
 			org.json.JSONArray array = sysApplicationService.getUserMenu(appId,
@@ -121,8 +126,8 @@ public class WebSitePortalController {
 		return new ModelAndView("/modules/website/portal/home", modelMap);
 	}
 
-	@RequestMapping("/website/main")
-	public ModelAndView main(HttpServletRequest request, ModelMap modelMap) {
+	@RequestMapping("/website/index")
+	public ModelAndView index(HttpServletRequest request, ModelMap modelMap) {
 		LoginContext loginContext = RequestUtils.getLoginContext(request);
 		logger.debug("loginContext:"
 				+ loginContext.toJsonObject().toJSONString());
@@ -135,11 +140,14 @@ public class WebSitePortalController {
 			Environment.setCurrentSystemName(Environment.DEFAULT_SYSTEM_NAME);
 		}
 
-		String appCode = RequestUtils.getString(request, "appCode", "website");
+		long appId = RequestUtils.getLong(request, "appId", 0);
 
-		SysApplication sysApplication = sysApplicationService
-				.findByCode(appCode);
-		long appId = sysApplication.getId();
+		if (appId == 0) {
+			String appCode = RequestUtils.getString(request, "appCode");
+			SysApplication sysApplication = sysApplicationService
+					.findByCode(appCode);
+			appId = sysApplication.getId();
+		}
 
 		TreeModel root = sysApplicationService.getTreeModelByAppId(appId);
 		List<TreeModel> treeNodes = null;
@@ -149,9 +157,8 @@ public class WebSitePortalController {
 			if (treeNodes != null) {
 				Collections.sort(treeNodes);
 			}
-
 		} else {
-			treeNodes = sysApplicationService.getTreeModels(3,
+			treeNodes = sysApplicationService.getTreeModels(appId,
 					loginContext.getActorId());
 			if (treeNodes != null) {
 				Collections.sort(treeNodes);
@@ -172,12 +179,17 @@ public class WebSitePortalController {
 		if (root != null && treeNodes != null) {
 
 			logger.debug("#######################################################");
-			logger.debug("treeNodes:" + treeNodes.size());
+			logger.debug("root:" + root.toJsonObject().toJSONString());
+			// logger.debug("treeNodes:" + treeNodes);
 
 			TreeHelper treeHelper = new TreeHelper();
 			JSONObject treeJson = treeHelper.getTreeJson(root, treeNodes);
 			modelMap.put("treeJson", treeJson);
-			logger.debug(treeJson.toJSONString());
+			modelMap.put("json", treeJson.toJSONString());
+			logger.debug("json=" + treeJson.toJSONString());
+			JSONArray jsonArray = treeHelper.getTreeJSONArray(treeNodes);
+			modelMap.put("jsonArray", jsonArray.toJSONString());
+			logger.debug("jsonArray=" + jsonArray.toJSONString());
 
 			StringBuffer buffer = new StringBuffer();
 			String text = treeJson.getString("text");
@@ -200,7 +212,118 @@ public class WebSitePortalController {
 				buffer.append("\n</li>");
 			}
 
-			modelMap.put("json", buffer.toString());
+			modelMap.put("scripts", buffer.toString());
+		}
+
+		logger.debug("#######################################");
+		logger.debug(loginContext.getRoles());
+
+		String jx_view = request.getParameter("jx_view");
+
+		if (StringUtils.isNotEmpty(jx_view)) {
+			return new ModelAndView(jx_view, modelMap);
+		}
+
+		String x_view = ViewProperties.getString("website_workspace.index");
+		if (StringUtils.isNotEmpty(x_view)) {
+			return new ModelAndView(x_view, modelMap);
+		}
+
+		return new ModelAndView("/modules/website/portal/index", modelMap);
+	}
+
+	@RequestMapping("/website/main")
+	public ModelAndView main(HttpServletRequest request, ModelMap modelMap) {
+		LoginContext loginContext = RequestUtils.getLoginContext(request);
+		logger.debug("loginContext:"
+				+ loginContext.toJsonObject().toJSONString());
+		RequestUtils.setRequestParameterToAttribute(request);
+
+		if (StringUtils.isNotEmpty(request.getParameter("systemName"))) {
+			Environment
+					.setCurrentSystemName(request.getParameter("systemName"));
+		} else {
+			Environment.setCurrentSystemName(Environment.DEFAULT_SYSTEM_NAME);
+		}
+
+		long appId = RequestUtils.getLong(request, "appId", 0);
+
+		if (appId == 0) {
+			String appCode = RequestUtils.getString(request, "appCode",
+					"website");
+			SysApplication sysApplication = sysApplicationService
+					.findByCode(appCode);
+			appId = sysApplication.getId();
+		}
+
+		List<TreeModel> topLevelTreeModels = sysApplicationService
+				.getTopLevelTreeModels(appId, loginContext.getActorId());
+
+		TreeModel root = sysApplicationService.getTreeModelByAppId(appId);
+		List<TreeModel> treeNodes = null;
+		if (root != null) {
+			treeNodes = sysApplicationService.getTreeModels(root.getId(),
+					loginContext.getActorId());
+			if (treeNodes != null) {
+				Collections.sort(treeNodes);
+			}
+		} else {
+			treeNodes = sysApplicationService.getTreeModels(appId,
+					loginContext.getActorId());
+			if (treeNodes != null) {
+				Collections.sort(treeNodes);
+			}
+		}
+
+		Collection<String> roles = loginContext.getRoles();
+		List<String> list = new ArrayList<String>();
+		if (roles != null && !roles.isEmpty()) {
+			for (String r : roles) {
+				list.add(r);
+			}
+		}
+
+		modelMap.put("root", root);
+		modelMap.put("treeNodes", treeNodes);
+		modelMap.put("topLevelTreeModels", topLevelTreeModels);
+
+		if (root != null && treeNodes != null) {
+
+			logger.debug("#######################################################");
+			// logger.debug("treeNodes:" + treeNodes.size());
+
+			TreeHelper treeHelper = new TreeHelper();
+			JSONObject treeJson = treeHelper.getTreeJson(root, treeNodes);
+			modelMap.put("treeJson", treeJson);
+			modelMap.put("json", treeJson.toJSONString());
+			logger.debug(treeJson.toJSONString());
+
+			JSONArray jsonArray = treeHelper.getTreeJSONArray(treeNodes);
+			modelMap.put("jsonArray", jsonArray.toJSONString());
+			logger.debug(jsonArray.toJSONString());
+
+			StringBuffer buffer = new StringBuffer();
+			String text = treeJson.getString("text");
+			if (text != null) {
+				buffer.append("\n <li iconCls=\"icon-root\"><span>")
+						.append(text).append("</span>");
+				JSONArray children = treeJson.getJSONArray("children");
+				if (children != null && !children.isEmpty()) {
+					buffer.append("\n  <ul>");
+					Iterator<Object> iterator = children.iterator();
+					while (iterator.hasNext()) {
+						Object obj = iterator.next();
+						if (obj instanceof JSONObject) {
+							JSONObject json = (JSONObject) obj;
+							this.fill(json, buffer);
+						}
+					}
+					buffer.append("\n  </ul>");
+				}
+				buffer.append("\n</li>");
+			}
+
+			modelMap.put("scripts", buffer.toString());
 		}
 
 		logger.debug("#######################################");

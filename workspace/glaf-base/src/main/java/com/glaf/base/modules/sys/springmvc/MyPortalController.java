@@ -170,6 +170,7 @@ public class MyPortalController {
 			TreeHelper treeHelper = new TreeHelper();
 			JSONObject treeJson = treeHelper.getTreeJson(root, treeNodes);
 			modelMap.put("treeJson", treeJson);
+			modelMap.put("json", treeJson.toJSONString());
 			logger.debug(treeJson.toJSONString());
 
 			StringBuffer buffer = new StringBuffer();
@@ -193,7 +194,7 @@ public class MyPortalController {
 				buffer.append("\n</li>");
 			}
 
-			modelMap.put("json", buffer.toString());
+			modelMap.put("scripts", buffer.toString());
 		}
 
 		logger.debug("#######################################");

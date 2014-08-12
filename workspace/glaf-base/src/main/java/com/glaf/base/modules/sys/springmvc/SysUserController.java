@@ -395,7 +395,7 @@ public class SysUserController {
 		List<Dictory> dictories = dictoryService
 				.getDictoryList(SysConstants.USER_HEADSHIP);
 		modelMap.put("dictories", dictories);
-		
+
 		List<Dictory> accounts = dictoryService
 				.getDictoryList(SysConstants.USER_ACCOUNTTYPE);
 		modelMap.put("accountTypeDictories", accounts);
@@ -652,7 +652,8 @@ public class SysUserController {
 		bean.setTelephone(ParamUtil.getParameter(request, "telephone"));
 		bean.setStatus(ParamUtil.getParameter(request, "status"));
 		bean.setHeadship(ParamUtil.getParameter(request, "headship"));
-		bean.setAccountType(ParamUtil.getIntParameter(request, "accountType", 0));
+		bean.setAccountType(ParamUtil
+				.getIntParameter(request, "accountType", 0));
 		bean.setUserType(ParamUtil.getIntParameter(request, "userType", 0));
 		bean.setEvection(0);
 		bean.setCreateTime(new Date());
@@ -714,7 +715,8 @@ public class SysUserController {
 			bean.setEvection(ParamUtil.getIntParameter(request, "evection", 0));
 			bean.setStatus(ParamUtil.getParameter(request, "status"));
 			bean.setHeadship(ParamUtil.getParameter(request, "headship"));
-			bean.setAccountType(ParamUtil.getIntParameter(request, "accountType", 0));
+			bean.setAccountType(ParamUtil.getIntParameter(request,
+					"accountType", 0));
 			bean.setUserType(ParamUtil.getIntParameter(request, "userType", 0));
 			bean.setUpdateBy(RequestUtils.getActorId(request));
 			ret = sysUserService.update(bean);
@@ -1055,6 +1057,30 @@ public class SysUserController {
 		}
 
 		return new ModelAndView("/modules/sys/user/user_frame", modelMap);
+	}
+
+	/**
+	 * 显示所有列表
+	 * 
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping("/showAllList")
+	public ModelAndView showAllList(HttpServletRequest request,
+			ModelMap modelMap) {
+		int pageNo = ParamUtil.getIntParameter(request, "page_no", 1);
+		int pageSize = ParamUtil.getIntParameter(request, "page_size",
+				Constants.PAGE_SIZE);
+		PageResult pager = sysUserService.getSysUserList(pageNo, pageSize);
+		request.setAttribute("pager", pager);
+
+		String x_view = ViewProperties.getString("user.showAllList");
+		if (StringUtils.isNotEmpty(x_view)) {
+			return new ModelAndView(x_view, modelMap);
+		}
+
+		return new ModelAndView("/modules/sys/user/all_user_list", modelMap);
 	}
 
 	/**

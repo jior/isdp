@@ -60,20 +60,20 @@
 	   if(checkForm(form)){
 		  var type = document.getElementById("type").value;
 		  if("L" == type){
-			  var link = document.getElementById("url").value;
-			  if(link == ""){
-				alert("链接地址是必须的！");
-				document.getElementById("url").focus();
-				return false;
-			  }
+			  //var link = document.getElementById("url").value;
+			  //if(link == ""){
+			  //	alert("链接地址是必须的！");
+			  //	document.getElementById("url").focus();
+			  //	return false;
+			 // }
 		  }
 
 		  if("T" == type){
 			  var content = document.getElementById("linkFileName").value;
 			  if(content == ""){
-				alert("文件是必须的！");
-				document.getElementById("linkFileName").focus();
-				return false;
+				//alert("文件是必须的！");
+				//document.getElementById("linkFileName").focus();
+				//return false;
 			  }
 		  }
 	    }
@@ -120,7 +120,7 @@
         <td><input name="name" type="text" class="input easyui-validatebox" value="<%=bean.getName()%>" size="35" datatype="string" nullable="no" maxsize="20" chname="名称" data-options="required:true"></td>
       </tr>
 	  <tr>
-        <td class="input-box">权限编码</td>
+        <td class="input-box">编　　码</td>
         <td><input name="code" type="text" value="<%=bean.getCode()!=null?bean.getCode():""%>" size="35" class="input easyui-validatebox" datatype="string" nullable="yes" maxsize="50" chname="代码"></td>
       </tr>
       <tr>

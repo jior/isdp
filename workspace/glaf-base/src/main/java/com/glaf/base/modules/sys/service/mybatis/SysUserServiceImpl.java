@@ -271,8 +271,8 @@ public class SysUserServiceImpl implements SysUserService {
 		}
 		return user;
 	}
-	
-	public String getPasswordByAccount(String account){
+
+	public String getPasswordByAccount(String account) {
 		return sysUserMapper.getPasswordByAccount(account);
 	}
 
@@ -329,6 +329,30 @@ public class SysUserServiceImpl implements SysUserService {
 		SysUserQuery query = new SysUserQuery();
 		query.deptId(Long.valueOf(deptId));
 		return this.list(query);
+	}
+
+	public PageResult getSysUserList(int pageNo, int pageSize) {
+		// 计算总数
+		PageResult pager = new PageResult();
+		SysUserQuery query = new SysUserQuery();
+
+		int count = this.count(query);
+		if (count == 0) {// 结果集为空
+			pager.setPageSize(pageSize);
+			return pager;
+		}
+		query.setOrderBy(" E.UserName asc ");
+
+		int start = pageSize * (pageNo - 1);
+		List<SysUser> list = this.getSysUsersByQueryCriteria(start, pageSize,
+				query);
+		this.initUserDepartments(list);
+		pager.setResults(list);
+		pager.setPageSize(pageSize);
+		pager.setCurrentPageNo(pageNo);
+		pager.setTotalRecordCount(count);
+
+		return pager;
 	}
 
 	public PageResult getSysUserList(long deptId, int pageNo, int pageSize) {
@@ -822,7 +846,7 @@ public class SysUserServiceImpl implements SysUserService {
 		CacheFactory.remove(cacheKey);
 		return true;
 	}
-	
+
 	@Transactional
 	public void updateUserPassword(SysUser sysUser) {
 		sysUserMapper.updateUserPassword(sysUser);

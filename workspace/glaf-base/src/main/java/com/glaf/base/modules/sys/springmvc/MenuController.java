@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.glaf.base.modules.sys.model.SysApplication;
 import com.glaf.base.modules.sys.service.SysApplicationService;
+import com.glaf.core.config.SystemConfig;
+import com.glaf.core.config.SystemProperties;
 import com.glaf.core.config.ViewProperties;
 import com.glaf.core.security.LoginContext;
 import com.glaf.core.util.RequestUtils;
@@ -68,6 +70,22 @@ public class MenuController {
 							} else {
 								url = url + "?time="
 										+ System.currentTimeMillis();
+							}
+
+							if (StringUtils.endsWithIgnoreCase(
+									app.getLinkFileName(), ".cpt")) {
+								url = SystemConfig
+										.getString("report_service_url");
+								String cpt_path = "";
+								if (SystemProperties.getDeploymentSystemName() != null) {
+									cpt_path = SystemProperties
+											.getDeploymentSystemName() + "/";
+								}
+								cpt_path = cpt_path + app.getId() + ".cpt";
+								if (url.indexOf("?") == -1) {
+									url = url + "?q=1";
+								}
+								url = url + "&reportlet=" + cpt_path;
 							}
 							response.sendRedirect(url);
 						} else {

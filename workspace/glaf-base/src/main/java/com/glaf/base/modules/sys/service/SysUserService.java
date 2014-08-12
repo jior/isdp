@@ -166,6 +166,17 @@ public interface SysUserService {
 	List<SysUser> getSysUserList(long deptId);
 
 	/**
+	 * 获取全部员工数据集 分页列表
+	 * 
+	 * @param pageNo
+	 *            int
+	 * @param pageSize
+	 *            int
+	 * @return
+	 */
+	PageResult getSysUserList(int pageNo, int pageSize);
+
+	/**
 	 * 获取特定部门的员工数据集 分页列表
 	 * 
 	 * @param deptId
@@ -247,7 +258,7 @@ public interface SysUserService {
 	 * @return
 	 */
 	SysUser getUserPrivileges(SysUser user);
-	
+
 	String getPasswordByAccount(String account);
 
 	/**
@@ -306,7 +317,7 @@ public interface SysUserService {
 	 */
 	@Transactional
 	boolean updateUser(SysUser bean);
-	
+
 	@Transactional
 	void updateUserPassword(SysUser sysUser);
 

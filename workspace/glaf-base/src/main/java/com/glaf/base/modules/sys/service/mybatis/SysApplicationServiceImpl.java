@@ -66,6 +66,7 @@ import com.glaf.core.service.EntityService;
 import com.glaf.core.service.IBlobService;
 import com.glaf.core.util.FileUtils;
 import com.glaf.core.util.PageResult;
+import com.glaf.core.util.RequestUtils;
 import com.glaf.core.util.UUID32;
 
 @Service("sysApplicationService")
@@ -106,7 +107,11 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		if (bean.getId() == 0) {
 			bean.setId(idGenerator.nextId());
 		}
+		if (StringUtils.isEmpty(bean.getCode())) {
+			bean.setCode("app_" + bean.getId());
+		}
 		if (bean.getNode() != null) {
+			bean.getNode().setCode(bean.getCode());
 			bean.getNode().setDiscriminator("A");
 			bean.getNode().setCreateBy(bean.getCreateBy());
 			bean.getNode().setUrl(bean.getUrl());
@@ -117,6 +122,10 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		bean.setCreateDate(new Date());
 		if (bean.getLinkFileContent() != null) {
 			bean.setLinkFileId("sys_application_" + UUID32.getUUID());
+		}
+		if (StringUtils.endsWithIgnoreCase(bean.getLinkFileName(), ".cpt")) {
+			bean.setUrl("/mx/menu/jump?menuId="
+					+ RequestUtils.encodeString(bean.getId() + ""));
 		}
 		sysApplicationMapper.insertSysApplication(bean);
 		if (bean.getLinkFileContent() != null) {
@@ -951,13 +960,21 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	@Transactional
 	public boolean update(SysApplication bean) {
 		bean.setUpdateDate(new Date());
+		if (StringUtils.isEmpty(bean.getCode())) {
+			bean.setCode("app_" + bean.getId());
+		}
 		if (bean.getLinkFileContent() != null) {
 			bean.setLinkFileId("sys_application_" + UUID32.getUUID());
+		}
+		if (StringUtils.endsWithIgnoreCase(bean.getLinkFileName(), ".cpt")) {
+			bean.setUrl("/mx/menu/jump?menuId="
+					+ RequestUtils.encodeString(bean.getId() + ""));
 		}
 		this.sysApplicationMapper.updateSysApplication(bean);
 		String cacheKey = "sys_app_" + bean.getId();
 		CacheFactory.remove(cacheKey);
 		if (bean.getNode() != null) {
+			bean.getNode().setCode(bean.getCode());
 			bean.getNode().setLocked(bean.getLocked());
 			bean.getNode().setUpdateBy(bean.getUpdateBy());
 			bean.getNode().setUrl(bean.getUrl());

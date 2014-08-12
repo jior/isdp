@@ -31,18 +31,18 @@ function checkOperation(form){
     document.all.btn_del.disabled=false;
 	if(num==1){
 	  document.all.btn_modify.disabled=false;
-	  document.all.btn_role.disabled=false;
+	  //document.all.btn_role.disabled=false;
 	  document.all.btn_reset_pwd.disabled=false;
 	}else{
 	  document.all.btn_modify.disabled=true;
 	  document.all.btn_reset_pwd.disabled=true;
-	  document.all.btn_role.disabled=true;
+	  //document.all.btn_role.disabled=true;
 	}
   }else{
     document.all.btn_del.disabled=true;
 	document.all.btn_modify.disabled=true;
 	document.all.btn_reset_pwd.disabled=true;
-	document.all.btn_role.disabled=true;
+	//document.all.btn_role.disabled=true;
   }
 }
 
