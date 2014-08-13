@@ -4,13 +4,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.glaf.base.modules.sys.model.SysApplication;
 import com.glaf.base.modules.sys.service.SysApplicationService;
+import com.glaf.core.config.DBConfiguration;
 import com.glaf.core.config.SystemConfig;
-import com.glaf.core.config.SystemProperties;
 import com.glaf.core.config.ViewProperties;
 import com.glaf.core.security.LoginContext;
 import com.glaf.core.util.RequestUtils;
@@ -18,17 +20,15 @@ import com.glaf.core.util.RequestUtils;
 @Controller("menu")
 @RequestMapping("/menu")
 public class MenuController {
+	
+	protected static final Log logger = LogFactory
+			.getLog(MenuController.class);
 
 	private SysApplicationService sysApplicationService;
 
-	@javax.annotation.Resource
-	public void setSysApplicationService(
-			SysApplicationService sysApplicationService) {
-		this.sysApplicationService = sysApplicationService;
-	}
-
 	@RequestMapping("/jump")
 	public void jump(HttpServletRequest request, HttpServletResponse response) {
+		logger.debug("---------------------------jump----------------------");
 		LoginContext loginContext = RequestUtils.getLoginContext(request);
 		if (loginContext == null) {
 			try {
@@ -42,6 +42,7 @@ public class MenuController {
 		if (menuId != null) {
 			menuId = RequestUtils.decodeString(menuId);
 		}
+		logger.debug("menuId:"+menuId);
 		if (menuId != null && StringUtils.isNumeric(menuId)) {
 			SysApplication app = sysApplicationService.findById(Long
 					.parseLong(menuId));
@@ -49,9 +50,8 @@ public class MenuController {
 				boolean accessable = false;
 				if (loginContext.isSystemAdministrator()) {
 					accessable = true;
-				} else {
-
-				}
+				} 
+				logger.debug("accessable:"+accessable);
 				if (accessable) {
 					try {
 						String url = app.getUrl();
@@ -76,17 +76,19 @@ public class MenuController {
 									app.getLinkFileName(), ".cpt")) {
 								url = SystemConfig
 										.getString("report_service_url");
-								String cpt_path = "";
-								if (SystemProperties.getDeploymentSystemName() != null) {
-									cpt_path = SystemProperties
-											.getDeploymentSystemName() + "/";
-								}
-								cpt_path = cpt_path + app.getId() + ".cpt";
+								String cpt_path = "fileId="
+										+ app.getLinkFileId();
+								String dsJson = DBConfiguration
+										.encodeJsonCurrentSystem();
 								if (url.indexOf("?") == -1) {
 									url = url + "?q=1";
 								}
-								url = url + "&reportlet=" + cpt_path;
+								url = url
+										+ "&reportlet=com.glaf.fr.reportlet.DatabaseReportlet&"
+										+ cpt_path + "&datasourceJson="
+										+ dsJson;
 							}
+							logger.debug(url);
 							response.sendRedirect(url);
 						} else {
 							return;
@@ -102,6 +104,12 @@ public class MenuController {
 					request, response);
 		} catch (Exception e) {
 		}
+	}
+
+	@javax.annotation.Resource
+	public void setSysApplicationService(
+			SysApplicationService sysApplicationService) {
+		this.sysApplicationService = sysApplicationService;
 	}
 
 }

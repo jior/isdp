@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/glaf-commons/lib/ant-tools.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/antlr.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/aopalliance.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/asm.jar"/>
@@ -71,14 +70,6 @@
 	<classpathentry kind="lib" path="/glaf-commons/lib/mybatis-spring.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/mybatis.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/ehcache.jar"/>
-	<classpathentry kind="lib" path="/glaf-commons/lib/activiti-bpmn-converter.jar"/>
-	<classpathentry kind="lib" path="/glaf-commons/lib/activiti-bpmn-layout.jar"/>
-	<classpathentry kind="lib" path="/glaf-commons/lib/activiti-bpmn-model.jar"/>
-	<classpathentry kind="lib" path="/glaf-commons/lib/activiti-common-rest.jar"/>
-	<classpathentry kind="lib" path="/glaf-commons/lib/activiti-diagram-rest.jar"/>
-	<classpathentry kind="lib" path="/glaf-commons/lib/activiti-engine.jar"/>
-	<classpathentry kind="lib" path="/glaf-commons/lib/activiti-json-converter.jar"/>
-	<classpathentry kind="lib" path="/glaf-commons/lib/activiti-spring.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/junit.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/fastjson.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/guava.jar"/>
@@ -98,5 +89,7 @@
 	<classpathentry kind="lib" path="/glaf-commons/lib/glaf-template.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/glaf-ui.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/glaf-activiti.jar"/>
+	<classpathentry kind="lib" path="lib/fr-server.jar"/>
+	<classpathentry kind="lib" path="lib/fr-third.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
