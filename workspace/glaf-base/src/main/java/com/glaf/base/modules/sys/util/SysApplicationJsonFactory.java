@@ -61,6 +61,26 @@ public class SysApplicationJsonFactory {
 			model.setLocked(jsonObject.getInteger("locked"));
 		}
 
+		if (jsonObject.containsKey("refId1")) {
+			model.setRefId1(jsonObject.getInteger("refId1"));
+		}
+
+		if (jsonObject.containsKey("refId2")) {
+			model.setRefId2(jsonObject.getInteger("refId2"));
+		}
+
+		if (jsonObject.containsKey("refId3")) {
+			model.setRefId3(jsonObject.getInteger("refId3"));
+		}
+
+		if (jsonObject.containsKey("refId4")) {
+			model.setRefId4(jsonObject.getInteger("refId4"));
+		}
+
+		if (jsonObject.containsKey("refId5")) {
+			model.setRefId5(jsonObject.getInteger("refId5"));
+		}
+
 		if (jsonObject.containsKey("sort")) {
 			model.setSort(jsonObject.getInteger("sort"));
 		}
@@ -142,6 +162,26 @@ public class SysApplicationJsonFactory {
 		jsonObject.put("nodeId", model.getNodeId());
 		jsonObject.put("locked", model.getLocked());
 
+		if (model.getRefId1() != null) {
+			jsonObject.put("refId1", model.getRefId1());
+		}
+
+		if (model.getRefId2() != null) {
+			jsonObject.put("refId2", model.getRefId2());
+		}
+
+		if (model.getRefId3() != null) {
+			jsonObject.put("refId3", model.getRefId3());
+		}
+
+		if (model.getRefId4() != null) {
+			jsonObject.put("refId4", model.getRefId4());
+		}
+
+		if (model.getRefId5() != null) {
+			jsonObject.put("refId5", model.getRefId5());
+		}
+
 		if (model.getLinkType() != null) {
 			jsonObject.put("linkType", model.getLinkType());
 		}
@@ -209,6 +249,26 @@ public class SysApplicationJsonFactory {
 		jsonObject.put("showMenu", model.getShowMenu());
 		jsonObject.put("nodeId", model.getNodeId());
 		jsonObject.put("locked", model.getLocked());
+
+		if (model.getRefId1() != null) {
+			jsonObject.put("refId1", model.getRefId1());
+		}
+
+		if (model.getRefId2() != null) {
+			jsonObject.put("refId2", model.getRefId2());
+		}
+
+		if (model.getRefId3() != null) {
+			jsonObject.put("refId3", model.getRefId3());
+		}
+
+		if (model.getRefId4() != null) {
+			jsonObject.put("refId4", model.getRefId4());
+		}
+
+		if (model.getRefId5() != null) {
+			jsonObject.put("refId5", model.getRefId5());
+		}
 
 		if (model.getLinkType() != null) {
 			jsonObject.put("linkType", model.getLinkType());

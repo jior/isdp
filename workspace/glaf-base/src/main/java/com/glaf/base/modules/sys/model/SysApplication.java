@@ -143,6 +143,21 @@ public class SysApplication implements Serializable, JSONable {
 	@javax.persistence.Transient
 	protected byte[] linkFileContent;
 
+	@Column(name = "REFID1")
+	protected Integer refId1;
+
+	@Column(name = "REFID2")
+	protected Integer refId2;
+
+	@Column(name = "REFID3")
+	protected Integer refId3;
+
+	@Column(name = "REFID4")
+	protected Integer refId4;
+
+	@Column(name = "REFID5")
+	protected Integer refId5;
+
 	@javax.persistence.Transient
 	protected List<ColumnModel> extendedColumns = new ArrayList<ColumnModel>();
 
@@ -217,6 +232,26 @@ public class SysApplication implements Serializable, JSONable {
 
 	public long getNodeId() {
 		return nodeId;
+	}
+
+	public Integer getRefId1() {
+		return refId1;
+	}
+
+	public Integer getRefId2() {
+		return refId2;
+	}
+
+	public Integer getRefId3() {
+		return refId3;
+	}
+
+	public Integer getRefId4() {
+		return refId4;
+	}
+
+	public Integer getRefId5() {
+		return refId5;
 	}
 
 	public int getShowMenu() {
@@ -301,6 +336,26 @@ public class SysApplication implements Serializable, JSONable {
 
 	public void setNodeId(long nodeId) {
 		this.nodeId = nodeId;
+	}
+
+	public void setRefId1(Integer refId1) {
+		this.refId1 = refId1;
+	}
+
+	public void setRefId2(Integer refId2) {
+		this.refId2 = refId2;
+	}
+
+	public void setRefId3(Integer refId3) {
+		this.refId3 = refId3;
+	}
+
+	public void setRefId4(Integer refId4) {
+		this.refId4 = refId4;
+	}
+
+	public void setRefId5(Integer refId5) {
+		this.refId5 = refId5;
 	}
 
 	public void setShowMenu(int showMenu) {

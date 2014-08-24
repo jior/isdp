@@ -1,0 +1,1887 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.modules.sys.mapper.TreeProjectInfoMapper">
+
+	<resultMap id="treeProjectInfoResultMap"
+		type="com.glaf.base.modules.sys.model.TreeProjectInfo">
+		<id property="indexId" column="INDEX_ID" jdbcType="INTEGER" />
+		<result property="id" column="ID" jdbcType="VARCHAR" />
+		<result property="num" column="NUM" jdbcType="VARCHAR" />
+		<result property="topId" column="TOP_ID" jdbcType="INTEGER" />
+		<result property="parentId" column="PARENT_ID" jdbcType="INTEGER" />
+		<result property="indexName" column="INDEX_NAME" jdbcType="VARCHAR" />
+		<result property="nlevel" column="NLEVEL" jdbcType="INTEGER" />
+		<result property="nodeType" column="NODETYPE" jdbcType="VARCHAR" />
+		<result property="fromId" column="FROMID" jdbcType="INTEGER" />
+		<result property="partId" column="PART_ID" jdbcType="INTEGER" />
+		<result property="showId" column="SHOWID" jdbcType="INTEGER" />
+		<result property="sindexName" column="SINDEX_NAME" jdbcType="VARCHAR" />
+		<result property="fileNum" column="FILENUM" jdbcType="INTEGER" />
+		<result property="fileNum0" column="FILENUM0" jdbcType="INTEGER" />
+		<result property="fileNum1" column="FILENUM1" jdbcType="INTEGER" />
+		<result property="fileNum2" column="FILENUM2" jdbcType="INTEGER" />
+		<result property="projType" column="PROJTYPE" jdbcType="VARCHAR" />
+		<result property="cid" column="CID" jdbcType="VARCHAR" />
+		<result property="dwid" column="DWID" jdbcType="INTEGER" />
+		<result property="fxid" column="FXID" jdbcType="INTEGER" />
+		<result property="fbid" column="FBID" jdbcType="INTEGER" />
+		<result property="jid" column="JID" jdbcType="VARCHAR" />
+		<result property="flid" column="FLID" jdbcType="VARCHAR" />
+		<result property="topNode" column="TOPNODE" jdbcType="VARCHAR" />
+		<result property="nodeIco" column="NODEICO" jdbcType="INTEGER" />
+		<result property="outFlag" column="OUTFLAG" jdbcType="VARCHAR" />
+		<result property="inFlag" column="INFLAG" jdbcType="VARCHAR" />
+		<result property="password" column="PASSWORD" jdbcType="VARCHAR" />
+		<result property="listNum" column="LISTNUM" jdbcType="VARCHAR" />
+		<result property="wcompany" column="WCOMPANY" jdbcType="VARCHAR" />
+		<result property="listNo" column="LISTNO" jdbcType="INTEGER" />
+		<result property="usernmu" column="USERNMU" jdbcType="VARCHAR" />
+		<result property="indexIdOld" column="INDEX_ID_OLD" jdbcType="INTEGER" />
+		<result property="pindexId" column="PINDEX_ID" jdbcType="INTEGER" />
+		<result property="finishInt" column="FINISHINT" jdbcType="INTEGER" />
+		<result property="typeTableName" column="TYPE_TABLENAME"
+			jdbcType="VARCHAR" />
+		<result property="treedListStr" column="TREE_DLISTSTR"
+			jdbcType="VARCHAR" />
+		<result property="pfilesIndex" column="PFILES_INDEX" jdbcType="INTEGER" />
+		<result property="bdate" column="BDATE" jdbcType="TIMESTAMP" />
+		<result property="edate" column="EDATE" jdbcType="TIMESTAMP" />
+		<result property="wbsIndex" column="WBSINDEX" jdbcType="INTEGER" />
+		<result property="bdates" column="BDATE_S" jdbcType="TIMESTAMP" />
+		<result property="edates" column="EDATE_S" jdbcType="TIMESTAMP" />
+		<result property="typeId" column="TYPE_ID" jdbcType="VARCHAR" />
+		<result property="cell1" column="CELL1" jdbcType="INTEGER" />
+		<result property="cell2" column="CELL2" jdbcType="INTEGER" />
+		<result property="cell3" column="CELL3" jdbcType="INTEGER" />
+		<result property="strFileLocate" column="STRFILELOCATE"
+			jdbcType="VARCHAR" />
+		<result property="intpFile1" column="INTPFILE1" jdbcType="INTEGER" />
+		<result property="intpFile2" column="INTPFILE2" jdbcType="INTEGER" />
+		<result property="intpFile3" column="INTPFILE3" jdbcType="INTEGER" />
+		<result property="intCellFinish" column="INTCELLFINISH"
+			jdbcType="INTEGER" />
+		<result property="sysId" column="SYS_ID" jdbcType="VARCHAR" />
+		<result property="indexIn" column="INDEX_IN" jdbcType="INTEGER" />
+		<result property="strButtonStar" column="STRBUTTONSTAR"
+			jdbcType="VARCHAR" />
+		<result property="intIsuse" column="INTISUSE" jdbcType="INTEGER" />
+		<result property="wbsIndexIn" column="WBSINDEX_IN" jdbcType="INTEGER" />
+		<result property="uindexId" column="UINDEX_ID" jdbcType="INTEGER" />
+		<result property="lisNoWbs" column="LISNO_WBS" jdbcType="INTEGER" />
+		<result property="sysIdAdd" column="SYS_ID_ADD" jdbcType="VARCHAR" />
+		<result property="indexInAdd" column="INDEX_IN_ADD" jdbcType="INTEGER" />
+		<result property="createBy" column="createBy" jdbcType="VARCHAR" />
+		<result property="createDate" column="createDate" jdbcType="TIMESTAMP" />
+		<result property="updateDate" column="updateDate" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="updateBy" jdbcType="VARCHAR" />
+		<result property="treeprojIndexId" column="treeprojIndexId"
+			jdbcType="INTEGER" />
+		<result property="treeprojIndexName" column="treeprojIndexName"
+			jdbcType="VARCHAR" />
+		<result property="treeprojParentId" column="treeprojParentId"
+			jdbcType="INTEGER" />
+		<result property="treeprojType" column="treeprojType" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="insertTreeProjectInfo" parameterType="com.glaf.base.modules.sys.model.TreeProjectInfo">
+		insert into treepinfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			INDEX_ID
+			<if test="id != null">
+				,ID
+			</if>
+			<if test="num != null">
+				,NUM
+			</if>
+			<if test="topId != null">
+				,TOP_ID
+			</if>
+			<if test="parentId != null">
+				,PARENT_ID
+			</if>
+			<if test="indexName != null">
+				,INDEX_NAME
+			</if>
+			<if test="nlevel != null">
+				,NLEVEL
+			</if>
+			<if test="nodeType != null">
+				,NODETYPE
+			</if>
+			<if test="fromId != null">
+				,FROMID
+			</if>
+			<if test="partId != null">
+				,PART_ID
+			</if>
+			<if test="showId != null">
+				,SHOWID
+			</if>
+			<if test="sindexName != null">
+				,SINDEX_NAME
+			</if>
+			<if test="fileNum != null">
+				,FILENUM
+			</if>
+			<if test="fileNum0 != null">
+				,FILENUM0
+			</if>
+			<if test="fileNum1 != null">
+				,FILENUM1
+			</if>
+			<if test="fileNum2 != null">
+				,FILENUM2
+			</if>
+			<if test="projType != null">
+				,PROJTYPE
+			</if>
+			<if test="cid != null">
+				,CID
+			</if>
+			<if test="dwid != null">
+				,DWID
+			</if>
+			<if test="fxid != null">
+				,FXID
+			</if>
+			<if test="fbid != null">
+				,FBID
+			</if>
+			<if test="jid != null">
+				,JID
+			</if>
+			<if test="flid != null">
+				,FLID
+			</if>
+			<if test="topNode != null">
+				,TOPNODE
+			</if>
+			<if test="nodeIco != null">
+				,NODEICO
+			</if>
+			<if test="outFlag != null">
+				,OUTFLAG
+			</if>
+			<if test="inFlag != null">
+				,INFLAG
+			</if>
+			<if test="password != null">
+				,PASSWORD
+			</if>
+			<if test="listNum != null">
+				,LISTNUM
+			</if>
+			<if test="wcompany != null">
+				,WCOMPANY
+			</if>
+			<if test="listNo != null">
+				,LISTNO
+			</if>
+			<if test="usernmu != null">
+				,USERNMU
+			</if>
+			<if test="indexIdOld != null">
+				,INDEX_ID_OLD
+			</if>
+			<if test="pindexId != null">
+				,PINDEX_ID
+			</if>
+			<if test="finishInt != null">
+				,FINISHINT
+			</if>
+			<if test="typeTableName != null">
+				,TYPE_TABLENAME
+			</if>
+			<if test="treedListStr != null">
+				,TREE_DLISTSTR
+			</if>
+			<if test="pfilesIndex != null">
+				,PFILES_INDEX
+			</if>
+			<if test="bdate != null">
+				,BDATE
+			</if>
+			<if test="edate != null">
+				,EDATE
+			</if>
+			<if test="wbsIndex != null">
+				,WBSINDEX
+			</if>
+			<if test="bdates != null">
+				,BDATE_S
+			</if>
+			<if test="edates != null">
+				,EDATE_S
+			</if>
+			<if test="typeId != null">
+				,TYPE_ID
+			</if>
+			<if test="cell1 != null">
+				,CELL1
+			</if>
+			<if test="cell2 != null">
+				,CELL2
+			</if>
+			<if test="cell3 != null">
+				,CELL3
+			</if>
+			<if test="strFileLocate != null">
+				,STRFILELOCATE
+			</if>
+			<if test="intpFile1 != null">
+				,INTPFILE1
+			</if>
+			<if test="intpFile2 != null">
+				,INTPFILE2
+			</if>
+			<if test="intpFile3 != null">
+				,INTPFILE3
+			</if>
+			<if test="intCellFinish != null">
+				,INTCELLFINISH
+			</if>
+			<if test="sysId != null">
+				,SYS_ID
+			</if>
+			<if test="indexIn != null">
+				,INDEX_IN
+			</if>
+			<if test="strButtonStar != null">
+				,STRBUTTONSTAR
+			</if>
+			<if test="intIsuse != null">
+				,INTISUSE
+			</if>
+			<if test="wbsIndexIn != null">
+				,WBSINDEX_IN
+			</if>
+			<if test="uindexId != null">
+				,UINDEX_ID
+			</if>
+			<if test="lisNoWbs != null">
+				,LISNO_WBS
+			</if>
+			<if test="sysIdAdd != null">
+				,SYS_ID_ADD
+			</if>
+			<if test="indexInAdd != null">
+				,INDEX_IN_ADD
+			</if>
+			<if test="createBy != null">
+				,CREATEBY
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE
+			</if>
+			<if test="updateDate != null">
+				,UPDATEDATE
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{indexId, jdbcType=INTEGER}
+
+			<if test="id != null">
+				,#{id, jdbcType=VARCHAR}
+			</if>
+			<if test="num != null">
+				,#{num, jdbcType=VARCHAR}
+			</if>
+			<if test="topId != null">
+				,#{topId, jdbcType=INTEGER}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=INTEGER}
+			</if>
+			<if test="indexName != null">
+				,#{indexName, jdbcType=VARCHAR}
+			</if>
+			<if test="nlevel != null">
+				,#{nlevel, jdbcType=INTEGER}
+			</if>
+			<if test="nodeType != null">
+				,#{nodeType, jdbcType=VARCHAR}
+			</if>
+			<if test="fromId != null">
+				,#{fromId, jdbcType=INTEGER}
+			</if>
+			<if test="partId != null">
+				,#{partId, jdbcType=INTEGER}
+			</if>
+			<if test="showId != null">
+				,#{showId, jdbcType=INTEGER}
+			</if>
+			<if test="sindexName != null">
+				,#{sindexName, jdbcType=VARCHAR}
+			</if>
+			<if test="fileNum != null">
+				,#{fileNum, jdbcType=INTEGER}
+			</if>
+			<if test="fileNum0 != null">
+				,#{fileNum0, jdbcType=INTEGER}
+			</if>
+			<if test="fileNum1 != null">
+				,#{fileNum1, jdbcType=INTEGER}
+			</if>
+			<if test="fileNum2 != null">
+				,#{fileNum2, jdbcType=INTEGER}
+			</if>
+			<if test="projType != null">
+				,#{projType, jdbcType=VARCHAR}
+			</if>
+			<if test="cid != null">
+				,#{cid, jdbcType=VARCHAR}
+			</if>
+			<if test="dwid != null">
+				,#{dwid, jdbcType=INTEGER}
+			</if>
+			<if test="fxid != null">
+				,#{fxid, jdbcType=INTEGER}
+			</if>
+			<if test="fbid != null">
+				,#{fbid, jdbcType=INTEGER}
+			</if>
+			<if test="jid != null">
+				,#{jid, jdbcType=VARCHAR}
+			</if>
+			<if test="flid != null">
+				,#{flid, jdbcType=VARCHAR}
+			</if>
+			<if test="topNode != null">
+				,#{topNode, jdbcType=VARCHAR}
+			</if>
+			<if test="nodeIco != null">
+				,#{nodeIco, jdbcType=INTEGER}
+			</if>
+			<if test="outFlag != null">
+				,#{outFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="inFlag != null">
+				,#{inFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="password != null">
+				,#{password, jdbcType=VARCHAR}
+			</if>
+			<if test="listNum != null">
+				,#{listNum, jdbcType=VARCHAR}
+			</if>
+			<if test="wcompany != null">
+				,#{wcompany, jdbcType=VARCHAR}
+			</if>
+			<if test="listNo != null">
+				,#{listNo, jdbcType=INTEGER}
+			</if>
+			<if test="usernmu != null">
+				,#{usernmu, jdbcType=VARCHAR}
+			</if>
+			<if test="indexIdOld != null">
+				,#{indexIdOld, jdbcType=INTEGER}
+			</if>
+			<if test="pindexId != null">
+				,#{pindexId, jdbcType=INTEGER}
+			</if>
+			<if test="finishInt != null">
+				,#{finishInt, jdbcType=INTEGER}
+			</if>
+			<if test="typeTableName != null">
+				,#{typeTableName, jdbcType=VARCHAR}
+			</if>
+			<if test="treedListStr != null">
+				,#{treedListStr, jdbcType=VARCHAR}
+			</if>
+			<if test="pfilesIndex != null">
+				,#{pfilesIndex, jdbcType=INTEGER}
+			</if>
+			<if test="bdate != null">
+				,#{bdate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="edate != null">
+				,#{edate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="wbsIndex != null">
+				,#{wbsIndex, jdbcType=INTEGER}
+			</if>
+			<if test="bdates != null">
+				,#{bdates, jdbcType=TIMESTAMP}
+			</if>
+			<if test="edates != null">
+				,#{edates, jdbcType=TIMESTAMP}
+			</if>
+			<if test="typeId != null">
+				,#{typeId, jdbcType=VARCHAR}
+			</if>
+			<if test="cell1 != null">
+				,#{cell1, jdbcType=INTEGER}
+			</if>
+			<if test="cell2 != null">
+				,#{cell2, jdbcType=INTEGER}
+			</if>
+			<if test="cell3 != null">
+				,#{cell3, jdbcType=INTEGER}
+			</if>
+			<if test="strFileLocate != null">
+				,#{strFileLocate, jdbcType=VARCHAR}
+			</if>
+			<if test="intpFile1 != null">
+				,#{intpFile1, jdbcType=INTEGER}
+			</if>
+			<if test="intpFile2 != null">
+				,#{intpFile2, jdbcType=INTEGER}
+			</if>
+			<if test="intpFile3 != null">
+				,#{intpFile3, jdbcType=INTEGER}
+			</if>
+			<if test="intCellFinish != null">
+				,#{intCellFinish, jdbcType=INTEGER}
+			</if>
+			<if test="sysId != null">
+				,#{sysId, jdbcType=VARCHAR}
+			</if>
+			<if test="indexIn != null">
+				,#{indexIn, jdbcType=INTEGER}
+			</if>
+			<if test="strButtonStar != null">
+				,#{strButtonStar, jdbcType=VARCHAR}
+			</if>
+			<if test="intIsuse != null">
+				,#{intIsuse, jdbcType=INTEGER}
+			</if>
+			<if test="wbsIndexIn != null">
+				,#{wbsIndexIn, jdbcType=INTEGER}
+			</if>
+			<if test="uindexId != null">
+				,#{uindexId, jdbcType=INTEGER}
+			</if>
+			<if test="lisNoWbs != null">
+				,#{lisNoWbs, jdbcType=INTEGER}
+			</if>
+			<if test="sysIdAdd != null">
+				,#{sysIdAdd, jdbcType=VARCHAR}
+			</if>
+			<if test="indexInAdd != null">
+				,#{indexInAdd, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateTreeProjectInfo" parameterType="com.glaf.base.modules.sys.model.TreeProjectInfo">
+		update treepinfo
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="id != null">
+				ID = #{id, jdbcType=VARCHAR},
+			</if>
+			<if test="num != null">
+				NUM = #{num, jdbcType=VARCHAR},
+			</if>
+			<if test="topId != null">
+				TOP_ID = #{topId, jdbcType=INTEGER},
+			</if>
+			<if test="parentId != null">
+				PARENT_ID = #{parentId, jdbcType=INTEGER},
+			</if>
+			<if test="indexName != null">
+				INDEX_NAME = #{indexName, jdbcType=VARCHAR},
+			</if>
+			<if test="nlevel != null">
+				NLEVEL = #{nlevel, jdbcType=INTEGER},
+			</if>
+			<if test="nodeType != null">
+				NODETYPE = #{nodeType, jdbcType=VARCHAR},
+			</if>
+			<if test="fromId != null">
+				FROMID = #{fromId, jdbcType=INTEGER},
+			</if>
+			<if test="partId != null">
+				PART_ID = #{partId, jdbcType=INTEGER},
+			</if>
+			<if test="showId != null">
+				SHOWID = #{showId, jdbcType=INTEGER},
+			</if>
+			<if test="sindexName != null">
+				SINDEX_NAME = #{sindexName, jdbcType=VARCHAR},
+			</if>
+			<if test="fileNum != null">
+				FILENUM = #{fileNum, jdbcType=INTEGER},
+			</if>
+			<if test="fileNum0 != null">
+				FILENUM0 = #{fileNum0, jdbcType=INTEGER},
+			</if>
+			<if test="fileNum1 != null">
+				FILENUM1 = #{fileNum1, jdbcType=INTEGER},
+			</if>
+			<if test="fileNum2 != null">
+				FILENUM2 = #{fileNum2, jdbcType=INTEGER},
+			</if>
+			<if test="projType != null">
+				PROJTYPE = #{projType, jdbcType=VARCHAR},
+			</if>
+			<if test="cid != null">
+				CID = #{cid, jdbcType=VARCHAR},
+			</if>
+			<if test="dwid != null">
+				DWID = #{dwid, jdbcType=INTEGER},
+			</if>
+			<if test="fxid != null">
+				FXID = #{fxid, jdbcType=INTEGER},
+			</if>
+			<if test="fbid != null">
+				FBID = #{fbid, jdbcType=INTEGER},
+			</if>
+			<if test="jid != null">
+				JID = #{jid, jdbcType=VARCHAR},
+			</if>
+			<if test="flid != null">
+				FLID = #{flid, jdbcType=VARCHAR},
+			</if>
+			<if test="topNode != null">
+				TOPNODE = #{topNode, jdbcType=VARCHAR},
+			</if>
+			<if test="nodeIco != null">
+				NODEICO = #{nodeIco, jdbcType=INTEGER},
+			</if>
+			<if test="outFlag != null">
+				OUTFLAG = #{outFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="inFlag != null">
+				INFLAG = #{inFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				PASSWORD = #{password, jdbcType=VARCHAR},
+			</if>
+			<if test="listNum != null">
+				LISTNUM = #{listNum, jdbcType=VARCHAR},
+			</if>
+			<if test="wcompany != null">
+				WCOMPANY = #{wcompany, jdbcType=VARCHAR},
+			</if>
+			<if test="listNo != null">
+				LISTNO = #{listNo, jdbcType=INTEGER},
+			</if>
+			<if test="usernmu != null">
+				USERNMU = #{usernmu, jdbcType=VARCHAR},
+			</if>
+			<if test="indexIdOld != null">
+				INDEX_ID_OLD = #{indexIdOld, jdbcType=INTEGER},
+			</if>
+			<if test="pindexId != null">
+				PINDEX_ID = #{pindexId, jdbcType=INTEGER},
+			</if>
+			<if test="finishInt != null">
+				FINISHINT = #{finishInt, jdbcType=INTEGER},
+			</if>
+			<if test="typeTableName != null">
+				TYPE_TABLENAME = #{typeTableName, jdbcType=VARCHAR},
+			</if>
+			<if test="treedListStr != null">
+				TREE_DLISTSTR = #{treedListStr, jdbcType=VARCHAR},
+			</if>
+			<if test="pfilesIndex != null">
+				PFILES_INDEX = #{pfilesIndex, jdbcType=INTEGER},
+			</if>
+			<if test="bdate != null">
+				BDATE = #{bdate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="edate != null">
+				EDATE = #{edate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="wbsIndex != null">
+				WBSINDEX = #{wbsIndex, jdbcType=INTEGER},
+			</if>
+			<if test="bdates != null">
+				BDATE_S = #{bdates, jdbcType=TIMESTAMP},
+			</if>
+			<if test="edates != null">
+				EDATE_S = #{edates, jdbcType=TIMESTAMP},
+			</if>
+			<if test="typeId != null">
+				TYPE_ID = #{typeId, jdbcType=VARCHAR},
+			</if>
+			<if test="cell1 != null">
+				CELL1 = #{cell1, jdbcType=INTEGER},
+			</if>
+			<if test="cell2 != null">
+				CELL2 = #{cell2, jdbcType=INTEGER},
+			</if>
+			<if test="cell3 != null">
+				CELL3 = #{cell3, jdbcType=INTEGER},
+			</if>
+			<if test="strFileLocate != null">
+				STRFILELOCATE = #{strFileLocate, jdbcType=VARCHAR},
+			</if>
+			<if test="intpFile1 != null">
+				INTPFILE1 = #{intpFile1, jdbcType=INTEGER},
+			</if>
+			<if test="intpFile2 != null">
+				INTPFILE2 = #{intpFile2, jdbcType=INTEGER},
+			</if>
+			<if test="intpFile3 != null">
+				INTPFILE3 = #{intpFile3, jdbcType=INTEGER},
+			</if>
+			<if test="intCellFinish != null">
+				INTCELLFINISH = #{intCellFinish, jdbcType=INTEGER},
+			</if>
+			<if test="sysId != null">
+				SYS_ID = #{sysId, jdbcType=VARCHAR},
+			</if>
+			<if test="indexIn != null">
+				INDEX_IN = #{indexIn, jdbcType=INTEGER},
+			</if>
+			<if test="strButtonStar != null">
+				STRBUTTONSTAR = #{strButtonStar, jdbcType=VARCHAR},
+			</if>
+			<if test="intIsuse != null">
+				INTISUSE = #{intIsuse, jdbcType=INTEGER},
+			</if>
+			<if test="wbsIndexIn != null">
+				WBSINDEX_IN = #{wbsIndexIn, jdbcType=INTEGER},
+			</if>
+			<if test="uindexId != null">
+				UINDEX_ID = #{uindexId, jdbcType=INTEGER},
+			</if>
+			<if test="lisNoWbs != null">
+				LISNO_WBS = #{lisNoWbs, jdbcType=INTEGER},
+			</if>
+			<if test="sysIdAdd != null">
+				SYS_ID_ADD = #{sysIdAdd, jdbcType=VARCHAR},
+			</if>
+			<if test="indexInAdd != null">
+				INDEX_IN_ADD = #{indexInAdd, jdbcType=INTEGER},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY = #{updateBy, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+		INDEX_ID = #{indexId, jdbcType=INTEGER}
+
+	</update>
+
+
+	<delete id="deleteTreeProjectInfoById" parameterType="integer">
+		delete from
+		treepinfo
+		where INDEX_ID = #{id}
+	</delete>
+
+
+	<delete id="deleteTreeProjectInfos"
+		parameterType="com.glaf.base.modules.sys.query.TreeProjectInfoQuery">
+		delete from treepinfo
+		where (
+		INDEX_ID IN
+		<foreach item="x_indexId" index="index" collection="indexIds"
+			open="(" separator="," close=")">
+			#{x_indexId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getTreeProjectInfoById" parameterType="integer"
+		resultMap="treeProjectInfoResultMap">
+		select * from treepinfo where INDEX_ID = #{id}
+	</select>
+
+
+	<select id="getTreeProjectInfoId" parameterType="string"
+		resultType="string">
+
+		select id from treepinfo
+		where wbsindex in(
+		select index_id
+		from mycell_tasks_sub where tasks_id in(
+		select Main_id from
+		flow_process_d where id in(
+		select process_id from flow_activ_d where
+		strfuntion in(
+		select Main_id from flow_process_d where id in(
+		select
+		process_id from flow_activ_d where strfuntion = #{strfuntion} )
+		)
+		)
+		)
+		)
+
+	</select>
+
+
+	<select id="getTreeProjectInfosByCondition" parameterType="map"
+		resultMap="treeProjectInfoResultMap">
+
+		select * from treepinfo
+		where top_id = 1
+		and nodetype = '0'
+		and ( #{treeId} like id+'%')
+		order by parent_id, listno
+
+	</select>
+
+
+	<select id="getTreeProjectInfos"
+		parameterType="com.glaf.base.modules.sys.query.TreeProjectInfoQuery"
+		resultMap="treeProjectInfoResultMap">
+		select distinct E.*
+		<include refid="selectTreeProjectInfosSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.INDEX_ID desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getTreeProjectInfoCount"
+		parameterType="com.glaf.base.modules.sys.query.TreeProjectInfoQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreeProjectInfosSql" />
+	</select>
+
+
+	<sql id="selectTreeProjectInfosSql">
+
+		from treepinfo E
+
+		<where>
+			1 = 1
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+				and E.INDEX_ID IN
+				<foreach item="x_indexId" index="index" collection="indexIds"
+					open="(" separator="," close=")">
+					#{x_indexId}
+				</foreach>
+			</if>
+
+			<if test="id != null and id != '' ">
+				and E.ID = #{id}
+			</if>
+
+			<if test="idLike != null and idLike != '' ">
+				and E.ID like #{idLike}
+			</if>
+
+			<if test="ids != null and ids.size() &gt; 0">
+				and E.ID IN
+				<foreach item="x_id" index="index" collection="ids" open="("
+					separator="," close=")">
+					#{x_id}
+				</foreach>
+			</if>
+
+			<if test="idLikeList != null and idLikeList.size() &gt; 0">
+				and
+				<foreach item="x_idLike" index="index" collection="idLikeList"
+					open="(" separator=" or " close=")">
+					E.ID like #{x_idLike}
+				</foreach>
+			</if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+				and parent_id in
+				<foreach item="x_parentid" index="index" collection="parentIds"
+					open="(" separator="," close=")">
+					#{x_parentid}
+				</foreach>
+			</if>
+
+			<if test="num != null and num != '' ">
+				and E.NUM = #{num}
+			</if>
+
+			<if test="numLike != null and numLike != '' ">
+				and E.NUM like #{numLike}
+			</if>
+
+			<if test="nums != null and nums.size() &gt; 0">
+				and E.NUM IN
+				<foreach item="x_num" index="index" collection="nums" open="("
+					separator="," close=")">
+					#{x_num}
+				</foreach>
+			</if>
+
+			<if test="topId != null">
+				and E.TOP_ID = #{topId}
+			</if>
+
+			<if test="topIdGreaterThanOrEqual != null">
+				and E.TOP_ID &gt;= #{topIdGreaterThanOrEqual}
+			</if>
+
+			<if test="topIdLessThanOrEqual != null">
+				and E.TOP_ID &lt;= #{topIdLessThanOrEqual}
+			</if>
+
+			<if test="topIds != null and topIds.size() &gt; 0">
+				and E.TOP_ID IN
+				<foreach item="x_topId" index="index" collection="topIds"
+					open="(" separator="," close=")">
+					#{x_topId}
+				</foreach>
+			</if>
+
+			<if test="indexNameLike != null and indexNameLike != '' ">
+				and E.INDEX_NAME like #{indexNameLike}
+			</if>
+
+			<if test="nlevel != null">
+				and E.NLEVEL = #{nlevel}
+			</if>
+
+			<if test="nlevelGreaterThanOrEqual != null">
+				and E.NLEVEL &gt;= #{nlevelGreaterThanOrEqual}
+			</if>
+
+			<if test="nlevelLessThanOrEqual != null">
+				and E.NLEVEL &lt;= #{nlevelLessThanOrEqual}
+			</if>
+
+			<if test="nlevels != null and nlevels.size() &gt; 0">
+				and E.NLEVEL IN
+				<foreach item="x_nlevel" index="index" collection="nlevels"
+					open="(" separator="," close=")">
+					#{x_nlevel}
+				</foreach>
+			</if>
+
+			<if test="nodeType != null and nodeType != '' ">
+				and E.NODETYPE = #{nodeType}
+			</if>
+
+			<if test="nodeTypeLike != null and nodeTypeLike != '' ">
+				and E.NODETYPE like #{nodeTypeLike}
+			</if>
+
+			<if test="nodeTypes != null and nodeTypes.size() &gt; 0">
+				and E.NODETYPE IN
+				<foreach item="x_nodeType" index="index" collection="nodeTypes"
+					open="(" separator="," close=")">
+					#{x_nodeType}
+				</foreach>
+			</if>
+
+			<if test="fromId != null">
+				and E.FROMID = #{fromId}
+			</if>
+
+			<if test="fromIdGreaterThanOrEqual != null">
+				and E.FROMID &gt;= #{fromIdGreaterThanOrEqual}
+			</if>
+
+			<if test="fromIdLessThanOrEqual != null">
+				and E.FROMID &lt;= #{fromIdLessThanOrEqual}
+			</if>
+
+			<if test="fromIds != null and fromIds.size() &gt; 0">
+				and E.FROMID IN
+				<foreach item="x_fromId" index="index" collection="fromIds"
+					open="(" separator="," close=")">
+					#{x_fromId}
+				</foreach>
+			</if>
+
+			<if test="partId != null">
+				and E.PART_ID = #{partId}
+			</if>
+
+			<if test="partIdGreaterThanOrEqual != null">
+				and E.PART_ID &gt;= #{partIdGreaterThanOrEqual}
+			</if>
+
+			<if test="partIdLessThanOrEqual != null">
+				and E.PART_ID &lt;= #{partIdLessThanOrEqual}
+			</if>
+
+			<if test="partIds != null and partIds.size() &gt; 0">
+				and E.PART_ID IN
+				<foreach item="x_partId" index="index" collection="partIds"
+					open="(" separator="," close=")">
+					#{x_partId}
+				</foreach>
+			</if>
+
+			<if test="showId != null">
+				and E.SHOWID = #{showId}
+			</if>
+
+			<if test="showIdGreaterThanOrEqual != null">
+				and E.SHOWID &gt;= #{showIdGreaterThanOrEqual}
+			</if>
+
+			<if test="showIdLessThanOrEqual != null">
+				and E.SHOWID &lt;= #{showIdLessThanOrEqual}
+			</if>
+
+			<if test="showIds != null and showIds.size() &gt; 0">
+				and E.SHOWID IN
+				<foreach item="x_showId" index="index" collection="showIds"
+					open="(" separator="," close=")">
+					#{x_showId}
+				</foreach>
+			</if>
+
+			<if test="sindexNameLike != null and sindexNameLike != '' ">
+				and E.SINDEX_NAME like #{sindexNameLike}
+			</if>
+
+			<if test="fileNum != null">
+				and E.FILENUM = #{fileNum}
+			</if>
+
+			<if test="fileNumGreaterThanOrEqual != null">
+				and E.FILENUM &gt;= #{fileNumGreaterThanOrEqual}
+			</if>
+
+			<if test="fileNumLessThanOrEqual != null">
+				and E.FILENUM &lt;= #{fileNumLessThanOrEqual}
+			</if>
+
+			<if test="fileNums != null and fileNums.size() &gt; 0">
+				and E.FILENUM IN
+				<foreach item="x_fileNum" index="index" collection="fileNums"
+					open="(" separator="," close=")">
+					#{x_fileNum}
+				</foreach>
+			</if>
+
+			<if test="fileNum0 != null">
+				and E.FILENUM0 = #{fileNum0}
+			</if>
+
+			<if test="fileNum0GreaterThanOrEqual != null">
+				and E.FILENUM0 &gt;= #{fileNum0GreaterThanOrEqual}
+			</if>
+
+			<if test="fileNum0LessThanOrEqual != null">
+				and E.FILENUM0 &lt;= #{fileNum0LessThanOrEqual}
+			</if>
+
+			<if test="fileNum0s != null and fileNum0s.size() &gt; 0">
+				and E.FILENUM0 IN
+				<foreach item="x_fileNum0" index="index" collection="fileNum0s"
+					open="(" separator="," close=")">
+					#{x_fileNum0}
+				</foreach>
+			</if>
+
+			<if test="fileNum1 != null">
+				and E.FILENUM1 = #{fileNum1}
+			</if>
+
+			<if test="fileNum1GreaterThanOrEqual != null">
+				and E.FILENUM1 &gt;= #{fileNum1GreaterThanOrEqual}
+			</if>
+
+			<if test="fileNum1LessThanOrEqual != null">
+				and E.FILENUM1 &lt;= #{fileNum1LessThanOrEqual}
+			</if>
+
+			<if test="fileNum1s != null and fileNum1s.size() &gt; 0">
+				and E.FILENUM1 IN
+				<foreach item="x_fileNum1" index="index" collection="fileNum1s"
+					open="(" separator="," close=")">
+					#{x_fileNum1}
+				</foreach>
+			</if>
+
+			<if test="fileNum2 != null">
+				and E.FILENUM2 = #{fileNum2}
+			</if>
+
+			<if test="fileNum2GreaterThanOrEqual != null">
+				and E.FILENUM2 &gt;= #{fileNum2GreaterThanOrEqual}
+			</if>
+
+			<if test="fileNum2LessThanOrEqual != null">
+				and E.FILENUM2 &lt;= #{fileNum2LessThanOrEqual}
+			</if>
+
+			<if test="fileNum2s != null and fileNum2s.size() &gt; 0">
+				and E.FILENUM2 IN
+				<foreach item="x_fileNum2" index="index" collection="fileNum2s"
+					open="(" separator="," close=")">
+					#{x_fileNum2}
+				</foreach>
+			</if>
+
+
+			<if test="projType != null and projType != '' ">
+				and E.PROJTYPE = #{projType}
+			</if>
+
+			<if test="projTypeLike != null and projTypeLike != '' ">
+				and E.PROJTYPE like #{projTypeLike}
+			</if>
+
+			<if test="projTypes != null and projTypes.size() &gt; 0">
+				and E.PROJTYPE IN
+				<foreach item="x_projType" index="index" collection="projTypes"
+					open="(" separator="," close=")">
+					#{x_projType}
+				</foreach>
+			</if>
+
+			<if test="cid != null and cid != '' ">
+				and E.CID = #{cid}
+			</if>
+
+			<if test="cidLike != null and cidLike != '' ">
+				and E.CID like #{cidLike}
+			</if>
+
+			<if test="cids != null and cids.size() &gt; 0">
+				and E.CID IN
+				<foreach item="x_cid" index="index" collection="cids" open="("
+					separator="," close=")">
+					#{x_cid}
+				</foreach>
+			</if>
+
+			<if test="dwid != null">
+				and E.DWID = #{dwid}
+			</if>
+
+			<if test="dwidGreaterThanOrEqual != null">
+				and E.DWID &gt;= #{dwidGreaterThanOrEqual}
+			</if>
+
+			<if test="dwidLessThanOrEqual != null">
+				and E.DWID &lt;= #{dwidLessThanOrEqual}
+			</if>
+
+			<if test="dwids != null and dwids.size() &gt; 0">
+				and E.DWID IN
+				<foreach item="x_dwid" index="index" collection="dwids"
+					open="(" separator="," close=")">
+					#{x_dwid}
+				</foreach>
+			</if>
+
+			<if test="fxid != null">
+				and E.FXID = #{fxid}
+			</if>
+
+			<if test="fxidGreaterThanOrEqual != null">
+				and E.FXID &gt;= #{fxidGreaterThanOrEqual}
+			</if>
+
+			<if test="fxidLessThanOrEqual != null">
+				and E.FXID &lt;= #{fxidLessThanOrEqual}
+			</if>
+
+			<if test="fxids != null and fxids.size() &gt; 0">
+				and E.FXID IN
+				<foreach item="x_fxid" index="index" collection="fxids"
+					open="(" separator="," close=")">
+					#{x_fxid}
+				</foreach>
+			</if>
+
+			<if test="fbid != null">
+				and E.FBID = #{fbid}
+			</if>
+
+			<if test="fbidGreaterThanOrEqual != null">
+				and E.FBID &gt;= #{fbidGreaterThanOrEqual}
+			</if>
+
+			<if test="fbidLessThanOrEqual != null">
+				and E.FBID &lt;= #{fbidLessThanOrEqual}
+			</if>
+
+			<if test="fbids != null and fbids.size() &gt; 0">
+				and E.FBID IN
+				<foreach item="x_fbid" index="index" collection="fbids"
+					open="(" separator="," close=")">
+					#{x_fbid}
+				</foreach>
+			</if>
+
+			<if test="jid != null and jid != '' ">
+				and E.JID = #{jid}
+			</if>
+
+			<if test="jidLike != null and jidLike != '' ">
+				and E.JID like #{jidLike}
+			</if>
+
+			<if test="jids != null and jids.size() &gt; 0">
+				and E.JID IN
+				<foreach item="x_jid" index="index" collection="jids" open="("
+					separator="," close=")">
+					#{x_jid}
+				</foreach>
+			</if>
+
+			<if test="flid != null and flid != '' ">
+				and E.FLID = #{flid}
+			</if>
+
+			<if test="flidLike != null and flidLike != '' ">
+				and E.FLID like #{flidLike}
+			</if>
+
+			<if test="flids != null and flids.size() &gt; 0">
+				and E.FLID IN
+				<foreach item="x_flid" index="index" collection="flids"
+					open="(" separator="," close=")">
+					#{x_flid}
+				</foreach>
+			</if>
+
+			<if test="topNode != null and topNode != '' ">
+				and E.TOPNODE = #{topNode}
+			</if>
+
+			<if test="topNodeLike != null and topNodeLike != '' ">
+				and E.TOPNODE like #{topNodeLike}
+			</if>
+
+			<if test="topNodes != null and topNodes.size() &gt; 0">
+				and E.TOPNODE IN
+				<foreach item="x_topNode" index="index" collection="topNodes"
+					open="(" separator="," close=")">
+					#{x_topNode}
+				</foreach>
+			</if>
+
+			<if test="outFlag != null and outFlag != '' ">
+				and E.OUTFLAG = #{outFlag}
+			</if>
+
+			<if test="outFlagLike != null and outFlagLike != '' ">
+				and E.OUTFLAG like #{outFlagLike}
+			</if>
+
+			<if test="outFlags != null and outFlags.size() &gt; 0">
+				and E.OUTFLAG IN
+				<foreach item="x_outFlag" index="index" collection="outFlags"
+					open="(" separator="," close=")">
+					#{x_outFlag}
+				</foreach>
+			</if>
+
+			<if test="inFlag != null and inFlag != '' ">
+				and E.INFLAG = #{inFlag}
+			</if>
+
+			<if test="inFlagLike != null and inFlagLike != '' ">
+				and E.INFLAG like #{inFlagLike}
+			</if>
+
+			<if test="inFlags != null and inFlags.size() &gt; 0">
+				and E.INFLAG IN
+				<foreach item="x_inFlag" index="index" collection="inFlags"
+					open="(" separator="," close=")">
+					#{x_inFlag}
+				</foreach>
+			</if>
+
+			<if test="listNum != null and listNum != '' ">
+				and E.LISTNUM = #{listNum}
+			</if>
+
+			<if test="listNumLike != null and listNumLike != '' ">
+				and E.LISTNUM like #{listNumLike}
+			</if>
+
+			<if test="listNums != null and listNums.size() &gt; 0">
+				and E.LISTNUM IN
+				<foreach item="x_listNum" index="index" collection="listNums"
+					open="(" separator="," close=")">
+					#{x_listNum}
+				</foreach>
+			</if>
+
+			<if test="wcompany != null and wcompany != '' ">
+				and E.WCOMPANY = #{wcompany}
+			</if>
+
+			<if test="wcompanyLike != null and wcompanyLike != '' ">
+				and E.WCOMPANY like #{wcompanyLike}
+			</if>
+
+			<if test="wcompanys != null and wcompanys.size() &gt; 0">
+				and E.WCOMPANY IN
+				<foreach item="x_wcompany" index="index" collection="wcompanys"
+					open="(" separator="," close=")">
+					#{x_wcompany}
+				</foreach>
+			</if>
+
+			<if test="listNo != null">
+				and E.LISTNO = #{listNo}
+			</if>
+
+			<if test="listNoGreaterThanOrEqual != null">
+				and E.LISTNO &gt;= #{listNoGreaterThanOrEqual}
+			</if>
+
+			<if test="listNoLessThanOrEqual != null">
+				and E.LISTNO &lt;= #{listNoLessThanOrEqual}
+			</if>
+
+			<if test="listNos != null and listNos.size() &gt; 0">
+				and E.LISTNO IN
+				<foreach item="x_listNo" index="index" collection="listNos"
+					open="(" separator="," close=")">
+					#{x_listNo}
+				</foreach>
+			</if>
+
+			<if test="usernmu != null and usernmu != '' ">
+				and E.USERNMU = #{usernmu}
+			</if>
+
+			<if test="usernmuLike != null and usernmuLike != '' ">
+				and E.USERNMU like #{usernmuLike}
+			</if>
+
+			<if test="usernmus != null and usernmus.size() &gt; 0">
+				and E.USERNMU IN
+				<foreach item="x_usernmu" index="index" collection="usernmus"
+					open="(" separator="," close=")">
+					#{x_usernmu}
+				</foreach>
+			</if>
+
+			<if test="indexIdOld != null">
+				and E.INDEX_ID_OLD = #{indexIdOld}
+			</if>
+
+			<if test="indexIdOldGreaterThanOrEqual != null">
+				and E.INDEX_ID_OLD &gt;= #{indexIdOldGreaterThanOrEqual}
+			</if>
+
+			<if test="indexIdOldLessThanOrEqual != null">
+				and E.INDEX_ID_OLD &lt;= #{indexIdOldLessThanOrEqual}
+			</if>
+
+			<if test="indexIdOlds != null and indexIdOlds.size() &gt; 0">
+				and E.INDEX_ID_OLD IN
+				<foreach item="x_indexIdOld" index="index" collection="indexIdOlds"
+					open="(" separator="," close=")">
+					#{x_indexIdOld}
+				</foreach>
+			</if>
+
+			<if test="pindexId != null">
+				and E.PINDEX_ID = #{pindexId}
+			</if>
+
+			<if test="pindexIdGreaterThanOrEqual != null">
+				and E.PINDEX_ID &gt;= #{pindexIdGreaterThanOrEqual}
+			</if>
+
+			<if test="pindexIdLessThanOrEqual != null">
+				and E.PINDEX_ID &lt;= #{pindexIdLessThanOrEqual}
+			</if>
+
+			<if test="pindexIds != null and pindexIds.size() &gt; 0">
+				and E.PINDEX_ID IN
+				<foreach item="x_pindexId" index="index" collection="pindexIds"
+					open="(" separator="," close=")">
+					#{x_pindexId}
+				</foreach>
+			</if>
+
+			<if test="finishInt != null">
+				and E.FINISHINT = #{finishInt}
+			</if>
+
+			<if test="finishIntGreaterThanOrEqual != null">
+				and E.FINISHINT &gt;= #{finishIntGreaterThanOrEqual}
+			</if>
+
+			<if test="finishIntLessThanOrEqual != null">
+				and E.FINISHINT &lt;= #{finishIntLessThanOrEqual}
+			</if>
+
+			<if test="finishInts != null and finishInts.size() &gt; 0">
+				and E.FINISHINT IN
+				<foreach item="x_finishInt" index="index" collection="finishInts"
+					open="(" separator="," close=")">
+					#{x_finishInt}
+				</foreach>
+			</if>
+
+			<if test="typeTableName != null and typeTableName != '' ">
+				and E.TYPE_TABLENAME = #{typeTableName}
+			</if>
+
+			<if test="typeTableNameLike != null and typeTableNameLike != '' ">
+				and E.TYPE_TABLENAME like #{typeTableNameLike}
+			</if>
+
+			<if test="typeTableNames != null and typeTableNames.size() &gt; 0">
+				and E.TYPE_TABLENAME IN
+				<foreach item="x_typeTableName" index="index" collection="typeTableNames"
+					open="(" separator="," close=")">
+					#{x_typeTableName}
+				</foreach>
+			</if>
+
+			<if test="treedListStr != null and treedListStr != '' ">
+				and E.TREE_DLISTSTR = #{treedListStr}
+			</if>
+
+			<if test="treedListStrLike != null and treedListStrLike != '' ">
+				and E.TREE_DLISTSTR like #{treedListStrLike}
+			</if>
+
+			<if test="treedListStrs != null and treedListStrs.size() &gt; 0">
+				and E.TREE_DLISTSTR IN
+				<foreach item="x_treedListStr" index="index" collection="treedListStrs"
+					open="(" separator="," close=")">
+					#{x_treedListStr}
+				</foreach>
+			</if>
+
+			<if test="pfilesIndex != null">
+				and E.PFILES_INDEX = #{pfilesIndex}
+			</if>
+
+			<if test="pfilesIndexGreaterThanOrEqual != null">
+				and E.PFILES_INDEX &gt;= #{pfilesIndexGreaterThanOrEqual}
+			</if>
+
+			<if test="pfilesIndexLessThanOrEqual != null">
+				and E.PFILES_INDEX &lt;= #{pfilesIndexLessThanOrEqual}
+			</if>
+
+			<if test="pfilesIndexs != null and pfilesIndexs.size() &gt; 0">
+				and E.PFILES_INDEX IN
+				<foreach item="x_pfilesIndex" index="index" collection="pfilesIndexs"
+					open="(" separator="," close=")">
+					#{x_pfilesIndex}
+				</foreach>
+			</if>
+
+			<if test="bdateGreaterThanOrEqual != null">
+				and E.BDATE &gt;= #{bdateGreaterThanOrEqual}
+			</if>
+
+			<if test="bdateLessThanOrEqual != null">
+				and E.BDATE &lt;= #{bdateLessThanOrEqual}
+			</if>
+
+			<if test="bdatesIsNotNull!=null and bdatesIsNotNull">
+				and bdate_s is not null
+			</if>
+
+			<if test="edateGreaterThanOrEqual != null">
+				and E.EDATE &gt;= #{edateGreaterThanOrEqual}
+			</if>
+
+			<if test="edateLessThanOrEqual != null">
+				and E.EDATE &lt;= #{edateLessThanOrEqual}
+			</if>
+
+			<if test="wbsIndex != null">
+				and E.WBSINDEX = #{wbsIndex}
+			</if>
+
+			<if test="wbsIndexGreaterThanOrEqual != null">
+				and E.WBSINDEX &gt;= #{wbsIndexGreaterThanOrEqual}
+			</if>
+
+			<if test="wbsIndexLessThanOrEqual != null">
+				and E.WBSINDEX &lt;= #{wbsIndexLessThanOrEqual}
+			</if>
+
+			<if test="wbsIndexs != null and wbsIndexs.size() &gt; 0">
+				and E.WBSINDEX IN
+				<foreach item="x_wbsIndex" index="index" collection="wbsIndexs"
+					open="(" separator="," close=")">
+					#{x_wbsIndex}
+				</foreach>
+			</if>
+
+			<if test="bdatesGreaterThanOrEqual != null">
+				and E.BDATE_S &gt;= #{bdatesGreaterThanOrEqual}
+			</if>
+
+			<if test="bdatesLessThanOrEqual != null">
+				and E.BDATE_S &lt;= #{bdatesLessThanOrEqual}
+			</if>
+
+			<if test="edatesGreaterThanOrEqual != null">
+				and E.EDATE_S &gt;= #{edatesGreaterThanOrEqual}
+			</if>
+
+			<if test="edatesLessThanOrEqual != null">
+				and E.EDATE_S &lt;= #{edatesLessThanOrEqual}
+			</if>
+
+			<if test="typeId != null and typeId != '' ">
+				and E.TYPE_ID = #{typeId}
+			</if>
+
+			<if test="typeIdLike != null and typeIdLike != '' ">
+				and E.TYPE_ID like #{typeIdLike}
+			</if>
+
+			<if test="typeIds != null and typeIds.size() &gt; 0">
+				and E.TYPE_ID IN
+				<foreach item="x_typeId" index="index" collection="typeIds"
+					open="(" separator="," close=")">
+					#{x_typeId}
+				</foreach>
+			</if>
+
+			<if test="cell1 != null">
+				and E.CELL1 = #{cell1}
+			</if>
+
+			<if test="cell1GreaterThanOrEqual != null">
+				and E.CELL1 &gt;= #{cell1GreaterThanOrEqual}
+			</if>
+
+			<if test="cell1LessThanOrEqual != null">
+				and E.CELL1 &lt;= #{cell1LessThanOrEqual}
+			</if>
+
+			<if test="cell1s != null and cell1s.size() &gt; 0">
+				and E.CELL1 IN
+				<foreach item="x_cell1" index="index" collection="cell1s"
+					open="(" separator="," close=")">
+					#{x_cell1}
+				</foreach>
+			</if>
+
+			<if test="cell2 != null">
+				and E.CELL2 = #{cell2}
+			</if>
+
+			<if test="cell2GreaterThanOrEqual != null">
+				and E.CELL2 &gt;= #{cell2GreaterThanOrEqual}
+			</if>
+
+			<if test="cell2LessThanOrEqual != null">
+				and E.CELL2 &lt;= #{cell2LessThanOrEqual}
+			</if>
+
+			<if test="cell2s != null and cell2s.size() &gt; 0">
+				and E.CELL2 IN
+				<foreach item="x_cell2" index="index" collection="cell2s"
+					open="(" separator="," close=")">
+					#{x_cell2}
+				</foreach>
+			</if>
+
+			<if test="cell3 != null">
+				and E.CELL3 = #{cell3}
+			</if>
+
+			<if test="cell3GreaterThanOrEqual != null">
+				and E.CELL3 &gt;= #{cell3GreaterThanOrEqual}
+			</if>
+
+			<if test="cell3LessThanOrEqual != null">
+				and E.CELL3 &lt;= #{cell3LessThanOrEqual}
+			</if>
+
+			<if test="cell3s != null and cell3s.size() &gt; 0">
+				and E.CELL3 IN
+				<foreach item="x_cell3" index="index" collection="cell3s"
+					open="(" separator="," close=")">
+					#{x_cell3}
+				</foreach>
+			</if>
+
+			<if test="strFileLocate != null and strFileLocate != '' ">
+				and E.STRFILELOCATE = #{strFileLocate}
+			</if>
+
+			<if test="strFileLocateLike != null and strFileLocateLike != '' ">
+				and E.STRFILELOCATE like #{strFileLocateLike}
+			</if>
+
+			<if test="strFileLocates != null and strFileLocates.size() &gt; 0">
+				and E.STRFILELOCATE IN
+				<foreach item="x_strFileLocate" index="index" collection="strFileLocates"
+					open="(" separator="," close=")">
+					#{x_strFileLocate}
+				</foreach>
+			</if>
+
+			<if test="intpFile1 != null">
+				and E.INTPFILE1 = #{intpFile1}
+			</if>
+
+			<if test="intpFile1GreaterThanOrEqual != null">
+				and E.INTPFILE1 &gt;= #{intpFile1GreaterThanOrEqual}
+			</if>
+
+			<if test="intpFile1LessThanOrEqual != null">
+				and E.INTPFILE1 &lt;= #{intpFile1LessThanOrEqual}
+			</if>
+
+			<if test="intpFile1s != null and intpFile1s.size() &gt; 0">
+				and E.INTPFILE1 IN
+				<foreach item="x_intpFile1" index="index" collection="intpFile1s"
+					open="(" separator="," close=")">
+					#{x_intpFile1}
+				</foreach>
+			</if>
+
+			<if test="intpFile2 != null">
+				and E.INTPFILE2 = #{intpFile2}
+			</if>
+
+			<if test="intpFile2GreaterThanOrEqual != null">
+				and E.INTPFILE2 &gt;= #{intpFile2GreaterThanOrEqual}
+			</if>
+
+			<if test="intpFile2LessThanOrEqual != null">
+				and E.INTPFILE2 &lt;= #{intpFile2LessThanOrEqual}
+			</if>
+
+			<if test="intpFile2s != null and intpFile2s.size() &gt; 0">
+				and E.INTPFILE2 IN
+				<foreach item="x_intpFile2" index="index" collection="intpFile2s"
+					open="(" separator="," close=")">
+					#{x_intpFile2}
+				</foreach>
+			</if>
+
+			<if test="intpFile3 != null">
+				and E.INTPFILE3 = #{intpFile3}
+			</if>
+
+			<if test="intpFile3GreaterThanOrEqual != null">
+				and E.INTPFILE3 &gt;= #{intpFile3GreaterThanOrEqual}
+			</if>
+
+			<if test="intpFile3LessThanOrEqual != null">
+				and E.INTPFILE3 &lt;= #{intpFile3LessThanOrEqual}
+			</if>
+
+			<if test="intpFile3s != null and intpFile3s.size() &gt; 0">
+				and E.INTPFILE3 IN
+				<foreach item="x_intpFile3" index="index" collection="intpFile3s"
+					open="(" separator="," close=")">
+					#{x_intpFile3}
+				</foreach>
+			</if>
+
+			<if test="intCellFinish != null">
+				and E.INTCELLFINISH = #{intCellFinish}
+			</if>
+
+			<if test="intCellFinishGreaterThanOrEqual != null">
+				and E.INTCELLFINISH &gt;=
+				#{intCellFinishGreaterThanOrEqual}
+			</if>
+
+			<if test="intCellFinishLessThanOrEqual != null">
+				and E.INTCELLFINISH &lt;= #{intCellFinishLessThanOrEqual}
+			</if>
+
+			<if test="intCellFinishs != null and intCellFinishs.size() &gt; 0">
+				and E.INTCELLFINISH IN
+				<foreach item="x_intCellFinish" index="index" collection="intCellFinishs"
+					open="(" separator="," close=")">
+					#{x_intCellFinish}
+				</foreach>
+			</if>
+
+			<if test="sysId != null and sysId != '' ">
+				and E.SYS_ID = #{sysId}
+			</if>
+
+			<if test="sysIdLike != null and sysIdLike != '' ">
+				and E.SYS_ID like #{sysIdLike}
+			</if>
+
+			<if test="sysIds != null and sysIds.size() &gt; 0">
+				and E.SYS_ID IN
+				<foreach item="x_sysId" index="index" collection="sysIds"
+					open="(" separator="," close=")">
+					#{x_sysId}
+				</foreach>
+			</if>
+
+			<if test="indexIn != null">
+				and E.INDEX_IN = #{indexIn}
+			</if>
+
+			<if test="indexInGreaterThanOrEqual != null">
+				and E.INDEX_IN &gt;= #{indexInGreaterThanOrEqual}
+			</if>
+
+			<if test="indexInLessThanOrEqual != null">
+				and E.INDEX_IN &lt;= #{indexInLessThanOrEqual}
+			</if>
+
+			<if test="indexIns != null and indexIns.size() &gt; 0">
+				and E.INDEX_IN IN
+				<foreach item="x_indexIn" index="index" collection="indexIns"
+					open="(" separator="," close=")">
+					#{x_indexIn}
+				</foreach>
+			</if>
+
+			<if test="strButtonStar != null and strButtonStar != '' ">
+				and E.STRBUTTONSTAR = #{strButtonStar}
+			</if>
+
+			<if test="strButtonStarLike != null and strButtonStarLike != '' ">
+				and E.STRBUTTONSTAR like #{strButtonStarLike}
+			</if>
+
+			<if test="strButtonStars != null and strButtonStars.size() &gt; 0">
+				and E.STRBUTTONSTAR IN
+				<foreach item="x_strButtonStar" index="index" collection="strButtonStars"
+					open="(" separator="," close=")">
+					#{x_strButtonStar}
+				</foreach>
+			</if>
+
+			<if test="intIsuse != null">
+				and E.INTISUSE = #{intIsuse}
+			</if>
+
+			<if test="intIsuseGreaterThanOrEqual != null">
+				and E.INTISUSE &gt;= #{intIsuseGreaterThanOrEqual}
+			</if>
+
+			<if test="intIsuseLessThanOrEqual != null">
+				and E.INTISUSE &lt;= #{intIsuseLessThanOrEqual}
+			</if>
+
+			<if test="intIsuses != null and intIsuses.size() &gt; 0">
+				and E.INTISUSE IN
+				<foreach item="x_intIsuse" index="index" collection="intIsuses"
+					open="(" separator="," close=")">
+					#{x_intIsuse}
+				</foreach>
+			</if>
+
+			<if test="wbsIndexIn != null">
+				and E.WBSINDEX_IN = #{wbsIndexIn}
+			</if>
+
+			<if test="wbsIndexInGreaterThanOrEqual != null">
+				and E.WBSINDEX_IN &gt;= #{wbsIndexInGreaterThanOrEqual}
+			</if>
+
+			<if test="wbsIndexInLessThanOrEqual != null">
+				and E.WBSINDEX_IN &lt;= #{wbsIndexInLessThanOrEqual}
+			</if>
+
+			<if test="wbsIndexIns != null and wbsIndexIns.size() &gt; 0">
+				and E.WBSINDEX_IN IN
+				<foreach item="x_wbsIndexIn" index="index" collection="wbsIndexIns"
+					open="(" separator="," close=")">
+					#{x_wbsIndexIn}
+				</foreach>
+			</if>
+
+
+			<if test="uindexId != null">
+				and E.UINDEX_ID = #{uindexId}
+			</if>
+
+			<if test="uindexIdGreaterThanOrEqual != null">
+				and E.UINDEX_ID &gt;= #{uindexIdGreaterThanOrEqual}
+			</if>
+
+			<if test="uindexIdLessThanOrEqual != null">
+				and E.UINDEX_ID &lt;= #{uindexIdLessThanOrEqual}
+			</if>
+
+			<if test="uindexIds != null and uindexIds.size() &gt; 0">
+				and E.UINDEX_ID IN
+				<foreach item="x_uindexId" index="index" collection="uindexIds"
+					open="(" separator="," close=")">
+					#{x_uindexId}
+				</foreach>
+			</if>
+
+
+			<if test="lisNoWbs != null">
+				and E.LISNO_WBS = #{lisNoWbs}
+			</if>
+
+			<if test="lisNoWbsGreaterThanOrEqual != null">
+				and E.LISNO_WBS &gt;= #{lisNoWbsGreaterThanOrEqual}
+			</if>
+
+			<if test="lisNoWbsLessThanOrEqual != null">
+				and E.LISNO_WBS &lt;= #{lisNoWbsLessThanOrEqual}
+			</if>
+
+			<if test="lisNoWbss != null and lisNoWbss.size() &gt; 0">
+				and E.LISNO_WBS IN
+				<foreach item="x_lisNoWbs" index="index" collection="lisNoWbss"
+					open="(" separator="," close=")">
+					#{x_lisNoWbs}
+				</foreach>
+			</if>
+
+
+			<if test="sysIdAdd != null and sysIdAdd != '' ">
+				and E.SYS_ID_ADD = #{sysIdAdd}
+			</if>
+
+			<if test="sysIdAddLike != null and sysIdAddLike != '' ">
+				and E.SYS_ID_ADD like #{sysIdAddLike}
+			</if>
+
+			<if test="sysIdAdds != null and sysIdAdds.size() &gt; 0">
+				and E.SYS_ID_ADD IN
+				<foreach item="x_sysIdAdd" index="index" collection="sysIdAdds"
+					open="(" separator="," close=")">
+					#{x_sysIdAdd}
+				</foreach>
+			</if>
+
+			<if test="indexInAdd != null">
+				and E.INDEX_IN_ADD = #{indexInAdd}
+			</if>
+
+			<if test="indexInAddGreaterThanOrEqual != null">
+				and E.INDEX_IN_ADD &gt;= #{indexInAddGreaterThanOrEqual}
+			</if>
+
+			<if test="indexInAddLessThanOrEqual != null">
+				and E.INDEX_IN_ADD &lt;= #{indexInAddLessThanOrEqual}
+			</if>
+
+			<if test="indexInAdds != null and indexInAdds.size() &gt; 0">
+				and E.INDEX_IN_ADD IN
+				<foreach item="x_indexInAdd" index="index" collection="indexInAdds"
+					open="(" separator="," close=")">
+					#{x_indexInAdd}
+				</foreach>
+			</if>
+
+
+			<if test="createBy != null and createBy != '' ">
+				and E.createBy = #{createBy}
+			</if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+				and E.createBy IN
+				<foreach item="x_createBy" index="index" collection="createBys"
+					open="(" separator="," close=")">
+					#{x_createBy}
+				</foreach>
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.createDate &gt;= #{createDateGreaterThanOrEqual}
+			</if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.createDate &lt;= #{createDateLessThanOrEqual}
+			</if>
+
+			<if test="updateDateGreaterThanOrEqual != null">
+				and E.updateDate &gt;= #{updateDateGreaterThanOrEqual}
+			</if>
+
+			<if test="updateDateLessThanOrEqual != null">
+				and E.updateDate &lt;= #{updateDateLessThanOrEqual}
+			</if>
+
+			<if test="updateBy != null and updateBy != '' ">
+				and E.updateBy = #{updateBy}
+			</if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+				and E.updateBy IN
+				<foreach item="x_updateBy" index="index" collection="updateBys"
+					open="(" separator="," close=")">
+					#{x_updateBy}
+				</foreach>
+			</if>
+
+			<if test="projTypeNotEqual != null and projTypeNotEqual != '' ">
+				and E.projType &lt;&gt;#{projTypeNotEqual}
+			</if>
+		</where>
+	</sql>
+
+
+	<select id="getTreeProjectInfoListByParentId" parameterType="integer"
+		resultMap="treeProjectInfoResultMap">
+
+		select * from treepinfo
+		where nodeType='0'
+		and intIsUse=1
+		and
+		parent_id = #{parentId}
+		order by parent_id,listNo
+
+	</select>
+
+
+	<select id="getSubTreeProjectInfoCountByParentId" parameterType="integer"
+		resultType="java.util.Map">
+
+		select parent_id as parentId,count(*) as countNum
+		from treepinfo
+		where
+		nodetype='0'
+		and intisuse=1
+
+		<if test="parentId != null">
+			and parent_id=#{parentId}
+		</if>
+
+		group by parent_id
+
+	</select>
+
+
+	<select id="getSubTreeProjectInfoCountByQuery"
+		parameterType="com.glaf.base.modules.sys.query.TreeProjectInfoQuery"
+		resultType="java.util.Map">
+
+		select parent_id as parentId,count(*) as countNum
+
+		<include refid="selectTreeProjectInfosSql" />
+
+		group by parent_id
+
+	</select>
+
+
+	<select id="getRootTreeProjectInfo" resultMap="treeProjectInfoResultMap">
+		select * from
+		treepinfo
+		where nodeType='0'
+		and intIsUse=1
+		and parent_id=-1
+	</select>
+
+</mapper>

@@ -188,6 +188,11 @@ public class SysApplicationResource {
 		bean.setDesc(ParamUtil.getParameter(request, "desc"));
 		bean.setUrl(ParamUtil.getParameter(request, "url"));
 		bean.setShowMenu(ParamUtil.getIntParameter(request, "showMenu", 0));
+		bean.setRefId1(ParamUtil.getIntParameter(request, "refId1", 0));
+		bean.setRefId2(ParamUtil.getIntParameter(request, "refId2", 0));
+		bean.setRefId3(ParamUtil.getIntParameter(request, "refId3", 0));
+		bean.setRefId4(ParamUtil.getIntParameter(request, "refId4", 0));
+		bean.setRefId5(ParamUtil.getIntParameter(request, "refId5", 0));
 		bean.setCreateBy(RequestUtils.getActorId(request));
 		SysTree node = new SysTree();
 		node.setName(bean.getName());
@@ -229,6 +234,11 @@ public class SysApplicationResource {
 			bean.setDesc(ParamUtil.getParameter(request, "desc"));
 			bean.setUrl(ParamUtil.getParameter(request, "url"));
 			bean.setShowMenu(ParamUtil.getIntParameter(request, "showMenu", 0));
+			bean.setRefId1(ParamUtil.getIntParameter(request, "refId1", 0));
+			bean.setRefId2(ParamUtil.getIntParameter(request, "refId2", 0));
+			bean.setRefId3(ParamUtil.getIntParameter(request, "refId3", 0));
+			bean.setRefId4(ParamUtil.getIntParameter(request, "refId4", 0));
+			bean.setRefId5(ParamUtil.getIntParameter(request, "refId5", 0));
 			bean.setUpdateBy(RequestUtils.getActorId(request));
 
 			SysTree node = bean.getNode();

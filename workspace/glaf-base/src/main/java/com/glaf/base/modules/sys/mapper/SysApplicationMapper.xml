@@ -22,6 +22,11 @@
 		<result property="linkType" column="LINKTYPE" jdbcType="VARCHAR" />
 		<result property="linkFileId" column="LINKFILEID" jdbcType="VARCHAR" />
 		<result property="linkFileName" column="LINKFILENAME" jdbcType="VARCHAR" />
+		<result property="refId1" column="REFID1" jdbcType="INTEGER" />
+		<result property="refId2" column="REFID2" jdbcType="INTEGER" />
+		<result property="refId3" column="REFID3" jdbcType="INTEGER" />
+		<result property="refId4" column="REFID4" jdbcType="INTEGER" />
+		<result property="refId5" column="REFID5" jdbcType="INTEGER" />
 	</resultMap>
 
 
@@ -67,6 +72,21 @@
 			</if>
 			<if test="linkFileName != null">
 				,LINKFILENAME
+			</if>
+			<if test="refId1 != null">
+				,REFID1
+			</if>
+			<if test="refId2 != null">
+				,REFID2
+			</if>
+			<if test="refId3 != null">
+				,REFID3
+			</if>
+			<if test="refId4 != null">
+				,REFID4
+			</if>
+			<if test="refId5 != null">
+				,REFID5
 			</if>
 			<if test="createDate != null">
 				,CREATEDATE
@@ -117,6 +137,21 @@
 			</if>
 			<if test="linkFileName != null">
 				,#{linkFileName, jdbcType=VARCHAR}
+			</if>
+			<if test="refId1 != null">
+				,#{refId1, jdbcType=INTEGER}
+			</if>
+			<if test="refId2 != null">
+				,#{refId2, jdbcType=INTEGER}
+			</if>
+			<if test="refId3 != null">
+				,#{refId3, jdbcType=INTEGER}
+			</if>
+			<if test="refId4 != null">
+				,#{refId4, jdbcType=INTEGER}
+			</if>
+			<if test="refId5 != null">
+				,#{refId5, jdbcType=INTEGER}
 			</if>
 			<if test="createDate != null">
 				,#{createDate, jdbcType=TIMESTAMP}
@@ -170,6 +205,21 @@
 			</if>
 			<if test="linkFileName != null">
 				LINKFILENAME = #{linkFileName, jdbcType=VARCHAR},
+			</if>
+			<if test="refId1 != null">
+				REFID1 = #{refId1, jdbcType=INTEGER},
+			</if>
+			<if test="refId2 != null">
+				REFID2 = #{refId2, jdbcType=INTEGER},
+			</if>
+			<if test="refId3 != null">
+				REFID3 = #{refId3, jdbcType=INTEGER},
+			</if>
+			<if test="refId4 != null">
+				REFID4 = #{refId4, jdbcType=INTEGER},
+			</if>
+			<if test="refId5 != null">
+				REFID5 = #{refId5, jdbcType=INTEGER},
 			</if>
 			<if test="updateBy != null">
 				UPDATEBY = #{updateBy, jdbcType=VARCHAR},
