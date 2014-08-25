@@ -58,7 +58,6 @@ public class TreeProjectInfoServiceImpl implements ITreeProjectInfoService {
 				this.treepinfoMapper.deleteTreeProjectInfoById(id);
 	}
 
-	@Override
 	public TreeProjectInfo getRootTreeProjectInfo() {
 		return this.treepinfoMapper.getRootTreeProjectInfo();
 	}
@@ -69,20 +68,17 @@ public class TreeProjectInfoServiceImpl implements ITreeProjectInfoService {
 	 * @param parentId
 	 * @return
 	 */
-	@Override
 	public List<Map<String, Integer>> getSubTreeProjectInfoCountByParentId(
 			Integer parentId) {
 		return this.treepinfoMapper
 				.getSubTreeProjectInfoCountByParentId(parentId);// 查询所有子节点记录数
 	}
 
-	@Override
 	public List<Map<String, Integer>> getSubTreeProjectInfoCountByQuery(
 			TreeProjectInfoQuery query) {
 		return treepinfoMapper.getSubTreeProjectInfoCountByQuery(query);
 	}
 
-	@Override
 	public TreeProjectInfo getTreeProjectInfo(Integer id) {
 		if (id == null) {
 			return null;
@@ -92,23 +88,19 @@ public class TreeProjectInfoServiceImpl implements ITreeProjectInfoService {
 		return treepinfo;
 	}
 
-	@Override
 	public int getTreeProjectInfoCountByQueryCriteria(TreeProjectInfoQuery query) {
 		return this.treepinfoMapper.getTreeProjectInfoCount(query);
 	}
 
-	@Override
 	public String getTreeProjectInfoId(String strfuntion) {
 		return treepinfoMapper.getTreeProjectInfoId(strfuntion);
 	}
 
-	@Override
 	public List<TreeProjectInfo> getTreeProjectInfoListByParentId(
 			Integer parentId) {
 		return this.treepinfoMapper.getTreeProjectInfoListByParentId(parentId);
 	}
 
-	@Override
 	public List<TreeProjectInfo> getTreeProjectInfos(String strfuntion) {
 		String id = this.getTreeProjectInfoId(strfuntion);
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -116,13 +108,11 @@ public class TreeProjectInfoServiceImpl implements ITreeProjectInfoService {
 		return this.getTreeProjectInfosByCondition(params);
 	}
 
-	@Override
 	public List<TreeProjectInfo> getTreeProjectInfosByCondition(
 			Map<String, Object> params) {
 		return treepinfoMapper.getTreeProjectInfosByCondition(params);
 	}
 
-	@Override
 	public List<TreeProjectInfo> getTreeProjectInfosByQueryCriteria(int start,
 			int pageSize, TreeProjectInfoQuery query) {
 		RowBounds rowBounds = new RowBounds(start, pageSize);
@@ -131,7 +121,6 @@ public class TreeProjectInfoServiceImpl implements ITreeProjectInfoService {
 		return rows;
 	}
 
-	@Override
 	public List<TreeProjectInfo> list(TreeProjectInfoQuery query) {
 		query.ensureInitialized();
 		List<TreeProjectInfo> list = this.treepinfoMapper
@@ -144,7 +133,7 @@ public class TreeProjectInfoServiceImpl implements ITreeProjectInfoService {
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
 
-	@Resource
+	@javax.annotation.Resource(name = "com.glaf.base.modules.sys.mapper.TreeProjectInfoMapper")
 	public void setTreeProjectInfoMapper(TreeProjectInfoMapper treepinfoMapper) {
 		this.treepinfoMapper = treepinfoMapper;
 	}

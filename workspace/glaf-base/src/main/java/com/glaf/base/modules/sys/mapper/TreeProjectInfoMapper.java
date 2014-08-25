@@ -26,7 +26,7 @@ import org.springframework.stereotype.Component;
 import com.glaf.base.modules.sys.model.TreeProjectInfo;
 import com.glaf.base.modules.sys.query.TreeProjectInfoQuery;
 
-@Component
+@Component("com.glaf.base.modules.sys.mapper.TreeProjectInfoMapper")
 public interface TreeProjectInfoMapper {
 
 	void deleteTreeProjectInfos(TreeProjectInfoQuery query);

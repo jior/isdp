@@ -81,6 +81,7 @@
 			jdbcType="BLOB" />
 	</resultMap>
 
+
 	<insert id="insertCellTreedot" parameterType="com.glaf.base.modules.sys.model.CellTreedot">
 		insert into cell_treedot
 		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -373,6 +374,7 @@
 		where id = #{id}
 	</delete>
 
+
 	<delete id="deleteCellTreedotByIndexId" parameterType="int">
 		delete
 		from cell_treedot
@@ -396,6 +398,7 @@
 		select * from cell_treedot where id = #{id}
 	</select>
 
+
 	<select id="getCellTreedotByIndexId" parameterType="int"
 		resultMap="cellTreedotResultMap">
 		select * from cell_treedot where index_id = #{indexId}
@@ -418,6 +421,7 @@
 
 	</select>
 
+
 	<select id="getTopLevelCellTreedotsByTopId" parameterType="string"
 		resultMap="cellTreedotResultMap">
 
@@ -430,6 +434,7 @@
 		order by listno
 
 	</select>
+
 
 	<select id="getChildrenCellTreedots" parameterType="int"
 		resultMap="cellTreedotResultMap">
@@ -466,6 +471,7 @@
 			order by ${orderBy}
 		</if>
 	</select>
+
 
 	<select id="getCellTreedotsByQueryCriteria" parameterType="com.glaf.base.modules.sys.query.CellTreedotQuery"
 		resultMap="cellTreedotResultMap">
@@ -533,11 +539,9 @@
 				</foreach>
 			</if>
 
-
 			<if test="numLike != null and numLike != '' ">
 				and E.num like #{numLike}
 			</if>
-
 
 			<if test="contentLike != null and contentLike != '' ">
 				and E.content like #{contentLike}
@@ -546,7 +550,6 @@
 			<if test="sindexNameLike != null and sindexNameLike != '' ">
 				and E.sindex_name like #{sindexNameLike}
 			</if>
-
 
 			<if test="viewtype != null">
 				and E.viewtype = #{viewtype}
@@ -568,7 +571,6 @@
 				</foreach>
 			</if>
 
-
 			<if test="ismode != null and ismode != '' ">
 				and E.ismode = #{ismode}
 			</if>
@@ -585,7 +587,6 @@
 				</foreach>
 			</if>
 
-
 			<if test="modetableId != null and modetableId != '' ">
 				and E.modetable_id = #{modetableId}
 			</if>
@@ -601,7 +602,6 @@
 					#{x_modetableId}
 				</foreach>
 			</if>
-
 
 			<if test="issystem != null">
 				and E.issystem = #{issystem}
@@ -645,7 +645,6 @@
 				</foreach>
 			</if>
 
-
 			<if test="intused != null">
 				and E.intused = #{intused}
 			</if>
@@ -665,7 +664,6 @@
 					#{x_intused}
 				</foreach>
 			</if>
-
 
 			<if test="intdel != null">
 				and E.intdel = #{intdel}
@@ -687,7 +685,6 @@
 				</foreach>
 			</if>
 
-
 			<if test="typeTablename != null and typeTablename != '' ">
 				and E.type_tablename = #{typeTablename}
 			</if>
@@ -703,7 +700,6 @@
 					#{x_typeTablename}
 				</foreach>
 			</if>
-
 
 			<if test="intoperation != null">
 				and E.intoperation = #{intoperation}
@@ -726,7 +722,6 @@
 				</foreach>
 			</if>
 
-
 			<if test="intMuiFrm != null">
 				and E.intMuiFrm = #{intMuiFrm}
 			</if>
@@ -746,7 +741,6 @@
 					#{x_intMuiFrm}
 				</foreach>
 			</if>
-
 
 			<if test="intnoshow != null">
 				and E.intnoshow = #{intnoshow}
@@ -768,7 +762,6 @@
 				</foreach>
 			</if>
 
-
 			<if test="typeBasetable != null and typeBasetable != '' ">
 				and E.type_basetable = #{typeBasetable}
 			</if>
@@ -784,7 +777,6 @@
 					#{x_typeBasetable}
 				</foreach>
 			</if>
-
 
 			<if test="typeIndex != null">
 				and E.type_index = #{typeIndex}
@@ -806,7 +798,6 @@
 				</foreach>
 			</if>
 
-
 			<if test="gidLike != null and gidLike != '' ">
 				and E.gid like #{gidLike}
 			</if>
@@ -818,7 +809,6 @@
 					#{x_gid}
 				</foreach>
 			</if>
-
 
 		</where>
 	</sql>

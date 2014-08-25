@@ -26,6 +26,7 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/easyui/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src='<%=context%>/scripts/main.js'></script>
 <script type="text/javascript" src='<%=context%>/scripts/verify.js'></script> 
+<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/glaf-base.js"></script>
 <script language="javascript">
 
     function changeXDiv(state){
@@ -79,6 +80,37 @@
 	    }
     }
 
+ function chooseCellTreedot(formName, elementId, elementName){
+    var x_selected =  document.getElementById(elementId);
+    var url="<%=request.getContextPath()%>/rs/cell/treedot/choose?formName="+formName+"&elementId="+elementId+"&elementName="+elementName;
+    if(x_selected != null && x_selected.value != ""){
+	    url = url + "&selecteds="+x_selected.value;
+    }
+    var x=150;
+    var y=50;
+    if(is_ie) {
+	    x=document.body.scrollLeft+event.clientX-event.offsetX-200;
+	    y=document.body.scrollTop+event.clientY-event.offsetY-200;
+     }
+     openWindow(url,self,x, y, 565, 600);
+}
+
+
+ function chooseTreeProjectInfo(formName, elementId, elementName){
+    var x_selected =  document.getElementById("refId1");
+    var url="<%=request.getContextPath()%>/rs/treeProjectInfo/choose?formName="+formName+"&elementId="+elementId+"&elementName="+elementName;
+    if(x_selected != null && x_selected.value != ""){
+	    url = url + "&strfuntion="+x_selected.value;
+    }
+    var x=150;
+    var y=50;
+    if(is_ie) {
+	    x=document.body.scrollLeft+event.clientX-event.offsetX-200;
+	    y=document.body.scrollTop+event.clientY-event.offsetY-200;
+     }
+     openWindow(url,self,x, y, 565, 600);
+}
+
 </script>
 </head>
 
@@ -125,7 +157,7 @@
       </tr>
       <tr>
         <td class="input-box2" valign="top">描　　述</td>
-        <td><textarea name="desc" cols="38" rows="6" class="input-multi" datatype="string" nullable="yes" maxsize="100" chname="描述"><%=bean.getDesc() != null ? bean.getDesc() : ""%></textarea></td>
+        <td><textarea name="desc" cols="42" rows="4" class="input-multi" datatype="string" nullable="yes" maxsize="100" chname="描述"><%=bean.getDesc() != null ? bean.getDesc() : ""%></textarea></td>
       </tr>
 	  <tr>
 		<td width="30%" align="left" valign="top">链接类型</td>
@@ -136,7 +168,7 @@
 			<c:if test="${bean.linkType == 'T'}">checked</c:if> />链接文件
 			<br>
 			<div id="urlDir" style="display:block;">
-		      <textarea  id="url" name="url" cols="38" rows="5" class="input-multi" datatype="string" nullable="yes" maxsize="100" chname="链接"><%=bean.getUrl() != null ? bean.getUrl() :""%></textarea>
+		      <textarea  id="url" name="url" cols="42" rows="4" class="input-multi" datatype="string" nullable="yes" maxsize="100" chname="链接"><%=bean.getUrl() != null ? bean.getUrl() :""%></textarea>
 			</div>
 			<div id="divDir" style="display:none;">
 		        <input type="file" id="linkFileName" name="linkFileName"  class="input " size="35">
@@ -146,7 +178,25 @@
 				<iframe id="newFrame" name="newFrame" width="0" height="0"></iframe>
 			</div>
 		</td>
-	</tr>
+	  </tr>
+      <tr>
+        <td class="input-box2" valign="top">关联菜单</td>
+        <td>
+		   <input type="hidden" id="refId1" name="refId1" value="<%=bean.getRefId1()!=null?bean.getRefId1():""%>">
+           <input type="text" id="refName1" name="refName1" size="35" class="input "
+		          value="<%=bean.getRefName1()!=null?bean.getRefName1():""%>"
+				  onclick="javascript:chooseCellTreedot('iForm', 'refId1', 'refName1');">
+		</td>
+      </tr>
+	  <tr>
+        <td class="input-box2" valign="top">关联工程信息</td>
+        <td>
+           <input type="hidden" id="refId2" name="refId2" value="<%=bean.getRefId2()!=null?bean.getRefId2():""%>">
+           <input type="text" id="refName2" name="refName2" size="35" class="input "
+		          value="<%=bean.getRefName2()!=null?bean.getRefName2():""%>"
+				  onclick="javascript:chooseTreeProjectInfo('iForm', 'refId2', 'refName2');">
+		</td>
+      </tr>
       <tr>
         <td class="input-box2" valign="top">是否弹出窗</td>
         <td>

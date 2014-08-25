@@ -101,6 +101,13 @@ public interface ICellTreedotService {
 	 * @return
 	 */
 	List<CellTreedot> getChildrenCellTreedots(int parentId);
+	
+	/**
+	 * 根据父ID获取全部菜单
+	 * @param parentId
+	 * @return
+	 */
+	List<CellTreedot> getAllChildrenCellTreedots(int parentId);
 
 	/**
 	 * 获取topId为system_init的系统菜单项

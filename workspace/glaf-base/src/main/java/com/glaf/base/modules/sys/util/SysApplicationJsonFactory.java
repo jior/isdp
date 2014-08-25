@@ -65,20 +65,40 @@ public class SysApplicationJsonFactory {
 			model.setRefId1(jsonObject.getInteger("refId1"));
 		}
 
+		if (jsonObject.containsKey("refName1")) {
+			model.setRefName1(jsonObject.getString("refName1"));
+		}
+
 		if (jsonObject.containsKey("refId2")) {
 			model.setRefId2(jsonObject.getInteger("refId2"));
+		}
+
+		if (jsonObject.containsKey("refName2")) {
+			model.setRefName2(jsonObject.getString("refName2"));
 		}
 
 		if (jsonObject.containsKey("refId3")) {
 			model.setRefId3(jsonObject.getInteger("refId3"));
 		}
 
+		if (jsonObject.containsKey("refName3")) {
+			model.setRefName3(jsonObject.getString("refName3"));
+		}
+
 		if (jsonObject.containsKey("refId4")) {
 			model.setRefId4(jsonObject.getInteger("refId4"));
 		}
 
+		if (jsonObject.containsKey("refName4")) {
+			model.setRefName4(jsonObject.getString("refName4"));
+		}
+
 		if (jsonObject.containsKey("refId5")) {
 			model.setRefId5(jsonObject.getInteger("refId5"));
+		}
+
+		if (jsonObject.containsKey("refName5")) {
+			model.setRefName5(jsonObject.getString("refName5"));
 		}
 
 		if (jsonObject.containsKey("sort")) {
@@ -182,6 +202,26 @@ public class SysApplicationJsonFactory {
 			jsonObject.put("refId5", model.getRefId5());
 		}
 
+		if (model.getRefName1() != null) {
+			jsonObject.put("refName1", model.getRefName1());
+		}
+
+		if (model.getRefName2() != null) {
+			jsonObject.put("refName2", model.getRefName2());
+		}
+
+		if (model.getRefName3() != null) {
+			jsonObject.put("refName3", model.getRefName3());
+		}
+
+		if (model.getRefName4() != null) {
+			jsonObject.put("refName4", model.getRefName4());
+		}
+
+		if (model.getRefName5() != null) {
+			jsonObject.put("refName5", model.getRefName5());
+		}
+
 		if (model.getLinkType() != null) {
 			jsonObject.put("linkType", model.getLinkType());
 		}
@@ -268,6 +308,26 @@ public class SysApplicationJsonFactory {
 
 		if (model.getRefId5() != null) {
 			jsonObject.put("refId5", model.getRefId5());
+		}
+
+		if (model.getRefName1() != null) {
+			jsonObject.put("refName1", model.getRefName1());
+		}
+
+		if (model.getRefName2() != null) {
+			jsonObject.put("refName2", model.getRefName2());
+		}
+
+		if (model.getRefName3() != null) {
+			jsonObject.put("refName3", model.getRefName3());
+		}
+
+		if (model.getRefName4() != null) {
+			jsonObject.put("refName4", model.getRefName4());
+		}
+
+		if (model.getRefName5() != null) {
+			jsonObject.put("refName5", model.getRefName5());
 		}
 
 		if (model.getLinkType() != null) {

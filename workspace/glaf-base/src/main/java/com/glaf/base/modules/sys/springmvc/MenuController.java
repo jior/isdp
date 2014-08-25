@@ -20,9 +20,8 @@ import com.glaf.core.util.RequestUtils;
 @Controller("menu")
 @RequestMapping("/menu")
 public class MenuController {
-	
-	protected static final Log logger = LogFactory
-			.getLog(MenuController.class);
+
+	protected static final Log logger = LogFactory.getLog(MenuController.class);
 
 	private SysApplicationService sysApplicationService;
 
@@ -42,7 +41,7 @@ public class MenuController {
 		if (menuId != null) {
 			menuId = RequestUtils.decodeString(menuId);
 		}
-		logger.debug("menuId:"+menuId);
+		logger.debug("menuId:" + menuId);
 		if (menuId != null && StringUtils.isNumeric(menuId)) {
 			SysApplication app = sysApplicationService.findById(Long
 					.parseLong(menuId));
@@ -50,8 +49,8 @@ public class MenuController {
 				boolean accessable = false;
 				if (loginContext.isSystemAdministrator()) {
 					accessable = true;
-				} 
-				logger.debug("accessable:"+accessable);
+				}
+				logger.debug("accessable:" + accessable);
 				if (accessable) {
 					try {
 						String url = app.getUrl();
@@ -87,6 +86,16 @@ public class MenuController {
 										+ "&reportlet=com.glaf.fr.reportlet.DatabaseReportlet&"
 										+ cpt_path + "&datasourceJson="
 										+ dsJson;
+								if (app.getRefId1() != null) {
+									url = url + "&refId1=" + app.getRefId1()
+											+ "&treedot_index_id="
+											+ app.getRefId1();
+								}
+								if (app.getRefId2() != null) {
+									url = url + "&refId2=" + app.getRefId2()
+											+ "&treepinfo_index_id="
+											+ app.getRefId2();
+								}
 							}
 							logger.debug(url);
 							response.sendRedirect(url);

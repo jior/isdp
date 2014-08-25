@@ -146,17 +146,32 @@ public class SysApplication implements Serializable, JSONable {
 	@Column(name = "REFID1")
 	protected Integer refId1;
 
+	@Column(name = "REFNAME1")
+	protected String refName1;
+
 	@Column(name = "REFID2")
 	protected Integer refId2;
+
+	@Column(name = "REFNAME2")
+	protected String refName2;
 
 	@Column(name = "REFID3")
 	protected Integer refId3;
 
+	@Column(name = "REFNAME3")
+	protected String refName3;
+
 	@Column(name = "REFID4")
 	protected Integer refId4;
 
+	@Column(name = "REFNAME4")
+	protected String refName4;
+
 	@Column(name = "REFID5")
 	protected Integer refId5;
+
+	@Column(name = "REFNAME5")
+	protected String refName5;
 
 	@javax.persistence.Transient
 	protected List<ColumnModel> extendedColumns = new ArrayList<ColumnModel>();
@@ -252,6 +267,26 @@ public class SysApplication implements Serializable, JSONable {
 
 	public Integer getRefId5() {
 		return refId5;
+	}
+
+	public String getRefName1() {
+		return refName1;
+	}
+
+	public String getRefName2() {
+		return refName2;
+	}
+
+	public String getRefName3() {
+		return refName3;
+	}
+
+	public String getRefName4() {
+		return refName4;
+	}
+
+	public String getRefName5() {
+		return refName5;
 	}
 
 	public int getShowMenu() {
@@ -356,6 +391,26 @@ public class SysApplication implements Serializable, JSONable {
 
 	public void setRefId5(Integer refId5) {
 		this.refId5 = refId5;
+	}
+
+	public void setRefName1(String refName1) {
+		this.refName1 = refName1;
+	}
+
+	public void setRefName2(String refName2) {
+		this.refName2 = refName2;
+	}
+
+	public void setRefName3(String refName3) {
+		this.refName3 = refName3;
+	}
+
+	public void setRefName4(String refName4) {
+		this.refName4 = refName4;
+	}
+
+	public void setRefName5(String refName5) {
+		this.refName5 = refName5;
 	}
 
 	public void setShowMenu(int showMenu) {

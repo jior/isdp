@@ -68,6 +68,23 @@ public class CellTreedotServiceImpl implements ICellTreedotService {
 		cellTreedotMapper.deleteCellTreedotByIndexId(indexId);
 	}
 
+	/**
+	 * 根据父ID获取全部菜单
+	 * 
+	 * @param parentId
+	 * @return
+	 */
+	public List<CellTreedot> getAllChildrenCellTreedots(int parentId) {
+		CellTreedot cellTreedot = this.getCellTreedotByPrimaryKey(parentId);
+		CellTreedotQuery query = new CellTreedotQuery();
+		if (cellTreedot != null) {
+			query.idLike(cellTreedot.getId() + "%");
+		}
+		List<CellTreedot> list = cellTreedotMapper
+				.getCellTreedotsByQueryCriteria(query);
+		return list;
+	}
+
 	public CellTreedot getCellTreedotById(String id) {
 		CellTreedot cellTreedot = cellTreedotMapper.getCellTreedotById(id);
 		return cellTreedot;

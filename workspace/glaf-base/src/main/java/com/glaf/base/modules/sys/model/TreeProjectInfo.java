@@ -39,12 +39,12 @@ import com.glaf.core.base.JSONable;
 
 @Entity
 @Table(name = "TREEPINFO")
-public class TreeProjectInfo implements Serializable, JSONable {
+public class TreeProjectInfo implements Serializable, JSONable, ITree {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "INDEX_ID", nullable = false)
-	protected Integer indexId;
+	protected int indexId;
 
 	@Column(name = "ID", length = 100)
 	protected String id;
@@ -56,7 +56,7 @@ public class TreeProjectInfo implements Serializable, JSONable {
 	protected Integer topId;
 
 	@Column(name = "PARENT_ID")
-	protected Integer parentId;
+	protected int parentId;
 
 	@Column(name = "INDEX_NAME", length = 255)
 	protected String indexName;
@@ -270,10 +270,7 @@ public class TreeProjectInfo implements Serializable, JSONable {
 		if (getClass() != obj.getClass())
 			return false;
 		TreeProjectInfo other = (TreeProjectInfo) obj;
-		if (indexId == null) {
-			if (other.indexId != null)
-				return false;
-		} else if (!indexId.equals(other.indexId))
+		if (indexId != other.indexId)
 			return false;
 		return true;
 	}
@@ -366,7 +363,7 @@ public class TreeProjectInfo implements Serializable, JSONable {
 		return this.id;
 	}
 
-	public Integer getIndexId() {
+	public int getIndexId() {
 		return this.indexId;
 	}
 
@@ -414,8 +411,16 @@ public class TreeProjectInfo implements Serializable, JSONable {
 		return this.jid;
 	}
 
+	public int getLevel() {
+		return nlevel;
+	}
+
 	public Integer getLisNoWbs() {
 		return this.lisNoWbs;
+	}
+
+	public int getListno() {
+		return listNo;
 	}
 
 	public Integer getListNo() {
@@ -450,7 +455,7 @@ public class TreeProjectInfo implements Serializable, JSONable {
 		return parent;
 	}
 
-	public Integer getParentId() {
+	public int getParentId() {
 		return this.parentId;
 	}
 
@@ -566,8 +571,12 @@ public class TreeProjectInfo implements Serializable, JSONable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((indexId == null) ? 0 : indexId.hashCode());
+		result = prime * result + indexId;
 		return result;
+	}
+
+	public boolean isChecked() {
+		return false;
 	}
 
 	public TreeProjectInfo jsonToObject(JSONObject jsonObject) {
@@ -592,6 +601,10 @@ public class TreeProjectInfo implements Serializable, JSONable {
 
 	public void setCell3(Integer cell3) {
 		this.cell3 = cell3;
+	}
+
+	public void setChecked(boolean checked) {
+
 	}
 
 	public void setChildrens(List<TreeProjectInfo> childrens) {
@@ -662,7 +675,7 @@ public class TreeProjectInfo implements Serializable, JSONable {
 		this.id = id;
 	}
 
-	public void setIndexId(Integer indexId) {
+	public void setIndexId(int indexId) {
 		this.indexId = indexId;
 	}
 
@@ -710,8 +723,18 @@ public class TreeProjectInfo implements Serializable, JSONable {
 		this.jid = jid;
 	}
 
+	public void setLevel(int level) {
+		this.nlevel = level;
+
+	}
+
 	public void setLisNoWbs(Integer lisNoWbs) {
 		this.lisNoWbs = lisNoWbs;
+	}
+
+	public void setListno(int listno) {
+		this.listNo = listno;
+
 	}
 
 	public void setListNo(Integer listNo) {
@@ -746,7 +769,7 @@ public class TreeProjectInfo implements Serializable, JSONable {
 		this.parent = parent;
 	}
 
-	public void setParentId(Integer parentId) {
+	public void setParentId(int parentId) {
 		this.parentId = parentId;
 	}
 

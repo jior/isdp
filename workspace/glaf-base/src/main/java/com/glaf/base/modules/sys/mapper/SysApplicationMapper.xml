@@ -23,10 +23,15 @@
 		<result property="linkFileId" column="LINKFILEID" jdbcType="VARCHAR" />
 		<result property="linkFileName" column="LINKFILENAME" jdbcType="VARCHAR" />
 		<result property="refId1" column="REFID1" jdbcType="INTEGER" />
+		<result property="refName1" column="REFNAME1" jdbcType="VARCHAR" />
 		<result property="refId2" column="REFID2" jdbcType="INTEGER" />
+		<result property="refName2" column="REFNAME2" jdbcType="VARCHAR" />
 		<result property="refId3" column="REFID3" jdbcType="INTEGER" />
+		<result property="refName3" column="REFNAME3" jdbcType="VARCHAR" />
 		<result property="refId4" column="REFID4" jdbcType="INTEGER" />
+		<result property="refName4" column="REFNAME4" jdbcType="VARCHAR" />
 		<result property="refId5" column="REFID5" jdbcType="INTEGER" />
+		<result property="refName5" column="REFNAME5" jdbcType="VARCHAR" />
 	</resultMap>
 
 
@@ -76,17 +81,32 @@
 			<if test="refId1 != null">
 				,REFID1
 			</if>
+			<if test="refName1 != null">
+				,REFNAME1
+			</if>
 			<if test="refId2 != null">
 				,REFID2
+			</if>
+			<if test="refName2 != null">
+				,REFNAME2
 			</if>
 			<if test="refId3 != null">
 				,REFID3
 			</if>
+			<if test="refName3 != null">
+				,REFNAME3
+			</if>
 			<if test="refId4 != null">
 				,REFID4
 			</if>
+			<if test="refName4 != null">
+				,REFNAME4
+			</if>
 			<if test="refId5 != null">
 				,REFID5
+			</if>
+			<if test="refName5 != null">
+				,REFNAME5
 			</if>
 			<if test="createDate != null">
 				,CREATEDATE
@@ -141,17 +161,32 @@
 			<if test="refId1 != null">
 				,#{refId1, jdbcType=INTEGER}
 			</if>
+			<if test="refName1 != null">
+				,#{refName1, jdbcType=VARCHAR}
+			</if>
 			<if test="refId2 != null">
 				,#{refId2, jdbcType=INTEGER}
+			</if>
+			<if test="refName2 != null">
+				,#{refName2, jdbcType=VARCHAR}
 			</if>
 			<if test="refId3 != null">
 				,#{refId3, jdbcType=INTEGER}
 			</if>
+			<if test="refName3 != null">
+				,#{refName3, jdbcType=VARCHAR}
+			</if>
 			<if test="refId4 != null">
 				,#{refId4, jdbcType=INTEGER}
 			</if>
+			<if test="refName4 != null">
+				,#{refName4, jdbcType=VARCHAR}
+			</if>
 			<if test="refId5 != null">
 				,#{refId5, jdbcType=INTEGER}
+			</if>
+			<if test="refName5 != null">
+				,#{refName5, jdbcType=VARCHAR}
 			</if>
 			<if test="createDate != null">
 				,#{createDate, jdbcType=TIMESTAMP}
@@ -209,17 +244,32 @@
 			<if test="refId1 != null">
 				REFID1 = #{refId1, jdbcType=INTEGER},
 			</if>
+			<if test="refName1 != null">
+				REFNAME1 = #{refName1, jdbcType=VARCHAR},
+			</if>
 			<if test="refId2 != null">
 				REFID2 = #{refId2, jdbcType=INTEGER},
+			</if>
+			<if test="refName2 != null">
+				REFNAME2 = #{refName2, jdbcType=VARCHAR},
 			</if>
 			<if test="refId3 != null">
 				REFID3 = #{refId3, jdbcType=INTEGER},
 			</if>
+			<if test="refName3 != null">
+				REFNAME3 = #{refName3, jdbcType=VARCHAR},
+			</if>
 			<if test="refId4 != null">
 				REFID4 = #{refId4, jdbcType=INTEGER},
 			</if>
+			<if test="refName4 != null">
+				REFNAME4 = #{refName4, jdbcType=VARCHAR},
+			</if>
 			<if test="refId5 != null">
 				REFID5 = #{refId5, jdbcType=INTEGER},
+			</if>
+			<if test="refName5 != null">
+				REFNAME5 = #{refName5, jdbcType=VARCHAR},
 			</if>
 			<if test="updateBy != null">
 				UPDATEBY = #{updateBy, jdbcType=VARCHAR},
