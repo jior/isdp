@@ -9,7 +9,9 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.glaf.base.business.AuthorizeBean;
 import com.glaf.base.modules.sys.model.SysApplication;
+import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.service.SysApplicationService;
 import com.glaf.core.config.DBConfiguration;
 import com.glaf.core.config.SystemConfig;
@@ -49,6 +51,12 @@ public class MenuController {
 				boolean accessable = false;
 				if (loginContext.isSystemAdministrator()) {
 					accessable = true;
+				} else {
+					AuthorizeBean bean = new AuthorizeBean();
+					SysUser sysUser = bean.getUser(loginContext.getActorId());
+					if (sysUser != null) {
+						accessable = sysUser.hasApplicationAccess(app.getId());
+					}
 				}
 				logger.debug("accessable:" + accessable);
 				if (accessable) {

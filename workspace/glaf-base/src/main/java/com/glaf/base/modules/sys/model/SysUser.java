@@ -401,6 +401,19 @@ public class SysUser implements Serializable, User, JSONable {
 		return userType;
 	}
 
+	public boolean hasApplicationAccess(long appId) {
+		boolean hasAccess = false;
+		if (apps != null && !apps.isEmpty()) {
+			for (SysApplication app : apps) {
+				if (appId == app.getId()) {
+					hasAccess = true;
+					break;
+				}
+			}
+		}
+		return hasAccess;
+	}
+
 	public boolean isDepartmentAdmin() {
 		boolean isDeptAdmin = false;
 

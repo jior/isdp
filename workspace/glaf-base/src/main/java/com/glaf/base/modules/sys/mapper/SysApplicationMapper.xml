@@ -343,14 +343,12 @@
 
 		select E.* from sys_application E
 		inner join sys_access A
-		on
-		E.id = A.appId
+		on E.id = A.appId
 		where A.roleId in (
-		select R.id from net_role R
-		inner join
-		userrole UR
-		on R.id = UR.roleid
-		where UR.userid = #{userId}
+		  select R.id from net_role R
+		  inner join userrole UR
+		  on R.id = UR.roleid
+		  where UR.userid = #{userId}
 		)
 
 	</select>
