@@ -187,6 +187,7 @@ public class SysApplicationResource {
 		bean.setName(ParamUtil.getParameter(request, "name"));
 		bean.setDesc(ParamUtil.getParameter(request, "desc"));
 		bean.setUrl(ParamUtil.getParameter(request, "url"));
+		bean.setLinkParam(ParamUtil.getParameter(request, "linkParam"));
 		bean.setShowMenu(ParamUtil.getIntParameter(request, "showMenu", 0));
 		bean.setRefId1(ParamUtil.getIntParameter(request, "refId1", 0));
 		bean.setRefName1(ParamUtil.getParameter(request, "refName1"));
@@ -238,6 +239,7 @@ public class SysApplicationResource {
 			bean.setName(ParamUtil.getParameter(request, "name"));
 			bean.setDesc(ParamUtil.getParameter(request, "desc"));
 			bean.setUrl(ParamUtil.getParameter(request, "url"));
+			bean.setLinkParam(ParamUtil.getParameter(request, "linkParam"));
 			bean.setShowMenu(ParamUtil.getIntParameter(request, "showMenu", 0));
 			bean.setRefId1(ParamUtil.getIntParameter(request, "refId1", 0));
 			bean.setRefName1(ParamUtil.getParameter(request, "refName1"));

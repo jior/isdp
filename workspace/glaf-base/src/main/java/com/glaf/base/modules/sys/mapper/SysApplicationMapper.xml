@@ -22,6 +22,7 @@
 		<result property="linkType" column="LINKTYPE" jdbcType="VARCHAR" />
 		<result property="linkFileId" column="LINKFILEID" jdbcType="VARCHAR" />
 		<result property="linkFileName" column="LINKFILENAME" jdbcType="VARCHAR" />
+		<result property="linkParam" column="LINKPARAM" jdbcType="VARCHAR" />
 		<result property="refId1" column="REFID1" jdbcType="INTEGER" />
 		<result property="refName1" column="REFNAME1" jdbcType="VARCHAR" />
 		<result property="refId2" column="REFID2" jdbcType="INTEGER" />
@@ -77,6 +78,9 @@
 			</if>
 			<if test="linkFileName != null">
 				,LINKFILENAME
+			</if>
+			<if test="linkParam != null">
+				,LINKPARAM
 			</if>
 			<if test="refId1 != null">
 				,REFID1
@@ -157,6 +161,9 @@
 			</if>
 			<if test="linkFileName != null">
 				,#{linkFileName, jdbcType=VARCHAR}
+			</if>
+			<if test="linkParam != null">
+				,#{linkParam, jdbcType=VARCHAR}
 			</if>
 			<if test="refId1 != null">
 				,#{refId1, jdbcType=INTEGER}
@@ -240,6 +247,9 @@
 			</if>
 			<if test="linkFileName != null">
 				LINKFILENAME = #{linkFileName, jdbcType=VARCHAR},
+			</if>
+			<if test="linkParam != null">
+				LINKPARAM = #{linkParam, jdbcType=VARCHAR},
 			</if>
 			<if test="refId1 != null">
 				REFID1 = #{refId1, jdbcType=INTEGER},
@@ -343,12 +353,13 @@
 
 		select E.* from sys_application E
 		inner join sys_access A
-		on E.id = A.appId
+		on
+		E.id = A.appId
 		where A.roleId in (
-		  select R.id from net_role R
-		  inner join userrole UR
-		  on R.id = UR.roleid
-		  where UR.userid = #{userId}
+		select R.id from net_role R
+		inner join userrole UR
+		on R.id = UR.roleid
+		where UR.userid = #{userId}
 		)
 
 	</select>

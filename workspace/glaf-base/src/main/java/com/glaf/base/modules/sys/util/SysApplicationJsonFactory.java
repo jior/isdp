@@ -26,7 +26,6 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.glaf.base.modules.sys.model.SysApplication;
 import com.glaf.base.modules.sys.model.SysFunction;
 import com.glaf.core.util.DateUtils;
- 
 
 public class SysApplicationJsonFactory {
 
@@ -136,6 +135,10 @@ public class SysApplicationJsonFactory {
 			model.setLinkFileId(jsonObject.getString("linkFileId"));
 		}
 
+		if (jsonObject.containsKey("linkParam")) {
+			model.setLinkParam(jsonObject.getString("linkParam"));
+		}
+
 		if (jsonObject.containsKey("functions")) {
 			JSONArray array = jsonObject.getJSONArray("functions");
 			if (array != null && !array.isEmpty()) {
@@ -233,6 +236,10 @@ public class SysApplicationJsonFactory {
 
 		if (model.getLinkFileName() != null) {
 			jsonObject.put("linkFileName", model.getLinkFileName());
+		}
+
+		if (model.getLinkParam() != null) {
+			jsonObject.put("linkParam", model.getLinkParam());
 		}
 
 		if (model.getCreateDate() != null) {
@@ -341,6 +348,10 @@ public class SysApplicationJsonFactory {
 
 		if (model.getLinkFileName() != null) {
 			jsonObject.put("linkFileName", model.getLinkFileName());
+		}
+
+		if (model.getLinkParam() != null) {
+			jsonObject.put("linkParam", model.getLinkParam());
 		}
 
 		if (model.getCreateBy() != null) {

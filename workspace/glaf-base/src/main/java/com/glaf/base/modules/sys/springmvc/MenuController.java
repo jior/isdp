@@ -104,6 +104,10 @@ public class MenuController {
 											+ "&treepinfo_index_id="
 											+ app.getRefId2();
 								}
+
+								if (StringUtils.isNotEmpty(app.getLinkParam())) {
+									url = url + "&" + app.getLinkParam();
+								}
 							}
 							logger.debug(url);
 							response.sendRedirect(url);

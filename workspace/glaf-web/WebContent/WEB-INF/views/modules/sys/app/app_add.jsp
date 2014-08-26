@@ -130,6 +130,8 @@
 			</div>
 			<div id="divDir" style="display:none;">
 		        <input type="file" id="linkFileName" name="linkFileName"  class="input " size="35">
+				<br>链接参数<br>
+				<textarea id="linkParam" name="linkParam" cols="42" rows="4" class="input-multi " datatype="string" nullable="yes" maxsize="100" chname="链接参数"></textarea>
 			</div>
 		</td>
 	</tr>

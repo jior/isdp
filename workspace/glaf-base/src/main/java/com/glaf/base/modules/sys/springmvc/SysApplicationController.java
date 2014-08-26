@@ -261,6 +261,7 @@ public class SysApplicationController {
 		bean.setDesc(ParamUtil.getParameter(req, "desc"));
 		bean.setUrl(ParamUtil.getParameter(req, "url"));
 		bean.setShowMenu(ParamUtil.getIntParameter(req, "showMenu", 0));
+		bean.setLinkParam(ParamUtil.getParameter(req, "linkParam"));
 		bean.setRefId1(ParamUtil.getIntParameter(req, "refId1", 0));
 		bean.setRefName1(ParamUtil.getParameter(req, "refName1"));
 		bean.setRefId2(ParamUtil.getIntParameter(req, "refId2", 0));
@@ -328,6 +329,7 @@ public class SysApplicationController {
 			bean.setDesc(ParamUtil.getParameter(req, "desc"));
 			bean.setUrl(ParamUtil.getParameter(req, "url"));
 			bean.setShowMenu(ParamUtil.getIntParameter(req, "showMenu", 0));
+			bean.setLinkParam(ParamUtil.getParameter(req, "linkParam"));
 			bean.setUpdateBy(RequestUtils.getActorId(request));
 			bean.setLocked(ParamUtil.getIntParameter(req, "locked", 0));
 			bean.setRefId1(ParamUtil.getIntParameter(req, "refId1", 0));

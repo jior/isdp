@@ -176,6 +176,8 @@
 				<br><br>如需更换链接文件<a href="<%=request.getContextPath()%>/mx/lob/lob/download?fileId=${bean.linkFileId}" target="newFrame">${bean.linkFileName}</a>，请重新上传。
                 </c:if>
 				<iframe id="newFrame" name="newFrame" width="0" height="0"></iframe>
+				<br>链接参数<br>
+				<textarea id="linkParam" name="linkParam" cols="42" rows="4" class="input-multi " datatype="string" nullable="yes" maxsize="100" chname="链接参数"><%=bean.getLinkParam() != null ? bean.getLinkParam() :""%></textarea>
 			</div>
 		</td>
 	  </tr>
