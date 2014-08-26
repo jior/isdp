@@ -53,8 +53,7 @@ public class DatabaseReportlet extends Reportlet {
 			if (reportletRequest.getParameter("datasourceJson") != null) {
 				String datasourceJson = reportletRequest.getParameter(
 						"datasourceJson").toString();
-				String path = SystemProperties.getConfigRootPath() + "/key";
-				String key = SystemProperties.getSecurityKey(path);
+				String key = SystemProperties.getDefaultSecurityKey();
 				datasourceJson = SecurityUtils.decode(key, datasourceJson);
 				JSONObject jsonObject = JSON.parseObject(datasourceJson);
 				// 定义数据连接
