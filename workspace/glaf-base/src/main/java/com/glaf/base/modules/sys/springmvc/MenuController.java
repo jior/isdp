@@ -15,8 +15,10 @@ import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.service.SysApplicationService;
 import com.glaf.core.config.DBConfiguration;
 import com.glaf.core.config.SystemConfig;
+import com.glaf.core.config.SystemProperties;
 import com.glaf.core.config.ViewProperties;
 import com.glaf.core.security.LoginContext;
+import com.glaf.core.security.SecurityUtils;
 import com.glaf.core.util.RequestUtils;
 
 @Controller("menu")
@@ -109,6 +111,11 @@ public class MenuController {
 									url = url + "&" + app.getLinkParam();
 								}
 							}
+							String key = SystemProperties
+									.getDefaultSecurityKey();
+							String actorId = SecurityUtils.encode(key,
+									loginContext.getActorId());
+							url = url + "&security_actorId=" + actorId;
 							logger.debug(url);
 							response.sendRedirect(url);
 						} else {
