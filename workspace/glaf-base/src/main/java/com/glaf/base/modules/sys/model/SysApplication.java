@@ -149,6 +149,33 @@ public class SysApplication implements Serializable, JSONable {
 	@javax.persistence.Transient
 	protected byte[] linkFileContent;
 
+	/**
+	 * printType
+	 */
+	@Column(name = "PRINTTYPE", length = 50)
+	protected String printType;
+
+	/**
+	 * printFileName
+	 */
+	@Column(name = "PRINTFILEID", length = 200)
+	protected String printFileId;
+
+	/**
+	 * printFileName
+	 */
+	@Column(name = "PRINTFILENAME", length = 200)
+	protected String printFileName;
+
+	/**
+	 * printParam
+	 */
+	@Column(name = "PRINTPARAM", length = 500)
+	protected String printParam;
+
+	@javax.persistence.Transient
+	protected byte[] printFileContent;
+
 	@Column(name = "REFID1")
 	protected Integer refId1;
 
@@ -257,6 +284,26 @@ public class SysApplication implements Serializable, JSONable {
 
 	public long getNodeId() {
 		return nodeId;
+	}
+
+	public byte[] getPrintFileContent() {
+		return printFileContent;
+	}
+
+	public String getPrintFileId() {
+		return printFileId;
+	}
+
+	public String getPrintFileName() {
+		return printFileName;
+	}
+
+	public String getPrintParam() {
+		return printParam;
+	}
+
+	public String getPrintType() {
+		return printType;
 	}
 
 	public Integer getRefId1() {
@@ -385,6 +432,26 @@ public class SysApplication implements Serializable, JSONable {
 
 	public void setNodeId(long nodeId) {
 		this.nodeId = nodeId;
+	}
+
+	public void setPrintFileContent(byte[] printFileContent) {
+		this.printFileContent = printFileContent;
+	}
+
+	public void setPrintFileId(String printFileId) {
+		this.printFileId = printFileId;
+	}
+
+	public void setPrintFileName(String printFileName) {
+		this.printFileName = printFileName;
+	}
+
+	public void setPrintParam(String printParam) {
+		this.printParam = printParam;
+	}
+
+	public void setPrintType(String printType) {
+		this.printType = printType;
 	}
 
 	public void setRefId1(Integer refId1) {

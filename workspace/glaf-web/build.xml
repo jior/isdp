@@ -73,7 +73,7 @@
 	<target name="javadoc" description="Generate JavaDoc API docs">
 		<delete dir="${doc.path}" />
 		<mkdir dir="${doc.path}" />
-		<javadoc sourcepath="${doc.src}" destdir="${doc.path}" packagenames="*" author="true" private="true" version="true" windowtitle="${project.title} API Documentation" doctitle="&lt;h1&gt;${project.title} Documentation (Version ${project.version})&lt;/h1&gt;" bottom="Copyright &#169; 2012">
+		<javadoc sourcepath="${doc.src}" destdir="${doc.path}" packagenames="*" author="true" private="true" version="true" windowtitle="${project.title} API Documentation" doctitle="&lt;h1&gt;${project.title} Documentation (Version ${project.version})&lt;/h1&gt;" bottom="Copyright &#169; 2014">
 			<classpath refid="compile.classpath" />
 		</javadoc>
 	</target>

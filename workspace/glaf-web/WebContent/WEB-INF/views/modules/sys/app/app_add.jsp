@@ -135,6 +135,17 @@
 			</div>
 		</td>
 	</tr>
+
+	<tr>
+		<td width="30%" align="left" valign="top">打印模板</td>
+		<td width="70%" align="left" valign="top" >  
+			<div id="divDir2" style="display:block;">
+		        <input type="file" id="printFileName" name="printFileName"  class="input " size="35">
+				<br>模板链接参数<br>
+				<textarea id="printParam" name="printParam" cols="42" rows="4" class="input-multi " datatype="string" nullable="yes" maxsize="100" chname="链接参数"></textarea>
+			</div>
+		</td>
+	</tr>
  
 	<tr>
         <td class="input-box2" valign="top">关联菜单</td>

@@ -262,6 +262,7 @@ public class SysApplicationController {
 		bean.setUrl(ParamUtil.getParameter(req, "url"));
 		bean.setShowMenu(ParamUtil.getIntParameter(req, "showMenu", 0));
 		bean.setLinkParam(ParamUtil.getParameter(req, "linkParam"));
+		bean.setPrintParam(ParamUtil.getParameter(req, "printParam"));
 		bean.setRefId1(ParamUtil.getIntParameter(req, "refId1", 0));
 		bean.setRefName1(ParamUtil.getParameter(req, "refName1"));
 		bean.setRefId2(ParamUtil.getIntParameter(req, "refId2", 0));
@@ -285,16 +286,29 @@ public class SysApplicationController {
 		Set<Entry<String, MultipartFile>> entrySet = fileMap.entrySet();
 		for (Entry<String, MultipartFile> entry : entrySet) {
 			MultipartFile mFile = entry.getValue();
-			if (mFile.getOriginalFilename() != null && mFile.getSize() > 0) {
-				String filename = mFile.getOriginalFilename();
-				bean.setLinkFileName(filename);
-				bean.setLinkType("T");
-				try {
-					bean.setLinkFileContent(mFile.getBytes());
-				} catch (IOException ex) {
-					ex.printStackTrace();
+			if (StringUtils.equals(mFile.getName(), "linkFileName")) {
+				if (mFile.getOriginalFilename() != null && mFile.getSize() > 0) {
+					String filename = mFile.getOriginalFilename();
+					bean.setLinkFileName(filename);
+					bean.setLinkType("T");
+					try {
+						bean.setLinkFileContent(mFile.getBytes());
+					} catch (IOException ex) {
+						ex.printStackTrace();
+					}
 				}
-				break;
+			}
+			if (StringUtils.equals(mFile.getName(), "printFileName")) {
+				if (mFile.getOriginalFilename() != null && mFile.getSize() > 0) {
+					String filename = mFile.getOriginalFilename();
+					bean.setPrintFileName(filename);
+					bean.setPrintType("T");
+					try {
+						bean.setPrintFileContent(mFile.getBytes());
+					} catch (IOException ex) {
+						ex.printStackTrace();
+					}
+				}
 			}
 		}
 
@@ -330,6 +344,7 @@ public class SysApplicationController {
 			bean.setUrl(ParamUtil.getParameter(req, "url"));
 			bean.setShowMenu(ParamUtil.getIntParameter(req, "showMenu", 0));
 			bean.setLinkParam(ParamUtil.getParameter(req, "linkParam"));
+			bean.setPrintParam(ParamUtil.getParameter(req, "printParam"));
 			bean.setUpdateBy(RequestUtils.getActorId(request));
 			bean.setLocked(ParamUtil.getIntParameter(req, "locked", 0));
 			bean.setRefId1(ParamUtil.getIntParameter(req, "refId1", 0));
@@ -354,16 +369,31 @@ public class SysApplicationController {
 			Set<Entry<String, MultipartFile>> entrySet = fileMap.entrySet();
 			for (Entry<String, MultipartFile> entry : entrySet) {
 				MultipartFile mFile = entry.getValue();
-				if (mFile.getOriginalFilename() != null && mFile.getSize() > 0) {
-					String filename = mFile.getOriginalFilename();
-					bean.setLinkFileName(filename);
-					bean.setLinkType("T");
-					try {
-						bean.setLinkFileContent(mFile.getBytes());
-					} catch (IOException ex) {
-						ex.printStackTrace();
+				if (StringUtils.equals(mFile.getName(), "linkFileName")) {
+					if (mFile.getOriginalFilename() != null
+							&& mFile.getSize() > 0) {
+						String filename = mFile.getOriginalFilename();
+						bean.setLinkFileName(filename);
+						bean.setLinkType("T");
+						try {
+							bean.setLinkFileContent(mFile.getBytes());
+						} catch (IOException ex) {
+							ex.printStackTrace();
+						}
 					}
-					break;
+				}
+				if (StringUtils.equals(mFile.getName(), "printFileName")) {
+					if (mFile.getOriginalFilename() != null
+							&& mFile.getSize() > 0) {
+						String filename = mFile.getOriginalFilename();
+						bean.setPrintFileName(filename);
+						bean.setPrintType("T");
+						try {
+							bean.setPrintFileContent(mFile.getBytes());
+						} catch (IOException ex) {
+							ex.printStackTrace();
+						}
+					}
 				}
 			}
 		}

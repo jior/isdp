@@ -23,6 +23,11 @@
 		<result property="linkFileId" column="LINKFILEID" jdbcType="VARCHAR" />
 		<result property="linkFileName" column="LINKFILENAME" jdbcType="VARCHAR" />
 		<result property="linkParam" column="LINKPARAM" jdbcType="VARCHAR" />
+		<result property="printType" column="PRINTTYPE" jdbcType="VARCHAR" />
+		<result property="printFileId" column="PRINTFILEID" jdbcType="VARCHAR" />
+		<result property="printFileName" column="PRINTFILENAME"
+			jdbcType="VARCHAR" />
+		<result property="printParam" column="PRINTPARAM" jdbcType="VARCHAR" />
 		<result property="refId1" column="REFID1" jdbcType="INTEGER" />
 		<result property="refName1" column="REFNAME1" jdbcType="VARCHAR" />
 		<result property="refId2" column="REFID2" jdbcType="INTEGER" />
@@ -81,6 +86,18 @@
 			</if>
 			<if test="linkParam != null">
 				,LINKPARAM
+			</if>
+			<if test="printType != null">
+				,PRINTTYPE
+			</if>
+			<if test="printFileId != null">
+				,PRINTFILEID
+			</if>
+			<if test="printFileName != null">
+				,PRINTFILENAME
+			</if>
+			<if test="printParam != null">
+				,PRINTPARAM
 			</if>
 			<if test="refId1 != null">
 				,REFID1
@@ -164,6 +181,18 @@
 			</if>
 			<if test="linkParam != null">
 				,#{linkParam, jdbcType=VARCHAR}
+			</if>
+			<if test="printType != null">
+				,#{printType, jdbcType=VARCHAR}
+			</if>
+			<if test="printFileId != null">
+				,#{printFileId, jdbcType=VARCHAR}
+			</if>
+			<if test="printFileName != null">
+				,#{printFileName, jdbcType=VARCHAR}
+			</if>
+			<if test="printParam != null">
+				,#{printParam, jdbcType=VARCHAR}
 			</if>
 			<if test="refId1 != null">
 				,#{refId1, jdbcType=INTEGER}
@@ -250,6 +279,18 @@
 			</if>
 			<if test="linkParam != null">
 				LINKPARAM = #{linkParam, jdbcType=VARCHAR},
+			</if>
+			<if test="printType != null">
+				PRINTTYPE = #{printType, jdbcType=VARCHAR},
+			</if>
+			<if test="printFileId != null">
+				PRINTFILEID = #{printFileId, jdbcType=VARCHAR},
+			</if>
+			<if test="printFileName != null">
+				PRINTFILENAME = #{printFileName, jdbcType=VARCHAR},
+			</if>
+			<if test="printParam != null">
+				PRINTPARAM = #{printParam, jdbcType=VARCHAR},
 			</if>
 			<if test="refId1 != null">
 				REFID1 = #{refId1, jdbcType=INTEGER},
@@ -357,7 +398,8 @@
 		E.id = A.appId
 		where A.roleId in (
 		select R.id from net_role R
-		inner join userrole UR
+		inner join
+		userrole UR
 		on R.id = UR.roleid
 		where UR.userid = #{userId}
 		)
