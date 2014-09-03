@@ -81,6 +81,12 @@ public class MenuController {
 										+ System.currentTimeMillis();
 							}
 
+							String key = SystemProperties
+									.getDefaultSecurityKey();
+
+							String actorId = SecurityUtils.encode(key,
+									loginContext.getActorId());
+
 							if (StringUtils.endsWithIgnoreCase(
 									app.getLinkFileName(), ".cpt")) {
 								url = SystemConfig
@@ -111,10 +117,16 @@ public class MenuController {
 									url = url + "&" + app.getLinkParam();
 								}
 							}
-							String key = SystemProperties
-									.getDefaultSecurityKey();
-							String actorId = SecurityUtils.encode(key,
-									loginContext.getActorId());
+
+							if (StringUtils.endsWithIgnoreCase(
+									app.getPrintFileName(), ".cpt")) {
+								url = url + "&printFileId="
+										+ app.getPrintFileId();
+								if (StringUtils.isNotEmpty(app.getPrintParam())) {
+									url = url + "&" + app.getPrintParam();
+								}
+							}
+
 							url = url + "&security_actorId=" + actorId;
 							logger.debug(url);
 							response.sendRedirect(url);
