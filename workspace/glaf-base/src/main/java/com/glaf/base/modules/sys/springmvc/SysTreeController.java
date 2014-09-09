@@ -227,7 +227,7 @@ public class SysTreeController {
 	@RequestMapping("/prepareAdd")
 	public ModelAndView prepareAdd(HttpServletRequest request, ModelMap modelMap) {
 		request.setAttribute("contextPath", request.getContextPath());
-
+		
 		String x_view = ViewProperties.getString("tree.prepareAdd");
 		if (StringUtils.isNotEmpty(x_view)) {
 			return new ModelAndView(x_view, modelMap);
@@ -255,7 +255,7 @@ public class SysTreeController {
 		}
 		request.setAttribute("bean", bean);
 		List<SysTree> list = new ArrayList<SysTree>();
-		sysTreeService.getSysTree(list, 0, 0);
+		sysTreeService.getSysTree(list, 1, 0);
 		request.setAttribute("parent", list);
 
 		String x_view = ViewProperties.getString("tree.prepareModify");
