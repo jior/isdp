@@ -22,8 +22,5 @@
 		<many-to-one name="user" class="SysUser" column="userId"
 			cascade="none" not-found="ignore" foreign-key="FK_USERROLE_USER"/>
 
-		<many-to-one name="deptRole" class="SysDeptRole" column="roleId"
-			cascade="none" not-found="ignore" foreign-key="FK_USERROLE_DEPTROLE"/>
-
 	</class>
 </hibernate-mapping>

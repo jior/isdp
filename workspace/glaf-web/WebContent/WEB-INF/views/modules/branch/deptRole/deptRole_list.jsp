@@ -10,12 +10,8 @@
 	String context = request.getContextPath();
 	SysDepartment department = (SysDepartment)request.getAttribute("department");
 	List list = (List)request.getAttribute("list");
-	Set roleId=new HashSet();
-	Iterator roles = department.getRoles().iterator();
-	while(roles.hasNext()){
-	  SysDeptRole deptRole=(SysDeptRole)roles.next();    
-	  roleId.add(deptRole.getRole().getId());  
-	}
+	Set roleIds=new HashSet();
+	 
 %>
 <!DOCTYPE html>
 <html>
@@ -59,7 +55,9 @@ if(list!=null){
 		&& ( StringUtils.startsWithIgnoreCase(bean.getCode(), SysConstants.BRANCH_PREFIX) || StringUtils.equals(bean.getIsUseBranch(), "Y"))) {	
 %>  
   <tr <%=i%2==0?"":"class='list-back'"%>> 
-    <td class="td-cb"> <input type="checkbox" name="id" value="<%=bean.getId()%>" <%=roleId.contains(new Long(bean.getId()))?"checked":""%>>    </td>
+    <td class="td-cb"> 
+	  <input type="checkbox" name="id" value="<%=bean.getId()%>" <%=roleIds.contains(bean.getId())?"checked":""%>>    
+	</td>
     <td class="td-no"><%=i+1%></td>
     <td class="td-text"> <%=bean.getName()%>&nbsp; </td>
     <td class="td-text"> 
