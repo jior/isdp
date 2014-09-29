@@ -18,13 +18,11 @@
 
 package com.glaf.base.modules.sys.service;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.glaf.base.modules.sys.model.SysDeptRole;
 import com.glaf.base.modules.sys.model.SysRole;
 import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.model.UserRole;
@@ -79,17 +77,6 @@ public interface SysUserService {
 
 	@Transactional
 	void deleteRoleUser(long roleId, String actorId);
-	
-	
-
-	/**
-	 * 删除部门角色用户
-	 * 
-	 * @param deptRole
-	 * @param userIds
-	 */
-	@Transactional
-	void deleteRoleUsers(SysDeptRole deptRole, String[] userIds);
 
 	/**
 	 * 删除部门角色用户
@@ -144,13 +131,6 @@ public interface SysUserService {
 	 * @return SysUser
 	 */
 	SysUser findByMobile(String mobile);
-
-	/**
-	 * 
-	 * @param user
-	 * @return
-	 */
-	Collection<SysDeptRole> getDeptRoles(SysUser user);
 
 	String getPasswordByAccount(String account);
 
@@ -325,19 +305,6 @@ public interface SysUserService {
 	 */
 	@Transactional
 	boolean update(SysUser bean);
-
-	/**
-	 * 设置用户权限
-	 * 
-	 * @param user
-	 *            系统用户
-	 * @param delRoles
-	 *            要删除的用户权限
-	 * @param newRoles
-	 *            要增加的用户权限
-	 */
-	@Transactional
-	boolean updateRole(SysUser user, Set<SysDeptRole> newRoles);
 
 	/**
 	 * 修改用户信息

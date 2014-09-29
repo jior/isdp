@@ -37,7 +37,6 @@ import com.glaf.base.modules.sys.model.SysDepartment;
 import com.glaf.base.modules.sys.model.SysRole;
 import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.service.SysApplicationService;
-import com.glaf.base.modules.sys.service.SysDeptRoleService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.service.SysUserRoleService;
@@ -55,8 +54,6 @@ public class BaseIdentityFactory {
 	protected static volatile SysApplicationService sysApplicationService;
 
 	protected static volatile SysDepartmentService sysDepartmentService;
-
-	protected static volatile SysDeptRoleService sysDeptRoleService;
 
 	protected static volatile SysRoleService sysRoleService;
 
@@ -393,13 +390,6 @@ public class BaseIdentityFactory {
 		return sysDepartmentService;
 	}
 
-	public static SysDeptRoleService getSysDeptRoleService() {
-		if (sysDeptRoleService == null) {
-			sysDeptRoleService = ContextFactory.getBean("sysDeptRoleService");
-		}
-		return sysDeptRoleService;
-	}
-
 	public static SysRoleService getSysRoleService() {
 		if (sysRoleService == null) {
 			sysRoleService = ContextFactory.getBean("sysRoleService");
@@ -545,11 +535,6 @@ public class BaseIdentityFactory {
 	public static void setSysDepartmentService(
 			SysDepartmentService sysDepartmentService) {
 		BaseIdentityFactory.sysDepartmentService = sysDepartmentService;
-	}
-
-	public static void setSysDeptRoleService(
-			SysDeptRoleService sysDeptRoleService) {
-		BaseIdentityFactory.sysDeptRoleService = sysDeptRoleService;
 	}
 
 	public static void setSysRoleService(SysRoleService sysRoleService) {

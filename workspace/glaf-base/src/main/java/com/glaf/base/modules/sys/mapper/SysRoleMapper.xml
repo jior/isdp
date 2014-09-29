@@ -145,44 +145,6 @@
 	</select>
 
 
-	<select id="getSysRolesOfDepts" parameterType="com.glaf.base.modules.sys.query.SysDepartmentQuery"
-		resultMap="sysRoleResultMap">
-
-		select R.* from net_role R
-		inner join sys_dept_role DR
-		on DR.ROLEID =
-		R.ID
-		inner join sys_department D
-		on DR.DEPTID = D.ID
-		where 1=1
-
-		<choose>
-			<when test="nodeIds != null and nodeIds.size !=0 ">
-				and D.NODEID IN
-				<foreach item="x_nodeId" index="index" collection="nodeIds"
-					open="(" separator="," close=")">
-					#{x_nodeId}
-				</foreach>
-			</when>
-			<otherwise>
-				and D.NODEID = #{nodeId}
-			</otherwise>
-		</choose>
-
-	</select>
-
-
-	<select id="getSysRolesOfDeptRole" parameterType="long"
-		resultMap="sysRoleResultMap">
-
-		select * from net_role R
-		inner join sys_dept_role DR
-		on R.ID =
-		DR.ROLEID
-		where R.ID = #{roleId}
-
-	</select>
-
 	<select id="getSysRolesOfUser" parameterType="string" resultMap="sysRoleResultMap">
 
 		select R.* from net_role R

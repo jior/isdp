@@ -21,9 +21,7 @@ package com.glaf.base.modules.sys.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.*;
 
@@ -110,9 +108,6 @@ public class SysDepartment implements Serializable, JSONable {
 
 	@javax.persistence.Transient
 	private SysDepartment parent;
-
-	@javax.persistence.Transient
-	private Set<SysDeptRole> roles = new HashSet<SysDeptRole>();
 
 	/**
 	 * 序号
@@ -227,13 +222,6 @@ public class SysDepartment implements Serializable, JSONable {
 		return parent;
 	}
 
-	public Set<SysDeptRole> getRoles() {
-		if (roles == null) {
-			roles = new HashSet<SysDeptRole>();
-		}
-		return roles;
-	}
-
 	public int getSort() {
 		return sort;
 	}
@@ -316,10 +304,6 @@ public class SysDepartment implements Serializable, JSONable {
 
 	public void setParent(SysDepartment parent) {
 		this.parent = parent;
-	}
-
-	public void setRoles(Set<SysDeptRole> roles) {
-		this.roles = roles;
 	}
 
 	public void setSort(int sort) {

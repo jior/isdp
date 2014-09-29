@@ -23,6 +23,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.RowBounds;
@@ -33,14 +34,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.glaf.base.modules.sys.SysConstants;
-import com.glaf.base.modules.sys.mapper.SysDeptRoleMapper;
 import com.glaf.base.modules.sys.mapper.SysRoleMapper;
 import com.glaf.base.modules.sys.model.SysRole;
-import com.glaf.base.modules.sys.query.SysDepartmentQuery;
 import com.glaf.base.modules.sys.query.SysRoleQuery;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.util.SysRoleJsonFactory;
-
 import com.glaf.core.cache.CacheFactory;
 import com.glaf.core.config.SystemConfig;
 import com.glaf.core.id.IdGenerator;
@@ -55,8 +53,6 @@ public class SysRoleServiceImpl implements SysRoleService {
 	protected IdGenerator idGenerator;
 
 	protected SqlSessionTemplate sqlSessionTemplate;
-
-	protected SysDeptRoleMapper sysDeptRoleMapper;
 
 	protected SysRoleMapper sysRoleMapper;
 
@@ -105,9 +101,9 @@ public class SysRoleServiceImpl implements SysRoleService {
 	@Transactional
 	public void deleteById(Long id) {
 		if (id != null) {
-			List<SysRole> roles = sysRoleMapper.getSysRolesOfDeptRole(id);
-			if (roles != null && !roles.isEmpty()) {
-				throw new RuntimeException("Can't delete role");
+			SysRole role = sysRoleMapper.getSysRoleById(id);
+			if (role != null && StringUtils.equals(role.getType(), "SYS")) {
+				throw new RuntimeException("Can't delete sys role");
 			} else {
 				sysRoleMapper.deleteSysRoleById(id);
 			}
@@ -185,10 +181,6 @@ public class SysRoleServiceImpl implements SysRoleService {
 		return list;
 	}
 
-	public List<SysRole> getSysRolesOfDepts(SysDepartmentQuery query) {
-		return sysRoleMapper.getSysRolesOfDepts(query);
-	}
-
 	public PageResult getSysRoleList(int pageNo, int pageSize) {
 		// 计算总数
 		PageResult pager = new PageResult();
@@ -246,11 +238,6 @@ public class SysRoleServiceImpl implements SysRoleService {
 	@Resource
 	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
 		this.sqlSessionTemplate = sqlSessionTemplate;
-	}
-
-	@Resource
-	public void setSysDeptRoleMapper(SysDeptRoleMapper sysDeptRoleMapper) {
-		this.sysDeptRoleMapper = sysDeptRoleMapper;
 	}
 
 	@Resource

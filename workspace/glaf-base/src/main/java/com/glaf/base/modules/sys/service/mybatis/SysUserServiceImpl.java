@@ -19,7 +19,6 @@
 package com.glaf.base.modules.sys.service.mybatis;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -41,7 +40,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.glaf.base.modules.sys.mapper.SysAccessMapper;
 import com.glaf.base.modules.sys.mapper.SysApplicationMapper;
-import com.glaf.base.modules.sys.mapper.SysDeptRoleMapper;
 import com.glaf.base.modules.sys.mapper.SysFunctionMapper;
 import com.glaf.base.modules.sys.mapper.SysPermissionMapper;
 import com.glaf.base.modules.sys.mapper.SysRoleMapper;
@@ -49,13 +47,11 @@ import com.glaf.base.modules.sys.mapper.SysUserMapper;
 import com.glaf.base.modules.sys.mapper.SysUserRoleMapper;
 import com.glaf.base.modules.sys.model.SysApplication;
 import com.glaf.base.modules.sys.model.SysDepartment;
-import com.glaf.base.modules.sys.model.SysDeptRole;
 import com.glaf.base.modules.sys.model.SysFunction;
 import com.glaf.base.modules.sys.model.SysRole;
 import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.model.SysUserRole;
 import com.glaf.base.modules.sys.model.UserRole;
-import com.glaf.base.modules.sys.query.SysDeptRoleQuery;
 import com.glaf.base.modules.sys.query.SysUserQuery;
 import com.glaf.base.modules.sys.query.UserRoleQuery;
 import com.glaf.base.modules.sys.service.SysDepartmentService;
@@ -89,8 +85,6 @@ public class SysUserServiceImpl implements SysUserService {
 
 	protected SysDepartmentService sysDepartmentService;
 
-	protected SysDeptRoleMapper sysDeptRoleMapper;
-
 	protected SysFunctionMapper sysFunctionMapper;
 
 	protected SysPermissionMapper sysPermissionMapper;
@@ -110,22 +104,6 @@ public class SysUserServiceImpl implements SysUserService {
 	@Transactional
 	public void createRoleUser(long roleId, String actorId) {
 		SysUser user = this.findByAccount(actorId);
-		SysDeptRoleQuery query = new SysDeptRoleQuery();
-		query.deptId(user.getDeptId());
-		query.roleId(roleId);
-		SysDeptRole deptRole = null;
-		List<SysDeptRole> list = sysDeptRoleMapper.getSysDeptRoles(query);
-		if (list != null && !list.isEmpty()) {
-			deptRole = list.get(0);
-		} else {
-			deptRole = new SysDeptRole();
-			deptRole.setId(idGenerator.nextId());
-			deptRole.setDeptId(user.getDeptId());
-			deptRole.setRoleId(roleId);
-			deptRole.setCreateDate(new Date());
-			deptRole.setGrade(0);
-			sysDeptRoleMapper.insertSysDeptRole(deptRole);
-		}
 
 		TableModel table = new TableModel();
 		table.setTableName("userrole");
@@ -214,36 +192,6 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
 	/**
-	 * 删除部门角色用户
-	 * 
-	 * @param deptRole
-	 * @param userIds
-	 */
-	@Transactional
-	public void deleteRoleUsers(SysDeptRole deptRole, String[] userIds) {
-		for (int i = 0; i < userIds.length; i++) {
-			SysUser user = this.findById(userIds[i]);
-			if (user != null) {
-				logger.debug(user.getName());
-				TableModel table = new TableModel();
-				table.setTableName("userrole");
-				table.addIntegerColumn("AUTHORIZED", 0);
-				table.addStringColumn("ROLEID",
-						String.valueOf(deptRole.getRoleId()));
-				table.addStringColumn("USERID", user.getActorId());
-				tableDataService.deleteTableData(table);
-
-				TableModel table2 = new TableModel();
-				table2.setTableName("SYS_MEMBERSHIP");
-				table2.addStringColumn("ACTORID_", user.getAccount());
-				table2.addLongColumn("ROLEID_", deptRole.getRoleId());
-				table2.addLongColumn("NODEID_", deptRole.getDeptId());
-				tableDataService.deleteTableData(table2);
-			}
-		}
-	}
-
-	/**
 	 * 删除角色用户
 	 * 
 	 * @param role
@@ -298,9 +246,6 @@ public class SysUserServiceImpl implements SysUserService {
 			List<SysUserRole> userRoles = sysUserRoleMapper
 					.getSysUserRolesByUserId(user.getActorId());
 			user.getUserRoles().addAll(userRoles);
-			List<SysDeptRole> deptRoles = sysDeptRoleMapper
-					.getSysDeptRolesByUserId(user.getActorId());
-			user.getDeptRoles().addAll(deptRoles);
 			List<SysApplication> apps = sysApplicationMapper
 					.getSysApplicationByUserId(user.getActorId());
 			user.getApps().addAll(apps);
@@ -346,8 +291,7 @@ public class SysUserServiceImpl implements SysUserService {
 		SysUser user = sysUserMapper.getSysUserByMobile(mobile);
 		return user;
 	}
-	
-	
+
 	public String getPasswordByAccount(String account) {
 		return sysUserMapper.getPasswordByAccount(account);
 	}
@@ -361,10 +305,6 @@ public class SysUserServiceImpl implements SysUserService {
 			}
 		}
 		return deptMap;
-	}
-
-	public Collection<SysDeptRole> getDeptRoles(SysUser user) {
-		return sysDeptRoleMapper.getSysDeptRolesByUserId(user.getAccount());
 	}
 
 	public List<SysUser> getSuperiors(String account) {
@@ -539,9 +479,8 @@ public class SysUserServiceImpl implements SysUserService {
 		if (roleCode == null) {
 			return null;
 		}
-		SysDeptRoleQuery query = new SysDeptRoleQuery();
-		query.setRoleCode(roleCode);
-		return sysUserMapper.getSysDeptRoleUsers(query);
+		// Fix me
+		return null;
 	}
 
 	/**
@@ -551,9 +490,8 @@ public class SysUserServiceImpl implements SysUserService {
 	 * @return
 	 */
 	public List<SysUser> getSysUsersByRoleId(long roleId) {
-		SysDeptRoleQuery query = new SysDeptRoleQuery();
-		query.setRoleId(roleId);
-		return sysUserMapper.getSysDeptRoleUsers(query);
+		// Fix me
+		return null;
 	}
 
 	public List<SysUser> getSysUserWithDeptList() {
@@ -566,19 +504,6 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
 	public SysUser getUserAndPrivileges(SysUser user) {
-		user.setDeptRoles(getDeptRoles(user));
-		if (user.getDeptRoles() != null && !user.getDeptRoles().isEmpty()) {
-			Iterator<SysDeptRole> deptRoles = user.getDeptRoles().iterator();
-			while (deptRoles.hasNext()) {
-				SysDeptRole role = deptRoles.next();
-				List<SysApplication> apps = sysApplicationMapper
-						.getSysApplicationByRoleId(role.getRoleId());
-				List<SysFunction> functions = sysFunctionMapper
-						.getSysFunctionByRoleId(role.getRoleId());
-				user.getFunctions().addAll(functions);
-				user.getApps().addAll(apps);
-			}
-		}
 
 		List<String> actorIds = new ArrayList<String>();
 		actorIds.add(user.getActorId());
@@ -600,20 +525,6 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
 	public SysUser getUserPrivileges(SysUser user) {
-		user.setDeptRoles(getDeptRoles(user));
-		if (user.getDeptRoles() != null && !user.getDeptRoles().isEmpty()) {
-			Iterator<SysDeptRole> deptRoles = user.getDeptRoles().iterator();
-			while (deptRoles.hasNext()) {
-				SysDeptRole role = deptRoles.next();
-				List<SysApplication> apps = sysApplicationMapper
-						.getSysApplicationByRoleId(role.getRoleId());
-				List<SysFunction> functions = sysFunctionMapper
-						.getSysFunctionByRoleId(role.getRoleId());
-				user.getFunctions().addAll(functions);
-				user.getApps().addAll(apps);
-			}
-		}
-
 		List<String> actorIds = new ArrayList<String>();
 		actorIds.add(user.getActorId());
 		user.setRoles(getUserRoles(actorIds));
@@ -687,21 +598,6 @@ public class SysUserServiceImpl implements SysUserService {
 
 	public boolean isPermission(SysUser user, String roleCode) {
 		boolean flag = false;
-		Collection<SysDeptRole> deptRoles = this.getDeptRoles(user);
-		if (deptRoles != null && !deptRoles.isEmpty()) {
-			Iterator<SysDeptRole> it = deptRoles.iterator();
-			while (it.hasNext()) {
-				SysDeptRole deptRole = (SysDeptRole) it.next();
-				SysRole role = sysRoleMapper.getSysRoleById(deptRole
-						.getRoleId());
-				if (role != null
-						&& StringUtils.equals(role.getCode(), roleCode)) {
-					// 代判断用户是否拥有此角色
-					flag = true;
-					break;
-				}
-			}
-		}
 
 		List<String> actorIds = new ArrayList<String>();
 		actorIds.add(user.getActorId());
@@ -799,11 +695,6 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
 	@Resource
-	public void setSysDeptRoleMapper(SysDeptRoleMapper sysDeptRoleMapper) {
-		this.sysDeptRoleMapper = sysDeptRoleMapper;
-	}
-
-	@Resource
 	public void setSysFunctionMapper(SysFunctionMapper sysFunctionMapper) {
 		this.sysFunctionMapper = sysFunctionMapper;
 	}
@@ -868,54 +759,6 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
 	@Transactional
-	public boolean updateRole(SysUser user, Set<SysDeptRole> newRoles) {
-		// 先删除用户之前的权限
-		List<SysUserRole> userRoles = sysUserRoleMapper
-				.getSysUserRolesByUserId(user.getActorId());
-		if (userRoles != null && !userRoles.isEmpty()) {
-			for (SysUserRole userRole : userRoles) {
-				TableModel table = new TableModel();
-				table.setTableName("userrole");
-				table.addStringColumn("userId", user.getActorId());
-				table.addStringColumn("roleId", userRole.getRoleId());
-				tableDataService.deleteTableData(table);
-			}
-		}
-
-		List<Membership> memberships = new ArrayList<Membership>();
-
-		// 增加新权限
-		if (newRoles != null && !newRoles.isEmpty()) {
-			Iterator<SysDeptRole> iter = newRoles.iterator();
-			while (iter.hasNext()) {
-				SysDeptRole deptRole = iter.next();
-				SysUserRole userRole = new SysUserRole();
-				userRole.setId(idGenerator.getNextId());
-				userRole.setUserId(user.getActorId());
-				userRole.setRoleId(String.valueOf(deptRole.getId()));
-				userRole.setCreateDate(new Date());
-				userRole.setCreateBy(user.getUpdateBy());
-				sysUserRoleMapper.insertSysUserRole(userRole);
-
-				Membership membership = new Membership();
-				membership.setActorId(user.getAccount());
-				membership.setModifyBy(user.getUpdateBy());
-				membership.setModifyDate(new java.util.Date());
-				membership.setNodeId(deptRole.getDeptId());
-				membership.setRoleId(deptRole.getRoleId());
-				membership.setObjectId("userrole");
-				membership.setObjectValue(String.valueOf(userRole.getId()));
-				memberships.add(membership);
-			}
-		}
-
-		membershipService.saveMemberships(user.getDeptId(), "UserRole",
-				memberships);
-
-		return true;
-	}
-
-	@Transactional
 	public boolean updateUser(SysUser sysUser) {
 		sysUserMapper.updateSysUser(sysUser);
 		String cacheKey = "sys_user_" + sysUser.getActorId();
@@ -950,22 +793,6 @@ public class SysUserServiceImpl implements SysUserService {
 			Iterator<SysRole> iter = newRoles.iterator();
 			while (iter.hasNext()) {
 				SysRole role = iter.next();
-				SysDeptRoleQuery query = new SysDeptRoleQuery();
-				query.setDeptId(user.getDeptId());
-				query.setRoleId(role.getId());
-				List<SysDeptRole> deptRoles = sysDeptRoleMapper
-						.getSysDeptRoles(query);
-				if (deptRoles == null || deptRoles.isEmpty()) {
-					SysDeptRole deptRole = new SysDeptRole();
-					deptRole.setId(idGenerator.nextId());
-					deptRole.setCreateBy(user.getUpdateBy());
-					deptRole.setCreateDate(new Date());
-					deptRole.setDeptId(user.getDeptId());
-					deptRole.setRoleId(role.getId());
-					deptRole.setGrade(0);
-					deptRole.setSort(0);
-					sysDeptRoleMapper.insertSysDeptRole(deptRole);
-				}
 
 				SysUserRole userRole = new SysUserRole();
 				userRole.setId(idGenerator.getNextId());

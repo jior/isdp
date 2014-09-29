@@ -53,7 +53,6 @@ import com.glaf.base.modules.sys.query.UserRoleQuery;
 import com.glaf.base.modules.sys.service.ComplexUserService;
 import com.glaf.base.modules.sys.service.DictoryService;
 import com.glaf.base.modules.sys.service.SysDepartmentService;
-import com.glaf.base.modules.sys.service.SysDeptRoleService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.service.SysUserService;
@@ -84,8 +83,6 @@ public class BranchDepartmentController {
 	protected DictoryService dictoryService;
 
 	protected SysDepartmentService sysDepartmentService;
-
-	protected SysDeptRoleService sysDeptRoleService;
 
 	protected SysTreeService sysTreeService;
 
@@ -614,11 +611,6 @@ public class BranchDepartmentController {
 	public void setSysDepartmentService(
 			SysDepartmentService sysDepartmentService) {
 		this.sysDepartmentService = sysDepartmentService;
-	}
-
-	@javax.annotation.Resource
-	public void setSysDeptRoleService(SysDeptRoleService sysDeptRoleService) {
-		this.sysDeptRoleService = sysDeptRoleService;
 	}
 
 	@javax.annotation.Resource

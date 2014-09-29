@@ -34,18 +34,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.glaf.base.modules.sys.SysConstants;
 import com.glaf.base.modules.sys.mapper.SysDepartmentMapper;
-import com.glaf.base.modules.sys.mapper.SysDeptRoleMapper;
 import com.glaf.base.modules.sys.model.SysDepartment;
-import com.glaf.base.modules.sys.model.SysDeptRole;
-import com.glaf.base.modules.sys.model.SysRole;
 import com.glaf.base.modules.sys.model.SysTree;
 import com.glaf.base.modules.sys.query.SysDepartmentQuery;
-import com.glaf.base.modules.sys.query.SysDeptRoleQuery;
 import com.glaf.base.modules.sys.query.SysTreeQuery;
 import com.glaf.base.modules.sys.service.SysDepartmentService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
- 
+
 import com.glaf.core.id.IdGenerator;
 import com.glaf.core.util.PageResult;
 
@@ -60,8 +56,6 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	protected SqlSessionTemplate sqlSessionTemplate;
 
 	protected SysDepartmentMapper sysDepartmentMapper;
-
-	protected SysDeptRoleMapper sysDeptRoleMapper;
 
 	protected SysRoleService sysRoleService;
 
@@ -230,14 +224,6 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 		if (sysDepartment != null) {
 			SysTree node = sysTreeService.findById(sysDepartment.getNodeId());
 			sysDepartment.setNode(node);
-			SysDeptRoleQuery query = new SysDeptRoleQuery();
-			query.deptId(sysDepartment.getId());
-			List<SysDeptRole> deptRoles = sysDeptRoleMapper
-					.getSysDeptRoles(query);
-			if (deptRoles != null && !deptRoles.isEmpty()) {
-				this.initRoles(deptRoles);
-				sysDepartment.getRoles().addAll(deptRoles);
-			}
 		}
 		return sysDepartment;
 	}
@@ -289,21 +275,6 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 		return rows;
 	}
 
-	protected void initRoles(List<SysDeptRole> list) {
-		if (list != null && !list.isEmpty()) {
-			List<SysRole> rows = sysRoleService.getSysRoleList();
-			Map<Long, SysRole> dataMap = new HashMap<Long, SysRole>();
-			if (rows != null && !rows.isEmpty()) {
-				for (SysRole m : rows) {
-					dataMap.put(m.getId(), m);
-				}
-			}
-			for (SysDeptRole bean : list) {
-				bean.setRole(dataMap.get(bean.getRoleId()));
-			}
-		}
-	}
-
 	protected void initTrees(List<SysDepartment> list) {
 		if (list != null && !list.isEmpty()) {
 			SysTreeQuery query = new SysTreeQuery();
@@ -341,11 +312,6 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	@Resource
 	public void setSysDepartmentMapper(SysDepartmentMapper sysDepartmentMapper) {
 		this.sysDepartmentMapper = sysDepartmentMapper;
-	}
-
-	@Resource
-	public void setSysDeptRoleMapper(SysDeptRoleMapper sysDeptRoleMapper) {
-		this.sysDeptRoleMapper = sysDeptRoleMapper;
 	}
 
 	@Resource

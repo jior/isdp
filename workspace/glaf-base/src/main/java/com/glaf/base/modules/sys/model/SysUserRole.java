@@ -74,9 +74,6 @@ public class SysUserRole implements Serializable, JSONable {
 	protected Date createDate;
 
 	@javax.persistence.Transient
-	private SysDeptRole deptRole;
-
-	@javax.persistence.Transient
 	private SysRole role;
 
 	/**
@@ -136,10 +133,6 @@ public class SysUserRole implements Serializable, JSONable {
 		return createDate;
 	}
 
-	public SysDeptRole getDeptRole() {
-		return deptRole;
-	}
-
 	public String getId() {
 		return id;
 	}
@@ -194,10 +187,6 @@ public class SysUserRole implements Serializable, JSONable {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
-	}
-
-	public void setDeptRole(SysDeptRole deptRole) {
-		this.deptRole = deptRole;
 	}
 
 	public void setId(String id) {

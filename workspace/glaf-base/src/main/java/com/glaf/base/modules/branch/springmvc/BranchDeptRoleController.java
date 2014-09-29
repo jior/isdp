@@ -18,8 +18,6 @@
 
 package com.glaf.base.modules.branch.springmvc;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
@@ -31,10 +29,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.glaf.base.modules.sys.model.SysDepartment;
-import com.glaf.base.modules.sys.query.SysDepartmentQuery;
 import com.glaf.base.modules.sys.service.ComplexUserService;
 import com.glaf.base.modules.sys.service.SysDepartmentService;
-import com.glaf.base.modules.sys.service.SysDeptRoleService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.utils.ParamUtil;
@@ -52,8 +48,6 @@ public class BranchDeptRoleController {
 
 	protected SysDepartmentService sysDepartmentService;
 
-	protected SysDeptRoleService sysDeptRoleService;
-
 	protected SysRoleService sysRoleService;
 
 	protected SysTreeService sysTreeService;
@@ -67,11 +61,6 @@ public class BranchDeptRoleController {
 	public void setSysDepartmentService(
 			SysDepartmentService sysDepartmentService) {
 		this.sysDepartmentService = sysDepartmentService;
-	}
-
-	@javax.annotation.Resource
-	public void setSysDeptRoleService(SysDeptRoleService sysDeptRoleService) {
-		this.sysDeptRoleService = sysDeptRoleService;
 	}
 
 	@javax.annotation.Resource
@@ -99,15 +88,7 @@ public class BranchDeptRoleController {
 				.getSysDepartment(deptId);
 		request.setAttribute("department", department);
 
-		String actorId = RequestUtils.getActorId(request);
-
-		List<Long> nodeIds = complexUserService
-				.getUserManageBranchNodeIds(actorId);
-
-		SysDepartmentQuery query = new SysDepartmentQuery();
-		query.nodeIds(nodeIds);
-
-		request.setAttribute("list", sysRoleService.getSysRolesOfDepts(query));
+		request.setAttribute("list", sysRoleService.getSysRoleList());
 
 		String x_view = ViewProperties.getString("deptRole.showList");
 		if (StringUtils.isNotEmpty(x_view)) {

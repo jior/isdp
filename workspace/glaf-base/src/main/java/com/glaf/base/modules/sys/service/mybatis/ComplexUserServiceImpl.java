@@ -31,7 +31,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.glaf.base.modules.sys.SysConstants;
 import com.glaf.base.modules.sys.model.SysDepartment;
-import com.glaf.base.modules.sys.model.SysDeptRole;
 import com.glaf.base.modules.sys.model.SysRole;
 import com.glaf.base.modules.sys.model.SysTree;
 import com.glaf.base.modules.sys.model.SysUser;
@@ -40,7 +39,6 @@ import com.glaf.base.modules.sys.query.SysDepartmentQuery;
 import com.glaf.base.modules.sys.query.SysUserQuery;
 import com.glaf.base.modules.sys.service.ComplexUserService;
 import com.glaf.base.modules.sys.service.SysDepartmentService;
-import com.glaf.base.modules.sys.service.SysDeptRoleService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.service.SysUserRoleService;
@@ -77,8 +75,6 @@ public class ComplexUserServiceImpl implements ComplexUserService {
 
 	protected SysDepartmentService sysDepartmentService;
 
-	protected SysDeptRoleService sysDeptRoleService;
-
 	protected SysRoleService sysRoleService;
 
 	protected SysTreeService sysTreeService;
@@ -93,33 +89,22 @@ public class ComplexUserServiceImpl implements ComplexUserService {
 			for (String roleCode : roleCodes) {
 				SysRole role = sysRoleService.findByCode(roleCode);
 				if (role != null) {
-					SysDeptRole deptRole = sysDeptRoleService.find(
-							bean.getDeptId(), role.getId());
-					if (deptRole == null) {
-						deptRole = new SysDeptRole();
-						deptRole.setDeptId(bean.getDeptId());
-						deptRole.setCreateBy("system");
-						deptRole.setCreateDate(new Date());
-						deptRole.setRole(role);
-						deptRole.setRoleId(role.getId());
-						sysDeptRoleService.create(deptRole);
-					}
-					if (deptRole != null) {
-						Map<String, Object> dataMap = new java.util.HashMap<String, Object>();
-						dataMap.put("authorizeFrom", "0");
-						dataMap.put("userId", bean.getId());
-						dataMap.put("deptRoleId", deptRole.getId());
-						SysUserRole userRole = new SysUserRole();
-						Tools.populate(userRole, dataMap);
-						userRole.setAuthorized(0);
-						userRole.setCreateBy("system");
-						userRole.setDeptRole(deptRole);
-						userRole.setUser(bean);
-						userRole.setCreateDate(new Date());
-						userRole.setAvailDateStart(new Date());
-						userRole.setAvailDateEnd(DateUtils.toDate("2049-10-01"));
-						sysUserRoleService.create(userRole);
-					}
+
+					Map<String, Object> dataMap = new java.util.HashMap<String, Object>();
+					dataMap.put("authorizeFrom", "0");
+					dataMap.put("userId", bean.getId());
+					dataMap.put("roleId", role.getId());
+					SysUserRole userRole = new SysUserRole();
+					Tools.populate(userRole, dataMap);
+					userRole.setAuthorized(0);
+					userRole.setCreateBy("system");
+
+					userRole.setUser(bean);
+					userRole.setCreateDate(new Date());
+					userRole.setAvailDateStart(new Date());
+					userRole.setAvailDateEnd(DateUtils.toDate("2049-10-01"));
+					sysUserRoleService.create(userRole);
+
 				}
 			}
 			ret = true;
@@ -284,11 +269,6 @@ public class ComplexUserServiceImpl implements ComplexUserService {
 	public void setSysDepartmentService(
 			SysDepartmentService sysDepartmentService) {
 		this.sysDepartmentService = sysDepartmentService;
-	}
-
-	@javax.annotation.Resource
-	public void setSysDeptRoleService(SysDeptRoleService sysDeptRoleService) {
-		this.sysDeptRoleService = sysDeptRoleService;
 	}
 
 	@javax.annotation.Resource

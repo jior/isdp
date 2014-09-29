@@ -172,9 +172,6 @@ public class SysUser implements Serializable, User, JSONable {
 	@javax.persistence.Transient
 	private Set<String> roleCodes = new HashSet<String>();
 
-	@javax.persistence.Transient
-	private Collection<SysDeptRole> deptRoles = new HashSet<SysDeptRole>();
-
 	/**
 	 * 上级领导
 	 */
@@ -262,13 +259,6 @@ public class SysUser implements Serializable, User, JSONable {
 			return department.getId();
 		}
 		return deptId;
-	}
-
-	public Collection<SysDeptRole> getDeptRoles() {
-		if (deptRoles == null) {
-			deptRoles = new HashSet<SysDeptRole>();
-		}
-		return deptRoles;
 	}
 
 	public int getDumpFlag() {
@@ -529,10 +519,6 @@ public class SysUser implements Serializable, User, JSONable {
 
 	public void setDeptId(long deptId) {
 		this.deptId = deptId;
-	}
-
-	public void setDeptRoles(Collection<SysDeptRole> deptRoles) {
-		this.deptRoles = deptRoles;
 	}
 
 	public void setDumpFlag(int dumpFlag) {

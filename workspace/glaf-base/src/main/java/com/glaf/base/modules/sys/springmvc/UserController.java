@@ -36,7 +36,6 @@ import com.glaf.base.modules.sys.model.SysDepartment;
 import com.glaf.base.modules.sys.model.SysTree;
 import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.service.SysDepartmentService;
-import com.glaf.base.modules.sys.service.SysDeptRoleService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.service.SysUserService;
@@ -58,8 +57,6 @@ public class UserController {
 	protected static final Log logger = LogFactory.getLog(UserController.class);
 
 	protected SysDepartmentService sysDepartmentService;
-
-	protected SysDeptRoleService sysDeptRoleService;
 
 	protected SysRoleService sysRoleService;
 
@@ -306,11 +303,6 @@ public class UserController {
 	public void setSysDepartmentService(
 			SysDepartmentService sysDepartmentService) {
 		this.sysDepartmentService = sysDepartmentService;
-	}
-
-	@javax.annotation.Resource
-	public void setSysDeptRoleService(SysDeptRoleService sysDeptRoleService) {
-		this.sysDeptRoleService = sysDeptRoleService;
 	}
 
 	@javax.annotation.Resource

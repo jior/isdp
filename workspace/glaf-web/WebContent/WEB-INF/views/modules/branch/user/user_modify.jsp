@@ -6,10 +6,10 @@
 <%@ page import="com.glaf.base.modules.sys.model.*"%>
 <%@ page import="com.glaf.base.utils.*"%>
 <%
-String context = request.getContextPath();
-SysUser bean=(SysUser)request.getAttribute("bean");
-List  list = (List)request.getAttribute("parent");
-int nodeId=ParamUtil.getIntParameter(request, "nodeId", 0);
+	String context = request.getContextPath();
+	SysUser bean=(SysUser)request.getAttribute("bean");
+	List  list = (List)request.getAttribute("parent");
+	int nodeId=ParamUtil.getIntParameter(request, "nodeId", 0);
 %>
 <html>
 <head>
@@ -44,7 +44,7 @@ function setValue(obj){
 <div class="nav-title"><span class="Title">用户管理</span>&gt;&gt;修改用户</div>
 <html:form id="iForm" name="iForm" action="${contextPath}/mx/branch/user/saveModify" 
       method="post"  onsubmit="return checkForm(this);"> 
-<input type="hidden" name="id" value="<%=bean.getId()%>">
+<input type="hidden" name="id" value="<%=bean.getActorId()%>">
 <input type="hidden" name="nodeId" value="<%=nodeId%>">
 <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="box">
   <tr>
@@ -60,7 +60,7 @@ function setValue(obj){
     <td class="box-mm"><table width="95%" align="center" border="0" cellspacing="0" cellpadding="5">
       <tr>
         <td width="20%" class="input-box">员工编码*</td>
-        <td width="80%"><%=bean.getCode()%></td>
+        <td width="80%"><%=bean.getActorId()%></td>
       </tr>
       <tr>
         <td class="input-box2" valign="top">部　　门</td>
@@ -86,9 +86,11 @@ function setValue(obj){
 			}
 			%>
         </select>
+		<%if(bean.getDepartment() != null){%>
 		<script language="javascript">								
           document.all.parent.value="<%=bean.getDepartment().getId()%>";	
-	    </script>		
+	    </script>	
+		<%}%>
 	   </td>
       </tr>
       <tr>
@@ -153,8 +155,8 @@ function setValue(obj){
       <tr>
         <td class="input-box2" valign="top">是否有效</td>
         <td>
-          <input type="radio" name="blocked" value="0" <%=bean.getBlocked()==0?"checked":""%>>是
-          <input type="radio" name="blocked" value="1" <%=bean.getBlocked()==1?"checked":""%>>否
+          <input type="radio" name="status" value="0" <%="0".equals(bean.getStatus())?"checked":""%>>是
+          <input type="radio" name="status" value="1" <%="1".equals(bean.getStatus())?"checked":""%>>否
 		</td>
       </tr>
  

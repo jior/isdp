@@ -62,7 +62,6 @@ import com.glaf.base.modules.sys.query.SysTreeQuery;
 import com.glaf.base.modules.sys.service.DictoryService;
 import com.glaf.base.modules.sys.service.SysApplicationService;
 import com.glaf.base.modules.sys.service.SysDepartmentService;
-import com.glaf.base.modules.sys.service.SysDeptRoleService;
 import com.glaf.base.modules.sys.service.SysFunctionService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
@@ -105,8 +104,6 @@ public class BaseDataManager {
 	protected volatile SysApplicationService sysApplicationService;
 
 	protected volatile SysDepartmentService sysDepartmentService;
-
-	protected volatile SysDeptRoleService sysDeptRoleService;
 
 	protected volatile SysFunctionService sysFunctionService;
 
@@ -440,13 +437,6 @@ public class BaseDataManager {
 					.getBean("sysDepartmentService");
 		}
 		return sysDepartmentService;
-	}
-
-	public SysDeptRoleService getSysDeptRoleService() {
-		if (sysDeptRoleService == null) {
-			sysDeptRoleService = ContextFactory.getBean("sysDeptRoleService");
-		}
-		return sysDeptRoleService;
 	}
 
 	public SysFunctionService getSysFunctionService() {
@@ -1160,10 +1150,6 @@ public class BaseDataManager {
 	public void setSysDepartmentService(
 			SysDepartmentService sysDepartmentService) {
 		this.sysDepartmentService = sysDepartmentService;
-	}
-
-	public void setSysDeptRoleService(SysDeptRoleService sysDeptRoleService) {
-		this.sysDeptRoleService = sysDeptRoleService;
 	}
 
 	public void setSysFunctionService(SysFunctionService sysFunctionService) {

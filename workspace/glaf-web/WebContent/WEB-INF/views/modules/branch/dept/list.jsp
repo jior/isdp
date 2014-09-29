@@ -85,7 +85,7 @@
     function formatterFunctions(val, row){
 		var str = "<a href='javascript:editDept(\""+row.id+"\");'>修改</a>";
             str+="&nbsp;<a href='javascript:deptUsers2(\""+row.id+"\");'>部门用户</a>";
-			str+="&nbsp;<a href='javascript:deptRoles2(\""+row.id+"\");'>部门角色</a>";
+	    //str+="&nbsp;<a href='javascript:deptRoles2(\""+row.id+"\");'>部门角色</a>";
 
 	    return str;
 	}
@@ -267,8 +267,8 @@
 				   onclick="javascript:editSelected();">修改</a>  
 				<a href="#" class="easyui-linkbutton" data-options="plain:true, iconCls:'icon-user'"
 				   onclick="javascript:deptUsers();">部门用户</a> 
-				<a href="#" class="easyui-linkbutton" data-options="plain:true, iconCls:'icon-actor'"
-				   onclick="javascript:deptRoles();">部门角色</a>
+				<!-- <a href="#" class="easyui-linkbutton" data-options="plain:true, iconCls:'icon-actor'"
+				   onclick="javascript:deptRoles();">部门角色</a> -->
 			   </div> 
              </div>  
 

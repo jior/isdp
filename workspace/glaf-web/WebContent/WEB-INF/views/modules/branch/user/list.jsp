@@ -32,8 +32,6 @@
 				striped: true,
 				collapsible:true,
 				url:'<%=request.getContextPath()%>/mx/branch/user/json?parent=${parent}&deptId=${deptId}',
-				sortName: 'id',
-				sortOrder: 'desc',
 				remoteSort: false,
 				singleSelect:true,
 				idField:'id',
@@ -43,7 +41,7 @@
 					{title:'姓名',field:'name', width:120},
 					{title:'部门',field:'deptName', width:180},
 					{title:'最近登录日期',field:'lastLoginTime', width:120},
-					{title:'是否有效',field:'blocked', width:90, formatter:formatterStatus}
+					{title:'是否有效',field:'status', width:90, formatter:formatterStatus}
 				]],
 				rownumbers:false,
 				pagination:true,
@@ -62,7 +60,7 @@
 
 
 	function formatterStatus(val, row){
-       if(val == 0){
+       if(val == "0"){
 			return '<span style="color:green; font: bold 13px 宋体;">是</span>';
 	   } else  {
 			return '<span style="color:red; font: bold 13px 宋体;">否</span>';
@@ -77,7 +75,7 @@
 
 	function onRowClick(rowIndex, row){
             //window.open('<%=request.getContextPath()%>/branch/user.do?method=edit&id='+row.id);
-	    var link = '<%=request.getContextPath()%>/mx/branch/user/prepareModify?parent=${parent}&deptId=${deptId}&id='+row.id;
+	    var link = '<%=request.getContextPath()%>/mx/branch/user/prepareModify?parent=${parent}&deptId=${deptId}&id='+row.actorId;
 	    art.dialog.open(link, { height: 430, width: 620, title: "修改用户", lock: true, scrollbars:"no" }, false);
 	}
 
@@ -102,7 +100,7 @@
 	    var selected = jQuery('#mydatagrid').datagrid('getSelected');
 	    if (selected ){
 		  //location.href="<%=request.getContextPath()%>/branch/user.do?method=edit&id="+selected.id;
-		  var link = "<%=request.getContextPath()%>/mx/branch/user/prepareModify?parent=${parent}&deptId=${deptId}&id="+selected.id;
+		  var link = "<%=request.getContextPath()%>/mx/branch/user/prepareModify?parent=${parent}&deptId=${deptId}&id="+selected.actorId;
 		  art.dialog.open(link, { height: 430, width: 620, title: "修改用户", lock: true, scrollbars:"no" }, false);
 	    }
 	}
@@ -131,7 +129,7 @@
 	    var selected = jQuery('#mydatagrid').datagrid('getSelected');
 	    if (selected ){
 		  //location.href="<%=request.getContextPath()%>/branch/user.do?method=edit&id="+selected.id;
-		  var link = "<%=request.getContextPath()%>/mx/branch/user/showRole?parent=${parent}&deptId=${deptId}&user_id="+selected.id;
+		  var link = "<%=request.getContextPath()%>/mx/branch/user/showRole?parent=${parent}&deptId=${deptId}&user_id="+selected.actorId;
 		  art.dialog.open(link, { height: 420, width: 620, title: "用户角色设置", lock: true, scrollbars:"no" }, false);
 	    }
 	}
@@ -144,7 +142,7 @@
 		}
 		var selected = jQuery('#mydatagrid').datagrid('getSelected');
 		if (selected ){
-		    location.href="<%=request.getContextPath()%>/mx/branch/user/prepareModify?parent=${parent}&deptId=${deptId}&id="+selected.id;
+		    location.href="<%=request.getContextPath()%>/mx/branch/user/prepareModify?parent=${parent}&deptId=${deptId}&id="+selected.actorId;
 		}
 	}
 

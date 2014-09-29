@@ -7,11 +7,11 @@
 <%@ page import="com.glaf.core.util.DateUtils"%>
 <%@ page import="com.glaf.core.util.RequestUtils"%>
 <%
-String context = request.getContextPath();
-int pageSize=Constants.PAGE_SIZE;
-SysDepartment department = (SysDepartment)request.getAttribute("department");
-com.glaf.core.util.PageResult pager=(com.glaf.core.util.PageResult)request.getAttribute("pager");
-List list = pager.getResults();
+	String context = request.getContextPath();
+	int pageSize=Constants.PAGE_SIZE;
+	SysDepartment department = (SysDepartment)request.getAttribute("department");
+	com.glaf.core.util.PageResult pager=(com.glaf.core.util.PageResult)request.getAttribute("pager");
+	List list = pager.getResults();
 %>
 <!DOCTYPE html>
 <html>
@@ -153,20 +153,7 @@ if(list!=null){
   while(iter.hasNext()){
     SysUser bean=(SysUser)iter.next();
 	String roleName = "";
-	Set userRoles=bean.getUserRoles();
-	if(userRoles!=null){
-	  Iterator roleIter = userRoles.iterator();
-	  while(roleIter.hasNext()){
-	    SysUserRole role = (SysUserRole)roleIter.next();
-		if(role.getDeptRole() !=null && role.getDeptRole().getDept() !=null && role.getDeptRole().getRole() != null){
-		  roleName+= role.getDeptRole().getDept().getName()+role.getDeptRole().getRole().getName();
-		}
-		if(role.getAuthorized()==1){
-		  roleName+= "[代]";
-		}
-		roleName+= " ";		
-	  }
-	}
+	 
 %>
   <tr <%=i%2==0?"":"class='list-back'"%>> 
     <td width="5%" class="td-cb"> 

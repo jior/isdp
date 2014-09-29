@@ -45,11 +45,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.glaf.base.modules.sys.model.SysDepartment;
-import com.glaf.base.modules.sys.model.SysDeptRole;
+import com.glaf.base.modules.sys.model.SysRole;
 import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.query.SysUserQuery;
 import com.glaf.base.modules.sys.service.SysDepartmentService;
-import com.glaf.base.modules.sys.service.SysDeptRoleService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.service.SysUserService;
@@ -73,8 +72,6 @@ public class SysUserResource {
 
 	protected SysDepartmentService sysDepartmentService;
 
-	protected SysDeptRoleService sysDeptRoleService;
-
 	protected SysRoleService sysRoleService;
 
 	protected SysTreeService sysTreeService;
@@ -97,31 +94,17 @@ public class SysUserResource {
 			@Context UriInfo uriInfo) {
 		logger.debug("---------addRoleUser---------------------------");
 		RequestUtils.setRequestParameterToAttribute(request);
-		int deptId = ParamUtil.getIntParameter(request, "deptId", 0);
-		int roleId = ParamUtil.getIntParameter(request, "roleId", 0);
-		SysDeptRole deptRole = sysDeptRoleService.find(deptId, roleId);
-		boolean success = false;
-		if (deptRole == null) {
-			deptRole = new SysDeptRole();
-			deptRole.setDeptId(deptId);
-			deptRole.setDept(sysDepartmentService.findById(deptId));
-			deptRole.setRoleId(roleId);
-			deptRole.setRole(sysRoleService.findById(roleId));
-			sysDeptRoleService.create(deptRole);
-		}
-		if (deptRole != null) {
-			Set<SysUser> users = deptRole.getUsers();
 
-			String[] userIds = ParamUtil.getParameterValues(request, "id");
-			for (int i = 0; i < userIds.length; i++) {
-				SysUser user = sysUserService.findByAccount(userIds[i]);
-				if (user != null) {
-					logger.info(user.getName());
-					users.add(user);
-				}
+		int roleId = ParamUtil.getIntParameter(request, "roleId", 0);
+		boolean success = false;
+
+		String[] userIds = ParamUtil.getParameterValues(request, "id");
+		for (int i = 0; i < userIds.length; i++) {
+			SysUser user = sysUserService.findByAccount(userIds[i]);
+			if (user != null) {
+				sysUserService.createRoleUser(roleId, user.getAccount());
 			}
-			deptRole.setUsers(users);
-			success = sysDeptRoleService.update(deptRole);
+			success = true;
 		}
 
 		ViewMessages messages = new ViewMessages();
@@ -178,13 +161,12 @@ public class SysUserResource {
 	public ModelAndView delRoleUser(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
-		int deptId = ParamUtil.getIntParameter(request, "deptId", 0);
 		int roleId = ParamUtil.getIntParameter(request, "roleId", 0);
-		SysDeptRole deptRole = sysDeptRoleService.find(deptId, roleId);
+		SysRole role = sysRoleService.findById(roleId);
 		boolean sucess = false;
 		try {
 			String[] userIds = ParamUtil.getParameterValues(request, "id");
-			sysUserService.deleteRoleUsers(deptRole, userIds);
+			sysUserService.deleteRoleUsers(role, userIds);
 			sucess = true;
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -219,23 +201,6 @@ public class SysUserResource {
 				getAllSysDepartmentList(list, (int) element.getId());
 			}
 			list.addAll(temp);
-		}
-	}
-
-	/**
-	 * 得到本部门下所属角色的人 如果没有角色，则得到本部门里所有人
-	 * 
-	 * @param set
-	 * @param deptId
-	 * @param code
-	 */
-	public void getRoleUser(Set<SysUser> set, long deptId, String code) {
-		if (!"".equals(code)) {
-			Set<SysUser> temp = sysDeptRoleService.findRoleUser(deptId, "R011");
-			set.addAll(temp);
-		} else {
-			List<SysUser> list = sysUserService.getSysUserList((int) deptId);
-			set.addAll(list);
 		}
 	}
 
@@ -581,10 +546,10 @@ public class SysUserResource {
 		if (user != null) {// 用户存在
 			long[] id = ParamUtil.getLongParameterValues(request, "id");// 获取页面参数
 			if (id != null) {
-				Set<SysDeptRole> newRoles = new HashSet<SysDeptRole>();
+				Set<SysRole> newRoles = new HashSet<SysRole>();
 				for (int i = 0; i < id.length; i++) {
 					logger.debug("id[" + i + "]=" + id[i]);
-					SysDeptRole role = sysDeptRoleService.findById(id[i]);// 查找角色对象
+					SysRole role = sysRoleService.findById(id[i]);// 查找角色对象
 					if (role != null) {
 						newRoles.add(role);// 加入到角色列表
 					}
@@ -592,7 +557,7 @@ public class SysUserResource {
 
 				user.setUpdateBy(RequestUtils.getActorId(request));
 
-				if (sysUserService.updateRole(user, newRoles)) {// 授权成功
+				if (sysUserService.updateUserRole(user, newRoles)) {// 授权成功
 					messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 							"user.role_success"));
 				} else {// 保存失败
@@ -609,11 +574,6 @@ public class SysUserResource {
 	public void setSysDepartmentService(
 			SysDepartmentService sysDepartmentService) {
 		this.sysDepartmentService = sysDepartmentService;
-	}
-
-	@javax.annotation.Resource
-	public void setSysDeptRoleService(SysDeptRoleService sysDeptRoleService) {
-		this.sysDeptRoleService = sysDeptRoleService;
 	}
 
 	@javax.annotation.Resource

@@ -52,7 +52,6 @@ import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.query.SysDepartmentQuery;
 import com.glaf.base.modules.sys.service.DictoryService;
 import com.glaf.base.modules.sys.service.SysDepartmentService;
-import com.glaf.base.modules.sys.service.SysDeptRoleService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.util.SysRoleJsonFactory;
@@ -79,7 +78,6 @@ public class SysDepartmentController {
 
 	protected SysDepartmentService sysDepartmentService;
 
-	protected SysDeptRoleService sysDeptRoleService;
 
 	protected SysRoleService sysRoleService;
 
@@ -125,7 +123,7 @@ public class SysDepartmentController {
 		long nodeId = RequestUtils.getLong(request, "nodeId", -1);
 		SysDepartmentQuery query = new SysDepartmentQuery();
 		query.nodeId(nodeId);
-		List<SysRole> roles = sysRoleService.getSysRolesOfDepts(query);
+		List<SysRole> roles = sysRoleService.getSysRoleList();
 
 		for (SysRole role : roles) {
 			role.setNodeId(nodeId);
@@ -457,11 +455,7 @@ public class SysDepartmentController {
 
 	}
 
-	@javax.annotation.Resource
-	public void setSysDeptRoleService(SysDeptRoleService sysDeptRoleService) {
-		this.sysDeptRoleService = sysDeptRoleService;
-
-	}
+	
 
 	@javax.annotation.Resource
 	public void setSysRoleService(SysRoleService sysRoleService) {
@@ -518,13 +512,13 @@ public class SysDepartmentController {
 			ModelMap modelMap) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		long nodeId = ParamUtil.getIntParameter(request, "nodeId", 0);
-		String roleCode = request.getParameter("roleCode");
+		//String roleCode = request.getParameter("roleCode");
 
 		SysDepartment dept = sysDepartmentService
 				.getSysDepartmentByNodeId(nodeId);
 		if (dept != null) {
-			Set<SysUser> users = sysDeptRoleService.findRoleUser(dept.getId(),
-					roleCode);
+			//Fix me
+			Set<SysUser> users = null;
 			request.setAttribute("department", dept);
 			request.setAttribute("users", users);
 		}

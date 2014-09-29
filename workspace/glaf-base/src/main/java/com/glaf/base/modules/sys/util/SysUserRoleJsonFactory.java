@@ -22,7 +22,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.glaf.base.modules.sys.model.SysDeptRole;
 import com.glaf.base.modules.sys.model.SysUserRole;
 import com.glaf.core.util.DateUtils;
 
@@ -71,11 +70,6 @@ public class SysUserRoleJsonFactory {
 		}
 		if (jsonObject.containsKey("createBy")) {
 			model.setCreateBy(jsonObject.getString("createBy"));
-		}
-		if (jsonObject.containsKey("deptRole")) {
-			JSONObject json = jsonObject.getJSONObject("deptRole");
-			SysDeptRole deptRole = SysDeptRoleJsonFactory.jsonToObject(json);
-			model.setDeptRole(deptRole);
 		}
 
 		return model;
@@ -132,9 +126,6 @@ public class SysUserRoleJsonFactory {
 		if (model.getCreateBy() != null) {
 			jsonObject.put("createBy", model.getCreateBy());
 		}
-		if (model.getDeptRole() != null) {
-			jsonObject.put("deptRole", model.getDeptRole().toJsonObject());
-		}
 
 		return jsonObject;
 	}
@@ -178,9 +169,6 @@ public class SysUserRoleJsonFactory {
 		}
 		if (model.getCreateBy() != null) {
 			jsonObject.put("createBy", model.getCreateBy());
-		}
-		if (model.getDeptRole() != null) {
-			jsonObject.set("deptRole", model.getDeptRole().toObjectNode());
 		}
 
 		return jsonObject;

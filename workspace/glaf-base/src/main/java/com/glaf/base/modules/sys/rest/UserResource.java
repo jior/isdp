@@ -35,7 +35,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.glaf.base.modules.sys.model.SysDepartment;
 import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.service.SysDepartmentService;
-import com.glaf.base.modules.sys.service.SysDeptRoleService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.service.SysUserService;
@@ -55,8 +54,6 @@ public class UserResource {
 	protected static final Log logger = LogFactory.getLog(UserResource.class);
 
 	protected SysDepartmentService sysDepartmentService;
-
-	protected SysDeptRoleService sysDeptRoleService;
 
 	protected SysRoleService sysRoleService;
 
@@ -200,10 +197,6 @@ public class UserResource {
 
 	}
 
-	@javax.annotation.Resource
-	public void setSysDeptRoleService(SysDeptRoleService sysDeptRoleService) {
-		this.sysDeptRoleService = sysDeptRoleService;
-	}
 
 	@javax.annotation.Resource
 	public void setSysRoleService(SysRoleService sysRoleService) {

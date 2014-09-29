@@ -10,11 +10,11 @@
 	String context = request.getContextPath();
 	List list = (List)request.getAttribute("list");
 	SysUser user = (SysUser)request.getAttribute("user");
-	Set roleId=new HashSet();
+	Set roleIds=new HashSet();
 	Iterator roles = user.getRoles().iterator();
 	while(roles.hasNext()){  
-	  SysDeptRole role=(SysDeptRole)roles.next();
-	  roleId.add(new Long(role.getId()));
+	  SysRole role=(SysRole)roles.next();
+	  roleIds.add(role.getId());
 	}
 %>
 
@@ -25,7 +25,7 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/themes/<%=com.glaf.core.util.RequestUtils.getTheme(request)%>/site.css">
 <script language="javascript" src='<%=context%>/scripts/verify.js'></script>
 <script language="javascript" src='<%=context%>/scripts/main.js'></script>
-<script language="JavaScript">
+<script language="javascript">
 function checkForm(form){
   var isChecked = false;
   for(var i = 0; i < form.elements.length; i++){
@@ -46,7 +46,7 @@ function checkForm(form){
 <body>
 <div class="nav-title"><span class="Title">用户管理</span>&gt;&gt;设置用户 <b><%=user.getName()%></b> 的权限</div>
 <html:form action="${contextPath}/mx/branch/user/setRole" method="post" target="_self" onsubmit="return checkForm(this);"> 
-<input type="hidden" name="user_id" value="<%=user.getId()%>">
+<input type="hidden" name="actorId" value="<%=user.getId()%>">
 <table width="95%" border="0" align="center" cellspacing="1" cellpadding="0" class="list-box">
   <tr class="list-title"> 
     <td width="9%" align="center">
@@ -58,20 +58,19 @@ function checkForm(form){
   </tr>
   <%
 int i=0;
-if(list!=null){
-  Iterator iter=list.iterator();   
-  while(iter.hasNext()){
-    SysDeptRole bean=(SysDeptRole)iter.next();
-	SysRole role = bean.getRole();
+if(list!=null && list.size()>0){
+  Iterator iter2=list.iterator();   
+  while(iter2.hasNext()){
+	SysRole role = (SysRole)iter2.next();
 	if (StringUtils.isNotEmpty(role.getCode())
 		&& ( StringUtils.startsWithIgnoreCase(role.getCode(), SysConstants.BRANCH_PREFIX) || StringUtils.equals(role.getIsUseBranch(), "Y"))) {	
 %>
   <tr <%=i%2==0?"":"class='list-back'"%>>
-    <td class="td-cb"><input type="checkbox" name="id" value="<%=bean.getId()%>" <%=roleId.contains(new Long(bean.getId()))?"checked":""%>>
+    <td class="td-cb"><input type="checkbox" name="id" value="<%=role.getId()%>" <%=roleIds.contains(role.getId())?"checked":""%>>
     </td>
     <td class="td-no"><%= i+1%></td>
-    <td class="td-text"><%=bean.getRole().getName()%>&nbsp;</td>
-    <td class="td-text"><%=bean.getRole().getDesc()%>&nbsp;</td>
+    <td class="td-text"><%=role.getName()%>&nbsp;</td>
+    <td class="td-text"><%=role.getContent()%>&nbsp;</td>
   </tr>
   <%
     i++;

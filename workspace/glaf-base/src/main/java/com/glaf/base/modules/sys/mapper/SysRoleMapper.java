@@ -33,14 +33,10 @@ public interface SysRoleMapper {
 	SysRole getSysRoleById(Long id);
 
 	int getSysRoleCount(SysRoleQuery query);
-	
+
 	List<SysRole> getSysRolesOfUser(String actorId);
 
 	List<SysRole> getSysRoles(SysRoleQuery query);
-	
-	List<SysRole> getSysRolesOfDeptRole(Long roleId);
-	
-	List<SysRole> getSysRolesOfDepts(SysDepartmentQuery query);
 
 	void insertSysRole(SysRole model);
 

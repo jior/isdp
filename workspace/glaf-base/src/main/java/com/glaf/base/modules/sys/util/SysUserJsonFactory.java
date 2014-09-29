@@ -24,7 +24,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.glaf.base.modules.sys.model.SysApplication;
-import com.glaf.base.modules.sys.model.SysDeptRole;
 import com.glaf.base.modules.sys.model.SysFunction;
 import com.glaf.base.modules.sys.model.SysRole;
 import com.glaf.base.modules.sys.model.SysUser;
@@ -157,17 +156,6 @@ public class SysUserJsonFactory {
 			}
 		}
 
-		if (jsonObject.containsKey("deptRoles")) {
-			JSONArray array = jsonObject.getJSONArray("roles");
-			if (array != null && !array.isEmpty()) {
-				for (int i = 0; i < array.size(); i++) {
-					JSONObject json = array.getJSONObject(i);
-					SysDeptRole r = SysDeptRoleJsonFactory.jsonToObject(json);
-					model.getDeptRoles().add(r);
-				}
-			}
-		}
-
 		if (jsonObject.containsKey("functions")) {
 			JSONArray array = jsonObject.getJSONArray("functions");
 			if (array != null && !array.isEmpty()) {
@@ -285,14 +273,6 @@ public class SysUserJsonFactory {
 			jsonObject.put("roles", array);
 		}
 
-		if (user.getDeptRoles() != null && !user.getDeptRoles().isEmpty()) {
-			JSONArray array = new JSONArray();
-			for (SysDeptRole sysDeptRole : user.getDeptRoles()) {
-				array.add(sysDeptRole.toJsonObject());
-			}
-			jsonObject.put("deptRoles", array);
-		}
-
 		if (user.getFunctions() != null && !user.getFunctions().isEmpty()) {
 			JSONArray array = new JSONArray();
 			for (SysFunction sysFunction : user.getFunctions()) {
@@ -391,14 +371,6 @@ public class SysUserJsonFactory {
 				array.add(sysRole.toObjectNode());
 			}
 			jsonObject.set("roles", array);
-		}
-
-		if (user.getRoles() != null && !user.getRoles().isEmpty()) {
-			ArrayNode array = new ObjectMapper().createArrayNode();
-			for (SysDeptRole sysDeptRole : user.getDeptRoles()) {
-				array.add(sysDeptRole.toObjectNode());
-			}
-			jsonObject.set("deptRoles", array);
 		}
 
 		if (user.getFunctions() != null && !user.getFunctions().isEmpty()) {

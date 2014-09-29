@@ -5,11 +5,11 @@
 <%@ page import="com.glaf.base.modules.sys.model.*"%>
 <%@ page import="com.glaf.base.utils.*"%>
 <%
-String context = request.getContextPath();
-int pageSize=Constants.PAGE_SIZE;
-int parent=ParamUtil.getIntParameter(request, "parent", 0);
-com.glaf.core.util.PageResult pager=(com.glaf.core.util.PageResult)request.getAttribute("pager");
-List list = pager.getResults();
+	String context = request.getContextPath();
+	int pageSize=Constants.PAGE_SIZE;
+	int parent=ParamUtil.getIntParameter(request, "parent", 0);
+	com.glaf.core.util.PageResult pager=(com.glaf.core.util.PageResult)request.getAttribute("pager");
+	List list = pager.getResults();
 %>
 <!DOCTYPE html>
 <html>
@@ -32,16 +32,16 @@ function checkOperation(form){
 	if(num==1){
 	  document.all.btn_modify.disabled=false;
 	  document.all.btn_user.disabled=false;
-	  document.all.btn_role.disabled=false;
+	  //document.all.btn_role.disabled=false;
 	}else{
 	  document.all.btn_modify.disabled=true;
 	  document.all.btn_user.disabled=true;
-	  document.all.btn_role.disabled=true;
+	  //document.all.btn_role.disabled=true;
 	}
   }else{
 	  document.all.btn_modify.disabled=true;
 	  document.all.btn_user.disabled=true;
-	  document.all.btn_role.disabled=true;
+	  //document.all.btn_role.disabled=true;
   }
 }
 function add(){
@@ -198,7 +198,7 @@ for(; i<pageSize; i++){
     <td width="50%"> <input name="btn_add" type="button" value="增加" class="button" onClick="javascript:add();"> 
       <input name="btn_modify" type="button" value="修改" class="button" onClick="javascript:modify(this.form);" disabled>
       <input name="btn_user" type="button" value="用户管理" class="button" onClick="javascript:users(this.form);" disabled>
-      <input name="btn_role" type="button" value="角色设置" class="button" onClick="javascript:roles(this.form);" disabled>
+      <!-- <input name="btn_role" type="button" value="角色设置" class="button" onClick="javascript:roles(this.form);" disabled> -->
 	  </td>
     <td width="50%"> 
       <%
