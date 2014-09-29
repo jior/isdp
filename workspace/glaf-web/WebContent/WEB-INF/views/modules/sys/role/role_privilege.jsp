@@ -1,26 +1,27 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="html"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.glaf.base.modules.sys.*"%>
 <%@ page import="com.glaf.base.modules.sys.model.*"%>
 <%@ page import="com.glaf.base.modules.utils.*"%>
 <%
-List list = (List)request.getAttribute("list");
-SysRole role = (SysRole)request.getAttribute("role");
+	List list = (List)request.getAttribute("list");
+	SysRole role = (SysRole)request.getAttribute("role");
 
-Set appId=new HashSet();
-Iterator temp = role.getApps().iterator();
-while(temp.hasNext()){
-  SysApplication bean=(SysApplication)temp.next();
-  appId.add(new Long(bean.getId()));
-}
-Set funcId=new HashSet();
-temp = role.getFunctions().iterator();
-while(temp.hasNext()){
-  SysFunction bean=(SysFunction)temp.next();
-  funcId.add(new Long(bean.getId()));
-}
+	Set appIds=new HashSet();
+	/*
+	Iterator temp = role.getApps().iterator();
+	while(temp.hasNext()){
+	  SysApplication bean=(SysApplication)temp.next();
+	  appIds.add(bean.getId());
+	}
+
+	Set funcIds=new HashSet();
+	temp = role.getFunctions().iterator();
+	while(temp.hasNext()){
+	  SysFunction bean=(SysFunction)temp.next();
+	  funcIds.add(bean.getId());
+	}*/
 %>
 
 <html>
@@ -29,8 +30,9 @@ while(temp.hasNext()){
 <title></title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/themes/<%=com.glaf.core.util.RequestUtils.getTheme(request)%>/site.css">
 <link type="text/css" href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
-<SCRIPT src="<%=request.getContextPath()%>/scripts/main.js"></SCRIPT>
-<script language="JavaScript">
+<script language="javascript" src='<%=request.getContextPath()%>/scripts/verify.js'></script>
+<script language="javascript" src='<%=request.getContextPath()%>/scripts/main.js'></script>
+<script language="javascript">
 function checkForm(form){
   var isChecked = false;
   for(var i = 0; i < form.elements.length; i++){
@@ -98,12 +100,7 @@ function unSelApp(id){
                   <td><span class="style2">角色管理</span></td>
                 </tr>
               </table></td>
-            <td valign="middle"><table width="95%"  border="0" cellspacing="0" cellpadding="0">
-                <tr> 
-                  <td height="15" align="right"><img src="<%=request.getContextPath()%>/images/icon_1.jpg" width="11" height="12"> 
-                    <span class="font">权限设置</span> </td>
-                </tr>
-              </table></td>
+             
           </tr>
         </table>
 		</div></th>
@@ -135,37 +132,22 @@ if(list!=null){
 %>
   <tr>
     <td align="center" class="list"><%= i+1%></td>
-    <td class="list"><%
-if(bean.getDeep()>1){  
-  for(int j=1; j<=bean.getDeep()-1; j++){
-    out.print("　　");
-  }
-  out.print("--");
-}else{
-  out.print("＋");
-}
-out.print(bean.getName());
-%>
+    <td class="list">
+	<%
+		if(bean.getDeep()>1){  
+		  for(int j=1; j<=bean.getDeep()-1; j++){
+			out.print("　　");
+		  }
+		  out.print("--");
+		}else{
+		  out.print("＋");
+		}
+		out.print(bean.getName());
+		%>
       &nbsp;
       <input type="hidden" name="appId" value="<%=id%>">
     </td>
-    <td class="list">
-	  <input type="checkbox" name="access<%=id%>" value="1" <%=appId.contains(new Long(id))?"checked":""%>>访问权限<br>
-      <%
-			Iterator functions = bean.getApp().getFunctions().iterator();
-			int j=0;
-			while(functions.hasNext()){
-			  SysFunction func = (SysFunction)functions.next();
-	  %>
-      <input type="checkbox" name="funcId" value="<%=func.getId()%>" <%=funcId.contains(new Long(func.getId()))?"checked":""%>><%=func.getName()%>
-      <%
-			  if(j%4==3){
-			    out.print("<br>");
-			  }
-			  j++;
-			}
-	  %>
-    </td>
+   
   </tr>
   <%
     i++;

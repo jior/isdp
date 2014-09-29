@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.glaf.base.modules.sys.model.RealmInfo;
 import com.glaf.base.modules.sys.model.SysApplication;
+import com.glaf.base.modules.sys.model.SysTree;
 import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.query.SysApplicationQuery;
 import com.glaf.core.base.TreeModel;
@@ -40,6 +41,7 @@ public interface SysApplicationService {
 	 *            SysApplication
 	 * @return boolean
 	 */
+	@Transactional
 	boolean create(SysApplication bean);
 
 	/**
@@ -49,6 +51,7 @@ public interface SysApplicationService {
 	 *            int
 	 * @return boolean
 	 */
+	@Transactional
 	boolean delete(long id);
 
 	/**
@@ -58,6 +61,7 @@ public interface SysApplicationService {
 	 *            SysApplication
 	 * @return boolean
 	 */
+	@Transactional
 	boolean delete(SysApplication bean);
 
 	/**
@@ -66,6 +70,7 @@ public interface SysApplicationService {
 	 * @param id
 	 * @return
 	 */
+	@Transactional
 	boolean deleteAll(long[] id);
 
 	/**
@@ -117,16 +122,16 @@ public interface SysApplicationService {
 	/**
 	 * 获取列表
 	 * 
-	 * @param parent
+	 * @param parentId
 	 *            int
 	 * @return List
 	 */
-	List<SysApplication> getApplicationList(long parent);
+	List<SysApplication> getApplicationList(long parentId);
 
 	/**
 	 * 获取分页列表
 	 * 
-	 * @param parent
+	 * @param parentId
 	 *            int
 	 * @param pageNo
 	 *            int
@@ -134,7 +139,7 @@ public interface SysApplicationService {
 	 *            int
 	 * @return
 	 */
-	PageResult getApplicationList(long parent, int pageNo, int pageSize);
+	PageResult getApplicationList(long parentId, int pageNo, int pageSize);
 
 	/**
 	 * 获取菜单
@@ -146,6 +151,8 @@ public interface SysApplicationService {
 	String getMenu(long parent, SysUser user);
 
 	List<RealmInfo> getRealmInfos();
+
+	List<SysApplication> getRoleApplications(long roleId);
 
 	/**
 	 * 获取角色菜单之json对象
@@ -172,7 +179,7 @@ public interface SysApplicationService {
 	 * @return
 	 */
 	int getSysApplicationCountByQueryCriteria(SysApplicationQuery query);
-	
+
 	/**
 	 * 根据查询参数获取一页的数据
 	 * 
@@ -202,9 +209,9 @@ public interface SysApplicationService {
 	 * @return
 	 */
 	List<TreeModel> getTopLevelTreeModels(String appCode, String userId);
-	
+
 	TreeModel getTreeModelByAppId(long appId);
-	
+
 	/**
 	 * 获取用户某个分类下的全部分类节点
 	 * 
@@ -224,7 +231,9 @@ public interface SysApplicationService {
 	 * @return
 	 */
 	List<TreeModel> getTreeModels(String roleCode);
-	
+
+	List<SysTree> getTreeWithApplicationList(long parentId);
+
 	/**
 	 * 获取用户菜单之json对象
 	 * 
@@ -236,6 +245,9 @@ public interface SysApplicationService {
 	 */
 	JSONArray getUserMenu(long parentId, String userId);
 
+	@Transactional
+	void saveRoleApplications(long roleId, List<Long> appIds);
+
 	/**
 	 * 排序
 	 * 
@@ -244,6 +256,7 @@ public interface SysApplicationService {
 	 * @param operate
 	 *            int 操作
 	 */
+	@Transactional
 	void sort(long parent, SysApplication bean, int operate);
 
 	/**
@@ -253,5 +266,6 @@ public interface SysApplicationService {
 	 *            SysApplication
 	 * @return boolean
 	 */
+	@Transactional
 	boolean update(SysApplication bean);
 }

@@ -45,11 +45,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.glaf.base.modules.sys.SysConstants;
+import com.glaf.base.modules.sys.model.SysApplication;
 import com.glaf.base.modules.sys.model.SysDepartment;
 import com.glaf.base.modules.sys.model.SysRole;
 import com.glaf.base.modules.sys.model.SysTree;
 import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.query.SysRoleQuery;
+import com.glaf.base.modules.sys.service.SysApplicationService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.service.SysUserRoleService;
@@ -73,6 +75,8 @@ import com.glaf.core.util.Tools;
 // /rs/sys/rolebatchDelete?rowIds=181819
 public class SysRoleResource {
 	private static final Log logger = LogFactory.getLog(SysRoleResource.class);
+
+	protected SysApplicationService sysApplicationService;
 
 	protected SysRoleService sysRoleService;
 
@@ -220,6 +224,53 @@ public class SysRoleResource {
 
 	@GET
 	@POST
+	@Path("roleMenusJson")
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] roleMenusJson(@Context HttpServletRequest request,
+			@Context UriInfo uriInfo) throws IOException {
+		long roleId = RequestUtils.getLong(request, "roleId");
+		if (roleId > 0) {
+
+		} else {
+			String roleCode = request.getParameter("roleCode");
+			if (StringUtils.isNotEmpty(roleCode)) {
+
+			}
+		}
+
+		long parentId = ParamUtil.getIntParameter(request, "parentId", 3);
+
+		List<SysTree> list = sysApplicationService
+				.getTreeWithApplicationList(parentId);
+		List<TreeModel> treeModels = new ArrayList<TreeModel>();
+
+		List<SysApplication> apps = sysApplicationService
+				.getRoleApplications(roleId);
+		if (apps != null && !apps.isEmpty()) {
+			for (SysTree tree : list) {
+				for (SysApplication app : apps) {
+					if (tree.getApp().getId() == app.getId()) {
+						tree.setChecked(true);
+					}
+				}
+			}
+		}
+
+		for (SysTree tree : list) {
+			treeModels.add(tree);
+		}
+
+		logger.debug("treeModels:" + treeModels.size());
+		TreeHelper treeHelper = new TreeHelper();
+		JSONArray jsonArray = treeHelper.getTreeJSONArray(treeModels);
+		// logger.debug(jsonArray.toJSONString());
+		return jsonArray.toJSONString().getBytes("UTF-8");
+
+	}
+
+	@GET
+	@POST
 	@Path("roleUsersJson")
 	@ResponseBody
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
@@ -338,7 +389,8 @@ public class SysRoleResource {
 				bean.setName(ParamUtil.getParameter(request, "name"));
 				bean.setContent(ParamUtil.getParameter(request, "content"));
 				bean.setCode(ParamUtil.getParameter(request, "code"));
-				bean.setIsUseBranch(ParamUtil.getParameter(request, "isUseBranch"));
+				bean.setIsUseBranch(ParamUtil.getParameter(request,
+						"isUseBranch"));
 				bean.setCreateBy(RequestUtils.getActorId(request));
 				bean.setUpdateBy(RequestUtils.getActorId(request));
 				ret = sysRoleService.create(bean);
@@ -385,7 +437,8 @@ public class SysRoleResource {
 				bean.setName(ParamUtil.getParameter(request, "name"));
 				bean.setContent(ParamUtil.getParameter(request, "content"));
 				bean.setCode(ParamUtil.getParameter(request, "code"));
-				bean.setIsUseBranch(ParamUtil.getParameter(request, "isUseBranch"));
+				bean.setIsUseBranch(ParamUtil.getParameter(request,
+						"isUseBranch"));
 				bean.setUpdateBy(RequestUtils.getActorId(request));
 			}
 			ret = sysRoleService.update(bean);
@@ -433,6 +486,54 @@ public class SysRoleResource {
 		}
 
 		return ResponseUtils.responseJsonResult(false);
+	}
+
+	@POST
+	@Path("saveRoleMenus")
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] saveRoleMenus(@Context HttpServletRequest request,
+			@Context UriInfo uriInfo) throws IOException {
+		long roleId = RequestUtils.getLong(request, "roleId");
+		if (roleId > 0) {
+			SysRole role = sysRoleService.findById(roleId);
+			if (role != null) {
+				String x_nodeIds = request.getParameter("nodeIds");
+				List<Long> nodeIds = new ArrayList<Long>();
+				String[] ids = x_nodeIds.split(",");
+				for (int i = 0; i < ids.length; i++) {
+					String nodeId = ids[i];
+					nodeIds.add(Long.parseLong(nodeId));
+				}
+				if (!nodeIds.isEmpty()) {
+					long parentId = ParamUtil.getIntParameter(request,
+							"parentId", 3);
+					List<Long> appIds = new ArrayList<Long>();
+					List<SysTree> list = sysApplicationService
+							.getTreeWithApplicationList(parentId);
+					for (SysTree tree : list) {
+						if (nodeIds.contains(tree.getId())) {
+							if (!appIds.contains(tree.getApp().getId())) {
+								appIds.add(tree.getApp().getId());
+							}
+						}
+					}
+					if (appIds != null && !appIds.isEmpty()) {
+						sysApplicationService.saveRoleApplications(roleId,
+								appIds);
+					}
+					return ResponseUtils.responseJsonResult(true);
+				}
+			}
+		}
+
+		return ResponseUtils.responseJsonResult(false);
+	}
+
+	@javax.annotation.Resource
+	public void setSysApplicationService(
+			SysApplicationService sysApplicationService) {
+		this.sysApplicationService = sysApplicationService;
 	}
 
 	@javax.annotation.Resource

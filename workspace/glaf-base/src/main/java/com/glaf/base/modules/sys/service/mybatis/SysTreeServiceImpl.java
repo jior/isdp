@@ -352,7 +352,7 @@ public class SysTreeServiceImpl implements SysTreeService {
 				}
 			}
 			for (SysTree bean : list) {
-				bean.setApp(appMap.get(Long.valueOf(bean.getId())));
+				bean.setApp(appMap.get(bean.getId()));
 			}
 		}
 	}

@@ -47,11 +47,11 @@ import com.glaf.base.modules.sys.model.SysRole;
 import com.glaf.base.modules.sys.model.SysTree;
 import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.query.SysRoleQuery;
+import com.glaf.base.modules.sys.service.SysApplicationService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.service.SysUserService;
 import com.glaf.base.utils.ParamUtil;
-
 import com.glaf.core.base.BaseTree;
 import com.glaf.core.base.TreeModel;
 import com.glaf.core.config.ViewProperties;
@@ -70,12 +70,16 @@ import com.glaf.core.util.Tools;
 public class SysRoleController {
 	private static final Log logger = LogFactory
 			.getLog(SysRoleController.class);
+	
+	protected SysApplicationService sysApplicationService;
 
 	protected SysRoleService sysRoleService;
 
 	protected SysTreeService sysTreeService;
 
 	protected SysUserService sysUserService;
+	
+	
 
 	/**
 	 * 批量删除信息
@@ -246,6 +250,7 @@ public class SysRoleController {
 		// 显示列表页面
 		return new ModelAndView("/modules/sys/role/role_add", modelMap);
 	}
+	
 
 	/**
 	 * 显示修改页面
@@ -269,6 +274,61 @@ public class SysRoleController {
 
 		// 显示列表页面
 		return new ModelAndView("/modules/sys/role/role_modify", modelMap);
+	}
+	
+	/**
+	 * 显示菜单页面
+	 * 
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping("/privilege")
+	public ModelAndView privilege(HttpServletRequest request, ModelMap modelMap) {
+		RequestUtils.setRequestParameterToAttribute(request);
+
+		long roleId = ParamUtil.getIntParameter(request, "roleId", 0);
+		SysRole bean = sysRoleService.findById(roleId);
+		request.setAttribute("role", bean);
+		
+		long parentId = ParamUtil.getIntParameter(request, "parentId", 3);
+		
+		List<SysTree> list = sysApplicationService.getTreeWithApplicationList(parentId);
+		request.setAttribute("list", list);
+		
+		
+		String x_view = ViewProperties.getString("role.privilege");
+		if (StringUtils.isNotEmpty(x_view)) {
+			return new ModelAndView(x_view, modelMap);
+		}
+
+		// 显示列表页面
+		return new ModelAndView("/modules/sys/role/role_privilege", modelMap);
+	}
+	
+
+	/**
+	 * 显示菜单页面
+	 * 
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping("/roleMenus")
+	public ModelAndView roleMenus(HttpServletRequest request, ModelMap modelMap) {
+		RequestUtils.setRequestParameterToAttribute(request);
+
+		long roleId = ParamUtil.getIntParameter(request, "roleId", 0);
+		SysRole bean = sysRoleService.findById(roleId);
+		request.setAttribute("role", bean);
+		
+		String x_view = ViewProperties.getString("role.roleMenus");
+		if (StringUtils.isNotEmpty(x_view)) {
+			return new ModelAndView(x_view, modelMap);
+		}
+
+		// 显示列表页面
+		return new ModelAndView("/modules/sys/role/roleMenus", modelMap);
 	}
 
 	@RequestMapping("/roleUsers")
@@ -422,6 +482,11 @@ public class SysRoleController {
 		MessageUtils.addMessages(request, messages);
 		// 显示列表页面
 		return new ModelAndView("show_msg", modelMap);
+	}
+
+	@javax.annotation.Resource
+	public void setSysApplicationService(SysApplicationService sysApplicationService) {
+		this.sysApplicationService = sysApplicationService;
 	}
 
 	@javax.annotation.Resource

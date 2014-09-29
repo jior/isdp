@@ -33,14 +33,17 @@ function checkOperation(form){
 	if(num==1){
 	  document.all.btn_modify.disabled=false;
 	  document.all.btn_ru.disabled=false;
+	  document.all.btn_rm.disabled=false;
 	}else{
 	  document.all.btn_modify.disabled=true;
 	  document.all.btn_ru.disabled=true;
+	  document.all.btn_rm.disabled=true;
 	}
   }else{
     document.all.btn_del.disabled=true;
 	document.all.btn_modify.disabled=true;
 	document.all.btn_ru.disabled=true;
+	document.all.btn_rm.disabled=true;
   }
 }
 function add(){
@@ -83,6 +86,22 @@ function roleUsers(form){
   var scroll="no";
   //openWindow(url, width, height, scroll);
   art.dialog.open(link, { height: height, width: width, title: "角色用户", scrollbars:"no" , lock: false });
+}
+
+function roleMenus(form){
+  var id =0;
+  for (var i=0;i<form.id.length;i++) {
+    var e = form.id[i];
+    if (e.checked){
+	  id=e.value;
+	}     
+  }
+  var link = "<%=request.getContextPath()%>/mx/sys/role/roleMenus?roleId="+id;
+  var width=520;
+  var height=420;
+  var scroll="no";
+  //openWindow(url, width, height, scroll);
+  art.dialog.open(link, { height: height, width: width, title: "角色菜单", scrollbars:"no" , lock: false });
 }
 
 function del(){
@@ -164,6 +183,7 @@ for(; i<pageSize; i++){
       <input name="btn_del" type="button" value="删除" class="button" onClick="javascript:del();" disabled>
       <input name="btn_modify" type="button" value="修改" class="button" onClick="javascript:modify(this.form);" disabled>
 	  <input name="btn_ru" type="button" value="角色用户" class="button" onClick="javascript:roleUsers(this.form);" disabled>
+	  <input name="btn_rm" type="button" value="角色菜单" class="button" onClick="javascript:roleMenus(this.form);" disabled>
 	  </td>
     <td width="50%"> 
       <%

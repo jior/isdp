@@ -43,6 +43,7 @@ import com.glaf.base.modules.sys.mapper.SysAccessMapper;
 import com.glaf.base.modules.sys.mapper.SysApplicationMapper;
 import com.glaf.base.modules.sys.mapper.SysTreeMapper;
 import com.glaf.base.modules.sys.model.RealmInfo;
+import com.glaf.base.modules.sys.model.SysAccess;
 import com.glaf.base.modules.sys.model.SysApplication;
 import com.glaf.base.modules.sys.model.SysTree;
 import com.glaf.base.modules.sys.model.SysUser;
@@ -96,7 +97,7 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	public SysApplicationServiceImpl() {
 
 	}
-
+	
 	public int count(SysApplicationQuery query) {
 		return sysApplicationMapper.getSysApplicationCount(query);
 	}
@@ -440,6 +441,10 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		return sysApplicationMapper.getRealmInfos(params);
 	}
 
+	public List<SysApplication> getRoleApplications(long roleId){
+		return sysApplicationMapper.getSysApplicationByRoleId(roleId);
+	}
+
 	public JSONArray getRoleMenu(String roleCode) {
 		JSONArray array = new JSONArray();
 		List<SysApplication> apps = this.getSysApplicationByRoleCode(roleCode);
@@ -638,6 +643,32 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 			}
 		}
 		return treeModels;
+	}
+
+	public List<SysTree> getTreeWithApplicationList(long parentId) {
+		List<SysTree> trees = new ArrayList<SysTree>();
+		SysTree node = sysTreeService.findById(parentId);
+		SysTreeQuery query = new SysTreeQuery();
+		query.treeIdLike(node.getTreeId());
+		List<SysApplication> apps = this.getApplicationList();
+		Map<Long, SysApplication> appMap = new HashMap<Long, SysApplication>();
+		if (apps != null && !apps.isEmpty()) {
+			for (SysApplication app : apps) {
+				appMap.put(app.getNodeId(), app);
+			}
+		}
+		List<SysTree> list = sysTreeMapper.getSysTrees(query);
+		if (list != null && !list.isEmpty()) {
+			for (SysTree tree : list) {
+				SysApplication app = appMap.get(tree.getId());
+				if (app != null) {
+					tree.setApp(app);
+					trees.add(tree);
+				}
+			}
+		}
+
+		return trees;
 	}
 
 	public JSONArray getUserMenu(long parent, String actorId) {
@@ -872,6 +903,17 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 				treeModel.setSortNo(bean.getSort());
 				treeModels.add(treeModel);
 			}
+		}
+	}
+
+	@Transactional
+	public void saveRoleApplications(long roleId, List<Long> appIds) {
+		sysAccessMapper.deleteSysAccessByRoleId(roleId);
+		for (Long appId : appIds) {
+			SysAccess model = new SysAccess();
+			model.setRoleId(roleId);
+			model.setAppId(appId);
+			sysAccessMapper.insertSysAccess(model);
 		}
 	}
 
