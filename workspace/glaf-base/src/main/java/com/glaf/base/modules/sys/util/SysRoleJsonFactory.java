@@ -45,6 +45,12 @@ public class SysRoleJsonFactory {
 		if (jsonObject.containsKey("name")) {
 			model.setName(jsonObject.getString("name"));
 		}
+		if (jsonObject.containsKey("type")) {
+			model.setType(jsonObject.getString("type"));
+		}
+		if (jsonObject.containsKey("isUseBranch")) {
+			model.setIsUseBranch(jsonObject.getString("isUseBranch"));
+		}
 		if (jsonObject.containsKey("content")) {
 			model.setContent(jsonObject.getString("content"));
 		}
@@ -86,11 +92,17 @@ public class SysRoleJsonFactory {
 		jsonObject.put("id", model.getId());
 		jsonObject.put("_id_", model.getId());
 		jsonObject.put("_oid_", model.getId());
-		
+
 		jsonObject.put("nodeId", model.getNodeId());
-		
+
 		if (model.getName() != null) {
 			jsonObject.put("name", model.getName());
+		}
+		if (model.getType() != null) {
+			jsonObject.put("type", model.getType());
+		}
+		if (model.getIsUseBranch() != null) {
+			jsonObject.put("isUseBranch", model.getIsUseBranch());
 		}
 		if (model.getContent() != null) {
 			jsonObject.put("content", model.getContent());
@@ -131,11 +143,17 @@ public class SysRoleJsonFactory {
 		jsonObject.put("id", model.getId());
 		jsonObject.put("_id_", model.getId());
 		jsonObject.put("_oid_", model.getId());
-		
+
 		jsonObject.put("nodeId", model.getNodeId());
-		
+
 		if (model.getName() != null) {
 			jsonObject.put("name", model.getName());
+		}
+		if (model.getType() != null) {
+			jsonObject.put("type", model.getType());
+		}
+		if (model.getIsUseBranch() != null) {
+			jsonObject.put("isUseBranch", model.getIsUseBranch());
 		}
 		if (model.getContent() != null) {
 			jsonObject.put("content", model.getContent());

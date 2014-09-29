@@ -27,7 +27,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.glaf.base.modules.sys.model.SysDeptRole;
 import com.glaf.base.modules.sys.model.SysRole;
 import com.glaf.base.modules.sys.model.SysUser;
+import com.glaf.base.modules.sys.model.UserRole;
 import com.glaf.base.modules.sys.query.SysUserQuery;
+import com.glaf.base.modules.sys.query.UserRoleQuery;
 import com.glaf.core.util.PageResult;
 
 @Transactional(readOnly = true)
@@ -42,6 +44,9 @@ public interface SysUserService {
 	 */
 	@Transactional
 	boolean create(SysUser bean);
+
+	@Transactional
+	void createRoleUser(long roleId, String actorId);
 
 	/**
 	 * 删除
@@ -72,14 +77,10 @@ public interface SysUserService {
 	@Transactional
 	boolean deleteAll(long[] id);
 
-	/**
-	 * 删除部门角色用户
-	 * 
-	 * @param deptRole
-	 * @param userIds
-	 */
 	@Transactional
-	void deleteRoleUsers(SysRole role, String[] userIds);
+	void deleteRoleUser(long roleId, String actorId);
+	
+	
 
 	/**
 	 * 删除部门角色用户
@@ -89,6 +90,15 @@ public interface SysUserService {
 	 */
 	@Transactional
 	void deleteRoleUsers(SysDeptRole deptRole, String[] userIds);
+
+	/**
+	 * 删除部门角色用户
+	 * 
+	 * @param deptRole
+	 * @param userIds
+	 */
+	@Transactional
+	void deleteRoleUsers(SysRole role, String[] userIds);
 
 	/**
 	 * 按名称查找对象
@@ -118,11 +128,33 @@ public interface SysUserService {
 	SysUser findById(String actorId);
 
 	/**
+	 * 按邮箱查找对象
+	 * 
+	 * @param mail
+	 *            String
+	 * @return SysUser
+	 */
+	SysUser findByMail(String mail);
+
+	/**
+	 * 按手机查找对象
+	 * 
+	 * @param mobile
+	 *            String
+	 * @return SysUser
+	 */
+	SysUser findByMobile(String mobile);
+
+	/**
 	 * 
 	 * @param user
 	 * @return
 	 */
 	Collection<SysDeptRole> getDeptRoles(SysUser user);
+
+	String getPasswordByAccount(String account);
+
+	List<UserRole> getRoleUserViews(UserRoleQuery query);
 
 	/**
 	 * 获取某个用户的上级
@@ -157,15 +189,6 @@ public interface SysUserService {
 	List<SysUser> getSysUserList();
 
 	/**
-	 * 获取列表
-	 * 
-	 * @param deptId
-	 *            int
-	 * @return List
-	 */
-	List<SysUser> getSysUserList(long deptId);
-
-	/**
 	 * 获取全部员工数据集 分页列表
 	 * 
 	 * @param pageNo
@@ -175,6 +198,15 @@ public interface SysUserService {
 	 * @return
 	 */
 	PageResult getSysUserList(int pageNo, int pageSize);
+
+	/**
+	 * 获取列表
+	 * 
+	 * @param deptId
+	 *            int
+	 * @return List
+	 */
+	List<SysUser> getSysUserList(long deptId);
 
 	/**
 	 * 获取特定部门的员工数据集 分页列表
@@ -258,8 +290,6 @@ public interface SysUserService {
 	 * @return
 	 */
 	SysUser getUserPrivileges(SysUser user);
-
-	String getPasswordByAccount(String account);
 
 	/**
 	 * 获取某些用户的角色

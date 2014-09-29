@@ -50,7 +50,7 @@ public interface SysTreeService {
 	 */
 	@Transactional
 	boolean delete(long id);
-
+	
 	/**
 	 * 删除
 	 * 
@@ -222,6 +222,15 @@ public interface SysTreeService {
 	 */
 	List<SysTree> getSysTreesByQueryCriteria(int start, int pageSize,
 			SysTreeQuery query);
+
+	/**
+	 * 获取树型列表
+	 * 
+	 * @param parent
+	 *            int
+	 * @return List
+	 */
+	void loadSysTrees(List<SysTree> treeList, long parentId, int deep);
 
 	/**
 	 * 排序

@@ -119,6 +119,9 @@ public interface SysDepartmentService {
 	 * @param node
 	 */
 	void findNestingDepartment(List<SysDepartment> list, SysDepartment node);
+	
+	
+	SysDepartment getSysDepartment(long id);
 
 	/**
 	 * 通过节点编号获取部门信息

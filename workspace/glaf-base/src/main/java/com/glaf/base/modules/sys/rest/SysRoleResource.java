@@ -338,6 +338,7 @@ public class SysRoleResource {
 				bean.setName(ParamUtil.getParameter(request, "name"));
 				bean.setContent(ParamUtil.getParameter(request, "content"));
 				bean.setCode(ParamUtil.getParameter(request, "code"));
+				bean.setIsUseBranch(ParamUtil.getParameter(request, "isUseBranch"));
 				bean.setCreateBy(RequestUtils.getActorId(request));
 				bean.setUpdateBy(RequestUtils.getActorId(request));
 				ret = sysRoleService.create(bean);
@@ -384,6 +385,7 @@ public class SysRoleResource {
 				bean.setName(ParamUtil.getParameter(request, "name"));
 				bean.setContent(ParamUtil.getParameter(request, "content"));
 				bean.setCode(ParamUtil.getParameter(request, "code"));
+				bean.setIsUseBranch(ParamUtil.getParameter(request, "isUseBranch"));
 				bean.setUpdateBy(RequestUtils.getActorId(request));
 			}
 			ret = sysRoleService.update(bean);

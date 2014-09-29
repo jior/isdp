@@ -48,6 +48,19 @@ List  list = (List)request.getAttribute("parent");
         <td class="input-box2" valign="top">代码*</td>
         <td><input name="code" type="text" size="35" value="<%=bean.getCode() != null ? bean.getCode() : ""%>" class="input" datatype="string" nullable="no" maxsize="20" chname="代码"></td>
       </tr>
+	  <tr>
+        <td class="input-box2" valign="top">是否开放分级管理</td>
+        <td>
+		    <select id="isUseBranch" name="isUseBranch">
+			    <option value="">----请选择----</option>
+			    <option value="Y">开放</option>
+				<option value="N">不开放</option>
+		    </select>
+			<script type="text/javascript">
+			     document.getElementById("isUseBranch").value="<%=bean.getIsUseBranch() != null ? bean.getIsUseBranch() : ""%>";
+			</script>
+        </td>
+      </tr>
       <tr>
         <td colspan="2" align="center" valign="bottom" height="30">&nbsp;
               <input name="btn_save" type="submit" value="保存" class="button"></td>

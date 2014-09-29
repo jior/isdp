@@ -36,13 +36,19 @@ public interface SysUserMapper {
 
 	int getCountAuthorizedUsers(SysUserQuery query);
 
+	String getPasswordByAccount(String account);
+
+	List<UserRole> getRoleUserViews(UserRoleQuery query);
+
 	List<SysUser> getSysDeptRoleUsers(SysDeptRoleQuery query);
 
 	List<SysUser> getSysRoleUsers(Long roleId);
 
 	SysUser getSysUserByAccount(String account);
-	
-	String getPasswordByAccount(String account);
+
+	SysUser getSysUserByMail(String mail);
+
+	SysUser getSysUserByMobile(String mobile);
 
 	int getSysUserCount(SysUserQuery query);
 
@@ -53,7 +59,7 @@ public interface SysUserMapper {
 	void insertSysUser(SysUser model);
 
 	void updateSysUser(SysUser model);
-	
+
 	void updateUserPassword(SysUser model);
 
 }

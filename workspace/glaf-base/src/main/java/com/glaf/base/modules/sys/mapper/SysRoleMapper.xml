@@ -7,9 +7,11 @@
 	<resultMap id="sysRoleResultMap" type="com.glaf.base.modules.sys.model.SysRole">
 		<id property="id" column="ID" jdbcType="BIGINT" />
 		<result property="name" column="ROLENAME" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE" jdbcType="VARCHAR" />
 		<result property="content" column="CONTENT" jdbcType="VARCHAR" />
 		<result property="code" column="CODE" jdbcType="VARCHAR" />
 		<result property="sort" column="TASKSORT" jdbcType="INTEGER" />
+		<result property="isUseBranch" column="ISUSEBRANCH" jdbcType="VARCHAR" />
 		<result property="createDate" column="CREATEDATE" jdbcType="TIMESTAMP" />
 		<result property="createBy" column="CREATEBY" jdbcType="VARCHAR" />
 		<result property="updateBy" column="UPDATEBY" jdbcType="VARCHAR" />
@@ -23,6 +25,9 @@
 			<if test="name != null">
 				ROLENAME,
 			</if>
+			<if test="type != null">
+				,TYPE
+			</if>
 			<if test="content != null">
 				CONTENT,
 			</if>
@@ -31,6 +36,9 @@
 			</if>
 			<if test="sort != null">
 				TASKSORT,
+			</if>
+			<if test="isUseBranch != null">
+				,ISUSEBRANCH
 			</if>
 			<if test="createDate != null">
 				CREATEDATE,
@@ -50,6 +58,9 @@
 			<if test="name != null">
 				#{name, jdbcType=VARCHAR},
 			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
 			<if test="content != null">
 				#{content, jdbcType=VARCHAR},
 			</if>
@@ -58,6 +69,9 @@
 			</if>
 			<if test="sort != null">
 				#{sort, jdbcType=INTEGER},
+			</if>
+			<if test="isUseBranch != null">
+				,#{isUseBranch, jdbcType=VARCHAR}
 			</if>
 			<if test="createDate != null">
 				#{createDate, jdbcType=TIMESTAMP},
@@ -90,6 +104,9 @@
 			</if>
 			<if test="sort != null">
 				TASKSORT = #{sort, jdbcType=INTEGER},
+			</if>
+			<if test="isUseBranch != null">
+				ISUSEBRANCH = #{isUseBranch, jdbcType=VARCHAR},
 			</if>
 			<if test="updateBy != null">
 				UPDATEBY = #{updateBy, jdbcType=VARCHAR},
@@ -235,6 +252,14 @@
 					open="(" separator="," close=")">
 					#{x_code}
 				</foreach>
+			</if>
+			
+			<if test="type != null and type != '' ">
+				and E.TYPE = #{type}
+			</if>
+			
+			<if test="isUseBranch != null and isUseBranch != '' ">
+			    and E.ISUSEBRANCH = #{isUseBranch}
 			</if>
 
 			<if test="sortGreaterThanOrEqual != null">

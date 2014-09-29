@@ -63,7 +63,7 @@
 	}
 
 	function viewUser(actorId){
-		var link = '<%=request.getContextPath()%>/mx/identity/user/view?actorId='+actorId;
+		var link = '<%=request.getContextPath()%>/identity/user.do?method=view&actorId='+actorId;
 		art.dialog.open(link, { height: 420, width: 480, title: "查看用户信息", lock: true, scrollbars:"no" }, false);
 	}
 

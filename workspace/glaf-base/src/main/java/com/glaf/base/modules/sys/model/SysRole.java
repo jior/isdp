@@ -32,11 +32,22 @@ import com.glaf.core.base.JSONable;
 @Table(name = "net_role")
 public class SysRole implements Serializable, JSONable {
 	private static final long serialVersionUID = 7738558740111388611L;
+
+	@Id
+	@Column(name = "ID", nullable = false)
+	protected long id;
+
 	/**
 	 * 编码
 	 */
 	@Column(name = "CODE", length = 50)
 	protected String code;
+
+	/**
+	 * 类型
+	 */
+	@Column(name = "TYPE", length = 50)
+	protected String type;
 
 	/**
 	 * 创建人
@@ -57,10 +68,6 @@ public class SysRole implements Serializable, JSONable {
 	@Column(name = "CONTENT", length = 500)
 	protected String content;
 
-	@Id
-	@Column(name = "ID", nullable = false)
-	protected long id;
-
 	/**
 	 * 名称
 	 */
@@ -75,6 +82,12 @@ public class SysRole implements Serializable, JSONable {
 	 */
 	@Column(name = "TASKSORT")
 	protected int sort;
+
+	/**
+	 * 是否开放分级管理
+	 */
+	@Column(name = "ISUSEBRANCH", length = 10)
+	protected String isUseBranch;
 
 	/**
 	 * 修改人
@@ -127,6 +140,10 @@ public class SysRole implements Serializable, JSONable {
 		return this.id;
 	}
 
+	public String getIsUseBranch() {
+		return isUseBranch;
+	}
+
 	public String getName() {
 		return this.name;
 	}
@@ -137,6 +154,10 @@ public class SysRole implements Serializable, JSONable {
 
 	public int getSort() {
 		return this.sort;
+	}
+
+	public String getType() {
+		return type;
 	}
 
 	public String getUpdateBy() {
@@ -179,6 +200,10 @@ public class SysRole implements Serializable, JSONable {
 		this.id = id;
 	}
 
+	public void setIsUseBranch(String isUseBranch) {
+		this.isUseBranch = isUseBranch;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -189,6 +214,10 @@ public class SysRole implements Serializable, JSONable {
 
 	public void setSort(int sort) {
 		this.sort = sort;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public void setUpdateBy(String updateBy) {

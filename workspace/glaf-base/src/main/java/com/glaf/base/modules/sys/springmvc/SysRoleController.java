@@ -372,6 +372,7 @@ public class SysRoleController {
 			bean.setName(ParamUtil.getParameter(request, "name"));
 			bean.setContent(ParamUtil.getParameter(request, "content"));
 			bean.setCode(ParamUtil.getParameter(request, "code"));
+			bean.setIsUseBranch(ParamUtil.getParameter(request, "isUseBranch"));
 			bean.setCreateBy(RequestUtils.getActorId(request));
 			bean.setUpdateBy(RequestUtils.getActorId(request));
 			ret = sysRoleService.create(bean);
@@ -406,6 +407,7 @@ public class SysRoleController {
 			bean.setName(ParamUtil.getParameter(request, "name"));
 			bean.setContent(ParamUtil.getParameter(request, "content"));
 			bean.setCode(ParamUtil.getParameter(request, "code"));
+			bean.setIsUseBranch(ParamUtil.getParameter(request, "isUseBranch"));
 			bean.setUpdateBy(RequestUtils.getActorId(request));
 		}
 		boolean ret = sysRoleService.update(bean);
@@ -429,14 +431,14 @@ public class SysRoleController {
 	}
 
 	@javax.annotation.Resource
-	public void setSysUserService(SysUserService sysUserService) {
-		this.sysUserService = sysUserService;
+	public void setSysTreeService(SysTreeService sysTreeService) {
+		this.sysTreeService = sysTreeService;
 
 	}
 
 	@javax.annotation.Resource
-	public void setSysTreeService(SysTreeService sysTreeService) {
-		this.sysTreeService = sysTreeService;
+	public void setSysUserService(SysUserService sysUserService) {
+		this.sysUserService = sysUserService;
 
 	}
 

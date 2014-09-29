@@ -23,6 +23,8 @@ public class SysConstants {
 	public static int BLOCKED_0 = 0; // 否
 
 	public static int BLOCKED_1 = 1; // 是
+	
+	public static String BRANCH_PREFIX = "branch_";
 
 	public static String BRANCH_ADMIN = "BranchAdmin";// 分级管理员角色代码
 

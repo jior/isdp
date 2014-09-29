@@ -170,6 +170,9 @@ public class SysUser implements Serializable, User, JSONable {
 	private Collection<SysRole> roles = new HashSet<SysRole>();
 
 	@javax.persistence.Transient
+	private Set<String> roleCodes = new HashSet<String>();
+
+	@javax.persistence.Transient
 	private Collection<SysDeptRole> deptRoles = new HashSet<SysDeptRole>();
 
 	/**
@@ -353,6 +356,13 @@ public class SysUser implements Serializable, User, JSONable {
 
 	public String getRemark() {
 		return null;
+	}
+
+	public Set<String> getRoleCodes() {
+		if (roleCodes == null) {
+			roleCodes = new HashSet<String>();
+		}
+		return roleCodes;
 	}
 
 	public Collection<SysRole> getRoles() {
@@ -607,6 +617,10 @@ public class SysUser implements Serializable, User, JSONable {
 
 	public void setRemark(String remark) {
 
+	}
+
+	public void setRoleCodes(Set<String> roleCodes) {
+		this.roleCodes = roleCodes;
 	}
 
 	public void setRoles(Collection<SysRole> roles) {

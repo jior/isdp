@@ -2,13 +2,15 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="html"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.glaf.base.modules.*"%>
+<%@ page import="com.glaf.base.modules.sys.*"%>
 <%@ page import="com.glaf.base.modules.sys.model.*"%>
 <%@ page import="com.glaf.base.utils.*"%>
+<%@ page import="org.apache.commons.lang3.StringUtils"%>
 <%
-String context = request.getContextPath();
-Set list = (Set)request.getAttribute("list");
-int deptId = ParamUtil.getIntParameter(request, "deptId", 0);
-int roleId = ParamUtil.getIntParameter(request, "roleId", 0);
+	String context = request.getContextPath();
+	Set list = (Set)request.getAttribute("list");
+	int deptId = ParamUtil.getIntParameter(request, "deptId", 0);
+	int roleId = ParamUtil.getIntParameter(request, "roleId", 0);
 %>
 
 <html>

@@ -54,8 +54,10 @@ import com.glaf.base.modules.sys.model.SysFunction;
 import com.glaf.base.modules.sys.model.SysRole;
 import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.model.SysUserRole;
+import com.glaf.base.modules.sys.model.UserRole;
 import com.glaf.base.modules.sys.query.SysDeptRoleQuery;
 import com.glaf.base.modules.sys.query.SysUserQuery;
+import com.glaf.base.modules.sys.query.UserRoleQuery;
 import com.glaf.base.modules.sys.service.SysDepartmentService;
 import com.glaf.base.modules.sys.service.SysUserService;
 import com.glaf.base.modules.sys.util.SysUserJsonFactory;
@@ -103,6 +105,69 @@ public class SysUserServiceImpl implements SysUserService {
 
 	public SysUserServiceImpl() {
 
+	}
+
+	@Transactional
+	public void createRoleUser(long roleId, String actorId) {
+		SysUser user = this.findByAccount(actorId);
+		SysDeptRoleQuery query = new SysDeptRoleQuery();
+		query.deptId(user.getDeptId());
+		query.roleId(roleId);
+		SysDeptRole deptRole = null;
+		List<SysDeptRole> list = sysDeptRoleMapper.getSysDeptRoles(query);
+		if (list != null && !list.isEmpty()) {
+			deptRole = list.get(0);
+		} else {
+			deptRole = new SysDeptRole();
+			deptRole.setId(idGenerator.nextId());
+			deptRole.setDeptId(user.getDeptId());
+			deptRole.setRoleId(roleId);
+			deptRole.setCreateDate(new Date());
+			deptRole.setGrade(0);
+			sysDeptRoleMapper.insertSysDeptRole(deptRole);
+		}
+
+		TableModel table = new TableModel();
+		table.setTableName("userrole");
+		table.addStringColumn("ID", idGenerator.getNextId());
+		table.addIntegerColumn("AUTHORIZED", 0);
+		table.addLongColumn("ROLEID", roleId);
+		table.addStringColumn("USERID", actorId);
+		tableDataService.insertTableData(table);
+
+		TableModel table2 = new TableModel();
+		table2.setTableName("SYS_MEMBERSHIP");
+		table2.addLongColumn("ID_", idGenerator.nextId());
+		table2.addStringColumn("ACTORID_", actorId);
+		table2.addLongColumn("ROLEID_", roleId);
+		table2.addLongColumn("NODEID_", user.getDeptId());
+		table2.addStringColumn("TYPE_", "UserRole");
+		tableDataService.insertTableData(table2);
+
+	}
+
+	@Transactional
+	public void deleteRoleUser(long roleId, String actorId) {
+		SysUser user = this.findByAccount(actorId);
+
+		TableModel table = new TableModel();
+		table.setTableName("userrole");
+		table.addIntegerColumn("AUTHORIZED", 0);
+		table.addLongColumn("ROLEID", roleId);
+		table.addStringColumn("USERID", actorId);
+		tableDataService.deleteTableData(table);
+
+		TableModel table2 = new TableModel();
+		table2.setTableName("SYS_MEMBERSHIP");
+		table2.addStringColumn("ACTORID_", actorId);
+		table2.addLongColumn("ROLEID_", roleId);
+		table2.addLongColumn("NODEID_", user.getDeptId());
+		tableDataService.deleteTableData(table2);
+
+	}
+
+	public List<UserRole> getRoleUserViews(UserRoleQuery query) {
+		return sysUserMapper.getRoleUserViews(query);
 	}
 
 	public int count(SysUserQuery query) {
@@ -272,6 +337,17 @@ public class SysUserServiceImpl implements SysUserService {
 		return user;
 	}
 
+	public SysUser findByMail(String mail) {
+		SysUser user = sysUserMapper.getSysUserByMail(mail);
+		return user;
+	}
+
+	public SysUser findByMobile(String mobile) {
+		SysUser user = sysUserMapper.getSysUserByMobile(mobile);
+		return user;
+	}
+	
+	
 	public String getPasswordByAccount(String account) {
 		return sysUserMapper.getPasswordByAccount(account);
 	}
