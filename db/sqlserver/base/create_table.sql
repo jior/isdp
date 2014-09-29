@@ -70,6 +70,28 @@ CREATE TABLE sys_log(
         PRIMARY KEY (id)
 );
 
+ CREATE TABLE sys_user_online (
+        id_ bigint not null,
+        actorid_ nvarchar(50),
+        checkdate_ datetime,
+        checkdatems_ bigint,
+        logindate_ datetime,
+        loginip_ nvarchar(100),
+        name_ nvarchar(50),
+        sessionid_ nvarchar(200),
+        PRIMARY KEY (id_)
+ );
+
+CREATE TABLE sys_user_online_log (
+        id_ bigint not null,
+        actorid_ nvarchar(50),
+        logindate_ datetime,
+        loginip_ nvarchar(100),
+        logoutdate_ bigint,
+        name_ nvarchar(50),
+        sessionid_ nvarchar(200),
+        PRIMARY KEY (id_)
+ );
 
 CREATE TABLE sys_tree (
         id bigint not null,
@@ -488,6 +510,10 @@ create table sys_input_def (
     alter table UserInfo add  telephone varchar(200);
 
     alter table net_role add  code varchar(200) null;
+
+    alter table net_role add  type varchar(50) null;
+
+    alter table net_role add  isusebranch varchar(10) null;
 
     alter table userrole add authorized int;
 

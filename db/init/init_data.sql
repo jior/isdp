@@ -64,6 +64,12 @@ insert into sys_tree (id, parent, name, nodeDesc, sort, code) values (57, 53, 'À
 insert into sys_tree (id, parent, name, nodeDesc, sort, code) values (58, 53, 'ÈÎÎñÁĞ±í', 'ÈÎÎñÁĞ±í', 58, '');
 insert into sys_tree (id, parent, name, nodeDesc, sort, code) values (59, 53, 'Á÷³ÌÑİÊ¾', 'Á÷³ÌÑİÊ¾', 59, '');
 
+
+insert into SYS_TREE (id, parent, name, nodedesc, sort, code) values (61, 3, '·Ö¼¶¹ÜÀí', '·Ö¼¶¹ÜÀí', 993, '61');
+insert into SYS_TREE (id, parent, name, nodedesc, sort, code) values (62, 61, '·Ö¼¶²¿ÃÅ¹ÜÀí', '·Ö¼¶²¿ÃÅ¹ÜÀí', 993, '62');
+insert into SYS_TREE (id, parent, name, nodedesc, sort, code) values (63, 61, '·Ö¼¶È¨ÏŞ¹ÜÀí', '·Ö¼¶È¨ÏŞ¹ÜÀí', 993, '63');
+
+
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (308, 19, '´òÓ¡Ä£°å', '´òÓ¡Ä£°å', 0, 'print_tpl');
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (312, 19, 'ÓÊ¼şÄ£°å', 'ÓÊ¼şÄ£°å', 0, 'mail_tpl');
  
@@ -161,6 +167,12 @@ insert into sys_application (id, name, appDesc, url, sort, showMenu, nodeId) val
 insert into sys_application (id, name, appDesc, url, sort, showMenu, nodeId) values (57, 'ÀúÊ·Á÷³ÌÊµÀı', 'ÀúÊ·Á÷³ÌÊµÀı', '/mx/activiti/history/historyProcessInstances', 57, 1, 57);
 insert into sys_application (id, name, appDesc, url, sort, showMenu, nodeId) values (58, 'ÈÎÎñÁĞ±í', 'ÈÎÎñÁĞ±í', '/mx/activiti/task/taskList', 58, 1, 58);
 insert into sys_application (id, name, appDesc, url, sort, showMenu, nodeId) values (59, 'Á÷³ÌÑİÊ¾', 'Á÷³ÌÑİÊ¾', '/workflow/activiti/index.jsp', 59, 1, 59);
+
+
+insert into SYS_APPLICATION (id, name, appdesc, url, sort, showmenu, nodeid, code) values (61, '·Ö¼¶¹ÜÀí', '', '', 1, 1, 61, null);
+insert into SYS_APPLICATION (id, name, appdesc, url, sort, showmenu, nodeid, code) values (62, '·Ö¼¶²¿ÃÅ¹ÜÀí', '', '/mx/branch/department', 2, 1, 62, null);
+insert into SYS_APPLICATION (id, name, appdesc, url, sort, showmenu, nodeid, code) values (63, '·Ö¼¶È¨ÏŞ¹ÜÀí', '', '/mx/branch/department/frame', 3, 1, 63, null);
+
 
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid, code) values (71, 'ÄÚÈİ¹ÜÀí', '', '', 1, 1, 701, null);
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid, code) values (72, 'ĞÂÎÅ¹ÜÀí', '', '/mx/cms/info?serviceKey=news', 2, 1, 702, null);
