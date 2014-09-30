@@ -64,6 +64,7 @@ import com.glaf.core.util.PageResult;
 import com.glaf.core.util.Paging;
 import com.glaf.core.util.ParamUtils;
 import com.glaf.core.util.RequestUtils;
+import com.glaf.core.util.ResponseUtils;
 import com.glaf.core.util.StringTools;
 import com.glaf.core.util.Tools;
 
@@ -714,6 +715,11 @@ public class BranchUserController {
 	}
 
 	@javax.annotation.Resource
+	public void setComplexUserService(ComplexUserService complexUserService) {
+		this.complexUserService = complexUserService;
+	}
+
+	@javax.annotation.Resource
 	public void setDictoryService(DictoryService dictoryService) {
 		this.dictoryService = dictoryService;
 	}
@@ -775,11 +781,6 @@ public class BranchUserController {
 	}
 
 	@javax.annotation.Resource
-	public void setComplexUserService(ComplexUserService complexUserService) {
-		this.complexUserService = complexUserService;
-	}
-
-	@javax.annotation.Resource
 	public void setSysDepartmentService(
 			SysDepartmentService sysDepartmentService) {
 		this.sysDepartmentService = sysDepartmentService;
@@ -798,6 +799,63 @@ public class BranchUserController {
 	@javax.annotation.Resource
 	public void setSysUserService(SysUserService sysUserService) {
 		this.sysUserService = sysUserService;
+	}
+
+	/**
+	 * 设置用户角色
+	 * 
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/setUserRole")
+	public byte[] setUserRole(HttpServletRequest request, ModelMap modelMap) {
+		logger.debug(RequestUtils.getParameterMap(request));
+		String userId = RequestUtils.decodeString(request
+				.getParameter("actorId"));
+		String objectIds = request.getParameter("objectIds");
+		logger.debug("userId:" + userId);
+		SysUser user = sysUserService.findById(userId);// 查找用户对象
+		logger.debug("user:" + user);
+		if (user != null) {
+			String actorId = RequestUtils.getActorId(request);
+			List<Long> nodeIds = complexUserService
+					.getUserManageBranchNodeIds(actorId);
+
+			SysDepartment department = sysDepartmentService.findById(user
+					.getDeptId());
+			/**
+			 * 保证添加的用户所属部门是分级管理员管辖的部门
+			 */
+			if (department != null && department.getNodeId() > 0) {
+				SysTree tree = sysTreeService.findById(department.getNodeId());
+				if (tree != null && nodeIds.contains(tree.getId())) {
+					Set<SysRole> newRoles = new HashSet<SysRole>();
+					if (StringUtils.isNotEmpty(objectIds)) {
+						List<Long> ids = StringTools.splitToLong(objectIds);// 获取页面参数
+						if (ids != null) {
+							for (int i = 0; i < ids.size(); i++) {
+								logger.debug("id[" + i + "]=" + ids.get(i));
+								SysRole role = sysRoleService.findById(ids
+										.get(i));// 查找角色对象
+								if (role != null) {
+									newRoles.add(role);// 加入到角色列表
+								}
+							}
+						}
+					}
+					logger.debug("newRoles:" + newRoles);
+					user.setUpdateBy(RequestUtils.getActorId(request));
+					if (sysUserService.updateUserRole(user, newRoles)) {
+						// 授权成功
+						return ResponseUtils.responseResult(true);
+					}
+				}
+			}
+		}
+
+		return ResponseUtils.responseResult(false);
 	}
 
 	/**

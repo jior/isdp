@@ -5,6 +5,7 @@
 <%@ page import="com.glaf.base.modules.sys.*"%>
 <%@ page import="com.glaf.base.modules.sys.model.*"%>
 <%@ page import="com.glaf.base.utils.*"%>
+<%@ page import="com.glaf.core.util.*"%>
 <%@ page import="org.apache.commons.lang3.StringUtils"%>
 <%
 	String context = request.getContextPath();
@@ -25,6 +26,8 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/themes/<%=com.glaf.core.util.RequestUtils.getTheme(request)%>/site.css">
 <script language="javascript" src='<%=context%>/scripts/verify.js'></script>
 <script language="javascript" src='<%=context%>/scripts/main.js'></script>
+<script language="javascript" src='<%=context%>/scripts/jquery.min.js'></script>
+<script language="javascript" src='<%=context%>/scripts/jquery.form.js'></script>
 <script language="javascript">
 function checkForm(form){
   var isChecked = false;
@@ -40,12 +43,42 @@ function checkForm(form){
     return false;
   }
 }
-</SCRIPT>
+
+function submitRequest(){
+	var ids = '';
+	var obj = document.getElementsByName("id");
+	var num = 0;
+	for ( var i = 0; i < obj.length; i++) {
+		var e = obj.item(i);
+		if (e.checked) {
+			num++;
+			ids+=e.value+',';
+		}
+	}
+	//alert(ids);
+	jQuery.ajax({
+			type: "POST",
+			url: '<%=request.getContextPath()%>/mx/branch/user/setUserRole?actorId=<%=RequestUtils.encodeString(user.getActorId())%>&objectIds='+ids,
+			dataType:  'json',
+			error: function(data){
+				alert('服务器处理错误！');
+			},
+			success: function(data){
+				if(data != null && data.message != null){
+					 alert(data.message);
+				 } else {
+					 alert('操作成功完成！');
+				}		  
+			}
+	  });
+ }
+
+</script>
 </head>
 
 <body>
 <div class="nav-title"><span class="Title">用户管理</span>&gt;&gt;设置用户 <b><%=user.getName()%></b> 的权限</div>
-<html:form action="${contextPath}/mx/branch/user/setRole" method="post" target="_self" onsubmit="return checkForm(this);"> 
+<html:form  name="iForm" method="post"  > 
 <input type="hidden" name="actorId" value="<%=user.getId()%>">
 <table width="95%" border="0" align="center" cellspacing="1" cellpadding="0" class="list-box">
   <tr class="list-title"> 
@@ -92,7 +125,7 @@ for(; i<10; i++){
 <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td align="center" height="30" valign="bottom">
-	  <input name="btn_add" type="submit" value="保存" class="button">
+	   <input name="btn_save" type="button" value="保存" class="button" onclick="javascript:submitRequest();">
     </td>
   </tr>
 </table>

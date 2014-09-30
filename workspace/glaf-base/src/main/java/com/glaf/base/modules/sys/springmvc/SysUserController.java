@@ -39,7 +39,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-
 import com.glaf.core.cache.CacheUtils;
 import com.glaf.core.config.ViewProperties;
 import com.glaf.core.res.MessageUtils;
@@ -51,9 +50,9 @@ import com.glaf.core.util.JsonUtils;
 import com.glaf.core.util.PageResult;
 import com.glaf.core.util.ParamUtils;
 import com.glaf.core.util.RequestUtils;
+import com.glaf.core.util.ResponseUtils;
 import com.glaf.core.util.StringTools;
 import com.glaf.core.util.Tools;
-
 import com.glaf.base.modules.Constants;
 import com.glaf.base.modules.sys.SysConstants;
 import com.glaf.base.modules.sys.model.Dictory;
@@ -100,22 +99,18 @@ public class SysUserController {
 			ModelMap modelMap) {
 		logger.debug("---------addRoleUser---------------------------");
 		RequestUtils.setRequestParameterToAttribute(request);
-		 
-		int roleId = ParamUtil.getIntParameter(request, "roleId", 0);
-		
-		boolean success = false;
-		
 
-			String[] userIds = ParamUtil.getParameterValues(request, "id");
-			for (int i = 0; i < userIds.length; i++) {
-				SysUser user = sysUserService.findById(userIds[i]);
-				if (user != null) {
-					sysUserService.createRoleUser(roleId, user.getActorId());
-				}
+		int roleId = ParamUtil.getIntParameter(request, "roleId", 0);
+
+		boolean success = false;
+
+		String[] userIds = ParamUtil.getParameterValues(request, "id");
+		for (int i = 0; i < userIds.length; i++) {
+			SysUser user = sysUserService.findById(userIds[i]);
+			if (user != null) {
+				sysUserService.createRoleUser(roleId, user.getActorId());
 			}
-			
-			
-	
+		}
 
 		ViewMessages messages = new ViewMessages();
 		if (success) {
@@ -237,8 +232,6 @@ public class SysUserController {
 		}
 	}
 
-	 
-
 	@RequestMapping("/json")
 	@ResponseBody
 	public byte[] json(HttpServletRequest request) throws IOException {
@@ -327,6 +320,7 @@ public class SysUserController {
 	@RequestMapping
 	public ModelAndView list(HttpServletRequest request, ModelMap modelMap) {
 		RequestUtils.setRequestParameterToAttribute(request);
+		request.setAttribute("parent", request.getParameter("parent"));
 		String x_query = request.getParameter("x_query");
 		if (StringUtils.equals(x_query, "true")) {
 			Map<String, Object> paramMap = RequestUtils
@@ -858,17 +852,17 @@ public class SysUserController {
 	public ModelAndView setRole(HttpServletRequest request, ModelMap modelMap) {
 		logger.debug(RequestUtils.getParameterMap(request));
 		ViewMessages messages = new ViewMessages();
-		String userId = ParamUtil.getParameter(request, "user_id");
+		String userId = ParamUtil.getParameter(request, "actorId");
 		SysUser user = sysUserService.findById(userId);// 查找用户对象
 
 		if (user != null) {// 用户存在
-			long[] id = ParamUtil.getLongParameterValues(request, "id");// 获取页面参数
-			if (id != null) {
+			long[] ids = ParamUtil.getLongParameterValues(request, "id");// 获取页面参数
+			if (ids != null) {
 
 				Set<SysRole> newRoles = new HashSet<SysRole>();
-				for (int i = 0; i < id.length; i++) {
-					logger.debug("id[" + i + "]=" + id[i]);
-					SysRole role = sysRoleService.findById(id[i]);// 查找角色对象
+				for (int i = 0; i < ids.length; i++) {
+					logger.debug("id[" + i + "]=" + ids[i]);
+					SysRole role = sysRoleService.findById(ids[i]);// 查找角色对象
 					if (role != null) {
 						newRoles.add(role);// 加入到角色列表
 					}
@@ -876,51 +870,6 @@ public class SysUserController {
 
 				user.setUpdateBy(RequestUtils.getActorId(request));
 
-				if (sysUserService.updateUserRole(user, newRoles)) {// 授权成功
-					messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-							"user.role_success"));
-				} else {// 保存失败
-					messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-							"user.role_failure"));
-				}
-			}
-		}
-		MessageUtils.addMessages(request, messages);
-		return new ModelAndView("show_msg", modelMap);
-	}
-
-	/**
-	 * 设置用户角色
-	 * 
-	 * @param request
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping("/setUserRole")
-	public ModelAndView setUserRole(HttpServletRequest request,
-			ModelMap modelMap) {
-		logger.debug(RequestUtils.getParameterMap(request));
-		ViewMessages messages = new ViewMessages();
-		String userId = ParamUtil.getParameter(request, "user_id");
-		SysUser user = sysUserService.findById(userId);// 查找用户对象
-
-		if (user != null) {// 用户存在
-			long[] id = ParamUtil.getLongParameterValues(request, "id");// 获取页面参数
-			if (id != null) {
-
-				Set<SysRole> newRoles = new HashSet<SysRole>();
-				for (int i = 0; i < id.length; i++) {
-					logger.debug("id[" + i + "]=" + id[i]);
-					SysRole role = sysRoleService.findById(id[i]);// 查找角色对象
-					if (role != null) {
-						logger.debug("name[" + i + "]=" + role.getName());
-						newRoles.add(role);// 加入到角色列表
-					}
-				}
-
-				user.setUpdateBy(RequestUtils.getActorId(request));
-
-				logger.debug("---------------update user roles----------------");
 				if (sysUserService.updateUserRole(user, newRoles)) {// 授权成功
 					messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
 							"user.role_success"));
@@ -940,8 +889,6 @@ public class SysUserController {
 		this.sysDepartmentService = sysDepartmentService;
 
 	}
-
-	 
 
 	@javax.annotation.Resource
 	public void setSysRoleService(SysRoleService sysRoleService) {
@@ -967,6 +914,72 @@ public class SysUserController {
 	}
 
 	/**
+	 * 设置用户角色
+	 * 
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/setUserRole")
+	public byte[] setUserRole(HttpServletRequest request, ModelMap modelMap) {
+		logger.debug(RequestUtils.getParameterMap(request));
+		String userId = RequestUtils.decodeString(request
+				.getParameter("actorId"));
+		String objectIds = request.getParameter("objectIds");
+		logger.debug("userId:" + userId);
+		SysUser user = sysUserService.findById(userId);// 查找用户对象
+		logger.debug("user:" + user);
+		if (user != null) {
+			Set<SysRole> newRoles = new HashSet<SysRole>();
+			if (StringUtils.isNotEmpty(objectIds)) {
+				List<Long> ids = StringTools.splitToLong(objectIds);// 获取页面参数
+				if (ids != null) {
+					for (int i = 0; i < ids.size(); i++) {
+						logger.debug("id[" + i + "]=" + ids.get(i));
+						SysRole role = sysRoleService.findById(ids.get(i));// 查找角色对象
+						if (role != null) {
+							newRoles.add(role);// 加入到角色列表
+						}
+					}
+				}
+			}
+			logger.debug("newRoles:" + newRoles);
+			user.setUpdateBy(RequestUtils.getActorId(request));
+			if (sysUserService.updateUserRole(user, newRoles)) {
+				// 授权成功
+				return ResponseUtils.responseResult(true);
+			}
+		}
+
+		return ResponseUtils.responseResult(false);
+	}
+
+	/**
+	 * 显示所有列表
+	 * 
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping("/showAllList")
+	public ModelAndView showAllList(HttpServletRequest request,
+			ModelMap modelMap) {
+		int pageNo = ParamUtil.getIntParameter(request, "page_no", 1);
+		int pageSize = ParamUtil.getIntParameter(request, "page_size",
+				Constants.PAGE_SIZE);
+		PageResult pager = sysUserService.getSysUserList(pageNo, pageSize);
+		request.setAttribute("pager", pager);
+
+		String x_view = ViewProperties.getString("user.showAllList");
+		if (StringUtils.isNotEmpty(x_view)) {
+			return new ModelAndView(x_view, modelMap);
+		}
+
+		return new ModelAndView("/modules/sys/user/all_user_list", modelMap);
+	}
+
+	/**
 	 * 显示部门下所有人
 	 * 
 	 * @param request
@@ -981,7 +994,7 @@ public class SysUserController {
 		Set<SysUser> set = new HashSet<SysUser>();
 		// 6:
 		long deptId = ParamUtil.getLongParameter(request, "dept", 5);
-		//String roleCode = ParamUtil.getParameter(request, "code", "");
+		// String roleCode = ParamUtil.getParameter(request, "code", "");
 		SysDepartment node = this.sysDepartmentService.findById(deptId);
 		if (node != null) {
 			list.add(node);
@@ -989,7 +1002,7 @@ public class SysUserController {
 		} else {
 			this.getAllSysDepartmentList(list, (int) deptId);
 		}
-		 
+
 		request.setAttribute("user", set);
 
 		String x_view = ViewProperties.getString("user.showDeptUsers");
@@ -1019,30 +1032,6 @@ public class SysUserController {
 		}
 
 		return new ModelAndView("/modules/sys/user/user_frame", modelMap);
-	}
-
-	/**
-	 * 显示所有列表
-	 * 
-	 * @param request
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping("/showAllList")
-	public ModelAndView showAllList(HttpServletRequest request,
-			ModelMap modelMap) {
-		int pageNo = ParamUtil.getIntParameter(request, "page_no", 1);
-		int pageSize = ParamUtil.getIntParameter(request, "page_size",
-				Constants.PAGE_SIZE);
-		PageResult pager = sysUserService.getSysUserList(pageNo, pageSize);
-		request.setAttribute("pager", pager);
-
-		String x_view = ViewProperties.getString("user.showAllList");
-		if (StringUtils.isNotEmpty(x_view)) {
-			return new ModelAndView(x_view, modelMap);
-		}
-
-		return new ModelAndView("/modules/sys/user/all_user_list", modelMap);
 	}
 
 	/**
@@ -1121,10 +1110,22 @@ public class SysUserController {
 		userId = RequestUtils.decodeString(userId);
 		logger.debug("userId:" + userId);
 		SysUser user = sysUserService.findByAccountWithAll(userId);
-		request.setAttribute("user", user);
-		if (user.getDepartment() != null) {
-			 
+
+		List<SysRole> list = new ArrayList<SysRole>();
+		List<SysRole> roles = sysRoleService.getSysRoleList();
+		if (roles != null && !roles.isEmpty()) {
+			for (SysRole role : roles) {
+				if (StringUtils.isNotEmpty(role.getCode())
+						&& (StringUtils.startsWithIgnoreCase(role.getCode(),
+								SysConstants.BRANCH_PREFIX) || StringUtils
+								.equals(role.getIsUseBranch(), "Y"))) {
+					list.add(role);
+				}
+			}
 		}
+
+		request.setAttribute("user", user);
+		request.setAttribute("list", list);
 
 		String x_view = ViewProperties.getString("user.showRole");
 		if (StringUtils.isNotEmpty(x_view)) {
@@ -1158,8 +1159,6 @@ public class SysUserController {
 		// 角色
 		SysRole role = sysRoleService.findById(roleId);
 		request.setAttribute("role", role.getName());
-
-	 
 
 		String x_view = ViewProperties.getString("user.showRoleUser");
 		if (StringUtils.isNotEmpty(x_view)) {

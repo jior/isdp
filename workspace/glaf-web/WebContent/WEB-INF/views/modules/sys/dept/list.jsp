@@ -289,8 +289,8 @@
 			   onclick="javascript:editSelected();">修改</a>  
 			<a href="#" class="easyui-linkbutton" data-options="plain:true, iconCls:'icon-user'"
 			   onclick="javascript:deptUsers();">部门用户</a> 
-			<a href="#" class="easyui-linkbutton" data-options="plain:true, iconCls:'icon-actor'"
-			   onclick="javascript:deptRoles();">部门角色</a> 
+			<!-- <a href="#" class="easyui-linkbutton" data-options="plain:true, iconCls:'icon-actor'"
+			   onclick="javascript:deptRoles();">部门角色</a> --> 
 			<!-- <a href="#" class="easyui-linkbutton" data-options="plain:true, iconCls:'icon-search'"
 			   onclick="javascript:searchWin();">查找</a> -->
 		   </div> 
