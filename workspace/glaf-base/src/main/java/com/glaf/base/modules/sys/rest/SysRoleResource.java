@@ -230,17 +230,9 @@ public class SysRoleResource {
 	public byte[] roleMenusJson(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) throws IOException {
 		long roleId = RequestUtils.getLong(request, "roleId");
-		if (roleId > 0) {
+		long parentId = ParamUtil.getLongParameter(request, "parentId", 3);
 
-		} else {
-			String roleCode = request.getParameter("roleCode");
-			if (StringUtils.isNotEmpty(roleCode)) {
-
-			}
-		}
-
-		long parentId = ParamUtil.getIntParameter(request, "parentId", 3);
-
+		SysTree root = sysTreeService.findById(parentId);
 		List<SysTree> list = sysApplicationService
 				.getTreeWithApplicationList(parentId);
 		List<TreeModel> treeModels = new ArrayList<TreeModel>();
@@ -258,13 +250,18 @@ public class SysRoleResource {
 		}
 
 		for (SysTree tree : list) {
-			treeModels.add(tree);
+			if (tree.getParentId() == root.getId()){
+				tree.setParentId(0);
+			}
+			if (tree.getId() != root.getId()) {
+				treeModels.add(tree);
+			}
 		}
 
 		logger.debug("treeModels:" + treeModels.size());
 		TreeHelper treeHelper = new TreeHelper();
 		JSONArray jsonArray = treeHelper.getTreeJSONArray(treeModels);
-		// logger.debug(jsonArray.toJSONString());
+		logger.debug(jsonArray.toJSONString());
 		return jsonArray.toJSONString().getBytes("UTF-8");
 
 	}

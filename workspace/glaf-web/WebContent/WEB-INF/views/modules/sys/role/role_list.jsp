@@ -82,7 +82,7 @@ function roleUsers(form){
   }
   var link = "<%=request.getContextPath()%>/mx/sys/role/roleUsers?id="+id;
   var width=520;
-  var height=420;
+  var height=425;
   var scroll="no";
   //openWindow(url, width, height, scroll);
   art.dialog.open(link, { height: height, width: width, title: "角色用户", scrollbars:"no" , lock: false });
@@ -98,7 +98,7 @@ function roleMenus(form){
   }
   var link = "<%=request.getContextPath()%>/mx/sys/role/roleMenus?roleId="+id;
   var width=520;
-  var height=420;
+  var height=425;
   var scroll="no";
   //openWindow(url, width, height, scroll);
   art.dialog.open(link, { height: height, width: width, title: "角色菜单", scrollbars:"no" , lock: false });

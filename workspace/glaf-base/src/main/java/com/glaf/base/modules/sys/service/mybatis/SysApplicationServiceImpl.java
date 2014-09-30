@@ -97,7 +97,7 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	public SysApplicationServiceImpl() {
 
 	}
-	
+
 	public int count(SysApplicationQuery query) {
 		return sysApplicationMapper.getSysApplicationCount(query);
 	}
@@ -441,7 +441,7 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		return sysApplicationMapper.getRealmInfos(params);
 	}
 
-	public List<SysApplication> getRoleApplications(long roleId){
+	public List<SysApplication> getRoleApplications(long roleId) {
 		return sysApplicationMapper.getSysApplicationByRoleId(roleId);
 	}
 
@@ -646,10 +646,6 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	}
 
 	public List<SysTree> getTreeWithApplicationList(long parentId) {
-		List<SysTree> trees = new ArrayList<SysTree>();
-		SysTree node = sysTreeService.findById(parentId);
-		SysTreeQuery query = new SysTreeQuery();
-		query.treeIdLike(node.getTreeId());
 		List<SysApplication> apps = this.getApplicationList();
 		Map<Long, SysApplication> appMap = new HashMap<Long, SysApplication>();
 		if (apps != null && !apps.isEmpty()) {
@@ -657,9 +653,17 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 				appMap.put(app.getNodeId(), app);
 			}
 		}
+
+		List<SysTree> trees = new ArrayList<SysTree>();
+		SysTree node = sysTreeService.findById(parentId);
+		SysTreeQuery query = new SysTreeQuery();
+		query.treeIdLike(node.getTreeId());
 		List<SysTree> list = sysTreeMapper.getSysTrees(query);
 		if (list != null && !list.isEmpty()) {
 			for (SysTree tree : list) {
+				if (tree.getParentId() == parentId) {
+					//tree.setParentId(0);
+				}
 				SysApplication app = appMap.get(tree.getId());
 				if (app != null) {
 					tree.setApp(app);

@@ -68,7 +68,7 @@
             sx += id;  
         }  
         $("#nodeIds").val(sx);
-		alert(sx);
+		//alert(sx);
 		var params = jQuery("#iForm").formSerialize();
 		jQuery.ajax({
 				   type: "POST",
@@ -96,7 +96,7 @@
 <form id="iForm" name="iForm" method="post">
 <input type="hidden" id="nodeIds" name="nodeIds">
 <div class="toolbar-backgroud"> 
-<span class="x_content_title">查看角色【${role.name}】的前台菜单</span>
+<span class="x_content_title">设置角色【${role.name}】的菜单</span>
 &nbsp;
 <input type="button" name="save" value=" 保 存 " class="button" onclick="javascript:saveRoleSiteMenus();"> 
 </div> 
