@@ -479,8 +479,7 @@ public class SysUserServiceImpl implements SysUserService {
 		if (roleCode == null) {
 			return null;
 		}
-		// Fix me
-		return null;
+		return sysUserMapper.getSysUsersByRoleCode(roleCode);
 	}
 
 	/**
@@ -490,8 +489,7 @@ public class SysUserServiceImpl implements SysUserService {
 	 * @return
 	 */
 	public List<SysUser> getSysUsersByRoleId(long roleId) {
-		// Fix me
-		return null;
+		return sysUserMapper.getSysUsersByRoleId(roleId);
 	}
 
 	public List<SysUser> getSysUserWithDeptList() {

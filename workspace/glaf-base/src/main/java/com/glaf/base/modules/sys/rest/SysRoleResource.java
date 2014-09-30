@@ -459,33 +459,6 @@ public class SysRoleResource {
 	}
 
 	@POST
-	@Path("saveRoleUsers")
-	@ResponseBody
-	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
-	public byte[] saveRoleUsers(@Context HttpServletRequest request,
-			@Context UriInfo uriInfo) throws IOException {
-		long roleId = RequestUtils.getLong(request, "roleId");
-		if (roleId > 0) {
-			SysRole role = sysRoleService.findById(roleId);
-			if (role != null) {
-				String userIds = request.getParameter("userIds");
-				List<String> actorIds = new ArrayList<String>();
-				String[] ids = userIds.split(",");
-				for (int i = 0; i < ids.length; i++) {
-					String userId = ids[i];
-					actorIds.add(userId);
-				}
-				if (!actorIds.isEmpty()) {
-					sysUserRoleService.saveRoleUsers(roleId, actorIds);
-					return ResponseUtils.responseJsonResult(true);
-				}
-			}
-		}
-
-		return ResponseUtils.responseJsonResult(false);
-	}
-
-	@POST
 	@Path("saveRoleMenus")
 	@ResponseBody
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
@@ -519,6 +492,33 @@ public class SysRoleResource {
 						sysApplicationService.saveRoleApplications(roleId,
 								appIds);
 					}
+					return ResponseUtils.responseJsonResult(true);
+				}
+			}
+		}
+
+		return ResponseUtils.responseJsonResult(false);
+	}
+
+	@POST
+	@Path("saveRoleUsers")
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] saveRoleUsers(@Context HttpServletRequest request,
+			@Context UriInfo uriInfo) throws IOException {
+		long roleId = RequestUtils.getLong(request, "roleId");
+		if (roleId > 0) {
+			SysRole role = sysRoleService.findById(roleId);
+			if (role != null) {
+				String userIds = request.getParameter("userIds");
+				List<String> actorIds = new ArrayList<String>();
+				String[] ids = userIds.split(",");
+				for (int i = 0; i < ids.length; i++) {
+					String userId = ids[i];
+					actorIds.add(userId);
+				}
+				if (!actorIds.isEmpty()) {
+					sysUserRoleService.saveRoleUsers(roleId, actorIds);
 					return ResponseUtils.responseJsonResult(true);
 				}
 			}

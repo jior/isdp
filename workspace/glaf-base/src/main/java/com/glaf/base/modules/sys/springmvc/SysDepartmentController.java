@@ -20,11 +20,11 @@ package com.glaf.base.modules.sys.springmvc;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -54,6 +54,7 @@ import com.glaf.base.modules.sys.service.DictoryService;
 import com.glaf.base.modules.sys.service.SysDepartmentService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
+import com.glaf.base.modules.sys.service.SysUserService;
 import com.glaf.base.modules.sys.util.SysRoleJsonFactory;
 import com.glaf.base.utils.ParamUtil;
 import com.glaf.core.base.TreeModel;
@@ -78,8 +79,9 @@ public class SysDepartmentController {
 
 	protected SysDepartmentService sysDepartmentService;
 
-
 	protected SysRoleService sysRoleService;
+
+	protected SysUserService sysUserService;
 
 	protected SysTreeService sysTreeService;
 
@@ -452,21 +454,21 @@ public class SysDepartmentController {
 	public void setSysDepartmentService(
 			SysDepartmentService sysDepartmentService) {
 		this.sysDepartmentService = sysDepartmentService;
-
 	}
-
-	
 
 	@javax.annotation.Resource
 	public void setSysRoleService(SysRoleService sysRoleService) {
 		this.sysRoleService = sysRoleService;
-
 	}
 
 	@javax.annotation.Resource
 	public void setSysTreeService(SysTreeService sysTreeService) {
 		this.sysTreeService = sysTreeService;
+	}
 
+	@javax.annotation.Resource
+	public void setSysUserService(SysUserService sysUserService) {
+		this.sysUserService = sysUserService;
 	}
 
 	/**
@@ -512,13 +514,13 @@ public class SysDepartmentController {
 			ModelMap modelMap) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		long nodeId = ParamUtil.getIntParameter(request, "nodeId", 0);
-		//String roleCode = request.getParameter("roleCode");
+		// String roleCode = request.getParameter("roleCode");
 
 		SysDepartment dept = sysDepartmentService
 				.getSysDepartmentByNodeId(nodeId);
 		if (dept != null) {
-			//Fix me
-			Set<SysUser> users = null;
+			Collection<SysUser> users = sysUserService.getSysUserList(dept
+					.getId());
 			request.setAttribute("department", dept);
 			request.setAttribute("users", users);
 		}

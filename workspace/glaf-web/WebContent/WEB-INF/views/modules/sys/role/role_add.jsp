@@ -49,8 +49,8 @@ int parent=ParamUtil.getIntParameter(request, "parent", 0);
         <td class="input-box2" valign="top">是否开放分级管理</td>
         <td>
 		    <select id="isUseBranch" name="isUseBranch">
-			    <option value="">----请选择----</option>
-			    <option value="Y" selected>开放</option>
+			    <option value="" selected>----请选择----</option>
+			    <option value="Y">开放</option>
 				<option value="N">不开放</option>
 		    </select>
         </td>

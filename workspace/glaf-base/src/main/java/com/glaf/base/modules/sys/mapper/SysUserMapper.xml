@@ -202,6 +202,32 @@
 		where c.appId = #{appId}
 
 	</select>
+	
+	
+	<select id="getSysUsersByRoleCode" parameterType="string" resultMap="sysUserResultMap">
+
+		select distinct a.*
+		from UserInfo a
+		inner join userrole b
+		on a.USERID = b.USERID
+		inner join net_role c
+		on b.roleId = c.id
+		where c.code = #{roleCode}
+
+	</select>
+	
+	
+	<select id="getSysUsersByRoleId" parameterType="long" resultMap="sysUserResultMap">
+
+		select distinct a.*
+		from UserInfo a
+		inner join userrole b
+		on a.USERID = b.USERID
+		inner join net_role c
+		on b.roleId = c.id
+		where c.id = #{roleId}
+
+	</select>
 
 
 	<select id="getSysUserByAccount" parameterType="String"

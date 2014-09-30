@@ -72,6 +72,16 @@ function modify(form){
   art.dialog.open(link, { height: height, width: width, title: "修改角色", scrollbars:"no" , lock: false });
 }
 
+function editRow(id){
+  var url="role/prepareModify?id="+id;
+  var link = "<%=request.getContextPath()%>/mx/sys/"+url;
+  var width=520;
+  var height=320;
+  var scroll="no";
+  //openWindow(url, width, height, scroll);
+  art.dialog.open(link, { height: height, width: width, title: "修改角色", scrollbars:"no" , lock: false });
+}
+
 function roleUsers(form){
   var id =0;
   for (var i=0;i<form.id.length;i++) {
@@ -88,6 +98,16 @@ function roleUsers(form){
   art.dialog.open(link, { height: height, width: width, title: "角色用户", scrollbars:"no" , lock: false });
 }
 
+function editRoleUsers(id){
+  var link = "<%=request.getContextPath()%>/mx/sys/role/roleUsers?id="+id;
+  var width=520;
+  var height=425;
+  var scroll="no";
+  //openWindow(url, width, height, scroll);
+  art.dialog.open(link, { height: height, width: width, title: "角色用户", scrollbars:"no" , lock: false });
+}
+
+
 function roleMenus(form){
   var id =0;
   for (var i=0;i<form.id.length;i++) {
@@ -96,6 +116,15 @@ function roleMenus(form){
 	  id=e.value;
 	}     
   }
+  var link = "<%=request.getContextPath()%>/mx/sys/role/roleMenus?roleId="+id;
+  var width=520;
+  var height=425;
+  var scroll="no";
+  //openWindow(url, width, height, scroll);
+  art.dialog.open(link, { height: height, width: width, title: "角色菜单", scrollbars:"no" , lock: false });
+}
+
+function editRoleMenus(id){
   var link = "<%=request.getContextPath()%>/mx/sys/role/roleMenus?roleId="+id;
   var width=520;
   var height=425;
@@ -137,12 +166,13 @@ function sort(id, operate){
 <div class="nav-title"><span class="Title">角色管理</span>&gt;&gt;角色列表</div>
 <table width="100%" border="0" cellspacing="1" cellpadding="0" class="list-box">
   <tr class="list-title"> 
-    <td width="3%" align="center"> <input type="checkbox" name="chkall" value="checkbox" onClick="checkAll(this.form, this);checkOperation(this.form)">    </td>
-    <td width="12%" align="center">序号</td>
-    <td width="24%" align="center">角色名称</td>
-    <td width="16%" align="center">代码</td>
-    <td width="33%" align="center">描述</td>
-    <td width="12%" align="center">排序</td>
+    <td width="5%" align="center"> <input type="checkbox" name="chkall" value="checkbox" onClick="checkAll(this.form, this);checkOperation(this.form)">    </td>
+    <td width="5%" align="center">序号</td>
+    <td width="20%" align="center">角色名称</td>
+    <td width="20%" align="center">代码</td>
+    <td width="25%" align="center">描述</td>
+    <td width="10%" align="center">排序</td>
+	<td width="15%" align="center">功能键</td>
   </tr>
   <%
 int i=0;
@@ -158,6 +188,11 @@ if(list!=null){
     <td class="td-text"><%=bean.getCode() != null ? bean.getCode() : "" %></td>
     <td class="td-text"><%=bean.getContent() != null ? bean.getContent() : ""%>&nbsp;</td>
     <td class="td-no"><a href="javascript:sort(<%=bean.getId()%>, 0);" title="上移"><img src="<%=context%>/images/up.gif" border="0" height="13" width="13"></a> <a href="javascript:sort(<%=bean.getId()%>, 1);" title="下移"><img src="<%=context%>/images/down.gif" border="0" height="13" width="13"></a></td>
+	<td align="center">&nbsp;
+	<a href="#" onclick="javascript:editRow(<%=bean.getId()%>);">修改</a>&nbsp;
+	<a href="#" onclick="javascript:editRoleUsers(<%=bean.getId()%>);">用户</a>&nbsp;
+	<a href="#" onclick="javascript:editRoleMenus(<%=bean.getId()%>);">菜单</a>&nbsp;
+	</td>
   </tr>
   <%
     i++;
@@ -172,6 +207,7 @@ for(; i<pageSize; i++){
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
+	<td>&nbsp;</td>
   </tr>
 <%
 }

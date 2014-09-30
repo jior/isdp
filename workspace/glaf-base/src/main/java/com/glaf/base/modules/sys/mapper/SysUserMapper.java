@@ -19,7 +19,9 @@
 package com.glaf.base.modules.sys.mapper;
 
 import java.util.*;
+
 import org.springframework.stereotype.Component;
+
 import com.glaf.base.modules.sys.model.*;
 import com.glaf.base.modules.sys.query.*;
 
@@ -53,6 +55,10 @@ public interface SysUserMapper {
 	List<SysUser> getSysUsers(SysUserQuery query);
 
 	List<SysUser> getSysUsersByAppId(Long appId);
+
+	List<SysUser> getSysUsersByRoleCode(String roleCode);
+
+	List<SysUser> getSysUsersByRoleId(long roleId);
 
 	void insertSysUser(SysUser model);
 
