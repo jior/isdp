@@ -196,7 +196,7 @@ public class ${entityName}ResourceRest {
 		return ResponseUtils.responseJsonResult(false);
 	}
 
-        @javax.annotation.Resource
+        @javax.annotation.Resource(name = "${packageName}.service.${modelName}Service")
 	public void set${entityName}Service(${entityName}Service ${modelName}Service) {
 		this.${modelName}Service = ${modelName}Service;
 	}
