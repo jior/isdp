@@ -14,7 +14,7 @@
 	request.setAttribute("theme", theme);
 	request.setAttribute("nowDate", new java.util.Date());
 	LoginContext loginContext = com.glaf.core.util.RequestUtils.getLoginContext(request);
-	String json = (String) request.getAttribute("json");
+	String scripts = (String) request.getAttribute("scripts");
 	request.setAttribute("contextPath", request.getContextPath());
 %>
 <!DOCTYPE html>
@@ -193,8 +193,8 @@
 		id="west">
 		<ul class="easyui-tree">
 			<%
-				if (json != null) {
-					out.println(json);
+				if (scripts != null) {
+					out.println(scripts);
 				}
 			%>
 		</ul>
