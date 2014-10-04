@@ -20,7 +20,7 @@
 		 //alert(operation);
 		 jQuery.ajax({
 				   type: "POST",
-				   url: '<%=request.getContextPath()%>/mx/branch/department/setUserRole?actorId='+actorId+'&roleId='+roleId+'&operation='+operation,
+				   url: '<%=request.getContextPath()%>/mx/branch/user/saveUserRole?actorId='+actorId+'&roleId='+roleId+'&operation='+operation,
 				   dataType:  'json',
 				   error: function(data){
 					   alert('服务器处理错误！');
@@ -34,10 +34,10 @@
 	function switchView(){
 		<c:choose>
 		   <c:when test="${op_view eq 'role'}">
-		       location.href="<%=request.getContextPath()%>/mx/branch/department/permission?op_view=user&parentId=${parentId}";
+		       location.href="<%=request.getContextPath()%>/mx/branch/user/permission?op_view=user&parentId=${parentId}";
 		   </c:when>
 		   <c:otherwise>
-			   location.href="<%=request.getContextPath()%>/mx/branch/department/permission?op_view=role&parentId=${parentId}";
+			   location.href="<%=request.getContextPath()%>/mx/branch/user/permission?op_view=role&parentId=${parentId}";
 		   </c:otherwise>
 		</c:choose>
 	}
@@ -81,7 +81,9 @@
 			<td colspan="10" class="list-title">
 			  <table width="100%" cellspacing="0" cellpadding="0">
 			   <tr>
-				<td align="left"><font color="#0066ff"><b>角色：<%=role.getName()%></b></font></td>
+				<td align="left">
+				<font color="#0066ff"><b>角色：<%=role.getName()%> [<%=role.getCode() != null ? role.getCode() :""%>]</b></font>
+				</td>
 			   </tr>
 			  </table>
 			</td>
@@ -135,7 +137,9 @@
 			<td colspan="10" class="list-title">
 			  <table width="100%" cellspacing="0" cellpadding="0">
 			   <tr>
-				<td align="left"><font color="#0066ff"><b>用户：<%=user.getName()%></b></font></td>
+				<td align="left">
+				<font color="#0066ff"><b>用户：<%=user.getName()%> [<%=user.getActorId()%>]</b></font>
+				</td>
 			   </tr>
 			  </table>
 			</td>

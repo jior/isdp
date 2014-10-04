@@ -58,7 +58,7 @@
 	//alert(ids);
 	jQuery.ajax({
 			type: "POST",
-			url: '<%=request.getContextPath()%>/mx/sys/user/setUserRole?actorId=<%=RequestUtils.encodeString(user.getActorId())%>&objectIds='+ids,
+			url: '<%=request.getContextPath()%>/mx/sys/user/saveUserRoles?actorId=<%=RequestUtils.encodeString(user.getActorId())%>&objectIds='+ids,
 			dataType:  'json',
 			error: function(data){
 				alert('服务器处理错误！');

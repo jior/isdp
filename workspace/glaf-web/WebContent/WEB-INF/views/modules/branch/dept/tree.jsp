@@ -58,7 +58,7 @@
 
 	function zTreeOnClick(event, treeId, treeNode, clickFlag) {
 		jQuery("#nodeId").val(treeNode.id);
-		window.parent.mainFrame.location.href ="<%=request.getContextPath()%>/mx/branch/department/permission?parentId="+treeNode.id;
+		window.parent.mainFrame.location.href ="<%=request.getContextPath()%>/mx/branch/user/permission?parentId="+treeNode.id;
 	}
 
 

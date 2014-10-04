@@ -773,6 +773,48 @@ public class SysUserController {
 	}
 
 	/**
+	 * 设置用户角色
+	 * 
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/saveUserRoles")
+	public byte[] saveUserRoles(HttpServletRequest request, ModelMap modelMap) {
+		logger.debug(RequestUtils.getParameterMap(request));
+		String userId = RequestUtils.decodeString(request
+				.getParameter("actorId"));
+		String objectIds = request.getParameter("objectIds");
+		logger.debug("userId:" + userId);
+		SysUser user = sysUserService.findById(userId);// 查找用户对象
+		logger.debug("user:" + user);
+		if (user != null) {
+			Set<SysRole> newRoles = new HashSet<SysRole>();
+			if (StringUtils.isNotEmpty(objectIds)) {
+				List<Long> ids = StringTools.splitToLong(objectIds);// 获取页面参数
+				if (ids != null) {
+					for (int i = 0; i < ids.size(); i++) {
+						logger.debug("id[" + i + "]=" + ids.get(i));
+						SysRole role = sysRoleService.findById(ids.get(i));// 查找角色对象
+						if (role != null) {
+							newRoles.add(role);// 加入到角色列表
+						}
+					}
+				}
+			}
+			logger.debug("newRoles:" + newRoles);
+			user.setUpdateBy(RequestUtils.getActorId(request));
+			if (sysUserService.updateUserRole(user, newRoles)) {
+				// 授权成功
+				return ResponseUtils.responseResult(true);
+			}
+		}
+
+		return ResponseUtils.responseResult(false);
+	}
+
+	/**
 	 * 查询获取用户列表
 	 * 
 	 * @param request
@@ -911,48 +953,6 @@ public class SysUserController {
 	@javax.annotation.Resource
 	public void setTableDataService(ITableDataService tableDataService) {
 		this.tableDataService = tableDataService;
-	}
-
-	/**
-	 * 设置用户角色
-	 * 
-	 * @param request
-	 * @param modelMap
-	 * @return
-	 */
-	@ResponseBody
-	@RequestMapping("/setUserRole")
-	public byte[] setUserRole(HttpServletRequest request, ModelMap modelMap) {
-		logger.debug(RequestUtils.getParameterMap(request));
-		String userId = RequestUtils.decodeString(request
-				.getParameter("actorId"));
-		String objectIds = request.getParameter("objectIds");
-		logger.debug("userId:" + userId);
-		SysUser user = sysUserService.findById(userId);// 查找用户对象
-		logger.debug("user:" + user);
-		if (user != null) {
-			Set<SysRole> newRoles = new HashSet<SysRole>();
-			if (StringUtils.isNotEmpty(objectIds)) {
-				List<Long> ids = StringTools.splitToLong(objectIds);// 获取页面参数
-				if (ids != null) {
-					for (int i = 0; i < ids.size(); i++) {
-						logger.debug("id[" + i + "]=" + ids.get(i));
-						SysRole role = sysRoleService.findById(ids.get(i));// 查找角色对象
-						if (role != null) {
-							newRoles.add(role);// 加入到角色列表
-						}
-					}
-				}
-			}
-			logger.debug("newRoles:" + newRoles);
-			user.setUpdateBy(RequestUtils.getActorId(request));
-			if (sysUserService.updateUserRole(user, newRoles)) {
-				// 授权成功
-				return ResponseUtils.responseResult(true);
-			}
-		}
-
-		return ResponseUtils.responseResult(false);
 	}
 
 	/**

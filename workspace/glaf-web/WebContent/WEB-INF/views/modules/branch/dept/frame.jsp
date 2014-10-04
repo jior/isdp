@@ -17,7 +17,7 @@
         
         <frame style="border-top: #003366 1px solid; border-left: #99ccff 2px groove;" border="0"
             frameborder="no" scrolling="auto" id="mainFrame" name="mainFrame" bordercolor="#DEE3E7"
-            src="<%=request.getContextPath()%>/mx/branch/department/permission">
+            src="<%=request.getContextPath()%>/mx/branch/user/permission">
     </frameset>
 <noframes>
 </noframes>
