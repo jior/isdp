@@ -34,14 +34,17 @@ function checkOperation(form){
 	if(num==1){
 	  document.all.btn_modify.disabled=false;
 	  document.all.btn_function.disabled=false;
+	  document.all.btn_perm.disabled=false;
 	}else{
 	  document.all.btn_modify.disabled=true;
 	  document.all.btn_function.disabled=true;
+	  document.all.btn_perm.disabled=true;
 	}
   }else{
     document.all.btn_del.disabled=true;
 	document.all.btn_modify.disabled=true;
 	document.all.btn_function.disabled=true;
+	document.all.btn_perm.disabled=true;
   }
 }
 function add(){
@@ -69,6 +72,17 @@ function modify(form){
   //openWindow(url, width, height, scroll);
   art.dialog.open(link, { height: height, width: width, title: "修改模块", lock: false, scrollbars:"no" }, false);
 }
+
+function editRow(id){
+  var url="application/prepareModify?id="+id;
+  var link = "<%=request.getContextPath()%>/mx/sys/"+url;
+  var width=580;
+  var height=460;
+  var scroll="no";
+  //openWindow(url, width, height, scroll);
+  art.dialog.open(link, { height: height, width: width, title: "修改模块", lock: false, scrollbars:"no" }, false);
+}
+
 function func(form){
   var id =0;
   for (var i=0;i<form.id.length;i++) {
@@ -85,6 +99,42 @@ function func(form){
   //openWindow(url, width, height, scroll);
   art.dialog.open(link, { height: height, width: width, title: "模块功能", lock: false, scrollbars:"no" }, false);
 }
+
+function editFun(id){
+  var url="function/showFuncList?parent="+id;
+  var link = "<%=request.getContextPath()%>/mx/sys/"+url;
+  var width=680;
+  var height=330;
+  var scroll="yes";
+  //openWindow(url, width, height, scroll);
+  art.dialog.open(link, { height: height, width: width, title: "模块功能", lock: false, scrollbars:"no" }, false);
+}
+
+function perm(form){
+  var id =0;
+  for (var i=0;i<form.id.length;i++) {
+    var e = form.id[i];
+    if (e.checked){
+	  id=e.value;
+	}     
+  }
+  var link = "${contextPath}/sys/application.do?method=permission&id="+id;
+  var width=680;
+  var height=430;
+  var scroll="yes";
+  //openWindow(url, width, height, scroll);
+  art.dialog.open(link, { height: height, width: width, title: "模块权限", lock: false, scrollbars:"no" }, false);
+}
+
+function editPerm(id){
+  var link = "${contextPath}/mx/sys/application/permission?id="+id;
+  var width=680;
+  var height=430;
+  var scroll="yes";
+  //openWindow(url, width, height, scroll);
+  art.dialog.open(link, { height: height, width: width, title: "模块权限", lock: false, scrollbars:"no" }, false);
+}
+
 function del(){
   var form = document.all.GenericForm;
   if(confirmDelete(form)){
@@ -110,10 +160,10 @@ function sort(id, operate){
 </script>
 </head>
 
-<body style="padding-top:2px;padding-left:2px;padding-right:20px;">
+<body style="padding-top:2px;padding-left:2px;padding-right:10px;">
 <div class="nav-title"><span class="Title">模块管理</span>&gt;&gt;模块列表</div>
 <html:form id="GenericForm" name="GenericForm" 
-           action="${contextPath}/mx/sys/application/batchDelete" method="post" target="_self"> 
+      action="${contextPath}/mx/sys/application/batchDelete" method="post" target="_self"> 
 <input name="page_no" type="hidden" value="<%=pager.getCurrentPageNo()%>">
 <input name="parent" type="hidden" value="<%=parent%>">
 <input type="hidden" name="id" value="0">
@@ -123,11 +173,12 @@ function sort(id, operate){
 	<input type="checkbox" name="chkall" value="checkbox" onclick="checkAll(this.form, this);checkOperation(this.form)">    
 	</td>
     <td width="5%" align="center">序号</td>
-    <td width="20%" align="center">名称</td>
+    <td width="10%" align="center">名称</td>
     <td width="20%" align="center">描述</td>
-    <td width="32%" align="center">链接</td>
+    <td width="22%" align="center">链接</td>
     <td width="10%" align="center">是否有效</td>
     <td width="8%" align="center">排序</td>
+	<td width="12%" align="center">功能键</td>
   </tr>
   <%
 int i=0;
@@ -145,7 +196,13 @@ if(list!=null){
     <td class="td-no">
 	<%=bean.getLocked()==0?"<span style='color:blue'>是</span>":"<span style='color:red'>否</span>"%>&nbsp;
 	</td>
-    <td class="td-no"><a href="javascript:sort(<%=bean.getId()%>, 1);" title="上移"><img src="<%=context%>/images/up.gif" border="0" height="13" width="13"></a> <a href="javascript:sort(<%=bean.getId()%>, 0);" title="下移"><img src="<%=context%>/images/down.gif" border="0" height="13" width="13"></a></td>
+    <td class="td-no"><a href="javascript:sort(<%=bean.getId()%>, 1);" title="上移"><img src="<%=context%>/images/up.gif" border="0" height="13" width="13"></a> <a href="javascript:sort(<%=bean.getId()%>, 0);" title="下移"><img src="<%=context%>/images/down.gif" border="0" height="13" width="13"></a>
+	</td>
+	<td>&nbsp;
+	   <a href="#" onclick="javascript:editRow(<%=bean.getId()%>);">修改</a>&nbsp;
+	   <a href="#" onclick="javascript:editFun(<%=bean.getId()%>);">功能</a>&nbsp;
+	   <a href="#" onclick="javascript:editPerm(<%=bean.getId()%>);">权限</a>&nbsp;
+    </td>
   </tr>
   <%
     i++;
@@ -159,6 +216,7 @@ for(; i<pageSize; i++){
     <td>&nbsp; </td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
+	<td>&nbsp;</td>
 	<td>&nbsp;</td>
 	<td>&nbsp;</td>
   </tr>
@@ -176,7 +234,9 @@ for(; i<pageSize; i++){
     <td width="50%"> <input name="btn_add" type="button" value="增加" class="button" onClick="javascript:add();"> 
       <input name="btn_del" type="button" value="删除" class="button" onClick="javascript:del();" disabled>
       <input name="btn_modify" type="button" value="修改" class="button" onClick="javascript:modify(this.form);" disabled>
-      <input name="btn_function" type="button" value="功能设置" class="button" onClick="javascript:func(this.form);" disabled></td>
+      <input name="btn_function" type="button" value="功能设置" class="button" onClick="javascript:func(this.form);" disabled>
+	  <input name="btn_perm" type="button" value="权限设置" class="button" onClick="javascript:perm(this.form);" disabled>
+	  </td>
     <td width="50%"> 
       <%
       String params = WebUtil.getQueryString(request);

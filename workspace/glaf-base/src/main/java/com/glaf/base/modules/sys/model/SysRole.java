@@ -20,8 +20,8 @@ package com.glaf.base.modules.sys.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -105,7 +105,7 @@ public class SysRole implements Serializable, JSONable {
 	protected Date updateDate;
 
 	@javax.persistence.Transient
-	protected Collection<SysUser> users = new ArrayList<SysUser>();
+	protected List<SysUser> users = new ArrayList<SysUser>();
 
 	public SysRole() {
 
@@ -173,7 +173,7 @@ public class SysRole implements Serializable, JSONable {
 		return this.updateDate;
 	}
 
-	public Collection<SysUser> getUsers() {
+	public List<SysUser> getUsers() {
 		if (users == null) {
 			users = new ArrayList<SysUser>();
 		}
@@ -240,7 +240,7 @@ public class SysRole implements Serializable, JSONable {
 		this.updateDate = updateDate;
 	}
 
-	public void setUsers(Collection<SysUser> users) {
+	public void setUsers(List<SysUser> users) {
 		this.users = users;
 	}
 

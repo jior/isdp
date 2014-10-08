@@ -30,18 +30,18 @@ function checkOperation(form){
     document.all.btn_del.disabled=false;
 	if(num==1){
 	  document.all.btn_modify.disabled=false;
-	  //document.all.btn_role.disabled=false;
+	  document.all.btn_role.disabled=false;
 	  document.all.btn_reset_pwd.disabled=false;
 	}else{
 	  document.all.btn_modify.disabled=true;
 	  document.all.btn_reset_pwd.disabled=true;
-	  //document.all.btn_role.disabled=true;
+	  document.all.btn_role.disabled=true;
 	}
   }else{
     document.all.btn_del.disabled=true;
 	document.all.btn_modify.disabled=true;
 	document.all.btn_reset_pwd.disabled=true;
-	//document.all.btn_role.disabled=true;
+	document.all.btn_role.disabled=true;
   }
 }
 
@@ -71,6 +71,15 @@ function modify(form){
   //art.dialog.open(link, { height: height, width: width, title: "修改用户", lock: true, scrollbars:"no" }, false);
 }
 
+function editRow(id){
+  var link = "<%=request.getContextPath()%>/mx/sys/user/prepareModify?id="+id;
+  var width=480;
+  var height=450;
+  var scroll="no";
+  openWindow(link, width, height, scroll);
+  //art.dialog.open(link, { height: height, width: width, title: "修改用户", lock: true, scrollbars:"no" }, false);
+}
+
 function resetPwd(form){
   var id =0;
   for (var i=0;i<form.id.length;i++) {
@@ -88,6 +97,16 @@ function resetPwd(form){
   //art.dialog.open(link, { height: height, width: width, title: "重置用户密码", lock: true, scrollbars:"no" }, false);
 }
 
+function changePwd(id){
+  var link = "<%=request.getContextPath()%>/mx/sys/user/prepareResetPwd?id="+id;
+  var width=450;
+  var height=300;
+  var scroll="no";
+  openWindow(link, width, height, scroll);
+  //art.dialog.open(link, { height: height, width: width, title: "重置用户密码", lock: true, scrollbars:"no" }, false);
+}
+
+
 function del(){
   var form = document.all.GenericForm;
   if(confirmDelete(form)){
@@ -96,6 +115,7 @@ function del(){
 	form.submit();
   }
 }
+
 function roles(form){
   var id =0;
   for (var i=0;i<form.id.length;i++) {
@@ -104,13 +124,20 @@ function roles(form){
 	  id=e.value;
 	}     
   }
-  var url="user/showRole?user_id="+id;
-  var link = "<%=request.getContextPath()%>/mx/sys/user/showRole?user_id="+id;
+  var link = "<%=request.getContextPath()%>/mx/sys/user/showRole?actorId="+id;
   var width=450;
   var height=350;
   var scroll="yes";
   openWindow(link, width, height, scroll);
   //art.dialog.open(link, { height: height, width: width, title: "用户角色", lock: true, scrollbars:"no" }, false);
+}
+
+function editUserRole(id){
+  var link = "<%=request.getContextPath()%>/mx/sys/user/showRole?actorId="+id;
+  var width=450;
+  var height=350;
+  var scroll="yes";
+  openWindow(link, width, height, scroll);
 }
 </script>
 </head>
@@ -131,6 +158,7 @@ function roles(form){
     <td width="8%" align="center" >是否有效</td>
     <td width="12%" align="center" >创建日期</td>
     <td width="12%" align="center" >上次登陆时间</td>
+	<td width="12%" align="center">功能键</td>
   </tr>
   <%
 int i=0;
@@ -141,7 +169,7 @@ if(list!=null){
 %>
   <tr <%=i%2==0?"":"class='list-back'"%>> 
     <td width="5%" class="td-cb"> 
-	<input type="checkbox" name="id" value="<%= RequestUtils.encodeString(bean.getActorId())%>" onClick="checkOperation(this.form)"> 
+	<input type="checkbox" id="id" name="id" value="<%= RequestUtils.encodeString(bean.getActorId())%>" onClick="checkOperation(this.form)"> 
 	</td>
     <td width="5%" class="td-no"><%=((pager.getCurrentPageNo()-1)*pageSize + i+1)%></td>
     <td width="8%" class="td-text"><%=bean.getAccount()%>&nbsp;</td>
@@ -153,6 +181,11 @@ if(list!=null){
     <td width="12%" align="center" class="list">
 	   <%=DateUtils.getDate(bean.getLastLoginTime())%>&nbsp;&nbsp;
 	</td>
+	<td>&nbsp;
+	   <a href="#" onclick="javascript:editRow('<%=RequestUtils.encodeString(bean.getActorId())%>');">修改</a>&nbsp;
+	   <a href="#" onclick="javascript:changePwd('<%=RequestUtils.encodeString(bean.getActorId())%>');">重置密码</a>&nbsp;
+	   <a href="#" onclick="javascript:editUserRole('<%=RequestUtils.encodeString(bean.getActorId())%>');">角色设置</a>&nbsp;
+    </td>
     </tr>
   <%
     i++;
@@ -168,6 +201,7 @@ for(; i<pageSize; i++){
 	<td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
+	<td>&nbsp;</td>
   </tr>
 <%
 }
@@ -180,7 +214,7 @@ for(; i<pageSize; i++){
       <input name="btn_del" type="button" value="删除" class="button" onClick="javascript:del();" disabled>
       <input name="btn_modify" type="button" value="修改" class="button" onClick="javascript:modify(this.form);" disabled>
 	  <input name="btn_reset_pwd" type="button" value="重置密码" class="button" onClick="javascript:resetPwd(this.form);" disabled>
-      <!-- <input name="btn_role" type="button" value="角色设置" class="button" onClick="javascript:roles(this.form);" disabled> -->
+      <input name="btn_role" type="button" value="角色设置" class="button" onClick="javascript:roles(this.form);" disabled> 
 	</td>
     <td  width="54%"> 
       <%

@@ -99,7 +99,7 @@ public class MenuController {
 									url = url + "?q=1";
 								}
 								url = url
-										+ "&reportlet=com.glaf.fr.reportlet.DatabaseReportlet&"
+										+ "&"
 										+ cpt_path + "&datasourceJson="
 										+ dsJson;
 								if (app.getRefId1() != null) {

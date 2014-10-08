@@ -773,6 +773,34 @@ public class SysUserController {
 	}
 
 	/**
+	 * 提交修改信息
+	 * 
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/saveUserRole")
+	public byte[] saveUserRole(HttpServletRequest request) {
+		logger.debug(RequestUtils.getParameterMap(request));
+		long roleId = ParamUtil.getLongParameter(request, "roleId", 0);
+		String actorId = request.getParameter("actorId");
+		String operation = request.getParameter("operation");
+		SysRole bean = sysRoleService.findById(roleId);
+		SysUser user = sysUserService.findByAccountWithAll(actorId);
+		if (bean != null && user != null) {
+			if (StringUtils.equals(operation, "revoke")) {
+				sysUserService.deleteRoleUser(roleId, actorId);
+			} else {
+				sysUserService.createRoleUser(roleId, actorId);
+			}
+			return ResponseUtils.responseResult(true);
+		}
+
+		return ResponseUtils.responseResult(false);
+	}
+
+	/**
 	 * 设置用户角色
 	 * 
 	 * @param request
@@ -890,8 +918,8 @@ public class SysUserController {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping("/setRole")
-	public ModelAndView setRole(HttpServletRequest request, ModelMap modelMap) {
+	@RequestMapping("/saveRole")
+	public ModelAndView saveRole(HttpServletRequest request, ModelMap modelMap) {
 		logger.debug(RequestUtils.getParameterMap(request));
 		ViewMessages messages = new ViewMessages();
 		String userId = ParamUtil.getParameter(request, "actorId");
@@ -1106,7 +1134,7 @@ public class SysUserController {
 	@RequestMapping("/showRole")
 	public ModelAndView showRole(HttpServletRequest request, ModelMap modelMap) {
 		RequestUtils.setRequestParameterToAttribute(request);
-		String userId = ParamUtil.getParameter(request, "user_id");
+		String userId = ParamUtil.getParameter(request, "actorId");
 		userId = RequestUtils.decodeString(userId);
 		logger.debug("userId:" + userId);
 		SysUser user = sysUserService.findByAccountWithAll(userId);

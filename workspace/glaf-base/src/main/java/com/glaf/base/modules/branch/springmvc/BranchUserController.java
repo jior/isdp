@@ -487,6 +487,7 @@ public class BranchUserController {
 			ModelMap modelMap) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		String id = ParamUtil.getParameter(request, "id");
+		id = RequestUtils.decodeString(id);
 		SysUser bean = sysUserService.findByAccountWithAll(id);
 		if (bean != null) {
 			request.setAttribute("bean", bean);
@@ -539,6 +540,7 @@ public class BranchUserController {
 			ModelMap modelMap) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		String id = ParamUtil.getParameter(request, "id");
+		id = RequestUtils.decodeString(id);
 		SysUser bean = sysUserService.findById(id);
 		request.setAttribute("bean", bean);
 
@@ -565,6 +567,7 @@ public class BranchUserController {
 				.getUserManageBranchNodeIds(actorId);
 
 		String id = ParamUtil.getParameter(request, "id");
+		id = RequestUtils.decodeString(id);
 		SysUser bean = sysUserService.findById(id);
 
 		/**
@@ -702,6 +705,7 @@ public class BranchUserController {
 	@RequestMapping("/saveModify")
 	public ModelAndView saveModify(HttpServletRequest request, ModelMap modelMap) {
 		String id = ParamUtil.getParameter(request, "id");
+		id = RequestUtils.decodeString(id);
 		SysUser bean = sysUserService.findById(id);
 		boolean ret = false;
 		if (bean != null) {
@@ -809,6 +813,7 @@ public class BranchUserController {
 		logger.debug(RequestUtils.getParameterMap(request));
 		String userId = RequestUtils.decodeString(request
 				.getParameter("actorId"));
+		userId = RequestUtils.decodeString(userId);
 		String objectIds = request.getParameter("objectIds");
 		logger.debug("userId:" + userId);
 		SysUser user = sysUserService.findById(userId);// 查找用户对象
@@ -941,6 +946,7 @@ public class BranchUserController {
 		logger.debug(RequestUtils.getParameterMap(request));
 		ViewMessages messages = new ViewMessages();
 		String userId = ParamUtil.getParameter(request, "actorId");
+		userId = RequestUtils.decodeString(userId);
 		SysUser user = sysUserService.findById(userId);// 查找用户对象
 		if (user != null && user.getDeptId() > 0) {// 用户存在
 			String actorId = RequestUtils.getActorId(request);
@@ -1082,7 +1088,8 @@ public class BranchUserController {
 	@RequestMapping("/showRole")
 	public ModelAndView showRole(HttpServletRequest request, ModelMap modelMap) {
 		RequestUtils.setRequestParameterToAttribute(request);
-		String id = ParamUtil.getParameter(request, "user_id");
+		String id = ParamUtil.getParameter(request, "actorId");
+		id = RequestUtils.decodeString(id);
 		SysUser bean = sysUserService.findById(id);
 		SysUser user = sysUserService.findByAccountWithAll(bean.getAccount());
 
@@ -1178,6 +1185,7 @@ public class BranchUserController {
 	public ModelAndView showUser(HttpServletRequest request, ModelMap modelMap) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		String id = ParamUtil.getParameter(request, "userId");
+		id = RequestUtils.decodeString(id);
 		SysUser user = sysUserService.findById(id);
 		user.setPassword(null);
 		request.setAttribute("user", user);

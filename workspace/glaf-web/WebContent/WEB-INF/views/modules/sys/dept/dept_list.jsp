@@ -24,7 +24,7 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/artDialog/plugins/iframeTools.js"></script>
 <script language="javascript" src='<%=context%>/scripts/verify.js'></script>
 <script language="javascript" src='<%=context%>/scripts/main.js'></script>
-<script language="JavaScript">
+<script language="javascript">
 var num=0;
 function checkOperation(form){
   num = getCheckedBoxNum(form,"id");
@@ -44,15 +44,16 @@ function checkOperation(form){
 	  //document.all.btn_role.disabled=true;
   }
 }
+
 function add(){
-  var url="department/prepareAdd?parent="+<%=parent%>;
-  var link = "<%=request.getContextPath()%>/mx/sys/"+url;
+  var link = "<%=request.getContextPath()%>/mx/sys/department/prepareAdd?parent="+<%=parent%>;
   var width=530;
   var height=410;
   var scroll="no";  
   //openWindow(url, width, height, scroll);
   art.dialog.open(link, { height: height, width: width, title: "添加部门", scrollbars:"no" , lock: false });
 }
+
 function modify(form){
   var id =0;
   for (var i=0;i<form.id.length;i++) {
@@ -61,8 +62,16 @@ function modify(form){
 	  id=e.value;
 	}     
   }
-  var url="department/prepareModify?id="+id;
-  var link = "<%=request.getContextPath()%>/mx/sys/"+url;
+  var link = "<%=request.getContextPath()%>/mx/sys/department/prepareModify?id="+id;
+  var width=530;
+  var height=425;
+  var scroll="no";
+  //openWindow(url, width, height, scroll);
+  art.dialog.open(link, { height: height, width: width, title: "修改部门", scrollbars:"no" , lock: false });
+}
+
+function editRow(id){
+  var link = "<%=request.getContextPath()%>/mx/sys/department/prepareModify?id="+id;
   var width=530;
   var height=425;
   var scroll="no";
@@ -84,6 +93,7 @@ function sort(id, operate){
 				 }
 		});
 }
+
 function users(form){
   var id =0;
   for (var i=0;i<form.id.length;i++) {
@@ -92,30 +102,22 @@ function users(form){
 	  id=e.value;
 	}     
   }
-  var url="user/showList?parent="+id;
-  var link = "<%=request.getContextPath()%>/mx/sys/"+url;
+  var link = "<%=request.getContextPath()%>/mx/sys/user/showList?parent="+id;
   var width=880;
   var height=380;
   var scroll="no";
   //openWindow(url, width, height, scroll);
   art.dialog.open(link, { height: height, width: width, title: "部门用户", scrollbars:"no" , lock: false });
 }
-function roles(form){
-  var id =0;
-  for (var i=0;i<form.id.length;i++) {
-    var e = form.id[i];
-    if (e.checked){
-	  id=e.value;
-	}     
-  }
-  var url="deptRole/showList?parent="+id;
-  var link = "<%=request.getContextPath()%>/mx/sys/"+url;
-  var width=680;
-  var height=400;
+
+function editDeptUsers(id){
+  var link = "<%=request.getContextPath()%>/mx/sys/user/showList?parent="+id;
+  var width=880;
+  var height=380;
   var scroll="no";
   //openWindow(url, width, height, scroll);
-  art.dialog.open(link, { height: height, width: width, title: "部门角色", scrollbars:"no" , lock: false });
-}
+  art.dialog.open(link, { height: height, width: width, title: "部门用户", scrollbars:"no" , lock: false });
+} 
 </script>
 </head>
 
@@ -142,7 +144,10 @@ while(navIter.hasNext()){
   <col width="5%"/><col width="4%"/><col/><col width="10%"/><col width="15%"/>
   <col width="12%"/><col width="8%"/><col width="8%"/>
   <tr class="list-title"> 
-    <td align="center"> <input type="checkbox" name="chkall" value="checkbox" onClick="checkAll(this.form, this);checkOperation(this.form)">    </td>
+    <td align="center"> 
+	<input type="checkbox" name="chkall" value="checkbox" 
+	       onclick="checkAll(this.form, this);checkOperation(this.form)">    
+	</td>
     <td align="center">序号</td>
     <td align="center">名称</td>
     <td align="center">状态</td>
@@ -150,6 +155,7 @@ while(navIter.hasNext()){
     <td align="center">编码</td>
     <td align="center">部门区分</td>
     <td align="center">排序</td>
+	<td width="12%" align="center">功能键</td>
     </tr>
   <%
 int i=0;
@@ -167,6 +173,10 @@ if(list!=null){
     <td class="td-no"><%=bean.getNo()%>&nbsp;</td>
     <td class="td-no"><%=bean.getCode2()%>&nbsp;</td>
     <td class="td-no"><a href="javascript:sort(<%=bean.getId()%>, 0);" title="上移"><img src="<%=context%>/images/up.gif" border="0" height="13" width="13"></a> <a href="javascript:sort(<%=bean.getId()%>, 1);" title="下移"><img src="<%=context%>/images/down.gif" border="0" height="13" width="13"></a></td>
+	<td>&nbsp;
+	   <a href="#" onclick="javascript:editRow(<%=bean.getId()%>);">修改</a>&nbsp;
+	   <a href="#" onclick="javascript:editDeptUsers(<%=bean.getId()%>);">部门用户</a>&nbsp;
+    </td>
     </tr>
   <%
     i++;
@@ -183,6 +193,7 @@ for(; i<pageSize; i++){
     <td>&nbsp;</td>
 	<td>&nbsp;</td>
 	<td>&nbsp;</td>	
+	<td>&nbsp;</td>	
   </tr>
 <%
 }
@@ -197,8 +208,7 @@ for(; i<pageSize; i++){
   <tr> 
     <td width="50%"> <input name="btn_add" type="button" value="增加" class="button" onClick="javascript:add();"> 
       <input name="btn_modify" type="button" value="修改" class="button" onClick="javascript:modify(this.form);" disabled>
-      <input name="btn_user" type="button" value="用户管理" class="button" onClick="javascript:users(this.form);" disabled>
-      <!-- <input name="btn_role" type="button" value="角色设置" class="button" onClick="javascript:roles(this.form);" disabled> -->
+      <input name="btn_user" type="button" value="部门用户" class="button" onClick="javascript:users(this.form);" disabled>
 	  </td>
     <td width="50%"> 
       <%

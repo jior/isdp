@@ -147,7 +147,7 @@
 	
 	<select id="getSysRolesByAppId" parameterType="long" resultMap="sysRoleResultMap">
 			
-		select r.* from net_role r
+		select distinct r.* from net_role r
 		inner join userrole ur
 		on r.id = ur.roleid
 		inner join sys_access a

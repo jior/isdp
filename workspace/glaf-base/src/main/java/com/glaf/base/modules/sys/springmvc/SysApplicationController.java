@@ -43,6 +43,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.glaf.base.modules.Constants;
 import com.glaf.base.modules.sys.model.SysApplication;
+import com.glaf.base.modules.sys.model.SysRole;
 import com.glaf.base.modules.sys.model.SysTree;
 import com.glaf.base.modules.sys.query.SysApplicationQuery;
 import com.glaf.base.modules.sys.service.SysApplicationService;
@@ -193,6 +194,35 @@ public class SysApplicationController {
 		}
 
 		return new ModelAndView("/modules/sys/app/list", modelMap);
+	}
+
+	/**
+	 * 显示修改页面
+	 * 
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping("/permission")
+	public ModelAndView permission(HttpServletRequest request, ModelMap modelMap) {
+		// RequestUtils.setRequestParameterToAttribute(request);
+		long id = ParamUtil.getIntParameter(request, "id", 0);
+		if (id > 0) {
+			SysApplication bean = sysApplicationService.findById(id);
+			if (bean != null) {
+				List<SysRole> roles = sysApplicationService
+						.getApplicationRoleWithUsers(bean.getId());
+				request.setAttribute("bean", bean);
+				request.setAttribute("roles", roles);
+			}
+		}
+
+		String x_view = ViewProperties.getString("application.permission");
+		if (StringUtils.isNotEmpty(x_view)) {
+			return new ModelAndView(x_view, modelMap);
+		}
+
+		return new ModelAndView("/modules/sys/app/permission", modelMap);
 	}
 
 	/**
