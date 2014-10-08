@@ -75,11 +75,11 @@ function submitRequest(){
 
 </script>
 </head>
-
 <body>
-<div class="nav-title"><span class="Title">用户管理</span>&gt;&gt;设置用户 <b><%=user.getName()%></b> 的权限</div>
-<html:form  name="iForm" method="post"  > 
-<input type="hidden" name="actorId" value="<%=user.getId()%>">
+<div class="nav-title">
+  <span class="Title">用户管理</span>&gt;&gt;设置用户 <b><%=user.getName()%></b> 的角色
+</div>
+<html:form  name="iForm" method="post" > 
 <table width="95%" border="0" align="center" cellspacing="1" cellpadding="0" class="list-box">
   <tr class="list-title"> 
     <td width="9%" align="center">
@@ -90,13 +90,13 @@ function submitRequest(){
     <td width="44%" align="center">描述</td>
   </tr>
   <%
-int i=0;
-if(list!=null && list.size()>0){
-  Iterator iter2=list.iterator();   
-  while(iter2.hasNext()){
-	SysRole role = (SysRole)iter2.next();
-	if (StringUtils.isNotEmpty(role.getCode())
-		&& ( StringUtils.startsWithIgnoreCase(role.getCode(), SysConstants.BRANCH_PREFIX) || StringUtils.equals(role.getIsUseBranch(), "Y"))) {	
+	int i=0;
+	if(list!=null && list.size()>0){
+	  Iterator iter2=list.iterator();   
+	  while(iter2.hasNext()){
+		SysRole role = (SysRole)iter2.next();
+		if (StringUtils.isNotEmpty(role.getCode())
+			&& ( StringUtils.startsWithIgnoreCase(role.getCode(), SysConstants.BRANCH_PREFIX) || StringUtils.equals(role.getIsUseBranch(), "Y"))) {	
 %>
   <tr <%=i%2==0?"":"class='list-back'"%>>
     <td class="td-cb"><input type="checkbox" name="id" value="<%=role.getId()%>" <%=roleIds.contains(role.getId())?"checked":""%>>

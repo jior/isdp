@@ -4,9 +4,11 @@
 <%@ page import="com.glaf.base.modules.sys.*"%>
 <%@ page import="com.glaf.base.modules.sys.model.*"%>
 <%@ page import="com.glaf.base.utils.*"%>
+<%@ page import="com.glaf.core.util.*"%>
 <%
-String context = request.getContextPath();
-SysUser bean=(SysUser)request.getAttribute("bean");
+	String context = request.getContextPath();
+	SysUser bean=(SysUser)request.getAttribute("bean");
+	pageContext.setAttribute("contextPath", request.getContextPath());
 %>
 <html>
 <head>
@@ -15,7 +17,8 @@ SysUser bean=(SysUser)request.getAttribute("bean");
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/themes/<%=com.glaf.core.util.RequestUtils.getTheme(request)%>/site.css">
 <script language="javascript" src='<%=context%>/scripts/main.js'></script>
 <script language="javascript" src='<%=context%>/scripts/verify.js'></script></head>
-<script language="JavaScript">
+<script language="javascript">
+
 function checkForm(form){
   if(verifyAll(form)){
      if(form.newPwd.value!=form.password2.value){
@@ -28,6 +31,7 @@ function checkForm(form){
   }
    return false;
 }
+
 function setValue(obj){
   obj.value=obj[obj.selectedIndex].value;
 }
@@ -37,7 +41,7 @@ function setValue(obj){
 <body>
 <div class="nav-title"><span class="Title">重置密码</span></div>
 <html:form action="${contextPath}/mx/branch/user/resetPwd" method="post"  onsubmit="return checkForm(this);"> 
-<input type="hidden" name="id" value="<%=bean.getId()%>"> 
+<input type="hidden" name="id" value="<%=RequestUtils.encodeString(bean.getActorId())%>"> 
 <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="box">
   <tr>
     <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -51,8 +55,8 @@ function setValue(obj){
   <tr>
     <td class="box-mm"><table width="95%" align="center" border="0" cellspacing="0" cellpadding="5">
 	  <tr>
-        <td width="20%" class="input-box">员工编码</td>
-        <td width="80%"><%=bean.getCode()%></td>
+        <td width="20%" class="input-box">员工账户</td>
+        <td width="80%"><%=bean.getActorId()%></td>
       </tr>
       <tr>
         <td class="input-box2" valign="top">姓　　名</td>

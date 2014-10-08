@@ -811,6 +811,7 @@ public class BranchUserController {
 	@RequestMapping("/saveUserRoles")
 	public byte[] saveUserRoles(HttpServletRequest request, ModelMap modelMap) {
 		logger.debug(RequestUtils.getParameterMap(request));
+		logger.debug("actorId:"+request.getParameter("actorId"));
 		String userId = RequestUtils.decodeString(request
 				.getParameter("actorId"));
 		userId = RequestUtils.decodeString(userId);

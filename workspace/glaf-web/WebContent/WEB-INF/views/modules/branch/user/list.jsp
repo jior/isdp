@@ -116,6 +116,7 @@
 	    if (selected ){
 		  //location.href="<%=request.getContextPath()%>/branch/user.do?method=edit&id="+selected.id;
 		  var link = "<%=request.getContextPath()%>/mx/branch/user/prepareResetPwd?parent=${parent}&deptId=${deptId}&id="+selected.actorId_enc;
+		  //alert(link);
 		  art.dialog.open(link, { height: 300, width: 465, title: "重置用户密码", lock: true, scrollbars:"no" }, false);
 	    }
 	}

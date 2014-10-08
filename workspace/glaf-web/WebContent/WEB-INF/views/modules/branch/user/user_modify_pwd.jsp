@@ -11,11 +11,11 @@ pageContext.setAttribute("contextPath", context);
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title></title>
+<title>修改密码</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/themes/<%=com.glaf.core.util.RequestUtils.getTheme(request)%>/site.css">
 <script language="javascript" src='<%=context%>/scripts/main.js'></script>
 <script language="javascript" src='<%=context%>/scripts/verify.js'></script></head>
-<script language="JavaScript">
+<script language="javascript">
 function checkForm(form){
   if(verifyAll(form)){
      if(form.newPwd.value!=form.password2.value){
