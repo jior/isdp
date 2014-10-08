@@ -48,7 +48,7 @@ public interface SysRoleService {
 	 */
 	@Transactional
 	boolean delete(long id);
-
+	
 	/**
 	 * 删除
 	 * 
@@ -58,6 +58,7 @@ public interface SysRoleService {
 	 */
 	@Transactional
 	boolean delete(SysRole bean);
+
 
 	/**
 	 * 批量删除
@@ -118,6 +119,13 @@ public interface SysRoleService {
 	 * @return
 	 */
 	PageResult getSysRoleList(int pageNo, int pageSize);
+
+	/**
+	 * 获取某个模块的角色
+	 * @param appId
+	 * @return
+	 */
+	List<SysRole> getSysRolesByAppId(long appId);
 
 	/**
 	 * 根据查询参数获取一页的数据

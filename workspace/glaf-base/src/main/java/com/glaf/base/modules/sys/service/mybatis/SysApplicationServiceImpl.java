@@ -45,11 +45,13 @@ import com.glaf.base.modules.sys.mapper.SysTreeMapper;
 import com.glaf.base.modules.sys.model.RealmInfo;
 import com.glaf.base.modules.sys.model.SysAccess;
 import com.glaf.base.modules.sys.model.SysApplication;
+import com.glaf.base.modules.sys.model.SysRole;
 import com.glaf.base.modules.sys.model.SysTree;
 import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.query.SysApplicationQuery;
 import com.glaf.base.modules.sys.query.SysTreeQuery;
 import com.glaf.base.modules.sys.service.SysApplicationService;
+import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.service.SysUserService;
 import com.glaf.base.modules.sys.util.SysApplicationJsonFactory;
@@ -87,6 +89,8 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	protected SysTreeMapper sysTreeMapper;
 
 	protected SysTreeService sysTreeService;
+
+	protected SysRoleService sysRoleService;
 
 	protected SysUserService sysUserService;
 
@@ -392,6 +396,24 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		return pager;
 	}
 
+	/**
+	 * 获取某个模块的角色及用户
+	 * 
+	 * @param appId
+	 * @return
+	 */
+	public List<SysRole> getApplicationRoleWithUsers(long appId) {
+		List<SysRole> roles = sysRoleService.getSysRolesByAppId(appId);
+		if (roles != null && !roles.isEmpty()) {
+			for (SysRole role : roles) {
+				List<SysUser> users = sysUserService.getSysUsersByRoleId(role
+						.getId());
+				role.setUsers(users);
+			}
+		}
+		return roles;
+	}
+
 	public String getMenu(long parent, SysUser user) {
 		StringBuffer menu = new StringBuffer("");
 		List<SysApplication> list = getAccessAppList(parent, user);
@@ -662,7 +684,7 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		if (list != null && !list.isEmpty()) {
 			for (SysTree tree : list) {
 				if (tree.getParentId() == parentId) {
-					//tree.setParentId(0);
+					// tree.setParentId(0);
 				}
 				SysApplication app = appMap.get(tree.getId());
 				if (app != null) {
@@ -950,6 +972,11 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	public void setSysApplicationMapper(
 			SysApplicationMapper sysApplicationMapper) {
 		this.sysApplicationMapper = sysApplicationMapper;
+	}
+
+	@javax.annotation.Resource
+	public void setSysRoleService(SysRoleService sysRoleService) {
+		this.sysRoleService = sysRoleService;
 	}
 
 	@Resource

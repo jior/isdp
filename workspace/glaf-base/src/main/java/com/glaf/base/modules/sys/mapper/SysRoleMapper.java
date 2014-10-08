@@ -26,17 +26,19 @@ import com.glaf.base.modules.sys.query.*;
 @Component
 public interface SysRoleMapper {
 
-	void deleteSysRoles(SysRoleQuery query);
-
 	void deleteSysRoleById(Long id);
+
+	void deleteSysRoles(SysRoleQuery query);
 
 	SysRole getSysRoleById(Long id);
 
 	int getSysRoleCount(SysRoleQuery query);
+	
+	List<SysRole> getSysRoles(SysRoleQuery query);
+
+	List<SysRole> getSysRolesByAppId(long appId);
 
 	List<SysRole> getSysRolesOfUser(String actorId);
-
-	List<SysRole> getSysRoles(SysRoleQuery query);
 
 	void insertSysRole(SysRole model);
 

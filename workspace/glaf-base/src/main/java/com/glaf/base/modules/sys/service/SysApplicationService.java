@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.glaf.base.modules.sys.model.RealmInfo;
 import com.glaf.base.modules.sys.model.SysApplication;
+import com.glaf.base.modules.sys.model.SysRole;
 import com.glaf.base.modules.sys.model.SysTree;
 import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.query.SysApplicationQuery;
@@ -140,6 +141,14 @@ public interface SysApplicationService {
 	 * @return
 	 */
 	PageResult getApplicationList(long parentId, int pageNo, int pageSize);
+
+	/**
+	 * 获取某个模块的角色及用户
+	 * 
+	 * @param appId
+	 * @return
+	 */
+	List<SysRole> getApplicationRoleWithUsers(long appId);
 
 	/**
 	 * 获取菜单

@@ -55,7 +55,7 @@ public interface SysUserMapper {
 	List<SysUser> getSysUsers(SysUserQuery query);
 
 	List<SysUser> getSysUsersByAppId(Long appId);
-
+	
 	List<SysUser> getSysUsersByRoleCode(String roleCode);
 
 	List<SysUser> getSysUsersByRoleId(long roleId);
