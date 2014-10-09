@@ -174,6 +174,45 @@ public class ComplexUserServiceImpl implements ComplexUserService {
 	}
 
 	/**
+	 * 获取全部部门树节点
+	 * 
+	 * @return
+	 */
+	public List<TreeModel> getAllDepartmentTrees() {
+		List<TreeModel> treeModels = new java.util.ArrayList<TreeModel>();
+
+		List<SysDepartment> list = sysDepartmentService.getSysDepartmentList();
+
+		List<Long> deptIds = new ArrayList<Long>();
+		if (list != null && !list.isEmpty()) {
+			for (SysDepartment m : list) {
+				deptIds.add(m.getId());
+			}
+		}
+
+		logger.debug("分级管理部门编号:" + deptIds);
+
+		if (!deptIds.isEmpty()) {
+			for (Long deptId : deptIds) {
+				SysDepartment dept = sysDepartmentService.findById(deptId);
+				if (dept != null && dept.getNodeId() > 0) {
+					treeModels.add(dept.getNode());
+					List<TreeModel> children = treeModelService
+							.getChildrenTreeModels(dept.getNodeId());
+					if (children != null && !children.isEmpty()) {
+						for (TreeModel child : children) {
+							if (!treeModels.contains(child)) {
+								treeModels.add(child);
+							}
+						}
+					}
+				}
+			}
+		}
+		return treeModels;
+	}
+
+	/**
 	 * 获取用户管理的分支机构的编号集合
 	 * 
 	 * @param actorId

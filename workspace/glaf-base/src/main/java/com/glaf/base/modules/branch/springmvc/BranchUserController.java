@@ -562,12 +562,19 @@ public class BranchUserController {
 	@RequestMapping("/resetPwd")
 	public ModelAndView resetPwd(HttpServletRequest request, ModelMap modelMap) {
 		boolean ret = false;
-		String actorId = RequestUtils.getActorId(request);
-		List<Long> nodeIds = complexUserService
-				.getUserManageBranchNodeIds(actorId);
+
+		LoginContext loginContext = RequestUtils.getLoginContext(request);
+
+		List<Long> nodeIds = new ArrayList<Long>();
+
+		if (!loginContext.isSystemAdministrator()) {
+			nodeIds = complexUserService
+					.getUserManageBranchNodeIds(loginContext.getActorId());
+		}
 
 		String id = ParamUtil.getParameter(request, "id");
 		id = RequestUtils.decodeString(id);
+		logger.debug("userId:" + id);
 		SysUser bean = sysUserService.findById(id);
 
 		/**
@@ -581,7 +588,9 @@ public class BranchUserController {
 					.getDeptId());
 			if (department != null) {
 				SysTree tree = sysTreeService.findById(department.getNodeId());
-				if (tree != null && nodeIds.contains(tree.getId())) {
+				if (tree != null
+						&& (loginContext.isSystemAdministrator() || nodeIds
+								.contains(tree.getId()))) {
 					String newPwd = ParamUtil.getParameter(request, "newPwd");
 					if (bean != null && StringUtils.isNotEmpty(newPwd)) {
 						try {
@@ -619,9 +628,14 @@ public class BranchUserController {
 	@RequestMapping("/saveAdd")
 	public ModelAndView saveAdd(HttpServletRequest request, ModelMap modelMap) {
 		SysUser bean = new SysUser();
-		String actorId = RequestUtils.getActorId(request);
-		List<Long> nodeIds = complexUserService
-				.getUserManageBranchNodeIds(actorId);
+		LoginContext loginContext = RequestUtils.getLoginContext(request);
+
+		List<Long> nodeIds = new ArrayList<Long>();
+
+		if (!loginContext.isSystemAdministrator()) {
+			nodeIds = complexUserService
+					.getUserManageBranchNodeIds(loginContext.getActorId());
+		}
 
 		int ret = 0;
 		SysDepartment department = null;
@@ -639,7 +653,9 @@ public class BranchUserController {
 		 */
 		if (department != null) {
 			SysTree tree = sysTreeService.findById(department.getNodeId());
-			if (tree != null && nodeIds.contains(tree.getId())) {
+			if (tree != null
+					&& (loginContext.isSystemAdministrator() || nodeIds
+							.contains(tree.getId()))) {
 				bean.setDeptId(department.getId());
 				// bean.setCode(ParamUtil.getParameter(request, "code"));
 				bean.setAccount(bean.getActorId());
@@ -705,22 +721,33 @@ public class BranchUserController {
 	@RequestMapping("/saveModify")
 	public ModelAndView saveModify(HttpServletRequest request, ModelMap modelMap) {
 		String id = ParamUtil.getParameter(request, "id");
+		logger.debug("userId:" + id);
 		id = RequestUtils.decodeString(id);
+		logger.debug(">userId:" + id);
+
+		LoginContext loginContext = RequestUtils.getLoginContext(request);
+
+		List<Long> nodeIds = new ArrayList<Long>();
+
+		if (!loginContext.isSystemAdministrator()) {
+			nodeIds = complexUserService
+					.getUserManageBranchNodeIds(loginContext.getActorId());
+		}
+
 		SysUser bean = sysUserService.findById(id);
 		boolean ret = false;
 		if (bean != null) {
 			SysDepartment department = sysDepartmentService.findById(ParamUtil
 					.getIntParameter(request, "deptId", 0));
-			String actorId = RequestUtils.getActorId(request);
-			List<Long> nodeIds = complexUserService
-					.getUserManageBranchNodeIds(actorId);
 
 			/**
 			 * 保证添加的用户所属部门是分级管理员管辖的部门
 			 */
 			if (department != null) {
 				SysTree tree = sysTreeService.findById(department.getNodeId());
-				if (tree != null && nodeIds.contains(tree.getId())) {
+				if (tree != null
+						&& (loginContext.isSystemAdministrator() || nodeIds
+								.contains(tree.getId()))) {
 					bean.setDepartment(department);
 					bean.setName(ParamUtil.getParameter(request, "name"));
 					bean.setSuperiorIds(ParamUtil.getParameter(request,
@@ -811,18 +838,23 @@ public class BranchUserController {
 	@RequestMapping("/saveUserRoles")
 	public byte[] saveUserRoles(HttpServletRequest request, ModelMap modelMap) {
 		logger.debug(RequestUtils.getParameterMap(request));
-		logger.debug("actorId:"+request.getParameter("actorId"));
-		String userId = RequestUtils.decodeString(request
-				.getParameter("actorId"));
+		logger.debug("actorId:" + request.getParameter("actorId"));
+		String userId = request.getParameter("actorId");
 		userId = RequestUtils.decodeString(userId);
 		String objectIds = request.getParameter("objectIds");
 		logger.debug("userId:" + userId);
 		SysUser user = sysUserService.findById(userId);// 查找用户对象
 		logger.debug("user:" + user);
 		if (user != null) {
-			String actorId = RequestUtils.getActorId(request);
-			List<Long> nodeIds = complexUserService
-					.getUserManageBranchNodeIds(actorId);
+
+			LoginContext loginContext = RequestUtils.getLoginContext(request);
+
+			List<Long> nodeIds = new ArrayList<Long>();
+
+			if (!loginContext.isSystemAdministrator()) {
+				nodeIds = complexUserService
+						.getUserManageBranchNodeIds(loginContext.getActorId());
+			}
 
 			SysDepartment department = sysDepartmentService.findById(user
 					.getDeptId());
@@ -831,7 +863,9 @@ public class BranchUserController {
 			 */
 			if (department != null && department.getNodeId() > 0) {
 				SysTree tree = sysTreeService.findById(department.getNodeId());
-				if (tree != null && nodeIds.contains(tree.getId())) {
+				if (tree != null
+						&& (nodeIds.contains(tree.getId()) || loginContext
+								.isSystemAdministrator())) {
 					Set<SysRole> newRoles = new HashSet<SysRole>();
 					if (StringUtils.isNotEmpty(objectIds)) {
 						List<Long> ids = StringTools.splitToLong(objectIds);// 获取页面参数

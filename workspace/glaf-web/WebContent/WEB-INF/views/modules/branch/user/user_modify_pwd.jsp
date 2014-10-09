@@ -4,9 +4,10 @@
 <%@ page import="com.glaf.base.modules.sys.*"%>
 <%@ page import="com.glaf.base.modules.sys.model.*"%>
 <%@ page import="com.glaf.base.utils.*"%>
+<%@ page import="com.glaf.core.util.*"%>
 <%
-String context = request.getContextPath();
-pageContext.setAttribute("contextPath", context); 
+	String context = request.getContextPath();
+	pageContext.setAttribute("contextPath", context); 
 %>
 <html>
 <head>

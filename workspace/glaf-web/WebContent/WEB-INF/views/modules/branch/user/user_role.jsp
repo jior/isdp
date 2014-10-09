@@ -11,6 +11,7 @@
 	String context = request.getContextPath();
 	List list = (List)request.getAttribute("list");
 	SysUser user = (SysUser)request.getAttribute("user");
+	int deptId=ParamUtil.getIntParameter(request, "deptId", 0);
 	Set roleIds=new HashSet();
 	Iterator roles = user.getRoles().iterator();
 	while(roles.hasNext()){  
@@ -58,7 +59,7 @@ function submitRequest(){
 	//alert(ids);
 	jQuery.ajax({
 			type: "POST",
-			url: '<%=request.getContextPath()%>/mx/branch/user/saveUserRoles?actorId=<%=RequestUtils.encodeString(user.getActorId())%>&objectIds='+ids,
+			url: '<%=request.getContextPath()%>/mx/branch/user/saveUserRoles?actorId=<%=RequestUtils.encodeString(user.getActorId())%>&deptId=<%=deptId%>&objectIds='+ids,
 			dataType:  'json',
 			error: function(data){
 				alert('服务器处理错误！');

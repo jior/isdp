@@ -40,20 +40,19 @@ public interface ComplexUserService {
 	boolean createUser(SysUser user, List<String> roleCodes);
 
 	/**
+	 * 获取全部部门树节点
+	 * 
+	 * @return
+	 */
+	List<TreeModel> getAllDepartmentTrees();
+
+	/**
 	 * 获取用户管理的分支机构(sys_tree的封装)
 	 * 
 	 * @param actorId
 	 * @return
 	 */
 	List<TreeModel> getUserManageBranch(String actorId);
-	
-	/**
-	 * 获取用户管理的分支机构(SYS_DEPARTMENT的封装)
-	 * 
-	 * @param actorId
-	 * @return
-	 */
-	List<SysDepartment> getUserManageDeptments(String actorId);
 
 	/**
 	 * 获取用户管理的分支机构的编号集合(sys_tree的id封装)
@@ -62,5 +61,13 @@ public interface ComplexUserService {
 	 * @return
 	 */
 	List<Long> getUserManageBranchNodeIds(String actorId);
+
+	/**
+	 * 获取用户管理的分支机构(SYS_DEPARTMENT的封装)
+	 * 
+	 * @param actorId
+	 * @return
+	 */
+	List<SysDepartment> getUserManageDeptments(String actorId);
 
 }

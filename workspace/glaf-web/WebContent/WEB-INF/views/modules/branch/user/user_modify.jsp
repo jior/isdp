@@ -5,11 +5,13 @@
 <%@ page import="com.glaf.base.modules.sys.*"%>
 <%@ page import="com.glaf.base.modules.sys.model.*"%>
 <%@ page import="com.glaf.base.utils.*"%>
+<%@ page import="com.glaf.core.util.*"%>
 <%
 	String context = request.getContextPath();
 	SysUser bean=(SysUser)request.getAttribute("bean");
 	List  list = (List)request.getAttribute("parent");
 	int nodeId=ParamUtil.getIntParameter(request, "nodeId", 0);
+	int deptId=ParamUtil.getIntParameter(request, "deptId", 0);
 %>
 <html>
 <head>
@@ -44,8 +46,9 @@ function setValue(obj){
 <div class="nav-title"><span class="Title">用户管理</span>&gt;&gt;修改用户</div>
 <html:form id="iForm" name="iForm" action="${contextPath}/mx/branch/user/saveModify" 
       method="post"  onsubmit="return checkForm(this);"> 
-<input type="hidden" name="id" value="<%=bean.getActorId()%>">
+<input type="hidden" name="id" value="<%=RequestUtils.encodeString(bean.getActorId())%>">
 <input type="hidden" name="nodeId" value="<%=nodeId%>">
+<input type="hidden" name="deptId" value="<%=deptId%>">
 <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="box">
   <tr>
     <td><table width="100%" border="0" cellspacing="0" cellpadding="0">

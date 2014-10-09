@@ -552,9 +552,17 @@ public class BranchDepartmentController {
 	@RequestMapping("/treeJson")
 	public byte[] treeJson(HttpServletRequest request) {
 		logger.debug("------------------------treeJson--------------------");
-		String actorId = RequestUtils.getActorId(request);
-		List<TreeModel> treeModels = complexUserService
-				.getUserManageBranch(actorId);
+		LoginContext loginContext = RequestUtils.getLoginContext(request);
+
+		List<TreeModel> treeModels = null;
+
+		if (loginContext.isSystemAdministrator()) {
+			treeModels = complexUserService.getAllDepartmentTrees();
+		} else {
+			treeModels = complexUserService.getUserManageBranch(loginContext
+					.getActorId());
+		}
+
 		logger.debug("#treeModels:" + treeModels);
 		JacksonTreeHelper treeHelper = new JacksonTreeHelper();
 		ArrayNode responseJSON = treeHelper.getTreeArrayNode(treeModels);
