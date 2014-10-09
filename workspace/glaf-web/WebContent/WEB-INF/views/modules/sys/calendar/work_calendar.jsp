@@ -146,6 +146,9 @@ function selDay(obj, month, day){
 	</td>
   </tr>
 </table>
-<br><br>
+<br>
+<center><b>注意：已经勾选的为休息日</b></center>
+<br>
+<br>
 </body>
 </html>
