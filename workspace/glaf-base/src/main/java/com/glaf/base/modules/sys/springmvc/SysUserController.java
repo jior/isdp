@@ -1143,12 +1143,7 @@ public class SysUserController {
 		List<SysRole> roles = sysRoleService.getSysRoleList();
 		if (roles != null && !roles.isEmpty()) {
 			for (SysRole role : roles) {
-				if (StringUtils.isNotEmpty(role.getCode())
-						&& (StringUtils.startsWithIgnoreCase(role.getCode(),
-								SysConstants.BRANCH_PREFIX) || StringUtils
-								.equals(role.getIsUseBranch(), "Y"))) {
 					list.add(role);
-				}
 			}
 		}
 
@@ -1252,5 +1247,29 @@ public class SysUserController {
 		}
 
 		return new ModelAndView("/modules/sys/user/user_info", modelMap);
+	}
+
+	/**
+	 * 显示角色菜单
+	 * 
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping("/showUserMenus")
+	public ModelAndView showUserMenus(HttpServletRequest request,
+			ModelMap modelMap) {
+		RequestUtils.setRequestParameterToAttribute(request);
+		String userId = ParamUtil.getParameter(request, "actorId");
+		userId = RequestUtils.decodeString(userId);
+		SysUser user = sysUserService.findById(userId);
+		request.setAttribute("user", user);
+
+		String x_view = ViewProperties.getString("user.userMenus");
+		if (StringUtils.isNotEmpty(x_view)) {
+			return new ModelAndView(x_view, modelMap);
+		}
+
+		return new ModelAndView("/modules/sys/user/userMenus", modelMap);
 	}
 }

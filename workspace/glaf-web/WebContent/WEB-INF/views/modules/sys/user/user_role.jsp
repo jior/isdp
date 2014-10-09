@@ -94,8 +94,6 @@ if(list!=null){
   Iterator iter2=list.iterator();   
   while(iter2.hasNext()){
 	SysRole role = (SysRole)iter2.next();
-	if (StringUtils.isNotEmpty(role.getCode())
-		&& ( StringUtils.startsWithIgnoreCase(role.getCode(), SysConstants.BRANCH_PREFIX) || StringUtils.equals(role.getIsUseBranch(), "Y"))) {	
 %>
   <tr <%=i%2==0?"":"class='list-back'"%>>
     <td class="td-cb">
@@ -108,7 +106,6 @@ if(list!=null){
   </tr>
   <%
     i++;
-	}
   }
 }
 for(; i<10; i++){
@@ -126,7 +123,9 @@ for(; i<10; i++){
 <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td align="center" height="30" valign="bottom">
+	  <br>
 	  <input name="btn_save" type="button" value="保存" class="button" onclick="javascript:submitRequest();">
+	  <br><br>
     </td>
   </tr>
 </table>

@@ -125,8 +125,8 @@ function roles(form){
 	}     
   }
   var link = "<%=request.getContextPath()%>/mx/sys/user/showRole?actorId="+id;
-  var width=450;
-  var height=350;
+  var width=550;
+  var height=420;
   var scroll="yes";
   openWindow(link, width, height, scroll);
   //art.dialog.open(link, { height: height, width: width, title: "用户角色", lock: true, scrollbars:"no" }, false);
@@ -134,8 +134,16 @@ function roles(form){
 
 function editUserRole(id){
   var link = "<%=request.getContextPath()%>/mx/sys/user/showRole?actorId="+id;
-  var width=450;
-  var height=350;
+  var width=550;
+  var height=420;
+  var scroll="yes";
+  openWindow(link, width, height, scroll);
+}
+
+function viewUserMenus(id){
+  var link = "<%=request.getContextPath()%>/mx/sys/user/showUserMenus?actorId="+id;
+  var width=550;
+  var height=420;
   var scroll="yes";
   openWindow(link, width, height, scroll);
 }
@@ -158,7 +166,7 @@ function editUserRole(id){
     <td width="8%" align="center" >是否有效</td>
     <td width="12%" align="center" >创建日期</td>
     <td width="12%" align="center" >上次登陆时间</td>
-	<td width="12%" align="center">功能键</td>
+	<td width="15%" align="center">功能键</td>
   </tr>
   <%
 int i=0;
@@ -185,6 +193,7 @@ if(list!=null){
 	   <a href="#" onclick="javascript:editRow('<%=RequestUtils.encodeString(bean.getActorId())%>');">修改</a>&nbsp;
 	   <a href="#" onclick="javascript:changePwd('<%=RequestUtils.encodeString(bean.getActorId())%>');">重置密码</a>&nbsp;
 	   <a href="#" onclick="javascript:editUserRole('<%=RequestUtils.encodeString(bean.getActorId())%>');">角色设置</a>&nbsp;
+	   <a href="#" onclick="javascript:viewUserMenus('<%=RequestUtils.encodeString(bean.getActorId())%>');">菜单</a>&nbsp;
     </td>
     </tr>
   <%

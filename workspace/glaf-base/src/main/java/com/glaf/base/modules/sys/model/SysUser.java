@@ -34,6 +34,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.glaf.base.modules.sys.util.SysUserJsonFactory;
 import com.glaf.core.base.JSONable;
 import com.glaf.core.identity.User;
+import com.glaf.core.util.RequestUtils;
 
 @Entity
 @Table(name = "UserInfo")
@@ -267,6 +268,10 @@ public class SysUser implements Serializable, User, JSONable {
 
 	public String getEmail() {
 		return email;
+	}
+
+	public String getEncodeActorId() {
+		return RequestUtils.encodeString(this.getActorId());
 	}
 
 	public int getEvection() {

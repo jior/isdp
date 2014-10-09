@@ -44,22 +44,27 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.glaf.base.modules.sys.model.SysApplication;
 import com.glaf.base.modules.sys.model.SysDepartment;
 import com.glaf.base.modules.sys.model.SysRole;
+import com.glaf.base.modules.sys.model.SysTree;
 import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.query.SysUserQuery;
+import com.glaf.base.modules.sys.service.SysApplicationService;
 import com.glaf.base.modules.sys.service.SysDepartmentService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.service.SysUserService;
 import com.glaf.base.utils.ParamUtil;
 import com.glaf.base.utils.RequestUtil;
+import com.glaf.core.base.TreeModel;
 import com.glaf.core.cache.CacheUtils;
 import com.glaf.core.res.MessageUtils;
 import com.glaf.core.res.ViewMessage;
 import com.glaf.core.res.ViewMessages;
 import com.glaf.core.security.DigestUtil;
 import com.glaf.core.service.ITableDataService;
+import com.glaf.core.tree.helper.TreeHelper;
 import com.glaf.core.util.PageResult;
 import com.glaf.core.util.ParamUtils;
 import com.glaf.core.util.RequestUtils;
@@ -69,6 +74,8 @@ import com.glaf.core.util.Tools;
 @Path("/rs/sys/user")
 public class SysUserResource {
 	private static final Log logger = LogFactory.getLog(SysUserResource.class);
+
+	protected SysApplicationService sysApplicationService;
 
 	protected SysDepartmentService sysDepartmentService;
 
@@ -571,6 +578,12 @@ public class SysUserResource {
 	}
 
 	@javax.annotation.Resource
+	public void setSysApplicationService(
+			SysApplicationService sysApplicationService) {
+		this.sysApplicationService = sysApplicationService;
+	}
+
+	@javax.annotation.Resource
 	public void setSysDepartmentService(
 			SysDepartmentService sysDepartmentService) {
 		this.sysDepartmentService = sysDepartmentService;
@@ -594,6 +607,57 @@ public class SysUserResource {
 	@javax.annotation.Resource
 	public void setTableDataService(ITableDataService tableDataService) {
 		this.tableDataService = tableDataService;
+	}
+
+	@GET
+	@POST
+	@Path("userMenusJson")
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] userMenusJson(@Context HttpServletRequest request,
+			@Context UriInfo uriInfo) throws IOException {
+		String actorId = ParamUtil.getParameter(request, "actorId");
+		actorId = RequestUtils.decodeString(actorId);
+		long parentId = ParamUtil.getLongParameter(request, "parentId", 3);
+
+		SysTree root = sysTreeService.findById(parentId);
+		List<SysTree> list = sysApplicationService
+				.getTreeWithApplicationList(parentId);
+		List<TreeModel> treeModels = new ArrayList<TreeModel>();
+
+		List<SysRole> roles = sysUserService.getUserRoles(actorId);
+
+		if (roles != null && !roles.isEmpty()) {
+			for (SysRole role : roles) {
+				List<SysApplication> apps = sysApplicationService
+						.getRoleApplications(role.getId());
+				if (apps != null && !apps.isEmpty()) {
+					for (SysTree tree : list) {
+						for (SysApplication app : apps) {
+							if (tree.getApp().getId() == app.getId()) {
+								tree.setChecked(true);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		for (SysTree tree : list) {
+			if (tree.getParentId() == root.getId()) {
+				tree.setParentId(0);
+			}
+			if (tree.getId() != root.getId()) {
+				treeModels.add(tree);
+			}
+		}
+
+		logger.debug("treeModels:" + treeModels.size());
+		TreeHelper treeHelper = new TreeHelper();
+		JSONArray jsonArray = treeHelper.getTreeJSONArray(treeModels);
+		logger.debug(jsonArray.toJSONString());
+		return jsonArray.toJSONString().getBytes("UTF-8");
+
 	}
 
 }
