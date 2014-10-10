@@ -183,6 +183,11 @@
 
 	<servlet-mapping>
 		<servlet-name>WebResourceServlet</servlet-name>
+		<url-pattern>/static/*</url-pattern>
+    </servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>WebResourceServlet</servlet-name>
 		<url-pattern>/diagram-viewer/*</url-pattern>
     </servlet-mapping>
 
