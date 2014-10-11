@@ -118,7 +118,7 @@ function perm(form){
 	  id=e.value;
 	}     
   }
-  var link = "${contextPath}/sys/application.do?method=permission&id="+id;
+  var link = "${contextPath}/mx/sys/application/permission?id="+id;
   var width=680;
   var height=430;
   var scroll="yes";
