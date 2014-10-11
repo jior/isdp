@@ -712,6 +712,13 @@ public class BaseDataManager {
 						}
 						logger.info("swtich system name:" + name);
 						Environment.setCurrentSystemName(name);
+						try {
+							UpdateTreeBean bean = new UpdateTreeBean();
+							bean.setSysTreeService(getSysTreeService());
+							bean.updateTreeIds();
+						} catch (Exception ex) {
+							ex.printStackTrace();
+						}
 						// 用户自定义数据
 						loadCustomInfo();
 						// 用户自定义数据处理程序
