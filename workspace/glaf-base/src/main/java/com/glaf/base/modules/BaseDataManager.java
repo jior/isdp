@@ -1127,7 +1127,8 @@ public class BaseDataManager {
 		if (!loading.get()) {
 			try {
 				loading.set(true);
-
+                com.glaf.core.config.ConfigFactory.clearAll();
+                com.glaf.core.resource.ResourceFactory.clearAll();
 				initBaseData();
 				HttpServletRequest request = ThreadContextHolder
 						.getHttpRequest();
