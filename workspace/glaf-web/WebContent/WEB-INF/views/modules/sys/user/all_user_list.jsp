@@ -160,12 +160,12 @@ function viewUserMenus(id){
     <td width="5%" align="center"> 
 	<input type="checkbox" name="chkall" value="checkbox" onClick="checkAll(this.form, this);checkOperation(this.form)">    
 	</td>
-    <td width="5%" align="center">序号</td>
-    <td width="8%" align="center" >帐号</td>
+    <td width="5%"  align="center">序号</td>
+    <td width="8%"  align="center" >帐号</td>
     <td width="10%" align="center" >姓名</td>
-    <td width="8%" align="center" >是否有效</td>
-    <td width="12%" align="center" >创建日期</td>
-    <td width="12%" align="center" >上次登陆时间</td>
+    <td width="8%"  align="center" >是否有效</td>
+    <td width="8%"  align="center" >创建日期</td>
+    <td width="8%"  align="center" >上次登陆时间</td>
 	<td width="15%" align="center">功能键</td>
   </tr>
   <%
@@ -179,14 +179,14 @@ if(list!=null){
     <td width="5%" class="td-cb"> 
 	<input type="checkbox" id="id" name="id" value="<%= RequestUtils.encodeString(bean.getActorId())%>" onClick="checkOperation(this.form)"> 
 	</td>
-    <td width="5%" class="td-no"><%=((pager.getCurrentPageNo()-1)*pageSize + i+1)%></td>
-    <td width="8%" class="td-text"><%=bean.getAccount()%>&nbsp;</td>
+    <td width="5%"  class="td-no"><%=((pager.getCurrentPageNo()-1)*pageSize + i+1)%></td>
+    <td width="8%"  class="td-text"><%=bean.getAccount()%>&nbsp;</td>
     <td width="10%" class="td-text"><%=bean.getName()%>&nbsp;</td>
-    <td width="8%" class="td-no"><%=bean.getLocked()==1?"否":"是"%>&nbsp;</td>
-    <td width="12%" class="td-time">
+    <td width="8%"  class="td-no"><%=bean.getLocked()==1?"否":"是"%>&nbsp;</td>
+    <td width="8%"  class="td-time">
 	    <%=DateUtils.getDate(bean.getCreateTime())%>&nbsp;&nbsp;
 	</td>
-    <td width="12%" align="center" class="list">
+    <td width="8%" class="td-time" align="center" >
 	   <%=DateUtils.getDate(bean.getLastLoginTime())%>&nbsp;&nbsp;
 	</td>
 	<td>&nbsp;
@@ -204,7 +204,7 @@ for(; i<pageSize; i++){
 %>
   <tr <%=i%2==0?"":"class='list-back'"%>> 
     <td height="20">&nbsp;</td>
-    <td>&nbsp; </td>
+    <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
 	<td>&nbsp;</td>

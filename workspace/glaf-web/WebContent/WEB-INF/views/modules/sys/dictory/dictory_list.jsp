@@ -136,7 +136,7 @@ for(; i<pageSize; i++){
   <tr <%=i%2==0?"":"class='list-back'"%>> 
     <td height="20">&nbsp;</td>
     <td>&nbsp;</td>
-    <td>&nbsp; </td>
+    <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
 	<td>&nbsp;</td>

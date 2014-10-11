@@ -155,7 +155,7 @@ while(navIter.hasNext()){
     <td align="center">编码</td>
     <td align="center">部门区分</td>
     <td align="center">排序</td>
-	<td width="12%" align="center">功能键</td>
+	<td width="15%" align="center">功能键</td>
     </tr>
   <%
 int i=0;
@@ -165,14 +165,20 @@ if(list!=null){
     SysDepartment bean=(SysDepartment)iter.next();	
 %>
   <tr <%=i%2==0?"":"class='list-back'"%>> 
-    <td class="td-cb"> <input type="checkbox" name="id" value="<%=bean.getId()%>" onClick="checkOperation(this.form)">    </td>
+    <td class="td-cb"> 
+	<input type="checkbox" name="id" value="<%=bean.getId()%>" onClick="checkOperation(this.form)">    
+	</td>
     <td class="td-no"><%=((pager.getCurrentPageNo()-1)*pageSize + i+1)%></td>
-    <td class="td-text"><a href="<%=request.getContextPath()%>/mx/sys/department/showList?id=<%=bean.getId()%>&parent=<%=bean.getNodeId()%>"><%=bean.getName()%></a> </td>
+    <td class="td-text">
+	<a href="<%=request.getContextPath()%>/mx/sys/department/showList?id=<%=bean.getId()%>&parent=<%=bean.getNodeId()%>"><%=bean.getName()%></a>
+	</td>
     <td class="td-no"><%=bean.getStatus()==0?"有效":"无效"%>&nbsp;</td>
     <td class="td-no"><%=bean.getCode()%>&nbsp;</td>
     <td class="td-no"><%=bean.getNo()%>&nbsp;</td>
     <td class="td-no"><%=bean.getCode2()%>&nbsp;</td>
-    <td class="td-no"><a href="javascript:sort(<%=bean.getId()%>, 0);" title="上移"><img src="<%=context%>/images/up.gif" border="0" height="13" width="13"></a> <a href="javascript:sort(<%=bean.getId()%>, 1);" title="下移"><img src="<%=context%>/images/down.gif" border="0" height="13" width="13"></a></td>
+    <td class="td-no">
+	<a href="javascript:sort(<%=bean.getId()%>, 0);" title="上移"><img src="<%=context%>/images/up.gif" border="0" height="13" width="13"></a> <a href="javascript:sort(<%=bean.getId()%>, 1);" title="下移"><img src="<%=context%>/images/down.gif" border="0" height="13" width="13"></a>
+	</td>
 	<td>&nbsp;
 	   <a href="#" onclick="javascript:editRow(<%=bean.getId()%>);">修改</a>&nbsp;
 	   <a href="#" onclick="javascript:editDeptUsers(<%=bean.getId()%>);">部门用户</a>&nbsp;
@@ -187,7 +193,7 @@ for(; i<pageSize; i++){
   <tr <%=i%2==0?"":"class='list-back'"%>> 
     <td height="20">&nbsp;</td>
     <td>&nbsp;</td>
-    <td>&nbsp; </td>
+    <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>

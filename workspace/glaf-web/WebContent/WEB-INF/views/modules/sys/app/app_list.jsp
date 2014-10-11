@@ -177,8 +177,8 @@ function sort(id, operate){
     <td width="20%" align="center">描述</td>
     <td width="22%" align="center">链接</td>
     <td width="10%" align="center">是否有效</td>
-    <td width="8%" align="center">排序</td>
-	<td width="12%" align="center">功能键</td>
+    <td width="5%" align="center">排序</td>
+	<td width="15%" align="center">功能键</td>
   </tr>
   <%
 int i=0;
@@ -213,7 +213,7 @@ for(; i<pageSize; i++){
   <tr <%=i%2==0?"":"class='list-back'"%>> 
     <td height="20">&nbsp;</td>
     <td>&nbsp;</td>
-    <td>&nbsp; </td>
+    <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
 	<td>&nbsp;</td>
