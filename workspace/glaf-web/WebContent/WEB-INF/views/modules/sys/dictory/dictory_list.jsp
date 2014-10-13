@@ -65,6 +65,16 @@ function modify(form){
   art.dialog.open(link, { height: height, width: width, title: "修改字典", lock: false, scrollbars:"no" }, false);
 }
 
+function editRow(id){
+  var url="dictory/prepareModify?id="+id+"&parent="+<%=parent%>;
+  var link = "<%=request.getContextPath()%>/mx/sys/"+url;
+  var width=480;
+  var height=420;
+  var scroll="yes";
+  //openWindow(url, width, height, scroll);
+  art.dialog.open(link, { height: height, width: width, title: "修改字典", lock: false, scrollbars:"no" }, false);
+}
+
 function del(){
   var form = document.DictoryForm;
   if(confirmDelete(form)){
@@ -106,6 +116,7 @@ function sort(id, operate){
 	<td  align="center"><div align="center" class="fontname_12">属性值</div></td>
     <td  align="center"><div align="center" class="fontname_12">是否有效</div></td>
     <td  align="center"><div align="center" class="fontname_12">排序</div></td>
+	<td  width="8%" align="center"><div align="center" class="fontname_12">功能键</div></td>
   </tr>
   <%
 int i=0;
@@ -126,6 +137,9 @@ if(list!=null){
     <td class="td-no">
 	<a href="javascript:sort(<%=bean.getId()%>, 0);" title="上移"><img src="<%=context%>/images/up.gif" border="0" height="13" width="13"></a> <a href="javascript:sort(<%=bean.getId()%>, 1);" title="下移"><img src="<%=context%>/images/down.gif" border="0" height="13" width="13"></a>
 	</td>
+	<td align="center">&nbsp;
+	   <a href="#" onclick="javascript:editRow(<%=bean.getId()%>);">修改</a>&nbsp;
+    </td>
   </tr>
   <%
     i++;
@@ -139,6 +153,7 @@ for(; i<pageSize; i++){
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
+	<td>&nbsp;</td>
 	<td>&nbsp;</td>
 	<td>&nbsp;</td>
   </tr>

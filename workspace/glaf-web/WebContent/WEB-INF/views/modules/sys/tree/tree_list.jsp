@@ -75,6 +75,16 @@ function modify(form){
   }
 }
 
+function editRow(id){
+	var url="tree/prepareModify?id="+id;
+	var link = "<%=request.getContextPath()%>/mx/sys/"+url;
+	var width=480;
+	var height=350;
+	var scroll="no";
+	//openWindow(url, width, height, scroll);
+	art.dialog.open(link, { height: height, width: width, title: "修改分类", lock: false, scrollbars:"no" }, false);
+}
+
 function dict(form){
   var id = 0;
   num = getCheckedBoxNum(form,"id");
@@ -132,10 +142,11 @@ function sort(id, operate){
   <tr class="list-title"> 
     <td width="5%" align="center"> <input type="checkbox" name="chkall" value="checkbox" onClick="checkAll(this.form, this);checkOperation(this.form)">    </td>
     <td width="5%" align="center">序号</td>
-    <td width="30%" align="center">名称</td>
-    <td width="40%" align="center">描述</td>
+    <td width="20%" align="center">名称</td>
+    <td width="30%" align="center">描述</td>
 	<td width="10%" align="center">编码</td>
     <td width="10%" align="center">排序</td>
+	<td width="10%" align="center">功能键</td>
     </tr>
   <%
 int i=0;
@@ -151,7 +162,10 @@ if(list!=null){
     <td class="td-text"><%=bean.getDesc() != null ? bean.getDesc() :""%>&nbsp;</td>
 	<td class="td-no"><%=bean.getCode()%>&nbsp;</td>
     <td class="td-no"><a href="javascript:sort(<%=bean.getId()%>, 0);" title="上移"><img src="<%=context%>/images/up.gif" border="0" height="13" width="13"></a> <a href="javascript:sort(<%=bean.getId()%>, 1);" title="下移"><img src="<%=context%>/images/down.gif" border="0" height="13" width="13"></a>&nbsp;</td>
-    </tr>
+	<td align="center">&nbsp;
+	   <a href="#" onclick="javascript:editRow(<%=bean.getId()%>);">修改</a>&nbsp;
+    </td>
+   </tr>
   <%
     i++;
   }
@@ -164,6 +178,7 @@ for(; i<pageSize; i++){
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
+	<td>&nbsp;</td>
 	<td>&nbsp;</td>
   </tr>
 <%
