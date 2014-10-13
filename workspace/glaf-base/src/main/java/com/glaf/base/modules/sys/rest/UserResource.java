@@ -30,7 +30,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.glaf.base.modules.sys.model.SysDepartment;
 import com.glaf.base.modules.sys.model.SysUser;
@@ -41,12 +41,10 @@ import com.glaf.base.modules.sys.service.SysUserService;
 import com.glaf.base.utils.ParamUtil;
 import com.glaf.base.utils.RequestUtil;
 import com.glaf.core.cache.CacheUtils;
-import com.glaf.core.res.MessageUtils;
-import com.glaf.core.res.ViewMessage;
-import com.glaf.core.res.ViewMessages;
 import com.glaf.core.security.DigestUtil;
 import com.glaf.core.service.ITableDataService;
 import com.glaf.core.util.RequestUtils;
+import com.glaf.core.util.ResponseUtils;
 
 @Controller("/rs/identity/user")
 @Path("/rs/identity/user")
@@ -72,8 +70,9 @@ public class UserResource {
 	 */
 	@Path("saveModify")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView saveModify(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] saveModify(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		String id = ParamUtil.getParameter(request, "id");
@@ -97,16 +96,10 @@ public class UserResource {
 			ret = sysUserService.update(bean);
 		}
 
-		ViewMessages messages = new ViewMessages();
-		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.modify_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.modify_failure"));
+		if (ret) {
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 	/**
@@ -118,8 +111,9 @@ public class UserResource {
 	 */
 	@Path("saveModifyInfo")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView saveModifyInfo(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] saveModifyInfo(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		SysUser bean = RequestUtil.getLoginUser(request);
@@ -134,16 +128,10 @@ public class UserResource {
 			CacheUtils.clearUserCache(user.getAccount());
 		}
 
-		ViewMessages messages = new ViewMessages();
-		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.modify_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.modify_failure"));
+		if (ret) {
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 	/**
@@ -155,8 +143,9 @@ public class UserResource {
 	 */
 	@Path("savePwd")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView savePwd(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] savePwd(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		SysUser bean = RequestUtil.getLoginUser(request);
@@ -178,25 +167,17 @@ public class UserResource {
 			}
 		}
 
-		ViewMessages messages = new ViewMessages();
-		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.modify_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.modify_failure"));
+		if (ret) {
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 	@javax.annotation.Resource
 	public void setSysDepartmentService(
 			SysDepartmentService sysDepartmentService) {
 		this.sysDepartmentService = sysDepartmentService;
-
 	}
-
 
 	@javax.annotation.Resource
 	public void setSysRoleService(SysRoleService sysRoleService) {
@@ -206,7 +187,6 @@ public class UserResource {
 	@javax.annotation.Resource
 	public void setSysTreeService(SysTreeService sysTreeService) {
 		this.sysTreeService = sysTreeService;
-
 	}
 
 	@javax.annotation.Resource

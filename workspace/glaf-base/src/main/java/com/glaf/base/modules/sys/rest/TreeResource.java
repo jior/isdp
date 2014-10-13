@@ -36,20 +36,18 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.glaf.base.modules.sys.model.SysTree;
 import com.glaf.base.modules.sys.query.SysTreeQuery;
 import com.glaf.base.modules.sys.service.SysTreeService;
+
 import com.glaf.base.utils.ParamUtil;
-import com.glaf.core.res.MessageUtils;
-import com.glaf.core.res.ViewMessage;
-import com.glaf.core.res.ViewMessages;
 import com.glaf.core.util.PageResult;
 import com.glaf.core.util.ParamUtils;
 import com.glaf.core.util.RequestUtils;
+import com.glaf.core.util.ResponseUtils;
 import com.glaf.core.util.Tools;
 
 @Controller("/rs/base/tree")
@@ -58,26 +56,6 @@ public class TreeResource {
 	private static final Log logger = LogFactory.getLog(TreeResource.class);
 
 	private SysTreeService sysTreeService;
-
-	/**
-	 * 批量删除信息
-	 * 
-	 * @param request
-	 * @param uriInfo
-	 * @return
-	 */
-	@Path("batchDelete")
-	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView batchDelete(@Context HttpServletRequest request,
-			@Context UriInfo uriInfo) {
-		RequestUtils.setRequestParameterToAttribute(request);
-		ViewMessages messages = new ViewMessages();
-		messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-				"tree.delete_failure"));
-		MessageUtils.addMessages(request, messages);
-		return new ModelAndView("show_json_msg");
-	}
 
 	@GET
 	@POST
@@ -160,8 +138,9 @@ public class TreeResource {
 	 */
 	@Path("saveAdd")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView saveAdd(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] saveAdd(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		SysTree bean = new SysTree();
@@ -170,16 +149,10 @@ public class TreeResource {
 		bean.setDesc(ParamUtil.getParameter(request, "desc"));
 		bean.setCode(ParamUtil.getParameter(request, "code"));
 		boolean ret = sysTreeService.create(bean);
-		ViewMessages messages = new ViewMessages();
-		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"tree.add_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"tree.add_failure"));
+		if (ret) {
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 	/**
@@ -191,8 +164,9 @@ public class TreeResource {
 	 */
 	@Path("saveModify")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView saveModify(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] saveModify(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		long id = ParamUtil.getIntParameter(request, "id", 0);
@@ -210,17 +184,10 @@ public class TreeResource {
 			ret = false;
 			logger.error(ex);
 		}
-		ViewMessages messages = new ViewMessages();
-		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"tree.modify_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"tree.modify_failure"));
+		if (ret) {
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
-		// 显示列表页面
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 	@javax.annotation.Resource
@@ -229,9 +196,10 @@ public class TreeResource {
 	}
 
 	@POST
-	@ResponseBody
 	@Path("sort")
-	public void sort(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] sort(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		int id = ParamUtil.getIntParameter(request, "id", 0);
 		int parent = ParamUtil.getIntParameter(request, "parent", 0);
@@ -239,5 +207,6 @@ public class TreeResource {
 		logger.info("parent:" + parent + "; id:" + id + "; operate:" + operate);
 		SysTree bean = sysTreeService.findById(id);
 		sysTreeService.sort(parent, bean, operate);
+		return ResponseUtils.responseResult(true);
 	}
 }

@@ -33,19 +33,17 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.utils.ParamUtil;
 import com.glaf.base.utils.RequestUtil;
 import com.glaf.core.base.Scheduler;
 import com.glaf.core.domain.SchedulerEntity;
-import com.glaf.core.res.MessageUtils;
-import com.glaf.core.res.ViewMessage;
-import com.glaf.core.res.ViewMessages;
 import com.glaf.core.service.ISysSchedulerService;
 import com.glaf.core.util.QuartzUtils;
 import com.glaf.core.util.RequestUtils;
+import com.glaf.core.util.ResponseUtils;
 import com.glaf.core.util.Tools;
 
 @Controller("/rs/sys/scheduler")
@@ -62,8 +60,9 @@ public class SysSchedulerResource {
 
 	@Path("locked")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView locked(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] locked(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		String taskId = request.getParameter("taskId");
@@ -81,23 +80,18 @@ public class SysSchedulerResource {
 				ret = true;
 			}
 		}
-		ViewMessages messages = new ViewMessages();
-		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"scheduler.modify_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"scheduler.modify_failure"));
-		}
-		MessageUtils.addMessages(request, messages);
 
-		return new ModelAndView("show_json_msg");
+		if (ret) {// 保存成功
+			return ResponseUtils.responseResult(true);
+		}
+		return ResponseUtils.responseResult(false);
 	}
 
 	@Path("saveModify")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView saveModify(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] saveModify(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		Scheduler scheduler = new SchedulerEntity();
@@ -128,17 +122,10 @@ public class SysSchedulerResource {
 			ret = false;
 		}
 
-		ViewMessages messages = new ViewMessages();
 		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"scheduler.modify_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"scheduler.modify_failure"));
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
-
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 	@javax.annotation.Resource
@@ -148,8 +135,9 @@ public class SysSchedulerResource {
 
 	@Path("startup")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView startup(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] startup(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		boolean ret = false;
@@ -174,17 +162,11 @@ public class SysSchedulerResource {
 			}
 		}
 
-		ViewMessages messages = new ViewMessages();
 		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"scheduler.modify_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"scheduler.modify_failure"));
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
 
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 }

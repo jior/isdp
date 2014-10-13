@@ -35,14 +35,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.glaf.base.helper.TreeHelper;
 import com.glaf.base.modules.sys.model.ITree;
 import com.glaf.base.modules.sys.model.TreeProjectInfo;
 import com.glaf.base.modules.sys.service.ITreeProjectInfoService;
-import com.glaf.core.util.RequestUtils;
 
 @Controller("/rs/treeProjectInfo")
 @Path("/rs/treeProjectInfo")
@@ -59,22 +57,6 @@ public class TreeProjectInfoResource {
 		this.treeProjectInfoService = treeProjectInfoService;
 	}
 
-	/**
-	 * 
-	 * @param request
-	 * @param uriInfo
-	 * @return
-	 */
-	@GET
-	@POST
-	@Path("choose")
-	@Produces(MediaType.TEXT_HTML)
-	public ModelAndView choose(@Context HttpServletRequest request,
-			@Context UriInfo uriInfo) {
-		RequestUtils.setRequestParameterToAttribute(request);
-		return new ModelAndView("/isdp/treeprojectinfo/choose");
-	}
-
 	@GET
 	@POST
 	@Path("treeJson")
@@ -84,7 +66,7 @@ public class TreeProjectInfoResource {
 			@Context UriInfo uriInfo) throws IOException {
 		JSONArray result = new JSONArray();
 		String strfuntion = request.getParameter("strfuntion");
-		logger.debug("strfuntion:"+strfuntion);
+		logger.debug("strfuntion:" + strfuntion);
 		if (StringUtils.isNotEmpty(strfuntion)) {
 			List<TreeProjectInfo> rows = treeProjectInfoService
 					.getTreeProjectInfos(strfuntion);

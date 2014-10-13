@@ -40,7 +40,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -57,17 +56,16 @@ import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.service.SysUserService;
 import com.glaf.base.utils.ParamUtil;
 import com.glaf.base.utils.RequestUtil;
+
 import com.glaf.core.base.TreeModel;
 import com.glaf.core.cache.CacheUtils;
-import com.glaf.core.res.MessageUtils;
-import com.glaf.core.res.ViewMessage;
-import com.glaf.core.res.ViewMessages;
 import com.glaf.core.security.DigestUtil;
 import com.glaf.core.service.ITableDataService;
 import com.glaf.core.tree.helper.TreeHelper;
 import com.glaf.core.util.PageResult;
 import com.glaf.core.util.ParamUtils;
 import com.glaf.core.util.RequestUtils;
+import com.glaf.core.util.ResponseUtils;
 import com.glaf.core.util.Tools;
 
 @Controller("/rs/sys/user")
@@ -96,8 +94,9 @@ public class SysUserResource {
 	 */
 	@Path("addRoleUser")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView addRoleUser(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] addRoleUser(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		logger.debug("---------addRoleUser---------------------------");
 		RequestUtils.setRequestParameterToAttribute(request);
@@ -114,17 +113,11 @@ public class SysUserResource {
 			success = true;
 		}
 
-		ViewMessages messages = new ViewMessages();
 		if (success) {
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.add_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.add_failure"));
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
 
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 	/**
@@ -136,23 +129,18 @@ public class SysUserResource {
 	 */
 	@Path("batchDelete")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView batchDelete(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] batchDelete(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		boolean ret = true;
 		long[] id = ParamUtil.getLongParameterValues(request, "id");
 		ret = sysUserService.deleteAll(id);
-		ViewMessages messages = new ViewMessages();
 		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.delete_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.delete_failure"));
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 	/**
@@ -164,8 +152,9 @@ public class SysUserResource {
 	 */
 	@Path("delRoleUser")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView delRoleUser(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] delRoleUser(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		int roleId = ParamUtil.getIntParameter(request, "roleId", 0);
@@ -180,17 +169,11 @@ public class SysUserResource {
 			sucess = false;
 		}
 
-		ViewMessages messages = new ViewMessages();
 		if (sucess) {
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.delete_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.delete_failure"));
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
 
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 	/**
@@ -293,8 +276,9 @@ public class SysUserResource {
 	 */
 	@Path("resetPwd")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView resetPwd(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] resetPwd(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		SysUser login = RequestUtil.getLoginUser(request);
@@ -327,16 +311,11 @@ public class SysUserResource {
 			}
 		}
 
-		ViewMessages messages = new ViewMessages();
 		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.modify_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.modify_failure"));
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
-		return new ModelAndView("show_json_msg");
+
+		return ResponseUtils.responseResult(false);
 	}
 
 	/**
@@ -348,8 +327,9 @@ public class SysUserResource {
 	 */
 	@Path("saveAdd")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView saveAdd(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] saveAdd(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		SysUser bean = new SysUser();
@@ -388,21 +368,11 @@ public class SysUserResource {
 			ret = 1;
 		}
 
-		ViewMessages messages = new ViewMessages();
 		if (ret == 2) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.add_success"));
-		} else if (ret == 1) {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.existed"));
-		} else {
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.add_failure"));
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
 
-		// 显示列表页面
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 	/**
@@ -414,8 +384,9 @@ public class SysUserResource {
 	 */
 	@Path("saveModify")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView saveModify(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] saveModify(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		String id = ParamUtil.getParameter(request, "id");
@@ -439,16 +410,11 @@ public class SysUserResource {
 			ret = sysUserService.update(bean);
 		}
 
-		ViewMessages messages = new ViewMessages();
 		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.modify_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.modify_failure"));
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
-		return new ModelAndView("show_json_msg");
+
+		return ResponseUtils.responseResult(false);
 	}
 
 	/**
@@ -460,8 +426,9 @@ public class SysUserResource {
 	 */
 	@Path("saveModifyInfo")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView saveModifyInfo(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] saveModifyInfo(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		SysUser bean = RequestUtil.getLoginUser(request);
@@ -476,16 +443,11 @@ public class SysUserResource {
 			CacheUtils.clearUserCache(user.getAccount());
 		}
 
-		ViewMessages messages = new ViewMessages();
 		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.modify_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.modify_failure"));
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
-		return new ModelAndView("show_json_msg");
+
+		return ResponseUtils.responseResult(false);
 	}
 
 	/**
@@ -497,8 +459,9 @@ public class SysUserResource {
 	 */
 	@Path("savePwd")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView savePwd(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] savePwd(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		SysUser bean = RequestUtil.getLoginUser(request);
@@ -520,16 +483,11 @@ public class SysUserResource {
 			}
 		}
 
-		ViewMessages messages = new ViewMessages();
 		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.modify_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.modify_failure"));
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
-		return new ModelAndView("show_json_msg");
+
+		return ResponseUtils.responseResult(false);
 	}
 
 	/**
@@ -539,17 +497,17 @@ public class SysUserResource {
 	 * @param uriInfo
 	 * @return
 	 */
-	@Path("setRole")
+	@Path("saveRole")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView setRole(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] saveRole(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		logger.debug(RequestUtils.getParameterMap(request));
-		ViewMessages messages = new ViewMessages();
-		String userId = ParamUtil.getParameter(request, "user_id");
+		String userId = ParamUtil.getParameter(request, "actorId");
 		SysUser user = sysUserService.findByAccount(userId);// 查找用户对象
-
+		boolean ret = false;
 		if (user != null) {// 用户存在
 			long[] id = ParamUtil.getLongParameterValues(request, "id");// 获取页面参数
 			if (id != null) {
@@ -565,16 +523,16 @@ public class SysUserResource {
 				user.setUpdateBy(RequestUtils.getActorId(request));
 
 				if (sysUserService.updateUserRole(user, newRoles)) {// 授权成功
-					messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-							"user.role_success"));
-				} else {// 保存失败
-					messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-							"user.role_failure"));
+					ret = true;
 				}
 			}
 		}
-		MessageUtils.addMessages(request, messages);
-		return new ModelAndView("show_json_msg");
+
+		if (ret) {// 保存成功
+			return ResponseUtils.responseResult(true);
+		}
+
+		return ResponseUtils.responseResult(false);
 	}
 
 	@javax.annotation.Resource
@@ -657,7 +615,6 @@ public class SysUserResource {
 		JSONArray jsonArray = treeHelper.getTreeJSONArray(treeModels);
 		logger.debug(jsonArray.toJSONString());
 		return jsonArray.toJSONString().getBytes("UTF-8");
-
 	}
 
 }

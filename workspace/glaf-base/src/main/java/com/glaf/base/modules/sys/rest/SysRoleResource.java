@@ -40,7 +40,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -57,11 +56,9 @@ import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.service.SysUserRoleService;
 import com.glaf.base.modules.sys.service.SysUserService;
 import com.glaf.base.utils.ParamUtil;
+
 import com.glaf.core.base.BaseTree;
 import com.glaf.core.base.TreeModel;
-import com.glaf.core.res.MessageUtils;
-import com.glaf.core.res.ViewMessage;
-import com.glaf.core.res.ViewMessages;
 import com.glaf.core.tree.helper.TreeHelper;
 import com.glaf.core.util.PageResult;
 import com.glaf.core.util.ParamUtils;
@@ -93,11 +90,11 @@ public class SysRoleResource {
 	 * @param uriInfo
 	 * @return
 	 */
-	@GET
 	@POST
 	@Path("batchDelete")
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView batchDelete(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] batchDelete(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		boolean ret = false;
@@ -120,20 +117,10 @@ public class SysRoleResource {
 			}
 		}
 
-		ViewMessages messages = new ViewMessages();
 		if (ret) {// 成功
-			request.setAttribute("statusCode", 200);
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"role.delete_success"));
-		} else {// 失败
-			request.setAttribute("statusCode", 500);
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"role.delete_failure"));
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
-
-		// 显示列表页面
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 	@GET
@@ -222,7 +209,6 @@ public class SysRoleResource {
 		return result.toJSONString().getBytes("UTF-8");
 	}
 
-	@GET
 	@POST
 	@Path("roleMenusJson")
 	@ResponseBody
@@ -250,7 +236,7 @@ public class SysRoleResource {
 		}
 
 		for (SysTree tree : list) {
-			if (tree.getParentId() == root.getId()){
+			if (tree.getParentId() == root.getId()) {
 				tree.setParentId(0);
 			}
 			if (tree.getId() != root.getId()) {
@@ -374,8 +360,9 @@ public class SysRoleResource {
 	 */
 	@POST
 	@Path("saveAdd")
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView saveAdd(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] saveAdd(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		boolean ret = false;
@@ -397,20 +384,10 @@ public class SysRoleResource {
 			ret = false;
 		}
 
-		ViewMessages messages = new ViewMessages();
 		if (ret) {// 保存成功
-			request.setAttribute("statusCode", 200);
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"role.add_success"));
-		} else {// 保存失败
-			request.setAttribute("statusCode", 500);
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"role.add_failure"));
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
-
-		// 显示列表页面
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 	/**
@@ -422,8 +399,9 @@ public class SysRoleResource {
 	 */
 	@POST
 	@Path("saveModify")
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView saveModify(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] saveModify(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		boolean ret = false;
@@ -443,19 +421,11 @@ public class SysRoleResource {
 			logger.error(ex);
 			ret = false;
 		}
-		ViewMessages messages = new ViewMessages();
+
 		if (ret) {// 保存成功
-			request.setAttribute("statusCode", 200);
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"role.modify_success"));
-		} else {// 保存失败
-			request.setAttribute("statusCode", 500);
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"role.modify_failure"));
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
-		// 显示列表页面
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 	@POST
@@ -556,11 +526,13 @@ public class SysRoleResource {
 	@POST
 	@Path("sort")
 	@ResponseBody
-	public void sort(@Context HttpServletRequest request,
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] sort(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		long id = ParamUtil.getIntParameter(request, "id", 0);
 		int operate = ParamUtil.getIntParameter(request, "operate", 0);
 		logger.info("id:" + id + ",operate:" + operate);
 		sysRoleService.sort(sysRoleService.findById(id), operate);
+		return ResponseUtils.responseResult(true);
 	}
 }

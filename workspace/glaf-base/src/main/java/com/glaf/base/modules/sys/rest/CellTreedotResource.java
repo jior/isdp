@@ -34,7 +34,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.glaf.base.helper.TreeHelper;
@@ -57,22 +56,6 @@ public class CellTreedotResource {
 		this.cellTreedotService = cellTreedotService;
 	}
 
-	/**
-	 * 
-	 * @param request
-	 * @param uriInfo
-	 * @return
-	 */
-	@GET
-	@POST
-	@Path("choose")
-	@Produces(MediaType.TEXT_HTML)
-	public ModelAndView choose(@Context HttpServletRequest request,
-			@Context UriInfo uriInfo) {
-		RequestUtils.setRequestParameterToAttribute(request);
-		return new ModelAndView("/isdp/cell/treedot/choose");
-	}
-
 	@GET
 	@POST
 	@Path("treeJson")
@@ -91,7 +74,7 @@ public class CellTreedotResource {
 			}
 			TreeHelper helper = new TreeHelper();
 			JSONArray jsonArray = helper.getTreeJSONArray(treeModels, false);
-			//logger.debug(jsonArray.toJSONString());
+			// logger.debug(jsonArray.toJSONString());
 			return jsonArray.toJSONString().getBytes("UTF-8");
 		}
 		return result.toString().getBytes("UTF-8");

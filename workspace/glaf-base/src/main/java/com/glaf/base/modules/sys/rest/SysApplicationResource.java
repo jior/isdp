@@ -37,7 +37,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -49,14 +48,13 @@ import com.glaf.base.modules.sys.query.SysTreeQuery;
 import com.glaf.base.modules.sys.service.SysApplicationService;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.utils.ParamUtil;
+
 import com.glaf.core.base.TreeModel;
-import com.glaf.core.res.MessageUtils;
-import com.glaf.core.res.ViewMessage;
-import com.glaf.core.res.ViewMessages;
 import com.glaf.core.tree.helper.JacksonTreeHelper;
 import com.glaf.core.util.PageResult;
 import com.glaf.core.util.ParamUtils;
 import com.glaf.core.util.RequestUtils;
+import com.glaf.core.util.ResponseUtils;
 import com.glaf.core.util.Tools;
 
 @Controller("/rs/sys/application")
@@ -78,24 +76,19 @@ public class SysApplicationResource {
 	 */
 	@Path("batchDelete")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView batchDelete(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] batchDelete(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		boolean ret = true;
 		long[] id = ParamUtil.getLongParameterValues(request, "id");
 		ret = sysApplicationService.deleteAll(id);
 
-		ViewMessages messages = new ViewMessages();
 		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"application.delete_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"application.delete_failure"));
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 	@GET
@@ -180,8 +173,9 @@ public class SysApplicationResource {
 	 */
 	@Path("saveAdd")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView saveAdd(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] saveAdd(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		SysApplication bean = new SysApplication();
 		bean.setName(ParamUtil.getParameter(request, "name"));
@@ -209,16 +203,10 @@ public class SysApplicationResource {
 		bean.setNode(node);
 
 		boolean ret = sysApplicationService.create(bean);
-		ViewMessages messages = new ViewMessages();
 		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"application.add_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"application.add_failure"));
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 	/**
@@ -230,8 +218,9 @@ public class SysApplicationResource {
 	 */
 	@Path("saveModify")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView saveModify(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] saveModify(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		long id = ParamUtil.getIntParameter(request, "id", 0);
 		SysApplication bean = sysApplicationService.findById(id);
@@ -266,16 +255,10 @@ public class SysApplicationResource {
 			ret = false;
 			logger.error(ex);
 		}
-		ViewMessages messages = new ViewMessages();
 		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"application.modify_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"application.modify_failure"));
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 	@javax.annotation.Resource
@@ -293,7 +276,8 @@ public class SysApplicationResource {
 	@POST
 	@ResponseBody
 	@Path("sort")
-	public void sort(@Context HttpServletRequest request,
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] sort(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		long id = ParamUtil.getIntParameter(request, "id", 0);
 		long parent = ParamUtil.getIntParameter(request, "parent", 0);
@@ -301,6 +285,7 @@ public class SysApplicationResource {
 		logger.info("parent:" + parent + "; id:" + id + "; operate:" + operate);
 		SysApplication bean = sysApplicationService.findById(id);
 		sysApplicationService.sort(parent, bean, operate);
+		return ResponseUtils.responseResult(true);
 	}
 
 	@GET

@@ -37,7 +37,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -52,13 +51,11 @@ import com.glaf.base.modules.sys.service.DictoryService;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.utils.ParamUtil;
 import com.glaf.core.base.TreeModel;
-import com.glaf.core.res.MessageUtils;
-import com.glaf.core.res.ViewMessage;
-import com.glaf.core.res.ViewMessages;
 import com.glaf.core.tree.helper.JacksonTreeHelper;
 import com.glaf.core.util.PageResult;
 import com.glaf.core.util.ParamUtils;
 import com.glaf.core.util.RequestUtils;
+import com.glaf.core.util.ResponseUtils;
 import com.glaf.core.util.Tools;
 
 @Controller("/rs/sys/dictory")
@@ -82,23 +79,18 @@ public class SysDictoryResource {
 	 */
 	@Path("batchDelete")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView batchDelete(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] batchDelete(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		boolean ret = true;
 		long[] id = ParamUtil.getLongParameterValues(request, "id");
 		ret = dictoryService.deleteAll(id);
-		ViewMessages messages = new ViewMessages();
 		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"dictory.delete_success"));
-		} else { // 删除失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"dictory.delete_failure"));
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 	@GET
@@ -182,8 +174,9 @@ public class SysDictoryResource {
 	 */
 	@Path("saveAdd")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView saveAdd(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] saveAdd(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		Map<String, Object> params = RequestUtils.getParameterMap(request);
 		logger.debug("params:" + params);
@@ -196,19 +189,12 @@ public class SysDictoryResource {
 
 		bean.setCreateBy(RequestUtils.getActorId(request));
 
-		ViewMessages messages = new ViewMessages();
 		if (dictoryService.create(bean)) {// 保存成功
 			BaseDataManager.getInstance().loadDictInfo();
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"dictory.add_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"dictory.add_failure"));
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
-		request.setAttribute("url", "dictory/showList");
 
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 	/**
@@ -220,8 +206,9 @@ public class SysDictoryResource {
 	 */
 	@Path("saveModify")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView saveModify(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] saveModify(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		Map<String, Object> params = RequestUtils.getParameterMap(request);
@@ -236,18 +223,12 @@ public class SysDictoryResource {
 
 		bean.setUpdateBy(RequestUtils.getActorId(request));
 
-		ViewMessages messages = new ViewMessages();
 		if (dictoryService.update(bean)) {// 保存成功
 			BaseDataManager.getInstance().loadDictInfo();
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"dictory.modify_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"dictory.modify_failure"));
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
 
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 	@javax.annotation.Resource
@@ -269,7 +250,8 @@ public class SysDictoryResource {
 	@POST
 	@ResponseBody
 	@Path("sort")
-	public void sort(@Context HttpServletRequest request,
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] sort(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		int id = ParamUtil.getIntParameter(request, "id", 0);
 		int parent = ParamUtil.getIntParameter(request, "parent", 0);
@@ -277,6 +259,7 @@ public class SysDictoryResource {
 		logger.info("parent:" + parent + "; id:" + id + "; operate:" + operate);
 		Dictory bean = dictoryService.find(id);
 		dictoryService.sort(parent, bean, operate);
+		return ResponseUtils.responseResult(true);
 	}
 
 	@GET

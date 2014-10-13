@@ -30,17 +30,14 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.glaf.base.modules.sys.model.SysApplication;
 import com.glaf.base.modules.sys.model.SysFunction;
 import com.glaf.base.modules.sys.service.SysApplicationService;
 import com.glaf.base.modules.sys.service.SysFunctionService;
 import com.glaf.base.utils.ParamUtil;
-import com.glaf.core.res.MessageUtils;
-import com.glaf.core.res.ViewMessage;
-import com.glaf.core.res.ViewMessages;
 import com.glaf.core.util.RequestUtils;
+import com.glaf.core.util.ResponseUtils;
 
 @Controller("/rs/sys/function")
 @Path("/rs/sys/function")
@@ -61,24 +58,19 @@ public class SysFunctionResource {
 	 */
 	@Path("batchDelete")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView batchDelete(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] batchDelete(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		boolean ret = true;
 		long[] id = ParamUtil.getLongParameterValues(request, "id");
 		ret = sysFunctionService.deleteAll(id);
 
-		ViewMessages messages = new ViewMessages();
 		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"function.delete_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"function.delete_failure"));
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 	/**
@@ -90,8 +82,9 @@ public class SysFunctionResource {
 	 */
 	@Path("saveAdd")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView saveAdd(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] saveAdd(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		long parent = (long) ParamUtil.getIntParameter(request, "parent", 0);
@@ -102,17 +95,10 @@ public class SysFunctionResource {
 		bean.setApp(app);
 		boolean ret = sysFunctionService.create(bean);
 
-		ViewMessages messages = new ViewMessages();
 		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"function.add_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"function.add_failure"));
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
-		// 显示提交后页面
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 	/**
@@ -124,8 +110,9 @@ public class SysFunctionResource {
 	 */
 	@Path("saveModify")
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public ModelAndView saveModify(@Context HttpServletRequest request,
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] saveModify(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		long id = (long) ParamUtil.getIntParameter(request, "funcId", 0);
@@ -134,17 +121,10 @@ public class SysFunctionResource {
 		bean.setFuncMethod(ParamUtil.getParameter(request, "funcMethod"));
 		boolean ret = sysFunctionService.update(bean);
 
-		ViewMessages messages = new ViewMessages();
 		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"function.modify_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"function.modify_failure"));
+			return ResponseUtils.responseResult(true);
 		}
-		MessageUtils.addMessages(request, messages);
-		// 显示提交后页面
-		return new ModelAndView("show_json_msg");
+		return ResponseUtils.responseResult(false);
 	}
 
 	@javax.annotation.Resource
@@ -161,11 +141,13 @@ public class SysFunctionResource {
 	@POST
 	@ResponseBody
 	@Path("sort")
-	public void sort(@Context HttpServletRequest request,
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	public byte[] sort(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) {
 		int id = ParamUtil.getIntParameter(request, "id", 0);
 		int operate = ParamUtil.getIntParameter(request, "operate", 0);
 		logger.info("id:" + id + ";operate:" + operate);
 		sysFunctionService.sort(sysFunctionService.findById(id), operate);
+		return ResponseUtils.responseResult(true);
 	}
 }
