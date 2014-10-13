@@ -103,8 +103,8 @@ public class AuthorizeInterceptor implements MethodBeforeAdvice {
 			account = Authentication.getAuthenticatedAccount();
 		}
 		methodName = objectName + "." + methodName;
-		//logger.debug("account:" + account);
-		//logger.debug("methodName:" + methodName);
+		// logger.debug("account:" + account);
+		// logger.debug("methodName:" + methodName);
 
 		// 拦截的功能在系统功能列表中
 		if (findSysFunction(methodName)) {
@@ -171,18 +171,20 @@ public class AuthorizeInterceptor implements MethodBeforeAdvice {
 		boolean ret = false;
 		try {
 			// 系统功能列表，在初始化servlet中加载
-			Iterator<BaseDataInfo> iter = ((List<BaseDataInfo>) ContextUtil
-					.get("function")).iterator();
-			// logger.debug("function:" + iter);
-			while (iter.hasNext()) {
-				BaseDataInfo bdi = (BaseDataInfo) iter.next();
-				// logger.debug("sys function:" + bdi.getCode());
-				if (bdi.getCode().equals(methodName)) {// 找到
-					ret = true;
-					break;
+			if (ContextUtil.get("function") != null) {
+				Iterator<BaseDataInfo> iter = ((List<BaseDataInfo>) ContextUtil
+						.get("function")).iterator();
+				// logger.debug("function:" + iter);
+				while (iter.hasNext()) {
+					BaseDataInfo bdi = (BaseDataInfo) iter.next();
+					// logger.debug("sys function:" + bdi.getCode());
+					if (bdi.getCode().equals(methodName)) {// 找到
+						ret = true;
+						break;
+					}
 				}
+				iter = null;
 			}
-			iter = null;
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			logger.error(ex);
