@@ -31,6 +31,11 @@ public class SysApplicationQuery extends DataQuery {
 	protected List<String> names;
 	protected Long nodeId;
 	protected List<Long> nodeIds;
+	protected Integer refId1;
+	protected Integer refId2;
+	protected Integer refId3;
+	protected Integer refId4;
+	protected Integer refId5;
 	protected Integer showMenu;
 	protected Integer sortGreaterThan;
 	protected Integer sortGreaterThanOrEqual;
@@ -141,6 +146,26 @@ public class SysApplicationQuery extends DataQuery {
 		return orderBy;
 	}
 
+	public Integer getRefId1() {
+		return refId1;
+	}
+
+	public Integer getRefId2() {
+		return refId2;
+	}
+
+	public Integer getRefId3() {
+		return refId3;
+	}
+
+	public Integer getRefId4() {
+		return refId4;
+	}
+
+	public Integer getRefId5() {
+		return refId5;
+	}
+
 	public Integer getShowMenu() {
 		return showMenu;
 	}
@@ -225,6 +250,46 @@ public class SysApplicationQuery extends DataQuery {
 		return this;
 	}
 
+	public SysApplicationQuery refId1(Integer refId1) {
+		if (refId1 == null) {
+			throw new RuntimeException("refId1 is null");
+		}
+		this.refId1 = refId1;
+		return this;
+	}
+
+	public SysApplicationQuery refId2(Integer refId2) {
+		if (refId2 == null) {
+			throw new RuntimeException("refId2 is null");
+		}
+		this.refId2 = refId2;
+		return this;
+	}
+
+	public SysApplicationQuery refId3(Integer refId3) {
+		if (refId3 == null) {
+			throw new RuntimeException("refId3 is null");
+		}
+		this.refId3 = refId3;
+		return this;
+	}
+
+	public SysApplicationQuery refId4(Integer refId4) {
+		if (refId4 == null) {
+			throw new RuntimeException("refId4 is null");
+		}
+		this.refId4 = refId4;
+		return this;
+	}
+
+	public SysApplicationQuery refId5(Integer refId5) {
+		if (refId5 == null) {
+			throw new RuntimeException("refId5 is null");
+		}
+		this.refId5 = refId5;
+		return this;
+	}
+
 	public void setCode(String code) {
 		this.code = code;
 	}
@@ -255,6 +320,26 @@ public class SysApplicationQuery extends DataQuery {
 
 	public void setNodeIds(List<Long> nodeIds) {
 		this.nodeIds = nodeIds;
+	}
+
+	public void setRefId1(Integer refId1) {
+		this.refId1 = refId1;
+	}
+
+	public void setRefId2(Integer refId2) {
+		this.refId2 = refId2;
+	}
+
+	public void setRefId3(Integer refId3) {
+		this.refId3 = refId3;
+	}
+
+	public void setRefId4(Integer refId4) {
+		this.refId4 = refId4;
+	}
+
+	public void setRefId5(Integer refId5) {
+		this.refId5 = refId5;
 	}
 
 	public void setShowMenu(Integer showMenu) {

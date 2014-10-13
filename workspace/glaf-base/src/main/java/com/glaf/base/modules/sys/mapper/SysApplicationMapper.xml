@@ -528,6 +528,26 @@
 				and E.LOCKED = #{locked}
 			</if>
 
+			<if test="refId1 != null">
+				and E.REFID1 = #{refId1}
+			</if>
+
+			<if test="refId2 != null">
+				and E.REFID2 = #{refId2}
+			</if>
+
+			<if test="refId3 != null">
+				and E.REFID3 = #{refId3}
+			</if>
+
+			<if test="refId4 != null">
+				and E.REFID4 = #{refId4}
+			</if>
+
+			<if test="refId5 != null">
+				and E.REFID5 = #{refId5}
+			</if>
+
 		</where>
 	</sql>
 
