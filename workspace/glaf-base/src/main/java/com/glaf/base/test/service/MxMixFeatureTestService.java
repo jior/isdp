@@ -49,6 +49,7 @@ public class MxMixFeatureTestService implements IMixFeatureTestService {
 
 	protected JdbcTemplate jdbcTemplate;
 
+	@Transactional
 	public void run() {
 		for (int i = 0; i < 100; i++) {
 			SysLog bean = new SysLog();
