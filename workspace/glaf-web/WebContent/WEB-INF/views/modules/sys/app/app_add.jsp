@@ -123,7 +123,7 @@
 		<td width="30%" align="left" valign="top">链接类型</td>
 		<td width="70%" align="left" valign="top" >  
 			<input id="type" name="type" type="radio" value="L" onclick="javascript:changeXDiv('L');" >链接地址
-			<input id="type" name="type" type="radio" value="T" onclick="javascript:changeXDiv('T');" >链接文件
+			<!-- <input id="type" name="type" type="radio" value="T" onclick="javascript:changeXDiv('T');" >链接文件 -->
 			<br>
 			<div id="urlDir" style="display:block;">
 		      <textarea id="url" name="url" cols="42" rows="4" class="input-multi " datatype="string" nullable="yes" maxsize="100" chname="链接"></textarea>
@@ -155,14 +155,14 @@
 				  onclick="javascript:chooseCellTreedot('iForm', 'refId1', 'refName1');">
 		</td>
       </tr>
-	  <tr>
+	  <!-- <tr>
         <td class="input-box2" valign="top">关联工程信息</td>
         <td>
            <input type="hidden" id="refId2" name="refId2" value="">
            <input type="text" id="refName2" name="refName2" size="35" value="" class="input "
 				  onclick="javascript:chooseTreeProjectInfo('iForm', 'refId2', 'refName2');">
 		</td>
-      </tr>
+      </tr> -->
 
     <tr>
         <td class="input-box2" valign="top">是否弹出窗</td>
