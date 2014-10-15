@@ -82,7 +82,7 @@
 
  function chooseCellTreedot(formName, elementId, elementName){
     var x_selected =  document.getElementById(elementId);
-    var url="<%=request.getContextPath()%>/rs/cell/treedot/choose?formName="+formName+"&elementId="+elementId+"&elementName="+elementName;
+    var url="<%=request.getContextPath()%>/mx/cell/treedot/choose?formName="+formName+"&elementId="+elementId+"&elementName="+elementName;
     if(x_selected != null && x_selected.value != ""){
 	    url = url + "&selecteds="+x_selected.value;
     }
@@ -98,7 +98,7 @@
 
  function chooseTreeProjectInfo(formName, elementId, elementName){
     var x_selected =  document.getElementById("refId1");
-    var url="<%=request.getContextPath()%>/rs/treeProjectInfo/choose?formName="+formName+"&elementId="+elementId+"&elementName="+elementName;
+    var url="<%=request.getContextPath()%>/mx/treeProjectInfo/choose?formName="+formName+"&elementId="+elementId+"&elementName="+elementName;
     if(x_selected != null && x_selected.value != ""){
 	    url = url + "&strfuntion="+x_selected.value;
     }
