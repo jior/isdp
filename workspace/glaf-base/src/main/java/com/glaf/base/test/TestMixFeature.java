@@ -30,7 +30,7 @@ public class TestMixFeature extends AbstractTest {
 	public void testRun() {
 		mixFeatureTestService = super.getBean("mixFeatureTestService");
 		for (int i = 0; i < 100; i++) {
-			mixFeatureTestService.run();
+			mixFeatureTestService.run2();
 			try {
 				Thread.sleep(50);
 			} catch (InterruptedException e) {

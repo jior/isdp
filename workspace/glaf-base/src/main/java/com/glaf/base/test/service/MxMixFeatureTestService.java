@@ -86,6 +86,44 @@ public class MxMixFeatureTestService implements IMixFeatureTestService {
 			JdbcUtils.close(psmt);
 		}
 	}
+	
+	@Transactional
+	public void run2() {
+		for (int i = 0; i < 100; i++) {
+			SysLog bean = new SysLog();
+			bean.setAccount("test");
+			bean.setIp("127.0.0.1");
+			bean.setOperate("add");
+			sysLogService.create(bean);
+		}
+
+		String sql = "insert into SYS_LOG(ID, ACCOUNT, IP, CREATETIME, MODULEID, OPERATE, FLAG, TIMEMS) values (?, ?, ?, ?, ?, ?, ?, ?) ";
+		Connection connection = null;
+		PreparedStatement psmt = null;
+		try {
+			connection = DataSourceUtils.getConnection(jdbcTemplate
+					.getDataSource());
+			psmt = connection.prepareStatement(sql);
+			for (int i = 0; i < 100; i++) {
+				psmt.setLong(1, idGenerator.nextId());
+				psmt.setString(2, "test2");
+				psmt.setString(3, "192.168.0.100");
+				psmt.setTimestamp(4, DateUtils.toTimestamp(new Date()));
+				psmt.setString(5, "xx");
+				psmt.setString(6, "Y");
+				psmt.setInt(7, 1);
+				psmt.setLong(8, i * i);
+				psmt.addBatch();
+			}
+			psmt.executeBatch();
+			psmt.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			throw new RuntimeException(ex);
+		} finally {
+			JdbcUtils.close(psmt);
+		}
+	}
 
 	@javax.annotation.Resource
 	public void setEntityDAO(EntityDAO entityDAO) {

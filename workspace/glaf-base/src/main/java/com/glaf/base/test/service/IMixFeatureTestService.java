@@ -24,5 +24,8 @@ public interface IMixFeatureTestService {
 	
 	@Transactional
 	void run();
+	
+	@Transactional
+	void run2();
 
 }
