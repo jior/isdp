@@ -333,6 +333,12 @@ public class LoginController {
 		if (session != null) {
 			session.setAttribute("x_y", rand);
 		}
+
+		String view = "/modules/login";
+
+		if (StringUtils.isNotEmpty(SystemConfig.getString("login_view"))) {
+			view = SystemConfig.getString("login_view");
+		}
 		// 显示登陆页面
 		return new ModelAndView("/modules/login", modelMap);
 	}

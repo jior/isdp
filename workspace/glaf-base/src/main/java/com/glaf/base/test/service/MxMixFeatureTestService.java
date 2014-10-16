@@ -103,6 +103,7 @@ public class MxMixFeatureTestService implements IMixFeatureTestService {
 		try {
 			connection = DataSourceUtils.getConnection(jdbcTemplate
 					.getDataSource());
+			System.out.println(connection.toString());
 			psmt = connection.prepareStatement(sql);
 			for (int i = 0; i < 100; i++) {
 				psmt.setLong(1, idGenerator.nextId());
