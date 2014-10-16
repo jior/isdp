@@ -4,7 +4,7 @@
 	<property name="project.distname" value="glaf-generator" />
 
 	<!-- 路径设置 -->
-	<property name="lib.dir" value="../workspace/glaf-commons/lib" />
+	<property name="lib.dir" value="lib" />
 
 	<!-- 类路径 -->
 	<path id="compile.classpath">
