@@ -24,7 +24,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/themes/<%=com.glaf.core.util.RequestUtils.getTheme(request)%>/site.css">
+<link rel="stylesheet" type="text/css" href="<%=context%>/themes/<%=com.glaf.core.util.RequestUtils.getTheme(request)%>/site.css">
 <script language="javascript" src='<%=context%>/scripts/verify.js'></script>
 <script language="javascript" src='<%=context%>/scripts/main.js'></script>
 <script language="javascript" src='<%=context%>/scripts/jquery.min.js'></script>
@@ -98,30 +98,30 @@ function submitRequest(){
 		SysRole role = (SysRole)iter2.next();
 		if (StringUtils.isNotEmpty(role.getCode())
 			&& ( StringUtils.startsWithIgnoreCase(role.getCode(), SysConstants.BRANCH_PREFIX) || StringUtils.equals(role.getIsUseBranch(), "Y"))) {	
-%>
-  <tr <%=i%2==0?"":"class='list-back'"%>>
-    <td class="td-cb"><input type="checkbox" name="id" value="<%=role.getId()%>" <%=roleIds.contains(role.getId())?"checked":""%>>
-    </td>
-    <td class="td-no"><%= i+1%></td>
-    <td class="td-text"><%=role.getName()%>&nbsp;</td>
-    <td class="td-text"><%=role.getContent()%>&nbsp;</td>
-  </tr>
-  <%
-    i++;
-	}
-  }
-}
-for(; i<10; i++){
-%>
-  <tr <%=i%2==0?"":"class='list-back'"%>> 
-    <td height="20">&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp; </td>
-    <td>&nbsp;</td>
-    </tr>
-<%
-}
-%>
+		%>
+		  <tr <%=i%2==0?"":"class='list-back'"%>>
+			<td class="td-cb"><input type="checkbox" name="id" value="<%=role.getId()%>" <%=roleIds.contains(role.getId())?"checked":""%>>
+			</td>
+			<td class="td-no"><%= i+1%></td>
+			<td class="td-text"><%=role.getName()%>&nbsp;</td>
+			<td class="td-text"><%=role.getContent()%>&nbsp;</td>
+		  </tr>
+		  <%
+			i++;
+			}
+		  }
+		}
+		for(; i<10; i++){
+		%>
+		  <tr <%=i%2==0?"":"class='list-back'"%>> 
+			<td height="20">&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp; </td>
+			<td>&nbsp;</td>
+			</tr>
+	<%
+		}
+	%>
 </table>
 <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>

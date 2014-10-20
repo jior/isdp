@@ -129,7 +129,7 @@
 	    var selected = jQuery('#mydatagrid').datagrid('getSelected');
 	    if (selected ){
 		  //location.href="<%=request.getContextPath()%>/mx/sys/user/edit&id="+selected.id;
-		  var link = "<%=request.getContextPath()%>/mx/sys/user/showRole?parent=${parent}&deptId=${deptId}&user_id="+selected.actorId_enc;
+		  var link = "<%=request.getContextPath()%>/mx/sys/user/showRole?parent=${parent}&deptId=${deptId}&actorId="+selected.actorId_enc;
 		  art.dialog.open(link, { height: 420, width: 620, title: "用户角色设置", lock: true, scrollbars:"no" }, false);
 	    }
 	}

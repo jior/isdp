@@ -296,19 +296,6 @@ CREATE TABLE message(
         PRIMARY KEY (id)
   );
 
-CREATE TABLE mymenu(
-        id bigint not null,
-        userId bigint,
-        title nvarchar(100),
-        url nvarchar(200),
-        sort int,
-        crUser nvarchar(20),
-        crDate datetime,
-        edUser nvarchar(20),
-        edDate datetime,
-        PRIMARY KEY (id)
-);
- 
 
 CREATE TABLE  attachment (
 	id bigint  not null,
@@ -563,7 +550,6 @@ create table sys_input_def (
         add constraint FK_PERM_FUN
         foreign key (funcId) 
         references sys_function;
-
 
     alter table SYS_APPLICATION
         add constraint SYS_UNIQ_APPLICATION

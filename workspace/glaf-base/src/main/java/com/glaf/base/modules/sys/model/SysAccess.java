@@ -15,14 +15,12 @@ public class SysAccess implements Serializable, JSONable {
 	/**
 	 * 应用编号
 	 */
-	@Id
 	@Column(name = "APPID", nullable = false)
 	protected long appId;
 
 	/**
 	 * 角色编号
 	 */
-	@Id
 	@Column(name = "ROLEID", nullable = false)
 	protected long roleId;
 

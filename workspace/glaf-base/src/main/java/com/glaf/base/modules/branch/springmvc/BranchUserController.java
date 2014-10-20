@@ -1123,10 +1123,10 @@ public class BranchUserController {
 	@RequestMapping("/showRole")
 	public ModelAndView showRole(HttpServletRequest request, ModelMap modelMap) {
 		RequestUtils.setRequestParameterToAttribute(request);
-		String id = ParamUtil.getParameter(request, "actorId");
-		id = RequestUtils.decodeString(id);
-		SysUser bean = sysUserService.findById(id);
-		SysUser user = sysUserService.findByAccountWithAll(bean.getAccount());
+		String actorId = ParamUtil.getParameter(request, "actorId");
+		actorId = RequestUtils.decodeString(actorId);
+		 
+		SysUser user = sysUserService.findByAccountWithAll(actorId);
 
 		List<SysRole> list = new ArrayList<SysRole>();
 		List<SysRole> roles = sysRoleService.getSysRoleList();

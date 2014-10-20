@@ -1143,7 +1143,7 @@ public class SysUserController {
 		List<SysRole> roles = sysRoleService.getSysRoleList();
 		if (roles != null && !roles.isEmpty()) {
 			for (SysRole role : roles) {
-					list.add(role);
+				list.add(role);
 			}
 		}
 

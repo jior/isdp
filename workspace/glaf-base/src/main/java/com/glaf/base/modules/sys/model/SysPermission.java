@@ -15,14 +15,12 @@ public class SysPermission implements Serializable, JSONable {
 	/**
 	 * 功能编号
 	 */
-	@Id
 	@Column(name = "FUNCID", nullable = false)
 	protected long funcId;
 
 	/**
 	 * 角色编号
 	 */
-	@Id
 	@Column(name = "ROLEID", nullable = false)
 	protected long roleId;
 

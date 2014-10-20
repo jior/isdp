@@ -340,7 +340,7 @@ public class LoginController {
 			view = SystemConfig.getString("login_view");
 		}
 		// 显示登陆页面
-		return new ModelAndView("/modules/login", modelMap);
+		return new ModelAndView(view, modelMap);
 	}
 
 	@javax.annotation.Resource
