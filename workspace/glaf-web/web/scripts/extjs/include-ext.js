@@ -64,7 +64,7 @@
     }
     // path == root of ext  
     theme = 'ext-theme-' + theme;
-    packagePath = path + '/scripts/extjs/themes/' + theme + '/build/';
+    packagePath = path + '/static/scripts/extjs/themes/' + theme + '/build/';
 	//alert("path:"+path);
 	//alert("packagePath:"+packagePath);
     themePath = packagePath + 'resources/' + theme + (rtl ? '-all-rtl' : '-all');
@@ -74,7 +74,7 @@
                             themePath + '.css"/>');
     }
 
-    document.write('<script type="text/javascript" src="' + path + '/scripts/extjs/ext-all' +
+    document.write('<script type="text/javascript" src="' + path + '/static/scripts/extjs/ext-all' +
                             (rtl ? '-rtl' : '') + '.js"></script>');
 
     if (hasOverrides) {
