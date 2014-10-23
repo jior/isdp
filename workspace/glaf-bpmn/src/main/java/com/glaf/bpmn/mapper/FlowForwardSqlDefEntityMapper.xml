@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.bpmn.mapper.FlowForwardSqlDefEntityMapper">
+
+	<resultMap id="flowForwardSqlDefEntityResultMap" type="com.glaf.bpmn.domain.FlowForwardSqlDefEntity">
+		<id property="id" column="id" jdbcType="VARCHAR" />
+		<result property="processId" column="process_id" jdbcType="VARCHAR" />
+		<result property="flowForwardD" column="flow_forward_d"
+			jdbcType="VARCHAR" />
+		<result property="intandor" column="intandor" jdbcType="INTEGER" />
+		<result property="sqlconType" column="sqlcon_type" jdbcType="INTEGER" />
+		<result property="sqlconDtype" column="sqlcon_dtype" jdbcType="VARCHAR" />
+		<result property="sqlconField" column="sqlcon_field" jdbcType="VARCHAR" />
+		<result property="strsp" column="strsp" jdbcType="VARCHAR" />
+		<result property="sqlconValue" column="sqlcon_value" jdbcType="VARCHAR" />
+		<result property="sqlconshow" column="sqlconshow" jdbcType="VARCHAR" />
+		<result property="issave" column="issave" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertFlowForwardSqlDefEntity" parameterType="com.glaf.bpmn.domain.FlowForwardSqlDefEntity">
+		insert into flow_forward_sql_d
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id
+			<if test="processId != null">
+				,process_id
+			</if>
+			<if test="flowForwardD != null">
+				,flow_forward_d
+			</if>
+			<if test="intandor != null">
+				,intandor
+			</if>
+			<if test="sqlconType != null">
+				,sqlcon_type
+			</if>
+			<if test="sqlconDtype != null">
+				,sqlcon_dtype
+			</if>
+			<if test="sqlconField != null">
+				,sqlcon_field
+			</if>
+			<if test="strsp != null">
+				,strsp
+			</if>
+			<if test="sqlconValue != null">
+				,sqlcon_value
+			</if>
+			<if test="sqlconshow != null">
+				,sqlconshow
+			</if>
+			<if test="issave != null">
+				,issave
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="processId != null">
+				,#{processId, jdbcType=VARCHAR}
+			</if>
+			<if test="flowForwardD != null">
+				,#{flowForwardD, jdbcType=VARCHAR}
+			</if>
+			<if test="intandor != null">
+				,#{intandor, jdbcType=INTEGER}
+			</if>
+			<if test="sqlconType != null">
+				,#{sqlconType, jdbcType=INTEGER}
+			</if>
+			<if test="sqlconDtype != null">
+				,#{sqlconDtype, jdbcType=VARCHAR}
+			</if>
+			<if test="sqlconField != null">
+				,#{sqlconField, jdbcType=VARCHAR}
+			</if>
+			<if test="strsp != null">
+				,#{strsp, jdbcType=VARCHAR}
+			</if>
+			<if test="sqlconValue != null">
+				,#{sqlconValue, jdbcType=VARCHAR}
+			</if>
+			<if test="sqlconshow != null">
+				,#{sqlconshow, jdbcType=VARCHAR}
+			</if>
+			<if test="issave != null">
+				,#{issave, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateFlowForwardSqlDefEntity" parameterType="com.glaf.bpmn.domain.FlowForwardSqlDefEntity">
+		update flow_forward_sql_d
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="processId != null">
+				process_id = #{processId, jdbcType=VARCHAR},
+			</if>
+			<if test="flowForwardD != null">
+				flow_forward_d = #{flowForwardD, jdbcType=VARCHAR},
+			</if>
+			<if test="intandor != null">
+				intandor = #{intandor, jdbcType=INTEGER},
+			</if>
+			<if test="sqlconType != null">
+				sqlcon_type = #{sqlconType, jdbcType=INTEGER},
+			</if>
+			<if test="sqlconDtype != null">
+				sqlcon_dtype = #{sqlconDtype, jdbcType=VARCHAR},
+			</if>
+			<if test="sqlconField != null">
+				sqlcon_field = #{sqlconField, jdbcType=VARCHAR},
+			</if>
+			<if test="strsp != null">
+				strsp = #{strsp, jdbcType=VARCHAR},
+			</if>
+			<if test="sqlconValue != null">
+				sqlcon_value = #{sqlconValue, jdbcType=VARCHAR},
+			</if>
+			<if test="sqlconshow != null">
+				sqlconshow = #{sqlconshow, jdbcType=VARCHAR},
+			</if>
+			<if test="issave != null">
+				issave = #{issave, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		id = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteFlowForwardSqlDefEntityById" parameterType="string">
+		delete from flow_forward_sql_d
+		where id = #{id}
+	</delete>
+
+
+	<delete id="deleteFlowForwardSqlDefEntities" parameterType="com.glaf.bpmn.query.FlowForwardSqlDefQuery">
+		delete from flow_forward_sql_d
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds"
+			open="(" separator="," close=")">
+			#{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getFlowForwardSqlDefEntityById" parameterType="string"
+		resultMap="flowForwardSqlDefEntityResultMap">
+		select * from flow_forward_sql_d where id = #{id}
+	</select>
+
+
+	<select id="getFlowForwardSqlDefEntityCount" parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectFlowForwardSqlDefEntitiesSql" />
+	</select>
+
+
+	<select id="getFlowForwardSqlDefEntityCountByQueryCriteria"
+		parameterType="com.glaf.bpmn.query.FlowForwardSqlDefQuery" resultType="int">
+		select count(*)
+		<include refid="selectFlowForwardSqlDefEntitiesSql" />
+	</select>
+
+
+	<select id="getFlowForwardSqlDefEntities" parameterType="map"
+		resultMap="flowForwardSqlDefEntityResultMap">
+		select E.*
+		<include refid="selectFlowForwardSqlDefEntitiesSql" />
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getFlowForwardSqlDefEntitiesByQueryCriteria"
+		parameterType="com.glaf.bpmn.query.FlowForwardSqlDefQuery" resultMap="flowForwardSqlDefEntityResultMap">
+		select E.*
+		<include refid="selectFlowForwardSqlDefEntitiesSql" />
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectFlowForwardSqlDefEntitiesSql">
+
+		from flow_forward_sql_d E
+
+		<where>
+
+			1 = 1
+
+
+			<if test="processId != null and processId != '' ">
+				and E.process_id = #{processId}
+			</if>
+
+			<if test="processIdLike != null and processIdLike != '' ">
+				and E.process_id like #{processIdLike}
+			</if>
+
+			<if test="processIds != null and processIds.size != 0">
+				and E.process_id IN
+				<foreach item="x_processId" index="index" collection="processIds"
+					open="(" separator="," close=")">
+					#{x_processId}
+				</foreach>
+			</if>
+
+
+			<if test="flowForwardD != null and flowForwardD != '' ">
+				and E.flow_forward_d = #{flowForwardD}
+			</if>
+
+			<if test="flowForwardDLike != null and flowForwardDLike != '' ">
+				and E.flow_forward_d like #{flowForwardDLike}
+			</if>
+
+			<if test="flowForwardDs != null and flowForwardDs.size != 0">
+				and E.flow_forward_d IN
+				<foreach item="x_flowForwardD" index="index" collection="flowForwardDs"
+					open="(" separator="," close=")">
+					#{x_flowForwardD}
+				</foreach>
+			</if>
+
+
+			<if test="intandor != null">
+				and E.intandor = #{intandor}
+			</if>
+
+			<if test="intandorGreaterThanOrEqual != null">
+				and E.intandor &gt;= #{intandorGreaterThanOrEqual}
+			</if>
+
+			<if test="intandorLessThanOrEqual != null">
+				and E.intandor &lt;= #{intandorLessThanOrEqual}
+			</if>
+
+			<if test="intandors != null and intandors.size != 0">
+				and E.intandor IN
+				<foreach item="x_intandor" index="index" collection="intandors"
+					open="(" separator="," close=")">
+					#{x_intandor}
+				</foreach>
+			</if>
+
+
+			<if test="sqlconType != null">
+				and E.sqlcon_type = #{sqlconType}
+			</if>
+
+			<if test="sqlconTypeGreaterThanOrEqual != null">
+				and E.sqlcon_type &gt;= #{sqlconTypeGreaterThanOrEqual}
+			</if>
+
+			<if test="sqlconTypeLessThanOrEqual != null">
+				and E.sqlcon_type &lt;= #{sqlconTypeLessThanOrEqual}
+			</if>
+
+			<if test="sqlconTypes != null and sqlconTypes.size != 0">
+				and E.sqlcon_type IN
+				<foreach item="x_sqlconType" index="index" collection="sqlconTypes"
+					open="(" separator="," close=")">
+					#{x_sqlconType}
+				</foreach>
+			</if>
+
+
+			<if test="sqlconDtype != null and sqlconDtype != '' ">
+				and E.sqlcon_dtype = #{sqlconDtype}
+			</if>
+
+			<if test="sqlconDtypeLike != null and sqlconDtypeLike != '' ">
+				and E.sqlcon_dtype like #{sqlconDtypeLike}
+			</if>
+
+			<if test="sqlconDtypes != null and sqlconDtypes.size != 0">
+				and E.sqlcon_dtype IN
+				<foreach item="x_sqlconDtype" index="index" collection="sqlconDtypes"
+					open="(" separator="," close=")">
+					#{x_sqlconDtype}
+				</foreach>
+			</if>
+
+
+			<if test="sqlconField != null and sqlconField != '' ">
+				and E.sqlcon_field = #{sqlconField}
+			</if>
+
+			<if test="sqlconFieldLike != null and sqlconFieldLike != '' ">
+				and E.sqlcon_field like #{sqlconFieldLike}
+			</if>
+
+			<if test="sqlconFields != null and sqlconFields.size != 0">
+				and E.sqlcon_field IN
+				<foreach item="x_sqlconField" index="index" collection="sqlconFields"
+					open="(" separator="," close=")">
+					#{x_sqlconField}
+				</foreach>
+			</if>
+
+
+			<if test="strsp != null and strsp != '' ">
+				and E.strsp = #{strsp}
+			</if>
+
+			<if test="strspLike != null and strspLike != '' ">
+				and E.strsp like #{strspLike}
+			</if>
+
+			<if test="strsps != null and strsps.size != 0">
+				and E.strsp IN
+				<foreach item="x_strsp" index="index" collection="strsps"
+					open="(" separator="," close=")">
+					#{x_strsp}
+				</foreach>
+			</if>
+
+
+			<if test="sqlconValue != null and sqlconValue != '' ">
+				and E.sqlcon_value = #{sqlconValue}
+			</if>
+
+			<if test="sqlconValueLike != null and sqlconValueLike != '' ">
+				and E.sqlcon_value like #{sqlconValueLike}
+			</if>
+
+			<if test="sqlconValues != null and sqlconValues.size != 0">
+				and E.sqlcon_value IN
+				<foreach item="x_sqlconValue" index="index" collection="sqlconValues"
+					open="(" separator="," close=")">
+					#{x_sqlconValue}
+				</foreach>
+			</if>
+
+
+			<if test="sqlconshow != null and sqlconshow != '' ">
+				and E.sqlconshow = #{sqlconshow}
+			</if>
+
+			<if test="sqlconshowLike != null and sqlconshowLike != '' ">
+				and E.sqlconshow like #{sqlconshowLike}
+			</if>
+
+			<if test="sqlconshows != null and sqlconshows.size != 0">
+				and E.sqlconshow IN
+				<foreach item="x_sqlconshow" index="index" collection="sqlconshows"
+					open="(" separator="," close=")">
+					#{x_sqlconshow}
+				</foreach>
+			</if>
+
+
+			<if test="issave != null">
+				and E.issave = #{issave}
+			</if>
+
+			<if test="issaveGreaterThanOrEqual != null">
+				and E.issave &gt;= #{issaveGreaterThanOrEqual}
+			</if>
+
+			<if test="issaveLessThanOrEqual != null">
+				and E.issave &lt;= #{issaveLessThanOrEqual}
+			</if>
+
+			<if test="issaves != null and issaves.size != 0">
+				and E.issave IN
+				<foreach item="x_issave" index="index" collection="issaves"
+					open="(" separator="," close=")">
+					#{x_issave}
+				</foreach>
+			</if>
+
+
+		</where>
+	</sql>
+
+</mapper>

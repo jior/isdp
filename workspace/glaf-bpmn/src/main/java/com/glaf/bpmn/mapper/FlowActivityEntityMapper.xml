@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.bpmn.mapper.FlowActivityEntityMapper">
+
+	<resultMap id="flowActivityEntityResultMap" type="com.glaf.bpmn.domain.FlowActivityEntity">
+		<id property="id" column="id" jdbcType="VARCHAR" />
+		<result property="activDefId" column="activ_d_id" jdbcType="VARCHAR" />
+		<result property="processId" column="process_id" jdbcType="VARCHAR" />
+		<result property="typeofact" column="typeofact" jdbcType="VARCHAR" />
+		<result property="name" column="name" jdbcType="VARCHAR" />
+		<result property="content" column="content" jdbcType="VARCHAR" />
+		<result property="strfuntion" column="strfuntion" jdbcType="VARCHAR" />
+		<result property="netroleid" column="netroleid" jdbcType="VARCHAR" />
+		<result property="userId" column="userid" jdbcType="VARCHAR" />
+		<result property="listno" column="listno" jdbcType="INTEGER" />
+		<result property="timelimit" column="timelimit" jdbcType="DOUBLE" />
+		<result property="ctimeStart" column="ctime_start" jdbcType="TIMESTAMP" />
+		<result property="ctimeEnd" column="ctime_end" jdbcType="TIMESTAMP" />
+		<result property="state" column="state" jdbcType="INTEGER" />
+		<result property="intback" column="intback" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertFlowActivityEntity" parameterType="com.glaf.bpmn.domain.FlowActivityEntity">
+		insert into flow_activ
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id
+			<if test="activDefId != null">
+				,activ_d_id
+			</if>
+			<if test="processId != null">
+				,process_id
+			</if>
+			<if test="typeofact != null">
+				,typeofact
+			</if>
+			<if test="name != null">
+				,name
+			</if>
+			<if test="content != null">
+				,content
+			</if>
+			<if test="strfuntion != null">
+				,strfuntion
+			</if>
+			<if test="netroleid != null">
+				,netroleid
+			</if>
+			<if test="userId != null">
+				,userid
+			</if>
+			<if test="listno != null">
+				,listno
+			</if>
+			<if test="timelimit != null">
+				,timelimit
+			</if>
+			<if test="ctimeStart != null">
+				,ctime_start
+			</if>
+			<if test="ctimeEnd != null">
+				,ctime_end
+			</if>
+			<if test="state != null">
+				,state
+			</if>
+			<if test="intback != null">
+				,intback
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="activDefId != null">
+				,#{activDefId, jdbcType=VARCHAR}
+			</if>
+			<if test="processId != null">
+				,#{processId, jdbcType=VARCHAR}
+			</if>
+			<if test="typeofact != null">
+				,#{typeofact, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="strfuntion != null">
+				,#{strfuntion, jdbcType=VARCHAR}
+			</if>
+			<if test="netroleid != null">
+				,#{netroleid, jdbcType=VARCHAR}
+			</if>
+			<if test="userId != null">
+				,#{userId, jdbcType=VARCHAR}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+			<if test="timelimit != null">
+				,#{timelimit, jdbcType=DOUBLE}
+			</if>
+			<if test="ctimeStart != null">
+				,#{ctimeStart, jdbcType=TIMESTAMP}
+			</if>
+			<if test="ctimeEnd != null">
+				,#{ctimeEnd, jdbcType=TIMESTAMP}
+			</if>
+			<if test="state != null">
+				,#{state, jdbcType=INTEGER}
+			</if>
+			<if test="intback != null">
+				,#{intback, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateFlowActivityEntity" parameterType="com.glaf.bpmn.domain.FlowActivityEntity">
+		update
+		flow_activ
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="activDefId != null">
+				activ_d_id = #{activDefId, jdbcType=VARCHAR},
+			</if>
+			<if test="processId != null">
+				process_id = #{processId, jdbcType=VARCHAR},
+			</if>
+			<if test="typeofact != null">
+				typeofact = #{typeofact, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="strfuntion != null">
+				strfuntion = #{strfuntion, jdbcType=VARCHAR},
+			</if>
+			<if test="netroleid != null">
+				netroleid = #{netroleid, jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				userid = #{userId, jdbcType=VARCHAR},
+			</if>
+			<if test="listno != null">
+				listno = #{listno, jdbcType=INTEGER},
+			</if>
+			<if test="timelimit != null">
+				timelimit = #{timelimit, jdbcType=DOUBLE},
+			</if>
+			<if test="ctimeStart != null">
+				ctime_start = #{ctimeStart, jdbcType=TIMESTAMP},
+			</if>
+			<if test="ctimeEnd != null">
+				ctime_end = #{ctimeEnd, jdbcType=TIMESTAMP},
+			</if>
+			<if test="state != null">
+				state = #{state, jdbcType=INTEGER},
+			</if>
+			<if test="intback != null">
+				intback = #{intback, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		id = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteFlowActivityEntityById" parameterType="string">
+		delete
+		from flow_activ
+		where id = #{id}
+	</delete>
+
+
+	<select id="getFlowActivityEntityById" parameterType="string"
+		resultMap="flowActivityEntityResultMap">
+		select * from flow_activ where id = #{id}
+	</select>
+
+	<select id="getFlowActivitiesByTaskId" parameterType="map"
+		resultType="com.glaf.bpmn.domain.FlowActivityEntity">
+
+		select * from flow_activ where process_id in(
+		select id from
+		flow_process where main_id in(
+		select id from cell_mytaskmain where
+		index_id=#{mytaskmainIndexId} and
+		mycell_tasks_id=#{mycellTaskId} and
+		intisflow=2
+		)
+		)
+		and activ_d_id=#{activityDefId}
+
+	</select>
+
+	<select id="getFlowActivitiesByProcessInstanceId" parameterType="string"
+		resultType="com.glaf.bpmn.domain.FlowActivityEntity">
+
+		SELECT a.*, b.name as activDefName
+		FROM flow_activ a INNER
+		JOIN
+		flow_activ_d b ON a.activ_d_id = b.id
+		WHERE (a.process_id =
+		#{processInstanceId})
+
+	</select>
+
+	<select id="getFlowActivityEntityCount" parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectFlowActivitiesSql" />
+	</select>
+
+
+	<select id="getFlowActivityEntityCountByQueryCriteria"
+		parameterType="com.glaf.bpmn.query.FlowActivityQuery" resultType="int">
+		select count(*)
+		<include refid="selectFlowActivitiesSql" />
+	</select>
+
+
+	<select id="getFlowActivities" parameterType="map"
+		resultMap="flowActivityEntityResultMap">
+		select E.*
+		<include refid="selectFlowActivitiesSql" />
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getFlowActivitiesByQueryCriteria" parameterType="com.glaf.bpmn.query.FlowActivityQuery"
+		resultMap="flowActivityEntityResultMap">
+		select E.*
+		<include refid="selectFlowActivitiesSql" />
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectFlowActivitiesSql">
+
+		from flow_activ E
+
+		<where>
+
+			1 = 1
+
+			<if test="activDefId != null and activDefId != '' ">
+				and E.activ_d_id = #{activDefId}
+			</if>
+
+			<if test="activDefIdLike != null and activDefIdLike != '' ">
+				and E.activ_d_id like #{activDefIdLike}
+			</if>
+
+			<if test="activDefIds != null and activDefIds.size != 0">
+				and E.activ_d_id IN
+				<foreach item="x_activDefId" index="index" collection="activDefIds"
+					open="(" separator="," close=")">
+					#{x_activDefId}
+				</foreach>
+			</if>
+
+
+			<if test="processId != null and processId != '' ">
+				and E.process_id = #{processId}
+			</if>
+
+			<if test="processIdLike != null and processIdLike != '' ">
+				and E.process_id like #{processIdLike}
+			</if>
+
+			<if test="processIds != null and processIds.size != 0">
+				and E.process_id IN
+				<foreach item="x_processId" index="index" collection="processIds"
+					open="(" separator="," close=")">
+					#{x_processId}
+				</foreach>
+			</if>
+
+
+			<if test="typeofact != null and typeofact != '' ">
+				and E.typeofact = #{typeofact}
+			</if>
+
+			<if test="typeofactLike != null and typeofactLike != '' ">
+				and E.typeofact like #{typeofactLike}
+			</if>
+
+			<if test="typeofacts != null and typeofacts.size != 0">
+				and E.typeofact IN
+				<foreach item="x_typeofact" index="index" collection="typeofacts"
+					open="(" separator="," close=")">
+					#{x_typeofact}
+				</foreach>
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.name like #{nameLike}
+			</if>
+
+			<if test="contentLike != null and contentLike != '' ">
+				and E.content like #{contentLike}
+			</if>
+
+			<if test="strfuntion != null and strfuntion != '' ">
+				and E.strfuntion = #{strfuntion}
+			</if>
+
+			<if test="netroleid != null and netroleid != '' ">
+				and E.netroleid = #{netroleid}
+			</if>
+
+			<if test="netroleidLike != null and netroleidLike != '' ">
+				and E.netroleid like #{netroleidLike}
+			</if>
+
+			<if test="netroleids != null and netroleids.size != 0">
+				and E.netroleid IN
+				<foreach item="x_netroleid" index="index" collection="netroleids"
+					open="(" separator="," close=")">
+					#{x_netroleid}
+				</foreach>
+			</if>
+
+			<if test="userId != null and userId != '' ">
+				and E.userid = #{userId}
+			</if>
+
+			<if test="userIdLike != null and userIdLike != '' ">
+				and E.userid like #{userIdLike}
+			</if>
+
+			<if test="userIds != null and userIds.size != 0">
+				and E.userid IN
+				<foreach item="x_userid" index="index" collection="userIds"
+					open="(" separator="," close=")">
+					#{x_userid}
+				</foreach>
+			</if>
+
+			<if test="timelimitGreaterThanOrEqual != null">
+				and E.timelimit &gt;= #{timelimitGreaterThanOrEqual}
+			</if>
+
+			<if test="timelimitLessThanOrEqual != null">
+				and E.timelimit &lt;= #{timelimitLessThanOrEqual}
+			</if>
+
+			<if test="ctimeStartGreaterThanOrEqual != null">
+				and E.ctime_start &gt;= #{ctimeStartGreaterThanOrEqual}
+			</if>
+
+			<if test="ctimeStartLessThanOrEqual != null">
+				and E.ctime_start &lt;= #{ctimeStartLessThanOrEqual}
+			</if>
+
+			<if test="ctimeEndGreaterThanOrEqual != null">
+				and E.ctime_end &gt;= #{ctimeEndGreaterThanOrEqual}
+			</if>
+
+			<if test="ctimeEndLessThanOrEqual != null">
+				and E.ctime_end &lt;= #{ctimeEndLessThanOrEqual}
+			</if>
+
+			<if test="state != null">
+				and E.state = #{state}
+			</if>
+
+			<if test="stateGreaterThanOrEqual != null">
+				and E.state &gt;= #{stateGreaterThanOrEqual}
+			</if>
+
+			<if test="stateLessThanOrEqual != null">
+				and E.state &lt;= #{stateLessThanOrEqual}
+			</if>
+
+			<if test="states != null and states.size != 0">
+				and E.state IN
+				<foreach item="x_state" index="index" collection="states"
+					open="(" separator="," close=")">
+					#{x_state}
+				</foreach>
+			</if>
+
+			<if test="intback != null">
+				and E.intback = #{intback}
+			</if>
+
+			<if test="intbackGreaterThanOrEqual != null">
+				and E.intback &gt;= #{intbackGreaterThanOrEqual}
+			</if>
+
+			<if test="intbackLessThanOrEqual != null">
+				and E.intback &lt;= #{intbackLessThanOrEqual}
+			</if>
+
+			<if test="intbacks != null and intbacks.size != 0">
+				and E.intback IN
+				<foreach item="x_intback" index="index" collection="intbacks"
+					open="(" separator="," close=")">
+					#{x_intback}
+				</foreach>
+			</if>
+
+
+		</where>
+	</sql>
+
+</mapper>

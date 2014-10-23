@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.bpmn.mapper.FlowProcessEntityMapper">
+
+	<resultMap id="flowProcessEntityResultMap" type="com.glaf.bpmn.domain.FlowProcessEntity">
+		<id property="id" column="id" jdbcType="VARCHAR" />
+		<result property="processDefId" column="process_d_id" jdbcType="VARCHAR" />
+		<result property="mainId" column="main_id" jdbcType="VARCHAR" />
+		<result property="fileid" column="fileid" jdbcType="VARCHAR" />
+		<result property="name" column="name" jdbcType="VARCHAR" />
+		<result property="content" column="content" jdbcType="VARCHAR" />
+		<result property="actorId" column="actor" jdbcType="VARCHAR" />
+		<result property="ctime" column="ctime" jdbcType="TIMESTAMP" />
+		<result property="version" column="version" jdbcType="VARCHAR" />
+		<result property="state" column="state" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertFlowProcessEntity" parameterType="com.glaf.bpmn.domain.FlowProcessEntity">
+		insert into flow_process
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id
+			<if test="processDefId != null">
+				,process_d_id
+			</if>
+			<if test="mainId != null">
+				,main_id
+			</if>
+			<if test="fileid != null">
+				,fileid
+			</if>
+			<if test="name != null">
+				,name
+			</if>
+			<if test="content != null">
+				,content
+			</if>
+			<if test="actorId != null">
+				,actor
+			</if>
+			<if test="ctime != null">
+				,ctime
+			</if>
+			<if test="version != null">
+				,version
+			</if>
+			<if test="state != null">
+				,state
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="processDefId != null">
+				,#{processDefId, jdbcType=VARCHAR}
+			</if>
+			<if test="mainId != null">
+				,#{mainId, jdbcType=VARCHAR}
+			</if>
+			<if test="fileid != null">
+				,#{fileid, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="actorId != null">
+				,#{actorId, jdbcType=VARCHAR}
+			</if>
+			<if test="ctime != null">
+				,#{ctime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="version != null">
+				,#{version, jdbcType=VARCHAR}
+			</if>
+			<if test="state != null">
+				,#{state, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateFlowProcessEntity" parameterType="com.glaf.bpmn.domain.FlowProcessEntity">
+		update
+		flow_process
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="processDefId != null">
+				process_d_id = #{processDefId, jdbcType=VARCHAR},
+			</if>
+			<if test="mainId != null">
+				main_id = #{mainId, jdbcType=VARCHAR},
+			</if>
+			<if test="fileid != null">
+				fileid = #{fileid, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="actorId != null">
+				actor = #{actorId, jdbcType=VARCHAR},
+			</if>
+			<if test="ctime != null">
+				ctime = #{ctime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="version != null">
+				version = #{version, jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				state = #{state, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		id = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteFlowProcessEntityById" parameterType="string">
+		delete from flow_process
+		where id = #{id}
+	</delete>
+
+
+	<delete id="deleteFlowProcessEntities" parameterType="com.glaf.bpmn.query.FlowProcessQuery">
+		delete from flow_process
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds"
+			open="(" separator="," close=")">
+			#{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getFlowProcessEntityById" parameterType="string"
+		resultMap="flowProcessEntityResultMap">
+		select * from flow_process where id = #{id}
+	</select>
+
+	<select id="getFlowProcessEntityesByTaskMainId" parameterType="string"
+		resultMap="flowProcessEntityResultMap">
+
+		select * from flow_process where exists(
+		select * from cell_mytaskmain where id= #{taskMainId} and id =
+		flow_process.main_id
+		)
+
+	</select>
+
+	<select id="getFlowProcessEntityesByTask" parameterType="map"
+		resultMap="flowProcessEntityResultMap">
+
+		select * from flow_process where Main_id in(
+		select id from cell_mytaskmain where index_id=#{taskmainIndexId} and
+		mycell_tasks_id=#{cellTaskId} and intisflow=#{intisflow}
+		)
+
+	</select>
+
+
+	<select id="getFlowProcessEntityCount" parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectFlowProcessEntityesSql" />
+	</select>
+
+
+	<select id="getFlowProcessEntityCountByQueryCriteria"
+		parameterType="com.glaf.bpmn.query.FlowProcessQuery" resultType="int">
+		select count(*)
+		<include refid="selectFlowProcessEntityesSql" />
+	</select>
+
+
+	<select id="getFlowProcessEntityes" parameterType="map"
+		resultMap="flowProcessEntityResultMap">
+		select E.*
+		<include refid="selectFlowProcessEntityesSql" />
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getFlowProcessEntityesByQueryCriteria"
+		parameterType="com.glaf.bpmn.query.FlowProcessQuery" resultMap="flowProcessEntityResultMap">
+		select E.*
+		<include refid="selectFlowProcessEntityesSql" />
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectFlowProcessEntityesSql">
+
+		from flow_process E
+
+		<where>
+
+			1 = 1
+
+			<if test="processDefId != null and processDefId != '' ">
+				and E.process_d_id = #{processDefId}
+			</if>
+
+			<if test="processDefIdLike != null and processDefIdLike != '' ">
+				and E.process_d_id like #{processDefIdLike}
+			</if>
+
+			<if test="processDefIds != null and processDefIds.size != 0">
+				and E.process_d_id IN
+				<foreach item="x_processDefId" index="index" collection="processDefIds"
+					open="(" separator="," close=")">
+					#{x_processDefId}
+				</foreach>
+			</if>
+
+			<if test="mainId != null and mainId != '' ">
+				and E.main_id = #{mainId}
+			</if>
+
+			<if test="mainIdLike != null and mainIdLike != '' ">
+				and E.main_id like #{mainIdLike}
+			</if>
+
+			<if test="mainIds != null and mainIds.size != 0">
+				and E.main_id IN
+				<foreach item="x_mainId" index="index" collection="mainIds"
+					open="(" separator="," close=")">
+					#{x_mainId}
+				</foreach>
+			</if>
+
+
+			<if test="fileid != null and fileid != '' ">
+				and E.fileid = #{fileid}
+			</if>
+
+			<if test="fileidLike != null and fileidLike != '' ">
+				and E.fileid like #{fileidLike}
+			</if>
+
+			<if test="fileids != null and fileids.size != 0">
+				and E.fileid IN
+				<foreach item="x_fileid" index="index" collection="fileids"
+					open="(" separator="," close=")">
+					#{x_fileid}
+				</foreach>
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.name like #{nameLike}
+			</if>
+
+			<if test="contentLike != null and contentLike != '' ">
+				and E.content like #{contentLike}
+			</if>
+
+			<if test="actorId != null and actorId != '' ">
+				and E.actor = #{actorId}
+			</if>
+
+			<if test="actorLike != null and actorLike != '' ">
+				and E.actor like #{actorLike}
+			</if>
+
+			<if test="actorIds != null and actorIds.size != 0">
+				and E.actor IN
+				<foreach item="x_actor" index="index" collection="actorIds"
+					open="(" separator="," close=")">
+					#{x_actor}
+				</foreach>
+			</if>
+
+			<if test="ctimeGreaterThanOrEqual != null">
+				and E.ctime &gt;= #{ctimeGreaterThanOrEqual}
+			</if>
+
+			<if test="ctimeLessThanOrEqual != null">
+				and E.ctime &lt;= #{ctimeLessThanOrEqual}
+			</if>
+
+			<if test="version != null and version != '' ">
+				and E.version = #{version}
+			</if>
+
+			<if test="versionLike != null and versionLike != '' ">
+				and E.version like #{versionLike}
+			</if>
+
+			<if test="state != null">
+				and E.state = #{state}
+			</if>
+
+			<if test="stateGreaterThanOrEqual != null">
+				and E.state &gt;= #{stateGreaterThanOrEqual}
+			</if>
+
+			<if test="stateLessThanOrEqual != null">
+				and E.state &lt;= #{stateLessThanOrEqual}
+			</if>
+
+			<if test="states != null and states.size != 0">
+				and E.state IN
+				<foreach item="x_state" index="index" collection="states"
+					open="(" separator="," close=")">
+					#{x_state}
+				</foreach>
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

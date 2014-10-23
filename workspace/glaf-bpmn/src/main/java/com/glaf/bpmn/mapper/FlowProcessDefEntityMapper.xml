@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.bpmn.mapper.FlowProcessDefEntityMapper">
+
+	<resultMap id="flowProcessDefEntityResultMap" type="com.glaf.bpmn.domain.FlowProcessDefEntity">
+		<id property="id" column="id" jdbcType="VARCHAR" />
+		<result property="mainId" column="main_id" jdbcType="VARCHAR" />
+		<result property="fileid" column="fileid" jdbcType="VARCHAR" />
+		<result property="name" column="name" jdbcType="VARCHAR" />
+		<result property="content" column="content" jdbcType="VARCHAR" />
+		<result property="actorId" column="actor" jdbcType="VARCHAR" />
+		<result property="ctime" column="ctime" jdbcType="TIMESTAMP" />
+		<result property="version" column="version" jdbcType="VARCHAR" />
+		<result property="issave" column="issave" jdbcType="INTEGER" />
+		<result property="intflag" column="intflag" jdbcType="INTEGER" />
+		<result property="tcadfile" column="tcadfile" jdbcType="BLOB" />
+	</resultMap>
+
+	<resultMap id="flowProcessDefEntityResultMap_postgres" type="com.glaf.bpmn.domain.FlowProcessDefEntity">
+		<id property="id" column="id" jdbcType="VARCHAR" />
+		<result property="mainId" column="main_id" jdbcType="VARCHAR" />
+		<result property="fileid" column="fileid" jdbcType="VARCHAR" />
+		<result property="name" column="name" jdbcType="VARCHAR" />
+		<result property="content" column="content" jdbcType="VARCHAR" />
+		<result property="actorId" column="actor" jdbcType="VARCHAR" />
+		<result property="ctime" column="ctime" jdbcType="TIMESTAMP" />
+		<result property="version" column="version" jdbcType="VARCHAR" />
+		<result property="issave" column="issave" jdbcType="INTEGER" />
+		<result property="intflag" column="intflag" jdbcType="INTEGER" />
+		<result property="tcadfile" column="tcadfile" jdbcType="BINARY" />
+	</resultMap>
+
+
+	<insert id="insertFlowProcessDefEntity" parameterType="com.glaf.bpmn.domain.FlowProcessDefEntity">
+		insert into flow_process_d
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id
+			<if test="mainId != null">
+				,main_id
+			</if>
+			<if test="fileid != null">
+				,fileid
+			</if>
+			<if test="name != null">
+				,name
+			</if>
+			<if test="content != null">
+				,content
+			</if>
+			<if test="actorId != null">
+				,actor
+			</if>
+			<if test="ctime != null">
+				,ctime
+			</if>
+			<if test="version != null">
+				,version
+			</if>
+			<if test="tcadfile != null">
+				,tcadfile
+			</if>
+			<if test="issave != null">
+				,issave
+			</if>
+			<if test="intflag != null">
+				,intflag
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="mainId != null">
+				,#{mainId, jdbcType=VARCHAR}
+			</if>
+			<if test="fileid != null">
+				,#{fileid, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="actorId != null">
+				,#{actorId, jdbcType=VARCHAR}
+			</if>
+			<if test="ctime != null">
+				,#{ctime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="version != null">
+				,#{version, jdbcType=VARCHAR}
+			</if>
+			<if test="tcadfile != null">
+				,#{tcadfile, jdbcType=BLOB}
+			</if>
+			<if test="issave != null">
+				,#{issave, jdbcType=INTEGER}
+			</if>
+			<if test="intflag != null">
+				,#{intflag, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateFlowProcessDefEntity" parameterType="com.glaf.bpmn.domain.FlowProcessDefEntity">
+		update
+		flow_process_d
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="mainId != null">
+				main_id = #{mainId, jdbcType=VARCHAR},
+			</if>
+			<if test="fileid != null">
+				fileid = #{fileid, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="actorId != null">
+				actor = #{actorId, jdbcType=VARCHAR},
+			</if>
+			<if test="ctime != null">
+				ctime = #{ctime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="version != null">
+				version = #{version, jdbcType=VARCHAR},
+			</if>
+			<if test="tcadfile != null">
+				tcadfile = #{tcadfile, jdbcType=BLOB},
+			</if>
+			<if test="issave != null">
+				issave = #{issave, jdbcType=INTEGER},
+			</if>
+			<if test="intflag != null">
+				intflag = #{intflag, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		id = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteFlowProcessDefEntityById" parameterType="string">
+		delete from flow_process_d
+		where id = #{id}
+	</delete>
+
+
+	<delete id="deleteFlowProcessDefEntities" parameterType="com.glaf.bpmn.query.FlowProcessDefQuery">
+		delete from flow_process_d
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds"
+			open="(" separator="," close=")">
+			#{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getFlowProcessDefEntityById" parameterType="string"
+		resultMap="flowProcessDefEntityResultMap">
+		select * from flow_process_d where id = #{id}
+	</select>
+
+
+	<select id="getFlowProcessDefEntityById_postgres" parameterType="string"
+		resultMap="flowProcessDefEntityResultMap_postgres">
+		select * from flow_process_d where id = #{id}
+	</select>
+
+	<select id="getFlowProcessDefEntityCount" parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectFlowProcessDefEntitiesSql" />
+	</select>
+
+
+	<select id="getFlowProcessDefEntityCountByQueryCriteria"
+		parameterType="com.glaf.bpmn.query.FlowProcessDefQuery" resultType="int">
+		select count(*)
+		<include refid="selectFlowProcessDefEntitiesSql" />
+	</select>
+
+
+	<select id="getFlowProcessDefEntities" parameterType="map"
+		resultMap="flowProcessDefEntityResultMap">
+		select
+		E.id,E.main_id,E.fileid,E.name,E.content,E.actor,E.ctime,E.version,E.issave,E.intflag
+		<include refid="selectFlowProcessDefEntitiesSql" />
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getFlowProcessDefEntitiesByQueryCriteria"
+		parameterType="com.glaf.bpmn.query.FlowProcessDefQuery" resultMap="flowProcessDefEntityResultMap">
+		select
+		E.id,E.main_id,E.fileid,E.name,E.content,E.actor,E.ctime,E.version,E.issave,E.intflag
+		<include refid="selectFlowProcessDefEntitiesSql" />
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectFlowProcessDefEntitiesSql">
+
+		from flow_process_d E
+
+		<where>
+
+			1 = 1
+
+			<if test="mainId != null and MainId != '' ">
+				and E.main_id = #{mainId}
+			</if>
+
+			<if test="mainIds != null and mainIds.size != 0">
+				and E.main_id IN
+				<foreach item="x_mainId" index="index" collection="mainIds"
+					open="(" separator="," close=")">
+					#{x_mainId}
+				</foreach>
+			</if>
+
+			<if test="fileid != null and fileid != '' ">
+				and E.fileid = #{fileid}
+			</if>
+
+			<if test="fileidLike != null and fileidLike != '' ">
+				and E.fileid like #{fileidLike}
+			</if>
+
+			<if test="fileids != null and fileids.size != 0">
+				and E.fileid IN
+				<foreach item="x_fileid" index="index" collection="fileids"
+					open="(" separator="," close=")">
+					#{x_fileid}
+				</foreach>
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.name like #{nameLike}
+			</if>
+
+			<if test="contentLike != null and contentLike != '' ">
+				and E.content like #{contentLike}
+			</if>
+
+			<if test="actorId != null and actorId != '' ">
+				and E.actor = #{actorId}
+			</if>
+
+			<if test="actorLike != null and actorLike != '' ">
+				and E.actor like #{actorLike}
+			</if>
+
+			<if test="actorIds != null and actorIds.size != 0">
+				and E.actor IN
+				<foreach item="x_actor" index="index" collection="actorIds"
+					open="(" separator="," close=")">
+					#{x_actor}
+				</foreach>
+			</if>
+
+			<if test="ctimeGreaterThanOrEqual != null">
+				and E.ctime &gt;= #{ctimeGreaterThanOrEqual}
+			</if>
+
+			<if test="ctimeLessThanOrEqual != null">
+				and E.ctime &lt;= #{ctimeLessThanOrEqual}
+			</if>
+
+
+			<if test="version != null and version != '' ">
+				and E.version = #{version}
+			</if>
+
+			<if test="versionLike != null and versionLike != '' ">
+				and E.version like #{versionLike}
+			</if>
+
+			<if test="issave != null">
+				and E.issave = #{issave}
+			</if>
+
+			<if test="issaveGreaterThanOrEqual != null">
+				and E.issave &gt;= #{issaveGreaterThanOrEqual}
+			</if>
+
+			<if test="issaveLessThanOrEqual != null">
+				and E.issave &lt;= #{issaveLessThanOrEqual}
+			</if>
+
+			<if test="intflag != null">
+				and E.intflag = #{intflag}
+			</if>
+
+			<if test="intflagGreaterThanOrEqual != null">
+				and E.intflag &gt;= #{intflagGreaterThanOrEqual}
+			</if>
+
+			<if test="intflagLessThanOrEqual != null">
+				and E.intflag &lt;= #{intflagLessThanOrEqual}
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

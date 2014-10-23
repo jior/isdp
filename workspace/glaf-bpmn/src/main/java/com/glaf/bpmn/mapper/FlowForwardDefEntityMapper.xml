@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.bpmn.mapper.FlowForwardDefEntityMapper">
+
+	<resultMap id="flowForwardDefEntityResultMap" type="com.glaf.bpmn.domain.FlowForwardDefEntity">
+		<id property="id" column="id" jdbcType="VARCHAR" />
+		<result property="processId" column="process_id" jdbcType="VARCHAR" />
+		<result property="activId" column="activ_id" jdbcType="VARCHAR" />
+		<result property="activPre" column="activ_pre" jdbcType="VARCHAR" />
+		<result property="activNext" column="activ_next" jdbcType="VARCHAR" />
+		<result property="issave" column="issave" jdbcType="INTEGER" />
+		<result property="isdel" column="isdel" jdbcType="INTEGER" />
+		<result property="listno" column="listno" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertFlowForwardDefEntity" parameterType="com.glaf.bpmn.domain.FlowForwardDefEntity">
+		insert into flow_forward_d
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id
+			<if test="processId != null">
+				,process_id
+			</if>
+			<if test="activId != null">
+				,activ_id
+			</if>
+			<if test="activPre != null">
+				,activ_pre
+			</if>
+			<if test="activNext != null">
+				,activ_next
+			</if>
+			<if test="issave != null">
+				,issave
+			</if>
+			<if test="isdel != null">
+				,isdel
+			</if>
+			<if test="listno != null">
+				,listno
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="processId != null">
+				,#{processId, jdbcType=VARCHAR}
+			</if>
+			<if test="activId != null">
+				,#{activId, jdbcType=VARCHAR}
+			</if>
+			<if test="activPre != null">
+				,#{activPre, jdbcType=VARCHAR}
+			</if>
+			<if test="activNext != null">
+				,#{activNext, jdbcType=VARCHAR}
+			</if>
+			<if test="issave != null">
+				,#{issave, jdbcType=INTEGER}
+			</if>
+			<if test="isdel != null">
+				,#{isdel, jdbcType=INTEGER}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateFlowForwardDefEntity" parameterType="com.glaf.bpmn.domain.FlowForwardDefEntity">
+		update
+		flow_forward_d
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="processId != null">
+				process_id = #{processId, jdbcType=VARCHAR},
+			</if>
+			<if test="activId != null">
+				activ_id = #{activId, jdbcType=VARCHAR},
+			</if>
+			<if test="activPre != null">
+				activ_pre = #{activPre, jdbcType=VARCHAR},
+			</if>
+			<if test="activNext != null">
+				activ_next = #{activNext, jdbcType=VARCHAR},
+			</if>
+			<if test="issave != null">
+				issave = #{issave, jdbcType=INTEGER},
+			</if>
+			<if test="isdel != null">
+				isdel = #{isdel, jdbcType=INTEGER},
+			</if>
+			<if test="listno != null">
+				listno = #{listno, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		id = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteFlowForwardDefEntityById" parameterType="string">
+		delete from flow_forward_d
+		where id = #{id}
+	</delete>
+
+
+	<delete id="deleteFlowForwardDefEntities" parameterType="com.glaf.bpmn.query.FlowForwardDefQuery">
+		delete from flow_forward_d
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds"
+			open="(" separator="," close=")">
+			#{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getFlowForwardDefEntityById" parameterType="string"
+		resultMap="flowForwardDefEntityResultMap">
+		select * from flow_forward_d where id = #{id}
+	</select>
+
+
+	<select id="getFlowForwardDefEntitiesByProcessDefId"
+		parameterType="string" resultMap="flowForwardDefEntityResultMap">
+		select * from flow_forward_d where
+		process_id = #{processDefId}
+	</select>
+
+
+	<select id="getProcessedFlowForwardDefEntitiesByProcessId"
+		parameterType="map" resultMap="flowForwardDefEntityResultMap">
+
+		SELECT *
+		FROM flow_forward_d
+		WHERE (process_id = #{processId}) AND EXISTS
+		(SELECT *
+		FROM flow_forward
+		WHERE process_id = #{processInstanceId} AND
+		activ_d_id = flow_forward_d.activ_pre AND
+		activ_d_next = flow_forward_d.activ_id AND sendtype = 1)
+
+	</select>
+
+
+	<select id="getFlowForwardDefEntityCount" parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectFlowForwardDefEntitiesSql" />
+	</select>
+
+
+	<select id="getFlowForwardDefEntityCountByQueryCriteria"
+		parameterType="com.glaf.bpmn.query.FlowForwardDefQuery" resultType="int">
+		select count(*)
+		<include refid="selectFlowForwardDefEntitiesSql" />
+	</select>
+
+
+	<select id="getFlowForwardDefEntities" parameterType="map"
+		resultMap="flowForwardDefEntityResultMap">
+		select E.*
+		<include refid="selectFlowForwardDefEntitiesSql" />
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getFlowForwardDefEntitiesByQueryCriteria"
+		parameterType="com.glaf.bpmn.query.FlowForwardDefQuery" resultMap="flowForwardDefEntityResultMap">
+		select E.*
+		<include refid="selectFlowForwardDefEntitiesSql" />
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectFlowForwardDefEntitiesSql">
+
+		from flow_forward_d E
+
+		<where>
+
+			1 = 1
+
+
+			<if test="processId != null and processId != '' ">
+				and E.process_id = #{processId}
+			</if>
+
+			<if test="processIdLike != null and processIdLike != '' ">
+				and E.process_id like #{processIdLike}
+			</if>
+
+			<if test="processIds != null and processIds.size != 0">
+				and E.process_id IN
+				<foreach item="x_processId" index="index" collection="processIds"
+					open="(" separator="," close=")">
+					#{x_processId}
+				</foreach>
+			</if>
+
+
+			<if test="activId != null and activId != '' ">
+				and E.activ_id = #{activId}
+			</if>
+
+			<if test="activIdLike != null and activIdLike != '' ">
+				and E.activ_id like #{activIdLike}
+			</if>
+
+			<if test="activIds != null and activIds.size != 0">
+				and E.activ_id IN
+				<foreach item="x_activId" index="index" collection="activIds"
+					open="(" separator="," close=")">
+					#{x_activId}
+				</foreach>
+			</if>
+
+
+			<if test="activPre != null and activPre != '' ">
+				and E.activ_pre = #{activPre}
+			</if>
+
+			<if test="activPreLike != null and activPreLike != '' ">
+				and E.activ_pre like #{activPreLike}
+			</if>
+
+			<if test="activPres != null and activPres.size != 0">
+				and E.activ_pre IN
+				<foreach item="x_activPre" index="index" collection="activPres"
+					open="(" separator="," close=")">
+					#{x_activPre}
+				</foreach>
+			</if>
+
+
+			<if test="activNext != null and activNext != '' ">
+				and E.activ_next = #{activNext}
+			</if>
+
+			<if test="activNextLike != null and activNextLike != '' ">
+				and E.activ_next like #{activNextLike}
+			</if>
+
+			<if test="activNexts != null and activNexts.size != 0">
+				and E.activ_next IN
+				<foreach item="x_activNext" index="index" collection="activNexts"
+					open="(" separator="," close=")">
+					#{x_activNext}
+				</foreach>
+			</if>
+
+
+			<if test="issave != null">
+				and E.issave = #{issave}
+			</if>
+
+			<if test="issaveGreaterThanOrEqual != null">
+				and E.issave &gt;= #{issaveGreaterThanOrEqual}
+			</if>
+
+			<if test="issaveLessThanOrEqual != null">
+				and E.issave &lt;= #{issaveLessThanOrEqual}
+			</if>
+
+			<if test="issaves != null and issaves.size != 0">
+				and E.issave IN
+				<foreach item="x_issave" index="index" collection="issaves"
+					open="(" separator="," close=")">
+					#{x_issave}
+				</foreach>
+			</if>
+
+
+			<if test="isdel != null">
+				and E.isdel = #{isdel}
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

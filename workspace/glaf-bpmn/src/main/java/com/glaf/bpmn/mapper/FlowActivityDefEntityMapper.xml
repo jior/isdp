@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.bpmn.mapper.FlowActivityDefEntityMapper">
+
+	<resultMap id="flowActivityDefEntityResultMap" type="com.glaf.bpmn.domain.FlowActivityDefEntity">
+		<id property="id" column="id" jdbcType="VARCHAR" />
+		<result property="processId" column="process_id" jdbcType="VARCHAR" />
+		<result property="typeofact" column="typeofact" jdbcType="VARCHAR" />
+		<result property="name" column="name" jdbcType="VARCHAR" />
+		<result property="content" column="content" jdbcType="VARCHAR" />
+		<result property="strfuntion" column="strfuntion" jdbcType="VARCHAR" />
+		<result property="netroleid" column="netroleid" jdbcType="VARCHAR" />
+		<result property="listno" column="listno" jdbcType="INTEGER" />
+		<result property="timelimit" column="timelimit" jdbcType="DOUBLE" />
+		<result property="issave" column="issave" jdbcType="INTEGER" />
+		<result property="isdel" column="isdel" jdbcType="INTEGER" />
+		<result property="intselectuser" column="intselectuser"
+			jdbcType="INTEGER" />
+		<result property="intusedomain" column="intusedomain" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertFlowActivityDefEntity" parameterType="com.glaf.bpmn.domain.FlowActivityDefEntity">
+		insert into flow_activ_d
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id
+			<if test="processId != null">
+				,process_id
+			</if>
+			<if test="typeofact != null">
+				,typeofact
+			</if>
+			<if test="name != null">
+				,name
+			</if>
+			<if test="content != null">
+				,content
+			</if>
+			<if test="strfuntion != null">
+				,strfuntion
+			</if>
+			<if test="netroleid != null">
+				,netroleid
+			</if>
+			<if test="listno != null">
+				,listno
+			</if>
+			<if test="timelimit != null">
+				,timelimit
+			</if>
+			<if test="issave != null">
+				,issave
+			</if>
+			<if test="isdel != null">
+				,isdel
+			</if>
+			<if test="intselectuser != null">
+				,intselectuser
+			</if>
+			<if test="intusedomain != null">
+				,intusedomain
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="processId != null">
+				,#{processId, jdbcType=VARCHAR}
+			</if>
+			<if test="typeofact != null">
+				,#{typeofact, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="strfuntion != null">
+				,#{strfuntion, jdbcType=VARCHAR}
+			</if>
+			<if test="netroleid != null">
+				,#{netroleid, jdbcType=VARCHAR}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+			<if test="timelimit != null">
+				,#{timelimit, jdbcType=DOUBLE}
+			</if>
+			<if test="issave != null">
+				,#{issave, jdbcType=INTEGER}
+			</if>
+			<if test="isdel != null">
+				,#{isdel, jdbcType=INTEGER}
+			</if>
+			<if test="intselectuser != null">
+				,#{intselectuser, jdbcType=INTEGER}
+			</if>
+			<if test="intusedomain != null">
+				,#{intusedomain, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateFlowActivityDefEntity" parameterType="com.glaf.bpmn.domain.FlowActivityDefEntity">
+		update
+		flow_activ_d
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="processId != null">
+				process_id = #{processId, jdbcType=VARCHAR},
+			</if>
+			<if test="typeofact != null">
+				typeofact = #{typeofact, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="strfuntion != null">
+				strfuntion = #{strfuntion, jdbcType=VARCHAR},
+			</if>
+			<if test="netroleid != null">
+				netroleid = #{netroleid, jdbcType=VARCHAR},
+			</if>
+			<if test="listno != null">
+				listno = #{listno, jdbcType=INTEGER},
+			</if>
+			<if test="timelimit != null">
+				timelimit = #{timelimit, jdbcType=DOUBLE},
+			</if>
+			<if test="issave != null">
+				issave = #{issave, jdbcType=INTEGER},
+			</if>
+			<if test="isdel != null">
+				isdel = #{isdel, jdbcType=INTEGER},
+			</if>
+			<if test="intselectuser != null">
+				intselectuser = #{intselectuser, jdbcType=INTEGER},
+			</if>
+			<if test="intusedomain != null">
+				intusedomain = #{intusedomain, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		id = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteFlowActivityDefEntityById" parameterType="string">
+		delete from flow_activ_d
+		where id = #{id}
+	</delete>
+
+
+	<delete id="deleteFlowActivityDefEntities" parameterType="com.glaf.bpmn.query.FlowActivityDefQuery">
+		delete from flow_activ_d
+		where ( id IN
+		<foreach item="x_rowId" index="index" collection="rowIds"
+			open="(" separator="," close=")">
+			#{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getFlowActivityDefEntityById" parameterType="string"
+		resultMap="flowActivityDefEntityResultMap">
+		select * from flow_activ_d where id = #{id}
+	</select>
+
+
+	<select id="getFlowActivityDefEntitiesByProcessDefId"
+		parameterType="string" resultMap="flowActivityDefEntityResultMap">
+		select * from flow_activ_d where
+		process_id = #{processDefId}
+	</select>
+
+
+	<select id="getFlowActivityDefEntitiesByMainId" parameterType="string"
+		resultMap="flowActivityDefEntityResultMap">
+
+		select * from flow_activ_d where
+		process_id in ( select id from flow_process_d where main_id=#{mainId} )
+		and typeofact=0
+
+	</select>
+
+
+	<select id="getCurrentActiveFlowActivityDefEntitiesByProcessId"
+		parameterType="string" resultMap="flowActivityDefEntityResultMap">
+
+		SELECT act.*
+		FROM flow_activ_d act
+		WHERE EXISTS
+		(SELECT *
+		FROM flow_station st
+		WHERE st.process_id = #{processId} AND st.activ_d_id = act.id)
+
+	</select>
+
+
+	<select id="getFlowActivityDefEntityCount" parameterType="map"
+		resultType="int">
+		select count(*)
+		<include refid="selectFlowActivityDefEntitiesSql" />
+	</select>
+
+
+	<select id="getFlowActivityDefEntityCountByQueryCriteria"
+		parameterType="com.glaf.bpmn.query.FlowActivityDefQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFlowActivityDefEntitiesSql" />
+	</select>
+
+
+	<select id="getFlowActivityDefEntities" parameterType="map"
+		resultMap="flowActivityDefEntityResultMap">
+		select E.*
+		<include refid="selectFlowActivityDefEntitiesSql" />
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getFlowActivityDefEntitiesByQueryCriteria"
+		parameterType="com.glaf.bpmn.query.FlowActivityDefQuery"
+		resultMap="flowActivityDefEntityResultMap">
+		select E.*
+		<include refid="selectFlowActivityDefEntitiesSql" />
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+
+	<sql id="selectFlowActivityDefEntitiesSql">
+
+		from flow_activ_d E
+
+		<where>
+
+			1 = 1
+
+			<if test="processId != null and processId != '' ">
+				and E.process_id = #{processId}
+			</if>
+
+			<if test="processIdLike != null and processIdLike != '' ">
+				and E.process_id like #{processIdLike}
+			</if>
+
+			<if test="processIds != null and processIds.size != 0">
+				and E.process_id IN
+				<foreach item="x_processId" index="index" collection="processIds"
+					open="(" separator="," close=")">
+					#{x_processId}
+				</foreach>
+			</if>
+
+			<if test="typeofact != null and typeofact != '' ">
+				and E.typeofact = #{typeofact}
+			</if>
+
+			<if test="typeofactLike != null and typeofactLike != '' ">
+				and E.typeofact like #{typeofactLike}
+			</if>
+
+			<if test="typeofacts != null and typeofacts.size != 0">
+				and E.typeofact IN
+				<foreach item="x_typeofact" index="index" collection="typeofacts"
+					open="(" separator="," close=")">
+					#{x_typeofact}
+				</foreach>
+			</if>
+
+
+			<if test="name != null and name != '' ">
+				and E.name = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.name like #{nameLike}
+			</if>
+
+			<if test="names != null and names.size != 0">
+				and E.name IN
+				<foreach item="x_name" index="index" collection="names"
+					open="(" separator="," close=")">
+					#{x_name}
+				</foreach>
+			</if>
+
+			<if test="contentLike != null and contentLike != '' ">
+				and E.content like #{contentLike}
+			</if>
+
+			<if test="strfuntion != null and strfuntion != '' ">
+				and E.strfuntion = #{strfuntion}
+			</if>
+
+			<if test="netroleid != null and netroleid != '' ">
+				and E.netroleid = #{netroleid}
+			</if>
+
+			<if test="netroleidLike != null and netroleidLike != '' ">
+				and E.netroleid like #{netroleidLike}
+			</if>
+
+			<if test="netroleids != null and netroleids.size != 0">
+				and E.netroleid IN
+				<foreach item="x_netroleid" index="index" collection="netroleids"
+					open="(" separator="," close=")">
+					#{x_netroleid}
+				</foreach>
+			</if>
+
+
+			<if test="timelimitGreaterThanOrEqual != null">
+				and E.timelimit &gt;= #{timelimitGreaterThanOrEqual}
+			</if>
+
+			<if test="timelimitLessThanOrEqual != null">
+				and E.timelimit &lt;= #{timelimitLessThanOrEqual}
+			</if>
+
+
+			<if test="issave != null">
+				and E.issave = #{issave}
+			</if>
+
+			<if test="issaveGreaterThanOrEqual != null">
+				and E.issave &gt;= #{issaveGreaterThanOrEqual}
+			</if>
+
+			<if test="issaveLessThanOrEqual != null">
+				and E.issave &lt;= #{issaveLessThanOrEqual}
+			</if>
+
+			<if test="issaves != null and issaves.size != 0">
+				and E.issave IN
+				<foreach item="x_issave" index="index" collection="issaves"
+					open="(" separator="," close=")">
+					#{x_issave}
+				</foreach>
+			</if>
+
+
+			<if test="isdel != null">
+				and E.isdel = #{isdel}
+			</if>
+
+			<if test="isdelGreaterThanOrEqual != null">
+				and E.isdel &gt;= #{isdelGreaterThanOrEqual}
+			</if>
+
+			<if test="isdelLessThanOrEqual != null">
+				and E.isdel &lt;= #{isdelLessThanOrEqual}
+			</if>
+
+			<if test="isdels != null and isdels.size != 0">
+				and E.isdel IN
+				<foreach item="x_isdel" index="index" collection="isdels"
+					open="(" separator="," close=")">
+					#{x_isdel}
+				</foreach>
+			</if>
+
+
+			<if test="intselectuser != null">
+				and E.intselectuser = #{intselectuser}
+			</if>
+
+			<if test="intselectuserGreaterThanOrEqual != null">
+				and E.intselectuser &gt;=
+				#{intselectuserGreaterThanOrEqual}
+			</if>
+
+			<if test="intselectuserLessThanOrEqual != null">
+				and E.intselectuser &lt;= #{intselectuserLessThanOrEqual}
+			</if>
+
+			<if test="intselectusers != null and intselectusers.size != 0">
+				and E.intselectuser IN
+				<foreach item="x_intselectuser" index="index" collection="intselectusers"
+					open="(" separator="," close=")">
+					#{x_intselectuser}
+				</foreach>
+			</if>
+
+
+			<if test="intusedomain != null">
+				and E.intusedomain = #{intusedomain}
+			</if>
+
+			<if test="intusedomainGreaterThanOrEqual != null">
+				and E.intusedomain &gt;=
+				#{intusedomainGreaterThanOrEqual}
+			</if>
+
+			<if test="intusedomainLessThanOrEqual != null">
+				and E.intusedomain &lt;= #{intusedomainLessThanOrEqual}
+			</if>
+
+			<if test="intusedomains != null and intusedomains.size != 0">
+				and E.intusedomain IN
+				<foreach item="x_intusedomain" index="index" collection="intusedomains"
+					open="(" separator="," close=")">
+					#{x_intusedomain}
+				</foreach>
+			</if>
+
+
+		</where>
+	</sql>
+
+</mapper>
