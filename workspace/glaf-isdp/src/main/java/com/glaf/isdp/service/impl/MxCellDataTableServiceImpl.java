@@ -14,10 +14,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.glaf.base.modules.sys.model.FieldInterface;
+import com.glaf.base.modules.sys.service.IFieldInterfaceService;
 import com.glaf.core.domain.ColumnDefinition;
 import com.glaf.core.dao.EntityDAO;
 import com.glaf.core.id.IdGenerator;
@@ -26,12 +27,11 @@ import com.glaf.core.util.DateUtils;
 import com.glaf.core.util.ParamUtils;
 import com.glaf.isdp.domain.CellDataField;
 import com.glaf.isdp.domain.CellDataTable;
-import com.glaf.isdp.domain.FieldInterface;
 import com.glaf.isdp.mapper.CellDataTableMapper;
 import com.glaf.isdp.query.CellDataTableQuery;
 import com.glaf.isdp.service.ICellDataFieldService;
 import com.glaf.isdp.service.ICellDataTableService;
-import com.glaf.isdp.service.IFieldInterfaceService;
+ 
 
 @Service("cellDataTableService")
 @Transactional(readOnly = true)

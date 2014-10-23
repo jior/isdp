@@ -15,10 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.glaf.core.dao.EntityDAO;
 import com.glaf.core.id.IdGenerator;
+import com.glaf.bpmn.domain.*;
+import com.glaf.bpmn.service.*;
+
 import com.glaf.isdp.domain.CellMyTaskMain;
-import com.glaf.isdp.domain.FlowActivity;
-import com.glaf.isdp.domain.FlowActivityDef;
-import com.glaf.isdp.domain.FlowProcess;
 import com.glaf.isdp.domain.MyCellTask;
 import com.glaf.isdp.domain.NetRole;
 import com.glaf.isdp.domain.ProjectTreeAllwbs;
@@ -27,9 +27,6 @@ import com.glaf.isdp.mapper.ProjectTreeAllwbsMapper;
 import com.glaf.isdp.query.CellMyTaskMainQuery;
 import com.glaf.isdp.query.ProjectTreeAllwbsQuery;
 import com.glaf.isdp.service.ICellMyTaskMainService;
-import com.glaf.isdp.service.IFlowActivityDefService;
-import com.glaf.isdp.service.IFlowActivityService;
-import com.glaf.isdp.service.IFlowProcessService;
 import com.glaf.isdp.service.IMyCellTaskService;
 import com.glaf.isdp.service.IMyCellTaskSubService;
 import com.glaf.isdp.service.INetRoleService;
@@ -57,11 +54,11 @@ public class MxProjectTreeAllwbsServiceImpl implements
 
 	protected ICellMyTaskMainService cellTaskMainService;
 
-	protected IFlowActivityDefService flowActivityDefService;
+	protected BpmnActivityDefService flowActivityDefService;
 
-	protected IFlowActivityService flowActivityService;
+	protected BpmnActivityService flowActivityService;
 
-	protected IFlowProcessService flowProcessService;
+	protected BpmnProcessService flowProcessService;
 
 	protected INetRoleService netRoleService;
 
@@ -188,26 +185,26 @@ public class MxProjectTreeAllwbsServiceImpl implements
 
 				projectTreeAllwbsMapper.insertProjectTreeAllwbs(m);
 
-				Map<String, FlowActivity> activityMap = new HashMap<String, FlowActivity>();
-				List<FlowProcess> processes = flowProcessService
+				Map<String, FlowActivityEntity> activityMap = new HashMap<String, FlowActivityEntity>();
+				List<FlowProcessEntity> processes = flowProcessService
 						.getFlowProcesses(treepinfoIndexId, t.getId(), 2);
 				if (processes != null && !processes.isEmpty()) {
-					for (FlowProcess proc : processes) {
-						List<FlowActivity> activities = flowActivityService
+					for (FlowProcessEntity proc : processes) {
+						List<FlowActivityEntity> activities = flowActivityService
 								.getFlowActivitiesByProcessInstanceId(proc
 										.getId());
 						if (activities != null && !activities.isEmpty()) {
-							for (FlowActivity act : activities) {
+							for (FlowActivityEntity act : activities) {
 								activityMap.put(act.getActivDefId(), act);
 							}
 						}
 					}
 				}
 
-				List<FlowActivityDef> actDefs = flowActivityDefService
-						.getFlowActivityDefsByMainId(t.getId());
+				List<FlowActivityDefEntity> actDefs = flowActivityDefService
+						.getFlowActivityEntitiesByMainId(t.getId());
 				if (actDefs != null && !actDefs.isEmpty()) {
-					for (FlowActivityDef def : actDefs) {
+					for (FlowActivityDefEntity def : actDefs) {
 						ProjectTreeAllwbs mm = new ProjectTreeAllwbs();
 						mm.setCellTaskIndexId(treepinfoIndexId);
 						mm.setIndexId(idGenerator.nextId().intValue());
@@ -220,11 +217,11 @@ public class MxProjectTreeAllwbsServiceImpl implements
 						projectTreeAllwbsMapper.insertProjectTreeAllwbs(mm);
 
 						if (StringUtils.isNotEmpty(def.getStrfuntion())) {
-							List<FlowActivityDef> subActDefs = flowActivityDefService
-									.getFlowActivityDefsByMainId(def
+							List<FlowActivityDefEntity> subActDefs = flowActivityDefService
+									.getFlowActivityEntitiesByMainId(def
 											.getStrfuntion());
 							if (subActDefs != null && !subActDefs.isEmpty()) {
-								for (FlowActivityDef f : subActDefs) {
+								for (FlowActivityDefEntity f : subActDefs) {
 									ProjectTreeAllwbs mmm = new ProjectTreeAllwbs();
 									mmm.setCellTaskIndexId(treepinfoIndexId);
 									mmm.setIndexId(idGenerator.nextId()
@@ -247,7 +244,7 @@ public class MxProjectTreeAllwbsServiceImpl implements
 										}
 									}
 
-									FlowActivity act = activityMap.get(f
+									FlowActivityEntity act = activityMap.get(f
 											.getId());
 									if (act != null) {
 										mmm.setStarttime(act.getCtimeStart());
@@ -326,7 +323,7 @@ public class MxProjectTreeAllwbsServiceImpl implements
 	}
 
 	@javax.annotation.Resource
-	public void setFlowProcessService(IFlowProcessService flowProcessService) {
+	public void setFlowProcessService(BpmnProcessService flowProcessService) {
 		this.flowProcessService = flowProcessService;
 	}
 
@@ -343,12 +340,12 @@ public class MxProjectTreeAllwbsServiceImpl implements
 
 	@javax.annotation.Resource
 	public void setFlowActivityDefService(
-			IFlowActivityDefService flowActivityDefService) {
+			BpmnActivityDefService flowActivityDefService) {
 		this.flowActivityDefService = flowActivityDefService;
 	}
 
 	@javax.annotation.Resource
-	public void setFlowActivityService(IFlowActivityService flowActivityService) {
+	public void setFlowActivityService(BpmnActivityService flowActivityService) {
 		this.flowActivityService = flowActivityService;
 	}
 

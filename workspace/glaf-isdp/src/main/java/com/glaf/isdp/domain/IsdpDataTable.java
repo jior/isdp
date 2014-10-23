@@ -2,6 +2,8 @@ package com.glaf.isdp.domain;
 
 import java.util.Collection;
 
+import com.glaf.base.modules.sys.model.FieldInterface;
+
 public class IsdpDataTable {
 
 	/**

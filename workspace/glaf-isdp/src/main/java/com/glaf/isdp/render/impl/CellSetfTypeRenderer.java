@@ -6,9 +6,10 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.glaf.base.modules.sys.model.FieldInterface;
+import com.glaf.base.modules.sys.query.FieldInterfaceQuery;
 import com.glaf.core.util.ParamUtils;
-import com.glaf.isdp.domain.FieldInterface;
-import com.glaf.isdp.query.FieldInterfaceQuery;
+ 
 import com.glaf.isdp.render.RenderContext;
 import com.glaf.isdp.render.Renderer;
 
@@ -49,11 +50,11 @@ public class CellSetfTypeRenderer implements Renderer {
 				if (f.getListweigth() < 60) {
 					f.setListweigth(60);
 				}
-				if (f.getDataItems() != null && !f.getDataItems().isEmpty()) {
-					ctx.setAttribute(f.getHintID() + "_field", f);
-					ctx.setAttribute(f.getHintID() + "_dataitems",
-							f.getDataItems());
-				}
+				//if (f.getDataItems() != null && !f.getDataItems().isEmpty()) {
+				//	ctx.setAttribute(f.getHintID() + "_field", f);
+				//	ctx.setAttribute(f.getHintID() + "_dataitems",
+				//			f.getDataItems());
+				//}
 			}
 			logger.debug("fields size:" + fields.size());
 			ctx.setAttribute("fields", fields);

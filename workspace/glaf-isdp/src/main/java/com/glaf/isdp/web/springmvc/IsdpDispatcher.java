@@ -20,11 +20,13 @@ import com.glaf.base.modules.sys.service.ICellTreedotDotService;
 import com.glaf.base.modules.sys.service.ICellTreedotPerService;
 import com.glaf.base.modules.sys.service.ICellTreedotService;
 import com.glaf.base.modules.sys.service.ICellTreedotViewService;
+import com.glaf.base.modules.sys.service.IFieldInterfaceService;
 import com.glaf.base.modules.sys.service.IFiledotService;
 import com.glaf.base.modules.sys.service.ITreedotService;
 import com.glaf.core.config.Configuration;
 import com.glaf.core.util.RequestUtils;
 import com.glaf.core.util.Tools;
+import com.glaf.bpmn.service.*;
 import com.glaf.isdp.config.IsdpBaseConfiguration;
 import com.glaf.isdp.domain.CellMenu;
 import com.glaf.isdp.domain.IsdpTreepname;
@@ -104,21 +106,19 @@ public class IsdpDispatcher {
 
 	protected volatile IsdpDotuseService isdpDotuseService;
 
-	protected volatile IsdpFileattService isdpFileattService;
+	protected volatile BpmnActivityDefService bpmnActivityDefService;
 
-	protected volatile IFlowActivityDefService flowActivityDefService;
+	protected volatile BpmnActivityService bpmnActivityService;
 
-	protected volatile IFlowActivityService flowActivityService;
+	protected volatile BpmnForwardDefService bpmnForwardDefService;
 
-	protected volatile IFlowForwardDefService flowForwardDefService;
+	protected volatile BpmnForwardService bpmnForwardService;
 
-	protected volatile IFlowForwardService flowForwardService;
+	protected volatile BpmnProcessDefService bpmnProcessDefService;
 
-	protected volatile IFlowProcessDefService flowProcessDefService;
+	protected volatile BpmnProcessService bpmnProcessService;
 
-	protected volatile IFlowProcessService flowProcessService;
-
-	protected volatile IFlowStationService flowStationService;
+	protected volatile BpmnStationService bpmnStationService;
 
 	protected volatile IHintListService hintListService;
 
@@ -133,10 +133,6 @@ public class IsdpDispatcher {
 	protected volatile INetDotRoleService netDotRoleService;
 
 	protected volatile IUserInfoService userInfoService;
-
-	protected volatile IsdpPfileAttService isdpPfileAttService;
-
-	protected volatile IsdpPfileService isdpPfileService;
 
 	protected volatile IsdpPinfoService isdpPinfoService;
 
@@ -248,15 +244,15 @@ public class IsdpDispatcher {
 
 				// F
 				ctx.setFieldInterfaceService(fieldInterfaceService);
-				ctx.setIsdpFileattService(isdpFileattService);
+
 				ctx.setIFiledotService(filedotService);
-				ctx.setFlowActivityDefService(flowActivityDefService);
-				ctx.setFlowActivityService(flowActivityService);
-				ctx.setFlowForwardDefService(flowForwardDefService);
-				ctx.setFlowForwardService(flowForwardService);
-				ctx.setFlowProcessDefService(flowProcessDefService);
-				ctx.setFlowProcessService(flowProcessService);
-				ctx.setFlowStationService(flowStationService);
+				ctx.setBpmnActivityDefService(bpmnActivityDefService);
+				ctx.setBpmnActivityService(bpmnActivityService);
+				ctx.setBpmnForwardDefService(bpmnForwardDefService);
+				ctx.setBpmnForwardService(bpmnForwardService);
+				ctx.setBpmnProcessDefService(bpmnProcessDefService);
+				ctx.setBpmnProcessService(bpmnProcessService);
+				ctx.setBpmnStationService(bpmnStationService);
 
 				// H
 				ctx.setHintListService(hintListService);
@@ -279,8 +275,7 @@ public class IsdpDispatcher {
 				ctx.setNetRoleUseService(netRoleUseService);
 
 				// P
-				ctx.setIsdpPfileAttService(isdpPfileAttService);
-				ctx.setIsdpPfileService(isdpPfileService);
+
 				ctx.setIsdpPinfoService(isdpPinfoService);
 				ctx.setProjectCellAndFileRefService(projectCellAndFileRefService);
 				ctx.setProjectCellAndFileService(projectCellAndFileService);
@@ -569,51 +564,46 @@ public class IsdpDispatcher {
 	}
 
 	@javax.annotation.Resource
-	public void setIsdpFileattService(IsdpFileattService isdpFileattService) {
-		this.isdpFileattService = isdpFileattService;
-	}
-
-	@javax.annotation.Resource
 	public void setIFiledotService(IFiledotService filedotService) {
 		this.filedotService = filedotService;
 	}
 
 	@javax.annotation.Resource
-	public void setFlowActivityDefService(
-			IFlowActivityDefService flowActivityDefService) {
-		this.flowActivityDefService = flowActivityDefService;
+	public void setBpmnActivityDefService(
+			BpmnActivityDefService bpmnActivityDefService) {
+		this.bpmnActivityDefService = bpmnActivityDefService;
 	}
 
 	@javax.annotation.Resource
-	public void setFlowActivityService(IFlowActivityService flowActivityService) {
-		this.flowActivityService = flowActivityService;
+	public void setBpmnActivityService(BpmnActivityService bpmnActivityService) {
+		this.bpmnActivityService = bpmnActivityService;
 	}
 
 	@javax.annotation.Resource
-	public void setFlowForwardDefService(
-			IFlowForwardDefService flowForwardDefService) {
-		this.flowForwardDefService = flowForwardDefService;
+	public void setBpmnForwardDefService(
+			BpmnForwardDefService bpmnForwardDefService) {
+		this.bpmnForwardDefService = bpmnForwardDefService;
 	}
 
 	@javax.annotation.Resource
-	public void setFlowForwardService(IFlowForwardService flowForwardService) {
-		this.flowForwardService = flowForwardService;
+	public void setBpmnForwardService(BpmnForwardService bpmnForwardService) {
+		this.bpmnForwardService = bpmnForwardService;
 	}
 
 	@javax.annotation.Resource
-	public void setFlowProcessDefService(
-			IFlowProcessDefService flowProcessDefService) {
-		this.flowProcessDefService = flowProcessDefService;
+	public void setBpmnProcessDefService(
+			BpmnProcessDefService bpmnProcessDefService) {
+		this.bpmnProcessDefService = bpmnProcessDefService;
 	}
 
 	@javax.annotation.Resource
-	public void setFlowProcessService(IFlowProcessService flowProcessService) {
-		this.flowProcessService = flowProcessService;
+	public void setBpmnProcessService(BpmnProcessService bpmnProcessService) {
+		this.bpmnProcessService = bpmnProcessService;
 	}
 
 	@javax.annotation.Resource
-	public void setFlowStationService(IFlowStationService flowStationService) {
-		this.flowStationService = flowStationService;
+	public void setBpmnStationService(BpmnStationService bpmnStationService) {
+		this.bpmnStationService = bpmnStationService;
 	}
 
 	@javax.annotation.Resource
@@ -676,16 +666,6 @@ public class IsdpDispatcher {
 	@javax.annotation.Resource
 	public void setNetRoleUseService(INetRoleUseService netRoleUseService) {
 		this.netRoleUseService = netRoleUseService;
-	}
-
-	@javax.annotation.Resource
-	public void setIsdpPfileAttService(IsdpPfileAttService isdpPfileAttService) {
-		this.isdpPfileAttService = isdpPfileAttService;
-	}
-
-	@javax.annotation.Resource
-	public void setIsdpPfileService(IsdpPfileService isdpPfileService) {
-		this.isdpPfileService = isdpPfileService;
 	}
 
 	@javax.annotation.Resource

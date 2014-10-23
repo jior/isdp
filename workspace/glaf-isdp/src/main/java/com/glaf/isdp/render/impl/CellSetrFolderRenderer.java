@@ -5,7 +5,9 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.glaf.isdp.domain.FieldInterface;
+ 
+
+import com.glaf.base.modules.sys.model.FieldInterface;
 import com.glaf.isdp.render.RenderContext;
 import com.glaf.isdp.render.Renderer;
 

@@ -8,16 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.glaf.base.modules.sys.model.CellTreedot;
+import com.glaf.base.modules.sys.model.FieldInterface;
 import com.glaf.base.modules.sys.service.ICellTreedotService;
+import com.glaf.base.modules.sys.service.IFieldInterfaceService;
 import com.glaf.core.util.RequestUtils;
-import com.glaf.isdp.domain.FieldInterface;
-import com.glaf.isdp.service.IFieldInterfaceService;
 import com.glaf.isdp.util.EncodeUtils;
 
 /**

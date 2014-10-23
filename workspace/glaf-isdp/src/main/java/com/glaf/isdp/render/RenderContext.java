@@ -6,14 +6,16 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.glaf.bpmn.service.*;
+import com.glaf.core.security.LoginContext;
 import com.glaf.base.modules.sys.model.CellTreedot;
 import com.glaf.base.modules.sys.service.ICellTreedotDotService;
 import com.glaf.base.modules.sys.service.ICellTreedotPerService;
 import com.glaf.base.modules.sys.service.ICellTreedotService;
 import com.glaf.base.modules.sys.service.ICellTreedotViewService;
+import com.glaf.base.modules.sys.service.IFieldInterfaceService;
 import com.glaf.base.modules.sys.service.IFiledotService;
 import com.glaf.base.modules.sys.service.ITreedotService;
-import com.glaf.core.security.LoginContext;
 import com.glaf.isdp.service.*;
 
 public class RenderContext {
@@ -86,21 +88,19 @@ public class RenderContext {
 
 	protected IsdpDotuseService isdpDotuseService;
 
-	protected IsdpFileattService isdpFileattService;
+	protected BpmnActivityDefService bpmnActivityDefService;
 
-	protected IFlowActivityDefService flowActivityDefService;
+	protected BpmnActivityService bpmnActivityService;
 
-	protected IFlowActivityService flowActivityService;
+	protected BpmnForwardDefService bpmnForwardDefService;
 
-	protected IFlowForwardDefService flowForwardDefService;
+	protected BpmnForwardService bpmnForwardService;
 
-	protected IFlowForwardService flowForwardService;
+	protected BpmnProcessDefService bpmnProcessDefService;
 
-	protected IFlowProcessDefService flowProcessDefService;
+	protected BpmnProcessService bpmnProcessService;
 
-	protected IFlowProcessService flowProcessService;
-
-	protected IFlowStationService flowStationService;
+	protected BpmnStationService bpmnStationService;
 
 	protected IHintListService hintListService;
 
@@ -115,10 +115,6 @@ public class RenderContext {
 	protected INetDotRoleService netDotRoleService;
 
 	protected IUserInfoService userInfoService;
-
-	protected IsdpPfileAttService isdpPfileAttService;
-
-	protected IsdpPfileService isdpPfileService;
 
 	protected IsdpPinfoService isdpPinfoService;
 
@@ -272,40 +268,36 @@ public class RenderContext {
 		return fieldInterfaceService;
 	}
 
-	public IsdpFileattService getIsdpFileattService() {
-		return isdpFileattService;
-	}
-
 	public IFiledotService getIFiledotService() {
 		return isdpFiledotService;
 	}
 
-	public IFlowActivityDefService getFlowActivityDefService() {
-		return flowActivityDefService;
+	public BpmnActivityDefService getBpmnActivityDefService() {
+		return bpmnActivityDefService;
 	}
 
-	public IFlowActivityService getFlowActivityService() {
-		return flowActivityService;
+	public BpmnActivityService getBpmnActivityService() {
+		return bpmnActivityService;
 	}
 
-	public IFlowForwardDefService getFlowForwardDefService() {
-		return flowForwardDefService;
+	public BpmnForwardDefService getBpmnForwardDefService() {
+		return bpmnForwardDefService;
 	}
 
-	public IFlowForwardService getFlowForwardService() {
-		return flowForwardService;
+	public BpmnForwardService getBpmnForwardService() {
+		return bpmnForwardService;
 	}
 
-	public IFlowProcessDefService getFlowProcessDefService() {
-		return flowProcessDefService;
+	public BpmnProcessDefService getBpmnProcessDefService() {
+		return bpmnProcessDefService;
 	}
 
-	public IFlowProcessService getFlowProcessService() {
-		return flowProcessService;
+	public BpmnProcessService getBpmnProcessService() {
+		return bpmnProcessService;
 	}
 
-	public IFlowStationService getFlowStationService() {
-		return flowStationService;
+	public BpmnStationService getBpmnStationService() {
+		return bpmnStationService;
 	}
 
 	public IHintListService getHintListService() {
@@ -362,14 +354,6 @@ public class RenderContext {
 
 	public Map<String, Object> getParameterMap() {
 		return parameterMap;
-	}
-
-	public IsdpPfileAttService getIsdpPfileAttService() {
-		return isdpPfileAttService;
-	}
-
-	public IsdpPfileService getIsdpPfileService() {
-		return isdpPfileService;
 	}
 
 	public IsdpPinfoService getIsdpPinfoService() {
@@ -519,7 +503,8 @@ public class RenderContext {
 		this.cellDottofileService = cellDottofileService;
 	}
 
-	public void setIsdpCellFillFormService(IsdpCellFillFormService isdpCellFillFormService) {
+	public void setIsdpCellFillFormService(
+			IsdpCellFillFormService isdpCellFillFormService) {
 		this.isdpCellFillFormService = isdpCellFillFormService;
 	}
 
@@ -598,43 +583,39 @@ public class RenderContext {
 		this.fieldInterfaceService = fieldInterfaceService;
 	}
 
-	public void setIsdpFileattService(IsdpFileattService isdpFileattService) {
-		this.isdpFileattService = isdpFileattService;
-	}
-
 	public void setIFiledotService(IFiledotService isdpFiledotService) {
 		this.isdpFiledotService = isdpFiledotService;
 	}
 
-	public void setFlowActivityDefService(
-			IFlowActivityDefService flowActivityDefService) {
-		this.flowActivityDefService = flowActivityDefService;
+	public void setBpmnActivityDefService(
+			BpmnActivityDefService bpmnActivityDefService) {
+		this.bpmnActivityDefService = bpmnActivityDefService;
 	}
 
-	public void setFlowActivityService(IFlowActivityService flowActivityService) {
-		this.flowActivityService = flowActivityService;
+	public void setBpmnActivityService(BpmnActivityService bpmnActivityService) {
+		this.bpmnActivityService = bpmnActivityService;
 	}
 
-	public void setFlowForwardDefService(
-			IFlowForwardDefService flowForwardDefService) {
-		this.flowForwardDefService = flowForwardDefService;
+	public void setBpmnForwardDefService(
+			BpmnForwardDefService bpmnForwardDefService) {
+		this.bpmnForwardDefService = bpmnForwardDefService;
 	}
 
-	public void setFlowForwardService(IFlowForwardService flowForwardService) {
-		this.flowForwardService = flowForwardService;
+	public void setBpmnForwardService(BpmnForwardService bpmnForwardService) {
+		this.bpmnForwardService = bpmnForwardService;
 	}
 
-	public void setFlowProcessDefService(
-			IFlowProcessDefService flowProcessDefService) {
-		this.flowProcessDefService = flowProcessDefService;
+	public void setBpmnProcessDefService(
+			BpmnProcessDefService bpmnProcessDefService) {
+		this.bpmnProcessDefService = bpmnProcessDefService;
 	}
 
-	public void setFlowProcessService(IFlowProcessService flowProcessService) {
-		this.flowProcessService = flowProcessService;
+	public void setBpmnProcessService(BpmnProcessService bpmnProcessService) {
+		this.bpmnProcessService = bpmnProcessService;
 	}
 
-	public void setFlowStationService(IFlowStationService flowStationService) {
-		this.flowStationService = flowStationService;
+	public void setBpmnStationService(BpmnStationService bpmnStationService) {
+		this.bpmnStationService = bpmnStationService;
 	}
 
 	public void setHintListService(IHintListService hintListService) {
@@ -695,14 +676,6 @@ public class RenderContext {
 		this.parameterMap = parameterMap;
 	}
 
-	public void setIsdpPfileAttService(IsdpPfileAttService isdpPfileAttService) {
-		this.isdpPfileAttService = isdpPfileAttService;
-	}
-
-	public void setIsdpPfileService(IsdpPfileService isdpPfileService) {
-		this.isdpPfileService = isdpPfileService;
-	}
-
 	public void setIsdpPinfoService(IsdpPinfoService isdpPinfoService) {
 		this.isdpPinfoService = isdpPinfoService;
 	}
@@ -755,7 +728,8 @@ public class RenderContext {
 		this.treeFolderService = treeFolderService;
 	}
 
-	public void setIsdpTreepInfoService(IsdpTreepInfoService isdpTreepInfoService) {
+	public void setIsdpTreepInfoService(
+			IsdpTreepInfoService isdpTreepInfoService) {
 		this.isdpTreepInfoService = isdpTreepInfoService;
 	}
 
@@ -764,7 +738,8 @@ public class RenderContext {
 		this.treepInfoUserService = treepInfoUserService;
 	}
 
-	public void setIsdpTreepnameService(IsdpTreepnameService isdpTreepnameService) {
+	public void setIsdpTreepnameService(
+			IsdpTreepnameService isdpTreepnameService) {
 		this.isdpTreepnameService = isdpTreepnameService;
 	}
 

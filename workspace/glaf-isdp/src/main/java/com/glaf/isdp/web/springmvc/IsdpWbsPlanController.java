@@ -11,10 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.glaf.base.modules.sys.service.IFieldInterfaceService;
 import com.glaf.base.modules.sys.service.IFiledotService;
 import com.glaf.base.modules.sys.service.ITreedotService;
 import com.glaf.core.util.RequestUtils;
 import com.glaf.core.util.Tools;
+import com.glaf.bpmn.service.*;
 import com.glaf.isdp.domain.IsdpTreepname;
 import com.glaf.isdp.query.TreepnameQuery;
 import com.glaf.isdp.service.*;
@@ -72,21 +74,20 @@ public class IsdpWbsPlanController {
 
 	protected IsdpDotuseService isdpDotuseService;
 
-	protected IsdpFileattService isdpFileattService;
 
-	protected IFlowActivityDefService flowActivityDefService;
+	protected BpmnActivityDefService bpmnActivityDefService;
 
-	protected IFlowActivityService flowActivityService;
+	protected BpmnActivityService bpmnActivityService;
 
-	protected IFlowForwardDefService flowForwardDefService;
+	protected BpmnForwardDefService bpmnForwardDefService;
 
-	protected IFlowForwardService flowForwardService;
+	protected BpmnForwardService bpmnForwardService;
 
-	protected IFlowProcessDefService flowProcessDefService;
+	protected BpmnProcessDefService bpmnProcessDefService;
 
-	protected IFlowProcessService flowProcessService;
+	protected BpmnProcessService bpmnProcessService;
 
-	protected IFlowStationService flowStationService;
+	protected BpmnStationService bpmnStationService;
 
 	protected IHintListService hintListService;
 
@@ -102,9 +103,6 @@ public class IsdpWbsPlanController {
 
 	protected IUserInfoService userInfoService;
 
-	protected IsdpPfileAttService isdpPfileAttService;
-
-	protected IsdpPfileService pfileService;
 
 	protected IsdpPinfoService isdpPinfoService;
 
@@ -258,10 +256,7 @@ public class IsdpWbsPlanController {
 		this.fieldInterfaceService = fieldInterfaceService;
 	}
 
-	@javax.annotation.Resource
-	public void setIsdpFileattService(IsdpFileattService isdpFileattService) {
-		this.isdpFileattService = isdpFileattService;
-	}
+	
 
 	@javax.annotation.Resource
 	public void setIFiledotService(IFiledotService filedotService) {
@@ -269,41 +264,41 @@ public class IsdpWbsPlanController {
 	}
 
 	@javax.annotation.Resource
-	public void setFlowActivityDefService(
-			IFlowActivityDefService flowActivityDefService) {
-		this.flowActivityDefService = flowActivityDefService;
+	public void setBpmnActivityDefService(
+			BpmnActivityDefService bpmnActivityDefService) {
+		this.bpmnActivityDefService = bpmnActivityDefService;
 	}
 
 	@javax.annotation.Resource
-	public void setFlowActivityService(IFlowActivityService flowActivityService) {
-		this.flowActivityService = flowActivityService;
+	public void setBpmnActivityService(BpmnActivityService bpmnActivityService) {
+		this.bpmnActivityService = bpmnActivityService;
 	}
 
 	@javax.annotation.Resource
-	public void setFlowForwardDefService(
-			IFlowForwardDefService flowForwardDefService) {
-		this.flowForwardDefService = flowForwardDefService;
+	public void setBpmnForwardDefService(
+			BpmnForwardDefService bpmnForwardDefService) {
+		this.bpmnForwardDefService = bpmnForwardDefService;
 	}
 
 	@javax.annotation.Resource
-	public void setFlowForwardService(IFlowForwardService flowForwardService) {
-		this.flowForwardService = flowForwardService;
+	public void setBpmnForwardService(BpmnForwardService bpmnForwardService) {
+		this.bpmnForwardService = bpmnForwardService;
 	}
 
 	@javax.annotation.Resource
-	public void setFlowProcessDefService(
-			IFlowProcessDefService flowProcessDefService) {
-		this.flowProcessDefService = flowProcessDefService;
+	public void setBpmnProcessDefService(
+			BpmnProcessDefService bpmnProcessDefService) {
+		this.bpmnProcessDefService = bpmnProcessDefService;
 	}
 
 	@javax.annotation.Resource
-	public void setFlowProcessService(IFlowProcessService flowProcessService) {
-		this.flowProcessService = flowProcessService;
+	public void setBpmnProcessService(BpmnProcessService bpmnProcessService) {
+		this.bpmnProcessService = bpmnProcessService;
 	}
 
 	@javax.annotation.Resource
-	public void setFlowStationService(IFlowStationService flowStationService) {
-		this.flowStationService = flowStationService;
+	public void setBpmnStationService(BpmnStationService bpmnStationService) {
+		this.bpmnStationService = bpmnStationService;
 	}
 
 	@javax.annotation.Resource
@@ -368,15 +363,7 @@ public class IsdpWbsPlanController {
 		this.netRoleUseService = netRoleUseService;
 	}
 
-	@javax.annotation.Resource
-	public void setIsdpPfileAttService(IsdpPfileAttService isdpPfileAttService) {
-		this.isdpPfileAttService = isdpPfileAttService;
-	}
 
-	@javax.annotation.Resource
-	public void setIsdpPfileService(IsdpPfileService pfileService) {
-		this.pfileService = pfileService;
-	}
 
 	@javax.annotation.Resource
 	public void setIsdpPinfoService(IsdpPinfoService isdpPinfoService) {

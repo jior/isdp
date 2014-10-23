@@ -18,16 +18,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
-
 import com.glaf.core.service.EntityService;
 import com.glaf.core.util.ParamUtils;
 import com.glaf.core.util.RequestUtils;
 import com.glaf.core.util.Tools;
 import com.glaf.base.modules.sys.model.ITree;
-import com.glaf.isdp.domain.UserTask;
+ 
 import com.glaf.base.helper.JacksonTreeHelper;
-import com.glaf.isdp.query.UserTaskQuery;
-import com.glaf.isdp.service.IUserTaskService;
+import com.glaf.bpmn.domain.UserTask;
+import com.glaf.bpmn.query.UserTaskQuery;
+import com.glaf.bpmn.service.IUserTaskService;
+ 
 
 @Controller
 @RequestMapping("/isdp/todo")

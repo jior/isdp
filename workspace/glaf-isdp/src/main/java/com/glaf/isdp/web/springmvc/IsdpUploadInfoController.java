@@ -14,14 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
-
+import com.glaf.base.modules.sys.model.FieldInterface;
+import com.glaf.base.modules.sys.service.IFieldInterfaceService;
 import com.glaf.core.util.DateUtils;
 import com.glaf.core.util.RequestUtils;
 import com.glaf.isdp.domain.CellUpicInfo;
-import com.glaf.isdp.domain.FieldInterface;
 
 import com.glaf.isdp.service.ICellUpicInfoService;
-import com.glaf.isdp.service.IFieldInterfaceService;
 
 @Controller
 @RequestMapping("/isdp/file/upload")

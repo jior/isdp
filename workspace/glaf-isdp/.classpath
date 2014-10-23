@@ -103,5 +103,6 @@
 	<classpathentry kind="lib" path="/glaf-commons/lib/glaf-template.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/glaf-test.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/glaf-base"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/glaf-bpmn"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

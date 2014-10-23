@@ -15,6 +15,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.glaf.base.modules.sys.model.FieldInterface;
 import com.glaf.core.base.JSONable;
 import com.glaf.core.domain.ColumnDefinition;
 import com.glaf.isdp.util.CellDataTableJsonFactory;
