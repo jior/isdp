@@ -1,27 +1,22 @@
 package com.glaf.base.modules.sys.model;
 
 import java.io.*;
-import javax.persistence.*;
 import com.alibaba.fastjson.*;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.glaf.base.modules.sys.util.*;
 import com.glaf.core.base.JSONable;
 
-@Entity
-@Table(name = "sys_permission")
 public class SysPermission implements Serializable, JSONable {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * 功能编号
 	 */
-	@Column(name = "FUNCID", nullable = false)
 	protected long funcId;
 
 	/**
 	 * 角色编号
 	 */
-	@Column(name = "ROLEID", nullable = false)
 	protected long roleId;
 
 	public SysPermission() {

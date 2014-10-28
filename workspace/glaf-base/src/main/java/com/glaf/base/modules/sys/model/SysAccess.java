@@ -1,27 +1,22 @@
 package com.glaf.base.modules.sys.model;
 
 import java.io.*;
-import javax.persistence.*;
 import com.alibaba.fastjson.*;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.glaf.base.modules.sys.util.*;
 import com.glaf.core.base.JSONable;
 
-@Entity
-@Table(name = "sys_access")
 public class SysAccess implements Serializable, JSONable {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * 应用编号
 	 */
-	@Column(name = "APPID", nullable = false)
 	protected long appId;
 
 	/**
 	 * 角色编号
 	 */
-	@Column(name = "ROLEID", nullable = false)
 	protected long roleId;
 
 	public SysAccess() {
