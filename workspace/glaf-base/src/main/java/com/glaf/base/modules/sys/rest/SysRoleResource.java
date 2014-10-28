@@ -209,6 +209,7 @@ public class SysRoleResource {
 		return result.toJSONString().getBytes("UTF-8");
 	}
 
+	@GET
 	@POST
 	@Path("roleMenusJson")
 	@ResponseBody
