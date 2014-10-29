@@ -107,7 +107,7 @@ public class AuthorizeBean {
 			}
 		}
 		if (sysUser != null) {
-			logger.debug("#user:" + sysUser.toJsonObject().toJSONString());
+			//logger.debug("#user:" + sysUser.toJsonObject().toJSONString());
 		}
 		return sysUser;
 	}

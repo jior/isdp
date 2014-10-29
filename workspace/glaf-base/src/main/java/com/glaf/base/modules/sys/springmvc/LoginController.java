@@ -53,6 +53,8 @@ import com.glaf.core.res.MessageUtils;
 import com.glaf.core.res.ViewMessage;
 import com.glaf.core.res.ViewMessages;
 import com.glaf.core.security.DigestUtil;
+import com.glaf.core.security.IdentityFactory;
+import com.glaf.core.security.LoginContext;
 import com.glaf.core.util.ClassUtils;
 import com.glaf.core.util.Constants;
 import com.glaf.core.util.RequestUtils;
@@ -235,6 +237,10 @@ public class LoginController {
 					ex.printStackTrace();
 				}
 			}
+			
+			LoginContext loginContext = IdentityFactory
+					.getLoginContext(bean.getActorId());
+			logger.debug(loginContext.toJsonObject().toJSONString());
 
 			if (bean.getAccountType() == 2) {// 微信用户
 				return new ModelAndView("/modules/wx_main", modelMap);
