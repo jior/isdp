@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -284,6 +285,8 @@ public class LoginController {
 					+ Math.abs(random.nextInt(999999));
 			session = request.getSession(true);
 			if (session != null) {
+				rand = Base64.encodeBase64String(rand.getBytes());
+				rand2 = Base64.encodeBase64String(rand2.getBytes());
 				session.setAttribute("x_y", rand);
 				session.setAttribute("x_z", rand2);
 			}
@@ -349,6 +352,8 @@ public class LoginController {
 				+ com.glaf.core.util.UUID32.getUUID()
 				+ Math.abs(random.nextInt(9999)) + SystemConfig.getToken();
 		if (session != null) {
+			rand = Base64.encodeBase64String(rand.getBytes());
+			rand2 = Base64.encodeBase64String(rand2.getBytes());
 			session.setAttribute("x_y", rand);
 			session.setAttribute("x_z", rand2);
 		}
