@@ -285,8 +285,10 @@ public class LoginController {
 					+ Math.abs(random.nextInt(999999));
 			session = request.getSession(true);
 			if (session != null) {
-				rand = Base64.encodeBase64String(rand.getBytes());
-				rand2 = Base64.encodeBase64String(rand2.getBytes());
+				rand = Base64.encodeBase64String(rand.getBytes())
+						+ com.glaf.core.util.UUID32.getUUID();
+				rand2 = Base64.encodeBase64String(rand2.getBytes())
+						+ com.glaf.core.util.UUID32.getUUID();
 				session.setAttribute("x_y", rand);
 				session.setAttribute("x_z", rand2);
 			}
@@ -352,8 +354,10 @@ public class LoginController {
 				+ com.glaf.core.util.UUID32.getUUID()
 				+ Math.abs(random.nextInt(9999)) + SystemConfig.getToken();
 		if (session != null) {
-			rand = Base64.encodeBase64String(rand.getBytes());
-			rand2 = Base64.encodeBase64String(rand2.getBytes());
+			rand = Base64.encodeBase64String(rand.getBytes())
+					+ com.glaf.core.util.UUID32.getUUID();
+			rand2 = Base64.encodeBase64String(rand2.getBytes())
+					+ com.glaf.core.util.UUID32.getUUID();
 			session.setAttribute("x_y", rand);
 			session.setAttribute("x_z", rand2);
 		}
