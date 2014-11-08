@@ -27,6 +27,8 @@
         <result property="${field.name}" column="${field.columnName}" jdbcType="TIMESTAMP"/>
 	  <#elseif field.type?exists && ( field.type== 'String')>
         <result property="${field.name}" column="${field.columnName}" jdbcType="VARCHAR"/>
+	  <#elseif field.type?exists && ( field.type== 'byte[]')>
+        <result property="${field.name}" column="${field.columnName}" jdbcType="BLOB"/>
 	</#if>
 	</#if>
   </#list>
@@ -53,6 +55,8 @@
 			<#elseif field.type?exists && ( field.type== 'Date')>
 				,${field.columnName} 
 			<#elseif field.type?exists && ( field.type== 'Blob')>
+				,${field.columnName} 
+			<#elseif field.type?exists && ( field.type== 'byte[]')>
 				,${field.columnName} 
 			<#elseif field.type?exists && ( field.type== 'Clob')>
 				,${field.columnName} 
@@ -90,6 +94,8 @@
 				,#GG{${field.name}, jdbcType=TIMESTAMP}
 			<#elseif field.type?exists && ( field.type== 'Blob')>
 				,#GG{${field.name}, jdbcType=BLOB}
+			<#elseif field.type?exists && ( field.type== 'byte[]')>
+				,#GG{${field.name}, jdbcType=BLOB}
 			<#elseif field.type?exists && ( field.type== 'Clob')>
 				,#GG{${field.name}, jdbcType=VARCHAR}
 			<#elseif field.type?exists && ( field.type== 'String')>
@@ -121,6 +127,10 @@
 				${field.columnName} = #GG{${field.name}, jdbcType=BOOLEAN},
 			<#elseif field.type?exists && ( field.type== 'Date')>
 				${field.columnName} = #GG{${field.name}, jdbcType=TIMESTAMP},
+			<#elseif field.type?exists && ( field.type== 'byte[]')>
+				${field.columnName} = #GG{${field.name}, jdbcType=BLOB},
+			<#elseif field.type?exists && ( field.type== 'Blob')>
+				${field.columnName} = #GG{${field.name}, jdbcType=BLOB},
 			<#elseif field.type?exists && ( field.type== 'Clob')>
 				${field.columnName} = #GG{${field.name}, jdbcType=VARCHAR},
 			<#elseif field.type?exists && ( field.type== 'String')>
