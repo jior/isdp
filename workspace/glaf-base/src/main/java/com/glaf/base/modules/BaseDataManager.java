@@ -40,15 +40,20 @@ import org.apache.commons.logging.LogFactory;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+
 import com.glaf.core.base.ConnectionDefinition;
-import com.glaf.core.config.*;
-import com.glaf.core.db.DbTableChecker;
+import com.glaf.core.config.Configuration;
+import com.glaf.core.config.DBConfiguration;
+import com.glaf.core.config.Environment;
+import com.glaf.core.config.SystemProperties;
 import com.glaf.core.context.ContextFactory;
+import com.glaf.core.db.DbTableChecker;
 import com.glaf.core.service.EntityService;
 import com.glaf.core.service.ITableDefinitionService;
 import com.glaf.core.startup.BootstrapManager;
 import com.glaf.core.util.ThreadContextHolder;
 import com.glaf.core.util.Tools;
+
 import com.glaf.base.config.BaseConfiguration;
 import com.glaf.base.modules.sys.SysConstants;
 import com.glaf.base.modules.sys.business.UpdateTreeBean;
@@ -1127,8 +1132,8 @@ public class BaseDataManager {
 		if (!loading.get()) {
 			try {
 				loading.set(true);
-                com.glaf.core.config.ConfigFactory.clearAll();
-                com.glaf.core.resource.ResourceFactory.clearAll();
+				com.glaf.core.config.ConfigFactory.clearAll();
+				com.glaf.core.resource.ResourceFactory.clearAll();
 				initBaseData();
 				HttpServletRequest request = ThreadContextHolder
 						.getHttpRequest();
