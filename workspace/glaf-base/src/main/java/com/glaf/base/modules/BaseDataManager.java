@@ -676,6 +676,7 @@ public class BaseDataManager {
 	 * 
 	 */
 	protected void initBaseData() {
+		logger.debug("----------------initBaseData---------------------");
 		try {
 			UpdateTreeBean bean = new UpdateTreeBean();
 			bean.setSysTreeService(getSysTreeService());
@@ -685,20 +686,28 @@ public class BaseDataManager {
 		}
 
 		Environment.setCurrentSystemName(Environment.DEFAULT_SYSTEM_NAME);
+		logger.debug("----------------装载用户自定义数据----------------------");
 		// 用户自定义数据
 		loadCustomInfo();
+		logger.debug("----------------装载用户自定义数据处理程序----------------");
 		// 用户自定义数据处理程序
 		loadCustomHandler();
+		logger.debug("----------------装载用户自定义JSON数据处理程序------------");
 		// 用户自定义JSON数据处理程序
 		loadCustomJsonData();
+		logger.debug("----------------装载用户信息---------------------------");
 		// 用户信息
 		loadUsers();
+		logger.debug("----------------装载部门结构--------------------------");
 		// 部门结构
 		loadDepartments();
+		logger.debug("----------------装载模块功能--------------------------");
 		// 模块功能
 		loadFunctions();
+		logger.debug("----------------装载 数据字典--------------------------");
 		// 数据字典
 		loadDictInfo();
+		logger.debug("----------------装载数据表定义信息----------------------");
 		// 数据表定义信息
 		loadTableMeta();
 
