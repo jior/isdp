@@ -119,6 +119,18 @@ public interface SysRoleService {
 	 * @return
 	 */
 	PageResult getSysRoleList(int pageNo, int pageSize);
+	
+	/**
+	 * 获取分页列表
+	 * 
+	 * @param pageNo
+	 *            int
+	 * @param pageSize
+	 *            int
+	 * @param query
+	 * @return
+	 */
+	PageResult getSysRoleList(int pageNo, int pageSize, SysRoleQuery query);
 
 	/**
 	 * 获取某个模块的角色

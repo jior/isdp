@@ -70,7 +70,7 @@ import com.glaf.core.util.Tools;
 public class SysRoleController {
 	private static final Log logger = LogFactory
 			.getLog(SysRoleController.class);
-	
+
 	protected SysApplicationService sysApplicationService;
 
 	protected SysRoleService sysRoleService;
@@ -78,8 +78,6 @@ public class SysRoleController {
 	protected SysTreeService sysTreeService;
 
 	protected SysUserService sysUserService;
-	
-	
 
 	/**
 	 * 批量删除信息
@@ -250,7 +248,6 @@ public class SysRoleController {
 		// 显示列表页面
 		return new ModelAndView("/modules/sys/role/role_add", modelMap);
 	}
-	
 
 	/**
 	 * 显示修改页面
@@ -275,7 +272,7 @@ public class SysRoleController {
 		// 显示列表页面
 		return new ModelAndView("/modules/sys/role/role_modify", modelMap);
 	}
-	
+
 	/**
 	 * 显示菜单页面
 	 * 
@@ -290,13 +287,13 @@ public class SysRoleController {
 		long roleId = ParamUtil.getIntParameter(request, "roleId", 0);
 		SysRole bean = sysRoleService.findById(roleId);
 		request.setAttribute("role", bean);
-		
+
 		long parentId = ParamUtil.getIntParameter(request, "parentId", 3);
-		
-		List<SysTree> list = sysApplicationService.getTreeWithApplicationList(parentId);
+
+		List<SysTree> list = sysApplicationService
+				.getTreeWithApplicationList(parentId);
 		request.setAttribute("list", list);
-		
-		
+
 		String x_view = ViewProperties.getString("role.privilege");
 		if (StringUtils.isNotEmpty(x_view)) {
 			return new ModelAndView(x_view, modelMap);
@@ -305,7 +302,6 @@ public class SysRoleController {
 		// 显示列表页面
 		return new ModelAndView("/modules/sys/role/role_privilege", modelMap);
 	}
-	
 
 	/**
 	 * 显示菜单页面
@@ -321,7 +317,7 @@ public class SysRoleController {
 		long roleId = ParamUtil.getIntParameter(request, "roleId", 0);
 		SysRole bean = sysRoleService.findById(roleId);
 		request.setAttribute("role", bean);
-		
+
 		String x_view = ViewProperties.getString("role.roleMenus");
 		if (StringUtils.isNotEmpty(x_view)) {
 			return new ModelAndView(x_view, modelMap);
@@ -485,7 +481,8 @@ public class SysRoleController {
 	}
 
 	@javax.annotation.Resource
-	public void setSysApplicationService(SysApplicationService sysApplicationService) {
+	public void setSysApplicationService(
+			SysApplicationService sysApplicationService) {
 		this.sysApplicationService = sysApplicationService;
 	}
 
@@ -517,10 +514,64 @@ public class SysRoleController {
 	@RequestMapping("/showList")
 	public ModelAndView showList(HttpServletRequest request, ModelMap modelMap) {
 		RequestUtils.setRequestParameterToAttribute(request);
+		logger.debug("->params:"+RequestUtils.getRequestParameters(request));
 		int pageNo = ParamUtil.getIntParameter(request, "page_no", 1);
 		int pageSize = ParamUtil.getIntParameter(request, "page_size",
 				Constants.PAGE_SIZE);
-		PageResult pager = sysRoleService.getSysRoleList(pageNo, pageSize);
+
+		SysRoleQuery query = new SysRoleQuery();
+		String rq = ParamUtil.getParameter(request, "_rq_", "");
+		logger.debug("_rq_:" + rq);
+		String nameLike_encode = ParamUtil.getParameter(request,
+				"nameLike_encode", "");
+		String codeLike_encode = ParamUtil.getParameter(request,
+				"codeLike_encode", "");
+
+		if ("1".equals(rq)) {
+			logger.debug("-----------------------参数查询-----------------------");
+			String nameLike = ParamUtil.getParameter(request, "nameLike", "");
+			String codeLike = ParamUtil.getParameter(request, "codeLike", "");
+			if (StringUtils.isNotEmpty(nameLike)) {
+				query.setNameLike(nameLike);
+				request.setAttribute("nameLike_encode",
+						RequestUtils.encodeString(nameLike));
+				request.setAttribute("nameLike", nameLike);
+			} else {
+				request.removeAttribute("nameLike");
+				request.removeAttribute("nameLike_encode");
+				request.setAttribute("nameLike", "");
+			}
+			if (StringUtils.isNotEmpty(codeLike)) {
+				query.setCodeLike(codeLike);
+				request.setAttribute("codeLike_encode",
+						RequestUtils.encodeString(codeLike));
+				request.setAttribute("codeLike", codeLike);
+			} else {
+				request.removeAttribute("codeLike");
+				request.removeAttribute("codeLike_encode");
+				request.setAttribute("codeLike", "");
+			}
+		} else {
+			logger.debug("-----------------------链接查询-----------------------");
+			if (StringUtils.isNotEmpty(nameLike_encode)) {
+				String nameLike = RequestUtils.decodeString(nameLike_encode);
+				query.setNameLike(nameLike);
+				request.setAttribute("nameLike_encode", nameLike_encode);
+				request.setAttribute("nameLike", nameLike);
+			}
+			if (StringUtils.isNotEmpty(codeLike_encode)) {
+				String codeLike = RequestUtils.decodeString(codeLike_encode);
+				query.setCodeLike(codeLike);
+				request.setAttribute("codeLike_encode", codeLike_encode);
+				request.setAttribute("codeLike", codeLike);
+			}
+
+		}
+
+		// Tools.populate(query, params);
+		// PageResult pager = sysRoleService.getSysRoleList(pageNo, pageSize);
+		PageResult pager = sysRoleService.getSysRoleList(pageNo, pageSize,
+				query);
 		request.setAttribute("pager", pager);
 
 		String x_view = ViewProperties.getString("role.showList");

@@ -166,6 +166,19 @@ public interface SysDepartmentService {
 	 * @return
 	 */
 	PageResult getSysDepartmentList(long parent, int pageNo, int pageSize);
+	
+	/**
+	 * 获取分页列表
+	 * 
+	 * @param parent
+	 *            int
+	 * @param pageNo
+	 *            int
+	 * @param pageSize
+	 *            int
+	 * @return
+	 */
+	PageResult getSysDepartmentList( int pageNo, int pageSize, SysDepartmentQuery query);
 
 	/**
 	 * 根据查询参数获取一页的数据

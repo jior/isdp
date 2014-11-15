@@ -180,6 +180,18 @@ public interface SysUserService {
 	PageResult getSysUserList(int pageNo, int pageSize);
 
 	/**
+	 * 获取全部员工数据集 分页列表
+	 * 
+	 * @param pageNo
+	 *            int
+	 * @param pageSize
+	 *            int
+	 * @param query
+	 * @return
+	 */
+	PageResult getSysUserList(int pageNo, int pageSize, SysUserQuery query);
+
+	/**
 	 * 获取列表
 	 * 
 	 * @param deptId

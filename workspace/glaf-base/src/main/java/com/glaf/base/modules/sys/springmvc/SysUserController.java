@@ -996,7 +996,60 @@ public class SysUserController {
 		int pageNo = ParamUtil.getIntParameter(request, "page_no", 1);
 		int pageSize = ParamUtil.getIntParameter(request, "page_size",
 				Constants.PAGE_SIZE);
-		PageResult pager = sysUserService.getSysUserList(pageNo, pageSize);
+
+		SysUserQuery query = new SysUserQuery();
+		String rq = ParamUtil.getParameter(request, "_rq_", "");
+		logger.debug("_rq_:" + rq);
+		String nameLike_encode = ParamUtil.getParameter(request,
+				"nameLike_encode", "");
+		String actorIdLike_encode = ParamUtil.getParameter(request,
+				"actorIdLike_encode", "");
+
+		if ("1".equals(rq)) {
+			logger.debug("-----------------------参数查询-----------------------");
+			String nameLike = ParamUtil.getParameter(request, "nameLike", "");
+			String actorIdLike = ParamUtil.getParameter(request, "actorIdLike",
+					"");
+			if (StringUtils.isNotEmpty(nameLike)) {
+				query.setNameLike(nameLike);
+				request.setAttribute("nameLike_encode",
+						RequestUtils.encodeString(nameLike));
+				request.setAttribute("nameLike", nameLike);
+			} else {
+				request.removeAttribute("nameLike");
+				request.removeAttribute("nameLike_encode");
+				request.setAttribute("nameLike", "");
+			}
+			if (StringUtils.isNotEmpty(actorIdLike)) {
+				query.setAccountLike(actorIdLike);
+				request.setAttribute("actorIdLike_encode",
+						RequestUtils.encodeString(actorIdLike));
+				request.setAttribute("actorIdLike", actorIdLike);
+			} else {
+				request.removeAttribute("actorIdLike");
+				request.removeAttribute("actorIdLike_encode");
+				request.setAttribute("actorIdLike", "");
+			}
+		} else {
+			logger.debug("-----------------------链接查询-----------------------");
+			if (StringUtils.isNotEmpty(nameLike_encode)) {
+				String nameLike = RequestUtils.decodeString(nameLike_encode);
+				query.setNameLike(nameLike);
+				request.setAttribute("nameLike_encode", nameLike_encode);
+				request.setAttribute("nameLike", nameLike);
+			}
+			if (StringUtils.isNotEmpty(actorIdLike_encode)) {
+				String actorIdLike = RequestUtils
+						.decodeString(actorIdLike_encode);
+				query.setAccountLike(actorIdLike);
+				request.setAttribute("actorIdLike_encode", actorIdLike_encode);
+				request.setAttribute("actorIdLike", actorIdLike);
+			}
+
+		}
+
+		PageResult pager = sysUserService.getSysUserList(pageNo, pageSize,
+				query);
 		request.setAttribute("pager", pager);
 
 		String x_view = ViewProperties.getString("user.showAllList");
@@ -1075,16 +1128,74 @@ public class SysUserController {
 		int pageNo = ParamUtil.getIntParameter(request, "page_no", 1);
 		int pageSize = ParamUtil.getIntParameter(request, "page_size",
 				Constants.PAGE_SIZE);
-		PageResult pager = sysUserService.getSysUserList(deptId, pageNo,
-				pageSize);
-		request.setAttribute("department",
-				sysDepartmentService.findById(deptId));
-		request.setAttribute("pager", pager);
 
-		SysDepartment dept = sysDepartmentService.findById(deptId);
-		List<SysDepartment> list = new ArrayList<SysDepartment>();
-		sysDepartmentService.findNestingDepartment(list, dept);
-		request.setAttribute("nav", list);
+		SysUserQuery query = new SysUserQuery();
+		String rq = ParamUtil.getParameter(request, "_rq_", "");
+		logger.debug("_rq_:" + rq);
+		String nameLike_encode = ParamUtil.getParameter(request,
+				"nameLike_encode", "");
+		String actorIdLike_encode = ParamUtil.getParameter(request,
+				"actorIdLike_encode", "");
+
+		if ("1".equals(rq)) {
+			logger.debug("-----------------------参数查询-----------------------");
+			String nameLike = ParamUtil.getParameter(request, "nameLike", "");
+			String actorIdLike = ParamUtil.getParameter(request, "actorIdLike",
+					"");
+			if (StringUtils.isNotEmpty(nameLike)) {
+				query.setNameLike(nameLike);
+				request.setAttribute("nameLike_encode",
+						RequestUtils.encodeString(nameLike));
+				request.setAttribute("nameLike", nameLike);
+			} else {
+				request.removeAttribute("nameLike");
+				request.removeAttribute("nameLike_encode");
+				request.setAttribute("nameLike", "");
+			}
+			if (StringUtils.isNotEmpty(actorIdLike)) {
+				query.setAccountLike(actorIdLike);
+				request.setAttribute("actorIdLike_encode",
+						RequestUtils.encodeString(actorIdLike));
+				request.setAttribute("actorIdLike", actorIdLike);
+			} else {
+				request.removeAttribute("actorIdLike");
+				request.removeAttribute("actorIdLike_encode");
+				request.setAttribute("actorIdLike", "");
+			}
+		} else {
+			logger.debug("-----------------------链接查询-----------------------");
+			if (StringUtils.isNotEmpty(nameLike_encode)) {
+				String nameLike = RequestUtils.decodeString(nameLike_encode);
+				query.setNameLike(nameLike);
+				request.setAttribute("nameLike_encode", nameLike_encode);
+				request.setAttribute("nameLike", nameLike);
+			}
+			if (StringUtils.isNotEmpty(actorIdLike_encode)) {
+				String actorIdLike = RequestUtils
+						.decodeString(actorIdLike_encode);
+				query.setAccountLike(actorIdLike);
+				request.setAttribute("actorIdLike_encode", actorIdLike_encode);
+				request.setAttribute("actorIdLike", actorIdLike);
+			}
+
+		}
+
+		if (deptId > 0) {
+			query.setDeptId(Long.valueOf(deptId));
+			SysDepartment dept = sysDepartmentService.findById(deptId);
+			List<SysDepartment> list = new ArrayList<SysDepartment>();
+			sysDepartmentService.findNestingDepartment(list, dept);
+			request.setAttribute("nav", list);
+			request.setAttribute("department",
+					sysDepartmentService.findById(deptId));
+		}
+
+		PageResult pager = sysUserService.getSysUserList(pageNo, pageSize,
+				query);
+		// PageResult pager = sysUserService.getSysUserList(deptId, pageNo,
+		// pageSize);
+
+		request.setAttribute("pager", pager);
 
 		String x_view = ViewProperties.getString("user.showList");
 		if (StringUtils.isNotEmpty(x_view)) {

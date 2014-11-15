@@ -18,6 +18,7 @@
 
 package com.glaf.base.utils;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -53,13 +54,34 @@ public class WebUtil {
 	 */
 	public static String getQueryString(HttpServletRequest request,
 			String encoding) {
+		if (encoding != null && encoding.trim().length() > 0) {
+			try {
+				request.setCharacterEncoding(encoding);
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
 		Enumeration<String> names = request.getParameterNames();
 		StringBuffer sb = new StringBuffer();
 		while (names.hasMoreElements()) {
 			String name = (String) names.nextElement();
+			if ("_rq_".equals(name)) {
+				continue;
+			}
 			String value = request.getParameter(name);
 			sb.append(name).append("=").append(value).append("&");
 		}
+
+		names = request.getAttributeNames();
+		while (names.hasMoreElements()) {
+			String name = (String) names.nextElement();
+			if (!name.endsWith("_encode")) {
+				continue;
+			}
+			String value = (String) request.getAttribute(name);
+			sb.append(name).append("=").append(value).append("&");
+		}
+
 		return sb.toString();
 	}
 

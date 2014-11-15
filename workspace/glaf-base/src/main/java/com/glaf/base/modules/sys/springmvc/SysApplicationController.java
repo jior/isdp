@@ -507,8 +507,65 @@ public class SysApplicationController {
 		int pageNo = ParamUtil.getIntParameter(request, "page_no", 1);
 		int pageSize = ParamUtil.getIntParameter(request, "page_size",
 				Constants.PAGE_SIZE);
-		PageResult pager = sysApplicationService.getApplicationList(parent,
-				pageNo, pageSize);
+
+		SysApplicationQuery query = new SysApplicationQuery();
+		String rq = ParamUtil.getParameter(request, "_rq_", "");
+		logger.debug("_rq_:" + rq);
+		String nameLike_encode = ParamUtil.getParameter(request,
+				"nameLike_encode", "");
+		String codeLike_encode = ParamUtil.getParameter(request,
+				"codeLike_encode", "");
+
+		if ("1".equals(rq)) {
+			logger.debug("-----------------------参数查询-----------------------");
+			String nameLike = ParamUtil.getParameter(request, "nameLike", "");
+			String codeLike = ParamUtil.getParameter(request, "codeLike", "");
+			if (StringUtils.isNotEmpty(nameLike)) {
+				query.setNameLike(nameLike);
+				request.setAttribute("nameLike_encode",
+						RequestUtils.encodeString(nameLike));
+				request.setAttribute("nameLike", nameLike);
+			} else {
+				request.removeAttribute("nameLike");
+				request.removeAttribute("nameLike_encode");
+				request.setAttribute("nameLike", "");
+			}
+			if (StringUtils.isNotEmpty(codeLike)) {
+				query.setCodeLike(codeLike);
+				request.setAttribute("codeLike_encode",
+						RequestUtils.encodeString(codeLike));
+				request.setAttribute("codeLike", codeLike);
+			} else {
+				request.removeAttribute("codeLike");
+				request.removeAttribute("codeLike_encode");
+				request.setAttribute("codeLike", "");
+			}
+		} else {
+			logger.debug("-----------------------链接查询-----------------------");
+			if (StringUtils.isNotEmpty(nameLike_encode)) {
+				String nameLike = RequestUtils.decodeString(nameLike_encode);
+				query.setNameLike(nameLike);
+				request.setAttribute("nameLike_encode", nameLike_encode);
+				request.setAttribute("nameLike", nameLike);
+			}
+			if (StringUtils.isNotEmpty(codeLike_encode)) {
+				String codeLike = RequestUtils.decodeString(codeLike_encode);
+				query.setCodeLike(codeLike);
+				request.setAttribute("codeLike_encode", codeLike_encode);
+				request.setAttribute("codeLike", codeLike);
+			}
+
+		}
+
+		PageResult pager = null;
+
+		if (parent > 0) {
+			pager = sysApplicationService.getApplicationList(parent, pageNo,
+					pageSize);
+		} else {
+			pager = sysApplicationService.getApplicationList(pageNo, pageSize,
+					query);
+		}
 		request.setAttribute("pager", pager);
 
 		String x_view = ViewProperties.getString("application.showList");

@@ -156,14 +156,28 @@ function sort(id, operate){
 				 }
 		});
 }
+
+function queryForm(){
+    var iForm = document.all.iForm;
+	//document.getElementById("nameLike_encode").value="";
+	//document.getElementById("codeLike_encode").value="";
+	iForm.method="post";
+    iForm.action="<%=request.getContextPath()%>/mx/sys/role/showList?_rq_=1";
+	iForm.submit();
+}
+
 </script>
 </head>
 
 <body style="padding-top:10px;padding-left:2px;padding-right:20px;">
-<html:form action="${contextPath}/mx/sys/role/batchDelete" method="post" target="_self"> 
+<html:form id="iForm" name="iForm" action="${contextPath}/mx/sys/role/batchDelete" method="post" target="_self"> 
 <input name="page_no" type="hidden" value="<%=pager.getCurrentPageNo()%>">
 <input type="hidden" name="id" value="0">
 <div class="nav-title"><span class="Title">角色管理</span>&gt;&gt;角色列表</div>
+&nbsp;&nbsp;&nbsp;&nbsp;角色名称：<input type="text" name="nameLike" id="nameLike" size="20" value="${nameLike}" class="input"><input type="hidden" id="nameLike_encode" name="nameLike_encode" value="${nameLike_encode}">
+&nbsp;&nbsp;角色代码：<input type="text" name="codeLike" id="codeLike" size="20" value="${codeLike}" class="input">
+<input type="hidden" id="codeLike_encode" name="codeLike_encode" value="${codeLike_encode}">
+<input name="btn_query" type="button" value="查询" class="button" onClick="javascript:queryForm();"> 
 <table width="100%" border="0" cellspacing="1" cellpadding="0" class="list-box">
   <tr class="list-title"> 
     <td width="5%" align="center"> <input type="checkbox" name="chkall" value="checkbox" onClick="checkAll(this.form, this);checkOperation(this.form)">    </td>
@@ -224,7 +238,7 @@ for(; i<pageSize; i++){
     <td width="50%"> 
       <%
         String params = WebUtil.getQueryString(request);
-		//System.out.println("params:"+java.net.URLEncoder.encode(params));
+		System.out.println("params:"+java.net.URLEncoder.encode(params));
       %>
       <jsp:include page="/WEB-INF/views/inc/show_page.jsp" flush="true"> 
               <jsp:param name="total" value="<%=pager.getTotalRecordCount()%>"/>

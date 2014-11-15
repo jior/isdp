@@ -371,6 +371,39 @@ public class SysUserServiceImpl implements SysUserService {
 		return pager;
 	}
 
+	/**
+	 * 获取全部员工数据集 分页列表
+	 * 
+	 * @param pageNo
+	 *            int
+	 * @param pageSize
+	 *            int
+	 * @param query
+	 * @return
+	 */
+	public PageResult getSysUserList(int pageNo, int pageSize,
+			SysUserQuery query) {
+		PageResult pager = new PageResult();
+
+		int count = this.count(query);
+		if (count == 0) {// 结果集为空
+			pager.setPageSize(pageSize);
+			return pager;
+		}
+		query.setOrderBy(" E.UserName asc ");
+
+		int start = pageSize * (pageNo - 1);
+		List<SysUser> list = this.getSysUsersByQueryCriteria(start, pageSize,
+				query);
+		this.initUserDepartments(list);
+		pager.setResults(list);
+		pager.setPageSize(pageSize);
+		pager.setCurrentPageNo(pageNo);
+		pager.setTotalRecordCount(count);
+
+		return pager;
+	}
+
 	public PageResult getSysUserList(long deptId, int pageNo, int pageSize) {
 		// 计算总数
 		PageResult pager = new PageResult();

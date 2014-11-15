@@ -157,6 +157,17 @@ function sort(id, operate){
 				 }
 		});
 }
+
+function queryForm(){
+    var iForm = document.all.GenericForm;
+	document.getElementById("parent").value="";
+	//document.getElementById("nameLike_encode").value="";
+	//document.getElementById("actorIdLike_encode").value="";
+	iForm.method="post";
+    iForm.action="<%=request.getContextPath()%>/mx/sys/application/showList?_rq_=1";
+	iForm.submit();
+}
+
 </script>
 </head>
 
@@ -164,8 +175,12 @@ function sort(id, operate){
 <div class="nav-title"><span class="Title">模块管理</span>&gt;&gt;模块列表</div>
 <html:form id="GenericForm" name="GenericForm" 
       action="${contextPath}/mx/sys/application/batchDelete" method="post" target="_self"> 
+&nbsp;&nbsp;&nbsp;&nbsp;模块名称：<input type="text" name="nameLike" id="nameLike" size="20" value="${nameLike}" class="input"><input type="hidden" id="nameLike_encode" name="nameLike_encode" value="${nameLike_encode}">
+&nbsp;&nbsp;模块代码：<input type="text" name="codeLike" id="codeLike" size="20" value="${codeLike}" class="input">
+<input type="hidden" id="codeLike_encode" name="codeLike_encode" value="${codeLike_encode}">
+<input name="btn_query" type="button" value="查询" class="button" onClick="javascript:queryForm();"> 
 <input name="page_no" type="hidden" value="<%=pager.getCurrentPageNo()%>">
-<input name="parent" type="hidden" value="<%=parent%>">
+<input id="parent" name="parent" type="hidden" value="<%=parent%>">
 <input type="hidden" name="id" value="0">
 <table width="100%" border="0" cellspacing="1" cellpadding="0" class="list-box">
   <tr class="list-title"> 

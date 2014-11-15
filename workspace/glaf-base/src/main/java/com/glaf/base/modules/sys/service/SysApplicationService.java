@@ -142,6 +142,9 @@ public interface SysApplicationService {
 	 */
 	PageResult getApplicationList(long parentId, int pageNo, int pageSize);
 
+	PageResult getApplicationList(int pageNo, int pageSize,
+			SysApplicationQuery query);
+
 	/**
 	 * 获取某个模块的角色及用户
 	 * 

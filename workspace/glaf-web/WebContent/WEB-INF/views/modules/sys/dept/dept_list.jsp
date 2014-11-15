@@ -118,6 +118,17 @@ function editDeptUsers(id){
   //openWindow(url, width, height, scroll);
   art.dialog.open(link, { height: height, width: width, title: "部门用户", scrollbars:"no" , lock: false });
 } 
+
+function queryForm(){
+    var iForm = document.all.iForm;
+	document.getElementById("parent").value="";
+	//document.getElementById("nameLike_encode").value="";
+	//document.getElementById("actorIdLike_encode").value="";
+	iForm.method="post";
+    iForm.action="<%=request.getContextPath()%>/mx/sys/department/showList?_rq_=1";
+	iForm.submit();
+}
+
 </script>
 </head>
 
@@ -136,9 +147,13 @@ while(navIter.hasNext()){
 }
 %>
 </div>
-<html:form action="${contextPath}/mx/sys/department/batchDelete" method="post" target="_self"> 
+<html:form id="iForm" name="iForm" action="${contextPath}/mx/sys/department/batchDelete" method="post" target="_self">
+&nbsp;&nbsp;&nbsp;&nbsp;部门名称：<input type="text" name="nameLike" id="nameLike" size="20" value="${nameLike}" class="input"><input type="hidden" id="nameLike_encode" name="nameLike_encode" value="${nameLike_encode}">
+&nbsp;&nbsp;部门代码：<input type="text" name="codeLike" id="codeLike" size="20" value="${codeLike}" class="input">
+<input type="hidden" id="codeLike_encode" name="codeLike_encode" value="${codeLike_encode}">
+<input name="btn_query" type="button" value="查询" class="button" onClick="javascript:queryForm();"> 
 <input name="page_no" type="hidden" value="<%=pager.getCurrentPageNo()%>">
-<input name="parent" type="hidden" value="<%=parent%>">
+<input id="parent" name="parent" type="hidden" value="<%=parent%>">
 <input type="hidden" name="id" value="0">
 <table width="100%" border="0" cellspacing="1" cellpadding="0" class="list-box">
   <col width="5%"/><col width="4%"/><col/><col width="10%"/><col width="15%"/>

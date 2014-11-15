@@ -113,6 +113,16 @@ function roles(form){
   openWindow(link, width, height, scroll);
   //art.dialog.open(link, { height: height, width: width, title: "用户角色", lock: true, scrollbars:"no" }, false);
 }
+
+function queryForm(){
+    var iForm = document.all.iForm;
+	document.getElementById("parent").value="";
+	//document.getElementById("nameLike_encode").value="";
+	//document.getElementById("actorIdLike_encode").value="";
+	iForm.method="post";
+    iForm.action="<%=request.getContextPath()%>/mx/sys/user/showList?_rq_=1";
+	iForm.submit();
+}
 </script>
 </head>
 
@@ -129,9 +139,13 @@ while(navIter.hasNext()){
 }
 %> 
 </div>
-<html:form action="${contextPath}/mx/sys/user/batchDelete" method="post" target="_self"> 
+<html:form id="iForm" name="iForm" action="${contextPath}/mx/sys/user/batchDelete" method="post" target="_self">
+&nbsp;&nbsp;&nbsp;&nbsp;姓名：<input type="text" name="nameLike" id="nameLike" size="20" value="${nameLike}" class="input"><input type="hidden" id="nameLike_encode" name="nameLike_encode" value="${nameLike_encode}">
+&nbsp;&nbsp;帐号：<input type="text" name="actorIdLike" id="actorIdLike" size="20" value="${actorIdLike}" class="input">
+<input type="hidden" id="actorIdLike_encode" name="actorIdLike_encode" value="${actorIdLike_encode}">
+<input name="btn_query" type="button" value="查询" class="button" onClick="javascript:queryForm();"> 
 <input name="page_no" type="hidden" value="<%=pager.getCurrentPageNo()%>">
-<input name="parent" type="hidden" value="<%=department.getId()%>">
+<input id="parent" name="parent" type="hidden" value="<%=department.getId()%>">
 <input type="hidden" name="id" value="0">
 <table width="100%" border="0" cellspacing="1" cellpadding="0" class="list-box">
   <tr class="list-title"> 

@@ -204,6 +204,29 @@ public class SysRoleServiceImpl implements SysRoleService {
 		return pager;
 	}
 
+	public PageResult getSysRoleList(int pageNo, int pageSize,
+			SysRoleQuery query) {
+		// 计算总数
+		PageResult pager = new PageResult();
+
+		int count = this.count(query);
+		if (count == 0) {// 结果集为空
+			pager.setPageSize(pageSize);
+			return pager;
+		}
+		query.setOrderBy(" E.TASKSORT desc");
+
+		int start = pageSize * (pageNo - 1);
+		List<SysRole> list = this.getSysRolesByQueryCriteria(start, pageSize,
+				query);
+		pager.setResults(list);
+		pager.setPageSize(pageSize);
+		pager.setCurrentPageNo(pageNo);
+		pager.setTotalRecordCount(count);
+
+		return pager;
+	}
+
 	/**
 	 * 获取某个模块的角色
 	 * 
