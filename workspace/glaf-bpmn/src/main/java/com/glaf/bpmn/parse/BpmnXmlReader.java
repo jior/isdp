@@ -37,7 +37,7 @@ public class BpmnXmlReader {
 		java.io.InputStream inputStream = null;
 		try {
 			inputStream = new ByteArrayInputStream(bytes);
-			return this.read(bytes);
+			return this.read(inputStream);
 		} finally {
 			IOUtils.closeStream(inputStream);
 		}
