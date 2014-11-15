@@ -28,20 +28,29 @@ import com.glaf.bpmn.query.*;
 @Transactional(readOnly = true)
 public interface BpmnProcessService {
 
+	 
+
 	/**
-	 * 根据主键删除记录
+	 * 完成任务
 	 * 
-	 * @return
+	 * @param actorId
+	 *            用户编号
+	 * @param activityId
+	 *            任务编号
+	 * @param outcome 
+	 *        转移，向前或向后
+	 * @param variables
+	 *            变量集
 	 */
-	@Transactional
-	void deleteById(String id);
+	void completeTask(String actorId, String activityId, String outcome,
+			Map<String, Object> variables);
 
 	/**
 	 * 根据主键获取一条记录
 	 * 
 	 * @return
 	 */
-	FlowProcessEntity getFlowProcess(String id);
+	FlowProcessEntity getFlowProcessById(String id);
 
 	/**
 	 * 根据查询参数获取记录总数
@@ -57,7 +66,8 @@ public interface BpmnProcessService {
 	 */
 	int getFlowProcessCountByQueryCriteria(FlowProcessQuery query);
 
-	List<FlowProcessEntity> getFlowProcessesByTaskMainId(String taskMainId);
+	List<FlowProcessEntity> getFlowProcesses(int taskmainIndexId,
+			String cellTaskId, int intisflow);
 
 	/**
 	 * 根据查询参数获取记录列表
@@ -65,9 +75,6 @@ public interface BpmnProcessService {
 	 * @return
 	 */
 	List<FlowProcessEntity> getFlowProcesses(Map<String, Object> parameter);
-
-	List<FlowProcessEntity> getFlowProcesses(int taskmainIndexId,
-			String cellTaskId, int intisflow);
 
 	/**
 	 * 根据查询参数获取一页的数据
@@ -77,6 +84,8 @@ public interface BpmnProcessService {
 	List<FlowProcessEntity> getFlowProcessesByQueryCriteria(int start,
 			int pageSize, FlowProcessQuery query);
 
+	List<FlowProcessEntity> getFlowProcessesByTaskMainId(String taskMainId);
+
 	/**
 	 * 根据查询参数获取记录列表
 	 * 
@@ -85,11 +94,20 @@ public interface BpmnProcessService {
 	List<FlowProcessEntity> list(FlowProcessQuery query);
 
 	/**
-	 * 保存一条记录
 	 * 
+	 * @param actorId
+	 *            参与者
+	 * @param processDefinitionId
+	 *            流程定义名
+	 * @param mainId
+	 *            业务主键
+	 * @param variables
+	 *            变量集
 	 * @return
 	 */
 	@Transactional
-	void save(FlowProcessEntity flowProcess);
+	FlowProcessEntity startProcessInstanceByKey(String actorId,
+			String processDefinitionId, String mainId,
+			Map<String, Object> variables);
 
 }

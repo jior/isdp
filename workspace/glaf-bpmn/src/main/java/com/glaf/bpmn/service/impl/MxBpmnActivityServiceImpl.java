@@ -62,11 +62,6 @@ public class MxBpmnActivityServiceImpl implements BpmnActivityService {
 				.getFlowActivityEntityCountByQueryCriteria(query);
 	}
 
-	@Transactional
-	public void deleteById(String id) {
-		flowActivityEntityMapper.deleteFlowActivityEntityById(id);
-	}
-
 	public List<FlowActivityEntity> getFlowActivities(int mytaskmainIndexId,
 			String mycellTaskId, String activityDefId) {
 		Map<String, Object> parameter = new HashMap<String, Object>();

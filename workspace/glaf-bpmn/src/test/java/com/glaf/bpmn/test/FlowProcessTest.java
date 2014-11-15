@@ -21,7 +21,6 @@ public class FlowProcessTest extends AbstractTest {
 		List<FlowProcessEntity> rows = bpmnProcessService
 				.getFlowProcessesByQueryCriteria(0, 10, query);
 		for (FlowProcessEntity row : rows) {
-			bpmnProcessService.save(row);
 			logger.debug(row.toJsonObject().toJSONString());
 		}
 	}

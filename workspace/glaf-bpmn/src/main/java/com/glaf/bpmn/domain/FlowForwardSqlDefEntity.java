@@ -45,13 +45,13 @@ public class FlowForwardSqlDefEntity implements Serializable, JSONable {
 	protected String id;
 
 	/**
-	 * process_id
+	 * 流程定义编号
 	 */
 	@Column(name = "process_id", length = 50)
 	protected String processId;
 
 	/**
-	 * flow_forward_d
+	 * 活动条件转发ID
 	 */
 	@Column(name = "flow_forward_d", length = 50)
 	protected String flowForwardD;
@@ -63,44 +63,44 @@ public class FlowForwardSqlDefEntity implements Serializable, JSONable {
 	protected int intandor;
 
 	/**
-	 * sqlcon_type
+	 * 条件类型,0为任务单条件,1为外接条件
 	 */
 	@Column(name = "sqlcon_type")
 	protected int sqlconType;
 
 	/**
-	 * sqlcon_dtype
+	 * 字段类型
 	 */
 	@Column(name = "sqlcon_dtype", length = 20)
 	protected String sqlconDtype;
 
 	/**
-	 * sqlcon_field
+	 * 转发条件,字段
 	 */
 	@Column(name = "sqlcon_field", length = 50)
 	protected String sqlconField;
 
 	/**
-	 * strsp
+	 * 条件
 	 */
 	@Column(name = "strsp", length = 10)
 	protected String strsp;
 
 	/**
-	 * sqlcon_value
+	 * 值
 	 */
 	@Column(name = "sqlcon_value", length = 200)
 	protected String sqlconValue;
 
 	/**
-	 * sqlconshow
+	 * 转发条件显示
 	 */
 	@Lob
 	@Column(name = "sqlconshow")
 	protected String sqlconshow;
 
 	/**
-	 * issave
+	 * 是否保存了,1为保存,0为没保存
 	 */
 	@Column(name = "issave")
 	protected int issave;

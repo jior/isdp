@@ -54,23 +54,6 @@
 	</update>
 
 
-	<delete id="deleteFlowStationEntityById" parameterType="string">
-		delete from flow_station
-		where id = #{id}
-	</delete>
-
-
-	<delete id="deleteFlowStationEntities" parameterType="com.glaf.bpmn.query.FlowStationQuery">
-		delete from flow_station
-		where ( id IN
-		<foreach item="x_rowId" index="index" collection="rowIds"
-			open="(" separator="," close=")">
-			#{x_rowId}
-		</foreach>
-		)
-	</delete>
-
-
 	<select id="getFlowStationEntityById" parameterType="string"
 		resultMap="flowStationEntityResultMap">
 		select * from flow_station where id = #{id}

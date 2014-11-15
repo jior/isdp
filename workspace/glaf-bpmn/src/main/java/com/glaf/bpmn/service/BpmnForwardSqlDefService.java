@@ -28,14 +28,6 @@ import com.glaf.bpmn.query.*;
 public interface BpmnForwardSqlDefService {
 
 	/**
-	 * 根据主键删除记录
-	 * 
-	 * @return
-	 */
-	@Transactional
-	void deleteById(String id);
-
-	/**
 	 * 根据主键获取一条记录
 	 * 
 	 * @return

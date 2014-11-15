@@ -50,7 +50,7 @@ public interface UserTaskMapper {
 	List<BaseTree> getMyTaskTreepinfos(Map<String, Object> parameter);
 
 	List<BaseTree> getMyTaskTrees(int indexId);
-	
+
 	List<BaseTree> getMyTaskTreesOfTypeA(int indexId);
 
 	List<UserTask> getUserTaskByActorId(String actorId);

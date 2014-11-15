@@ -61,11 +61,6 @@ public class MxBpmnStationServiceImpl implements BpmnStationService {
 				.getFlowStationEntityCountByQueryCriteria(query);
 	}
 
-	@Transactional
-	public void deleteById(String id) {
-		flowStationEntityMapper.deleteFlowStationEntityById(id);
-	}
-
 	public FlowStationEntity getFlowStation(String id) {
 		FlowStationEntity flowStation = flowStationEntityMapper
 				.getFlowStationEntityById(id);

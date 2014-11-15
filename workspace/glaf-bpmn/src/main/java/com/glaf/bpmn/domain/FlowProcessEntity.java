@@ -41,61 +41,64 @@ import com.glaf.bpmn.util.FlowProcessJsonFactory;
 public class FlowProcessEntity implements Serializable, JSONable {
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 流程实例编号
+	 */
 	@Id
 	@Column(name = "id", length = 50, nullable = false)
 	protected String id;
 
 	/**
-	 * process_d_id
+	 * 流程定义编号
 	 */
 	@Column(name = "process_d_id", length = 50)
 	protected String processDefId;
 
 	/**
-	 * Main_id
+	 * 业务编号
 	 */
 	@Column(name = "main_id", length = 50)
 	protected String mainId;
 
 	/**
-	 * fileid
+	 * 模板ID,从中取得依赖转发的数据
 	 */
 	@Column(name = "fileid", length = 50)
 	protected String fileid;
 
 	/**
-	 * name
+	 * 流程名称
 	 */
 	@Column(name = "name", length = 200)
 	protected String name;
 
 	/**
-	 * content
+	 * 描述
 	 */
 	@Column(name = "content", length = 100)
 	protected String content;
 
 	/**
-	 * actor
+	 * 创建者
 	 */
 	@Column(name = "actor", length = 40)
 	protected String actorId;
 
 	/**
-	 * ctime
+	 * 创建日期
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "ctime")
 	protected Date ctime;
 
 	/**
-	 * version
+	 * 版本
 	 */
 	@Column(name = "version", length = 50)
 	protected String version;
 
 	/**
-	 * state
+	 * 状态
 	 */
 	@Column(name = "state")
 	protected int state;

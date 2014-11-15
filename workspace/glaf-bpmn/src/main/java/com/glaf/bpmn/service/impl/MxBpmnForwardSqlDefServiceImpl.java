@@ -61,11 +61,6 @@ public class MxBpmnForwardSqlDefServiceImpl implements BpmnForwardSqlDefService 
 				.getFlowForwardSqlDefEntityCountByQueryCriteria(query);
 	}
 
-	@Transactional
-	public void deleteById(String id) {
-		flowForwardSqlDefEntityMapper.deleteFlowForwardSqlDefEntityById(id);
-	}
-
 	public FlowForwardSqlDefEntity getFlowForwardSqlDef(String id) {
 		FlowForwardSqlDefEntity flowForwardSqlDef = flowForwardSqlDefEntityMapper
 				.getFlowForwardSqlDefEntityById(id);

@@ -29,10 +29,6 @@ import com.glaf.bpmn.query.FlowProcessQuery;
 @Component
 public interface FlowProcessEntityMapper {
 
-	void deleteFlowProcessEntityById(String id);
-
-	void deleteFlowProcessEntities(FlowProcessQuery query);
-
 	FlowProcessEntity getFlowProcessEntityById(String id);
 
 	int getFlowProcessEntityCount(Map<String, Object> parameter);

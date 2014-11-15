@@ -29,10 +29,6 @@ import com.glaf.bpmn.query.FlowActivityDefQuery;
 @Component
 public interface FlowActivityDefEntityMapper {
 
-	void deleteFlowActivityDefEntityById(String id);
-
-	void deleteFlowActivityDefEntities(FlowActivityDefQuery query);
-
 	FlowActivityDefEntity getFlowActivityDefEntityById(String id);
 
 	int getFlowActivityDefEntityCount(Map<String, Object> parameter);

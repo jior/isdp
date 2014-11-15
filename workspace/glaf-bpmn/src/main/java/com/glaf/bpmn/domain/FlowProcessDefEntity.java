@@ -47,44 +47,44 @@ public class FlowProcessDefEntity implements Serializable, JSONable {
 	protected String id;
 
 	/**
-	 * Main_id
+	 * 外挂ID,挂业务的ID
 	 */
 	@Column(name = "main_id", length = 50)
 	protected String mainId;
 
 	/**
-	 * fileid
+	 * 模板ID,从中取得依赖转发的数据
 	 */
 	@Column(name = "fileid", length = 50)
 	protected String fileid;
 
 	/**
-	 * name
+	 * 流程名称
 	 */
 	@Column(name = "name", length = 200)
 	protected String name;
 
 	/**
-	 * content
+	 * 描述
 	 */
 	@Column(name = "content", length = 100)
 	protected String content;
 
 	/**
-	 * actor
+	 * 创建者
 	 */
 	@Column(name = "actor", length = 40)
 	protected String actorId;
 
 	/**
-	 * ctime
+	 * 创建日期
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "ctime")
 	protected Date ctime;
 
 	/**
-	 * version
+	 * 版本
 	 */
 	@Column(name = "version", length = 50)
 	protected String version;
@@ -97,13 +97,33 @@ public class FlowProcessDefEntity implements Serializable, JSONable {
 	protected byte[] tcadfile;
 
 	/**
-	 * issave
+	 * XML文件信息
+	 */
+	@Lob
+	@Column(name = "xmlfile")
+	protected byte[] xmlfile;
+
+	/**
+	 * 流程图信息
+	 */
+	@Lob
+	@Column(name = "picfile")
+	protected byte[] picfile;
+
+	/**
+	 * 流程图名称
+	 */
+	@Column(name = "picname", length = 250)
+	protected String picname;
+
+	/**
+	 * 是否保存了,1为保存,0为没保存
 	 */
 	@Column(name = "issave")
 	protected int issave;
 
 	/**
-	 * intflag
+	 * 工作流0，任务1
 	 */
 	@Column(name = "intflag")
 	protected int intflag;
@@ -172,6 +192,14 @@ public class FlowProcessDefEntity implements Serializable, JSONable {
 		return this.name;
 	}
 
+	public byte[] getPicfile() {
+		return picfile;
+	}
+
+	public String getPicname() {
+		return picname;
+	}
+
 	public List<FlowForwardDefEntity> getSequenceFlows() {
 		return sequenceFlows;
 	}
@@ -182,6 +210,14 @@ public class FlowProcessDefEntity implements Serializable, JSONable {
 
 	public String getVersion() {
 		return this.version;
+	}
+
+	public byte[] getXmlfile() {
+		return xmlfile;
+	}
+
+	public FlowProcessDefEntity jsonToObject(JSONObject jsonObject) {
+		return FlowProcessDefJsonFactory.jsonToObject(jsonObject);
 	}
 
 	public void setActivities(List<FlowActivityDefEntity> activities) {
@@ -224,6 +260,14 @@ public class FlowProcessDefEntity implements Serializable, JSONable {
 		this.name = name;
 	}
 
+	public void setPicfile(byte[] picfile) {
+		this.picfile = picfile;
+	}
+
+	public void setPicname(String picname) {
+		this.picname = picname;
+	}
+
 	public void setSequenceFlows(List<FlowForwardDefEntity> sequenceFlows) {
 		this.sequenceFlows = sequenceFlows;
 	}
@@ -236,8 +280,8 @@ public class FlowProcessDefEntity implements Serializable, JSONable {
 		this.version = version;
 	}
 
-	public FlowProcessDefEntity jsonToObject(JSONObject jsonObject) {
-		return FlowProcessDefJsonFactory.jsonToObject(jsonObject);
+	public void setXmlfile(byte[] xmlfile) {
+		this.xmlfile = xmlfile;
 	}
 
 	public JSONObject toJsonObject() {

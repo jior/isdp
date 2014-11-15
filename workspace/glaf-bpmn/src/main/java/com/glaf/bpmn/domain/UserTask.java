@@ -52,64 +52,70 @@ public class UserTask implements Serializable, ITree, JSONable {
 	protected int parentId;
 
 	/**
-	 * actorId
+	 * 参与者编号
 	 */
 	@Column(name = "actorId", length = 50)
 	protected String actorId;
 
 	/**
-	 * name
+	 * 参与者姓名
 	 */
 	@Column(name = "name", length = 200)
 	protected String name;
 
 	/**
-	 * indexName
+	 * 显示名称
 	 */
 	@Column(name = "index_name", length = 200)
 	protected String indexName;
 
 	/**
-	 * activityId
+	 * 活动实例编号
 	 */
 	@Column(name = "activityId", length = 50)
 	protected String activityId;
 
 	/**
-	 * startTime
+	 * 开始日期
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "startTime")
 	protected Date startTime;
 
 	/**
-	 * endTime
+	 * 结束日期
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "endTime")
 	protected Date endTime;
 
 	/**
-	 * state
+	 * 状态
 	 */
 	@Column(name = "state")
 	protected int state;
 
 	/**
-	 * timelimit
+	 * 时间限制
 	 */
 	@Column(name = "timelimit")
 	protected int timelimit;
 
 	/**
-	 * lastModified
+	 * 最后修改时间
 	 */
 	@Column(name = "lastModified")
 	protected long lastModified;
 
+	/**
+	 * 顺序号
+	 */
 	@Column(name = "listno")
 	protected int listno;
 
+	/**
+	 * 层级
+	 */
 	@Column(name = "nlevel")
 	protected int level;
 

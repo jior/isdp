@@ -174,18 +174,6 @@
 	</update>
 
 
-	<delete id="deleteFlowActivityEntityById" parameterType="string">
-		delete
-		from flow_activ
-		where id = #{id}
-	</delete>
-
-
-	<select id="getFlowActivityEntityById" parameterType="string"
-		resultMap="flowActivityEntityResultMap">
-		select * from flow_activ where id = #{id}
-	</select>
-
 	<select id="getFlowActivitiesByTaskId" parameterType="map"
 		resultType="com.glaf.bpmn.domain.FlowActivityEntity">
 

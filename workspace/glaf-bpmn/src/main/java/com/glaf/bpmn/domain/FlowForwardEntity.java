@@ -44,31 +44,31 @@ public class FlowForwardEntity implements Serializable, JSONable {
 	protected String id;
 
 	/**
-	 * process_id
+	 * 流程实例编号
 	 */
 	@Column(name = "process_id", length = 50)
 	protected String processId;
 
 	/**
-	 * activ_d_id
+	 * 活动ID
 	 */
 	@Column(name = "activ_d_id", length = 50)
 	protected String activDefId;
 
 	/**
-	 * activ_d_next
+	 * 后续活动ID
 	 */
 	@Column(name = "activ_d_next", length = 50)
 	protected String activDefNext;
 
 	/**
-	 * sendtype
+	 * 流转状态： 0为正常,-1为退回
 	 */
 	@Column(name = "sendtype")
 	protected int sendtype;
 
 	/**
-	 * sendtimes
+	 * 发送次数
 	 */
 	@Column(name = "sendtimes")
 	protected int sendtimes;

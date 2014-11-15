@@ -43,12 +43,15 @@ import com.glaf.bpmn.util.FlowActivityJsonFactory;
 public class FlowActivityEntity implements Serializable, JSONable {
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 活动实例编号
+	 */
 	@Id
 	@Column(name = "id", length = 50, nullable = false)
 	protected String id;
 
 	/**
-	 * activ_d_id
+	 * 活动定义编号，对应flow_activ_d表的ID字段
 	 */
 	@Column(name = "activ_d_id", length = 50)
 	protected String activDefId;
@@ -57,75 +60,78 @@ public class FlowActivityEntity implements Serializable, JSONable {
 	protected String activDefName;
 
 	/**
-	 * process_id
+	 * 流程实例编号
 	 */
 	@Column(name = "process_id", length = 50)
 	protected String processId;
 
 	/**
-	 * typeofact
+	 * 活动类型 <br/>
+	 * 0-人工任务 <br/>
+	 * 1-开始节点 <br/>
+	 * 2-结束节点<br/>
 	 */
 	@Column(name = "typeofact", length = 20)
 	protected String typeofact;
 
 	/**
-	 * name
+	 * 活动名称
 	 */
 	@Column(name = "name", length = 100)
 	protected String name;
 
 	/**
-	 * content
+	 * 描述
 	 */
 	@Column(name = "content", length = 100)
 	protected String content;
 
 	/**
-	 * strfuntion
+	 * 调用程序或业务地址
 	 */
 	@Column(name = "strfuntion", length = 200)
 	protected String strfuntion;
 
 	/**
-	 * netroleid
+	 * 岗位ID,即角色ID
 	 */
 	@Column(name = "netroleid", length = 50)
 	protected String netroleid;
 
 	/**
-	 * userid
+	 * 执行人
 	 */
 	@Column(name = "userid", length = 50)
 	protected String userId;
 
 	/**
-	 * listno
+	 * 顺序号
 	 */
 	@Column(name = "listno")
 	protected int listno;
 
 	/**
-	 * timelimit
+	 * 时间限制,天
 	 */
 	@Column(name = "timelimit")
 	protected Double timelimit;
 
 	/**
-	 * ctime_start
+	 * 进入时间
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "ctime_start")
 	protected Date ctimeStart;
 
 	/**
-	 * ctime_end
+	 * 结束时间
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "ctime_end")
 	protected Date ctimeEnd;
 
 	/**
-	 * state
+	 * 状态 0为流转,1为完成,2挂起
 	 */
 	@Column(name = "state")
 	protected int state;

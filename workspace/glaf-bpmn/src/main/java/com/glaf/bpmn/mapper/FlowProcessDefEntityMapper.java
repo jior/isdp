@@ -29,10 +29,6 @@ import com.glaf.bpmn.query.FlowProcessDefQuery;
 @Component
 public interface FlowProcessDefEntityMapper {
 
-	void deleteFlowProcessDefEntityById(String id);
-
-	void deleteFlowProcessDefEntityEntities(FlowProcessDefQuery query);
-
 	FlowProcessDefEntity getFlowProcessDefEntityById(String id);
 
 	FlowProcessDefEntity getFlowProcessDefEntityById_postgres(String id);

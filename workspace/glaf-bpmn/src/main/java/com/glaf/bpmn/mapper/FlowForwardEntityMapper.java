@@ -29,10 +29,6 @@ import com.glaf.bpmn.query.FlowForwardQuery;
 @Component
 public interface FlowForwardEntityMapper {
 
-	void deleteFlowForwardEntityById(String id);
-
-	void deleteFlowForwardEntities(FlowForwardQuery query);
-
 	FlowForwardEntity getFlowForwardEntityById(String id);
 
 	int getFlowForwardEntityCount(Map<String, Object> parameter);

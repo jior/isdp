@@ -60,11 +60,6 @@ public class MxBpmnActivityDefServiceImpl implements BpmnActivityDefService {
 				.getFlowActivityDefEntityCountByQueryCriteria(query);
 	}
 
-	@Transactional
-	public void deleteById(String id) {
-		flowActivityDefEntityMapper.deleteFlowActivityDefEntityById(id);
-	}
-
 	/**
 	 * 根据流程编号获取流程活跃节点的信息(正在运行中的节点信息)
 	 * 

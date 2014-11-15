@@ -104,23 +104,6 @@
 	</update>
 
 
-	<delete id="deleteFlowForwardDefEntityById" parameterType="string">
-		delete from flow_forward_d
-		where id = #{id}
-	</delete>
-
-
-	<delete id="deleteFlowForwardDefEntities" parameterType="com.glaf.bpmn.query.FlowForwardDefQuery">
-		delete from flow_forward_d
-		where ( id IN
-		<foreach item="x_rowId" index="index" collection="rowIds"
-			open="(" separator="," close=")">
-			#{x_rowId}
-		</foreach>
-		)
-	</delete>
-
-
 	<select id="getFlowForwardDefEntityById" parameterType="string"
 		resultMap="flowForwardDefEntityResultMap">
 		select * from flow_forward_d where id = #{id}

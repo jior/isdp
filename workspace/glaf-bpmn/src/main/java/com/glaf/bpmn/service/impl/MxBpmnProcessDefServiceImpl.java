@@ -33,7 +33,11 @@ import com.glaf.core.config.Environment;
 import com.glaf.core.dao.EntityDAO;
 import com.glaf.core.id.IdGenerator;
 import com.glaf.core.util.DBUtils;
+import com.glaf.bpmn.domain.FlowActivityDefEntity;
+import com.glaf.bpmn.domain.FlowForwardDefEntity;
 import com.glaf.bpmn.domain.FlowProcessDefEntity;
+import com.glaf.bpmn.mapper.FlowActivityDefEntityMapper;
+import com.glaf.bpmn.mapper.FlowForwardDefEntityMapper;
 import com.glaf.bpmn.mapper.FlowProcessDefEntityMapper;
 import com.glaf.bpmn.query.FlowProcessDefQuery;
 import com.glaf.bpmn.service.BpmnProcessDefService;
@@ -50,7 +54,11 @@ public class MxBpmnProcessDefServiceImpl implements BpmnProcessDefService {
 
 	protected SqlSession sqlSession;
 
+	protected FlowActivityDefEntityMapper flowActivityDefEntityMapper;
+
 	protected FlowProcessDefEntityMapper flowProcessDefEntityMapper;
+
+	protected FlowForwardDefEntityMapper flowForwardDefEntityMapper;
 
 	public MxBpmnProcessDefServiceImpl() {
 
@@ -62,11 +70,6 @@ public class MxBpmnProcessDefServiceImpl implements BpmnProcessDefService {
 				.getFlowProcessDefEntityCountByQueryCriteria(query);
 	}
 
-	@Transactional
-	public void deleteById(String id) {
-		flowProcessDefEntityMapper.deleteFlowProcessDefEntityById(id);
-	}
-
 	public FlowProcessDefEntity getFlowProcessDef(String id) {
 		FlowProcessDefEntity flowProcessDef = null;
 		if (StringUtils.equals(DBUtils.POSTGRESQL,
@@ -76,6 +79,16 @@ public class MxBpmnProcessDefServiceImpl implements BpmnProcessDefService {
 		} else {
 			flowProcessDef = flowProcessDefEntityMapper
 					.getFlowProcessDefEntityById(id);
+		}
+		if (flowProcessDef != null) {
+			List<FlowActivityDefEntity> activities = flowActivityDefEntityMapper
+					.getFlowActivityDefEntitiesByProcessDefId(flowProcessDef
+							.getId());
+			flowProcessDef.setActivities(activities);
+			List<FlowForwardDefEntity> sequenceFlows = flowForwardDefEntityMapper
+					.getFlowActivityDefEntitiesByProcessDefId(flowProcessDef
+							.getId());
+			flowProcessDef.setSequenceFlows(sequenceFlows);
 		}
 		return flowProcessDef;
 	}
@@ -176,6 +189,18 @@ public class MxBpmnProcessDefServiceImpl implements BpmnProcessDefService {
 	@javax.annotation.Resource
 	public void setEntityDAO(EntityDAO entityDAO) {
 		this.entityDAO = entityDAO;
+	}
+
+	@javax.annotation.Resource
+	public void setFlowActivityDefEntityMapper(
+			FlowActivityDefEntityMapper flowActivityDefEntityMapper) {
+		this.flowActivityDefEntityMapper = flowActivityDefEntityMapper;
+	}
+
+	@javax.annotation.Resource
+	public void setFlowForwardDefEntityMapper(
+			FlowForwardDefEntityMapper flowForwardDefEntityMapper) {
+		this.flowForwardDefEntityMapper = flowForwardDefEntityMapper;
 	}
 
 	@javax.annotation.Resource

@@ -43,13 +43,13 @@ public class FlowStationEntity implements Serializable, JSONable {
 	protected String id;
 
 	/**
-	 * process_id
+	 * 流程实例编号
 	 */
 	@Column(name = "process_id", length = 50)
 	protected String processId;
 
 	/**
-	 * activ_d_id
+	 * 活动定义编号
 	 */
 	@Column(name = "activ_d_id", length = 50)
 	protected String activDefId;

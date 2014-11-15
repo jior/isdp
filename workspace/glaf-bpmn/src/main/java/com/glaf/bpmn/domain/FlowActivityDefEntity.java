@@ -38,72 +38,78 @@ import com.glaf.bpmn.util.FlowActivityDefJsonFactory;
 public class FlowActivityDefEntity implements Serializable, JSONable {
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 活动定义编号
+	 */
 	@Id
 	@Column(name = "id", length = 50, nullable = false)
 	protected String id;
 
 	/**
-	 * process_id
+	 * 流程定义编号
 	 */
 	@Column(name = "process_id", length = 50)
 	protected String processId;
 
 	/**
-	 * typeofact
+	 * 活动类型 <br/>
+	 * 0-人工任务 <br/>
+	 * 1-开始节点 <br/>
+	 * 2-结束节点<br/>
 	 */
 	@Column(name = "typeofact", length = 20)
 	protected String typeofact;
 
 	/**
-	 * name
+	 * 活动名称
 	 */
 	@Column(name = "name", length = 100)
 	protected String name;
 
 	/**
-	 * content
+	 * 描述
 	 */
 	@Column(name = "content", length = 100)
 	protected String content;
 
 	/**
-	 * strfuntion
+	 * 调用程序或业务地址
 	 */
 	@Column(name = "strfuntion", length = 1000)
 	protected String strfuntion;
 
 	/**
-	 * netroleid
+	 * 岗位ID,即角色ID
 	 */
 	@Column(name = "netroleid", length = 50)
 	protected String netroleid;
 
 	/**
-	 * listno
+	 * 顺序号
 	 */
 	@Column(name = "listno")
 	protected int listno;
 
 	/**
-	 * timelimit
+	 * 时间限制,天
 	 */
 	@Column(name = "timelimit")
 	protected Double timelimit;
 
 	/**
-	 * issave
+	 * 是否保存了,1为保存,0为没保存
 	 */
 	@Column(name = "issave")
 	protected int issave;
 
 	/**
-	 * isdel
+	 * 是否删除了,1为删除
 	 */
 	@Column(name = "isdel")
 	protected int isdel;
 
 	/**
-	 * intselectuser
+	 * 工作流0， 任务1
 	 */
 	@Column(name = "intselectuser")
 	protected int intselectuser;

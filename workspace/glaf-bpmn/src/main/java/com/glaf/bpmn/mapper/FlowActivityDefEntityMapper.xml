@@ -155,23 +155,6 @@
 	</update>
 
 
-	<delete id="deleteFlowActivityDefEntityById" parameterType="string">
-		delete from flow_activ_d
-		where id = #{id}
-	</delete>
-
-
-	<delete id="deleteFlowActivityDefEntities" parameterType="com.glaf.bpmn.query.FlowActivityDefQuery">
-		delete from flow_activ_d
-		where ( id IN
-		<foreach item="x_rowId" index="index" collection="rowIds"
-			open="(" separator="," close=")">
-			#{x_rowId}
-		</foreach>
-		)
-	</delete>
-
-
 	<select id="getFlowActivityDefEntityById" parameterType="string"
 		resultMap="flowActivityDefEntityResultMap">
 		select * from flow_activ_d where id = #{id}

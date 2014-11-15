@@ -124,23 +124,6 @@
 	</update>
 
 
-	<delete id="deleteFlowProcessEntityById" parameterType="string">
-		delete from flow_process
-		where id = #{id}
-	</delete>
-
-
-	<delete id="deleteFlowProcessEntities" parameterType="com.glaf.bpmn.query.FlowProcessQuery">
-		delete from flow_process
-		where ( id IN
-		<foreach item="x_rowId" index="index" collection="rowIds"
-			open="(" separator="," close=")">
-			#{x_rowId}
-		</foreach>
-		)
-	</delete>
-
-
 	<select id="getFlowProcessEntityById" parameterType="string"
 		resultMap="flowProcessEntityResultMap">
 		select * from flow_process where id = #{id}

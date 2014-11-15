@@ -61,11 +61,6 @@ public class MxBpmnForwardServiceImpl implements BpmnForwardService {
 				.getFlowForwardEntityCountByQueryCriteria(query);
 	}
 
-	@Transactional
-	public void deleteById(String id) {
-		flowForwardEntityMapper.deleteFlowForwardEntityById(id);
-	}
-
 	public FlowForwardEntity getFlowForward(String id) {
 		FlowForwardEntity flowForward = flowForwardEntityMapper
 				.getFlowForwardEntityById(id);

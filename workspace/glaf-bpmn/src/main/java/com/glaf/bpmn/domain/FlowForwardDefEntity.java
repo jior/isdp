@@ -44,43 +44,43 @@ public class FlowForwardDefEntity implements Serializable, JSONable {
 	protected String id;
 
 	/**
-	 * process_id
+	 * 流程定义编号
 	 */
 	@Column(name = "process_id", length = 50)
 	protected String processId;
 
 	/**
-	 * activ_id
+	 * 活动编号
 	 */
 	@Column(name = "activ_id", length = 50)
 	protected String activId;
 
 	/**
-	 * activ_pre
+	 * 前一步活动编号
 	 */
 	@Column(name = "activ_pre", length = 50)
 	protected String activPre;
 
 	/**
-	 * activ_next
+	 * 后一步活动编号
 	 */
 	@Column(name = "activ_next", length = 50)
 	protected String activNext;
 
 	/**
-	 * issave
+	 * 是否保存了,1为保存,0为没保存
 	 */
 	@Column(name = "issave")
 	protected int issave;
 
 	/**
-	 * isdel
+	 * 是否删除了,1为删除
 	 */
 	@Column(name = "isdel")
 	protected int isdel;
 
 	/**
-	 * listno
+	 * 顺序号,记录图形号用于查找
 	 */
 	@Column(name = "listno")
 	protected int listno;

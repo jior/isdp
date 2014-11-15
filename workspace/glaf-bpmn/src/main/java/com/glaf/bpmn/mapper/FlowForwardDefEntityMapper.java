@@ -29,10 +29,6 @@ import com.glaf.bpmn.query.FlowForwardDefQuery;
 @Component
 public interface FlowForwardDefEntityMapper {
 
-	void deleteFlowForwardDefEntityById(String id);
-
-	void deleteFlowForwardDefEntities(FlowForwardDefQuery query);
-
 	FlowForwardDefEntity getFlowForwardDefEntityById(String id);
 
 	int getFlowForwardDefEntityCount(Map<String, Object> parameter);

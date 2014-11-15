@@ -29,10 +29,6 @@ import com.glaf.bpmn.query.FlowStationQuery;
 @Component
 public interface FlowStationEntityMapper {
 
-	void deleteFlowStationEntityById(String id);
-
-	void deleteFlowStationEntities(FlowStationQuery query);
-
 	FlowStationEntity getFlowStationEntityById(String id);
 
 	int getFlowStationEntityCount(Map<String, Object> parameter);
