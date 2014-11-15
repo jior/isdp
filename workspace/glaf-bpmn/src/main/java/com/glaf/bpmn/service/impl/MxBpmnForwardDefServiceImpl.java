@@ -152,32 +152,9 @@ public class MxBpmnForwardDefServiceImpl implements BpmnForwardDefService {
 	public void save(FlowForwardDefEntity flowForwardDef) {
 		if (StringUtils.isEmpty(flowForwardDef.getId())) {
 			flowForwardDef.setId(idGenerator.getNextId());
-			// flowForwardDef.setId(idGenerator.getNextId());
-			// flowForwardDef.setCreateDate(new Date());
-			flowForwardDefEntityMapper
-					.insertFlowForwardDefEntity(flowForwardDef);
-		} else {
-			FlowForwardDefEntity model = this.getFlowForwardDef(flowForwardDef
-					.getId());
-			if (model != null) {
-				if (flowForwardDef.getProcessId() != null) {
-					model.setProcessId(flowForwardDef.getProcessId());
-				}
-				if (flowForwardDef.getActivId() != null) {
-					model.setActivId(flowForwardDef.getActivId());
-				}
-				if (flowForwardDef.getActivPre() != null) {
-					model.setActivPre(flowForwardDef.getActivPre());
-				}
-				if (flowForwardDef.getActivNext() != null) {
-					model.setActivNext(flowForwardDef.getActivNext());
-				}
-				model.setIssave(flowForwardDef.getIssave());
-				model.setIsdel(flowForwardDef.getIsdel());
-				model.setListno(flowForwardDef.getListno());
-				flowForwardDefEntityMapper.updateFlowForwardDefEntity(model);
-			}
+
 		}
+		flowForwardDefEntityMapper.insertFlowForwardDefEntity(flowForwardDef);
 	}
 
 	@javax.annotation.Resource

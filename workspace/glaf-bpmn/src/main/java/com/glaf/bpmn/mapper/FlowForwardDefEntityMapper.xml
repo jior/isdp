@@ -6,6 +6,7 @@
 
 	<resultMap id="flowForwardDefEntityResultMap" type="com.glaf.bpmn.domain.FlowForwardDefEntity">
 		<id property="id" column="id" jdbcType="VARCHAR" />
+		<result property="name" column="name" jdbcType="VARCHAR" />
 		<result property="processId" column="process_id" jdbcType="VARCHAR" />
 		<result property="activId" column="activ_id" jdbcType="VARCHAR" />
 		<result property="activPre" column="activ_pre" jdbcType="VARCHAR" />
@@ -20,6 +21,9 @@
 		insert into flow_forward_d
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			id
+			<if test="name != null">
+				,name
+			</if>
 			<if test="processId != null">
 				,process_id
 			</if>
@@ -46,6 +50,9 @@
 		<trim prefix=" values (" suffix=")" suffixOverrides=",">
 			#{id, jdbcType=VARCHAR}
 
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
 			<if test="processId != null">
 				,#{processId, jdbcType=VARCHAR}
 			</if>
@@ -71,39 +78,6 @@
 	</insert>
 
 
-	<update id="updateFlowForwardDefEntity" parameterType="com.glaf.bpmn.domain.FlowForwardDefEntity">
-		update
-		flow_forward_d
-		set
-		<trim prefix="" suffix="" suffixOverrides=",">
-			<if test="processId != null">
-				process_id = #{processId, jdbcType=VARCHAR},
-			</if>
-			<if test="activId != null">
-				activ_id = #{activId, jdbcType=VARCHAR},
-			</if>
-			<if test="activPre != null">
-				activ_pre = #{activPre, jdbcType=VARCHAR},
-			</if>
-			<if test="activNext != null">
-				activ_next = #{activNext, jdbcType=VARCHAR},
-			</if>
-			<if test="issave != null">
-				issave = #{issave, jdbcType=INTEGER},
-			</if>
-			<if test="isdel != null">
-				isdel = #{isdel, jdbcType=INTEGER},
-			</if>
-			<if test="listno != null">
-				listno = #{listno, jdbcType=INTEGER},
-			</if>
-		</trim>
-		where
-		id = #{id, jdbcType=VARCHAR}
-
-	</update>
-
-
 	<select id="getFlowForwardDefEntityById" parameterType="string"
 		resultMap="flowForwardDefEntityResultMap">
 		select * from flow_forward_d where id = #{id}
@@ -122,12 +96,16 @@
 
 		SELECT *
 		FROM flow_forward_d
-		WHERE (process_id = #{processId}) AND EXISTS
+		WHERE
+		(process_id = #{processId}) AND EXISTS
 		(SELECT *
 		FROM flow_forward
-		WHERE process_id = #{processInstanceId} AND
-		activ_d_id = flow_forward_d.activ_pre AND
-		activ_d_next = flow_forward_d.activ_id AND sendtype = 1)
+		WHERE
+		process_id = #{processInstanceId} AND
+		activ_d_id =
+		flow_forward_d.activ_pre AND
+		activ_d_next = flow_forward_d.activ_id AND
+		sendtype = 1)
 
 	</select>
 

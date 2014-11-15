@@ -107,54 +107,6 @@
 	</insert>
 
 
-	<update id="updateFlowActivityDefEntity" parameterType="com.glaf.bpmn.domain.FlowActivityDefEntity">
-		update
-		flow_activ_d
-		set
-		<trim prefix="" suffix="" suffixOverrides=",">
-			<if test="processId != null">
-				process_id = #{processId, jdbcType=VARCHAR},
-			</if>
-			<if test="typeofact != null">
-				typeofact = #{typeofact, jdbcType=VARCHAR},
-			</if>
-			<if test="name != null">
-				name = #{name, jdbcType=VARCHAR},
-			</if>
-			<if test="content != null">
-				content = #{content, jdbcType=VARCHAR},
-			</if>
-			<if test="strfuntion != null">
-				strfuntion = #{strfuntion, jdbcType=VARCHAR},
-			</if>
-			<if test="netroleid != null">
-				netroleid = #{netroleid, jdbcType=VARCHAR},
-			</if>
-			<if test="listno != null">
-				listno = #{listno, jdbcType=INTEGER},
-			</if>
-			<if test="timelimit != null">
-				timelimit = #{timelimit, jdbcType=DOUBLE},
-			</if>
-			<if test="issave != null">
-				issave = #{issave, jdbcType=INTEGER},
-			</if>
-			<if test="isdel != null">
-				isdel = #{isdel, jdbcType=INTEGER},
-			</if>
-			<if test="intselectuser != null">
-				intselectuser = #{intselectuser, jdbcType=INTEGER},
-			</if>
-			<if test="intusedomain != null">
-				intusedomain = #{intusedomain, jdbcType=INTEGER},
-			</if>
-		</trim>
-		where
-		id = #{id, jdbcType=VARCHAR}
-
-	</update>
-
-
 	<select id="getFlowActivityDefEntityById" parameterType="string"
 		resultMap="flowActivityDefEntityResultMap">
 		select * from flow_activ_d where id = #{id}

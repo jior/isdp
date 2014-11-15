@@ -93,47 +93,6 @@
 	</insert>
 
 
-	<update id="updateFlowForwardSqlDefEntity" parameterType="com.glaf.bpmn.domain.FlowForwardSqlDefEntity">
-		update flow_forward_sql_d
-		set
-		<trim prefix="" suffix="" suffixOverrides=",">
-			<if test="processId != null">
-				process_id = #{processId, jdbcType=VARCHAR},
-			</if>
-			<if test="flowForwardD != null">
-				flow_forward_d = #{flowForwardD, jdbcType=VARCHAR},
-			</if>
-			<if test="intandor != null">
-				intandor = #{intandor, jdbcType=INTEGER},
-			</if>
-			<if test="sqlconType != null">
-				sqlcon_type = #{sqlconType, jdbcType=INTEGER},
-			</if>
-			<if test="sqlconDtype != null">
-				sqlcon_dtype = #{sqlconDtype, jdbcType=VARCHAR},
-			</if>
-			<if test="sqlconField != null">
-				sqlcon_field = #{sqlconField, jdbcType=VARCHAR},
-			</if>
-			<if test="strsp != null">
-				strsp = #{strsp, jdbcType=VARCHAR},
-			</if>
-			<if test="sqlconValue != null">
-				sqlcon_value = #{sqlconValue, jdbcType=VARCHAR},
-			</if>
-			<if test="sqlconshow != null">
-				sqlconshow = #{sqlconshow, jdbcType=VARCHAR},
-			</if>
-			<if test="issave != null">
-				issave = #{issave, jdbcType=INTEGER},
-			</if>
-		</trim>
-		where
-		id = #{id, jdbcType=VARCHAR}
-
-	</update>
-
-
 	<select id="getFlowForwardSqlDefEntityById" parameterType="string"
 		resultMap="flowForwardSqlDefEntityResultMap">
 		select * from flow_forward_sql_d where id = #{id}

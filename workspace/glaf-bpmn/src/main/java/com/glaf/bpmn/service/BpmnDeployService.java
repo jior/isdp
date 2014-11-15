@@ -16,33 +16,18 @@
  * limitations under the License.
  */
 
-package com.glaf.bpmn.mapper;
+package com.glaf.bpmn.service;
 
-import java.util.List;
-import java.util.Map;
+import java.util.zip.ZipInputStream;
 
-import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.glaf.bpmn.domain.FlowProcessDefEntity;
-import com.glaf.bpmn.query.FlowProcessDefQuery;
 
-@Component
-public interface FlowProcessDefEntityMapper {
+@Transactional
+public interface BpmnDeployService {
 
-	FlowProcessDefEntity getFlowProcessDefEntityById(String id);
-
-	FlowProcessDefEntity getFlowProcessDefEntityById_postgres(String id);
-
-	int getFlowProcessDefEntityCount(Map<String, Object> parameter);
-
-	int getFlowProcessDefEntityCountByQueryCriteria(FlowProcessDefQuery query);
-
-	List<FlowProcessDefEntity> getFlowProcessDefEntityEntities(
-			Map<String, Object> parameter);
-
-	List<FlowProcessDefEntity> getFlowProcessDefEntityEntitiesByQueryCriteria(
-			FlowProcessDefQuery query);
-
-	void insertFlowProcessDefEntity(FlowProcessDefEntity model);
+	@Transactional
+	FlowProcessDefEntity addZipInputStream(ZipInputStream zipInputStream);
 
 }

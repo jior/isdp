@@ -29,7 +29,6 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import com.alibaba.fastjson.JSONObject;
-
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.glaf.core.base.JSONable;
 import com.glaf.bpmn.util.FlowForwardDefJsonFactory;
@@ -42,6 +41,9 @@ public class FlowForwardDefEntity implements Serializable, JSONable {
 	@Id
 	@Column(name = "id", length = 50, nullable = false)
 	protected String id;
+
+	@Column(name = "name", length = 100)
+	protected String name;
 
 	/**
 	 * 流程定义编号
@@ -117,8 +119,16 @@ public class FlowForwardDefEntity implements Serializable, JSONable {
 		return this.listno;
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	public String getProcessId() {
 		return this.processId;
+	}
+
+	public FlowForwardDefEntity jsonToObject(JSONObject jsonObject) {
+		return FlowForwardDefJsonFactory.jsonToObject(jsonObject);
 	}
 
 	public void setActivId(String activId) {
@@ -149,12 +159,12 @@ public class FlowForwardDefEntity implements Serializable, JSONable {
 		this.listno = listno;
 	}
 
-	public void setProcessId(String processId) {
-		this.processId = processId;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public FlowForwardDefEntity jsonToObject(JSONObject jsonObject) {
-		return FlowForwardDefJsonFactory.jsonToObject(jsonObject);
+	public void setProcessId(String processId) {
+		this.processId = processId;
 	}
 
 	public JSONObject toJsonObject() {

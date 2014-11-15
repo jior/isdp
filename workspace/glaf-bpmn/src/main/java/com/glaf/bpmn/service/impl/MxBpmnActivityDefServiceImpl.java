@@ -145,41 +145,9 @@ public class MxBpmnActivityDefServiceImpl implements BpmnActivityDefService {
 	public void save(FlowActivityDefEntity flowActivityDef) {
 		if (StringUtils.isEmpty(flowActivityDef.getId())) {
 			flowActivityDef.setId(idGenerator.getNextId());
-			// flowActivityDef.setId(idGenerator.getNextId());
-			// flowActivityDef.setCreateDate(new Date());
-			flowActivityDefEntityMapper
-					.insertFlowActivityDefEntity(flowActivityDef);
-		} else {
-			FlowActivityDefEntity model = this
-					.getFlowActivityDef(flowActivityDef.getId());
-			if (model != null) {
-				if (flowActivityDef.getProcessId() != null) {
-					model.setProcessId(flowActivityDef.getProcessId());
-				}
-				if (flowActivityDef.getTypeofact() != null) {
-					model.setTypeofact(flowActivityDef.getTypeofact());
-				}
-				if (flowActivityDef.getName() != null) {
-					model.setName(flowActivityDef.getName());
-				}
-				if (flowActivityDef.getContent() != null) {
-					model.setContent(flowActivityDef.getContent());
-				}
-				if (flowActivityDef.getStrfuntion() != null) {
-					model.setStrfuntion(flowActivityDef.getStrfuntion());
-				}
-				if (flowActivityDef.getNetroleid() != null) {
-					model.setNetroleid(flowActivityDef.getNetroleid());
-				}
-				model.setListno(flowActivityDef.getListno());
-				model.setTimelimit(flowActivityDef.getTimelimit());
-				model.setIssave(flowActivityDef.getIssave());
-				model.setIsdel(flowActivityDef.getIsdel());
-				model.setIntselectuser(flowActivityDef.getIntselectuser());
-				model.setIntusedomain(flowActivityDef.getIntusedomain());
-				flowActivityDefEntityMapper.updateFlowActivityDefEntity(model);
-			}
 		}
+		flowActivityDefEntityMapper
+				.insertFlowActivityDefEntity(flowActivityDef);
 	}
 
 	@javax.annotation.Resource

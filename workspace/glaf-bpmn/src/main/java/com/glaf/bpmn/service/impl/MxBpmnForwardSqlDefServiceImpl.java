@@ -125,42 +125,9 @@ public class MxBpmnForwardSqlDefServiceImpl implements BpmnForwardSqlDefService 
 	public void save(FlowForwardSqlDefEntity flowForwardSqlDef) {
 		if (StringUtils.isEmpty(flowForwardSqlDef.getId())) {
 			flowForwardSqlDef.setId(idGenerator.getNextId());
-			// flowForwardSqlDef.setId(idGenerator.getNextId());
-			// flowForwardSqlDef.setCreateDate(new Date());
-			flowForwardSqlDefEntityMapper
-					.insertFlowForwardSqlDefEntity(flowForwardSqlDef);
-		} else {
-			FlowForwardSqlDefEntity model = this
-					.getFlowForwardSqlDef(flowForwardSqlDef.getId());
-			if (model != null) {
-				if (flowForwardSqlDef.getProcessId() != null) {
-					model.setProcessId(flowForwardSqlDef.getProcessId());
-				}
-				if (flowForwardSqlDef.getFlowForwardD() != null) {
-					model.setFlowForwardD(flowForwardSqlDef.getFlowForwardD());
-				}
-				model.setIntandor(flowForwardSqlDef.getIntandor());
-				model.setSqlconType(flowForwardSqlDef.getSqlconType());
-				if (flowForwardSqlDef.getSqlconDtype() != null) {
-					model.setSqlconDtype(flowForwardSqlDef.getSqlconDtype());
-				}
-				if (flowForwardSqlDef.getSqlconField() != null) {
-					model.setSqlconField(flowForwardSqlDef.getSqlconField());
-				}
-				if (flowForwardSqlDef.getStrsp() != null) {
-					model.setStrsp(flowForwardSqlDef.getStrsp());
-				}
-				if (flowForwardSqlDef.getSqlconValue() != null) {
-					model.setSqlconValue(flowForwardSqlDef.getSqlconValue());
-				}
-				if (flowForwardSqlDef.getSqlconshow() != null) {
-					model.setSqlconshow(flowForwardSqlDef.getSqlconshow());
-				}
-				model.setIssave(flowForwardSqlDef.getIssave());
-				flowForwardSqlDefEntityMapper
-						.updateFlowForwardSqlDefEntity(model);
-			}
 		}
+		flowForwardSqlDefEntityMapper
+				.insertFlowForwardSqlDefEntity(flowForwardSqlDef);
 	}
 
 	@javax.annotation.Resource

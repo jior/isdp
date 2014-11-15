@@ -149,39 +149,30 @@ public class MxBpmnProcessDefServiceImpl implements BpmnProcessDefService {
 	public void save(FlowProcessDefEntity flowProcessDef) {
 		if (StringUtils.isEmpty(flowProcessDef.getId())) {
 			flowProcessDef.setId(idGenerator.getNextId());
-			// flowProcessDef.setId(idGenerator.getNextId());
-			// flowProcessDef.setCreateDate(new Date());
-			flowProcessDefEntityMapper
-					.insertFlowProcessDefEntity(flowProcessDef);
-		} else {
-			FlowProcessDefEntity model = this.getFlowProcessDef(flowProcessDef
-					.getId());
-			if (model != null) {
-				if (flowProcessDef.getMainId() != null) {
-					model.setMainId(flowProcessDef.getMainId());
+		}
+		flowProcessDefEntityMapper.insertFlowProcessDefEntity(flowProcessDef);
+		if (flowProcessDef.getActivities() != null
+				&& !flowProcessDef.getActivities().isEmpty()) {
+			List<FlowActivityDefEntity> activities = flowProcessDef
+					.getActivities();
+			for (FlowActivityDefEntity act : activities) {
+				if (StringUtils.isEmpty(act.getId())) {
+					act.setId(idGenerator.getNextId());
 				}
-				if (flowProcessDef.getFileid() != null) {
-					model.setFileid(flowProcessDef.getFileid());
+				act.setProcessId(flowProcessDef.getId());
+				flowActivityDefEntityMapper.insertFlowActivityDefEntity(act);
+			}
+		}
+		List<FlowForwardDefEntity> sequenceFlows = flowProcessDef
+				.getSequenceFlows();
+		if (sequenceFlows != null && !sequenceFlows.isEmpty()) {
+
+			for (FlowForwardDefEntity forward : sequenceFlows) {
+				if (StringUtils.isEmpty(forward.getId())) {
+					forward.setId(idGenerator.getNextId());
 				}
-				if (flowProcessDef.getName() != null) {
-					model.setName(flowProcessDef.getName());
-				}
-				if (flowProcessDef.getContent() != null) {
-					model.setContent(flowProcessDef.getContent());
-				}
-				if (flowProcessDef.getActorId() != null) {
-					model.setActorId(flowProcessDef.getActorId());
-				}
-				if (flowProcessDef.getCtime() != null) {
-					model.setCtime(flowProcessDef.getCtime());
-				}
-				if (flowProcessDef.getVersion() != null) {
-					model.setVersion(flowProcessDef.getVersion());
-				}
-				model.setTcadfile(flowProcessDef.getTcadfile());
-				model.setIssave(flowProcessDef.getIssave());
-				model.setIntflag(flowProcessDef.getIntflag());
-				flowProcessDefEntityMapper.updateFlowProcessDefEntity(model);
+				forward.setProcessId(flowProcessDef.getId());
+				flowForwardDefEntityMapper.insertFlowForwardDefEntity(forward);
 			}
 		}
 	}

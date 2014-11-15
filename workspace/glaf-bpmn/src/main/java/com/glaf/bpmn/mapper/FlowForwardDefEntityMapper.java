@@ -49,6 +49,4 @@ public interface FlowForwardDefEntityMapper {
 
 	void insertFlowForwardDefEntity(FlowForwardDefEntity model);
 
-	void updateFlowForwardDefEntity(FlowForwardDefEntity model);
-
 }

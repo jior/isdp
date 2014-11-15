@@ -44,6 +44,4 @@ public interface FlowForwardSqlDefEntityMapper {
 
 	void insertFlowForwardSqlDefEntity(FlowForwardSqlDefEntity model);
 
-	void updateFlowForwardSqlDefEntity(FlowForwardSqlDefEntity model);
-
 }

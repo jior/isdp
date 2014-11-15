@@ -51,6 +51,4 @@ public interface FlowActivityDefEntityMapper {
 
 	void insertFlowActivityDefEntity(FlowActivityDefEntity model);
 
-	void updateFlowActivityDefEntity(FlowActivityDefEntity model);
-
 }

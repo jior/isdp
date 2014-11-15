@@ -130,57 +130,6 @@
 	</insert>
 
 
-	<update id="updateFlowProcessDefEntity" parameterType="com.glaf.bpmn.domain.FlowProcessDefEntity">
-		update
-		flow_process_d
-		set
-		<trim prefix="" suffix="" suffixOverrides=",">
-			<if test="mainId != null">
-				main_id = #{mainId, jdbcType=VARCHAR},
-			</if>
-			<if test="fileid != null">
-				fileid = #{fileid, jdbcType=VARCHAR},
-			</if>
-			<if test="name != null">
-				name = #{name, jdbcType=VARCHAR},
-			</if>
-			<if test="content != null">
-				content = #{content, jdbcType=VARCHAR},
-			</if>
-			<if test="actorId != null">
-				actor = #{actorId, jdbcType=VARCHAR},
-			</if>
-			<if test="ctime != null">
-				ctime = #{ctime, jdbcType=TIMESTAMP},
-			</if>
-			<if test="version != null">
-				version = #{version, jdbcType=VARCHAR},
-			</if>
-			<if test="tcadfile != null">
-				tcadfile = #{tcadfile, jdbcType=BLOB},
-			</if>
-			<if test="xmlfile != null">
-				xmlfile = #{xmlfile, jdbcType=BLOB},
-			</if>
-			<if test="picfile != null">
-				picfile = #{picfile, jdbcType=BLOB},
-			</if>
-			<if test="picname != null">
-				picname = #{picname, jdbcType=VARCHAR},
-			</if>
-			<if test="issave != null">
-				issave = #{issave, jdbcType=INTEGER},
-			</if>
-			<if test="intflag != null">
-				intflag = #{intflag, jdbcType=INTEGER},
-			</if>
-		</trim>
-		where
-		id = #{id, jdbcType=VARCHAR}
-
-	</update>
-
-
 	<select id="getFlowProcessDefEntityById" parameterType="string"
 		resultMap="flowProcessDefEntityResultMap">
 		select * from flow_process_d where id = #{id}

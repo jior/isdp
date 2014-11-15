@@ -84,6 +84,9 @@ public class FlowActivityDefEntity implements Serializable, JSONable {
 	@Column(name = "netroleid", length = 50)
 	protected String netroleid;
 
+	@javax.persistence.Transient
+	protected String netrolecode;
+
 	/**
 	 * 顺序号
 	 */
@@ -156,6 +159,10 @@ public class FlowActivityDefEntity implements Serializable, JSONable {
 		return this.name;
 	}
 
+	public String getNetrolecode() {
+		return netrolecode;
+	}
+
 	public String getNetroleid() {
 		return this.netroleid;
 	}
@@ -174,6 +181,10 @@ public class FlowActivityDefEntity implements Serializable, JSONable {
 
 	public String getTypeofact() {
 		return this.typeofact;
+	}
+
+	public FlowActivityDefEntity jsonToObject(JSONObject jsonObject) {
+		return FlowActivityDefJsonFactory.jsonToObject(jsonObject);
 	}
 
 	public void setContent(String content) {
@@ -208,6 +219,10 @@ public class FlowActivityDefEntity implements Serializable, JSONable {
 		this.name = name;
 	}
 
+	public void setNetrolecode(String netrolecode) {
+		this.netrolecode = netrolecode;
+	}
+
 	public void setNetroleid(String netroleid) {
 		this.netroleid = netroleid;
 	}
@@ -226,10 +241,6 @@ public class FlowActivityDefEntity implements Serializable, JSONable {
 
 	public void setTypeofact(String typeofact) {
 		this.typeofact = typeofact;
-	}
-
-	public FlowActivityDefEntity jsonToObject(JSONObject jsonObject) {
-		return FlowActivityDefJsonFactory.jsonToObject(jsonObject);
 	}
 
 	public JSONObject toJsonObject() {
