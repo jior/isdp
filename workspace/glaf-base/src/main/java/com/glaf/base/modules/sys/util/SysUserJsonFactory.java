@@ -245,6 +245,17 @@ public class SysUserJsonFactory {
 		if (user.getCreateBy() != null) {
 			jsonObject.put("createBy", user.getCreateBy());
 		}
+		if (user.getCreateTime() != null) {
+			jsonObject.put("createTime",
+					DateUtils.getDate(user.getCreateTime()));
+			jsonObject.put("createDate",
+					DateUtils.getDate(user.getCreateTime()));
+			jsonObject.put("createDate_date",
+					DateUtils.getDate(user.getCreateTime()));
+			jsonObject.put("createDate_datetime",
+					DateUtils.getDateTime(user.getCreateTime()));
+		}
+		
 		if (user.getUpdateBy() != null) {
 			jsonObject.put("updateBy", user.getUpdateBy());
 		}

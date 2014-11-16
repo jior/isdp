@@ -309,7 +309,11 @@ public class SysUserQuery extends DataQuery {
 			}
 
 			if ("account".equals(sortColumn)) {
-				orderBy = "E.ACCOUNT" + a_x;
+				orderBy = "E.USERID" + a_x;
+			}
+
+			if ("actorId".equals(sortColumn)) {
+				orderBy = "E.USERID" + a_x;
 			}
 
 			if ("password".equals(sortColumn)) {
@@ -321,15 +325,15 @@ public class SysUserQuery extends DataQuery {
 			}
 
 			if ("name".equals(sortColumn)) {
-				orderBy = "E.NAME" + a_x;
+				orderBy = "E.USERNAME" + a_x;
 			}
 
 			if ("blocked".equals(sortColumn)) {
-				orderBy = "E.BLOCKED" + a_x;
+				orderBy = "E.STATUS" + a_x;
 			}
 
 			if ("createTime".equals(sortColumn)) {
-				orderBy = "E.CREATETIME" + a_x;
+				orderBy = "E.CTIME" + a_x;
 			}
 
 			if ("lastLoginTime".equals(sortColumn)) {
@@ -338,10 +342,6 @@ public class SysUserQuery extends DataQuery {
 
 			if ("lastLoginIP".equals(sortColumn)) {
 				orderBy = "E.LASTLOGINIP" + a_x;
-			}
-
-			if ("evection".equals(sortColumn)) {
-				orderBy = "E.EVECTION" + a_x;
 			}
 
 			if ("mobile".equals(sortColumn)) {
@@ -356,40 +356,20 @@ public class SysUserQuery extends DataQuery {
 				orderBy = "E.TELEPHONE" + a_x;
 			}
 
-			if ("gender".equals(sortColumn)) {
-				orderBy = "E.GENDER" + a_x;
-			}
-
-			if ("headship".equals(sortColumn)) {
-				orderBy = "E.HEADSHIP" + a_x;
-			}
-
-			if ("userType".equals(sortColumn)) {
-				orderBy = "E.USERTYPE" + a_x;
-			}
-
-			if ("fax".equals(sortColumn)) {
-				orderBy = "E.FAX" + a_x;
-			}
-
 			if ("accountType".equals(sortColumn)) {
 				orderBy = "E.ACCOUNTTYPE" + a_x;
 			}
 
-			if ("dumpFlag".equals(sortColumn)) {
-				orderBy = "E.DUMPFLAG" + a_x;
-			}
-
 			if ("deptId".equals(sortColumn)) {
-				orderBy = "E.DEPTID" + a_x;
+				orderBy = "E.DEPID" + a_x;
+			}
+			
+			if ("deptName".equals(sortColumn)) {
+				orderBy = "E.DEPID" + a_x;
 			}
 
 			if ("adminFlag".equals(sortColumn)) {
-				orderBy = "E.ADMINFLAG" + a_x;
-			}
-
-			if ("superiorIds".equals(sortColumn)) {
-				orderBy = "E.SUPERIORIDS" + a_x;
+				orderBy = "E.ISSYSTEM" + a_x;
 			}
 
 		}

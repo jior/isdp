@@ -112,5 +112,6 @@
 	<classpathentry kind="lib" path="/glaf-commons/lib/curator-x-discovery.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/zookeeper.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/jbcrypt.jar"/>
+	<classpathentry kind="lib" path="/glaf-commons/lib/jackson-all-1.9.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -39,6 +39,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONArray;
@@ -54,9 +55,10 @@ import com.glaf.base.modules.sys.service.SysDepartmentService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.service.SysUserService;
+import com.glaf.base.ui.models.DataSourceRequest;
+import com.glaf.base.ui.models.DataSourceRequest.SortDescriptor;
 import com.glaf.base.utils.ParamUtil;
 import com.glaf.base.utils.RequestUtil;
-
 import com.glaf.core.base.TreeModel;
 import com.glaf.core.cache.CacheUtils;
 import com.glaf.core.security.DigestUtil;
@@ -143,6 +145,82 @@ public class SysUserResource {
 		return ResponseUtils.responseResult(false);
 	}
 
+	@GET
+	@POST
+	@Path("data")
+	@Produces({ MediaType.APPLICATION_JSON })
+	@ResponseBody
+	public byte[] data(@RequestBody DataSourceRequest dataSourceRequest)
+			throws IOException {
+		logger.debug("dataSourceRequest:" + dataSourceRequest);
+		SysUserQuery query = new SysUserQuery();
+
+		int start = 0;
+		int limit = 10;
+		String orderName = null;
+		String order = null;
+
+		int pageNo = dataSourceRequest.getPage();
+		limit = dataSourceRequest.getPageSize();
+
+		start = (pageNo - 1) * limit;
+
+		if (start < 0) {
+			start = 0;
+		}
+
+		if (limit <= 0) {
+			limit = PageResult.DEFAULT_PAGE_SIZE;
+		}
+
+		JSONObject result = new JSONObject();
+		int total = sysUserService.getSysUserCountByQueryCriteria(query);
+		if (total > 0) {
+			result.put("total", total);
+			result.put("totalCount", total);
+			result.put("totalRecords", total);
+			result.put("start", start);
+			result.put("startIndex", start);
+			result.put("limit", limit);
+			result.put("pageSize", limit);
+			
+			if(dataSourceRequest.getSort()!=null && !dataSourceRequest.getSort().isEmpty()){
+				SortDescriptor sort = dataSourceRequest.getSort().get(0);
+				orderName = sort.getField();
+				order = sort.getDir();
+				logger.debug("orderName:" + orderName);
+				logger.debug("order:" + order);
+			}
+
+			if (StringUtils.isNotEmpty(orderName)) {
+				query.setSortColumn(orderName);
+				if (StringUtils.equals(order, "desc")) {
+					query.setSortOrder(" desc ");
+				}
+			}
+			List<SysUser> list = sysUserService.getSysUsersByQueryCriteria(
+					start, limit, query);
+			if (list != null && !list.isEmpty()) {
+				JSONArray rowsJSON = new JSONArray();
+				for (SysUser sysUser : list) {
+					JSONObject rowJSON = sysUser.toJsonObject();
+					rowJSON.put("id", sysUser.getId());
+					rowJSON.put("actorId", sysUser.getAccount());
+					rowJSON.put("startIndex", ++start);
+					rowsJSON.add(rowJSON);
+				}
+				result.put("rows", rowsJSON);
+			}
+		} else {
+			result.put("total", total);
+			result.put("totalCount", total);
+			JSONArray rowsJSON = new JSONArray();
+			result.put("rows", rowsJSON);
+		}
+		// logger.debug(result.toString());
+		return result.toString().getBytes("UTF-8");
+	}
+
 	/**
 	 * 删除角色用户
 	 * 
@@ -197,14 +275,14 @@ public class SysUserResource {
 	@GET
 	@POST
 	@Path("json")
-	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
+	@Produces({ MediaType.APPLICATION_JSON })
 	@ResponseBody
 	public byte[] json(@Context HttpServletRequest request,
 			@Context UriInfo uriInfo) throws IOException {
 		Map<String, Object> params = RequestUtils.getParameterMap(request);
 		SysUserQuery query = new SysUserQuery();
 		Tools.populate(query, params);
-
+		logger.debug("params:" + params);
 		String gridType = ParamUtils.getString(params, "gridType");
 		if (gridType == null) {
 			gridType = "easyui";
@@ -216,6 +294,9 @@ public class SysUserResource {
 
 		int pageNo = ParamUtils.getInt(params, "page");
 		limit = ParamUtils.getInt(params, "rows");
+		if (limit == 0) {
+			limit = ParamUtils.getInt(params, "pageSize");
+		}
 		start = (pageNo - 1) * limit;
 		orderName = ParamUtils.getString(params, "sortName");
 		order = ParamUtils.getString(params, "sortOrder");
