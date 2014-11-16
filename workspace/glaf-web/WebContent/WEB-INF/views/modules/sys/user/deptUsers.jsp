@@ -88,7 +88,7 @@ var setting = {
 				rownumbers:false,
 				pagination:true,
 				pageSize:10,
-				pageList: [10,15,20,25,30,40,50,100],
+				pageList: [10,15,20,25,30,40,50,100,200,500],
 				onDblClickRow: onRowClick 
 			});
 
