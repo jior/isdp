@@ -277,7 +277,7 @@ insert into sys_dictory_def (id, nodeid, name, columnname, title, type, length, 
 insert into sys_dictory_def (id, nodeid, name, columnname, title, type, length, sort, required, target) values (22, 0, 'ext19', 'EXT19', '', 'Double', 20, 21, 0, 'sys_dictory');
 insert into sys_dictory_def (id, nodeid, name, columnname, title, type, length, sort, required, target) values (23, 0, 'ext20', 'EXT20', '', 'Double', 20, 22, 0, 'sys_dictory');
 
-insert into sys_dbid(name_, title_, value_, version_) values ('next.dbid', '系统内置主键', '1001', 1);
+insert into sys_dbid(name_, title_, value_, version_) values ('next.dbid', '系统内置主键', '10001', 1);
 
 insert into sys_property (id_, description_, locked_, name_, title_, type_, value_, category_, initvalue_) values ('1', '系统名称', 0, 'res_system_name', '系统名称', null, 'GLAF基础应用框架', 'SYS', null);
 insert into sys_property (id_, description_, locked_, name_, title_, type_, value_, category_, initvalue_) values ('2', '系统版本', 0, 'res_version', '系统版本', null, 'V3.0', 'SYS', null);
