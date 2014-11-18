@@ -157,8 +157,6 @@ public class SysUserResource {
 
 		int start = 0;
 		int limit = 10;
-		String orderName = null;
-		String order = null;
 
 		int pageNo = dataSourceRequest.getPage();
 		limit = dataSourceRequest.getPageSize();
@@ -183,8 +181,12 @@ public class SysUserResource {
 			result.put("startIndex", start);
 			result.put("limit", limit);
 			result.put("pageSize", limit);
-			
-			if(dataSourceRequest.getSort()!=null && !dataSourceRequest.getSort().isEmpty()){
+
+			String orderName = null;
+			String order = null;
+
+			if (dataSourceRequest.getSort() != null
+					&& !dataSourceRequest.getSort().isEmpty()) {
 				SortDescriptor sort = dataSourceRequest.getSort().get(0);
 				orderName = sort.getField();
 				order = sort.getDir();

@@ -282,6 +282,63 @@ public class SysUserKendouiController {
 	}
 
 	/**
+	 * 显示修改页面
+	 * 
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping("/edit")
+	public ModelAndView edit(HttpServletRequest request, ModelMap modelMap) {
+		logger.debug(RequestUtils.getParameterMap(request));
+		RequestUtils.setRequestParameterToAttribute(request);
+		String actorId = ParamUtil.getParameter(request, "actorId");
+		if (StringUtils.isNotEmpty(actorId)) {
+			actorId = RequestUtils.decodeString(actorId);
+			SysUser bean = sysUserService.findById(actorId);
+			request.setAttribute("bean", bean);
+
+			if (bean != null && StringUtils.isNotEmpty(bean.getSuperiorIds())) {
+				request.setAttribute("actorId", RequestUtils.encodeString(bean.getActorId()));
+				List<String> userIds = StringTools.split(bean.getSuperiorIds());
+				StringBuffer buffer = new StringBuffer();
+				if (userIds != null && !userIds.isEmpty()) {
+					for (String userId : userIds) {
+						SysUser u = sysUserService.findByAccount(userId);
+						if (u != null) {
+							buffer.append(u.getName()).append("[")
+									.append(u.getAccount()).append("] ");
+						}
+					}
+					request.setAttribute("x_users_name", buffer.toString());
+				}
+			}
+		}
+
+		List<Dictory> dictories = dictoryService
+				.getDictoryList(SysConstants.USER_HEADSHIP);
+		modelMap.put("dictories", dictories);
+
+		List<Dictory> accounts = dictoryService
+				.getDictoryList(SysConstants.USER_ACCOUNTTYPE);
+		modelMap.put("accountTypeDictories", accounts);
+
+		SysTree parent = sysTreeService.getSysTreeByCode(Constants.TREE_DEPT);
+		List<SysTree> list = new ArrayList<SysTree>();
+		parent.setDeep(0);
+		list.add(parent);
+		sysTreeService.getSysTree(list, (int) parent.getId(), 1);
+		request.setAttribute("treeList", list);
+
+		String x_view = ViewProperties.getString("user.edit");
+		if (StringUtils.isNotEmpty(x_view)) {
+			return new ModelAndView(x_view, modelMap);
+		}
+
+		return new ModelAndView("/kendoui/sys/user/edit", modelMap);
+	}
+
+	/**
 	 * 得到部门下所有部门列表
 	 * 
 	 * @param list
@@ -445,60 +502,6 @@ public class SysUserKendouiController {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping("/prepareModify")
-	public ModelAndView prepareModify(HttpServletRequest request,
-			ModelMap modelMap) {
-		RequestUtils.setRequestParameterToAttribute(request);
-		String id = ParamUtil.getParameter(request, "id");
-		id = RequestUtils.decodeString(id);
-		SysUser bean = sysUserService.findById(id);
-		request.setAttribute("bean", bean);
-
-		if (bean != null && StringUtils.isNotEmpty(bean.getSuperiorIds())) {
-			List<String> userIds = StringTools.split(bean.getSuperiorIds());
-			StringBuffer buffer = new StringBuffer();
-			if (userIds != null && !userIds.isEmpty()) {
-				for (String userId : userIds) {
-					SysUser u = sysUserService.findByAccount(userId);
-					if (u != null) {
-						buffer.append(u.getName()).append("[")
-								.append(u.getAccount()).append("] ");
-					}
-				}
-				request.setAttribute("x_users_name", buffer.toString());
-			}
-		}
-
-		List<Dictory> dictories = dictoryService
-				.getDictoryList(SysConstants.USER_HEADSHIP);
-		modelMap.put("dictories", dictories);
-
-		List<Dictory> accounts = dictoryService
-				.getDictoryList(SysConstants.USER_ACCOUNTTYPE);
-		modelMap.put("accountTypeDictories", accounts);
-
-		SysTree parent = sysTreeService.getSysTreeByCode(Constants.TREE_DEPT);
-		List<SysTree> list = new ArrayList<SysTree>();
-		parent.setDeep(0);
-		list.add(parent);
-		sysTreeService.getSysTree(list, (int) parent.getId(), 1);
-		request.setAttribute("parent", list);
-
-		String x_view = ViewProperties.getString("user.prepareModify");
-		if (StringUtils.isNotEmpty(x_view)) {
-			return new ModelAndView(x_view, modelMap);
-		}
-
-		return new ModelAndView("/kendoui/sys/user/user_modify", modelMap);
-	}
-
-	/**
-	 * 显示修改页面
-	 * 
-	 * @param request
-	 * @param modelMap
-	 * @return
-	 */
 	@RequestMapping("/prepareModifyInfo")
 	public ModelAndView prepareModifyInfo(HttpServletRequest request,
 			ModelMap modelMap) {
@@ -574,9 +577,9 @@ public class SysUserKendouiController {
 	public ModelAndView prepareResetPwd(HttpServletRequest request,
 			ModelMap modelMap) {
 		RequestUtils.setRequestParameterToAttribute(request);
-		String id = ParamUtil.getParameter(request, "id");
-		id = RequestUtils.decodeString(id);
-		SysUser bean = sysUserService.findById(id);
+		String actorId = ParamUtil.getParameter(request, "actorId");
+		actorId = RequestUtils.decodeString(actorId);
+		SysUser bean = sysUserService.findById(actorId);
 		request.setAttribute("bean", bean);
 
 		String x_view = ViewProperties.getString("user.prepareResetPwd");
@@ -594,11 +597,11 @@ public class SysUserKendouiController {
 	 * @param modelMap
 	 * @return
 	 */
+
 	@RequestMapping("/resetPwd")
-	public ModelAndView resetPwd(HttpServletRequest request, ModelMap modelMap) {
-		RequestUtils.setRequestParameterToAttribute(request);
+	@ResponseBody
+	public byte[] resetPwd(HttpServletRequest request, ModelMap modelMap) {
 		SysUser login = RequestUtil.getLoginUser(request);
-		boolean ret = false;
 
 		if (login.isSystemAdmin()) {
 			logger.debug(login.getAccount() + " is system admin");
@@ -610,8 +613,9 @@ public class SysUserKendouiController {
 
 		if (login.isDepartmentAdmin() || login.isSystemAdmin()) {
 
-			String id = ParamUtil.getParameter(request, "id");
-			SysUser bean = sysUserService.findById(id);
+			String actorId = ParamUtil.getParameter(request, "actorId");
+			actorId = RequestUtils.decodeString(actorId);
+			SysUser bean = sysUserService.findById(actorId);
 
 			/**
 			 * 系统管理员的密码不允许重置
@@ -626,21 +630,12 @@ public class SysUserKendouiController {
 					}
 					bean.setUpdateBy(bean.getAccount());
 					sysUserService.updateUserPassword(bean);
-					ret = true;
+					return ResponseUtils.responseResult(true);
 				}
 			}
 		}
 
-		ViewMessages messages = new ViewMessages();
-		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.modify_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.modify_failure"));
-		}
-		MessageUtils.addMessages(request, messages);
-		return new ModelAndView("show_msg", modelMap);
+		return ResponseUtils.responseResult(false);
 	}
 
 	/**
@@ -661,12 +656,12 @@ public class SysUserKendouiController {
 			bean.setDeptId(department.getId());
 		} else {
 			SysDepartment department = sysDepartmentService.findById(ParamUtil
-					.getIntParameter(request, "parent", 0));
+					.getIntParameter(request, "departmentId", 0));
 			bean.setDepartment(department);
 			bean.setDeptId(department.getId());
 		}
 
-		bean.setAccount(ParamUtil.getParameter(request, "id"));
+		bean.setAccount(ParamUtil.getParameter(request, "actorId"));
 		bean.setName(ParamUtil.getParameter(request, "name"));
 		String password = ParamUtil.getParameter(request, "password");
 		try {
@@ -726,15 +721,15 @@ public class SysUserKendouiController {
 	@RequestMapping("/saveModify")
 	public ModelAndView saveModify(HttpServletRequest request, ModelMap modelMap) {
 		logger.debug(RequestUtils.getParameterMap(request));
-		String id = ParamUtil.getParameter(request, "id");
-		id = RequestUtils.decodeString(id);
-		logger.debug("id = " + id);
-		SysUser bean = sysUserService.findById(id);
+		String actorId = ParamUtil.getParameter(request, "actorId");
+		actorId = RequestUtils.decodeString(actorId);
+		logger.debug("actorId" + actorId);
+		SysUser bean = sysUserService.findById(actorId);
 		logger.debug("user = " + bean);
 		boolean ret = false;
 		if (bean != null) {
 			SysDepartment department = sysDepartmentService.findById(ParamUtil
-					.getIntParameter(request, "parent", 0));
+					.getIntParameter(request, "departmentId", 0));
 			bean.setDepartment(department);
 			bean.setName(ParamUtil.getParameter(request, "name"));
 			bean.setSuperiorIds(ParamUtil.getParameter(request, "superiorIds"));
@@ -806,9 +801,8 @@ public class SysUserKendouiController {
 	 * @return
 	 */
 	@RequestMapping("/savePwd")
-	public ModelAndView savePwd(HttpServletRequest request, ModelMap modelMap) {
+	public byte[] savePwd(HttpServletRequest request, ModelMap modelMap) {
 		SysUser bean = RequestUtil.getLoginUser(request);
-		boolean ret = false;
 		String oldPwd = ParamUtil.getParameter(request, "oldPwd");
 		String newPwd = ParamUtil.getParameter(request, "newPwd");
 		if (bean != null && StringUtils.isNotEmpty(oldPwd)
@@ -820,23 +814,14 @@ public class SysUserKendouiController {
 					user.setPassword(DigestUtil.digestString(newPwd, "MD5"));
 					user.setUpdateBy(RequestUtils.getActorId(request));
 					sysUserService.updateUserPassword(user);
-					ret = true;
+					return ResponseUtils.responseResult(true);
 				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
 		}
 
-		ViewMessages messages = new ViewMessages();
-		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.modify_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.modify_failure"));
-		}
-		MessageUtils.addMessages(request, messages);
-		return new ModelAndView("show_msg", modelMap);
+		return ResponseUtils.responseResult(false);
 	}
 
 	/**
