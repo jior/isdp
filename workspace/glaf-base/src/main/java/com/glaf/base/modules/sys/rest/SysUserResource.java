@@ -55,10 +55,10 @@ import com.glaf.base.modules.sys.service.SysDepartmentService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.service.SysUserService;
-import com.glaf.base.ui.models.DataSourceRequest;
-import com.glaf.base.ui.models.DataSourceRequest.SortDescriptor;
 import com.glaf.base.utils.ParamUtil;
 import com.glaf.base.utils.RequestUtil;
+import com.glaf.core.base.DataRequest;
+import com.glaf.core.base.DataRequest.SortDescriptor;
 import com.glaf.core.base.TreeModel;
 import com.glaf.core.cache.CacheUtils;
 import com.glaf.core.security.DigestUtil;
@@ -150,16 +150,15 @@ public class SysUserResource {
 	@Path("data")
 	@Produces({ MediaType.APPLICATION_JSON })
 	@ResponseBody
-	public byte[] data(@RequestBody DataSourceRequest dataSourceRequest)
-			throws IOException {
-		logger.debug("dataSourceRequest:" + dataSourceRequest);
+	public byte[] data(@Context HttpServletRequest request,
+			@RequestBody DataRequest dataRequest) throws IOException {
+		logger.debug("dataRequest:" + dataRequest);
 		SysUserQuery query = new SysUserQuery();
-
 		int start = 0;
 		int limit = 10;
 
-		int pageNo = dataSourceRequest.getPage();
-		limit = dataSourceRequest.getPageSize();
+		int pageNo = dataRequest.getPage();
+		limit = dataRequest.getPageSize();
 
 		start = (pageNo - 1) * limit;
 
@@ -185,9 +184,9 @@ public class SysUserResource {
 			String orderName = null;
 			String order = null;
 
-			if (dataSourceRequest.getSort() != null
-					&& !dataSourceRequest.getSort().isEmpty()) {
-				SortDescriptor sort = dataSourceRequest.getSort().get(0);
+			if (dataRequest.getSort() != null
+					&& !dataRequest.getSort().isEmpty()) {
+				SortDescriptor sort = dataRequest.getSort().get(0);
 				orderName = sort.getField();
 				order = sort.getDir();
 				logger.debug("orderName:" + orderName);

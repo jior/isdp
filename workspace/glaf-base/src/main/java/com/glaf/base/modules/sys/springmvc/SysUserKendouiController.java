@@ -40,6 +40,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.glaf.core.base.DataRequest;
 import com.glaf.core.cache.CacheUtils;
 import com.glaf.core.config.ViewProperties;
 import com.glaf.core.res.MessageUtils;
@@ -67,7 +68,6 @@ import com.glaf.base.modules.sys.service.SysDepartmentService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.service.SysUserService;
-import com.glaf.base.ui.models.DataSourceRequest;
 import com.glaf.base.utils.ParamUtil;
 import com.glaf.base.utils.RequestUtil;
 
@@ -155,9 +155,8 @@ public class SysUserKendouiController {
 
 	@RequestMapping(value = { "/data" }, method = { org.springframework.web.bind.annotation.RequestMethod.POST })
 	@ResponseBody
-	public byte[] data(@RequestBody DataSourceRequest dataSourceRequest)
-			throws IOException {
-		logger.debug("dataSourceRequest:" + dataSourceRequest);
+	public byte[] data(@RequestBody DataRequest dataRequest) throws IOException {
+		logger.debug("dataRequest:" + dataRequest);
 		SysUserQuery query = new SysUserQuery();
 
 		int start = 0;
@@ -165,8 +164,8 @@ public class SysUserKendouiController {
 		String orderName = null;
 		String order = null;
 
-		int pageNo = dataSourceRequest.getPage();
-		limit = dataSourceRequest.getPageSize();
+		int pageNo = dataRequest.getPage();
+		limit = dataRequest.getPageSize();
 
 		start = (pageNo - 1) * limit;
 
@@ -299,7 +298,8 @@ public class SysUserKendouiController {
 			request.setAttribute("bean", bean);
 
 			if (bean != null && StringUtils.isNotEmpty(bean.getSuperiorIds())) {
-				request.setAttribute("actorId", RequestUtils.encodeString(bean.getActorId()));
+				request.setAttribute("actorId",
+						RequestUtils.encodeString(bean.getActorId()));
 				List<String> userIds = StringTools.split(bean.getSuperiorIds());
 				StringBuffer buffer = new StringBuffer();
 				if (userIds != null && !userIds.isEmpty()) {

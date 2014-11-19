@@ -139,7 +139,7 @@
                     </td>
                     <td>
                         <input id="x" name="x" class="easyui-validatebox input" required="true" validtype="length[3,20]"
-                            style="width: 150px;" datatype="string" nullable="no" maxsize="20" chname="用户名" value="" />
+                            style="width: 150px;" datatype="string" nullable="no" maxsize="20" chname="用户名" value="admin" />
                     </td>
                 </tr>
                 <tr>
@@ -148,7 +148,7 @@
                     </td>
                     <td>
                         <input type="password" id="y" name="y" style="width: 150px;" class="easyui-validatebox input"
-                            required="true" validtype="length[6,20]" datatype="string" nullable="no" maxsize="20" chname="密码" value=""/>
+                            required="true" validtype="length[6,20]" datatype="string" nullable="no" maxsize="20" chname="密码" value="111111"/>
                     </td>
                 </tr>
             </table>
