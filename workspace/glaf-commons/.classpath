@@ -97,8 +97,6 @@
 	<classpathentry kind="lib" path="lib/poi.jar"/>
 	<classpathentry kind="lib" path="lib/quartz-all.jar"/>
 	<classpathentry kind="lib" path="lib/resteasy-cache-core.jar"/>
-	<classpathentry kind="lib" path="lib/resteasy-crypto.jar"/>
-	<classpathentry kind="lib" path="lib/resteasy-jackson-provider.jar"/>
 	<classpathentry kind="lib" path="lib/resteasy-jaxb-provider.jar"/>
 	<classpathentry kind="lib" path="lib/resteasy-jaxrs.jar"/>
 	<classpathentry kind="lib" path="lib/resteasy-multipart-provider.jar"/>
