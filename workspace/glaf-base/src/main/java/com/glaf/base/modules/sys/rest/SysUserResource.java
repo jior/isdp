@@ -58,6 +58,7 @@ import com.glaf.base.modules.sys.service.SysUserService;
 import com.glaf.base.utils.ParamUtil;
 import com.glaf.base.utils.RequestUtil;
 import com.glaf.core.base.DataRequest;
+import com.glaf.core.base.DataRequest.FilterDescriptor;
 import com.glaf.core.base.DataRequest.SortDescriptor;
 import com.glaf.core.base.TreeModel;
 import com.glaf.core.cache.CacheUtils;
@@ -153,7 +154,38 @@ public class SysUserResource {
 	public byte[] data(@Context HttpServletRequest request,
 			@RequestBody DataRequest dataRequest) throws IOException {
 		logger.debug("dataRequest:" + dataRequest);
+		if (dataRequest.getFilter() != null) {
+			if (dataRequest.getFilter().getField() != null) {
+				logger.debug(dataRequest.getFilter().getLevel() + "->"
+						+ dataRequest.getFilter().getField() + "="
+						+ dataRequest.getFilter().getValue());
+			} else {
+				logger.debug(dataRequest.getFilter().getLevel() + "->"
+						+ dataRequest.getFilter().getLogic());
+			}
+			logger.debug(dataRequest.getFilter().toJSONObject().toJSONString());
+			List<FilterDescriptor> filters = dataRequest.getFilter()
+					.getFilters();
+			for (FilterDescriptor filter : filters) {
+				filter.setParent(dataRequest.getFilter());
+				if (filter.getField() != null) {
+					logger.debug(filter.getLevel() + "->" + filter.getField()
+							+ "=" + filter.getValue());
+				} else {
+					logger.debug(filter.getLevel() + "->" + filter.getLogic());
+				}
+				logger.debug(filter.toJSONObject().toJSONString());
+				List<FilterDescriptor> subFilters = filter.getFilters();
+				for (FilterDescriptor f : subFilters) {
+					logger.debug(f.getLevel() + "->" + f.getField() + "="
+							+ f.getValue());
+					logger.debug(f.toJSONObject().toJSONString());
+					f.setParent(filter);
+				}
+			}
+		}
 		SysUserQuery query = new SysUserQuery();
+		query.setDataRequest(dataRequest);
 		int start = 0;
 		int limit = 10;
 

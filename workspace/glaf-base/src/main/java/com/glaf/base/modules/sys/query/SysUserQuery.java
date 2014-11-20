@@ -37,6 +37,7 @@ public class SysUserQuery extends DataQuery {
 	protected Date createTimeLessThanOrEqual;
 	protected Long deptId;
 	protected List<Long> deptIds;
+	protected String deptNameLike;
 	protected Integer dumpFlag;
 	protected String email;
 	protected String emailLike;
@@ -133,6 +134,14 @@ public class SysUserQuery extends DataQuery {
 		return this;
 	}
 
+	public SysUserQuery deptNameLike(String deptNameLike) {
+		if (deptNameLike == null) {
+			throw new RuntimeException("deptNameLike is null");
+		}
+		this.deptNameLike = deptNameLike;
+		return this;
+	}
+
 	public SysUserQuery dumpFlag(Integer dumpFlag) {
 		if (dumpFlag == null) {
 			throw new RuntimeException("dumpFlag is null");
@@ -215,6 +224,18 @@ public class SysUserQuery extends DataQuery {
 
 	public List<Long> getDeptIds() {
 		return deptIds;
+	}
+
+	public String getDeptNameLike() {
+		if (deptNameLike != null && deptNameLike.trim().length() > 0) {
+			if (!deptNameLike.startsWith("%")) {
+				deptNameLike = "%" + deptNameLike;
+			}
+			if (!deptNameLike.endsWith("%")) {
+				deptNameLike = deptNameLike + "%";
+			}
+		}
+		return deptNameLike;
 	}
 
 	public Integer getDumpFlag() {
@@ -363,7 +384,7 @@ public class SysUserQuery extends DataQuery {
 			if ("deptId".equals(sortColumn)) {
 				orderBy = "E.DEPID" + a_x;
 			}
-			
+
 			if ("deptName".equals(sortColumn)) {
 				orderBy = "E.DEPID" + a_x;
 			}
@@ -565,6 +586,10 @@ public class SysUserQuery extends DataQuery {
 
 	public void setDeptIds(List<Long> deptIds) {
 		this.deptIds = deptIds;
+	}
+
+	public void setDeptNameLike(String deptNameLike) {
+		this.deptNameLike = deptNameLike;
 	}
 
 	public void setDumpFlag(Integer dumpFlag) {
