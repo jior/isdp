@@ -113,6 +113,7 @@
             "title": "创建日期",
             "width": "120px",
             "lockable": false,
+			"align": "center",
 			"format": "{0: yyyy-MM-dd}",
 			"filterable": {
               "ui": "datetimepicker"  
@@ -124,6 +125,7 @@
             "width": "120px",
             "lockable": false,
 			"format": "{0: yyyy-MM-dd}",
+			"align": "center",
 			"filterable": {
 			  "operator": ["gt", "gte", "lt", "lte"],
               "ui": "datetimepicker"  
