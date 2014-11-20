@@ -153,7 +153,7 @@ public class SysUserResource {
 	@ResponseBody
 	public byte[] data(@Context HttpServletRequest request,
 			@RequestBody DataRequest dataRequest) throws IOException {
-		logger.debug("dataRequest:" + dataRequest);
+		//logger.debug("dataRequest:" + dataRequest);
 		if (dataRequest.getFilter() != null) {
 			if (dataRequest.getFilter().getField() != null) {
 				logger.debug(dataRequest.getFilter().getLevel() + "->"

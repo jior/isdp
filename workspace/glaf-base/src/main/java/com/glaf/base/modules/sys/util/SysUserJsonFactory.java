@@ -238,6 +238,7 @@ public class SysUserJsonFactory {
 			jsonObject.put("lastLoginTime",
 					DateUtils.getDateTime(user.getLastLoginDate()));
 		}
+
 		if (user.getLastLoginIP() != null) {
 			jsonObject.put("loginIP", user.getLastLoginIP());
 		}
@@ -255,7 +256,7 @@ public class SysUserJsonFactory {
 			jsonObject.put("createDate_datetime",
 					DateUtils.getDateTime(user.getCreateTime()));
 		}
-		
+
 		if (user.getUpdateBy() != null) {
 			jsonObject.put("updateBy", user.getUpdateBy());
 		}
