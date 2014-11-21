@@ -20,6 +20,8 @@ package com.glaf.base.modules.sys.query;
 
 import java.util.*;
 
+import com.glaf.core.base.DataRequest;
+import com.glaf.core.base.DataRequest.FilterDescriptor;
 import com.glaf.core.query.DataQuery;
 
 public class SysUserQuery extends DataQuery {
@@ -688,6 +690,67 @@ public class SysUserQuery extends DataQuery {
 		}
 		this.userType = userType;
 		return this;
+	}
+
+	public Map<String, String> getColumnMap() {
+		Map<String, String> columnMap = new HashMap<String, String>();
+		columnMap.put("actorId", "USERID");
+		columnMap.put("name", "USERNAME");
+		columnMap.put("createTime", "CTIME");
+		columnMap.put("deptId", "DEPID");
+		columnMap.put("adminFlag", "ISSYSTEM");
+		columnMap.put("status", "STATUS");
+		columnMap.put("mobile", "MOBILE");
+		columnMap.put("email", "EMAIL");
+		columnMap.put("telephone", "TELEPHONE");
+		columnMap.put("userType", "USERTYPE");
+		return columnMap;
+	}
+
+	public Map<String, String> getJavaTypeMap() {
+		Map<String, String> javaTypeMap = new HashMap<String, String>();
+		javaTypeMap.put("actorId", "String");
+		javaTypeMap.put("name", "String");
+		javaTypeMap.put("createTime", "Date");
+		javaTypeMap.put("deptId", "Long");
+		javaTypeMap.put("adminFlag", "String");
+		javaTypeMap.put("status", "Integer");
+		javaTypeMap.put("mobile", "String");
+		javaTypeMap.put("email", "String");
+		javaTypeMap.put("telephone", "String");
+		javaTypeMap.put("userType", "Integer");
+		return javaTypeMap;
+	}
+
+	public void processDataRequest(DataRequest dataRequest) {
+		if (dataRequest.getFilter() != null) {
+			if (dataRequest.getFilter().getField() != null) {
+				dataRequest.getFilter().setColumn(
+						this.getColumnMap().get(
+								dataRequest.getFilter().getField()));
+				dataRequest.getFilter().setJavaType(
+						this.getJavaTypeMap().get(
+								dataRequest.getFilter().getField()));
+			}
+
+			List<FilterDescriptor> filters = dataRequest.getFilter()
+					.getFilters();
+			for (FilterDescriptor filter : filters) {
+				filter.setParent(dataRequest.getFilter());
+				if (filter.getField() != null) {
+					filter.setColumn(this.getColumnMap().get(filter.getField()));
+					filter.setJavaType(this.getJavaTypeMap().get(
+							filter.getField()));
+				}
+
+				List<FilterDescriptor> subFilters = filter.getFilters();
+				for (FilterDescriptor f : subFilters) {
+					f.setColumn(this.getColumnMap().get(f.getField()));
+					f.setJavaType(this.getJavaTypeMap().get(f.getField()));
+					f.setParent(filter);
+				}
+			}
+		}
 	}
 
 }

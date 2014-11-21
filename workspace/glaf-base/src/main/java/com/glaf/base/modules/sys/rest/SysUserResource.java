@@ -145,6 +145,9 @@ public class SysUserResource {
 		}
 		return ResponseUtils.responseResult(false);
 	}
+	
+	
+	
 
  
 	@POST
@@ -186,6 +189,8 @@ public class SysUserResource {
 		}
 		SysUserQuery query = new SysUserQuery();
 		query.setDataRequest(dataRequest);
+		query.processDataRequest(dataRequest);
+		
 		int start = 0;
 		int limit = PageResult.DEFAULT_PAGE_SIZE;
 
