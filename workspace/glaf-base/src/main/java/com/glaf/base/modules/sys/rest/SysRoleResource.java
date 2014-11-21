@@ -39,6 +39,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONArray;
@@ -56,9 +57,10 @@ import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.service.SysUserRoleService;
 import com.glaf.base.modules.sys.service.SysUserService;
 import com.glaf.base.utils.ParamUtil;
-
 import com.glaf.core.base.BaseTree;
+import com.glaf.core.base.DataRequest;
 import com.glaf.core.base.TreeModel;
+import com.glaf.core.base.DataRequest.SortDescriptor;
 import com.glaf.core.tree.helper.TreeHelper;
 import com.glaf.core.util.PageResult;
 import com.glaf.core.util.ParamUtils;
@@ -121,6 +123,84 @@ public class SysRoleResource {
 			return ResponseUtils.responseResult(true);
 		}
 		return ResponseUtils.responseResult(false);
+	}
+
+	@POST
+	@Path("data")
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_JSON })
+	public byte[] data(@Context HttpServletRequest request,
+			@RequestBody DataRequest dataRequest) throws IOException {
+		Map<String, Object> params = RequestUtils.getParameterMap(request);
+		SysRoleQuery query = new SysRoleQuery();
+		Tools.populate(query, params);
+		query.setDataRequest(dataRequest);
+
+		String gridType = ParamUtils.getString(params, "gridType");
+		if (gridType == null) {
+			gridType = "kendoui";
+		}
+		int start = 0;
+		int limit = PageResult.DEFAULT_PAGE_SIZE;
+
+		int pageNo = dataRequest.getPage();
+		limit = dataRequest.getPageSize();
+
+		start = (pageNo - 1) * limit;
+
+		if (start < 0) {
+			start = 0;
+		}
+
+		if (limit <= 0) {
+			limit = PageResult.DEFAULT_PAGE_SIZE;
+		}
+
+		JSONObject result = new JSONObject();
+		int total = sysRoleService.getSysRoleCountByQueryCriteria(query);
+		if (total > 0) {
+			result.put("total", total);
+			result.put("totalCount", total);
+			result.put("totalRecords", total);
+			result.put("start", start);
+			result.put("startIndex", start);
+			result.put("limit", limit);
+			result.put("pageSize", limit);
+
+			String orderName = null;
+			String order = null;
+
+			if (dataRequest.getSort() != null
+					&& !dataRequest.getSort().isEmpty()) {
+				SortDescriptor sort = dataRequest.getSort().get(0);
+				orderName = sort.getField();
+				order = sort.getDir();
+				logger.debug("orderName:" + orderName);
+				logger.debug("order:" + order);
+			}
+
+			if (StringUtils.isNotEmpty(orderName)) {
+				query.setSortColumn(orderName);
+				if (StringUtils.equals(order, "desc")) {
+					query.setSortOrder(" desc ");
+				}
+			}
+
+			List<SysRole> list = sysRoleService.getSysRolesByQueryCriteria(
+					start, limit, query);
+
+			if (list != null && !list.isEmpty()) {
+				JSONArray rowsJSON = new JSONArray();
+				result.put("rows", rowsJSON);
+				for (SysRole sysRole : list) {
+					JSONObject rowJSON = sysRole.toJsonObject();
+					rowJSON.put("id", sysRole.getId());
+					rowJSON.put("startIndex", ++start);
+					rowsJSON.add(rowJSON);
+				}
+			}
+		}
+		return result.toJSONString().getBytes("UTF-8");
 	}
 
 	@GET

@@ -532,31 +532,31 @@
 								<when test="filter.field == 'actorId' ">
 									${dataRequest.filter.logicValue}
 									E.userId 
-									<include refid="stringCondition2" />
+									<include refid="com.glaf.global.GlobalMapper.stringCondition2" />
 									#{filter.stringValue}
 								</when>
 								<when test="filter.field == 'name' ">
 									${dataRequest.filter.logicValue}
 									E.username 
-									<include refid="stringCondition2" />
+									<include refid="com.glaf.global.GlobalMapper.stringCondition2" />
 									#{filter.stringValue}
 								</when>
 								<when test="filter.field == 'deptId' ">
 									${dataRequest.filter.logicValue}
 									E.DEPID 
-									<include refid="numbericCondition2" />
+									<include refid="com.glaf.global.GlobalMapper.numbericCondition2" />
 									#{filter.longValue}
 								</when>
 								<when test="filter.field == 'createTime' ">
 									${dataRequest.filter.logicValue}
 									E.CTIME 
-									<include refid="datetimeCondition2" />
+									<include refid="com.glaf.global.GlobalMapper.datetimeCondition2" />
 									#{filter.dateValue}
 								</when>
 								<when test="filter.field == 'lastLoginDate' ">
 									${dataRequest.filter.logicValue}
 									E.LASTLOGINTIME 
-									<include refid="datetimeCondition2" />
+									<include refid="com.glaf.global.GlobalMapper.datetimeCondition2" />
 									#{filter.dateValue}
 								</when>
 							</choose>	
@@ -573,31 +573,31 @@
 									<when test="f.field == 'actorId' ">
 										${filter.logicValue}
 										E.USERID 
-										<include refid="stringCondition3" />
+										<include refid="com.glaf.global.GlobalMapper.stringCondition3" />
 										#{f.stringValue}
 									</when>
 									<when test="f.field == 'name' ">
 										${filter.logicValue}
 										E.USERNAME 
-										<include refid="stringCondition3" />
+										<include refid="com.glaf.global.GlobalMapper.stringCondition3" />
 										#{f.stringValue}
 									</when>
 									<when test="f.field == 'deptId' ">
 										${filter.logicValue}
 										E.DEPID 
-										<include refid="numbericCondition3" />
+										<include refid="com.glaf.global.GlobalMapper.numbericCondition3" />
 										#{filter.longValue}
 									</when>
 									<when test="f.field == 'createTime' ">
 										${filter.logicValue}
 										E.CTIME 
-										<include refid="datetimeCondition3" />
+										<include refid="com.glaf.global.GlobalMapper.datetimeCondition3" />
 										#{f.dateValue}
 									</when>
 									<when test="f.field == 'lastLoginDate' ">
 										${filter.logicValue}
 										E.LASTLOGINTIME 
-										<include refid="datetimeCondition3" />
+										<include refid="com.glaf.global.GlobalMapper.datetimeCondition3" />
 										#{f.dateValue}
 									</when>
 								</choose>	
@@ -609,242 +609,6 @@
 			   </if>	 
 			</if>
 		</where>
-	</sql>
-
-
-    <sql id="stringCondition">
-	     <choose>
-			<when test="dataRequest.filter.operator != null and dataRequest.filter.operator == 'eq' ">
-	             =
-			</when>
-			<when test="dataRequest.filter.operator != null and dataRequest.filter.operator == 'neq' ">
-				 !=
-			</when>
-			<when test="dataRequest.filter.operator != null and dataRequest.filter.operator == 'startswith' ">
-				 like 
-			</when>
-			<when test="dataRequest.filter.operator != null and dataRequest.filter.operator == 'endswith' ">
-				 like 
-			</when>
-			<when test="dataRequest.filter.operator != null and dataRequest.filter.operator == 'contains' ">
-				 like 
-			</when>
-			<when test="dataRequest.filter.operator != null and dataRequest.filter.operator == 'doesnotcontain' ">
-				 not like 
-			</when>
-			<otherwise>
-				 =
-			</otherwise>
-		</choose>
-	</sql>
-
-	<sql id="stringCondition2">
-	     <choose>
-			<when test="filter.operator != null and filter.operator == 'eq' ">
-	             =
-			</when>
-			<when test="filter.operator != null and filter.operator == 'neq' ">
-				 !=
-			</when>
-			<when test="filter.operator != null and filter.operator == 'startswith' ">
-				 like 
-			</when>
-			<when test="filter.operator != null and filter.operator == 'endswith' ">
-				 like 
-			</when>
-			<when test="filter.operator != null and filter.operator == 'contains' ">
-				 like 
-			</when>
-			<when test="filter.operator != null and filter.operator == 'doesnotcontain' ">
-				 not like 
-			</when>
-			<otherwise>
-				 =
-			</otherwise>
-		</choose>
-	</sql>
-
-	<sql id="stringCondition3">
-	     <choose>
-			<when test="f.operator != null and f.operator == 'eq' ">
-	             =
-			</when>
-			<when test="f.operator != null and f.operator == 'neq' ">
-				 !=
-			</when>
-			<when test="f.operator != null and f.operator == 'startswith' ">
-				 like 
-			</when>
-			<when test="f.operator != null and f.operator == 'endswith' ">
-				 like 
-			</when>
-			<when test="f.operator != null and f.operator == 'contains' ">
-				 like 
-			</when>
-			<when test="f.operator != null and f.operator == 'doesnotcontain' ">
-				 not like 
-			</when>
-			<otherwise>
-				 =
-			</otherwise>
-		</choose>
-	</sql>
-
-	<sql id="numbericCondition">
-	     <choose>
-			<when test="dataRequest.filter.operator != null and dataRequest.filter.operator == 'eq' ">
-	             =
-			</when>
-			<when test="dataRequest.filter.operator != null and dataRequest.filter.operator == 'neq' ">
-				 !=
-			</when>
-			<when test="dataRequest.filter.operator != null and dataRequest.filter.operator == 'gt' ">
-				 &gt; 
-			</when>
-			<when test="dataRequest.filter.operator != null and dataRequest.filter.operator == 'gte' ">
-				 &gt;= 
-			</when>
-			<when test="dataRequest.filter.operator != null and dataRequest.filter.operator == 'lt' ">
-				 &lt; 
-			</when>
-			<when test="dataRequest.filter.operator != null and dataRequest.filter.operator == 'lte' ">
-				 &lt;= 
-			</when>
-			<otherwise>
-				 =
-			</otherwise>
-		</choose>
-	</sql>
-
-	<sql id="numbericCondition2">
-	     <choose>
-			<when test="filter.operator != null and filter.operator == 'eq' ">
-	             =
-			</when>
-			<when test="filter.operator != null and filter.operator == 'neq' ">
-				 !=
-			</when>
-			<when test="filter.operator != null and filter.operator == 'gt' ">
-				 &gt; 
-			</when>
-			<when test="filter.operator != null and filter.operator == 'gte' ">
-				 &gt;= 
-			</when>
-			<when test="filter.operator != null and filter.operator == 'lt' ">
-				 &lt; 
-			</when>
-			<when test="filter.operator != null and filter.operator == 'lte' ">
-				 &lt;= 
-			</when>
-			<otherwise>
-				 =
-			</otherwise>
-		</choose>
-	</sql>
-
-	<sql id="numbericCondition3">
-	     <choose>
-			<when test="f.operator != null and f.operator == 'eq' ">
-	             =
-			</when>
-			<when test="f.operator != null and f.operator == 'neq' ">
-				 !=
-			</when>
-			<when test="f.operator != null and f.operator == 'gt' ">
-				 &gt; 
-			</when>
-			<when test="f.operator != null and f.operator == 'gte' ">
-				 &gt;= 
-			</when>
-			<when test="f.operator != null and f.operator == 'lt' ">
-				 &lt; 
-			</when>
-			<when test="f.operator != null and f.operator == 'lte' ">
-				 &lt;= 
-			</when>
-			<otherwise>
-				 =
-			</otherwise>
-		</choose>
-	</sql>
-
-	<sql id="datetimeCondition">
-	     <choose>
-			<when test="dataRequest.filter.operator != null and dataRequest.filter.operator == 'eq' ">
-	             =
-			</when>
-			<when test="dataRequest.filter.operator != null and dataRequest.filter.operator == 'neq' ">
-				 !=
-			</when>
-			<when test="dataRequest.filter.operator != null and dataRequest.filter.operator == 'gt' ">
-				 &gt; 
-			</when>
-			<when test="dataRequest.filter.operator != null and dataRequest.filter.operator == 'gte' ">
-				 &gt;= 
-			</when>
-			<when test="dataRequest.filter.operator != null and dataRequest.filter.operator == 'lt' ">
-				 &lt; 
-			</when>
-			<when test="dataRequest.filter.operator != null and dataRequest.filter.operator == 'lte' ">
-				 &lt;= 
-			</when>
-			<otherwise>
-				 =
-			</otherwise>
-		</choose>
-	</sql>
-
-
-	<sql id="datetimeCondition2">
-	     <choose>
-			<when test="filter.operator != null and filter.operator == 'eq' ">
-	             =
-			</when>
-			<when test="filter.operator != null and filter.operator == 'neq' ">
-				 !=
-			</when>
-			<when test="filter.operator != null and filter.operator == 'gt' ">
-				 &gt; 
-			</when>
-			<when test="filter.operator != null and filter.operator == 'gte' ">
-				 &gt;= 
-			</when>
-			<when test="filter.operator != null and filter.operator == 'lt' ">
-				 &lt; 
-			</when>
-			<when test="filter.operator != null and filter.operator == 'lte' ">
-				 &lt;= 
-			</when>
-			<otherwise>
-				 =
-			</otherwise>
-		</choose>
-	</sql>
-
-	<sql id="datetimeCondition3">
-	     <choose>
-			<when test="f.operator != null and f.operator == 'eq' ">
-	             =
-			</when>
-			<when test="f.operator != null and f.operator == 'neq' ">
-				 !=
-			</when>
-			<when test="f.operator != null and f.operator == 'gt' ">
-				 &gt; 
-			</when>
-			<when test="f.operator != null and f.operator == 'gte' ">
-				 &gt;= 
-			</when>
-			<when test="f.operator != null and f.operator == 'lt' ">
-				 &lt; 
-			</when>
-			<when test="f.operator != null and f.operator == 'lte' ">
-				 &lt;= 
-			</when>
-			<otherwise>
-				 =
-			</otherwise>
-		</choose>
 	</sql>
 
 </mapper>

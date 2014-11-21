@@ -20,15 +20,15 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-
+import com.glaf.core.base.DataRequest;
 import com.glaf.core.util.ParamUtils;
 import com.glaf.core.util.RequestUtils;
 import com.glaf.core.util.ResponseUtils;
-
 import com.glaf.base.modules.sys.model.DictoryDefinition;
 import com.glaf.base.modules.sys.service.DictoryDefinitionService;
 
@@ -42,6 +42,54 @@ public class SysDictoryDefinitionResource {
 
 	public SysDictoryDefinitionResource() {
 
+	}
+
+	 
+	@POST
+	@Path("data")
+	@Produces({ MediaType.APPLICATION_JSON })
+	@ResponseBody
+	public byte[] data(@Context HttpServletRequest request,
+			@RequestBody DataRequest dataRequest) throws IOException {
+		Map<String, Object> params = RequestUtils.getParameterMap(request);
+		Long nodeId = ParamUtils.getLong(params, "nodeId");
+		String target = request.getParameter("target");
+		if (StringUtils.isNotEmpty(target)) {
+			Map<String, DictoryDefinition> defMap = new HashMap<String, DictoryDefinition>();
+			List<DictoryDefinition> list = dictoryDefinitionService
+					.getDictoryDefinitions(0L, target);
+			if (nodeId > 0) {
+				List<DictoryDefinition> rows = dictoryDefinitionService
+						.getDictoryDefinitions(nodeId, target);
+				if (rows != null && !rows.isEmpty()) {
+					for (DictoryDefinition d : rows) {
+						defMap.put(d.getName(), d);
+					}
+				}
+			}
+			if (list != null && !list.isEmpty()) {
+				if (list != null && !list.isEmpty()) {
+					for (DictoryDefinition d : list) {
+						if (defMap.get(d.getName()) != null) {
+							DictoryDefinition m = defMap.get(d.getName());
+							d.setTitle(m.getTitle());
+							d.setRequired(m.getRequired());
+						}
+					}
+				}
+				Collections.sort(list);
+				JSONObject result = new JSONObject();
+				JSONArray array = new JSONArray();
+				for (DictoryDefinition d : list) {
+					array.add(d.toJsonObject());
+				}
+				result.put("rows", array);
+				logger.debug(result.toJSONString());
+				return result.toJSONString().getBytes("UTF-8");
+			}
+		}
+
+		return null;
 	}
 
 	@GET
@@ -92,6 +140,7 @@ public class SysDictoryDefinitionResource {
 		return null;
 	}
 
+	
 	@Path("save")
 	@POST
 	@ResponseBody

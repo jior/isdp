@@ -146,14 +146,14 @@ public class SysUserResource {
 		return ResponseUtils.responseResult(false);
 	}
 
-	@GET
+ 
 	@POST
 	@Path("data")
 	@Produces({ MediaType.APPLICATION_JSON })
 	@ResponseBody
 	public byte[] data(@Context HttpServletRequest request,
 			@RequestBody DataRequest dataRequest) throws IOException {
-		//logger.debug("dataRequest:" + dataRequest);
+		// logger.debug("dataRequest:" + dataRequest);
 		if (dataRequest.getFilter() != null) {
 			if (dataRequest.getFilter().getField() != null) {
 				logger.debug(dataRequest.getFilter().getLevel() + "->"
@@ -187,7 +187,7 @@ public class SysUserResource {
 		SysUserQuery query = new SysUserQuery();
 		query.setDataRequest(dataRequest);
 		int start = 0;
-		int limit = 10;
+		int limit = PageResult.DEFAULT_PAGE_SIZE;
 
 		int pageNo = dataRequest.getPage();
 		limit = dataRequest.getPageSize();

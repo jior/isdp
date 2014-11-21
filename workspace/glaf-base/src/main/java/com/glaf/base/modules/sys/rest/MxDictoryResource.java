@@ -55,6 +55,33 @@ public class MxDictoryResource {
 
 	@GET
 	@POST
+	@Path("data/{category}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	@ResponseBody
+	public byte[] data(@PathParam("category") String category) {
+		try {
+			List<JSONObject> rows = new ArrayList<JSONObject>();
+			SysTree tree = sysTreeService.getSysTreeByCode(category);
+			if (tree != null) {
+				List<Dictory> list = dictoryService
+						.getAvailableDictoryList(tree.getId());
+				for (Dictory item : list) {
+					rows.add(item.toJsonObject());
+				}
+			}
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("category", category);
+			jsonObject.put("total", rows.size());
+			jsonObject.put("rows", rows);
+			return jsonObject.toString().getBytes("UTF-8");
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			throw new RuntimeException(ex);
+		}
+	}
+
+	@GET
+	@POST
 	@Path("json/{category}")
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
 	@ResponseBody
@@ -75,6 +102,7 @@ public class MxDictoryResource {
 			jsonObject.put("rows", rows);
 			return jsonObject.toString().getBytes("UTF-8");
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			throw new RuntimeException(ex);
 		}
 	}
