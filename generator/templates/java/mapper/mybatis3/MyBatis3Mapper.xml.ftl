@@ -265,6 +265,7 @@
 	</#if>
  </#list>
 </#if>			 
+            <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
 			 
 		</where>
 	</sql>
