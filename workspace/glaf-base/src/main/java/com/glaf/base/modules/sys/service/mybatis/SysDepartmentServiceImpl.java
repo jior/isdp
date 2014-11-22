@@ -224,6 +224,11 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 		if (sysDepartment != null) {
 			SysTree node = sysTreeService.findById(sysDepartment.getNodeId());
 			sysDepartment.setNode(node);
+			if (node != null) {
+				SysDepartment parent = this.getSysDepartmentByNodeId(node
+						.getParentId());
+				sysDepartment.setParent(parent);
+			}
 		}
 		return sysDepartment;
 	}
@@ -294,9 +299,12 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	public List<SysDepartment> getSysDepartmentsByQueryCriteria(int start,
 			int pageSize, SysDepartmentQuery query) {
 		RowBounds rowBounds = new RowBounds(start, pageSize);
-		List<SysDepartment> rows = sqlSessionTemplate.selectList(
+		List<SysDepartment> list = sqlSessionTemplate.selectList(
 				"getSysDepartments", query, rowBounds);
-		return rows;
+		if (list != null && !list.isEmpty()) {
+			this.initTrees(list);
+		}
+		return list;
 	}
 
 	protected void initTrees(List<SysDepartment> list) {
@@ -311,6 +319,9 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 			}
 			for (SysDepartment bean : list) {
 				bean.setNode(treeMap.get(bean.getNodeId()));
+				if (bean.getNode() != null) {
+					bean.setNodeParentId(bean.getNode().getParentId());
+				}
 			}
 		}
 	}

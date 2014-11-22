@@ -91,9 +91,11 @@
         <td>
 		   <select id="departmentId" name="departmentId" style="width:160px; height:24px;">
 			<c:forEach items="${treeList}" var="tree">
+			 <c:if test="${!empty tree.department}">
 			  <option value="${tree.department.id}">
 			  <c:forEach begin="1" end="${tree.deep}" step="1">&nbsp;&nbsp;&nbsp;&nbsp;</c:forEach>${tree.department.name}
 			  </option>
+			 </c:if>
 			</c:forEach>
 		   </select>
            <script language="javascript">								
@@ -110,8 +112,10 @@
       <tr>
         <td class="input-box2" valign="top">性　别</td>
         <td>
-          <input type="radio" data-bind="checked: gender" name="gender" value="0" >男
-          <input type="radio" data-bind="checked: gender" name="gender" value="1" >女
+		  <input type="radio" name="gender" id="gender1" class="k-radio" value="0" <c:if test="${bean.status==0}">checked</c:if>>
+		 <label class="k-radio-label" for="gender1">男</label>&nbsp;&nbsp;
+		 <input type="radio" name="gender" id="gender2" class="k-radio" value="1" <c:if test="${bean.status==1}">checked</c:if>>
+		 <label class="k-radio-label" for="gender2">女</label>
 		</td>
       </tr>
       <tr>
@@ -162,8 +166,10 @@
       <tr>
         <td class="input-box2" valign="top">是否有效</td>
         <td>
-          <input type="radio" name="status" data-bind="checked: status" value="0" >是
-          <input type="radio" name="status" data-bind="checked: status" value="1" >否
+		 <input type="radio" name="status" id="engine1" class="k-radio" value="0" <c:if test="${bean.status==0}">checked</c:if>>
+		 <label class="k-radio-label" for="engine1">有效</label>&nbsp;&nbsp;
+		 <input type="radio" name="status" id="engine2" class="k-radio" value="1" <c:if test="${bean.status==1}">checked</c:if>>
+		 <label class="k-radio-label" for="engine2">无效</label>
 		</td>
       </tr>
  

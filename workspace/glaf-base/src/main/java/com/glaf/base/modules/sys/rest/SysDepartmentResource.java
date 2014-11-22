@@ -167,13 +167,14 @@ public class SysDepartmentResource {
 				for (SysDepartment sysDepartment : list) {
 					JSONObject rowJSON = sysDepartment.toJsonObject();
 					rowJSON.put("id", sysDepartment.getId());
-					rowJSON.put("sysDepartmentId", sysDepartment.getId());
+					rowJSON.put("deptId", sysDepartment.getId());
 					rowJSON.put("startIndex", ++start);
 					rowsJSON.add(rowJSON);
 				}
 
 			}
 		}
+		logger.debug(result.toJSONString());
 		return result.toJSONString().getBytes("UTF-8");
 	}
 

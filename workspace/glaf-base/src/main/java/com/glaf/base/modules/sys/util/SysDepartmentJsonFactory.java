@@ -104,6 +104,8 @@ public class SysDepartmentJsonFactory {
 		jsonObject.put("id", model.getId());
 		jsonObject.put("_id_", model.getId());
 		jsonObject.put("_oid_", model.getId());
+		jsonObject.put("deptId", model.getId());
+
 		if (model.getName() != null) {
 			jsonObject.put("name", model.getName());
 		}
@@ -146,8 +148,11 @@ public class SysDepartmentJsonFactory {
 		if (model.getFincode() != null) {
 			jsonObject.put("fincode", model.getFincode());
 		}
+		jsonObject.put("parentId", model.getParentId());
 		jsonObject.put("nodeId", model.getNodeId());
+		jsonObject.put("parentNodeId", model.getNodeParentId());
 		jsonObject.put("level", model.getLevel());
+
 		return jsonObject;
 	}
 
@@ -156,6 +161,8 @@ public class SysDepartmentJsonFactory {
 		jsonObject.put("id", model.getId());
 		jsonObject.put("_id_", model.getId());
 		jsonObject.put("_oid_", model.getId());
+		jsonObject.put("deptId", model.getId());
+
 		if (model.getName() != null) {
 			jsonObject.put("name", model.getName());
 		}
@@ -198,7 +205,9 @@ public class SysDepartmentJsonFactory {
 		if (model.getFincode() != null) {
 			jsonObject.put("fincode", model.getFincode());
 		}
+		jsonObject.put("parentId", model.getParentId());
 		jsonObject.put("nodeId", model.getNodeId());
+		jsonObject.put("parentNodeId", model.getNodeParentId());
 		jsonObject.put("level", model.getLevel());
 		return jsonObject;
 	}

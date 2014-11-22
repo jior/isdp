@@ -8,12 +8,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>用户列表</title>
 <%@ include file="/WEB-INF/views/inc/init_kendoui.jsp"%> 
-<script language="javascript" src='<%=request.getContextPath()%>/scripts/main.js'></script>
+<script id="template" type="text/x-kendo-template">
+   <div class="toolbar">
+      <button type="button" id="newButton"  class="k-button" style="width: 90px" 
+	  onclick="javascript:addRow();">新增</button>               
+   </div>
+</script>
 <script type="text/javascript">
                 
   jQuery(function() {
@@ -66,7 +71,7 @@
             "serverPaging": true,
             "serverGrouping": false,
         },
-        "height": "430px",
+        "height": "450px",
         "reorderable": true,
         "filterable": true,
         "sortable": true,
@@ -76,6 +81,7 @@
                        "buttonCount": 10
                      },
 		"selectable": "single",
+		"toolbar": kendo.template(jQuery("#template").html()),
         "columns": [{
             "field": "actorId",
             "title": "用户名",
@@ -203,6 +209,10 @@
   });
 
 
+	function addRow(){
+         editRow('<%=request.getContextPath()%>/mx/system/user/edit');
+	}
+
     function editRow(link){
 		jQuery.layer({
 			type: 2,
@@ -255,14 +265,6 @@
 				   }
 			 });
    }
-
-  jQuery(function() {
-    var grid = jQuery("#grid").data("kendoGrid");
-    var row = grid.select();
-    var data = grid.dataItem(row);
-    var link = "<%=request.getContextPath()%>/mx/system/user/edit?actorId="+data.actorId_enc;
-    editRow(link);
-  });
 
  </script>
 </head>

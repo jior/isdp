@@ -35,6 +35,11 @@ import com.glaf.core.base.JSONable;
 @Table(name = "sys_department")
 public class SysDepartment implements Serializable, JSONable {
 	private static final long serialVersionUID = -1700125499848402378L;
+
+	@Id
+	@Column(name = "ID", nullable = false)
+	protected long id;
+
 	@javax.persistence.Transient
 	private List<SysDepartment> children = new ArrayList<SysDepartment>();
 
@@ -75,10 +80,6 @@ public class SysDepartment implements Serializable, JSONable {
 	@Column(name = "FINCODE", length = 250)
 	protected String fincode;
 
-	@Id
-	@Column(name = "ID", nullable = false)
-	protected long id;
-
 	/**
 	 * 部门级别
 	 */
@@ -107,7 +108,13 @@ public class SysDepartment implements Serializable, JSONable {
 	protected long nodeId;
 
 	@javax.persistence.Transient
+	private long nodeParentId;
+
+	@javax.persistence.Transient
 	private SysDepartment parent;
+
+	@javax.persistence.Transient
+	private long parentId;
 
 	/**
 	 * 序号
@@ -218,8 +225,16 @@ public class SysDepartment implements Serializable, JSONable {
 		return nodeId;
 	}
 
+	public long getNodeParentId() {
+		return nodeParentId;
+	}
+
 	public SysDepartment getParent() {
 		return parent;
+	}
+
+	public long getParentId() {
+		return parentId;
 	}
 
 	public int getSort() {
@@ -302,8 +317,16 @@ public class SysDepartment implements Serializable, JSONable {
 		this.nodeId = nodeId;
 	}
 
+	public void setNodeParentId(long nodeParentId) {
+		this.nodeParentId = nodeParentId;
+	}
+
 	public void setParent(SysDepartment parent) {
 		this.parent = parent;
+	}
+
+	public void setParentId(long parentId) {
+		this.parentId = parentId;
 	}
 
 	public void setSort(int sort) {

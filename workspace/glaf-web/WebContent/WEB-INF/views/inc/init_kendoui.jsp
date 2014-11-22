@@ -29,7 +29,6 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/jquery.form.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/static/scripts/kendoui/js/angular.min.js"></script> 
 <script type="text/javascript" src="<%=request.getContextPath()%>/static/scripts/kendoui/js/kendo.all.min.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/static/scripts/kendoui/js/kendo.timezones.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/static/scripts/kendoui/js/cultures/kendo.culture.zh-CN.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/static/scripts/kendoui/js/messages/kendo.messages.zh-CN.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/static/scripts/layer/layer.min.js"></script>
