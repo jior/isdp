@@ -55,6 +55,7 @@ import com.glaf.base.modules.sys.service.SysDepartmentService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.service.SysUserService;
+import com.glaf.base.modules.sys.util.SysUserDomainFactory;
 import com.glaf.base.utils.ParamUtil;
 import com.glaf.base.utils.RequestUtil;
 import com.glaf.core.base.DataRequest;
@@ -189,7 +190,7 @@ public class SysUserResource {
 		}
 		SysUserQuery query = new SysUserQuery();
 		query.setDataRequest(dataRequest);
-		query.processDataRequest(dataRequest);
+		SysUserDomainFactory.processDataRequest(dataRequest);
 		
 		int start = 0;
 		int limit = PageResult.DEFAULT_PAGE_SIZE;

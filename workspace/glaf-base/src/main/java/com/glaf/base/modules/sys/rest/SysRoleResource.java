@@ -56,6 +56,7 @@ import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.service.SysUserRoleService;
 import com.glaf.base.modules.sys.service.SysUserService;
+import com.glaf.base.modules.sys.util.SysRoleDomainFactory;
 import com.glaf.base.utils.ParamUtil;
 import com.glaf.core.base.BaseTree;
 import com.glaf.core.base.DataRequest;
@@ -135,6 +136,7 @@ public class SysRoleResource {
 		SysRoleQuery query = new SysRoleQuery();
 		Tools.populate(query, params);
 		query.setDataRequest(dataRequest);
+		SysRoleDomainFactory.processDataRequest(dataRequest);
 
 		String gridType = ParamUtils.getString(params, "gridType");
 		if (gridType == null) {

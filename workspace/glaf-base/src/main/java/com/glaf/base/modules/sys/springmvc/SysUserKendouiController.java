@@ -801,6 +801,7 @@ public class SysUserKendouiController {
 	 * @return
 	 */
 	@RequestMapping("/savePwd")
+	@ResponseBody
 	public byte[] savePwd(HttpServletRequest request, ModelMap modelMap) {
 		SysUser bean = RequestUtil.getLoginUser(request);
 		String oldPwd = ParamUtil.getParameter(request, "oldPwd");

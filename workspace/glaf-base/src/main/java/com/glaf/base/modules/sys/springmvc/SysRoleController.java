@@ -63,6 +63,7 @@ import com.glaf.core.util.JsonUtils;
 import com.glaf.core.util.PageResult;
 import com.glaf.core.util.ParamUtils;
 import com.glaf.core.util.RequestUtils;
+import com.glaf.core.util.ResponseUtils;
 import com.glaf.core.util.Tools;
 
 @Controller("/sys/role")
@@ -457,8 +458,8 @@ public class SysRoleController {
 	 */
 	@RequestMapping("/saveModify")
 	public ModelAndView saveModify(HttpServletRequest request, ModelMap modelMap) {
-		long id = ParamUtil.getIntParameter(request, "id", 0);
-		SysRole bean = sysRoleService.findById(id);
+		long roleId = ParamUtil.getIntParameter(request, "id", 0);
+		SysRole bean = sysRoleService.findById(roleId);
 		if (bean != null) {
 			bean.setName(ParamUtil.getParameter(request, "name"));
 			bean.setContent(ParamUtil.getParameter(request, "content"));
@@ -489,19 +490,16 @@ public class SysRoleController {
 	@javax.annotation.Resource
 	public void setSysRoleService(SysRoleService sysRoleService) {
 		this.sysRoleService = sysRoleService;
-
 	}
 
 	@javax.annotation.Resource
 	public void setSysTreeService(SysTreeService sysTreeService) {
 		this.sysTreeService = sysTreeService;
-
 	}
 
 	@javax.annotation.Resource
 	public void setSysUserService(SysUserService sysUserService) {
 		this.sysUserService = sysUserService;
-
 	}
 
 	/**
@@ -514,7 +512,7 @@ public class SysRoleController {
 	@RequestMapping("/showList")
 	public ModelAndView showList(HttpServletRequest request, ModelMap modelMap) {
 		RequestUtils.setRequestParameterToAttribute(request);
-		logger.debug("->params:"+RequestUtils.getRequestParameters(request));
+		logger.debug("->params:" + RequestUtils.getRequestParameters(request));
 		int pageNo = ParamUtil.getIntParameter(request, "page_no", 1);
 		int pageSize = ParamUtil.getIntParameter(request, "page_size",
 				Constants.PAGE_SIZE);
@@ -585,9 +583,10 @@ public class SysRoleController {
 
 	@ResponseBody
 	@RequestMapping("/sort")
-	public void sort(@RequestParam(value = "id") int id,
+	public byte[] sort(@RequestParam(value = "id") int id,
 			@RequestParam(value = "operate") int operate) {
 		logger.info("id:" + id + ",operate:" + operate);
 		sysRoleService.sort(sysRoleService.findById(id), operate);
+		return ResponseUtils.responseResult(true);
 	}
 }

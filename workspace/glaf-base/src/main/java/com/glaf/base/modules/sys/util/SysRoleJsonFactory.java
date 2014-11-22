@@ -92,6 +92,7 @@ public class SysRoleJsonFactory {
 		jsonObject.put("id", model.getId());
 		jsonObject.put("_id_", model.getId());
 		jsonObject.put("_oid_", model.getId());
+		jsonObject.put("roleId", model.getId());
 
 		jsonObject.put("nodeId", model.getNodeId());
 
@@ -143,6 +144,7 @@ public class SysRoleJsonFactory {
 		jsonObject.put("id", model.getId());
 		jsonObject.put("_id_", model.getId());
 		jsonObject.put("_oid_", model.getId());
+		jsonObject.put("roleId", model.getId());
 
 		jsonObject.put("nodeId", model.getNodeId());
 

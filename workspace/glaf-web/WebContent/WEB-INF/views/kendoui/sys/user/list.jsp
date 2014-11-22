@@ -73,7 +73,7 @@
 		"pageable": {
                        "refresh": true,
                        "pageSizes": [5, 10, 15, 20, 25, 50, 100, 200, 500],
-                       "buttonCount": 5
+                       "buttonCount": 10
                      },
 		"selectable": "single",
         "columns": [{
