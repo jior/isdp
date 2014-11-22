@@ -145,6 +145,10 @@ public class SysRole implements Serializable, JSONable {
 		return this.id;
 	}
 
+	public long getRoleId() {
+		return this.id;
+	}
+
 	public String getIsUseBranch() {
 		return isUseBranch;
 	}
@@ -209,6 +213,10 @@ public class SysRole implements Serializable, JSONable {
 	}
 
 	public void setId(long id) {
+		this.id = id;
+	}
+
+	public void setRoleId(long id) {
 		this.id = id;
 	}
 

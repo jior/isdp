@@ -511,6 +511,44 @@ public class SysRoleResource {
 		return ResponseUtils.responseResult(false);
 	}
 
+	/**
+	 * 提交修改信息
+	 * 
+	 * @param request
+	 * @param uriInfo
+	 * @return
+	 */
+	@POST
+	@Path("update")
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_JSON })
+	public byte[] update(@Context HttpServletRequest request,
+			@Context UriInfo uriInfo) {
+		RequestUtils.setRequestParameterToAttribute(request);
+		boolean ret = false;
+		try {
+			long id = ParamUtil.getIntParameter(request, "id", 0);
+			SysRole bean = sysRoleService.findById(id);
+			if (bean != null) {
+				bean.setName(ParamUtil.getParameter(request, "name"));
+				bean.setContent(ParamUtil.getParameter(request, "content"));
+				bean.setCode(ParamUtil.getParameter(request, "code"));
+				bean.setIsUseBranch(ParamUtil.getParameter(request,
+						"isUseBranch"));
+				bean.setUpdateBy(RequestUtils.getActorId(request));
+			}
+			ret = sysRoleService.update(bean);
+		} catch (Exception ex) {
+			logger.error(ex);
+			ret = false;
+		}
+
+		if (ret) {// 保存成功
+			return ResponseUtils.responseResult(true);
+		}
+		return ResponseUtils.responseResult(false);
+	}
+
 	@POST
 	@Path("saveRoleMenus")
 	@ResponseBody

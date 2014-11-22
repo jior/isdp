@@ -143,16 +143,18 @@
 	<select id="getSysRoleById" parameterType="long" resultMap="sysRoleResultMap">
 		select * from net_role where ID = #{id}
 	</select>
-	
-	
+
+
 	<select id="getSysRolesByAppId" parameterType="long" resultMap="sysRoleResultMap">
-			
+
 		select distinct r.* from net_role r
 		inner join userrole ur
-		on r.id = ur.roleid
+		on r.id =
+		ur.roleid
 		inner join sys_access a
 		on ur.roleid = a.roleid
-		where a.appid = #{appId}
+		where a.appid =
+		#{appId}
 
 	</select>
 
@@ -227,13 +229,13 @@
 					#{x_code}
 				</foreach>
 			</if>
-			
+
 			<if test="type != null and type != '' ">
 				and E.TYPE = #{type}
 			</if>
-			
+
 			<if test="isUseBranch != null and isUseBranch != '' ">
-			    and E.ISUSEBRANCH = #{isUseBranch}
+				and E.ISUSEBRANCH = #{isUseBranch}
 			</if>
 
 			<if test="sortGreaterThanOrEqual != null">
@@ -250,6 +252,10 @@
 
 			<if test="sortLessThan != null">
 				and E.TASKSORT &lt; #{sortLessThan}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
 			</if>
 
 		</where>
