@@ -136,6 +136,10 @@ public class SysRoleQuery extends DataQuery {
 				a_x = sortOrder;
 			}
 
+			if ("roleId".equals(sortColumn)) {
+				orderBy = "E.ID" + a_x;
+			}
+
 			if ("name".equals(sortColumn)) {
 				orderBy = "E.ROLENAME" + a_x;
 			}
@@ -150,6 +154,14 @@ public class SysRoleQuery extends DataQuery {
 
 			if ("sort".equals(sortColumn)) {
 				orderBy = "E.TASKSORT" + a_x;
+			}
+
+			if ("createDate".equals(sortColumn)) {
+				orderBy = "E.CREATEDATE" + a_x;
+			}
+			
+			if ("createTime".equals(sortColumn)) {
+				orderBy = "E.CREATEDATE" + a_x;
 			}
 
 		}
@@ -180,10 +192,12 @@ public class SysRoleQuery extends DataQuery {
 	public void initQueryColumns() {
 		super.initQueryColumns();
 		addColumn("id", "ID");
-		addColumn("name", "NAME");
-		addColumn("desc", "ROLEDESC");
+		addColumn("roleId", "ID");
+		addColumn("name", "ROLENAME");
+		addColumn("desc", "CONTENT");
 		addColumn("code", "CODE");
-		addColumn("sort", "SORT");
+		addColumn("sort", "TASKSORT");
+		addColumn("createDate", "CREATEDATE");
 	}
 
 	public SysRoleQuery isUseBranch(String isUseBranch) {

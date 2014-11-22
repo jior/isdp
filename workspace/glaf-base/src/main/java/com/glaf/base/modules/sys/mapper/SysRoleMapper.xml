@@ -26,7 +26,7 @@
 				ROLENAME,
 			</if>
 			<if test="type != null">
-				,TYPE
+				TYPE,
 			</if>
 			<if test="content != null">
 				CONTENT,
@@ -38,7 +38,7 @@
 				TASKSORT,
 			</if>
 			<if test="isUseBranch != null">
-				,ISUSEBRANCH
+				ISUSEBRANCH,
 			</if>
 			<if test="createDate != null">
 				CREATEDATE,
@@ -59,7 +59,7 @@
 				#{name, jdbcType=VARCHAR},
 			</if>
 			<if test="type != null">
-				,#{type, jdbcType=VARCHAR}
+				#{type, jdbcType=VARCHAR},
 			</if>
 			<if test="content != null">
 				#{content, jdbcType=VARCHAR},
@@ -71,7 +71,7 @@
 				#{sort, jdbcType=INTEGER},
 			</if>
 			<if test="isUseBranch != null">
-				,#{isUseBranch, jdbcType=VARCHAR}
+				#{isUseBranch, jdbcType=VARCHAR},
 			</if>
 			<if test="createDate != null">
 				#{createDate, jdbcType=TIMESTAMP},
