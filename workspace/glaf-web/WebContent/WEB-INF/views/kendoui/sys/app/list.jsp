@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>部门列表</title>
+<title>模块列表</title>
 <%@ include file="/WEB-INF/views/inc/init_kendoui.jsp"%> 
 <script id="template" type="text/x-kendo-template">
    <div class="toolbar">
@@ -32,25 +32,13 @@
 					"id": "nodeId",
                     "fields": {
 						"parentId": { "field": "parentNodeId",  "nullable": true },
-                        "parentNodeId": {
-                            "type": "number",  "nullable": true
-                        },
-						"nodeId": {
-                            "type": "number"
-                        },
-						"deptId": {
+                        "appId": {
                             "type": "number"
                         },
                         "name": {
                             "type": "string"
                         },
                         "code": {
-                            "type": "string"
-                        },
-						"code2": {
-                            "type": "string"
-                        },
-                        "no": {
                             "type": "string"
                         }
                     }
@@ -65,10 +53,10 @@
                     return JSON.stringify(options);
                 },
                 "read": {
-                    //"dataType": "json",
+                    "dataType": "json",
 				    "contentType": "application/json",
                     "type": "POST",
-                    "url": "<%=request.getContextPath()%>/rs/sys/department/data"
+                    "url": "<%=request.getContextPath()%>/mx/system/application/json"
                 }
             },
 			"serverFiltering": true,
@@ -83,7 +71,7 @@
         "sortable": true,
 		"pageable": {
                        "refresh": true,
-                       "pageSizes": [5, 10, 15, 20, 25, 50, 100],
+                       "pageSizes": [5, 10, 15, 20, 25, 50, 100, 200, 500],
                        "buttonCount": 10
                      },
 		"selectable": "single",
@@ -91,7 +79,7 @@
         "columns": [
         {
             "field": "name",
-            "title": "部门名称",
+            "title": "模块名称",
             "width": "180px",
 			"lockable": false,
             "locked": false
@@ -103,21 +91,15 @@
             "locked": false
         },
         {
-            "field": "code2",
-            "title": "编码",
-            "width": "150px",
-            "locked": false
-        },
-        {
-            "field": "no",
-            "title": "部门区分",
-            "width": "150px",
-            "locked": false
-        },
-        {
             "field": "desc",
-            "title": "部门描述",
+            "title": "模块描述",
             "width": "220px",
+            "locked": false
+        },
+        {
+            "field": "url",
+            "title": "链接地址",
+            "width": "320px",
             "locked": false
         },
 		{
@@ -126,7 +108,7 @@
                 "name": "edit",
                 "click": function showDetails(e) {
 					  dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-					  var link = "<%=request.getContextPath()%>/mx/system/department/edit?deptId="+dataItem.deptId;
+					  var link = "<%=request.getContextPath()%>/mx/system/application/edit?appId="+dataItem.appId;
 					  editRow(link);
 				        }
                     }]
@@ -139,12 +121,12 @@
   });
 
 
-    function deptUsers(link){
+    function perms(link){
 		jQuery.layer({
 			type: 2,
 			maxmin: true,
 			shadeClose: true,
-			title: "部门用户",
+			title: "模块权限",
 			closeBtn: [0, true],
 			shade: [0.8, '#000'],
 			border: [10, 0.3, '#000'],
@@ -157,7 +139,7 @@
 
     
 	function addRow(){
-        editRow('<%=request.getContextPath()%>/mx/system/department/edit');
+        editRow('<%=request.getContextPath()%>/mx/system/application/edit');
 	}
 
     function editRow(link){
@@ -166,7 +148,7 @@
 			type: 2,
 			maxmin: true,
 			shadeClose: true,
-			title: "编辑部门信息",
+			title: "编辑模块信息",
 			closeBtn: [0, true],
 			shade: [0.8, '#000'],
 			border: [10, 0.3, '#000'],
@@ -183,8 +165,8 @@
 <body>
 <div id="main_content" class="k-content">
 <div class="x_content_title"><img
-	src="<%=request.getContextPath()%>/images/window.png" alt="部门列表">&nbsp;
-部门列表</div>
+	src="<%=request.getContextPath()%>/images/window.png" alt="模块列表">&nbsp;
+模块列表</div>
 <br>
 <div id="grid"></div>
 </div>     

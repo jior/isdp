@@ -306,15 +306,18 @@
 	<select id="getTreeList" parameterType="com.glaf.base.modules.sys.query.SysTreeQuery"
 		resultType="com.glaf.base.modules.sys.model.SysTree">
 
-		select distinct t.id as id, t.parent as parentId, a.name as name, a.url as url,
-		       t.sort as sortNo, t.treeid as treeId, t.code as code, t.locked as locked
+		select distinct t.id as id, t.parent as parentId, a.name as
+		name, a.url as url,
+		t.sort as sortNo, t.treeid as treeId, t.code as code, t.locked as locked
 		from sys_tree t
 		inner join
 		sys_application a
 		on t.id = a.nodeid
-		where t.treeid like #{treeIdLike}
+		where
+		t.treeid like #{treeIdLike}
 		and t.treeid != #{treeId}
-		order by t.parent,t.sort,t.treeid
+		order by
+		t.parent,t.sort,t.treeid
 
 	</select>
 
@@ -322,20 +325,24 @@
 	<select id="getTreeListByUsers" parameterType="com.glaf.base.modules.sys.query.SysTreeQuery"
 		resultType="com.glaf.base.modules.sys.model.SysTree">
 
-		select distinct t.id as id, t.parent as parentId, a.name as name, a.url as url,
-		       t.sort as sortNo, t.treeid as treeId, t.code as code, t.locked as locked
+		select distinct t.id as id, t.parent as parentId, a.name as name,
+		a.url as url,
+		t.sort as sortNo, t.treeid as treeId, t.code as code, t.locked as locked
 		from sys_tree t
 		inner join sys_application a
 		on t.id = a.nodeid
-		inner join sys_access c
+		inner
+		join sys_access c
 		on a.id = c.appId
 		where t.treeid like
 		#{treeIdLike}
-		and c.roleId in (
+		and
+		c.roleId in (
 		select ur.roleid from userrole ur
 		inner
 		join UserInfo u
-		on u.UserID = ur.userid
+		on
+		u.UserID = ur.userid
 		where 1=1
 		<choose>
 			<when test="actorId != null">
@@ -601,6 +608,10 @@
 
 		<if test="lockedLessThanOrEqual != null">
 			and E.locked &lt;= #{lockedLessThanOrEqual}
+		</if>
+
+		<if test="dataRequest != null and dataRequest.filter != null ">
+			<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
 		</if>
 
 	</sql>

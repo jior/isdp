@@ -48,6 +48,7 @@ import com.glaf.base.modules.sys.query.SysApplicationQuery;
 import com.glaf.base.modules.sys.query.SysTreeQuery;
 import com.glaf.base.modules.sys.service.SysApplicationService;
 import com.glaf.base.modules.sys.service.SysTreeService;
+import com.glaf.base.modules.sys.util.SysApplicationDomainFactory;
 import com.glaf.base.utils.ParamUtil;
 import com.glaf.core.base.DataRequest;
 import com.glaf.core.base.TreeModel;
@@ -103,6 +104,7 @@ public class SysApplicationResource {
 		SysApplicationQuery query = new SysApplicationQuery();
 		Tools.populate(query, params);
 		query.setDataRequest(dataRequest);
+		SysApplicationDomainFactory.processDataRequest(dataRequest);
 
 		String gridType = ParamUtils.getString(params, "gridType");
 		if (gridType == null) {

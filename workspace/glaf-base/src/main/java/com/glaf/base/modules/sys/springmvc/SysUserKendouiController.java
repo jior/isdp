@@ -41,6 +41,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.glaf.core.base.DataRequest;
+import com.glaf.core.base.DataRequest.SortDescriptor;
 import com.glaf.core.cache.CacheUtils;
 import com.glaf.core.config.ViewProperties;
 import com.glaf.core.res.MessageUtils;
@@ -68,6 +69,7 @@ import com.glaf.base.modules.sys.service.SysDepartmentService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.service.SysUserService;
+import com.glaf.base.modules.sys.util.SysUserDomainFactory;
 import com.glaf.base.utils.ParamUtil;
 import com.glaf.base.utils.RequestUtil;
 
@@ -125,32 +127,6 @@ public class SysUserKendouiController {
 		MessageUtils.addMessages(request, messages);
 
 		return new ModelAndView("show_msg", modelMap);
-	}
-
-	/**
-	 * 批量删除信息
-	 * 
-	 * @param request
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping("/batchDelete")
-	public ModelAndView batchDelete(HttpServletRequest request,
-			ModelMap modelMap) {
-		RequestUtils.setRequestParameterToAttribute(request);
-		boolean ret = true;
-		long[] id = ParamUtil.getLongParameterValues(request, "id");
-		ret = sysUserService.deleteAll(id);
-		ViewMessages messages = new ViewMessages();
-		if (ret) {// 保存成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.delete_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.delete_failure"));
-		}
-		MessageUtils.addMessages(request, messages);
-		return new ModelAndView("show_msg2", modelMap);
 	}
 
 	@RequestMapping(value = { "/data" }, method = { org.springframework.web.bind.annotation.RequestMethod.POST })
@@ -215,42 +191,6 @@ public class SysUserKendouiController {
 		}
 		// logger.debug(result.toString());
 		return result.toString().getBytes("UTF-8");
-	}
-
-	/**
-	 * 删除角色用户
-	 * 
-	 * @param request
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping("/delRoleUser")
-	public ModelAndView delRoleUser(HttpServletRequest request,
-			ModelMap modelMap) {
-		RequestUtils.setRequestParameterToAttribute(request);
-		int roleId = ParamUtil.getIntParameter(request, "roleId", 0);
-		SysRole role = sysRoleService.findById(roleId);
-		boolean sucess = false;
-		try {
-			String[] userIds = ParamUtil.getParameterValues(request, "id");
-			sysUserService.deleteRoleUsers(role, userIds);
-			sucess = true;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			sucess = false;
-		}
-
-		ViewMessages messages = new ViewMessages();
-		if (sucess) {
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.delete_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.delete_failure"));
-		}
-		MessageUtils.addMessages(request, messages);
-
-		return new ModelAndView("show_msg2", modelMap);
 	}
 
 	@RequestMapping("/deptUsers")
@@ -358,13 +298,17 @@ public class SysUserKendouiController {
 
 	@RequestMapping("/json")
 	@ResponseBody
-	public byte[] json(HttpServletRequest request) throws IOException {
+	public byte[] json(HttpServletRequest request,
+			@RequestBody DataRequest dataRequest) throws IOException {
 		Long deptId = ParamUtil.getLongParameter(request, "parent", 0);
 		Long nodeId = RequestUtils.getLong(request, "nodeId");
 		Map<String, Object> params = RequestUtils.getParameterMap(request);
 		logger.debug("params:" + params);
 		SysUserQuery query = new SysUserQuery();
 		Tools.populate(query, params);
+		query.setDataRequest(dataRequest);
+		SysUserDomainFactory.processDataRequest(dataRequest);
+
 		if (nodeId > 0) {
 			SysDepartment dept = sysDepartmentService
 					.getSysDepartmentByNodeId(nodeId);
@@ -377,21 +321,15 @@ public class SysUserKendouiController {
 
 		String gridType = ParamUtils.getString(params, "gridType");
 		if (gridType == null) {
-			gridType = "easyui";
+			gridType = "kendoui";
 		}
 		int start = 0;
-		int limit = 10;
-		String orderName = null;
-		String order = null;
+		int limit = PageResult.DEFAULT_PAGE_SIZE;
 
-		int pageNo = ParamUtils.getInt(params, "page");
-		limit = ParamUtils.getInt(params, "rows");
-		if (limit == 0) {
-			limit = ParamUtils.getInt(params, "pageSize");
-		}
+		int pageNo = dataRequest.getPage();
+		limit = dataRequest.getPageSize();
+
 		start = (pageNo - 1) * limit;
-		orderName = ParamUtils.getString(params, "sortName");
-		order = ParamUtils.getString(params, "sortOrder");
 
 		if (start < 0) {
 			start = 0;
@@ -400,7 +338,6 @@ public class SysUserKendouiController {
 		if (limit <= 0) {
 			limit = PageResult.DEFAULT_PAGE_SIZE;
 		}
-
 		JSONObject result = new JSONObject();
 		int total = sysUserService.getSysUserCountByQueryCriteria(query);
 		if (total > 0) {
@@ -412,12 +349,25 @@ public class SysUserKendouiController {
 			result.put("limit", limit);
 			result.put("pageSize", limit);
 
+			String orderName = null;
+			String order = null;
+
+			if (dataRequest.getSort() != null
+					&& !dataRequest.getSort().isEmpty()) {
+				SortDescriptor sort = dataRequest.getSort().get(0);
+				orderName = sort.getField();
+				order = sort.getDir();
+				logger.debug("orderName:" + orderName);
+				logger.debug("order:" + order);
+			}
+
 			if (StringUtils.isNotEmpty(orderName)) {
-				query.setSortOrder(orderName);
+				query.setSortColumn(orderName);
 				if (StringUtils.equals(order, "desc")) {
 					query.setSortOrder(" desc ");
 				}
 			}
+
 			List<SysUser> list = sysUserService.getSysUsersByQueryCriteria(
 					start, limit, query);
 			if (list != null && !list.isEmpty()) {

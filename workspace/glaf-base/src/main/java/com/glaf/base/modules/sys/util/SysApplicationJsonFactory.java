@@ -191,11 +191,14 @@ public class SysApplicationJsonFactory {
 		jsonObject.put("id", model.getId());
 		jsonObject.put("_id_", model.getId());
 		jsonObject.put("_oid_", model.getId());
+		jsonObject.put("appId", model.getId());
 
 		jsonObject.put("sort", model.getSort());
 		jsonObject.put("showMenu", model.getShowMenu());
-		jsonObject.put("nodeId", model.getNodeId());
 		jsonObject.put("locked", model.getLocked());
+		jsonObject.put("nodeId", model.getNodeId());
+		jsonObject.put("parentId", model.getParentId());
+		jsonObject.put("parentNodeId", model.getNodeParentId());
 
 		if (model.getName() != null) {
 			jsonObject.put("name", model.getName());
@@ -327,10 +330,14 @@ public class SysApplicationJsonFactory {
 		jsonObject.put("id", model.getId());
 		jsonObject.put("_id_", model.getId());
 		jsonObject.put("_oid_", model.getId());
+		jsonObject.put("appId", model.getId());
 		jsonObject.put("sort", model.getSort());
 		jsonObject.put("showMenu", model.getShowMenu());
 		jsonObject.put("nodeId", model.getNodeId());
 		jsonObject.put("locked", model.getLocked());
+		jsonObject.put("nodeId", model.getNodeId());
+		jsonObject.put("parentId", model.getParentId());
+		jsonObject.put("parentNodeId", model.getNodeParentId());
 
 		if (model.getName() != null) {
 			jsonObject.put("name", model.getName());

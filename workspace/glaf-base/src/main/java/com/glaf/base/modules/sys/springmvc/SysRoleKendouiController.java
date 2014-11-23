@@ -50,13 +50,13 @@ import com.glaf.base.modules.sys.service.SysApplicationService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.service.SysUserService;
+import com.glaf.base.modules.sys.util.SysRoleDomainFactory;
 import com.glaf.base.utils.ParamUtil;
 import com.glaf.core.base.BaseTree;
+import com.glaf.core.base.DataRequest;
 import com.glaf.core.base.TreeModel;
+import com.glaf.core.base.DataRequest.SortDescriptor;
 import com.glaf.core.config.ViewProperties;
-import com.glaf.core.res.MessageUtils;
-import com.glaf.core.res.ViewMessage;
-import com.glaf.core.res.ViewMessages;
 import com.glaf.core.tree.helper.TreeHelper;
 import com.glaf.core.util.JsonUtils;
 import com.glaf.core.util.PageResult;
@@ -79,39 +79,7 @@ public class SysRoleKendouiController {
 
 	protected SysUserService sysUserService;
 
-	/**
-	 * 批量删除信息
-	 * 
-	 * @param request
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping("/batchDelete")
-	public ModelAndView batchDelete(HttpServletRequest request,
-			ModelMap modelMap) {
-		RequestUtils.setRequestParameterToAttribute(request);
-		boolean ret = true;
-		long[] ids = ParamUtil.getLongParameterValues(request, "id");
-		try {
-			ret = sysRoleService.deleteAll(ids);
-		} catch (Exception ex) {
-			logger.error(ex);
-			ret = false;
-		}
-
-		ViewMessages messages = new ViewMessages();
-		if (ret) {// 成功
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"role.delete_success"));
-		} else {// 失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"role.delete_failure"));
-		}
-		MessageUtils.addMessages(request, messages);
-
-		// 显示列表页面
-		return new ModelAndView("show_msg2", modelMap);
-	}
+	 
 
 	@RequestMapping(value = { "/create" }, method = { org.springframework.web.bind.annotation.RequestMethod.POST })
 	@ResponseBody
@@ -153,25 +121,23 @@ public class SysRoleKendouiController {
 
 	@RequestMapping("/json")
 	@ResponseBody
-	public byte[] json(HttpServletRequest request) throws IOException {
+	public byte[] json(HttpServletRequest request, @RequestBody DataRequest dataRequest) throws IOException {
 		Map<String, Object> params = RequestUtils.getParameterMap(request);
 		SysRoleQuery query = new SysRoleQuery();
 		Tools.populate(query, params);
-
+		query.setDataRequest(dataRequest);
+		SysRoleDomainFactory.processDataRequest(dataRequest);
 		String gridType = ParamUtils.getString(params, "gridType");
 		if (gridType == null) {
-			gridType = "easyui";
+			gridType = "kendoui";
 		}
 		int start = 0;
-		int limit = 10;
-		String orderName = null;
-		String order = null;
+		int limit = PageResult.DEFAULT_PAGE_SIZE;
 
-		int pageNo = ParamUtils.getInt(params, "page");
-		limit = ParamUtils.getInt(params, "rows");
+		int pageNo = dataRequest.getPage();
+		limit = dataRequest.getPageSize();
+
 		start = (pageNo - 1) * limit;
-		orderName = ParamUtils.getString(params, "sortName");
-		order = ParamUtils.getString(params, "sortOrder");
 
 		if (start < 0) {
 			start = 0;
@@ -180,7 +146,6 @@ public class SysRoleKendouiController {
 		if (limit <= 0) {
 			limit = PageResult.DEFAULT_PAGE_SIZE;
 		}
-
 		JSONObject result = new JSONObject();
 		int total = sysRoleService.getSysRoleCountByQueryCriteria(query);
 		if (total > 0) {
@@ -192,8 +157,20 @@ public class SysRoleKendouiController {
 			result.put("limit", limit);
 			result.put("pageSize", limit);
 
+			String orderName = null;
+			String order = null;
+
+			if (dataRequest.getSort() != null
+					&& !dataRequest.getSort().isEmpty()) {
+				SortDescriptor sort = dataRequest.getSort().get(0);
+				orderName = sort.getField();
+				order = sort.getDir();
+				logger.debug("orderName:" + orderName);
+				logger.debug("order:" + order);
+			}
+
 			if (StringUtils.isNotEmpty(orderName)) {
-				query.setSortOrder(orderName);
+				query.setSortColumn(orderName);
 				if (StringUtils.equals(order, "desc")) {
 					query.setSortOrder(" desc ");
 				}

@@ -71,18 +71,20 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 
 	@Transactional
 	public boolean create(SysDepartment bean) {
-		if (bean.getId() == 0) {
-			bean.setId(idGenerator.nextId());
-		}
-		bean.setSort((int) bean.getId());
 		if (bean.getNode() != null) {
+			 
+			bean.setSort((int) bean.getId());
+
 			bean.getNode().setDescription("D");
 			sysTreeService.create(bean.getNode());
 			bean.setNodeId(bean.getNode().getId());
+
+			bean.setId(bean.getNode().getId());
+			bean.setCreateTime(new Date());
+			sysDepartmentMapper.insertSysDepartment(bean);
+			return true;
 		}
-		bean.setCreateTime(new Date());
-		sysDepartmentMapper.insertSysDepartment(bean);
-		return true;
+		return false;
 	}
 
 	@Transactional

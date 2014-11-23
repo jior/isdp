@@ -109,91 +109,97 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	@Transactional
 	public boolean create(SysApplication bean) {
 		boolean ret = false;
-		if (bean.getId() == 0) {
-			bean.setId(idGenerator.nextId());
-		}
-		if (StringUtils.isEmpty(bean.getCode())) {
-			bean.setCode("app_" + bean.getId());
-		}
 		if (bean.getNode() != null) {
+
 			bean.getNode().setCode(bean.getCode());
 			bean.getNode().setDiscriminator("A");
 			bean.getNode().setCreateBy(bean.getCreateBy());
 			bean.getNode().setUrl(bean.getUrl());
 			sysTreeService.create(bean.getNode());
+
+			bean.setId(bean.getNode().getId());
 			bean.setNodeId(bean.getNode().getId());
-		}
-		bean.setSort((int) bean.getId());// 设置排序号为刚插入的id值
-		bean.setCreateDate(new Date());
-		if (bean.getLinkFileContent() != null) {
-			bean.setLinkFileId("sys_app_" + UUID32.getUUID());
-		}
-		if (bean.getPrintFileContent() != null) {
-			bean.setPrintFileId("sys_app_print_" + UUID32.getUUID());
-		}
-		if (StringUtils.endsWithIgnoreCase(bean.getLinkFileName(), ".cpt")) {
-			bean.setUrl("/mx/menu/jump?menuId="
-					+ RequestUtils.encodeString(bean.getId() + ""));
-		}
 
-		sysApplicationMapper.insertSysApplication(bean);
+			if (StringUtils.isEmpty(bean.getCode())) {
+				bean.setCode("app_" + bean.getId());
+			}
 
-		if (bean.getLinkFileContent() != null) {
-			BlobItem dataFile = new BlobItemEntity();
-			dataFile.setLastModified(System.currentTimeMillis());
-			dataFile.setCreateBy(bean.getCreateBy());
-			dataFile.setFileId(bean.getLinkFileId());
-			dataFile.setData(bean.getLinkFileContent());
-			dataFile.setFilename(bean.getLinkFileName());
-			dataFile.setName(bean.getLinkFileName());
-			dataFile.setSize(bean.getLinkFileContent().length);
-			dataFile.setType(bean.getLinkType());
-			dataFile.setStatus(9);
-			dataFile.setObjectId("sys_app");
-			dataFile.setObjectValue("sys_app_" + bean.getId());
-			dataFile.setServiceKey("sys_app_file");
-			blobService.insertBlob(dataFile);
-
+			bean.setSort((int) bean.getId());// 设置排序号为刚插入的id值
+			bean.setCreateDate(new Date());
+			if (bean.getLinkFileContent() != null) {
+				bean.setLinkFileId("sys_app_" + UUID32.getUUID());
+			}
+			if (bean.getPrintFileContent() != null) {
+				bean.setPrintFileId("sys_app_print_" + UUID32.getUUID());
+			}
 			if (StringUtils.endsWithIgnoreCase(bean.getLinkFileName(), ".cpt")) {
-				String path = SystemProperties.getConfigRootPath()
-						+ "/reportlets/";
-				if (SystemProperties.getDeploymentSystemName() != null) {
-					path = path + SystemProperties.getDeploymentSystemName()
-							+ "/";
-				}
-				path = path + bean.getId() + ".cpt";
-				FileUtils.save(path, bean.getLinkFileContent());
+				bean.setUrl("/mx/menu/jump?menuId="
+						+ RequestUtils.encodeString(bean.getId() + ""));
 			}
-		}
 
-		if (bean.getPrintFileContent() != null) {
-			BlobItem dataFile = new BlobItemEntity();
-			dataFile.setLastModified(System.currentTimeMillis());
-			dataFile.setCreateBy(bean.getCreateBy());
-			dataFile.setFileId(bean.getPrintFileId());
-			dataFile.setData(bean.getPrintFileContent());
-			dataFile.setFilename(bean.getPrintFileName());
-			dataFile.setName(bean.getPrintFileName());
-			dataFile.setSize(bean.getPrintFileContent().length);
-			dataFile.setType(bean.getPrintType());
-			dataFile.setStatus(9);
-			dataFile.setObjectId("sys_app_print");
-			dataFile.setObjectValue("sys_app_print_" + bean.getId());
-			dataFile.setServiceKey("sys_app_print_file");
-			blobService.insertBlob(dataFile);
+			sysApplicationMapper.insertSysApplication(bean);
 
-			if (StringUtils.endsWithIgnoreCase(bean.getPrintFileName(), ".cpt")) {
-				String path = SystemProperties.getConfigRootPath()
-						+ "/reportlets/";
-				if (SystemProperties.getDeploymentSystemName() != null) {
-					path = path + SystemProperties.getDeploymentSystemName()
-							+ "/";
+			if (bean.getLinkFileContent() != null) {
+				BlobItem dataFile = new BlobItemEntity();
+				dataFile.setLastModified(System.currentTimeMillis());
+				dataFile.setCreateBy(bean.getCreateBy());
+				dataFile.setFileId(bean.getLinkFileId());
+				dataFile.setData(bean.getLinkFileContent());
+				dataFile.setFilename(bean.getLinkFileName());
+				dataFile.setName(bean.getLinkFileName());
+				dataFile.setSize(bean.getLinkFileContent().length);
+				dataFile.setType(bean.getLinkType());
+				dataFile.setStatus(9);
+				dataFile.setObjectId("sys_app");
+				dataFile.setObjectValue("sys_app_" + bean.getId());
+				dataFile.setServiceKey("sys_app_file");
+				blobService.insertBlob(dataFile);
+
+				if (StringUtils.endsWithIgnoreCase(bean.getLinkFileName(),
+						".cpt")) {
+					String path = SystemProperties.getConfigRootPath()
+							+ "/reportlets/";
+					if (SystemProperties.getDeploymentSystemName() != null) {
+						path = path
+								+ SystemProperties.getDeploymentSystemName()
+								+ "/";
+					}
+					path = path + bean.getId() + ".cpt";
+					FileUtils.save(path, bean.getLinkFileContent());
 				}
-				path = path + bean.getId() + ".cpt";
-				FileUtils.save(path, bean.getPrintFileContent());
 			}
+
+			if (bean.getPrintFileContent() != null) {
+				BlobItem dataFile = new BlobItemEntity();
+				dataFile.setLastModified(System.currentTimeMillis());
+				dataFile.setCreateBy(bean.getCreateBy());
+				dataFile.setFileId(bean.getPrintFileId());
+				dataFile.setData(bean.getPrintFileContent());
+				dataFile.setFilename(bean.getPrintFileName());
+				dataFile.setName(bean.getPrintFileName());
+				dataFile.setSize(bean.getPrintFileContent().length);
+				dataFile.setType(bean.getPrintType());
+				dataFile.setStatus(9);
+				dataFile.setObjectId("sys_app_print");
+				dataFile.setObjectValue("sys_app_print_" + bean.getId());
+				dataFile.setServiceKey("sys_app_print_file");
+				blobService.insertBlob(dataFile);
+
+				if (StringUtils.endsWithIgnoreCase(bean.getPrintFileName(),
+						".cpt")) {
+					String path = SystemProperties.getConfigRootPath()
+							+ "/reportlets/";
+					if (SystemProperties.getDeploymentSystemName() != null) {
+						path = path
+								+ SystemProperties.getDeploymentSystemName()
+								+ "/";
+					}
+					path = path + bean.getId() + ".cpt";
+					FileUtils.save(path, bean.getPrintFileContent());
+				}
+			}
+			ret = true;
 		}
-		ret = true;
 		return ret;
 	}
 
@@ -262,25 +268,58 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		return null;
 	}
 
+	/**
+	 * 通过节点编号获取模块信息
+	 * 
+	 * @param nodeId
+	 * @return
+	 */
+	public SysApplication getSysApplicationByNodeId(long nodeId) {
+		SysApplicationQuery query = new SysApplicationQuery();
+		query.nodeId(nodeId);
+		query.setOrderBy(" E.ID asc ");
+
+		List<SysApplication> list = this.list(query);
+		if (list != null && !list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
 	public SysApplication findById(long id) {
 		String cacheKey = "sys_app_" + id;
 
 		if (SystemConfig.getBoolean("use_query_cache")
 				&& CacheFactory.getString(cacheKey) != null) {
 			String text = CacheFactory.getString(cacheKey);
-			com.alibaba.fastjson.JSONObject json = JSON.parseObject(text);
-			SysApplication app = SysApplicationJsonFactory.jsonToObject(json);
-			if (app != null && app.getNodeId() > 0) {
-				SysTree node = sysTreeService.findById(app.getNodeId());
-				app.setNode(node);
+			try {
+				com.alibaba.fastjson.JSONObject json = JSON.parseObject(text);
+				SysApplication app = SysApplicationJsonFactory
+						.jsonToObject(json);
+				if (app != null && app.getNodeId() > 0) {
+					SysTree node = sysTreeService.findById(app.getNodeId());
+					app.setNode(node);
+					if (node != null) {
+						SysApplication parent = this
+								.getSysApplicationByNodeId(node.getParentId());
+						app.setParent(parent);
+					}
+				}
+				return app;
+			} catch (Exception ex) {
 			}
-			return app;
 		}
 
 		SysApplication app = sysApplicationMapper.getSysApplicationById(id);
 		if (app != null && app.getNodeId() > 0) {
 			SysTree node = sysTreeService.findById(app.getNodeId());
 			app.setNode(node);
+			if (node != null) {
+				SysApplication parent = this.getSysApplicationByNodeId(node
+						.getParentId());
+				app.setParent(parent);
+			}
 		}
 
 		if (app != null && SystemConfig.getBoolean("use_query_cache")) {
@@ -355,6 +394,29 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		return this.list(query);
 	}
 
+	public PageResult getApplicationList(int pageNo, int pageSize,
+			SysApplicationQuery query) {
+		// 计算总数
+		PageResult pager = new PageResult();
+
+		int count = this.count(query);
+		if (count == 0) {// 结果集为空
+			pager.setPageSize(pageSize);
+			return pager;
+		}
+		query.setOrderBy(" E.SORT asc");
+
+		int start = pageSize * (pageNo - 1);
+		List<SysApplication> list = this.getSysApplicationsByQueryCriteria(
+				start, pageSize, query);
+		pager.setResults(list);
+		pager.setPageSize(pageSize);
+		pager.setCurrentPageNo(pageNo);
+		pager.setTotalRecordCount(count);
+
+		return pager;
+	}
+
 	public List<SysApplication> getApplicationList(long parentId) {
 		long parentAppId = parentId;
 		SysApplication parentApp = findById(parentId);
@@ -378,29 +440,6 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		PageResult pager = new PageResult();
 		SysApplicationQuery query = new SysApplicationQuery();
 		query.parentId(Long.valueOf(parentId));
-		int count = this.count(query);
-		if (count == 0) {// 结果集为空
-			pager.setPageSize(pageSize);
-			return pager;
-		}
-		query.setOrderBy(" E.SORT asc");
-
-		int start = pageSize * (pageNo - 1);
-		List<SysApplication> list = this.getSysApplicationsByQueryCriteria(
-				start, pageSize, query);
-		pager.setResults(list);
-		pager.setPageSize(pageSize);
-		pager.setCurrentPageNo(pageNo);
-		pager.setTotalRecordCount(count);
-
-		return pager;
-	}
-
-	public PageResult getApplicationList(int pageNo, int pageSize,
-			SysApplicationQuery query) {
-		// 计算总数
-		PageResult pager = new PageResult();
-
 		int count = this.count(query);
 		if (count == 0) {// 结果集为空
 			pager.setPageSize(pageSize);
@@ -588,9 +627,12 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	public List<SysApplication> getSysApplicationsByQueryCriteria(int start,
 			int pageSize, SysApplicationQuery query) {
 		RowBounds rowBounds = new RowBounds(start, pageSize);
-		List<SysApplication> rows = sqlSessionTemplate.selectList(
+		List<SysApplication> list = sqlSessionTemplate.selectList(
 				"getSysApplications", query, rowBounds);
-		return rows;
+		if (list != null && !list.isEmpty()) {
+			this.initTrees(list);
+		}
+		return list;
 	}
 
 	/**
@@ -725,8 +767,10 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		SysUser user = sysUserService.findByAccountWithAll(actorId);
 		if (user != null) {
 			List<SysTree> treeList = null;
+			logger.debug("appId=" + parent);
 			SysApplication app = this.findById(parent);
 			SysTreeQuery query = new SysTreeQuery();
+			logger.debug("node=" + app.getNode());
 			String treeId = app.getNode().getTreeId();
 			logger.debug("treeId=" + treeId);
 			query.treeId(treeId);
@@ -873,6 +917,25 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 			}
 		}
 		return array;
+	}
+
+	protected void initTrees(List<SysApplication> list) {
+		if (list != null && !list.isEmpty()) {
+			SysTreeQuery query = new SysTreeQuery();
+			List<SysTree> trees = sysTreeService.getApplicationSysTrees(query);
+			Map<Long, SysTree> treeMap = new HashMap<Long, SysTree>();
+			if (trees != null && !trees.isEmpty()) {
+				for (SysTree tree : trees) {
+					treeMap.put(tree.getId(), tree);
+				}
+			}
+			for (SysApplication bean : list) {
+				bean.setNode(treeMap.get(bean.getNodeId()));
+				if (bean.getNode() != null) {
+					bean.setNodeParentId(bean.getNode().getParentId());
+				}
+			}
+		}
 	}
 
 	public List<SysApplication> list(SysApplicationQuery query) {

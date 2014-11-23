@@ -381,6 +381,10 @@
 				and E.DEPTLEVEL &lt;= #{levelLessThanOrEqual}
 			</if>
 
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
 		</where>
 	</sql>
 

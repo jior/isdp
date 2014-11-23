@@ -38,6 +38,16 @@ import com.glaf.core.base.JSONable;
 public class SysApplication implements Serializable, JSONable {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@Column(name = "ID", nullable = false)
+	protected long id;
+
+	/**
+	 * 名称
+	 */
+	@Column(name = "NAME", length = 250)
+	protected String name;
+
 	/**
 	 * 编码
 	 */
@@ -66,21 +76,11 @@ public class SysApplication implements Serializable, JSONable {
 	@javax.persistence.Transient
 	private Set<SysFunction> functions = new HashSet<SysFunction>();
 
-	@Id
-	@Column(name = "ID", nullable = false)
-	protected long id;
-
 	/**
 	 * 是否启用
 	 */
 	@Column(name = "LOCKED")
 	protected int locked;
-
-	/**
-	 * 名称
-	 */
-	@Column(name = "NAME", length = 250)
-	protected String name;
 
 	@javax.persistence.Transient
 	private SysTree node;
@@ -90,6 +90,15 @@ public class SysApplication implements Serializable, JSONable {
 	 */
 	@Column(name = "NODEID")
 	protected long nodeId;
+
+	@javax.persistence.Transient
+	private long nodeParentId;
+
+	@javax.persistence.Transient
+	private SysApplication parent;
+
+	@javax.persistence.Transient
+	private long parentId;
 
 	/**
 	 * 显示菜单
@@ -286,6 +295,18 @@ public class SysApplication implements Serializable, JSONable {
 		return nodeId;
 	}
 
+	public long getNodeParentId() {
+		return nodeParentId;
+	}
+
+	public SysApplication getParent() {
+		return parent;
+	}
+
+	public long getParentId() {
+		return parentId;
+	}
+
 	public byte[] getPrintFileContent() {
 		return printFileContent;
 	}
@@ -432,6 +453,18 @@ public class SysApplication implements Serializable, JSONable {
 
 	public void setNodeId(long nodeId) {
 		this.nodeId = nodeId;
+	}
+
+	public void setNodeParentId(long nodeParentId) {
+		this.nodeParentId = nodeParentId;
+	}
+
+	public void setParent(SysApplication parent) {
+		this.parent = parent;
+	}
+
+	public void setParentId(long parentId) {
+		this.parentId = parentId;
 	}
 
 	public void setPrintFileContent(byte[] printFileContent) {

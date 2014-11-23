@@ -548,6 +548,10 @@
 				and E.REFID5 = #{refId5}
 			</if>
 
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
 		</where>
 	</sql>
 
