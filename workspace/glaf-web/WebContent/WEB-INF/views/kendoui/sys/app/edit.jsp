@@ -41,10 +41,10 @@
 	   form.method="post";
 	   <c:choose>
 	   <c:when test="${!empty application}">
-	   form.action = "<%=request.getContextPath()%>/mx/system/application/saveModify";
+	   form.action = "<%=request.getContextPath()%>/mx/system/application/update";
 	   </c:when>
 	   <c:otherwise>
-	   form.action = "<%=request.getContextPath()%>/mx/system/application/saveAdd";
+	   form.action = "<%=request.getContextPath()%>/mx/system/application/create";
        </c:otherwise>
 	   </c:choose>
 	   form.submit();
@@ -60,10 +60,10 @@
 
 	<c:choose>
 	   <c:when test="${!empty application}">
-	   var link = "<%=request.getContextPath()%>/mx/system/application/saveModify";
+	   var link = "<%=request.getContextPath()%>/rs/sys/application/update";
 	   </c:when>
 	   <c:otherwise>
-	   var link = "<%=request.getContextPath()%>/mx/system/application/saveAdd";
+	   var link = "<%=request.getContextPath()%>/rs/sys/application/create";
        </c:otherwise>
 	 </c:choose>
 	     
@@ -96,14 +96,14 @@
 <br>
 <form id="iForm" name="iForm">
 <c:if test="${!empty application}">
-<input type="hidden" id="deptId" name="deptId" value="${application.id}">
+<input type="hidden" id="appId" name="appId" value="${application.id}">
  </c:if>
   <table width="95%" align="center" border="0" cellspacing="0" cellpadding="5">
 	  <tr>
         <td class="input-box2" valign="top">上级模块</td>
         <td>
 		   <select id="parent" name="parent" data-bind="value: parent" style="width:160px; height:24px;">
-		    <option value="0">/</option>
+			<option value="3">/</option>
 			<c:forEach items="${treeList}" var="tree">
 			 <c:if test="${!empty tree.app}">
 			  <option value="${tree.app.nodeId}">

@@ -64,8 +64,6 @@ import com.glaf.core.base.DataRequest.SortDescriptor;
 import com.glaf.core.config.ViewProperties;
 import com.glaf.core.tree.helper.JacksonTreeHelper;
 import com.glaf.core.util.JsonUtils;
-import com.glaf.core.util.PageResult;
-import com.glaf.core.util.ParamUtils;
 import com.glaf.core.util.RequestUtils;
 import com.glaf.core.util.ResponseUtils;
 import com.glaf.core.util.Tools;
@@ -159,37 +157,12 @@ public class SysDepartmentKendouiController {
 		query.setDataRequest(dataRequest);
 		SysDepartmentDomainFactory.processDataRequest(dataRequest);
 
-		String gridType = ParamUtils.getString(params, "gridType");
-		if (gridType == null) {
-			gridType = "kendoui";
-		}
 		int start = 0;
-		int limit = PageResult.DEFAULT_PAGE_SIZE;
 
-		int pageNo = dataRequest.getPage();
-		limit = dataRequest.getPageSize();
-
-		start = (pageNo - 1) * limit;
-
-		if (start < 0) {
-			start = 0;
-		}
-
-		if (limit <= 0) {
-			limit = PageResult.DEFAULT_PAGE_SIZE;
-		}
-
-		JSONObject result = new JSONObject();
+		JSONArray result = new JSONArray();
 		int total = sysDepartmentService
 				.getSysDepartmentCountByQueryCriteria(query);
 		if (total > 0) {
-			result.put("total", total);
-			result.put("totalCount", total);
-			result.put("totalRecords", total);
-			result.put("start", start);
-			result.put("startIndex", start);
-			result.put("limit", limit);
-			result.put("pageSize", limit);
 
 			String orderName = null;
 			String order = null;
@@ -210,28 +183,26 @@ public class SysDepartmentKendouiController {
 				}
 			}
 			List<SysDepartment> list = sysDepartmentService
-					.getSysDepartmentsByQueryCriteria(start, limit, query);
+					.getSysDepartmentsByQueryCriteria(start, 10000, query);
 
 			if (list != null && !list.isEmpty()) {
-				JSONArray rowsJSON = new JSONArray();
-
-				result.put("rows", rowsJSON);
 
 				for (SysDepartment sysDepartment : list) {
 					JSONObject rowJSON = sysDepartment.toJsonObject();
+					if (sysDepartment.getId() == 1
+							|| sysDepartment.getId() == 6975) {
+						rowJSON.remove("nodeParentId");
+					}
 					rowJSON.put("id", sysDepartment.getId());
-					rowJSON.put("sysDepartmentId", sysDepartment.getId());
+					rowJSON.put("departmentId", sysDepartment.getId());
 					rowJSON.put("startIndex", ++start);
-					rowsJSON.add(rowJSON);
+					result.add(rowJSON);
 				}
 
 			}
-		} else {
-			result.put("total", total);
-			result.put("totalCount", total);
-			JSONArray rowsJSON = new JSONArray();
-			result.put("rows", rowsJSON);
 		}
+
+		logger.debug("json:" + result.toString());
 		return result.toString().getBytes("UTF-8");
 	}
 
@@ -331,8 +302,10 @@ public class SysDepartmentKendouiController {
 			SysTree node = bean.getNode();
 			node.setUpdateBy(RequestUtils.getActorId(request));
 			node.setName(bean.getName());
-			node.setParentId((long) ParamUtil.getIntParameter(request,
-					"parent", 0));
+			if (ParamUtil.getLongParameter(request, "parent", 0) > 0) {
+				node.setParentId(ParamUtil.getLongParameter(request, "parent",
+						0));
+			}
 			bean.setNode(node);
 			try {
 				ret = sysDepartmentService.update(bean);

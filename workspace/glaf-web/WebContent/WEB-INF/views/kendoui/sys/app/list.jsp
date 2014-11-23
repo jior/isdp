@@ -23,71 +23,64 @@
   var dataItem;
   //var kendo = window.kendo;
   jQuery(function() {
-    jQuery("#grid").kendoGrid({
-        "columnMenu": true,
-        "dataSource": {
-            "schema": {
-                "total": "total",
-                "model": {
-					"id": "nodeId",
-                    "fields": {
-						"parentId": { "field": "parentNodeId",  "nullable": true },
-                        "appId": {
-                            "type": "number"
-                        },
-                        "name": {
-                            "type": "string"
-                        },
-                        "code": {
-                            "type": "string"
-                        }
-                    }
-					,
-                    "expanded": true
-                },
-                "data": "rows"
-            },
-            "transport": {
-                "parameterMap": function(options) {
-					//alert(JSON.stringify(options));
-                    return JSON.stringify(options);
-                },
-                "read": {
-                    "dataType": "json",
-				    "contentType": "application/json",
-                    "type": "POST",
-                    "url": "<%=request.getContextPath()%>/mx/system/application/json"
-                }
-            },
-			"serverFiltering": true,
-            "serverSorting": true,
-            "pageSize": 10,
-            "serverPaging": true,
-            "serverGrouping": false,
-        },
+	 var dataSource = new kendo.data.TreeListDataSource({
+                            transport: {
+                                read: {
+                                    url: "<%=request.getContextPath()%>/rs/sys/application/read",
+                                    dataType: "json",
+									contentType: "application/json",
+                                    type: "POST"
+                                },
+								create: {
+                                    url: "<%=request.getContextPath()%>/mx/system/application/create",
+                                    dataType: "json",
+									contentType: "application/json",
+                                    type: "POST"
+                                },
+								update: {
+                                    url: "<%=request.getContextPath()%>/mx/system/application/update",
+                                    dataType: "json",
+									contentType: "application/json",
+                                    type: "POST"
+                                },
+                                parameterMap: function(options, operation) {
+                                    if (operation !== "read") {
+                                        return JSON.stringify(options);
+                                    }
+                                }
+                            },
+							batch: false,
+                            schema: {
+                                model: {
+                                    id: "nodeId",
+                                    fields: {
+                                        nodeId: { type: "number", nullable: false },
+                                        parentId: { field: "nodeParentId", type: "number", nullable: true },
+										appId: { type: "number", nullable: false }
+                                    }
+                                }
+                            }
+                        });
+
+    jQuery("#treelist").kendoTreeList({
+        "dataSource": dataSource,
         "height": "452px",
-        "reorderable": true,
         "filterable": true,
         "sortable": true,
-		"pageable": {
-                       "refresh": true,
-                       "pageSizes": [5, 10, 15, 20, 25, 50, 100, 200, 500],
-                       "buttonCount": 10
-                     },
-		"selectable": "single",
         "toolbar": kendo.template(jQuery("#template").html()),
         "columns": [
         {
             "field": "name",
             "title": "模块名称",
-            "width": "180px",
+            "width": "250px",
+			"expandable": true,
 			"lockable": false,
             "locked": false
         },
         {
             "field": "code",
             "title": "代码",
-            "width": "150px",
+            "width": "120px",
             "locked": false
         },
         {
@@ -98,46 +91,26 @@
         },
         {
             "field": "url",
-            "title": "链接地址",
+            "title": "模块链接",
             "width": "320px",
             "locked": false
         },
 		{
 			"command": [{
                 "text": "修改",
-                "name": "edit",
+                "name": "edit2",
                 "click": function showDetails(e) {
-					  dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-					  var link = "<%=request.getContextPath()%>/mx/system/application/edit?appId="+dataItem.appId;
-					  editRow(link);
+						  dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+						  var link = "<%=request.getContextPath()%>/mx/system/application/edit?appId="+dataItem.appId;
+						  editRow(link);
 				        }
                     }]
           }
-		],
-        "scrollable": {},
-        "resizable": true,
-        "groupable": false
+		]
     });
   });
 
 
-    function perms(link){
-		jQuery.layer({
-			type: 2,
-			maxmin: true,
-			shadeClose: true,
-			title: "模块权限",
-			closeBtn: [0, true],
-			shade: [0.8, '#000'],
-			border: [10, 0.3, '#000'],
-			offset: ['20px',''],
-			fadeIn: 100,
-			area: ['520px', (jQuery(window).height() - 40) +'px'],
-            iframe: {src: link}
-		});
-	}
-
-    
 	function addRow(){
         editRow('<%=request.getContextPath()%>/mx/system/application/edit');
 	}
@@ -168,7 +141,7 @@
 	src="<%=request.getContextPath()%>/images/window.png" alt="模块列表">&nbsp;
 模块列表</div>
 <br>
-<div id="grid"></div>
+<div id="treelist"></div>
 </div>     
 </body>
 </html>

@@ -36,6 +36,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -54,7 +55,6 @@ import com.glaf.core.base.DataRequest;
 import com.glaf.core.base.DataRequest.SortDescriptor;
 import com.glaf.core.config.ViewProperties;
 import com.glaf.core.util.JsonUtils;
-import com.glaf.core.util.PageResult;
 import com.glaf.core.util.ParamUtils;
 import com.glaf.core.util.RequestUtils;
 import com.glaf.core.util.ResponseUtils;
@@ -69,6 +69,52 @@ public class SysApplicationKendoUIController {
 	private SysApplicationService sysApplicationService;
 
 	private SysTreeService sysTreeService;
+
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public @ResponseBody SysApplication create(HttpServletRequest request,
+			@RequestBody Map<String, Object> model) {
+		SysApplication bean = new SysApplication();
+
+		bean.setName(ParamUtils.getString(model, "name"));
+		bean.setCode(ParamUtils.getString(model, "code"));
+		bean.setDesc(ParamUtils.getString(model, "desc"));
+		bean.setUrl(ParamUtils.getString(model, "url"));
+		bean.setShowMenu(ParamUtils.getInt(model, "showMenu"));
+		bean.setLinkParam(ParamUtils.getString(model, "linkParam"));
+		bean.setPrintParam(ParamUtils.getString(model, "printParam"));
+		bean.setUpdateBy(RequestUtils.getActorId(request));
+		bean.setLocked(ParamUtils.getInt(model, "locked"));
+		bean.setRefId1(ParamUtils.getInt(model, "refId1"));
+		bean.setRefName1(ParamUtils.getString(model, "refName1"));
+		bean.setRefId2(ParamUtils.getInt(model, "refId2"));
+		bean.setRefName2(ParamUtils.getString(model, "refName2"));
+		bean.setRefId3(ParamUtils.getInt(model, "refId3"));
+		bean.setRefName3(ParamUtils.getString(model, "refName3"));
+		bean.setRefId4(ParamUtils.getInt(model, "refId4"));
+		bean.setRefName4(ParamUtils.getString(model, "refName4"));
+		bean.setRefId5(ParamUtils.getInt(model, "refId5"));
+		bean.setRefName5(ParamUtils.getString(model, "refName5"));
+
+		SysTree node = new SysTree();
+		node.setName(bean.getName());
+		node.setDesc(bean.getName());
+		node.setCode(bean.getCode());
+		node.setCreateBy(RequestUtils.getActorId(request));
+		if (ParamUtils.getLong(model, "parent") > 0) {
+			node.setParentId(ParamUtils.getLong(model, "parent"));
+		}
+		bean.setNode(node);
+
+		try {
+			sysApplicationService.create(bean);
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			logger.error(ex);
+		}
+
+		return bean;
+	}
 
 	/**
 	 * 显示修改页面
@@ -111,37 +157,11 @@ public class SysApplicationKendoUIController {
 		query.setDataRequest(dataRequest);
 		SysApplicationDomainFactory.processDataRequest(dataRequest);
 		logger.debug("dataRequest:" + dataRequest);
-		String gridType = ParamUtils.getString(params, "gridType");
-		if (gridType == null) {
-			gridType = "kendoui";
-		}
-		int start = 0;
-		int limit = PageResult.DEFAULT_PAGE_SIZE;
 
-		int pageNo = dataRequest.getPage();
-		limit = dataRequest.getPageSize();
-
-		start = (pageNo - 1) * limit;
-
-		if (start < 0) {
-			start = 0;
-		}
-
-		if (limit <= 0) {
-			limit = PageResult.DEFAULT_PAGE_SIZE;
-		}
-
-		JSONObject result = new JSONObject();
+		JSONArray result = new JSONArray();
 		int total = sysApplicationService
 				.getSysApplicationCountByQueryCriteria(query);
 		if (total > 0) {
-			result.put("total", total);
-			result.put("totalCount", total);
-			result.put("totalRecords", total);
-			result.put("start", start);
-			result.put("startIndex", start);
-			result.put("limit", limit);
-			result.put("pageSize", limit);
 
 			String orderName = null;
 			String order = null;
@@ -162,28 +182,23 @@ public class SysApplicationKendoUIController {
 				}
 			}
 
+			int start = 0;
 			List<SysApplication> list = sysApplicationService
-					.getSysApplicationsByQueryCriteria(start, limit, query);
+					.getSysApplicationsByQueryCriteria(0, 10000, query);
 
 			if (list != null && !list.isEmpty()) {
-				JSONArray rowsJSON = new JSONArray();
-
-				result.put("rows", rowsJSON);
 
 				for (SysApplication sysApplication : list) {
 					JSONObject rowJSON = sysApplication.toJsonObject();
 					rowJSON.put("id", sysApplication.getId());
+					rowJSON.put("applicationId", sysApplication.getId());
 					rowJSON.put("startIndex", ++start);
-					rowsJSON.add(rowJSON);
+					result.add(rowJSON);
 				}
 
 			}
-		} else {
-			result.put("total", total);
-			result.put("totalCount", total);
-			JSONArray rowsJSON = new JSONArray();
-			result.put("rows", rowsJSON);
 		}
+		logger.debug("json:" + result.toString());
 		return result.toString().getBytes("UTF-8");
 	}
 
@@ -433,6 +448,61 @@ public class SysApplicationKendoUIController {
 		}
 
 		return new ModelAndView("/kendoui/sys/app/permission_frame", modelMap);
+	}
+
+	/**
+	 * 提交修改信息
+	 * 
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public @ResponseBody SysApplication update(HttpServletRequest request,
+			@RequestBody Map<String, Object> model) {
+		logger.debug("model:" + model);
+		long appId = ParamUtils.getLong(model, "appId");
+		logger.debug("appId:" + appId);
+		SysApplication bean = sysApplicationService.findById(appId);
+		if (bean != null) {
+			bean.setName(ParamUtils.getString(model, "name"));
+			bean.setCode(ParamUtils.getString(model, "code"));
+			bean.setDesc(ParamUtils.getString(model, "desc"));
+			bean.setUrl(ParamUtils.getString(model, "url"));
+			bean.setShowMenu(ParamUtils.getInt(model, "showMenu"));
+			bean.setLinkParam(ParamUtils.getString(model, "linkParam"));
+			bean.setPrintParam(ParamUtils.getString(model, "printParam"));
+			bean.setUpdateBy(RequestUtils.getActorId(request));
+			bean.setLocked(ParamUtils.getInt(model, "locked"));
+			bean.setRefId1(ParamUtils.getInt(model, "refId1"));
+			bean.setRefName1(ParamUtils.getString(model, "refName1"));
+			bean.setRefId2(ParamUtils.getInt(model, "refId2"));
+			bean.setRefName2(ParamUtils.getString(model, "refName2"));
+			bean.setRefId3(ParamUtils.getInt(model, "refId3"));
+			bean.setRefName3(ParamUtils.getString(model, "refName3"));
+			bean.setRefId4(ParamUtils.getInt(model, "refId4"));
+			bean.setRefName4(ParamUtils.getString(model, "refName4"));
+			bean.setRefId5(ParamUtils.getInt(model, "refId5"));
+			bean.setRefName5(ParamUtils.getString(model, "refName5"));
+
+			SysTree node = bean.getNode();
+			node.setName(bean.getName());
+			node.setCode(bean.getCode());
+			node.setDesc(bean.getName());
+			if (ParamUtils.getLong(model, "parent") > 0) {
+				node.setParentId(ParamUtils.getLong(model, "parent"));
+			}
+			bean.setNode(node);
+
+			try {
+				sysApplicationService.update(bean);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				logger.error(ex);
+			}
+		}
+
+		return bean;
 	}
 
 }

@@ -198,7 +198,7 @@ public class SysApplicationJsonFactory {
 		jsonObject.put("locked", model.getLocked());
 		jsonObject.put("nodeId", model.getNodeId());
 		jsonObject.put("parentId", model.getParentId());
-		jsonObject.put("parentNodeId", model.getNodeParentId());
+		jsonObject.put("nodeParentId", model.getNodeParentId());
 
 		if (model.getName() != null) {
 			jsonObject.put("name", model.getName());
@@ -337,7 +337,7 @@ public class SysApplicationJsonFactory {
 		jsonObject.put("locked", model.getLocked());
 		jsonObject.put("nodeId", model.getNodeId());
 		jsonObject.put("parentId", model.getParentId());
-		jsonObject.put("parentNodeId", model.getNodeParentId());
+		jsonObject.put("nodeParentId", model.getNodeParentId());
 
 		if (model.getName() != null) {
 			jsonObject.put("name", model.getName());

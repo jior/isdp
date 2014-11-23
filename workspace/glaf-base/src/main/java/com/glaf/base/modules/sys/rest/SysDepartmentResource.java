@@ -37,6 +37,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -49,6 +50,7 @@ import com.glaf.base.modules.sys.query.SysDepartmentQuery;
 import com.glaf.base.modules.sys.query.SysTreeQuery;
 import com.glaf.base.modules.sys.service.SysDepartmentService;
 import com.glaf.base.modules.sys.service.SysTreeService;
+import com.glaf.base.modules.sys.util.SysDepartmentDomainFactory;
 import com.glaf.base.utils.ParamUtil;
 import com.glaf.core.base.DataRequest;
 import com.glaf.core.base.TreeModel;
@@ -91,6 +93,47 @@ public class SysDepartmentResource {
 		if (ret) {// 保存成功
 			return ResponseUtils.responseResult(true);
 		}
+		return ResponseUtils.responseResult(false);
+	}
+
+	/**
+	 * 提交增加信息
+	 * 
+	 * @param request
+	 * @param uriInfo
+	 * @return
+	 */
+	@Path("create")
+	@POST
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_JSON })
+	public byte[] create(@Context HttpServletRequest request,
+			@Context UriInfo uriInfo) {
+		RequestUtils.setRequestParameterToAttribute(request);
+		// 增加部门时，同时要增加对应节点
+		SysDepartment bean = new SysDepartment();
+		bean.setName(ParamUtil.getParameter(request, "name"));
+		bean.setDesc(ParamUtil.getParameter(request, "desc"));
+		bean.setCode(ParamUtil.getParameter(request, "code"));
+		bean.setCode2(ParamUtil.getParameter(request, "code2"));
+		bean.setLevel(RequestUtils.getInt(request, "level"));
+		bean.setNo(ParamUtil.getParameter(request, "no"));
+		bean.setCreateTime(new Date());
+
+		SysTree node = new SysTree();
+		node.setCreateBy(RequestUtils.getActorId(request));
+		node.setName(bean.getName());
+		node.setDesc(bean.getName());
+		node.setCode(bean.getCode());
+		node.setParentId(ParamUtil.getLongParameter(request, "parent", 0));
+		bean.setNode(node);
+		bean.setCreateBy(RequestUtils.getActorId(request));
+		boolean ret = sysDepartmentService.create(bean);
+
+		if (ret) {// 保存成功
+			return ResponseUtils.responseResult(true);
+		}
+
 		return ResponseUtils.responseResult(false);
 	}
 
@@ -178,8 +221,8 @@ public class SysDepartmentResource {
 		return result.toJSONString().getBytes("UTF-8");
 	}
 
-	@POST
 	@GET
+	@POST
 	@Path("json")
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM })
 	@ResponseBody
@@ -250,6 +293,65 @@ public class SysDepartmentResource {
 			}
 		}
 		return result.toJSONString().getBytes("UTF-8");
+	}
+
+	@POST
+	@Path("read")
+	@Produces({ MediaType.APPLICATION_JSON })
+	@ResponseBody
+	public byte[] read(@Context HttpServletRequest request,
+			@RequestBody DataRequest dataRequest) throws IOException {
+		Map<String, Object> params = RequestUtils.getParameterMap(request);
+		SysDepartmentQuery query = new SysDepartmentQuery();
+		Tools.populate(query, params);
+		query.setDataRequest(dataRequest);
+		SysDepartmentDomainFactory.processDataRequest(dataRequest);
+
+		int start = 0;
+
+		JSONArray result = new JSONArray();
+		int total = sysDepartmentService
+				.getSysDepartmentCountByQueryCriteria(query);
+		if (total > 0) {
+
+			String orderName = null;
+			String order = null;
+
+			if (dataRequest != null && dataRequest.getSort() != null
+					&& !dataRequest.getSort().isEmpty()) {
+				SortDescriptor sort = dataRequest.getSort().get(0);
+				orderName = sort.getField();
+				order = sort.getDir();
+				logger.debug("orderName:" + orderName);
+				logger.debug("order:" + order);
+			}
+
+			if (StringUtils.isNotEmpty(orderName)) {
+				query.setSortColumn(orderName);
+				if (StringUtils.equals(order, "desc")) {
+					query.setSortOrder(" desc ");
+				}
+			}
+			List<SysDepartment> list = sysDepartmentService
+					.getSysDepartmentsByQueryCriteria(start, 10000, query);
+
+			if (list != null && !list.isEmpty()) {
+
+				for (SysDepartment sysDepartment : list) {
+					JSONObject rowJSON = sysDepartment.toJsonObject();
+					if (sysDepartment.getId() == 1) {
+						rowJSON.remove("nodeParentId");
+					}
+					rowJSON.put("departmentId", sysDepartment.getId());
+					rowJSON.put("startIndex", ++start);
+					result.add(rowJSON);
+				}
+
+			}
+		}
+
+		logger.debug("json:" + result.toString());
+		return result.toString().getBytes("UTF-8");
 	}
 
 	/**
@@ -398,5 +500,47 @@ public class SysDepartmentResource {
 		} catch (IOException e) {
 			return responseJSON.toString().getBytes();
 		}
+	}
+
+	@Path("update")
+	@POST
+	@Produces({ MediaType.APPLICATION_JSON })
+	@ResponseBody
+	public byte[] update(@Context HttpServletRequest request,
+			@Context UriInfo uriInfo) {
+		logger.debug(RequestUtils.getParameterMap(request));
+		long deptId = ParamUtil.getIntParameter(request, "deptId", 0);
+		SysDepartment bean = sysDepartmentService.findById(deptId);
+		boolean ret = false;
+		if (bean != null) {
+			bean.setUpdateBy(RequestUtils.getActorId(request));
+			bean.setName(ParamUtil.getParameter(request, "name"));
+			bean.setDesc(ParamUtil.getParameter(request, "desc"));
+			bean.setCode(ParamUtil.getParameter(request, "code"));
+			bean.setCode2(ParamUtil.getParameter(request, "code2"));
+			bean.setNo(ParamUtil.getParameter(request, "no"));
+			bean.setStatus(ParamUtil.getIntParameter(request, "status", 0));
+			bean.setLevel(RequestUtils.getInt(request, "level"));
+			SysTree node = bean.getNode();
+			node.setUpdateBy(RequestUtils.getActorId(request));
+			node.setName(bean.getName());
+			if (ParamUtil.getLongParameter(request, "parent", 0) > 0) {
+				node.setParentId(ParamUtil.getLongParameter(request, "parent",
+						0));
+			}
+			bean.setNode(node);
+			try {
+				ret = sysDepartmentService.update(bean);
+			} catch (Exception ex) {
+				ret = false;
+				ex.printStackTrace();
+				logger.error(ex);
+			}
+		}
+		if (ret) {// 保存成功
+			return ResponseUtils.responseResult(true);
+		}
+
+		return ResponseUtils.responseResult(false);
 	}
 }

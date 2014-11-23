@@ -213,7 +213,7 @@ public class SysDepartmentDomainFactory {
 	}
 
 	public static void processDataRequest(DataRequest dataRequest) {
-		if (dataRequest.getFilter() != null) {
+		if (dataRequest != null && dataRequest.getFilter() != null) {
 			if (dataRequest.getFilter().getField() != null) {
 				dataRequest.getFilter().setColumn(
 						columnMap.get(dataRequest.getFilter().getField()));

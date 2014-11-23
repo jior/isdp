@@ -23,76 +23,51 @@
   var dataItem;
   //var kendo = window.kendo;
   jQuery(function() {
-    jQuery("#grid").kendoGrid({
-        "columnMenu": true,
-        "dataSource": {
-            "schema": {
-                "total": "total",
-                "model": {
-					"id": "nodeId",
-                    "fields": {
-						"parentId": { "field": "parentNodeId",  "nullable": true },
-                        "parentNodeId": {
-                            "type": "number",  "nullable": true
-                        },
-						"nodeId": {
-                            "type": "number"
-                        },
-						"deptId": {
-                            "type": "number"
-                        },
-                        "name": {
-                            "type": "string"
-                        },
-                        "code": {
-                            "type": "string"
-                        },
-						"code2": {
-                            "type": "string"
-                        },
-                        "no": {
-                            "type": "string"
-                        }
-                    }
-					,
-                    "expanded": true
-                },
-                "data": "rows"
-            },
-            "transport": {
-                "parameterMap": function(options) {
-					//alert(JSON.stringify(options));
-                    return JSON.stringify(options);
-                },
-                "read": {
-                    //"dataType": "json",
-				    "contentType": "application/json",
-                    "type": "POST",
-                    "url": "<%=request.getContextPath()%>/rs/sys/department/data"
-                }
-            },
-			"serverFiltering": true,
-            "serverSorting": true,
-            "pageSize": 10,
-            "serverPaging": true,
-            "serverGrouping": false,
-        },
+	 var dataSource = new kendo.data.TreeListDataSource({
+                            transport: {
+                                read: {
+                                    url: "<%=request.getContextPath()%>/rs/sys/department/read",
+                                    dataType: "json",
+									contentType: "application/json",
+                                    type: "POST"
+                                },
+								create: {
+                                    url: "<%=request.getContextPath()%>/rs/sys/department/create",
+                                    dataType: "json",
+									contentType: "application/x-www-form-urlencoded",
+                                    type: "POST"
+                                },
+								update: {
+                                    url: "<%=request.getContextPath()%>/rs/sys/department/update",
+                                    dataType: "json",
+									contentType: "application/x-www-form-urlencoded",
+                                    type: "POST"
+                                }
+                            },
+                            schema: {
+                                model: {
+                                    id: "nodeId",
+                                    fields: {
+                                        nodeId: { type: "number", nullable: false },
+                                        parentId: { field: "nodeParentId", type: "number", nullable: true },
+										deptId: { type: "number", nullable: false }
+                                    }
+                                }
+                            }
+                        });
+
+    jQuery("#treelist").kendoTreeList({
+        "dataSource": dataSource,
         "height": "452px",
-        "reorderable": true,
         "filterable": true,
         "sortable": true,
-		"pageable": {
-                       "refresh": true,
-                       "pageSizes": [5, 10, 15, 20, 25, 50, 100],
-                       "buttonCount": 10
-                     },
-		"selectable": "single",
         "toolbar": kendo.template(jQuery("#template").html()),
         "columns": [
         {
             "field": "name",
             "title": "部门名称",
             "width": "180px",
+			"expandable": true,
 			"lockable": false,
             "locked": false
         },
@@ -123,18 +98,15 @@
 		{
 			"command": [{
                 "text": "修改",
-                "name": "edit",
+                "name": "edit2",
                 "click": function showDetails(e) {
-					  dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-					  var link = "<%=request.getContextPath()%>/mx/system/department/edit?deptId="+dataItem.deptId;
-					  editRow(link);
+						  dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+						  var link = "<%=request.getContextPath()%>/mx/system/department/edit?deptId="+dataItem.deptId;
+						  editRow(link);
 				        }
                     }]
           }
-		],
-        "scrollable": {},
-        "resizable": true,
-        "groupable": false
+		]
     });
   });
 
@@ -186,7 +158,7 @@
 	src="<%=request.getContextPath()%>/images/window.png" alt="部门列表">&nbsp;
 部门列表</div>
 <br>
-<div id="grid"></div>
+<div id="treelist"></div>
 </div>     
 </body>
 </html>

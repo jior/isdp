@@ -150,7 +150,7 @@ public class SysDepartmentJsonFactory {
 		}
 		jsonObject.put("parentId", model.getParentId());
 		jsonObject.put("nodeId", model.getNodeId());
-		jsonObject.put("parentNodeId", model.getNodeParentId());
+		jsonObject.put("nodeParentId", model.getNodeParentId());
 		jsonObject.put("level", model.getLevel());
 
 		return jsonObject;
@@ -207,7 +207,7 @@ public class SysDepartmentJsonFactory {
 		}
 		jsonObject.put("parentId", model.getParentId());
 		jsonObject.put("nodeId", model.getNodeId());
-		jsonObject.put("parentNodeId", model.getNodeParentId());
+		jsonObject.put("nodeParentId", model.getNodeParentId());
 		jsonObject.put("level", model.getLevel());
 		return jsonObject;
 	}

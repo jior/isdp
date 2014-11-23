@@ -94,6 +94,51 @@ public class SysApplicationResource {
 		return ResponseUtils.responseResult(false);
 	}
 
+	/**
+	 * 提交增加信息
+	 * 
+	 * @param request
+	 * @param uriInfo
+	 * @return
+	 */
+	@Path("create")
+	@POST
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_JSON })
+	public byte[] create(@Context HttpServletRequest request,
+			@Context UriInfo uriInfo) {
+		SysApplication bean = new SysApplication();
+		bean.setName(ParamUtil.getParameter(request, "name"));
+		bean.setDesc(ParamUtil.getParameter(request, "desc"));
+		bean.setUrl(ParamUtil.getParameter(request, "url"));
+		bean.setLinkParam(ParamUtil.getParameter(request, "linkParam"));
+		bean.setShowMenu(ParamUtil.getIntParameter(request, "showMenu", 0));
+		bean.setRefId1(ParamUtil.getIntParameter(request, "refId1", 0));
+		bean.setRefName1(ParamUtil.getParameter(request, "refName1"));
+		bean.setRefId2(ParamUtil.getIntParameter(request, "refId2", 0));
+		bean.setRefName2(ParamUtil.getParameter(request, "refName2"));
+		bean.setRefId3(ParamUtil.getIntParameter(request, "refId3", 0));
+		bean.setRefName3(ParamUtil.getParameter(request, "refName3"));
+		bean.setRefId4(ParamUtil.getIntParameter(request, "refId4", 0));
+		bean.setRefName4(ParamUtil.getParameter(request, "refName4"));
+		bean.setRefId5(ParamUtil.getIntParameter(request, "refId5", 0));
+		bean.setRefName5(ParamUtil.getParameter(request, "refName5"));
+		bean.setCreateBy(RequestUtils.getActorId(request));
+		SysTree node = new SysTree();
+		node.setName(bean.getName());
+		node.setDesc(bean.getName());
+		node.setCode("");
+		node.setCreateBy(RequestUtils.getActorId(request));
+		node.setParentId((long) ParamUtil.getIntParameter(request, "parent", 0));
+		bean.setNode(node);
+
+		boolean ret = sysApplicationService.create(bean);
+		if (ret) {// 保存成功
+			return ResponseUtils.responseResult(true);
+		}
+		return ResponseUtils.responseResult(false);
+	}
+
 	@POST
 	@Path("data")
 	@Produces({ MediaType.APPLICATION_JSON })
@@ -250,6 +295,66 @@ public class SysApplicationResource {
 		return result.toJSONString().getBytes("UTF-8");
 	}
 
+	@GET
+	@POST
+	@Path("read")
+	@Produces({ MediaType.APPLICATION_JSON })
+	@ResponseBody
+	public byte[] read(@Context HttpServletRequest request,
+			@RequestBody DataRequest dataRequest) throws IOException {
+		Map<String, Object> params = RequestUtils.getParameterMap(request);
+		SysApplicationQuery query = new SysApplicationQuery();
+		Tools.populate(query, params);
+		query.setDataRequest(dataRequest);
+		SysApplicationDomainFactory.processDataRequest(dataRequest);
+		logger.debug("dataRequest:" + dataRequest);
+
+		JSONArray result = new JSONArray();
+		int total = sysApplicationService
+				.getSysApplicationCountByQueryCriteria(query);
+		if (total > 0) {
+
+			String orderName = null;
+			String order = null;
+
+			if (dataRequest != null && dataRequest.getSort() != null
+					&& !dataRequest.getSort().isEmpty()) {
+				SortDescriptor sort = dataRequest.getSort().get(0);
+				orderName = sort.getField();
+				order = sort.getDir();
+				logger.debug("orderName:" + orderName);
+				logger.debug("order:" + order);
+			}
+
+			if (StringUtils.isNotEmpty(orderName)) {
+				query.setSortColumn(orderName);
+				if (StringUtils.equals(order, "desc")) {
+					query.setSortOrder(" desc ");
+				}
+			}
+
+			int start = 0;
+			List<SysApplication> list = sysApplicationService
+					.getSysApplicationsByQueryCriteria(0, 10000, query);
+
+			if (list != null && !list.isEmpty()) {
+
+				for (SysApplication sysApplication : list) {
+					JSONObject rowJSON = sysApplication.toJsonObject();
+					if (sysApplication.getId() == 3) {
+						rowJSON.put("nodeParentId", null);
+					}
+					rowJSON.put("applicationId", sysApplication.getId());
+					rowJSON.put("startIndex", ++start);
+					result.add(rowJSON);
+				}
+
+			}
+		}
+		logger.debug("json:" + result.toString());
+		return result.toString().getBytes("UTF-8");
+	}
+
 	/**
 	 * 提交增加信息
 	 * 
@@ -356,7 +461,6 @@ public class SysApplicationResource {
 	@javax.annotation.Resource
 	public void setSysTreeService(SysTreeService sysTreeService) {
 		this.sysTreeService = sysTreeService;
-
 	}
 
 	@POST
@@ -408,5 +512,57 @@ public class SysApplicationResource {
 		} catch (IOException e) {
 			return responseJSON.toString().getBytes();
 		}
+	}
+
+	/**
+	 * 提交修改信息
+	 * 
+	 * @param request
+	 * @param uriInfo
+	 * @return
+	 */
+	@Path("update")
+	@POST
+	@ResponseBody
+	@Produces({ MediaType.APPLICATION_JSON })
+	public SysApplication update(@Context HttpServletRequest request,
+			@Context UriInfo uriInfo) {
+		long id = ParamUtil.getIntParameter(request, "appId", 0);
+		SysApplication bean = sysApplicationService.findById(id);
+		if (bean != null) {
+			bean.setName(ParamUtil.getParameter(request, "name"));
+			bean.setDesc(ParamUtil.getParameter(request, "desc"));
+			bean.setUrl(ParamUtil.getParameter(request, "url"));
+			bean.setLinkParam(ParamUtil.getParameter(request, "linkParam"));
+			bean.setShowMenu(ParamUtil.getIntParameter(request, "showMenu", 0));
+			bean.setRefId1(ParamUtil.getIntParameter(request, "refId1", 0));
+			bean.setRefName1(ParamUtil.getParameter(request, "refName1"));
+			bean.setRefId2(ParamUtil.getIntParameter(request, "refId2", 0));
+			bean.setRefName2(ParamUtil.getParameter(request, "refName2"));
+			bean.setRefId3(ParamUtil.getIntParameter(request, "refId3", 0));
+			bean.setRefName3(ParamUtil.getParameter(request, "refName3"));
+			bean.setRefId4(ParamUtil.getIntParameter(request, "refId4", 0));
+			bean.setRefName4(ParamUtil.getParameter(request, "refName4"));
+			bean.setRefId5(ParamUtil.getIntParameter(request, "refId5", 0));
+			bean.setRefName5(ParamUtil.getParameter(request, "refName5"));
+			bean.setUpdateBy(RequestUtils.getActorId(request));
+
+			SysTree node = bean.getNode();
+			node.setName(bean.getName());
+			node.setDesc(bean.getName());
+			if (ParamUtil.getLongParameter(request, "parent", 0) > 0) {
+				node.setParentId(ParamUtil.getLongParameter(request, "parent",
+						0));
+			}
+			bean.setNode(node);
+		}
+
+		try {
+			sysApplicationService.update(bean);
+		} catch (Exception ex) {
+			logger.error(ex);
+		}
+
+		return bean;
 	}
 }
