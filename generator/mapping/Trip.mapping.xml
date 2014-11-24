@@ -6,7 +6,7 @@
 		    englishTitle="ID"	type="String" displayType="4" length="50" sortNo="0"/>
 		<property name="transType" column="TRANSTYPE_" title="交通工具" 
 		    englishTitle="Trans Type"	type="String" displayType="4" length="50" editable="true"
-			dataCode="transportCode" renderType="select" />
+			dataCode="transportCode" renderType="select" nullable="false" />
 		<property name="applyDate" column="APPLYDATE_" title="申请日期"
 			englishTitle="Apply Date" type="Date" displayType="1" nullable="false" editable="true"/>
 		<property name="startDate" column="STARTDATE_" title="开始日期"
@@ -18,7 +18,7 @@
 		<property name="money" column="MONEY_" title="费用" type="Double"
 			englishTitle="Money" displayType="4" mask="9999" nullable="false" editable="true"/>
 		<property name="cause" column="CAUSE_" title="事由"
-			englishTitle="cause" type="String" length="500" nullable="false" editable="true"/>
+			englishTitle="cause" type="String" length="500" nullable="true" editable="true"/>
 		<property name="deleteFlag" column="DELETEFLAG_" title="删除标记" type="Integer"
 			englishTitle="Delete Flag"  mask="9" nullable="false"/>
 		<property name="createDate" column="CREATEDATE_" title="创建日期"
@@ -26,9 +26,9 @@
 		<property name="createBy" column="CREATEBY_" title="创建人" 
 		    englishTitle="Create By"	type="String" displayType="4" length="50" />
 		<property name="createByName"  title="创建人" 
-		    englishTitle="Create By"	type="String" displayType="4" length="50" />
+		    englishTitle="Create By"	type="String" displayType="0" length="50" />
 		<property name="updateDate" column="UPDATEDATE_" title="修改日期"
-			englishTitle="Update Date" type="Date" displayType="4" nullable="false"/>
+			englishTitle="Update Date" type="Date" displayType="0" nullable="false"/>
 		<property name="locked" column="LOCKED_" title="是否锁定" type="Integer"
 			englishTitle="Locked" displayType="4" mask="9" nullable="false"/>
 		<property name="status" column="STATUS_" title="状态" type="Integer"
