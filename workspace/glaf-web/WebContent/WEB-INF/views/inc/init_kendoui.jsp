@@ -32,3 +32,4 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/static/scripts/kendoui/js/cultures/kendo.culture.zh-CN.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/static/scripts/kendoui/js/messages/kendo.messages.zh-CN.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/static/scripts/layer/layer.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/inc/globaljs.jsp"></script>

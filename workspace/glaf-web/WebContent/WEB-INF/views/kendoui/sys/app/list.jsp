@@ -20,9 +20,9 @@
    </div>
 </script>
 <script type="text/javascript">
-  var dataItem;
-  //var kendo = window.kendo;
-  jQuery(function() {
+    var dataItem;
+
+   jQuery(function() {
 	 var dataSource = new kendo.data.TreeListDataSource({
                             transport: {
                                 read: {
@@ -57,14 +57,15 @@
                                         nodeId: { type: "number", nullable: false },
                                         parentId: { field: "nodeParentId", type: "number", nullable: true },
 										appId: { type: "number", nullable: false }
-                                    }
+                                    },
+								    expanded: true
                                 }
                             }
                         });
 
     jQuery("#treelist").kendoTreeList({
         "dataSource": dataSource,
-        "height": "452px",
+        "height": x_height,
         "filterable": true,
         "sortable": true,
         "toolbar": kendo.template(jQuery("#template").html()),

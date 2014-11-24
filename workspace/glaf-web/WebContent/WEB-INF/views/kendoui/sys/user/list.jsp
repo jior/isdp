@@ -12,7 +12,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>用户列表</title>
-<%@ include file="/WEB-INF/views/inc/init_kendoui.jsp"%> 
+<%@ include file="/WEB-INF/views/inc/init_kendoui.jsp"%>
 <script id="template" type="text/x-kendo-template">
    <div class="toolbar">
       <button type="button" id="newButton"  class="k-button" style="width: 90px" 
@@ -20,9 +20,9 @@
    </div>
 </script>
 <script type="text/javascript">
-                
-  jQuery(function() {
-    jQuery("#grid").kendoGrid({
+	
+    jQuery(function() {
+      jQuery("#grid").kendoGrid({
         "columnMenu": true,
         "dataSource": {
             "schema": {
@@ -71,7 +71,7 @@
             "serverPaging": true,
             "serverGrouping": false,
         },
-        "height": "450px",
+        "height": x_height,
         "reorderable": true,
         "filterable": true,
         "sortable": true,
