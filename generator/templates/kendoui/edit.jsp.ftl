@@ -20,33 +20,13 @@
 <style scoped>
 
    .k-textbox {
-        width: 11.8em;
+        width: 18.8em;
     }
 
-    .demo-section {
+    .main-section {
         width: 800px;
         padding: 0;
      }
-
-     #tickets form {
-        padding: 30px;
-        margin-left: 150px;
-    }
-    #tickets h3 {
-        font-weight: normal;
-        font-size: 1.4em;
-        margin: 0;
-        padding: 0 0 20px;
-    }
-
-    #tickets ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-    }
-    #tickets li {
-        margin: 5px 0;
-    }
 
     label {
         display: inline-block;
@@ -83,7 +63,11 @@
     var viewModel = kendo.observable({
   <#if pojo_fields?exists>
 	<#list  pojo_fields as field>
+	<#if field.type?exists && field.type== 'Date'>
+	"${field.name}": "#F{${modelName}.${field.name}String}",
+	<#else>
         "${field.name}": "#F{${modelName}.${field.name}}",
+	</#if>
 	</#list>
   </#if>
         "${idField.name}": "#F{${modelName}.${idField.name}}"
@@ -121,9 +105,28 @@
        var form = document.getElementById("iForm");
        var validator = $("#iForm").data("kendoValidator");
        if (validator.validate()) {
-	   form.method="post";
-	   form.action = "<%=request.getContextPath()%>/mx/${classDefinition.moduleName}/${modelName}/save${entityName}";
-	   form.submit();
+	   //form.method="post";
+	   //form.action = "<%=request.getContextPath()%>/mx/${classDefinition.moduleName}/${modelName}/save${entityName}";
+	   //form.submit();
+	   var link = "<%=request.getContextPath()%>/mx/${classDefinition.moduleName}/${modelName}/save${entityName}";
+	   var params = jQuery("#iForm").formSerialize();
+		jQuery.ajax({
+				   type: "POST",
+				   url: link,
+				   dataType:  'json',
+				   data: params,
+				   error: function(data){
+					   alert('服务器处理错误！');
+				   },
+				   success: function(data){
+					   if(data != null && data.message != null){
+						   alert(data.message);
+					   } else {
+						   alert('操作成功完成！');
+					   }
+					   window.parent.location.reload();
+				   }
+			 });
        }
    }
  </script>

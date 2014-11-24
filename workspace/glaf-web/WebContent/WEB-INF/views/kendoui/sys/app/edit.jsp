@@ -90,6 +90,7 @@
 </head>
 <body style="margin-top:0px;">
 <div id="main_content" class="k-content ">
+<br>
 <div class="x_content_title"><img
 	src="<%=request.getContextPath()%>/images/window.png" alt="编辑模块信息">&nbsp;
 编辑模块信息</div>

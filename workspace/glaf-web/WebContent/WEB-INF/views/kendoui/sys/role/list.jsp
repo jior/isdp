@@ -323,6 +323,7 @@
 </head>
 <body>
 <div id="main_content" class="k-content">
+<br>
 <div class="x_content_title"><img
 	src="<%=request.getContextPath()%>/images/window.png" alt="角色列表">&nbsp;
 角色列表</div>

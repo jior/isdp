@@ -270,6 +270,7 @@
 </head>
 <body>
 <div id="main_content" class="k-content">
+<br>
 <div class="x_content_title"><img
 	src="<%=request.getContextPath()%>/images/window.png" alt="用户列表">&nbsp;
 用户列表</div>

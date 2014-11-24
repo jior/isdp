@@ -157,7 +157,7 @@
 			border: [10, 0.3, '#000'],
 			offset: ['20px',''],
 			fadeIn: 100,
-			area: ['520px', (jQuery(window).height() - 50) +'px'],
+			area: ['620px', (jQuery(window).height() - 50) +'px'],
                         iframe: {src: link}
 		});
 	}

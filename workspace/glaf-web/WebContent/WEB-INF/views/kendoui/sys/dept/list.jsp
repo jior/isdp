@@ -156,6 +156,7 @@
 </head>
 <body>
 <div id="main_content" class="k-content">
+<br>
 <div class="x_content_title"><img
 	src="<%=request.getContextPath()%>/images/window.png" alt="部门列表">&nbsp;
 部门列表</div>
