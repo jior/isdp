@@ -64,7 +64,7 @@
   <#if pojo_fields?exists>
 	<#list  pojo_fields as field>
 	<#if field.type?exists && field.type== 'Date'>
-	"${field.name}": "#F{${modelName}.${field.name}String}",
+        "${field.name}": "<fmt:formatDate value='#F{${modelName}.${field.name}}' pattern='MM/dd/yyyy'/>",
 	<#else>
         "${field.name}": "#F{${modelName}.${field.name}}",
 	</#if>
@@ -73,25 +73,25 @@
         "${idField.name}": "#F{${modelName}.${idField.name}}"
     });
 
-    kendo.bind($("#iForm"), viewModel);
+    kendo.bind(jQuery("#iForm"), viewModel);
 
    });
 
-    $(document).ready(function() {
-          $("#iconButton").kendoButton({
+    jQuery(document).ready(function() {
+          jQuery("#iconButton").kendoButton({
                 spriteCssClass: "k-icon"
           });           
     });
 
-    $(function () {
-        var container = $("#iForm");
+    jQuery(function () {
+        var container = jQuery("#iForm");
         kendo.init(container);
         container.kendoValidator({
                 rules: {
                       greaterdate: function (input) {
                             if (input.is("[data-greaterdate-msg]") && input.val() != "") {                                    
                                var date = kendo.parseDate(input.val()),
-                               otherDate = kendo.parseDate($("[name='" + input.data("greaterdateField") + "']").val());
+                               otherDate = kendo.parseDate(jQuery("[name='" + input.data("greaterdateField") + "']").val());
                                return otherDate == null || otherDate.getTime() < date.getTime();
                              }
 
@@ -103,7 +103,7 @@
 
    function save(){
        var form = document.getElementById("iForm");
-       var validator = $("#iForm").data("kendoValidator");
+       var validator = jQuery("#iForm").data("kendoValidator");
        if (validator.validate()) {
 	   //form.method="post";
 	   //form.action = "<%=request.getContextPath()%>/mx/${classDefinition.moduleName}/${modelName}/save${entityName}";
@@ -149,8 +149,9 @@
 	<td align="left">
 	<label for="${field.name}" class="required">${field.title}&nbsp;</label>
 	<#if field.type?exists && field.type== 'Date'>
-	<input id="${field.name}" name="${field.name}" type="text" class="k-textbox" data-type="date" data-role='datepicker'
-	  <#if field.nullable == false> required="true" </#if> data-bind="value: ${field.name}"
+	<input id="${field.name}" name="${field.name}" type="text" class="k-textbox" 
+	       data-role='datepicker' data-type="date" data-bind="value: ${field.name}"
+	  <#if field.nullable == false> required="true" </#if> 
 	       value="<fmt:formatDate value="#F{${modelName}.${field.name}}" pattern="yyyy-MM-dd"/>" 
 	       validationMessage="ÇëÊäÈë${field.title}"/>
         <#elseif field.type?exists && field.type== 'Integer'>
@@ -203,7 +204,7 @@
     <#list  pojo_fields as field>	
       <#if field.editable>
 	<#if field.type?exists && field.type== 'Date'>
-						  
+	     //jQuery("#${field.name}").kendoDateTimePicker();
         <#elseif field.type?exists && field.type== 'Integer'>
 	    jQuery("#${field.name}").kendoNumericTextBox();			 
 	<#elseif field.type?exists && field.type== 'Long'>
