@@ -595,8 +595,10 @@ public class SysUserController {
 		} else {
 			SysDepartment department = sysDepartmentService.findById(ParamUtil
 					.getIntParameter(request, "parent", 0));
+			if (department != null) {
 			bean.setDepartment(department);
 			bean.setDeptId(department.getId());
+			}
 		}
 
 		bean.setAccount(ParamUtil.getParameter(request, "id"));
