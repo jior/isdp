@@ -109,10 +109,18 @@ public class LoginController {
 				Constants.SYSTEM_NAME);
 
 		String rand = (String) session.getAttribute("x_y");
+		String rand2 = (String) session.getAttribute("x_z");
+		if (StringUtils.isEmpty(rand) && StringUtils.isEmpty(rand2)) {
+			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
+					"authorize.login_failure"));
+			MessageUtils.addMessages(request, messages);
+			return new ModelAndView("/modules/login", modelMap);
+		}
+
 		if (rand != null) {
 			password = StringTools.replace(password, rand, "");
 		}
-		String rand2 = (String) session.getAttribute("x_z");
+
 		if (rand2 != null) {
 			password = StringTools.replace(password, rand2, "");
 		}
