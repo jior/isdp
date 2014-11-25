@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/ant-tools.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/antlr.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/aopalliance.jar"/>
@@ -96,11 +97,12 @@
 	<classpathentry kind="lib" path="lib/fontbox.jar"/>
 	<classpathentry kind="lib" path="lib/pdfbox.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/glaf-core.jar"/>
-	<classpathentry kind="lib" path="/glaf-commons/lib/glaf-shiro.jar"/>
-	<classpathentry kind="lib" path="/glaf-commons/lib/glaf-template.jar"/>
 	<classpathentry kind="lib" path="/glaf-commons/lib/glaf-test.jar"/>
-	<classpathentry kind="lib" path="/glaf-commons/lib/glaf-ui.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/glaf-base"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/glaf-base/conf"/>
+	<classpathentry kind="lib" path="/glaf-commons/lib/hamcrest-core.jar"/>
+	<classpathentry kind="lib" path="/glaf-commons/lib/c3p0.jar"/>
+	<classpathentry kind="lib" path="/glaf-commons/lib/mchange-commons-java.jar"/>
+	<classpathentry kind="lib" path="/glaf-commons/lib/mybatis-2.3.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
