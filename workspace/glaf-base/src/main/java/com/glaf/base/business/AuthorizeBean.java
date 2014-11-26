@@ -18,6 +18,8 @@
 
 package com.glaf.base.business;
 
+import java.util.Collection;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -29,6 +31,7 @@ import com.glaf.core.cache.CacheFactory;
 import com.glaf.core.config.SystemConfig;
 import com.glaf.core.context.ContextFactory;
 import com.glaf.core.util.Constants;
+import com.glaf.base.modules.sys.model.SysApplication;
 import com.glaf.base.modules.sys.model.SysUser;
 import com.glaf.base.modules.sys.service.AuthorizeService;
 import com.glaf.base.modules.sys.service.SysApplicationService;
@@ -106,8 +109,10 @@ public class AuthorizeBean {
 				}
 			}
 		}
-		if (sysUser != null) {
-			//logger.debug("#user:" + sysUser.toJsonObject().toJSONString());
+		if (sysUser != null && sysUser.getApps().isEmpty()) {
+			Collection<SysApplication> apps = getSysApplicationService()
+					.getSysApplicationByUserId(account);
+			sysUser.getApps().addAll(apps);
 		}
 		return sysUser;
 	}

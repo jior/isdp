@@ -119,6 +119,14 @@ public interface SysApplicationService {
 	 * @return List
 	 */
 	List<SysApplication> getApplicationList();
+	
+	
+	/**
+	 * 获取某个用户的全部模块列表
+	 * 
+	 * @return List
+	 */
+	List<SysApplication> getSysApplicationByUserId(String actorId);
 
 	/**
 	 * 获取列表

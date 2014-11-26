@@ -290,7 +290,7 @@ public class SysUserJsonFactory {
 			for (SysFunction sysFunction : user.getFunctions()) {
 				array.add(sysFunction.toJsonObject());
 			}
-			jsonObject.put("functions", array);
+			//jsonObject.put("functions", array);
 		}
 
 		if (user.getApps() != null && !user.getApps().isEmpty()) {
@@ -298,7 +298,7 @@ public class SysUserJsonFactory {
 			for (SysApplication app : user.getApps()) {
 				array.add(app.toJsonObject());
 			}
-			jsonObject.put("apps", array);
+			//jsonObject.put("apps", array);
 		}
 
 		return jsonObject;
@@ -390,7 +390,7 @@ public class SysUserJsonFactory {
 			for (SysFunction sysFunction : user.getFunctions()) {
 				array.add(sysFunction.toObjectNode());
 			}
-			jsonObject.set("functions", array);
+			//jsonObject.set("functions", array);
 		}
 
 		if (user.getApps() != null && !user.getApps().isEmpty()) {
@@ -398,7 +398,7 @@ public class SysUserJsonFactory {
 			for (SysApplication app : user.getApps()) {
 				array.add(app.toObjectNode());
 			}
-			jsonObject.set("apps", array);
+			//jsonObject.set("apps", array);
 		}
 
 		return jsonObject;

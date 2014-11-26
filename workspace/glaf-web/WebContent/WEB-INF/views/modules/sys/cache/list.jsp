@@ -30,11 +30,11 @@
 				collapsible:true,
 				url:'<%=request.getContextPath()%>/mx/sys/cacheMgr/json',
 				remoteSort: false,
-				singleSelect:false,
-				idField:'id',
+				singleSelect:true,
+				idField:'key',
 				columns:[[
 	                {title:'序号',field:'index', width:80, sortable:true},
-					{title:'名称',field:'key', width:180},
+					{title:'名称',field:'name', width:180},
 					{title:'大小（字节）',field:'size', width:150},
 					{title:'创建日期',field:'date', width:180}
 				]],
@@ -67,7 +67,23 @@
 		}
 		var selected = jQuery('#mydatagrid').datagrid('getSelected');
 		if (selected ){
-			location.href="<%=request.getContextPath()%>/mx/sys/cacheMgr/view?key="+selected.key;
+			//location.href="<%=request.getContextPath()%>/mx/sys/cacheMgr/view?key="+selected.name;
+			//alert('<%=request.getContextPath()%>/mx/sys/cacheMgr/detail?key='+selected.name);
+            jQuery.ajax({
+				   type: "GET",
+				   url: '<%=request.getContextPath()%>/mx/sys/cacheMgr/detail?key='+selected.name,
+				   dataType:  'json',
+				   error: function(data){
+					   alert('服务器处理错误！');
+				   },
+				   success: function(data){
+					   if(data.value != null){
+						   alert(data.value);
+					   } else {
+						   alert('不能取得缓存值！');
+					   }
+				   }
+			 });
 		}
 	}
 
@@ -132,8 +148,8 @@
     <div style="background:#fafafa;padding:2px;border:1px solid #ddd;font-size:12px"> 
 	<img src="<%=request.getContextPath()%>/images/window.png">
 	&nbsp;<span class="x_content_title">缓存信息列表</span>
-    <!-- <a href="#" class="easyui-linkbutton" data-options="plain:true, iconCls:'icon-view'"
-	   onclick="javascript:viewSelected();">查看</a> -->  
+    <a href="#" class="easyui-linkbutton" data-options="plain:true, iconCls:'icon-view'"
+	   onclick="javascript:viewSelected();">查看</a>  
 	<a href="#" class="easyui-linkbutton" data-options="plain:true, iconCls:'icon-remove'"
 	   onclick="javascript:deleteSelections();">删除</a> 
 	<a href="#" class="easyui-linkbutton" data-options="plain:true, iconCls:'icon-clear'"

@@ -268,25 +268,6 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		return null;
 	}
 
-	/**
-	 * 通过节点编号获取模块信息
-	 * 
-	 * @param nodeId
-	 * @return
-	 */
-	public SysApplication getSysApplicationByNodeId(long nodeId) {
-		SysApplicationQuery query = new SysApplicationQuery();
-		query.nodeId(nodeId);
-		query.setOrderBy(" E.ID asc ");
-
-		List<SysApplication> list = this.list(query);
-		if (list != null && !list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
 	public SysApplication findById(long id) {
 		String cacheKey = "sys_app_" + id;
 
@@ -616,8 +597,36 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 		return sysApplication;
 	}
 
+	/**
+	 * 通过节点编号获取模块信息
+	 * 
+	 * @param nodeId
+	 * @return
+	 */
+	public SysApplication getSysApplicationByNodeId(long nodeId) {
+		SysApplicationQuery query = new SysApplicationQuery();
+		query.nodeId(nodeId);
+		query.setOrderBy(" E.ID asc ");
+
+		List<SysApplication> list = this.list(query);
+		if (list != null && !list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
 	public List<SysApplication> getSysApplicationByRoleCode(String roleCode) {
 		return sysApplicationMapper.getSysApplicationByRoleCode(roleCode);
+	}
+
+	/**
+	 * 获取某个用户的全部模块列表
+	 * 
+	 * @return List
+	 */
+	public List<SysApplication> getSysApplicationByUserId(String actorId) {
+		return sysApplicationMapper.getSysApplicationByUserId(actorId);
 	}
 
 	public int getSysApplicationCountByQueryCriteria(SysApplicationQuery query) {
