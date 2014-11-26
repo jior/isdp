@@ -183,8 +183,8 @@
 		{label: '流程实例编号', key: 'processInstanceId', width: 180, resizeable: true, formatter: formatRow},
 	    {label: '流程定义编号', key: 'processDefinitionId', resizeable: true, width: 180},
         {label: '业务编号', key: 'businessKey', resizeable: true, width: 180},
-  		{label: '<%=MessageProperties.getString("res_status")%>', key: 'isEnded', width: 180, resizeable: true, align: 'center' , formatter: formatStatus},
-        {label: '<%=MessageProperties.getString("res_functionKey")%>', key: 'functionKey', resizeable: true, width: 180, align: 'center', formatter: formatFunKey}
+  		{label: '<%=MessageProperties.getString("res_status")%>', key: 'isEnded', width: 120, resizeable: true, align: 'center' , formatter: formatStatus},
+        {label: '<%=MessageProperties.getString("res_functionKey")%>', key: 'functionKey', resizeable: true, width: 130, align: 'center', formatter: formatFunKey}
        ];
 
     var t0="{FirstPageLink}&nbsp;&nbsp;{PreviousPageLink}&nbsp;&nbsp;{NextPageLink}&nbsp;&nbsp;{LastPageLink}&nbsp;&nbsp; {RowsPerPageDropdown}&nbsp;&nbsp;{CurrentPageReport}";

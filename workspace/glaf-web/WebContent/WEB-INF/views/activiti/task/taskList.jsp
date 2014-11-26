@@ -183,7 +183,7 @@
 	  var myColumnDefs = [ 
 		{label: '任务编号', key: 'id', width: 90, resizeable: true, formatter: formatRow},
 	    {label: '流程实例编号', key: 'processInstanceId', resizeable: true, width: 90},
-		{label: '参与者', key: 'actorName', resizeable: true, width: 120},
+		{label: '参与者', key: 'actorName', resizeable: true, width: 90},
 	    {label: '任务定义编号', key: 'taskDefinitionKey', resizeable: true, width: 90},
 	    {label: '任务名称', key: 'name', resizeable: true, width: 180},
 		{label: '任务描述', key: 'description', resizeable: true, width: 240},
