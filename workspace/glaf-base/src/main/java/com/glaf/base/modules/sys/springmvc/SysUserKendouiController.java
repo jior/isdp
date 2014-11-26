@@ -99,14 +99,12 @@ public class SysUserKendouiController {
 	 * @return
 	 */
 	@RequestMapping("/addRoleUser")
-	public ModelAndView addRoleUser(HttpServletRequest request,
-			ModelMap modelMap) {
+	@ResponseBody
+	public byte[] addRoleUser(HttpServletRequest request, ModelMap modelMap) {
 		logger.debug("---------addRoleUser---------------------------");
 		RequestUtils.setRequestParameterToAttribute(request);
 
 		int roleId = ParamUtil.getIntParameter(request, "roleId", 0);
-
-		boolean success = false;
 
 		String[] userIds = ParamUtil.getParameterValues(request, "id");
 		for (int i = 0; i < userIds.length; i++) {
@@ -116,17 +114,7 @@ public class SysUserKendouiController {
 			}
 		}
 
-		ViewMessages messages = new ViewMessages();
-		if (success) {
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.add_success"));
-		} else {// 保存失败
-			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(
-					"user.add_failure"));
-		}
-		MessageUtils.addMessages(request, messages);
-
-		return new ModelAndView("show_msg", modelMap);
+		return ResponseUtils.responseResult(true);
 	}
 
 	@RequestMapping(value = { "/data" }, method = { org.springframework.web.bind.annotation.RequestMethod.POST })
@@ -960,107 +948,26 @@ public class SysUserKendouiController {
 	public void setSysDepartmentService(
 			SysDepartmentService sysDepartmentService) {
 		this.sysDepartmentService = sysDepartmentService;
-
 	}
 
 	@javax.annotation.Resource
 	public void setSysRoleService(SysRoleService sysRoleService) {
 		this.sysRoleService = sysRoleService;
-
 	}
 
 	@javax.annotation.Resource
 	public void setSysTreeService(SysTreeService sysTreeService) {
 		this.sysTreeService = sysTreeService;
-
 	}
 
 	@javax.annotation.Resource
 	public void setSysUserService(SysUserService sysUserService) {
 		this.sysUserService = sysUserService;
-
 	}
 
 	@javax.annotation.Resource
 	public void setTableDataService(ITableDataService tableDataService) {
 		this.tableDataService = tableDataService;
-	}
-
-	/**
-	 * 显示所有列表
-	 * 
-	 * @param request
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping("/showAllList")
-	public ModelAndView showAllList(HttpServletRequest request,
-			ModelMap modelMap) {
-		int pageNo = ParamUtil.getIntParameter(request, "page_no", 1);
-		int pageSize = ParamUtil.getIntParameter(request, "page_size",
-				Constants.PAGE_SIZE);
-
-		SysUserQuery query = new SysUserQuery();
-		String rq = ParamUtil.getParameter(request, "_rq_", "");
-		logger.debug("_rq_:" + rq);
-		String nameLike_encode = ParamUtil.getParameter(request,
-				"nameLike_encode", "");
-		String actorIdLike_encode = ParamUtil.getParameter(request,
-				"actorIdLike_encode", "");
-
-		if ("1".equals(rq)) {
-			logger.debug("-----------------------参数查询-----------------------");
-			String nameLike = ParamUtil.getParameter(request, "nameLike", "");
-			String actorIdLike = ParamUtil.getParameter(request, "actorIdLike",
-					"");
-			if (StringUtils.isNotEmpty(nameLike)) {
-				query.setNameLike(nameLike);
-				request.setAttribute("nameLike_encode",
-						RequestUtils.encodeString(nameLike));
-				request.setAttribute("nameLike", nameLike);
-			} else {
-				request.removeAttribute("nameLike");
-				request.removeAttribute("nameLike_encode");
-				request.setAttribute("nameLike", "");
-			}
-			if (StringUtils.isNotEmpty(actorIdLike)) {
-				query.setAccountLike(actorIdLike);
-				request.setAttribute("actorIdLike_encode",
-						RequestUtils.encodeString(actorIdLike));
-				request.setAttribute("actorIdLike", actorIdLike);
-			} else {
-				request.removeAttribute("actorIdLike");
-				request.removeAttribute("actorIdLike_encode");
-				request.setAttribute("actorIdLike", "");
-			}
-		} else {
-			logger.debug("-----------------------链接查询-----------------------");
-			if (StringUtils.isNotEmpty(nameLike_encode)) {
-				String nameLike = RequestUtils.decodeString(nameLike_encode);
-				query.setNameLike(nameLike);
-				request.setAttribute("nameLike_encode", nameLike_encode);
-				request.setAttribute("nameLike", nameLike);
-			}
-			if (StringUtils.isNotEmpty(actorIdLike_encode)) {
-				String actorIdLike = RequestUtils
-						.decodeString(actorIdLike_encode);
-				query.setAccountLike(actorIdLike);
-				request.setAttribute("actorIdLike_encode", actorIdLike_encode);
-				request.setAttribute("actorIdLike", actorIdLike);
-			}
-
-		}
-
-		PageResult pager = sysUserService.getSysUserList(pageNo, pageSize,
-				query);
-		request.setAttribute("pager", pager);
-
-		String x_view = ViewProperties.getString("user.showAllList");
-		if (StringUtils.isNotEmpty(x_view)) {
-			return new ModelAndView(x_view, modelMap);
-		}
-
-		return new ModelAndView("/kendoui/sys/user/all_user_list", modelMap);
 	}
 
 	/**
@@ -1077,7 +984,7 @@ public class SysUserKendouiController {
 		List<SysDepartment> list = new ArrayList<SysDepartment>();
 		Set<SysUser> set = new HashSet<SysUser>();
 		// 6:
-		long deptId = ParamUtil.getLongParameter(request, "dept", 5);
+		long deptId = ParamUtil.getLongParameter(request, "dept", 1);
 		// String roleCode = ParamUtil.getParameter(request, "code", "");
 		SysDepartment node = this.sysDepartmentService.findById(deptId);
 		if (node != null) {
@@ -1116,126 +1023,6 @@ public class SysUserKendouiController {
 		}
 
 		return new ModelAndView("/kendoui/sys/user/user_frame", modelMap);
-	}
-
-	/**
-	 * 显示所有列表
-	 * 
-	 * @param request
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping("/showList")
-	public ModelAndView showList(HttpServletRequest request, ModelMap modelMap) {
-		int deptId = ParamUtil.getIntParameter(request, "parent", 0);
-		int pageNo = ParamUtil.getIntParameter(request, "page_no", 1);
-		int pageSize = ParamUtil.getIntParameter(request, "page_size",
-				Constants.PAGE_SIZE);
-
-		SysUserQuery query = new SysUserQuery();
-		String rq = ParamUtil.getParameter(request, "_rq_", "");
-		logger.debug("_rq_:" + rq);
-		String nameLike_encode = ParamUtil.getParameter(request,
-				"nameLike_encode", "");
-		String actorIdLike_encode = ParamUtil.getParameter(request,
-				"actorIdLike_encode", "");
-
-		if ("1".equals(rq)) {
-			logger.debug("-----------------------参数查询-----------------------");
-			String nameLike = ParamUtil.getParameter(request, "nameLike", "");
-			String actorIdLike = ParamUtil.getParameter(request, "actorIdLike",
-					"");
-			if (StringUtils.isNotEmpty(nameLike)) {
-				query.setNameLike(nameLike);
-				request.setAttribute("nameLike_encode",
-						RequestUtils.encodeString(nameLike));
-				request.setAttribute("nameLike", nameLike);
-			} else {
-				request.removeAttribute("nameLike");
-				request.removeAttribute("nameLike_encode");
-				request.setAttribute("nameLike", "");
-			}
-			if (StringUtils.isNotEmpty(actorIdLike)) {
-				query.setAccountLike(actorIdLike);
-				request.setAttribute("actorIdLike_encode",
-						RequestUtils.encodeString(actorIdLike));
-				request.setAttribute("actorIdLike", actorIdLike);
-			} else {
-				request.removeAttribute("actorIdLike");
-				request.removeAttribute("actorIdLike_encode");
-				request.setAttribute("actorIdLike", "");
-			}
-		} else {
-			logger.debug("-----------------------链接查询-----------------------");
-			if (StringUtils.isNotEmpty(nameLike_encode)) {
-				String nameLike = RequestUtils.decodeString(nameLike_encode);
-				query.setNameLike(nameLike);
-				request.setAttribute("nameLike_encode", nameLike_encode);
-				request.setAttribute("nameLike", nameLike);
-			}
-			if (StringUtils.isNotEmpty(actorIdLike_encode)) {
-				String actorIdLike = RequestUtils
-						.decodeString(actorIdLike_encode);
-				query.setAccountLike(actorIdLike);
-				request.setAttribute("actorIdLike_encode", actorIdLike_encode);
-				request.setAttribute("actorIdLike", actorIdLike);
-			}
-
-		}
-
-		if (deptId > 0) {
-			query.setDeptId(Long.valueOf(deptId));
-			SysDepartment dept = sysDepartmentService.findById(deptId);
-			List<SysDepartment> list = new ArrayList<SysDepartment>();
-			sysDepartmentService.findNestingDepartment(list, dept);
-			request.setAttribute("nav", list);
-			request.setAttribute("department",
-					sysDepartmentService.findById(deptId));
-		}
-
-		PageResult pager = sysUserService.getSysUserList(pageNo, pageSize,
-				query);
-		// PageResult pager = sysUserService.getSysUserList(deptId, pageNo,
-		// pageSize);
-
-		request.setAttribute("pager", pager);
-
-		String x_view = ViewProperties.getString("user.showList");
-		if (StringUtils.isNotEmpty(x_view)) {
-			return new ModelAndView(x_view, modelMap);
-		}
-
-		return new ModelAndView("/kendoui/sys/user/user_list", modelMap);
-	}
-
-	/**
-	 * 显示所有列表
-	 * 
-	 * @param request
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping("/showPasswordList")
-	public ModelAndView showPasswordList(HttpServletRequest request,
-			ModelMap modelMap) {
-		RequestUtils.setRequestParameterToAttribute(request);
-		String userName = ParamUtil.getParameter(request, "userName");
-		String account = ParamUtil.getParameter(request, "account");
-		int deptId = ParamUtil.getIntParameter(request, "deptId", 0);
-		int pageNo = ParamUtil.getIntParameter(request, "page_no", 1);
-		int pageSize = ParamUtil.getIntParameter(request, "page_size", 20);
-
-		PageResult pager = sysUserService.getSysUserList(deptId, userName,
-				account, pageNo, pageSize);
-		request.setAttribute("pager", pager);
-
-		String x_view = ViewProperties.getString("user.showPasswordList");
-		if (StringUtils.isNotEmpty(x_view)) {
-			return new ModelAndView(x_view, modelMap);
-		}
-
-		return new ModelAndView("/kendoui/sys/user/user_password_list",
-				modelMap);
 	}
 
 	/**
@@ -1303,35 +1090,6 @@ public class SysUserKendouiController {
 		}
 
 		return new ModelAndView("/kendoui/sys/user/deptRole_user", modelMap);
-	}
-
-	/**
-	 * 显示角色用户列表
-	 * 
-	 * @param request
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping("/showSelUser")
-	public ModelAndView showSelUser(HttpServletRequest request,
-			ModelMap modelMap) {
-		RequestUtils.setRequestParameterToAttribute(request);
-		int deptId = ParamUtil.getIntParameter(request, "deptId", 0);
-		if (deptId != 0) {
-			request.setAttribute("list", sysUserService.getSysUserList(deptId));
-		}
-
-		deptId = ParamUtil.getIntParameter(request, "deptId2", 0);
-		if (deptId != 0) {
-			request.setAttribute("list", sysUserService.getSysUserList(deptId));
-		}
-
-		String x_view = ViewProperties.getString("user.showSelUser");
-		if (StringUtils.isNotEmpty(x_view)) {
-			return new ModelAndView(x_view, modelMap);
-		}
-
-		return new ModelAndView("/kendoui/sys/user/dept_user_sel", modelMap);
 	}
 
 	/**

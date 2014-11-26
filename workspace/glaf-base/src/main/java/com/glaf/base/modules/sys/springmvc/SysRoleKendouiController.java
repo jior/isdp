@@ -79,8 +79,6 @@ public class SysRoleKendouiController {
 
 	protected SysUserService sysUserService;
 
-	 
-
 	@RequestMapping(value = { "/create" }, method = { org.springframework.web.bind.annotation.RequestMethod.POST })
 	@ResponseBody
 	public SysRole create(HttpServletRequest request,
@@ -121,7 +119,8 @@ public class SysRoleKendouiController {
 
 	@RequestMapping("/json")
 	@ResponseBody
-	public byte[] json(HttpServletRequest request, @RequestBody DataRequest dataRequest) throws IOException {
+	public byte[] json(HttpServletRequest request,
+			@RequestBody DataRequest dataRequest) throws IOException {
 		Map<String, Object> params = RequestUtils.getParameterMap(request);
 		SysRoleQuery query = new SysRoleQuery();
 		Tools.populate(query, params);
