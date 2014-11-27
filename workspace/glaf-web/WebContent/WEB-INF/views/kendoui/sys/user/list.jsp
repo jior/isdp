@@ -101,12 +101,17 @@
             "title": "部门",
             "width": "150px",
 			"filterable": {
-                    "cell": {
-						"showOperators": false,
-						 "suggestionOperator": "contains",
-						"operator": "contains"
-                    }
-                }
+                            "extra": false,
+                            "operators": {
+                                "string": {
+                                    "startswith": "开头为",
+									"eq": "等于",
+                                    "contains": "包含",
+                                    "doesnotcontain": "不包含",
+									"endswith": "结尾为",
+                                }
+                            }
+                        }
         },
         {
             "field": "telephone",
