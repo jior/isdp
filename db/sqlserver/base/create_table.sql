@@ -250,6 +250,11 @@ CREATE TABLE sys_todo_instance(
         taskType nvarchar(50),
         threadSize int,
 	attribute_ nvarchar(500),
+	jobRunTime bigint,
+        nextFireTime datetime,
+        previousFireTime datetime,
+        runStatus int,
+        runType int,
         PRIMARY KEY (id)
     );
 
