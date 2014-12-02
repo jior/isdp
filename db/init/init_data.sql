@@ -84,7 +84,6 @@ insert into sys_tree (id, parent, name, nodedesc, sort, code) values (494, 8, 'T
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (495, 8, '调度管理', '调度管理', 495, '');
 insert into sys_tree (id, parent, name, nodeDesc, sort, code) values (498, 4, '货币类型', '货币类型', 498, 'money');
 insert into sys_tree (id, parent, name, nodeDesc, sort, code) values (499, 4, '账户类型', '账户类型', 499, 'AccountType');
-insert into sys_tree (id, parent, name, nodedesc, sort, code) values (512, 10, '授权管理', '授权管理', 512, '');
 
 
 insert into sys_tree (id, parent, name, nodedesc, sort, code) values (701, 3, '内容管理', '内容管理', 0, '');
@@ -148,9 +147,8 @@ insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) val
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (449, '工作日历', '工作日历', '/mx/sys/workCalendar/showList', 449, 1, 449);
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (450, '系统参数', '系统参数', '/mx/sys/property/edit?category=SYS', 450, 1, 450);
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (452, '邮件服务设置', '邮件服务设置', '/mx/sys/mailConfig', 452, 1, 452);
-insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (512, '授权管理', '', '/mx/sys/sysUserRole/showUsers', 512, 2, 512);
 insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (494, 'TODO配置', '', '/mx/sys/todo/showList', 494, 1, 494);
-insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (495, '调度管理', '', '/mx/sys/scheduler/showList', 495, 1, 495);
+insert into sys_application (id, name, appdesc, url, sort, showmenu, nodeid) values (495, '调度管理', '', '/mx/system/scheduler', 495, 1, 495);
 
 insert into sys_application (id, name, appDesc, url, sort, showMenu, nodeId) values (42, '统计报表', '统计报表', '', 42, 1, 42);
 insert into sys_application (id, name, appDesc, url, sort, showMenu, nodeId) values (43, '查询管理', '', '/mx/dts/query', 43, 1, 43);
@@ -158,7 +156,7 @@ insert into sys_application (id, name, appDesc, url, sort, showMenu, nodeId) val
 insert into sys_application (id, name, appDesc, url, sort, showMenu, nodeId) values (45, '图表管理', '图表管理', '/mx/bi/chart', 45, 1, 45);
 insert into sys_application (id, name, appDesc, url, sort, showMenu, nodeId) values (46, '报表管理', '报表管理', '/mx/bi/report', 46, 1, 46);
 insert into sys_application (id, name, appDesc, url, sort, showMenu, nodeId) values (47, '报表发送管理', '报表发送管理', '/mx/bi/reportTask', 47, 1, 47);
-insert into sys_application (id, name, appDesc, url, sort, showMenu, nodeId) values (48, '调度管理', '调度管理', '/mx/dts/scheduler', 48, 1, 48);
+insert into sys_application (id, name, appDesc, url, sort, showMenu, nodeId) values (48, '调度管理', '调度管理', '/mx/system/scheduler?taskType=DTS', 48, 1, 48);
 insert into sys_application (id, name, appDesc, url, sort, showMenu, nodeId) values (49, '任务管理', '任务管理', '/mx/dts/task', 49, 1, 49);
 insert into sys_application (id, name, appDesc, url, sort, showMenu, nodeId) values (50, '参数设置', '参数设置', '/mx/sys/property/edit?category=RPT', 50, 1, 50);
  
