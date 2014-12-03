@@ -25,8 +25,9 @@
 <link href="<%=request.getContextPath()%>/themes/default/styles.css" rel="stylesheet" type="text/css" >
 <link href="<%=request.getContextPath()%>/css/icons.css" rel="stylesheet" type="text/css" >
 <link href="<%=request.getContextPath()%>/css/kendoui.css" rel="stylesheet" type="text/css" >
-<script type="text/javascript" src="<%=request.getContextPath()%>/static/scripts/kendoui/js/jquery.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/jquery.form.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/json2.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/static/scripts/kendoui/js/angular.min.js"></script> 
 <script type="text/javascript" src="<%=request.getContextPath()%>/static/scripts/kendoui/js/kendo.all.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/static/scripts/kendoui/js/cultures/kendo.culture.zh-CN.min.js"></script>
