@@ -41,7 +41,6 @@ import com.glaf.base.modules.sys.query.SysTreeQuery;
 import com.glaf.base.modules.sys.service.SysDepartmentService;
 import com.glaf.base.modules.sys.service.SysRoleService;
 import com.glaf.base.modules.sys.service.SysTreeService;
-
 import com.glaf.core.id.IdGenerator;
 import com.glaf.core.util.PageResult;
 
@@ -72,7 +71,7 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	@Transactional
 	public boolean create(SysDepartment bean) {
 		if (bean.getNode() != null) {
-			 
+
 			bean.setSort((int) bean.getId());
 
 			bean.getNode().setDescription("D");
@@ -111,17 +110,21 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 
 	@Transactional
 	public void deleteById(Long id) {
-		if (id != null) {
-			sysDepartmentMapper.deleteSysDepartmentById(id);
-		}
-	}
-
-	@Transactional
-	public void deleteByIds(List<Long> rowIds) {
-		if (rowIds != null && !rowIds.isEmpty()) {
-			SysDepartmentQuery query = new SysDepartmentQuery();
-			query.rowIds(rowIds);
-			sysDepartmentMapper.deleteSysDepartments(query);
+		if (id != null && id > 0) {
+			SysDepartment department = this.getSysDepartment(id);
+			if (department != null) {
+				SysTree tree = sysTreeService.findById(department.getNodeId());
+				if (tree != null) {
+					List<SysTree> treeList = sysTreeService.getSysTreeList(tree
+							.getId());
+					if (treeList != null && !treeList.isEmpty()) {
+						throw new RuntimeException(
+								"tree node has children exist");
+					}
+					sysDepartmentMapper.deleteSysDepartmentById(id);
+					sysTreeService.delete(tree.getId());
+				}
+			}
 		}
 	}
 

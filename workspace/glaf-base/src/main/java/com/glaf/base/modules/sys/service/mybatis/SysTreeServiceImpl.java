@@ -49,7 +49,6 @@ import com.glaf.base.modules.sys.query.SysDepartmentQuery;
 import com.glaf.base.modules.sys.query.SysTreeQuery;
 import com.glaf.base.modules.sys.query.SysUserQuery;
 import com.glaf.base.modules.sys.service.SysTreeService;
-
 import com.glaf.core.base.ColumnModel;
 import com.glaf.core.base.TableModel;
 import com.glaf.core.id.IdGenerator;
@@ -126,16 +125,11 @@ public class SysTreeServiceImpl implements SysTreeService {
 	@Transactional
 	public void deleteById(Long id) {
 		if (id != null) {
+			List<SysTree> treeList = this.getSysTreeList(id);
+			if (treeList != null && !treeList.isEmpty()) {
+				throw new RuntimeException("tree node has children exist");
+			}
 			sysTreeMapper.deleteSysTreeById(id);
-		}
-	}
-
-	@Transactional
-	public void deleteByIds(List<Long> rowIds) {
-		if (rowIds != null && !rowIds.isEmpty()) {
-			SysTreeQuery query = new SysTreeQuery();
-			query.rowIds(rowIds);
-			sysTreeMapper.deleteSysTrees(query);
 		}
 	}
 
@@ -504,7 +498,7 @@ public class SysTreeServiceImpl implements SysTreeService {
 									"|");
 							bean.setDeep(token.countTokens());
 							treeList.add(bean);// 加入到数组
-							logger.debug("dept level:"+bean.getDeep());
+							logger.debug("dept level:" + bean.getDeep());
 						}
 					}
 				}

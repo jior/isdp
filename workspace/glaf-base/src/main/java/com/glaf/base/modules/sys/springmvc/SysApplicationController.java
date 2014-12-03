@@ -81,9 +81,13 @@ public class SysApplicationController {
 			ModelMap modelMap) {
 		RequestUtils.setRequestParameterToAttribute(request);
 		boolean ret = true;
-		long[] id = ParamUtil.getLongParameterValues(request, "id");
-		ret = sysApplicationService.deleteAll(id);
-
+		try {
+			long[] id = ParamUtil.getLongParameterValues(request, "id");
+			ret = sysApplicationService.deleteAll(id);
+		} catch (Exception ex) {
+			logger.debug(ex);
+			ret = false;
+		}
 		ViewMessages messages = new ViewMessages();
 		if (ret) {// 保存成功
 			messages.add(ViewMessages.GLOBAL_MESSAGE, new ViewMessage(

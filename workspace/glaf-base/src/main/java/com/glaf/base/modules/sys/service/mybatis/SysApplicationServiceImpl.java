@@ -80,6 +80,10 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 
 	protected IdGenerator idGenerator;
 
+	protected IBlobService blobService;
+
+	protected EntityService entityService;
+
 	protected SqlSessionTemplate sqlSessionTemplate;
 
 	protected SysApplicationMapper sysApplicationMapper;
@@ -93,10 +97,6 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	protected SysRoleService sysRoleService;
 
 	protected SysUserService sysUserService;
-
-	protected EntityService entityService;
-
-	protected IBlobService blobService;
 
 	public SysApplicationServiceImpl() {
 
@@ -228,20 +228,20 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	@Transactional
 	public void deleteById(Long appId) {
 		if (appId != null && appId > 0) {
-			sysAccessMapper.deleteSysAccessByAppId(appId);
-			sysApplicationMapper.deleteSysApplicationById(appId);
 			SysApplication app = this.getSysApplication(appId);
 			if (app != null) {
-				sysTreeMapper.deleteSysTreeById(app.getNodeId());
-			}
-		}
-	}
-
-	@Transactional
-	public void deleteByIds(List<Long> rowIds) {
-		if (rowIds != null && !rowIds.isEmpty()) {
-			for (Long appId : rowIds) {
-				this.deleteById(appId);
+				SysTree tree = sysTreeService.findById(app.getNodeId());
+				if (tree != null) {
+					List<SysTree> treeList = sysTreeService.getSysTreeList(tree
+							.getId());
+					if (treeList != null && !treeList.isEmpty()) {
+						throw new RuntimeException(
+								"tree node has children exist");
+					}
+					sysAccessMapper.deleteSysAccessByAppId(appId);
+					sysApplicationMapper.deleteSysApplicationById(appId);
+					sysTreeMapper.deleteSysTreeById(app.getNodeId());
+				}
 			}
 		}
 	}
