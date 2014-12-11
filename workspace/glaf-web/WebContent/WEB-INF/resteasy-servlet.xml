@@ -17,6 +17,21 @@
 
 	<import resource="classpath:springmvc-resteasy.xml" />
 
+    <bean id="jsonHttpMessageConverter" 
+       class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="webBindingInitializer">
+			<bean class="com.glaf.core.web.DateBindingInitializer" />
+		</property>
+		<property name="messageConverters">
+            <list>
+                <ref bean="jsonHttpMessageConverter"/>
+            </list>
+        </property>
+	</bean>
+
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
