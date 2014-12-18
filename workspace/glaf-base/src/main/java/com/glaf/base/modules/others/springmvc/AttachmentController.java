@@ -55,7 +55,7 @@ import com.glaf.base.utils.ParamUtil;
 import com.glaf.base.utils.RequestUtil;
 
 @Controller
-@RequestMapping("/others/attachment")
+@RequestMapping("/attachment")
 public class AttachmentController {
 	private static final Log logger = LogFactory
 			.getLog(AttachmentController.class);
@@ -79,7 +79,7 @@ public class AttachmentController {
 					try {
 						String filePath = SystemProperties.getAppPath()
 								+ Constants.UPLOAD_DIR + attachment.getUrl();
-						logger.debug("prepare delete file:"+filePath);
+						logger.debug("prepare delete file:" + filePath);
 						File file = new File(filePath);
 						if (file.exists() && file.isFile()) {
 							file.delete();
@@ -178,7 +178,6 @@ public class AttachmentController {
 	@javax.annotation.Resource
 	public void setAttachmentService(AttachmentService attachmentService) {
 		this.attachmentService = attachmentService;
-		logger.info("setAttachmentService");
 	}
 
 	/**
@@ -196,8 +195,8 @@ public class AttachmentController {
 		for (int i = 0; i < referIdArray.length; i++) {
 			longReferId[i] = Long.parseLong(referIdArray[i]);
 		}
-		int count = attachmentService
-				.getAttachmentCount(longReferId, referType,createId);
+		int count = attachmentService.getAttachmentCount(longReferId,
+				referType, createId);
 		String Strcount = count + "";
 		request.setAttribute("count", Strcount);
 
@@ -224,8 +223,10 @@ public class AttachmentController {
 		int viewType = ParamUtil.getIntParameter(request, "viewType", 0);
 		String createId = RequestUtil.getLoginUser(request).getActorId();
 
-		//request.setAttribute("list",attachmentService.getAttachmentList(referId, referType));
-		request.setAttribute("list",attachmentService.getAttachmentList(referId, referType,createId));
+		// request.setAttribute("list",attachmentService.getAttachmentList(referId,
+		// referType));
+		request.setAttribute("list", attachmentService.getAttachmentList(
+				referId, referType, createId));
 
 		String x_view = ViewProperties
 				.getString("attachment.showList.referType");

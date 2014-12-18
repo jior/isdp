@@ -43,9 +43,10 @@ import com.glaf.base.utils.ParamUtil;
 import com.glaf.base.utils.RequestUtil;
 
 @Controller
-@RequestMapping("/others/audit")
+@RequestMapping("/audit")
 public class AuditController {
-	protected static final Log logger = LogFactory.getLog(AuditController.class);
+	protected static final Log logger = LogFactory
+			.getLog(AuditController.class);
 
 	private AuditService auditService;
 
