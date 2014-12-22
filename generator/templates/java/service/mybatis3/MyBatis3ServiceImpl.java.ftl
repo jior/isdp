@@ -57,12 +57,10 @@ public class ${entityName}ServiceImpl implements ${entityName}Service {
 	}
 
 	public int count(${entityName}Query query) {
-		query.ensureInitialized();
 		return ${modelName}Mapper.get${entityName}Count(query);
 	}
 
 	public List<${entityName}> list(${entityName}Query query) {
-		query.ensureInitialized();
 		List<${entityName}> list = ${modelName}Mapper.get${entityName}s(query);
 		return list;
 	}
