@@ -21,6 +21,7 @@ package com.glaf.base.modules.sys.service.mybatis;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.RowBounds;
@@ -42,7 +43,9 @@ import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.base.modules.sys.util.DictoryJsonFactory;
 import com.glaf.core.cache.CacheFactory;
 import com.glaf.core.config.SystemConfig;
+import com.glaf.core.domain.SysDataItem;
 import com.glaf.core.id.IdGenerator;
+import com.glaf.core.service.ISysDataItemService;
 import com.glaf.core.util.PageResult;
 
 @Service("dictoryService")
@@ -51,13 +54,15 @@ public class DictoryServiceImpl implements DictoryService {
 	protected final static Log logger = LogFactory
 			.getLog(DictoryServiceImpl.class);
 
-	protected DictoryMapper dictoryMapper;
-
 	protected IdGenerator idGenerator;
+
+	protected DictoryMapper dictoryMapper;
 
 	protected SqlSessionTemplate sqlSessionTemplate;
 
 	protected SysTreeService sysTreeService;
+
+	protected ISysDataItemService sysDataItemService;
 
 	public DictoryServiceImpl() {
 
@@ -129,11 +134,15 @@ public class DictoryServiceImpl implements DictoryService {
 
 	public List<Dictory> getAvailableDictoryList(long nodeId) {
 		String cacheKey = "sys_dicts_" + nodeId;
-		if (SystemConfig.getBoolean("use_query_cache")
-				&& CacheFactory.getString(cacheKey) != null) {
+		if (SystemConfig.getBoolean("use_query_cache")) {
 			String text = CacheFactory.getString(cacheKey);
-			JSONArray array = JSON.parseArray(text);
-			return DictoryJsonFactory.arrayToList(array);
+			if (StringUtils.isNotEmpty(text)) {
+				try {
+					JSONArray array = JSON.parseArray(text);
+					return DictoryJsonFactory.arrayToList(array);
+				} catch (Exception ex) {
+				}
+			}
 		}
 		DictoryQuery query = new DictoryQuery();
 		query.nodeId(nodeId);
@@ -159,12 +168,15 @@ public class DictoryServiceImpl implements DictoryService {
 			return null;
 		}
 		String cacheKey = "sys_dict_" + id;
-
-		if (SystemConfig.getBoolean("use_query_cache")
-				&& CacheFactory.getString(cacheKey) != null) {
+		if (SystemConfig.getBoolean("use_query_cache")) {
 			String text = CacheFactory.getString(cacheKey);
-			JSONObject json = JSON.parseObject(text);
-			return DictoryJsonFactory.jsonToObject(json);
+			if (StringUtils.isNotEmpty(text)) {
+				try {
+					JSONObject json = JSON.parseObject(text);
+					return DictoryJsonFactory.jsonToObject(json);
+				} catch (Exception ex) {
+				}
+			}
 		}
 
 		Dictory dictory = dictoryMapper.getDictoryById(id);
@@ -266,6 +278,23 @@ public class DictoryServiceImpl implements DictoryService {
 			dictory.setCreateDate(new Date());
 			dictory.setSort(1);
 			dictoryMapper.insertDictory(dictory);
+
+			long nodeId = dictory.getNodeId();
+			SysTree tree = sysTreeService.findById(nodeId);
+			if (tree != null && tree.getCode() != null) {
+				if (sysDataItemService.getSysDataItemByName(tree.getCode()) == null) {
+					SysDataItem dataItem = new SysDataItem();
+					dataItem.setName(tree.getCode());
+					dataItem.setQuerySQL("select NAME as name, CODE as value from sys_dictory where TYPEID = "
+							+ nodeId);
+					dataItem.setTextField("name");
+					dataItem.setValueField("value");
+					dataItem.setTitle(tree.getName());
+					dataItem.setCreateBy(dictory.getCreateBy());
+					dataItem.setLocked(0);
+					sysDataItemService.save(dataItem);
+				}
+			}
 		} else {
 			dictory.setUpdateDate(new Date());
 			dictoryMapper.updateDictory(dictory);
@@ -293,6 +322,11 @@ public class DictoryServiceImpl implements DictoryService {
 	@javax.annotation.Resource
 	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
 		this.sqlSessionTemplate = sqlSessionTemplate;
+	}
+
+	@javax.annotation.Resource
+	public void setSysDataItemService(ISysDataItemService sysDataItemService) {
+		this.sysDataItemService = sysDataItemService;
 	}
 
 	@javax.annotation.Resource

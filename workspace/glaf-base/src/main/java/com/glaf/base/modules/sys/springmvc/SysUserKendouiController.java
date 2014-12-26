@@ -63,6 +63,7 @@ import com.glaf.base.modules.sys.model.SysDepartment;
 import com.glaf.base.modules.sys.model.SysRole;
 import com.glaf.base.modules.sys.model.SysTree;
 import com.glaf.base.modules.sys.model.SysUser;
+import com.glaf.base.modules.sys.query.SysRoleQuery;
 import com.glaf.base.modules.sys.query.SysUserQuery;
 import com.glaf.base.modules.sys.service.DictoryService;
 import com.glaf.base.modules.sys.service.SysDepartmentService;
@@ -1143,5 +1144,39 @@ public class SysUserKendouiController {
 		}
 
 		return new ModelAndView("/kendoui/sys/user/userMenus", modelMap);
+	}
+
+	/**
+	 * 显示用户角色
+	 * 
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping("/showUserRoles")
+	public ModelAndView showUserRoles(HttpServletRequest request,
+			ModelMap modelMap) {
+		RequestUtils.setRequestParameterToAttribute(request);
+		String userId = ParamUtil.getParameter(request, "actorId");
+		userId = RequestUtils.decodeString(userId);
+		SysUser user = sysUserService.findByAccountWithAll(userId);
+		request.setAttribute("user", user);
+		request.setAttribute("actorId", RequestUtils.encodeString(user.getActorId()));
+
+		Map<String, Object> params = RequestUtils.getParameterMap(request);
+
+		SysRoleQuery query = new SysRoleQuery();
+		Tools.populate(query, params);
+
+		List<SysRole> roles = sysRoleService.getSysRolesByQueryCriteria(0,
+				1000, query);
+		request.setAttribute("roles", roles);
+
+		String x_view = ViewProperties.getString("user.userMenus");
+		if (StringUtils.isNotEmpty(x_view)) {
+			return new ModelAndView(x_view, modelMap);
+		}
+
+		return new ModelAndView("/kendoui/sys/user/userRoles", modelMap);
 	}
 }

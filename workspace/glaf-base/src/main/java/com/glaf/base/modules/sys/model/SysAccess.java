@@ -10,14 +10,14 @@ public class SysAccess implements Serializable, JSONable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 应用编号
-	 */
-	protected long appId;
-
-	/**
 	 * 角色编号
 	 */
 	protected long roleId;
+
+	/**
+	 * 应用编号
+	 */
+	protected long appId;
 
 	public SysAccess() {
 

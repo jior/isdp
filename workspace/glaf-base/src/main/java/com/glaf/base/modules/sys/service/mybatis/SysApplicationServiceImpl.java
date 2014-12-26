@@ -271,24 +271,27 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	public SysApplication findById(long id) {
 		String cacheKey = "sys_app_" + id;
 
-		if (SystemConfig.getBoolean("use_query_cache")
-				&& CacheFactory.getString(cacheKey) != null) {
+		if (SystemConfig.getBoolean("use_query_cache")) {
 			String text = CacheFactory.getString(cacheKey);
-			try {
-				com.alibaba.fastjson.JSONObject json = JSON.parseObject(text);
-				SysApplication app = SysApplicationJsonFactory
-						.jsonToObject(json);
-				if (app != null && app.getNodeId() > 0) {
-					SysTree node = sysTreeService.findById(app.getNodeId());
-					app.setNode(node);
-					if (node != null) {
-						SysApplication parent = this
-								.getSysApplicationByNodeId(node.getParentId());
-						app.setParent(parent);
+			if (StringUtils.isNotEmpty(text)) {
+				try {
+					com.alibaba.fastjson.JSONObject json = JSON
+							.parseObject(text);
+					SysApplication app = SysApplicationJsonFactory
+							.jsonToObject(json);
+					if (app != null && app.getNodeId() > 0) {
+						SysTree node = sysTreeService.findById(app.getNodeId());
+						app.setNode(node);
+						if (node != null) {
+							SysApplication parent = this
+									.getSysApplicationByNodeId(node
+											.getParentId());
+							app.setParent(parent);
+						}
 					}
+					return app;
+				} catch (Exception ex) {
 				}
-				return app;
-			} catch (Exception ex) {
 			}
 		}
 
@@ -1135,7 +1138,6 @@ public class SysApplicationServiceImpl implements SysApplicationService {
 	 */
 	private void sortByPrevious(long parentId, SysApplication bean) {
 		// 查找前一个对象
-
 		SysApplicationQuery query = new SysApplicationQuery();
 		query.parentId(Long.valueOf(parentId));
 		query.setSortGreaterThan(bean.getSort());

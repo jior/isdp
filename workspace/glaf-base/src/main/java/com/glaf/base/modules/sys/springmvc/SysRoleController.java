@@ -339,6 +339,12 @@ public class SysRoleController {
 			request.setAttribute("sysRole", sysRole);
 		}
 
+		if (sysRole == null) {
+			id = ParamUtil.getIntParameter(request, "roleId", 0);
+			sysRole = sysRoleService.findById(id);
+			request.setAttribute("sysRole", sysRole);
+		}
+
 		String x_view = ViewProperties.getString("role.roleUsers");
 		if (StringUtils.isNotEmpty(x_view)) {
 			return new ModelAndView(x_view, modelMap);

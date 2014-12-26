@@ -114,6 +114,8 @@ public class MyPortalController {
 			ex.printStackTrace();
 			logger.error(ex);
 		}
+		
+		logger.debug("-----------------------end home-----------------------------");
 
 		return new ModelAndView("/modules/portal/home", modelMap);
 	}

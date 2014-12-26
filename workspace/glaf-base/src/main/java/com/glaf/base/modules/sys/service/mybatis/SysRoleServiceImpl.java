@@ -134,11 +134,16 @@ public class SysRoleServiceImpl implements SysRoleService {
 
 	public SysRole findById(long id) {
 		String cacheKey = "sys_role_" + id;
-		if (SystemConfig.getBoolean("use_query_cache")
-				&& CacheFactory.getString(cacheKey) != null) {
+		if (SystemConfig.getBoolean("use_query_cache")) {
 			String text = CacheFactory.getString(cacheKey);
-			JSONObject json = JSON.parseObject(text);
-			return SysRoleJsonFactory.jsonToObject(json);
+			if (StringUtils.isNotEmpty(text)) {
+				try {
+					JSONObject json = JSON.parseObject(text);
+					return SysRoleJsonFactory.jsonToObject(json);
+				} catch (Exception ex) {
+					// Ignore error
+				}
+			}
 		}
 
 		SysRole sysRole = sysRoleMapper.getSysRoleById(id);

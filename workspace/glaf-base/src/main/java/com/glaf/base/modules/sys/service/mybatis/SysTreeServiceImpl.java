@@ -51,7 +51,9 @@ import com.glaf.base.modules.sys.query.SysUserQuery;
 import com.glaf.base.modules.sys.service.SysTreeService;
 import com.glaf.core.base.ColumnModel;
 import com.glaf.core.base.TableModel;
+import com.glaf.core.domain.SysDataItem;
 import com.glaf.core.id.IdGenerator;
+import com.glaf.core.service.ISysDataItemService;
 import com.glaf.core.service.ITableDataService;
 import com.glaf.core.util.PageResult;
 import com.glaf.core.util.StringTools;
@@ -74,6 +76,8 @@ public class SysTreeServiceImpl implements SysTreeService {
 
 	protected ITableDataService tableDataService;
 
+	protected ISysDataItemService sysDataItemService;
+
 	public SysTreeServiceImpl() {
 
 	}
@@ -92,6 +96,20 @@ public class SysTreeServiceImpl implements SysTreeService {
 				}
 				if (bean.getCacheFlag() == null) {
 					bean.setCacheFlag(parent.getCacheFlag());
+				}
+			}
+			if (bean.getParentId() == 4 && bean.getCode() != null) {// 基础数据
+				if (sysDataItemService.getSysDataItemByName(bean.getCode()) == null) {
+					SysDataItem dataItem = new SysDataItem();
+					dataItem.setName(bean.getCode());
+					dataItem.setQuerySQL("select NAME as name, CODE as value from sys_dictory where TYPEID = "
+							+ bean.getId());
+					dataItem.setTextField("name");
+					dataItem.setValueField("value");
+					dataItem.setTitle(bean.getName());
+					dataItem.setCreateBy(bean.getCreateBy());
+					dataItem.setLocked(0);
+					sysDataItemService.save(dataItem);
 				}
 			}
 		}
@@ -599,6 +617,11 @@ public class SysTreeServiceImpl implements SysTreeService {
 	@Resource
 	public void setTableDataService(ITableDataService tableDataService) {
 		this.tableDataService = tableDataService;
+	}
+
+	@Resource
+	public void setSysDataItemService(ISysDataItemService sysDataItemService) {
+		this.sysDataItemService = sysDataItemService;
 	}
 
 	@Transactional

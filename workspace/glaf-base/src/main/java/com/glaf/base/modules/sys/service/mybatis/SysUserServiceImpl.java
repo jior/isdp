@@ -261,11 +261,16 @@ public class SysUserServiceImpl implements SysUserService {
 	@Override
 	public SysUser findById(String account) {
 		String cacheKey = "sys_user_" + account;
-		if (SystemConfig.getBoolean("use_query_cache")
-				&& CacheFactory.getString(cacheKey) != null) {
+		if (SystemConfig.getBoolean("use_query_cache")) {
 			String text = CacheFactory.getString(cacheKey);
-			JSONObject json = JSON.parseObject(text);
-			return SysUserJsonFactory.jsonToObject(json);
+			if (StringUtils.isNotEmpty(text)) {
+				try {
+					JSONObject json = JSON.parseObject(text);
+					return SysUserJsonFactory.jsonToObject(json);
+				} catch (Exception ex) {
+					// Ignore error
+				}
+			}
 		}
 
 		SysUser user = sysUserMapper.getSysUserByAccount(account);

@@ -2,6 +2,7 @@ package com.glaf.base.modules.sys.service.mybatis;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -17,7 +18,6 @@ import com.glaf.base.modules.sys.model.DictoryDefinition;
 import com.glaf.base.modules.sys.query.DictoryDefinitionQuery;
 import com.glaf.base.modules.sys.service.DictoryDefinitionService;
 import com.glaf.base.modules.sys.util.DictoryDefinitionJsonFactory;
-
 import com.glaf.core.cache.CacheFactory;
 import com.glaf.core.config.SystemConfig;
 import com.glaf.core.dao.EntityDAO;
@@ -65,12 +65,18 @@ public class DictoryDefinitionServiceImpl implements DictoryDefinitionService {
 			return null;
 		}
 		String cacheKey = "sys_dict_def_" + id;
-		if (SystemConfig.getBoolean("use_query_cache")
-				&& CacheFactory.getString(cacheKey) != null) {
+		if (SystemConfig.getBoolean("use_query_cache")) {
 			String text = CacheFactory.getString(cacheKey);
-			JSONObject json = JSON.parseObject(text);
-			return DictoryDefinitionJsonFactory.jsonToObject(json);
+			if (StringUtils.isNotEmpty(text)) {
+				try {
+					JSONObject json = JSON.parseObject(text);
+					return DictoryDefinitionJsonFactory.jsonToObject(json);
+				} catch (Exception ex) {
+
+				}
+			}
 		}
+
 		DictoryDefinition dictoryDefinition = dictoryDefinitionMapper
 				.getDictoryDefinitionById(id);
 		if (dictoryDefinition != null
@@ -83,13 +89,18 @@ public class DictoryDefinitionServiceImpl implements DictoryDefinitionService {
 
 	public List<DictoryDefinition> getDictoryDefinitions(Long nodeId,
 			String target) {
-
 		String cacheKey = "sys_dict_def_" + nodeId + "_" + target;
 		if (SystemConfig.getBoolean("use_query_cache")
 				&& CacheFactory.getString(cacheKey) != null) {
 			String text = CacheFactory.getString(cacheKey);
-			JSONArray array = JSON.parseArray(text);
-			return DictoryDefinitionJsonFactory.arrayToList(array);
+			if (StringUtils.isNotEmpty(text)) {
+				try {
+					JSONArray array = JSON.parseArray(text);
+					return DictoryDefinitionJsonFactory.arrayToList(array);
+				} catch (Exception ex) {
+
+				}
+			}
 		}
 
 		DictoryDefinitionQuery query = new DictoryDefinitionQuery();

@@ -44,14 +44,6 @@ public class AuthorizeBean {
 
 	protected static volatile org.springframework.context.ApplicationContext ctx;
 
-	public static void main(String[] args) {
-		ctx = new ClassPathXmlApplicationContext(configurationResource);
-		com.glaf.core.context.ContextFactory.setContext(ctx);
-		AuthorizeBean bean = new AuthorizeBean();
-		SysUser user = bean.getAuthorizeService().login("root");
-		logger.debug(bean.getSysApplicationService().getMenu(3, user));
-	}
-
 	private SysApplicationService sysApplicationService;
 
 	private AuthorizeService authorizeService;
@@ -94,16 +86,20 @@ public class AuthorizeBean {
 		SysUser sysUser = null;
 		if (account != null) {
 			String cacheKey = Constants.USER_CACHE + account;
-			String content = CacheFactory.getString(cacheKey);
-			if (SystemConfig.getBoolean("use_query_cache")
-					&& StringUtils.isNotEmpty(content)) {
-				JSONObject jsonObject = JSON.parseObject(content);
-				sysUser = SysUserJsonFactory.jsonToObject(jsonObject);
+			if (SystemConfig.getBoolean("use_query_cache")) {
+				String text = CacheFactory.getString(cacheKey);
+				if (StringUtils.isNotEmpty(text)) {
+					try {
+						JSONObject jsonObject = JSON.parseObject(text);
+						sysUser = SysUserJsonFactory.jsonToObject(jsonObject);
+					} catch (Exception ex) {
+					}
+				}
 			}
 			if (sysUser == null) {
 				sysUser = getSysUserService().findByAccountWithAll(account);
-				if (SystemConfig.getBoolean("use_query_cache")
-						&& sysUser != null) {
+				if (sysUser != null
+						&& SystemConfig.getBoolean("use_query_cache")) {
 					CacheFactory.put(cacheKey, sysUser.toJsonObject()
 							.toJSONString());
 				}
@@ -128,6 +124,14 @@ public class AuthorizeBean {
 
 	public void setSysUserService(SysUserService sysUserService) {
 		this.sysUserService = sysUserService;
+	}
+
+	public static void main(String[] args) {
+		ctx = new ClassPathXmlApplicationContext(configurationResource);
+		com.glaf.core.context.ContextFactory.setContext(ctx);
+		AuthorizeBean bean = new AuthorizeBean();
+		SysUser user = bean.getAuthorizeService().login("root");
+		logger.debug(bean.getSysApplicationService().getMenu(3, user));
 	}
 
 }
