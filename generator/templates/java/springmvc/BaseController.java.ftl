@@ -198,7 +198,7 @@ public class ${entityName}BaseController {
 		                         */
 					 //TODO
 					if (${modelName} != null && (StringUtils.equals(${modelName}.getCreateBy(), loginContext.getActorId()) || loginContext.isSystemAdministrator())) {
-						${modelName}.setDeleteFlag(1);
+						//${modelName}.setDeleteFlag(1);
 						${modelName}Service.save(${modelName});
 					}
 				}
@@ -212,7 +212,7 @@ public class ${entityName}BaseController {
 		         */
 		        //TODO
 			if (${modelName} != null && ( StringUtils.equals(${modelName}.getCreateBy(), loginContext.getActorId()) || loginContext.isSystemAdministrator())) {
-				${modelName}.setDeleteFlag(1);
+				//${modelName}.setDeleteFlag(1);
 				${modelName}Service.save(${modelName});
 				return ResponseUtils.responseResult(true);
 			}
@@ -258,25 +258,6 @@ public class ${entityName}BaseController {
 		    JSONObject rowJSON =  ${modelName}.toJsonObject();
 		    request.setAttribute("x_json", rowJSON.toJSONString());
 		}
-	
-
-                boolean canUpdate = false;
-		String x_method = request.getParameter("x_method");
-		if (StringUtils.equals(x_method, "submit")) {
-			 
-		}
-
-		if (StringUtils.containsIgnoreCase(x_method, "update")) {
-			if (${modelName} != null) {
-				if (${modelName}.getStatus() == 0
-						|| ${modelName}.getStatus() == -1) {
-					canUpdate = true;
-				}
-			}
-		}
-
-		 
-		request.setAttribute("canUpdate",  canUpdate);
 
 		String view = request.getParameter("view");
 		if (StringUtils.isNotEmpty(view)) {
@@ -352,10 +333,6 @@ public class ${entityName}BaseController {
 		  query.createBy(actorId);
 		}
 
-                String gridType = ParamUtils.getString(params, "gridType");
-		if (gridType == null) {
-			gridType = "easyui";
-		}
 		int start = 0;
 		int limit = 10;
 		String orderName = null;
