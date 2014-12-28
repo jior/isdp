@@ -144,9 +144,9 @@
  <#if pojo_fields?exists>
     <#list  pojo_fields as field>	
     <#if field.editable>
-    <tr>
-	<td width="2%" align="left">&nbsp;</td>
-	<td align="left">
+  <tr>
+    <td width="2%" align="left">&nbsp;</td>
+    <td align="left">
 	<label for="${field.name}" class="required">${field.title}&nbsp;</label>
 	<#if field.type?exists && field.type== 'Date'>
 	<input id="${field.name}" name="${field.name}" type="text" class="k-textbox" 
@@ -172,10 +172,10 @@
 	   value="#F{${modelName}.${field.name}}" validationMessage="ÇëÊäÈë${field.title}"/>
 	</#if>
 	<span class="k-invalid-msg" data-for="${field.name}"></span>
-	</td>
-    </tr>
-  </#if>	 
- </#list>
+    </td>
+  </tr>
+ </#if>	 
+</#list>
 </#if>
 	   
   <!-- <tr>
